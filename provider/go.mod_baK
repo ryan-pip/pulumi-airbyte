@@ -1,0 +1,16 @@
+module github.com/ryan-pip/pulumi-airbyte/provider
+
+go 1.19
+
+require (
+	github.com/pulumi/pulumi-terraform-bridge/pf v0.13.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.50.1
+	github.com/pulumi/pulumi/sdk/v3 v3.73.1-0.20230623071431-db579129f4c9
+	github.com/airbytehq/terraform-provider-airbyte/shim v0.0.0
+)
+
+replace (
+	github.com/airbytehq/terraform-provider-airbyte => github.com/airbytehq/terraform-provider-airbyte v0.3.3
+	github.com/airbytehq/terraform-provider-airbyte/shim => ./shim
+	
+)

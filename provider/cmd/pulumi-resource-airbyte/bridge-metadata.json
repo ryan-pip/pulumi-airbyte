@@ -1,0 +1,277 @@
+{
+    "renames": {
+        "resources": {
+            "airbyte:index/connection:Connection": "airbyte_connection",
+            "airbyte:index/destinationSnowflake:DestinationSnowflake": "airbyte_destination_snowflake",
+            "airbyte:index/sourceMixpanel:SourceMixpanel": "airbyte_source_mixpanel",
+            "airbyte:index/sourceSalesforce:SourceSalesforce": "airbyte_source_salesforce",
+            "airbyte:index/workspace:Workspace": "airbyte_workspace"
+        },
+        "functions": {
+            "airbyte:index/getConnection:getConnection": "airbyte_connection",
+            "airbyte:index/getDestinationSnowflake:getDestinationSnowflake": "airbyte_destination_snowflake",
+            "airbyte:index/getSourceMixpanel:getSourceMixpanel": "airbyte_source_mixpanel",
+            "airbyte:index/getSourceSalesforce:getSourceSalesforce": "airbyte_source_salesforce",
+            "airbyte:index/getWorkspace:getWorkspace": "airbyte_workspace"
+        },
+        "renamedProperties": {
+            "airbyte:index/ConnectionConfigurationsStream:ConnectionConfigurationsStream": {
+                "cursorFields": "cursor_field",
+                "primaryKeys": "primary_key",
+                "syncMode": "sync_mode"
+            },
+            "airbyte:index/ConnectionSchedule:ConnectionSchedule": {
+                "basicTiming": "basic_timing",
+                "cronExpression": "cron_expression",
+                "scheduleType": "schedule_type"
+            },
+            "airbyte:index/DestinationSnowflakeConfiguration:DestinationSnowflakeConfiguration": {
+                "destinationType": "destination_type",
+                "jdbcUrlParams": "jdbc_url_params",
+                "rawDataSchema": "raw_data_schema",
+                "use1s1tFormat": "use_1s1t_format"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentials:DestinationSnowflakeConfigurationCredentials": {
+                "destinationSnowflakeAuthorizationMethodKeyPairAuthentication": "destination_snowflake_authorization_method_key_pair_authentication",
+                "destinationSnowflakeAuthorizationMethodOAuth20": "destination_snowflake_authorization_method_o_auth2_0",
+                "destinationSnowflakeAuthorizationMethodUsernameAndPassword": "destination_snowflake_authorization_method_username_and_password",
+                "destinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": "destination_snowflake_update_authorization_method_key_pair_authentication",
+                "destinationSnowflakeUpdateAuthorizationMethodOAuth20": "destination_snowflake_update_authorization_method_o_auth2_0",
+                "destinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": "destination_snowflake_update_authorization_method_username_and_password"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+                "authType": "auth_type",
+                "privateKey": "private_key",
+                "privateKeyPassword": "private_key_password"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20": {
+                "accessToken": "access_token",
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "refreshToken": "refresh_token"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+                "authType": "auth_type"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+                "authType": "auth_type",
+                "privateKey": "private_key",
+                "privateKeyPassword": "private_key_password"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+                "accessToken": "access_token",
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "refreshToken": "refresh_token"
+            },
+            "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+                "authType": "auth_type"
+            },
+            "airbyte:index/SourceMixpanelConfiguration:SourceMixpanelConfiguration": {
+                "attributionWindow": "attribution_window",
+                "dateWindowSize": "date_window_size",
+                "endDate": "end_date",
+                "projectId": "project_id",
+                "projectTimezone": "project_timezone",
+                "selectPropertiesByDefault": "select_properties_by_default",
+                "sourceType": "source_type",
+                "startDate": "start_date"
+            },
+            "airbyte:index/SourceMixpanelConfigurationCredentials:SourceMixpanelConfigurationCredentials": {
+                "sourceMixpanelAuthenticationWildcardProjectSecret": "source_mixpanel_authentication_wildcard_project_secret",
+                "sourceMixpanelAuthenticationWildcardServiceAccount": "source_mixpanel_authentication_wildcard_service_account",
+                "sourceMixpanelUpdateAuthenticationWildcardProjectSecret": "source_mixpanel_update_authentication_wildcard_project_secret",
+                "sourceMixpanelUpdateAuthenticationWildcardServiceAccount": "source_mixpanel_update_authentication_wildcard_service_account"
+            },
+            "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret": {
+                "apiSecret": "api_secret",
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount": {
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+                "apiSecret": "api_secret",
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/SourceSalesforceConfiguration:SourceSalesforceConfiguration": {
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "forceUseBulkApi": "force_use_bulk_api",
+                "isSandbox": "is_sandbox",
+                "refreshToken": "refresh_token",
+                "sourceType": "source_type",
+                "startDate": "start_date",
+                "streamsCriterias": "streams_criteria"
+            },
+            "airbyte:index/connection:Connection": {
+                "connectionId": "connection_id",
+                "dataResidency": "data_residency",
+                "destinationId": "destination_id",
+                "namespaceDefinition": "namespace_definition",
+                "namespaceFormat": "namespace_format",
+                "nonBreakingSchemaUpdatesBehavior": "non_breaking_schema_updates_behavior",
+                "sourceId": "source_id",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/destinationSnowflake:DestinationSnowflake": {
+                "destinationId": "destination_id",
+                "destinationType": "destination_type",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/getConnection:getConnection": {
+                "connectionId": "connection_id",
+                "dataResidency": "data_residency",
+                "destinationId": "destination_id",
+                "namespaceDefinition": "namespace_definition",
+                "namespaceFormat": "namespace_format",
+                "nonBreakingSchemaUpdatesBehavior": "non_breaking_schema_updates_behavior",
+                "sourceId": "source_id",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/getConnectionConfigurationsStream:getConnectionConfigurationsStream": {
+                "cursorFields": "cursor_field",
+                "primaryKeys": "primary_key",
+                "syncMode": "sync_mode"
+            },
+            "airbyte:index/getConnectionSchedule:getConnectionSchedule": {
+                "basicTiming": "basic_timing",
+                "cronExpression": "cron_expression",
+                "scheduleType": "schedule_type"
+            },
+            "airbyte:index/getDestinationSnowflake:getDestinationSnowflake": {
+                "destinationId": "destination_id",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/getDestinationSnowflakeConfiguration:getDestinationSnowflakeConfiguration": {
+                "destinationType": "destination_type",
+                "jdbcUrlParams": "jdbc_url_params",
+                "rawDataSchema": "raw_data_schema",
+                "use1s1tFormat": "use_1s1t_format"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentials:getDestinationSnowflakeConfigurationCredentials": {
+                "destinationSnowflakeAuthorizationMethodKeyPairAuthentication": "destination_snowflake_authorization_method_key_pair_authentication",
+                "destinationSnowflakeAuthorizationMethodOAuth20": "destination_snowflake_authorization_method_o_auth2_0",
+                "destinationSnowflakeAuthorizationMethodUsernameAndPassword": "destination_snowflake_authorization_method_username_and_password",
+                "destinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": "destination_snowflake_update_authorization_method_key_pair_authentication",
+                "destinationSnowflakeUpdateAuthorizationMethodOAuth20": "destination_snowflake_update_authorization_method_o_auth2_0",
+                "destinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": "destination_snowflake_update_authorization_method_username_and_password"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+                "authType": "auth_type",
+                "privateKey": "private_key",
+                "privateKeyPassword": "private_key_password"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20": {
+                "accessToken": "access_token",
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "refreshToken": "refresh_token"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+                "authType": "auth_type"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+                "authType": "auth_type",
+                "privateKey": "private_key",
+                "privateKeyPassword": "private_key_password"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+                "accessToken": "access_token",
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "refreshToken": "refresh_token"
+            },
+            "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+                "authType": "auth_type"
+            },
+            "airbyte:index/getSourceMixpanel:getSourceMixpanel": {
+                "secretId": "secret_id",
+                "sourceId": "source_id",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/getSourceMixpanelConfiguration:getSourceMixpanelConfiguration": {
+                "attributionWindow": "attribution_window",
+                "dateWindowSize": "date_window_size",
+                "endDate": "end_date",
+                "projectId": "project_id",
+                "projectTimezone": "project_timezone",
+                "selectPropertiesByDefault": "select_properties_by_default",
+                "sourceType": "source_type",
+                "startDate": "start_date"
+            },
+            "airbyte:index/getSourceMixpanelConfigurationCredentials:getSourceMixpanelConfigurationCredentials": {
+                "sourceMixpanelAuthenticationWildcardProjectSecret": "source_mixpanel_authentication_wildcard_project_secret",
+                "sourceMixpanelAuthenticationWildcardServiceAccount": "source_mixpanel_authentication_wildcard_service_account",
+                "sourceMixpanelUpdateAuthenticationWildcardProjectSecret": "source_mixpanel_update_authentication_wildcard_project_secret",
+                "sourceMixpanelUpdateAuthenticationWildcardServiceAccount": "source_mixpanel_update_authentication_wildcard_service_account"
+            },
+            "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret": {
+                "apiSecret": "api_secret",
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount": {
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+                "apiSecret": "api_secret",
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+                "optionTitle": "option_title"
+            },
+            "airbyte:index/getSourceSalesforce:getSourceSalesforce": {
+                "secretId": "secret_id",
+                "sourceId": "source_id",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/getSourceSalesforceConfiguration:getSourceSalesforceConfiguration": {
+                "authType": "auth_type",
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "forceUseBulkApi": "force_use_bulk_api",
+                "isSandbox": "is_sandbox",
+                "refreshToken": "refresh_token",
+                "sourceType": "source_type",
+                "startDate": "start_date",
+                "streamsCriterias": "streams_criteria"
+            },
+            "airbyte:index/getWorkspace:getWorkspace": {
+                "dataResidency": "data_residency",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/sourceMixpanel:SourceMixpanel": {
+                "secretId": "secret_id",
+                "sourceId": "source_id",
+                "sourceType": "source_type",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/sourceSalesforce:SourceSalesforce": {
+                "secretId": "secret_id",
+                "sourceId": "source_id",
+                "sourceType": "source_type",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index/workspace:Workspace": {
+                "dataResidency": "data_residency",
+                "workspaceId": "workspace_id"
+            },
+            "airbyte:index:Provider": {
+                "bearerAuth": "bearer_auth",
+                "serverUrl": "server_url"
+            }
+        },
+        "renamedConfigProperties": {
+            "bearerAuth": "bearer_auth",
+            "serverUrl": "server_url"
+        }
+    }
+}

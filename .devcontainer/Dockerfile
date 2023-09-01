@@ -1,5 +1,5 @@
 ARG UBUNTU_VERSION=latest
-FROM ubuntu:${UBUNTU_VERSION}
+FROM --platform=linux/amd64 ubuntu:${UBUNTU_VERSION}
 
 # Update apt-get and install various needed utilities
 RUN apt-get update && \
@@ -14,7 +14,7 @@ RUN apt-get update && \
 # See README.md
 
 # Install go 
-ARG GO_VERSION=1.18.3
+ARG GO_VERSION=1.21.0
 RUN rm -rf /usr/local/go && \
     wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \

@@ -1,0 +1,1768 @@
+{
+    "name": "airbyte",
+    "attribution": "This Pulumi package is based on the [`airbyte` Terraform Provider](https://github.com/terraform-providers/terraform-provider-airbyte).",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true,
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-airbyte)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-airbyte` repo](/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-airbyte` repo](https://github.com/terraform-providers/terraform-provider-airbyte/issues)."
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-airbyte)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-airbyte` repo](/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-airbyte` repo](https://github.com/terraform-providers/terraform-provider-airbyte/issues)."
+        }
+    },
+    "config": {
+        "variables": {
+            "bearerAuth": {
+                "type": "string",
+                "secret": true
+            },
+            "password": {
+                "type": "string",
+                "secret": true
+            },
+            "serverUrl": {
+                "type": "string",
+                "description": "Server URL (defaults to https://api.airbyte.com/v1)\n"
+            },
+            "username": {
+                "type": "string",
+                "secret": true
+            }
+        }
+    },
+    "types": {
+        "airbyte:index/ConnectionConfigurations:ConnectionConfigurations": {
+            "properties": {
+                "streams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/airbyte:index/ConnectionConfigurationsStream:ConnectionConfigurationsStream"
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "streams"
+                    ]
+                }
+            }
+        },
+        "airbyte:index/ConnectionConfigurationsStream:ConnectionConfigurationsStream": {
+            "properties": {
+                "cursorFields": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "primaryKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "syncMode": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "cursorFields",
+                        "name",
+                        "primaryKeys",
+                        "syncMode"
+                    ]
+                }
+            }
+        },
+        "airbyte:index/ConnectionSchedule:ConnectionSchedule": {
+            "properties": {
+                "basicTiming": {
+                    "type": "string"
+                },
+                "cronExpression": {
+                    "type": "string"
+                },
+                "scheduleType": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "scheduleType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "basicTiming",
+                        "cronExpression",
+                        "scheduleType"
+                    ]
+                }
+            }
+        },
+        "airbyte:index/DestinationSnowflakeConfiguration:DestinationSnowflakeConfiguration": {
+            "properties": {
+                "credentials": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentials:DestinationSnowflakeConfigurationCredentials"
+                },
+                "database": {
+                    "type": "string"
+                },
+                "destinationType": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "jdbcUrlParams": {
+                    "type": "string"
+                },
+                "rawDataSchema": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": "string"
+                },
+                "use1s1tFormat": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "warehouse": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "database",
+                "destinationType",
+                "host",
+                "role",
+                "schema",
+                "username",
+                "warehouse"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentials:DestinationSnowflakeConfigurationCredentials": {
+            "properties": {
+                "destinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication"
+                },
+                "destinationSnowflakeAuthorizationMethodOAuth20": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20"
+                },
+                "destinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword"
+                }
+            },
+            "type": "object"
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "privateKeyPassword": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "privateKey"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20": {
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessToken",
+                "refreshToken"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "password"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "privateKeyPassword": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "privateKey"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessToken",
+                "refreshToken"
+            ]
+        },
+        "airbyte:index/DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:DestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "password"
+            ]
+        },
+        "airbyte:index/SourceMixpanelConfiguration:SourceMixpanelConfiguration": {
+            "properties": {
+                "attributionWindow": {
+                    "type": "integer"
+                },
+                "credentials": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfigurationCredentials:SourceMixpanelConfigurationCredentials"
+                },
+                "dateWindowSize": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer"
+                },
+                "projectTimezone": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "selectPropertiesByDefault": {
+                    "type": "boolean"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "airbyte:index/SourceMixpanelConfigurationCredentials:SourceMixpanelConfigurationCredentials": {
+            "properties": {
+                "sourceMixpanelAuthenticationWildcardProjectSecret": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret"
+                },
+                "sourceMixpanelAuthenticationWildcardServiceAccount": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount"
+                },
+                "sourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret"
+                },
+                "sourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount"
+                }
+            },
+            "type": "object"
+        },
+        "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret": {
+            "properties": {
+                "apiSecret": {
+                    "type": "string"
+                },
+                "optionTitle": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiSecret"
+            ]
+        },
+        "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount": {
+            "properties": {
+                "optionTitle": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "secret",
+                "username"
+            ]
+        },
+        "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+            "properties": {
+                "apiSecret": {
+                    "type": "string"
+                },
+                "optionTitle": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiSecret"
+            ]
+        },
+        "airbyte:index/SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+            "properties": {
+                "optionTitle": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "secret",
+                "username"
+            ]
+        },
+        "airbyte:index/SourceSalesforceConfiguration:SourceSalesforceConfiguration": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "forceUseBulkApi": {
+                    "type": "boolean"
+                },
+                "isSandbox": {
+                    "type": "boolean"
+                },
+                "refreshToken": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "streamsCriterias": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/airbyte:index/SourceSalesforceConfigurationStreamsCriteria:SourceSalesforceConfigurationStreamsCriteria"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "clientId",
+                "clientSecret",
+                "refreshToken",
+                "sourceType"
+            ]
+        },
+        "airbyte:index/SourceSalesforceConfigurationStreamsCriteria:SourceSalesforceConfigurationStreamsCriteria": {
+            "properties": {
+                "criteria": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "criteria",
+                "value"
+            ]
+        },
+        "airbyte:index/getConnectionConfigurations:getConnectionConfigurations": {
+            "properties": {
+                "streams": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/airbyte:index/getConnectionConfigurationsStream:getConnectionConfigurationsStream"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "streams"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getConnectionConfigurationsStream:getConnectionConfigurationsStream": {
+            "properties": {
+                "cursorFields": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "primaryKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "syncMode": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cursorFields",
+                "name",
+                "primaryKeys",
+                "syncMode"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getConnectionSchedule:getConnectionSchedule": {
+            "properties": {
+                "basicTiming": {
+                    "type": "string"
+                },
+                "cronExpression": {
+                    "type": "string"
+                },
+                "scheduleType": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "basicTiming",
+                "cronExpression",
+                "scheduleType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfiguration:getDestinationSnowflakeConfiguration": {
+            "properties": {
+                "credentials": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentials:getDestinationSnowflakeConfigurationCredentials"
+                },
+                "database": {
+                    "type": "string"
+                },
+                "destinationType": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "jdbcUrlParams": {
+                    "type": "string"
+                },
+                "rawDataSchema": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": "string"
+                },
+                "use1s1tFormat": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "warehouse": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "credentials",
+                "database",
+                "destinationType",
+                "host",
+                "jdbcUrlParams",
+                "rawDataSchema",
+                "role",
+                "schema",
+                "use1s1tFormat",
+                "username",
+                "warehouse"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentials:getDestinationSnowflakeConfigurationCredentials": {
+            "properties": {
+                "destinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication"
+                },
+                "destinationSnowflakeAuthorizationMethodOAuth20": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20"
+                },
+                "destinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20"
+                },
+                "destinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+                    "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword"
+                }
+            },
+            "type": "object",
+            "required": [
+                "destinationSnowflakeAuthorizationMethodKeyPairAuthentication",
+                "destinationSnowflakeAuthorizationMethodOAuth20",
+                "destinationSnowflakeAuthorizationMethodUsernameAndPassword",
+                "destinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication",
+                "destinationSnowflakeUpdateAuthorizationMethodOAuth20",
+                "destinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodKeyPairAuthentication": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "privateKeyPassword": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "privateKey",
+                "privateKeyPassword"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodOAuth20": {
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessToken",
+                "authType",
+                "clientId",
+                "clientSecret",
+                "refreshToken"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeAuthorizationMethodUsernameAndPassword": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "password"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodKeyPairAuthentication": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "privateKeyPassword": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "privateKey",
+                "privateKeyPassword"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodOAuth20": {
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessToken",
+                "authType",
+                "clientId",
+                "clientSecret",
+                "refreshToken"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword:getDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdateAuthorizationMethodUsernameAndPassword": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "password"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfiguration:getSourceMixpanelConfiguration": {
+            "properties": {
+                "attributionWindow": {
+                    "type": "integer"
+                },
+                "credentials": {
+                    "$ref": "#/types/airbyte:index/getSourceMixpanelConfigurationCredentials:getSourceMixpanelConfigurationCredentials"
+                },
+                "dateWindowSize": {
+                    "type": "integer"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "integer"
+                },
+                "projectTimezone": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "selectPropertiesByDefault": {
+                    "type": "boolean"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "attributionWindow",
+                "credentials",
+                "dateWindowSize",
+                "endDate",
+                "projectId",
+                "projectTimezone",
+                "region",
+                "selectPropertiesByDefault",
+                "sourceType",
+                "startDate"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfigurationCredentials:getSourceMixpanelConfigurationCredentials": {
+            "properties": {
+                "sourceMixpanelAuthenticationWildcardProjectSecret": {
+                    "$ref": "#/types/airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret"
+                },
+                "sourceMixpanelAuthenticationWildcardServiceAccount": {
+                    "$ref": "#/types/airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount"
+                },
+                "sourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+                    "$ref": "#/types/airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret"
+                },
+                "sourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+                    "$ref": "#/types/airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount"
+                }
+            },
+            "type": "object",
+            "required": [
+                "sourceMixpanelAuthenticationWildcardProjectSecret",
+                "sourceMixpanelAuthenticationWildcardServiceAccount",
+                "sourceMixpanelUpdateAuthenticationWildcardProjectSecret",
+                "sourceMixpanelUpdateAuthenticationWildcardServiceAccount"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardProjectSecret": {
+            "properties": {
+                "apiSecret": {
+                    "type": "string"
+                },
+                "optionTitle": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiSecret",
+                "optionTitle"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelAuthenticationWildcardServiceAccount": {
+            "properties": {
+                "optionTitle": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "optionTitle",
+                "secret",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardProjectSecret": {
+            "properties": {
+                "apiSecret": {
+                    "type": "string"
+                },
+                "optionTitle": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiSecret",
+                "optionTitle"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount:getSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticationWildcardServiceAccount": {
+            "properties": {
+                "optionTitle": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "optionTitle",
+                "secret",
+                "username"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceSalesforceConfiguration:getSourceSalesforceConfiguration": {
+            "properties": {
+                "authType": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "forceUseBulkApi": {
+                    "type": "boolean"
+                },
+                "isSandbox": {
+                    "type": "boolean"
+                },
+                "refreshToken": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                },
+                "streamsCriterias": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/airbyte:index/getSourceSalesforceConfigurationStreamsCriteria:getSourceSalesforceConfigurationStreamsCriteria"
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "authType",
+                "clientId",
+                "clientSecret",
+                "forceUseBulkApi",
+                "isSandbox",
+                "refreshToken",
+                "sourceType",
+                "startDate",
+                "streamsCriterias"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "airbyte:index/getSourceSalesforceConfigurationStreamsCriteria:getSourceSalesforceConfigurationStreamsCriteria": {
+            "properties": {
+                "criteria": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "criteria",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the airbyte package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "bearerAuth": {
+                "type": "string",
+                "secret": true
+            },
+            "password": {
+                "type": "string",
+                "secret": true
+            },
+            "serverUrl": {
+                "type": "string",
+                "description": "Server URL (defaults to https://api.airbyte.com/v1)\n"
+            },
+            "username": {
+                "type": "string",
+                "secret": true
+            }
+        },
+        "inputProperties": {
+            "bearerAuth": {
+                "type": "string",
+                "secret": true
+            },
+            "password": {
+                "type": "string",
+                "secret": true
+            },
+            "serverUrl": {
+                "type": "string",
+                "description": "Server URL (defaults to https://api.airbyte.com/v1)\n"
+            },
+            "username": {
+                "type": "string",
+                "secret": true
+            }
+        }
+    },
+    "resources": {
+        "airbyte:index/connection:Connection": {
+            "properties": {
+                "configurations": {
+                    "$ref": "#/types/airbyte:index/ConnectionConfigurations:ConnectionConfigurations",
+                    "description": "A list of configured stream options for a connection.\n"
+                },
+                "connectionId": {
+                    "type": "string"
+                },
+                "dataResidency": {
+                    "type": "string",
+                    "description": "must be one of [\"auto\", \"us\", \"eu\"]\n"
+                },
+                "destinationId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Optional name of the connection\n"
+                },
+                "namespaceDefinition": {
+                    "type": "string",
+                    "description": "must be one of [\"source\", \"destination\", \"custom_format\"] Define the location where the data will be stored in the\ndestination\n"
+                },
+                "namespaceFormat": {
+                    "type": "string",
+                    "description": "Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If\n\"${SOURCE_NAMESPACE}\" then behaves like namespaceDefinition = 'source'.\n"
+                },
+                "nonBreakingSchemaUpdatesBehavior": {
+                    "type": "string",
+                    "description": "must be one of [\"ignore\", \"disable_connection\", \"propagate_columns\", \"propagate_fully\"] Set how Airbyte handles syncs\nwhen it detects a non-breaking schema change in the source\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”\ncauses “projects” =\u003e “airbyte_projects”).\n"
+                },
+                "schedule": {
+                    "$ref": "#/types/airbyte:index/ConnectionSchedule:ConnectionSchedule",
+                    "description": "schedule for when the the connection should run, per the schedule type\n"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "must be one of [\"active\", \"inactive\", \"deprecated\"]\n"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "configurations",
+                "connectionId",
+                "dataResidency",
+                "destinationId",
+                "name",
+                "namespaceDefinition",
+                "namespaceFormat",
+                "nonBreakingSchemaUpdatesBehavior",
+                "prefix",
+                "schedule",
+                "sourceId",
+                "status",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "configurations": {
+                    "$ref": "#/types/airbyte:index/ConnectionConfigurations:ConnectionConfigurations",
+                    "description": "A list of configured stream options for a connection.\n"
+                },
+                "dataResidency": {
+                    "type": "string",
+                    "description": "must be one of [\"auto\", \"us\", \"eu\"]\n"
+                },
+                "destinationId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Optional name of the connection\n"
+                },
+                "namespaceDefinition": {
+                    "type": "string",
+                    "description": "must be one of [\"source\", \"destination\", \"custom_format\"] Define the location where the data will be stored in the\ndestination\n"
+                },
+                "namespaceFormat": {
+                    "type": "string",
+                    "description": "Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If\n\"${SOURCE_NAMESPACE}\" then behaves like namespaceDefinition = 'source'.\n"
+                },
+                "nonBreakingSchemaUpdatesBehavior": {
+                    "type": "string",
+                    "description": "must be one of [\"ignore\", \"disable_connection\", \"propagate_columns\", \"propagate_fully\"] Set how Airbyte handles syncs\nwhen it detects a non-breaking schema change in the source\n"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”\ncauses “projects” =\u003e “airbyte_projects”).\n"
+                },
+                "schedule": {
+                    "$ref": "#/types/airbyte:index/ConnectionSchedule:ConnectionSchedule",
+                    "description": "schedule for when the the connection should run, per the schedule type\n"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "must be one of [\"active\", \"inactive\", \"deprecated\"]\n"
+                }
+            },
+            "requiredInputs": [
+                "destinationId",
+                "sourceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Connection resources.\n",
+                "properties": {
+                    "configurations": {
+                        "$ref": "#/types/airbyte:index/ConnectionConfigurations:ConnectionConfigurations",
+                        "description": "A list of configured stream options for a connection.\n"
+                    },
+                    "connectionId": {
+                        "type": "string"
+                    },
+                    "dataResidency": {
+                        "type": "string",
+                        "description": "must be one of [\"auto\", \"us\", \"eu\"]\n"
+                    },
+                    "destinationId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Optional name of the connection\n"
+                    },
+                    "namespaceDefinition": {
+                        "type": "string",
+                        "description": "must be one of [\"source\", \"destination\", \"custom_format\"] Define the location where the data will be stored in the\ndestination\n"
+                    },
+                    "namespaceFormat": {
+                        "type": "string",
+                        "description": "Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If\n\"${SOURCE_NAMESPACE}\" then behaves like namespaceDefinition = 'source'.\n"
+                    },
+                    "nonBreakingSchemaUpdatesBehavior": {
+                        "type": "string",
+                        "description": "must be one of [\"ignore\", \"disable_connection\", \"propagate_columns\", \"propagate_fully\"] Set how Airbyte handles syncs\nwhen it detects a non-breaking schema change in the source\n"
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "description": "Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”\ncauses “projects” =\u003e “airbyte_projects”).\n"
+                    },
+                    "schedule": {
+                        "$ref": "#/types/airbyte:index/ConnectionSchedule:ConnectionSchedule",
+                        "description": "schedule for when the the connection should run, per the schedule type\n"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "must be one of [\"active\", \"inactive\", \"deprecated\"]\n"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "airbyte:index/destinationSnowflake:DestinationSnowflake": {
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfiguration:DestinationSnowflakeConfiguration"
+                },
+                "destinationId": {
+                    "type": "string"
+                },
+                "destinationType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "configuration",
+                "destinationId",
+                "destinationType",
+                "name",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/DestinationSnowflakeConfiguration:DestinationSnowflakeConfiguration"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "name",
+                "workspaceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DestinationSnowflake resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/DestinationSnowflakeConfiguration:DestinationSnowflakeConfiguration"
+                    },
+                    "destinationId": {
+                        "type": "string"
+                    },
+                    "destinationType": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "airbyte:index/sourceMixpanel:SourceMixpanel": {
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfiguration:SourceMixpanelConfiguration"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "configuration",
+                "name",
+                "sourceId",
+                "sourceType",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/SourceMixpanelConfiguration:SourceMixpanelConfiguration"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "name",
+                "workspaceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SourceMixpanel resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/SourceMixpanelConfiguration:SourceMixpanelConfiguration"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "sourceType": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "airbyte:index/sourceSalesforce:SourceSalesforce": {
+            "properties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/SourceSalesforceConfiguration:SourceSalesforceConfiguration"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "configuration",
+                "name",
+                "sourceId",
+                "sourceType",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "configuration": {
+                    "$ref": "#/types/airbyte:index/SourceSalesforceConfiguration:SourceSalesforceConfiguration"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "configuration",
+                "name",
+                "workspaceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SourceSalesforce resources.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/SourceSalesforceConfiguration:SourceSalesforceConfiguration"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "Optional secretID obtained through the public API OAuth redirect flow.\n"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "sourceType": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "airbyte:index/workspace:Workspace": {
+            "properties": {
+                "dataResidency": {
+                    "type": "string",
+                    "description": "must be one of [\"auto\", \"us\", \"eu\"]\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the workspace\n"
+                },
+                "workspaceId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "dataResidency",
+                "name",
+                "workspaceId"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the workspace\n"
+                }
+            },
+            "requiredInputs": [
+                "name"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Workspace resources.\n",
+                "properties": {
+                    "dataResidency": {
+                        "type": "string",
+                        "description": "must be one of [\"auto\", \"us\", \"eu\"]\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the workspace\n"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "airbyte:index/getConnection:getConnection": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getConnection.\n",
+                "properties": {
+                    "connectionId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "connectionId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getConnection.\n",
+                "properties": {
+                    "configurations": {
+                        "$ref": "#/types/airbyte:index/getConnectionConfigurations:getConnectionConfigurations"
+                    },
+                    "connectionId": {
+                        "type": "string"
+                    },
+                    "dataResidency": {
+                        "type": "string"
+                    },
+                    "destinationId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "namespaceDefinition": {
+                        "type": "string"
+                    },
+                    "namespaceFormat": {
+                        "type": "string"
+                    },
+                    "nonBreakingSchemaUpdatesBehavior": {
+                        "type": "string"
+                    },
+                    "prefix": {
+                        "type": "string"
+                    },
+                    "schedule": {
+                        "$ref": "#/types/airbyte:index/getConnectionSchedule:getConnectionSchedule"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "configurations",
+                    "connectionId",
+                    "dataResidency",
+                    "destinationId",
+                    "name",
+                    "namespaceDefinition",
+                    "namespaceFormat",
+                    "nonBreakingSchemaUpdatesBehavior",
+                    "prefix",
+                    "schedule",
+                    "sourceId",
+                    "status",
+                    "workspaceId",
+                    "id"
+                ]
+            }
+        },
+        "airbyte:index/getDestinationSnowflake:getDestinationSnowflake": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDestinationSnowflake.\n",
+                "properties": {
+                    "destinationId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "destinationId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDestinationSnowflake.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/getDestinationSnowflakeConfiguration:getDestinationSnowflakeConfiguration"
+                    },
+                    "destinationId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "configuration",
+                    "destinationId",
+                    "name",
+                    "workspaceId",
+                    "id"
+                ]
+            }
+        },
+        "airbyte:index/getSourceMixpanel:getSourceMixpanel": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSourceMixpanel.\n",
+                "properties": {
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sourceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSourceMixpanel.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/getSourceMixpanelConfiguration:getSourceMixpanelConfiguration"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "configuration",
+                    "name",
+                    "sourceId",
+                    "workspaceId",
+                    "id"
+                ]
+            }
+        },
+        "airbyte:index/getSourceSalesforce:getSourceSalesforce": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSourceSalesforce.\n",
+                "properties": {
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sourceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSourceSalesforce.\n",
+                "properties": {
+                    "configuration": {
+                        "$ref": "#/types/airbyte:index/getSourceSalesforceConfiguration:getSourceSalesforceConfiguration"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "configuration",
+                    "name",
+                    "sourceId",
+                    "workspaceId",
+                    "id"
+                ]
+            }
+        },
+        "airbyte:index/getWorkspace:getWorkspace": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getWorkspace.\n",
+                "properties": {
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "workspaceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getWorkspace.\n",
+                "properties": {
+                    "dataResidency": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "workspaceId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "dataResidency",
+                    "name",
+                    "workspaceId",
+                    "id"
+                ]
+            }
+        }
+    }
+}
