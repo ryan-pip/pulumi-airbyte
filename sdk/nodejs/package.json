@@ -1,6 +1,14 @@
 {
     "name": "@pulumi/airbyte",
     "version": "${VERSION}",
+    "keywords": [
+        "pulumi",
+        "airbyte",
+        "category/utility"
+    ],
+    "homepage": "https://www.airbyte.com",
+    "repository": "https://github.com/ryan-pip/pulumi-airbyte",
+    "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
         "install": "node scripts/install-pulumi-plugin.js resource airbyte ${VERSION}"
@@ -14,6 +22,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "airbyte"
+        "name": "airbyte",
+        "server": "github://api.github.com/ryan-pip"
     }
 }

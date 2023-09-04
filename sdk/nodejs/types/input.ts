@@ -22,6 +22,1812 @@ export interface ConnectionSchedule {
     scheduleType: pulumi.Input<string>;
 }
 
+export interface DestinationAWSDatalakeConfiguration {
+    awsAccountId?: pulumi.Input<string>;
+    bucketName: pulumi.Input<string>;
+    bucketPrefix?: pulumi.Input<string>;
+    credentials: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentials>;
+    destinationType: pulumi.Input<string>;
+    format?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormat>;
+    glueCatalogFloatAsDecimal?: pulumi.Input<boolean>;
+    lakeformationDatabaseDefaultTagKey?: pulumi.Input<string>;
+    lakeformationDatabaseDefaultTagValues?: pulumi.Input<string>;
+    lakeformationDatabaseName: pulumi.Input<string>;
+    lakeformationGovernedTables?: pulumi.Input<boolean>;
+    partitioning?: pulumi.Input<string>;
+    region: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentials {
+    destinationAwsDatalakeAuthenticationModeIamRole?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole>;
+    destinationAwsDatalakeAuthenticationModeIamUser?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser>;
+    destinationAwsDatalakeUpdateAuthenticationModeIamRole?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole>;
+    destinationAwsDatalakeUpdateAuthenticationModeIamUser?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser>;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole {
+    credentialsTitle: pulumi.Input<string>;
+    roleArn: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser {
+    awsAccessKeyId: pulumi.Input<string>;
+    awsSecretAccessKey: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole {
+    credentialsTitle: pulumi.Input<string>;
+    roleArn: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser {
+    awsAccessKeyId: pulumi.Input<string>;
+    awsSecretAccessKey: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormat {
+    destinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson>;
+    destinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage>;
+    destinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson>;
+    destinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage>;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAzurBlobStorageConfiguration {
+    azureBlobStorageAccountKey: pulumi.Input<string>;
+    azureBlobStorageAccountName: pulumi.Input<string>;
+    azureBlobStorageContainerName?: pulumi.Input<string>;
+    azureBlobStorageEndpointDomainName?: pulumi.Input<string>;
+    azureBlobStorageOutputBufferSize?: pulumi.Input<number>;
+    azureBlobStorageSpillSize?: pulumi.Input<number>;
+    destinationType: pulumi.Input<string>;
+    format: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormat>;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormat {
+    destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues>;
+    destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues>;
+    destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson>;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues {
+    flattening: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues {
+    flattening: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfiguration {
+    bigQueryClientBufferSizeMb?: pulumi.Input<number>;
+    credentialsJson?: pulumi.Input<string>;
+    datasetId: pulumi.Input<string>;
+    datasetLocation: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    loadingMethod?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethod>;
+    projectId: pulumi.Input<string>;
+    rawDataDataset?: pulumi.Input<string>;
+    transformationPriority?: pulumi.Input<string>;
+    use1s1tFormat?: pulumi.Input<boolean>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethod {
+    destinationBigqueryLoadingMethodGcsStaging?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging>;
+    destinationBigqueryLoadingMethodStandardInserts?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts>;
+    destinationBigqueryUpdateLoadingMethodGcsStaging?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging>;
+    destinationBigqueryUpdateLoadingMethodStandardInserts?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging {
+    credential: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential>;
+    fileBufferCount?: pulumi.Input<number>;
+    gcsBucketName: pulumi.Input<string>;
+    gcsBucketPath: pulumi.Input<string>;
+    keepFilesInGcsBucket?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential {
+    destinationBigqueryLoadingMethodGcsStagingCredentialHmacKey?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging {
+    credential: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential>;
+    fileBufferCount?: pulumi.Input<number>;
+    gcsBucketName: pulumi.Input<string>;
+    gcsBucketPath: pulumi.Input<string>;
+    keepFilesInGcsBucket?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfiguration {
+    bigQueryClientBufferSizeMb?: pulumi.Input<number>;
+    credentialsJson?: pulumi.Input<string>;
+    datasetId: pulumi.Input<string>;
+    datasetLocation?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    loadingMethod?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethod>;
+    projectId: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethod {
+    destinationBigqueryDenormalizedLoadingMethodGcsStaging?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging>;
+    destinationBigqueryDenormalizedLoadingMethodStandardInserts?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts>;
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging>;
+    destinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging {
+    credential: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential>;
+    fileBufferCount?: pulumi.Input<number>;
+    gcsBucketName: pulumi.Input<string>;
+    gcsBucketPath: pulumi.Input<string>;
+    keepFilesInGcsBucket?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging {
+    credential: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential>;
+    fileBufferCount?: pulumi.Input<number>;
+    gcsBucketName: pulumi.Input<string>;
+    gcsBucketPath: pulumi.Input<string>;
+    keepFilesInGcsBucket?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethod {
+    destinationClickhouseSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel>;
+    destinationClickhouseSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication>;
+    destinationClickhouseSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication>;
+    destinationClickhouseUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel>;
+    destinationClickhouseUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationConvexConfiguration {
+    accessKey: pulumi.Input<string>;
+    deploymentUrl: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+}
+
+export interface DestinationCumulioConfiguration {
+    apiHost: pulumi.Input<string>;
+    apiKey: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+}
+
+export interface DestinationDatabendConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<number>;
+    table?: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfiguration {
+    acceptTerms: pulumi.Input<boolean>;
+    dataSource: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSource>;
+    database?: pulumi.Input<string>;
+    databricksHttpPath: pulumi.Input<string>;
+    databricksPersonalAccessToken: pulumi.Input<string>;
+    databricksPort?: pulumi.Input<string>;
+    databricksServerHostname: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    enableSchemaEvolution?: pulumi.Input<boolean>;
+    purgeStagingData?: pulumi.Input<boolean>;
+    schema?: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSource {
+    destinationDatabricksDataSourceAmazonS3?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3>;
+    destinationDatabricksDataSourceAzureBlobStorage?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage>;
+    destinationDatabricksDataSourceRecommendedManagedTables?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables>;
+    destinationDatabricksUpdateDataSourceAmazonS3?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3>;
+    destinationDatabricksUpdateDataSourceAzureBlobStorage?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage>;
+    destinationDatabricksUpdateDataSourceRecommendedManagedTables?: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3 {
+    dataSourceType: pulumi.Input<string>;
+    fileNamePattern?: pulumi.Input<string>;
+    s3AccessKeyId: pulumi.Input<string>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    s3SecretAccessKey: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: pulumi.Input<string>;
+    azureBlobStorageContainerName: pulumi.Input<string>;
+    azureBlobStorageEndpointDomainName?: pulumi.Input<string>;
+    azureBlobStorageSasToken: pulumi.Input<string>;
+    dataSourceType: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables {
+    dataSourceType: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3 {
+    dataSourceType: pulumi.Input<string>;
+    fileNamePattern?: pulumi.Input<string>;
+    s3AccessKeyId: pulumi.Input<string>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    s3SecretAccessKey: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: pulumi.Input<string>;
+    azureBlobStorageContainerName: pulumi.Input<string>;
+    azureBlobStorageEndpointDomainName?: pulumi.Input<string>;
+    azureBlobStorageSasToken: pulumi.Input<string>;
+    dataSourceType: pulumi.Input<string>;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables {
+    dataSourceType: pulumi.Input<string>;
+}
+
+export interface DestinationDevNullConfiguration {
+    destinationType: pulumi.Input<string>;
+    testDestination: pulumi.Input<inputs.DestinationDevNullConfigurationTestDestination>;
+}
+
+export interface DestinationDevNullConfigurationTestDestination {
+    destinationDevNullTestDestinationSilent?: pulumi.Input<inputs.DestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent>;
+    destinationDevNullUpdateTestDestinationSilent?: pulumi.Input<inputs.DestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent>;
+}
+
+export interface DestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent {
+    testDestinationType: pulumi.Input<string>;
+}
+
+export interface DestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent {
+    testDestinationType: pulumi.Input<string>;
+}
+
+export interface DestinationDynamodbConfiguration {
+    accessKeyId: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    dynamodbEndpoint?: pulumi.Input<string>;
+    dynamodbRegion: pulumi.Input<string>;
+    dynamodbTableNamePrefix: pulumi.Input<string>;
+    secretAccessKey: pulumi.Input<string>;
+}
+
+export interface DestinationElasticsearchConfiguration {
+    authenticationMethod?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethod>;
+    caCertificate?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    endpoint: pulumi.Input<string>;
+    upsert?: pulumi.Input<boolean>;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethod {
+    destinationElasticsearchAuthenticationMethodApiKeySecret?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret>;
+    destinationElasticsearchAuthenticationMethodUsernamePassword?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword>;
+    destinationElasticsearchUpdateAuthenticationMethodApiKeySecret?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret>;
+    destinationElasticsearchUpdateAuthenticationMethodUsernamePassword?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword>;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret {
+    apiKeyId: pulumi.Input<string>;
+    apiKeySecret: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword {
+    method: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret {
+    apiKeyId: pulumi.Input<string>;
+    apiKeySecret: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword {
+    method: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationFireboltConfiguration {
+    account?: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    engine?: pulumi.Input<string>;
+    host?: pulumi.Input<string>;
+    loadingMethod?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethod>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethod {
+    destinationFireboltLoadingMethodExternalTableViaS3?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3>;
+    destinationFireboltLoadingMethodSqlInserts?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts>;
+    destinationFireboltUpdateLoadingMethodExternalTableViaS3?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3>;
+    destinationFireboltUpdateLoadingMethodSqlInserts?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts>;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3 {
+    awsKeyId: pulumi.Input<string>;
+    awsKeySecret: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    s3Bucket: pulumi.Input<string>;
+    s3Region: pulumi.Input<string>;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3 {
+    awsKeyId: pulumi.Input<string>;
+    awsKeySecret: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    s3Bucket: pulumi.Input<string>;
+    s3Region: pulumi.Input<string>;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationFirestoreConfiguration {
+    credentialsJson?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfiguration {
+    credential: pulumi.Input<inputs.DestinationGcsConfigurationCredential>;
+    destinationType: pulumi.Input<string>;
+    format: pulumi.Input<inputs.DestinationGcsConfigurationFormat>;
+    gcsBucketName: pulumi.Input<string>;
+    gcsBucketPath: pulumi.Input<string>;
+    gcsBucketRegion?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationCredential {
+    destinationGcsAuthenticationHmacKey?: pulumi.Input<inputs.DestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey>;
+    destinationGcsUpdateAuthenticationHmacKey?: pulumi.Input<inputs.DestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey>;
+}
+
+export interface DestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey {
+    credentialType: pulumi.Input<string>;
+    hmacKeyAccessId: pulumi.Input<string>;
+    hmacKeySecret: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormat {
+    destinationGcsOutputFormatAvroApacheAvro?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro>;
+    destinationGcsOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues>;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationGcsOutputFormatParquetColumnarStorage?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage>;
+    destinationGcsUpdateOutputFormatAvroApacheAvro?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro>;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues>;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationGcsUpdateOutputFormatParquetColumnarStorage?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro {
+    compressionCodec: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2>;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate>;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression>;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy>;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecXz?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz>;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+    includeChecksum?: pulumi.Input<boolean>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues {
+    compression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip>;
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage {
+    blockSizeMb?: pulumi.Input<number>;
+    compressionCodec?: pulumi.Input<string>;
+    dictionaryEncoding?: pulumi.Input<boolean>;
+    dictionaryPageSizeKb?: pulumi.Input<number>;
+    formatType: pulumi.Input<string>;
+    maxPaddingSizeMb?: pulumi.Input<number>;
+    pageSizeKb?: pulumi.Input<number>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro {
+    compressionCodec: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2>;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate>;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression>;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy>;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz>;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: pulumi.Input<string>;
+    compressionLevel?: pulumi.Input<number>;
+    includeChecksum?: pulumi.Input<boolean>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues {
+    compression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip>;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb?: pulumi.Input<number>;
+    compressionCodec?: pulumi.Input<string>;
+    dictionaryEncoding?: pulumi.Input<boolean>;
+    dictionaryPageSizeKb?: pulumi.Input<number>;
+    formatType: pulumi.Input<string>;
+    maxPaddingSizeMb?: pulumi.Input<number>;
+    pageSizeKb?: pulumi.Input<number>;
+}
+
+export interface DestinationGoogleSheetsConfiguration {
+    credentials: pulumi.Input<inputs.DestinationGoogleSheetsConfigurationCredentials>;
+    destinationType: pulumi.Input<string>;
+    spreadsheetId: pulumi.Input<string>;
+}
+
+export interface DestinationGoogleSheetsConfigurationCredentials {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface DestinationKeenConfiguration {
+    apiKey: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    inferTimestamp?: pulumi.Input<boolean>;
+    projectId: pulumi.Input<string>;
+}
+
+export interface DestinationKinesisConfiguration {
+    accessKey: pulumi.Input<string>;
+    bufferSize: pulumi.Input<number>;
+    destinationType: pulumi.Input<string>;
+    endpoint: pulumi.Input<string>;
+    privateKey: pulumi.Input<string>;
+    region: pulumi.Input<string>;
+    shardCount: pulumi.Input<number>;
+}
+
+export interface DestinationLangchainConfiguration {
+    destinationType: pulumi.Input<string>;
+    embedding: pulumi.Input<inputs.DestinationLangchainConfigurationEmbedding>;
+    indexing: pulumi.Input<inputs.DestinationLangchainConfigurationIndexing>;
+    processing: pulumi.Input<inputs.DestinationLangchainConfigurationProcessing>;
+}
+
+export interface DestinationLangchainConfigurationEmbedding {
+    destinationLangchainEmbeddingFake?: pulumi.Input<inputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake>;
+    destinationLangchainEmbeddingOpenAi?: pulumi.Input<inputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi>;
+    destinationLangchainUpdateEmbeddingFake?: pulumi.Input<inputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake>;
+    destinationLangchainUpdateEmbeddingOpenAi?: pulumi.Input<inputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi>;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake {
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi {
+    mode?: pulumi.Input<string>;
+    openaiKey: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake {
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi {
+    mode?: pulumi.Input<string>;
+    openaiKey: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexing {
+    destinationLangchainIndexingChromaLocalPersistance?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance>;
+    destinationLangchainIndexingDocArrayHnswSearch?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch>;
+    destinationLangchainIndexingPinecone?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone>;
+    destinationLangchainUpdateIndexingChromaLocalPersistance?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance>;
+    destinationLangchainUpdateIndexingDocArrayHnswSearch?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch>;
+    destinationLangchainUpdateIndexingPinecone?: pulumi.Input<inputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance {
+    collectionName?: pulumi.Input<string>;
+    destinationPath: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch {
+    destinationPath: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone {
+    index: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+    pineconeEnvironment: pulumi.Input<string>;
+    pineconeKey: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance {
+    collectionName?: pulumi.Input<string>;
+    destinationPath: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch {
+    destinationPath: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone {
+    index: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
+    pineconeEnvironment: pulumi.Input<string>;
+    pineconeKey: pulumi.Input<string>;
+}
+
+export interface DestinationLangchainConfigurationProcessing {
+    chunkOverlap?: pulumi.Input<number>;
+    chunkSize: pulumi.Input<number>;
+    textFields: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface DestinationMSsqlConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schema: pulumi.Input<string>;
+    sslMethod?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethod>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationSslMethod {
+    destinationMssqlSslMethodEncryptedTrustServerCertificate?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate>;
+    destinationMssqlSslMethodEncryptedVerifyCertificate?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate>;
+    destinationMssqlUpdateSslMethodEncryptedTrustServerCertificate?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate>;
+    destinationMssqlUpdateSslMethodEncryptedVerifyCertificate?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate>;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: pulumi.Input<string>;
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: pulumi.Input<string>;
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethod {
+    destinationMssqlSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel>;
+    destinationMssqlSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication>;
+    destinationMssqlSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication>;
+    destinationMssqlUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel>;
+    destinationMssqlUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationMssqlUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfiguration {
+    authType: pulumi.Input<inputs.DestinationMongodbConfigurationAuthType>;
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    instanceType?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceType>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethod>;
+}
+
+export interface DestinationMongodbConfigurationAuthType {
+    destinationMongodbAuthorizationTypeLoginPassword?: pulumi.Input<inputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword>;
+    destinationMongodbAuthorizationTypeNone?: pulumi.Input<inputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone>;
+    destinationMongodbUpdateAuthorizationTypeLoginPassword?: pulumi.Input<inputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword>;
+    destinationMongodbUpdateAuthorizationTypeNone?: pulumi.Input<inputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone>;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword {
+    authorization: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone {
+    authorization: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword {
+    authorization: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone {
+    authorization: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationInstanceType {
+    destinationMongodbMongoDbInstanceTypeMongoDbAtlas?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas>;
+    destinationMongodbMongoDbInstanceTypeReplicaSet?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet>;
+    destinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance>;
+    destinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas>;
+    destinationMongodbUpdateMongoDbInstanceTypeReplicaSet?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet>;
+    destinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet {
+    instance: pulumi.Input<string>;
+    replicaSet?: pulumi.Input<string>;
+    serverAddresses: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: pulumi.Input<string>;
+    replicaSet?: pulumi.Input<string>;
+    serverAddresses: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethod {
+    destinationMongodbSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel>;
+    destinationMongodbSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication>;
+    destinationMongodbSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication>;
+    destinationMongodbUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel>;
+    destinationMongodbUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationMongodbUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethod {
+    destinationMysqlSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel>;
+    destinationMysqlSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication>;
+    destinationMysqlSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication>;
+    destinationMysqlUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel>;
+    destinationMysqlUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationMysqlUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfiguration {
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schema?: pulumi.Input<string>;
+    sid: pulumi.Input<string>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethod {
+    destinationOracleSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel>;
+    destinationOracleSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication>;
+    destinationOracleSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication>;
+    destinationOracleUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel>;
+    destinationOracleUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationOracleUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schema: pulumi.Input<string>;
+    sslMode?: pulumi.Input<inputs.DestinationPostgresConfigurationSslMode>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslMode {
+    destinationPostgresSslModesAllow?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow>;
+    destinationPostgresSslModesDisable?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable>;
+    destinationPostgresSslModesPrefer?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer>;
+    destinationPostgresSslModesRequire?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire>;
+    destinationPostgresSslModesVerifyCa?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa>;
+    destinationPostgresSslModesVerifyFull?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull>;
+    destinationPostgresUpdateSslModesAllow?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow>;
+    destinationPostgresUpdateSslModesDisable?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable>;
+    destinationPostgresUpdateSslModesPrefer?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer>;
+    destinationPostgresUpdateSslModesRequire?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire>;
+    destinationPostgresUpdateSslModesVerifyCa?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa>;
+    destinationPostgresUpdateSslModesVerifyFull?: pulumi.Input<inputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa {
+    caCertificate: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate: pulumi.Input<string>;
+    clientKey: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa {
+    caCertificate: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate: pulumi.Input<string>;
+    clientKey: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethod {
+    destinationPostgresSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel>;
+    destinationPostgresSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication>;
+    destinationPostgresSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication>;
+    destinationPostgresUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel>;
+    destinationPostgresUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationPostgresUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationPubsubConfiguration {
+    batchingDelayThreshold?: pulumi.Input<number>;
+    batchingElementCountThreshold?: pulumi.Input<number>;
+    batchingEnabled: pulumi.Input<boolean>;
+    batchingRequestBytesThreshold?: pulumi.Input<number>;
+    credentialsJson: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    orderingEnabled: pulumi.Input<boolean>;
+    projectId: pulumi.Input<string>;
+    topicId: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfiguration {
+    cacheType: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    ssl?: pulumi.Input<boolean>;
+    sslMode?: pulumi.Input<inputs.DestinationRedisConfigurationSslMode>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationSslMode {
+    destinationRedisSslModesDisable?: pulumi.Input<inputs.DestinationRedisConfigurationSslModeDestinationRedisSslModesDisable>;
+    destinationRedisSslModesVerifyFull?: pulumi.Input<inputs.DestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull>;
+    destinationRedisUpdateSslModesDisable?: pulumi.Input<inputs.DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable>;
+    destinationRedisUpdateSslModesVerifyFull?: pulumi.Input<inputs.DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull>;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisSslModesDisable {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate: pulumi.Input<string>;
+    clientKey: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable {
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate: pulumi.Input<string>;
+    clientKey: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethod {
+    destinationRedisSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel>;
+    destinationRedisSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication>;
+    destinationRedisSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication>;
+    destinationRedisUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel>;
+    destinationRedisUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationRedisUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schema: pulumi.Input<string>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethod>;
+    uploadingMethod?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethod {
+    destinationRedshiftSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel>;
+    destinationRedshiftSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication>;
+    destinationRedshiftSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication>;
+    destinationRedshiftUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel>;
+    destinationRedshiftUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethod {
+    destinationRedshiftUpdateUploadingMethodS3Staging?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging>;
+    destinationRedshiftUpdateUploadingMethodStandard?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard>;
+    destinationRedshiftUploadingMethodS3Staging?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging>;
+    destinationRedshiftUploadingMethodStandard?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging {
+    accessKeyId: pulumi.Input<string>;
+    encryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption>;
+    fileBufferCount?: pulumi.Input<number>;
+    fileNamePattern?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    purgeStagingData?: pulumi.Input<boolean>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath?: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    secretAccessKey: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption {
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption>;
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: pulumi.Input<string>;
+    keyEncryptingKey?: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging {
+    accessKeyId: pulumi.Input<string>;
+    encryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption>;
+    fileBufferCount?: pulumi.Input<number>;
+    fileNamePattern?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    purgeStagingData?: pulumi.Input<boolean>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath?: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    secretAccessKey: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption {
+    destinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption>;
+    destinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: pulumi.Input<string>;
+    keyEncryptingKey?: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: pulumi.Input<string>;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface DestinationS3Configuration {
+    accessKeyId?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    fileNamePattern?: pulumi.Input<string>;
+    format: pulumi.Input<inputs.DestinationS3ConfigurationFormat>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    s3Endpoint?: pulumi.Input<string>;
+    s3PathFormat?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormat {
+    destinationS3OutputFormatAvroApacheAvro?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro>;
+    destinationS3OutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues>;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationS3OutputFormatParquetColumnarStorage?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage>;
+    destinationS3UpdateOutputFormatAvroApacheAvro?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro>;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues>;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationS3UpdateOutputFormatParquetColumnarStorage?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro {
+    compressionCodec: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2>;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate>;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression>;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy>;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecXz?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz>;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+    includeChecksum?: pulumi.Input<boolean>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues {
+    compression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression>;
+    flattening: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip>;
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage {
+    blockSizeMb?: pulumi.Input<number>;
+    compressionCodec?: pulumi.Input<string>;
+    dictionaryEncoding?: pulumi.Input<boolean>;
+    dictionaryPageSizeKb?: pulumi.Input<number>;
+    formatType: pulumi.Input<string>;
+    maxPaddingSizeMb?: pulumi.Input<number>;
+    pageSizeKb?: pulumi.Input<number>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro {
+    compressionCodec: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2>;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate>;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression>;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy>;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz>;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: pulumi.Input<string>;
+    compressionLevel: pulumi.Input<number>;
+    includeChecksum?: pulumi.Input<boolean>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues {
+    compression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression>;
+    flattening: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip>;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb?: pulumi.Input<number>;
+    compressionCodec?: pulumi.Input<string>;
+    dictionaryEncoding?: pulumi.Input<boolean>;
+    dictionaryPageSizeKb?: pulumi.Input<number>;
+    formatType: pulumi.Input<string>;
+    maxPaddingSizeMb?: pulumi.Input<number>;
+    pageSizeKb?: pulumi.Input<number>;
+}
+
+export interface DestinationS3GlueConfiguration {
+    accessKeyId?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    fileNamePattern?: pulumi.Input<string>;
+    format: pulumi.Input<inputs.DestinationS3GlueConfigurationFormat>;
+    glueDatabase: pulumi.Input<string>;
+    glueSerializationLibrary: pulumi.Input<string>;
+    s3BucketName: pulumi.Input<string>;
+    s3BucketPath: pulumi.Input<string>;
+    s3BucketRegion: pulumi.Input<string>;
+    s3Endpoint?: pulumi.Input<string>;
+    s3PathFormat?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormat {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression>;
+    flattening?: pulumi.Input<string>;
+    formatType: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip>;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: pulumi.Input<inputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: pulumi.Input<string>;
+}
+
+export interface DestinationSftpJsonConfiguration {
+    destinationPath: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    port?: pulumi.Input<number>;
+    username: pulumi.Input<string>;
+}
+
 export interface DestinationSnowflakeConfiguration {
     credentials?: pulumi.Input<inputs.DestinationSnowflakeConfigurationCredentials>;
     database: pulumi.Input<string>;
@@ -83,6 +1889,1863 @@ export interface DestinationSnowflakeConfigurationCredentialsDestinationSnowflak
     password: pulumi.Input<string>;
 }
 
+export interface DestinationTimeplusConfiguration {
+    apikey: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    endpoint: pulumi.Input<string>;
+}
+
+export interface DestinationTypesenseConfiguration {
+    apiKey: pulumi.Input<string>;
+    batchSize?: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfiguration {
+    database: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schema: pulumi.Input<string>;
+    tunnelMethod?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethod {
+    destinationVerticaSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel>;
+    destinationVerticaSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication>;
+    destinationVerticaSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication>;
+    destinationVerticaUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel>;
+    destinationVerticaUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication>;
+    destinationVerticaUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface DestinationXataConfiguration {
+    apiKey: pulumi.Input<string>;
+    dbUrl: pulumi.Input<string>;
+    destinationType: pulumi.Input<string>;
+}
+
+export interface SourceAhaConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+}
+
+export interface SourceAircallConfiguration {
+    apiId: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceAirtableConfiguration {
+    credentials?: pulumi.Input<inputs.SourceAirtableConfigurationCredentials>;
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceAirtableConfigurationCredentials {
+    sourceAirtableAuthenticationOAuth20?: pulumi.Input<inputs.SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20>;
+    sourceAirtableAuthenticationPersonalAccessToken?: pulumi.Input<inputs.SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken>;
+    sourceAirtableUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20>;
+    sourceAirtableUpdateAuthenticationPersonalAccessToken?: pulumi.Input<inputs.SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken>;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate?: pulumi.Input<string>;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken {
+    apiKey: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate?: pulumi.Input<string>;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken {
+    apiKey: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    replicationMethod?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethod>;
+    schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    sslMode?: pulumi.Input<inputs.SourceAlloydbConfigurationSslMode>;
+    tunnelMethod?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethod {
+    sourceAlloydbReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc>;
+    sourceAlloydbReplicationMethodStandard?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard>;
+    sourceAlloydbReplicationMethodStandardXmin?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin>;
+    sourceAlloydbUpdateReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc>;
+    sourceAlloydbUpdateReplicationMethodStandard?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard>;
+    sourceAlloydbUpdateReplicationMethodStandardXmin?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    lsnCommitBehaviour?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    plugin?: pulumi.Input<string>;
+    publication: pulumi.Input<string>;
+    queueSize?: pulumi.Input<number>;
+    replicationSlot: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    lsnCommitBehaviour?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    plugin?: pulumi.Input<string>;
+    publication: pulumi.Input<string>;
+    queueSize?: pulumi.Input<number>;
+    replicationSlot: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslMode {
+    sourceAlloydbSslModesAllow?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow>;
+    sourceAlloydbSslModesDisable?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable>;
+    sourceAlloydbSslModesPrefer?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer>;
+    sourceAlloydbSslModesRequire?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire>;
+    sourceAlloydbSslModesVerifyCa?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa>;
+    sourceAlloydbSslModesVerifyFull?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull>;
+    sourceAlloydbUpdateSslModesAllow?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow>;
+    sourceAlloydbUpdateSslModesDisable?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable>;
+    sourceAlloydbUpdateSslModesPrefer?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer>;
+    sourceAlloydbUpdateSslModesRequire?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire>;
+    sourceAlloydbUpdateSslModesVerifyCa?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa>;
+    sourceAlloydbUpdateSslModesVerifyFull?: pulumi.Input<inputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethod {
+    sourceAlloydbSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel>;
+    sourceAlloydbSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication>;
+    sourceAlloydbSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication>;
+    sourceAlloydbUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel>;
+    sourceAlloydbUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication>;
+    sourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceAmazonAdsConfiguration {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    lookBackWindow?: pulumi.Input<number>;
+    profiles?: pulumi.Input<pulumi.Input<number>[]>;
+    refreshToken: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    reportRecordTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+    stateFilters?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourceAmazonSellerPartnerConfiguration {
+    advancedStreamOptions?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    awsAccessKey?: pulumi.Input<string>;
+    awsEnvironment: pulumi.Input<string>;
+    awsSecretKey?: pulumi.Input<string>;
+    lwaAppId: pulumi.Input<string>;
+    lwaClientSecret: pulumi.Input<string>;
+    maxWaitSeconds?: pulumi.Input<number>;
+    periodInDays?: pulumi.Input<number>;
+    refreshToken: pulumi.Input<string>;
+    region: pulumi.Input<string>;
+    replicationEndDate?: pulumi.Input<string>;
+    replicationStartDate: pulumi.Input<string>;
+    reportOptions?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceAmazonSqsConfiguration {
+    accessKey?: pulumi.Input<string>;
+    attributesToReturn?: pulumi.Input<string>;
+    deleteMessages: pulumi.Input<boolean>;
+    maxBatchSize?: pulumi.Input<number>;
+    maxWaitTime?: pulumi.Input<number>;
+    queueUrl: pulumi.Input<string>;
+    region: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    visibilityTimeout?: pulumi.Input<number>;
+}
+
+export interface SourceAmplitudeConfiguration {
+    apiKey: pulumi.Input<string>;
+    dataRegion?: pulumi.Input<string>;
+    requestTimeRange?: pulumi.Input<number>;
+    secretKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceApifyDatasetConfiguration {
+    clean?: pulumi.Input<boolean>;
+    datasetId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceAppfollowConfiguration {
+    apiSecret?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceAsanaConfiguration {
+    credentials?: pulumi.Input<inputs.SourceAsanaConfigurationCredentials>;
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceAsanaConfigurationCredentials {
+    sourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth?: pulumi.Input<inputs.SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth>;
+    sourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken?: pulumi.Input<inputs.SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken>;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth?: pulumi.Input<inputs.SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth>;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken?: pulumi.Input<inputs.SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken>;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    optionTitle?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle?: pulumi.Input<string>;
+    personalAccessToken: pulumi.Input<string>;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    optionTitle?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle?: pulumi.Input<string>;
+    personalAccessToken: pulumi.Input<string>;
+}
+
+export interface SourceAuth0Configuration {
+    baseUrl: pulumi.Input<string>;
+    credentials: pulumi.Input<inputs.SourceAuth0ConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceAuth0ConfigurationCredentials {
+    sourceAuth0AuthenticationMethodOAuth2AccessToken?: pulumi.Input<inputs.SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken>;
+    sourceAuth0AuthenticationMethodOAuth2ConfidentialApplication?: pulumi.Input<inputs.SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication>;
+    sourceAuth0UpdateAuthenticationMethodOAuth2AccessToken?: pulumi.Input<inputs.SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken>;
+    sourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication?: pulumi.Input<inputs.SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication>;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication {
+    audience: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication {
+    audience: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceAwsCloudtrailConfiguration {
+    awsKeyId: pulumi.Input<string>;
+    awsRegionName: pulumi.Input<string>;
+    awsSecretKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceAzureBlobStorageConfiguration {
+    azureBlobStorageAccountKey: pulumi.Input<string>;
+    azureBlobStorageAccountName: pulumi.Input<string>;
+    azureBlobStorageBlobsPrefix?: pulumi.Input<string>;
+    azureBlobStorageContainerName: pulumi.Input<string>;
+    azureBlobStorageEndpoint?: pulumi.Input<string>;
+    azureBlobStorageSchemaInferenceLimit?: pulumi.Input<number>;
+    format: pulumi.Input<inputs.SourceAzureBlobStorageConfigurationFormat>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormat {
+    sourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson>;
+    sourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson>;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: pulumi.Input<string>;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: pulumi.Input<string>;
+}
+
+export interface SourceAzureTableConfiguration {
+    sourceType: pulumi.Input<string>;
+    storageAccessKey: pulumi.Input<string>;
+    storageAccountName: pulumi.Input<string>;
+    storageEndpointSuffix?: pulumi.Input<string>;
+}
+
+export interface SourceBambooHrConfiguration {
+    apiKey: pulumi.Input<string>;
+    customReportsFields?: pulumi.Input<string>;
+    customReportsIncludeDefaultFields?: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    subdomain: pulumi.Input<string>;
+}
+
+export interface SourceBigcommerceConfiguration {
+    accessToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    storeHash: pulumi.Input<string>;
+}
+
+export interface SourceBigqueryConfiguration {
+    credentialsJson: pulumi.Input<string>;
+    datasetId?: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceBingAdsConfiguration {
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    developerToken: pulumi.Input<string>;
+    lookbackWindow?: pulumi.Input<number>;
+    refreshToken: pulumi.Input<string>;
+    reportsStartDate: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string>;
+}
+
+export interface SourceBraintreeConfiguration {
+    environment: pulumi.Input<string>;
+    merchantId: pulumi.Input<string>;
+    privateKey: pulumi.Input<string>;
+    publicKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceBrazeConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+}
+
+export interface SourceChargebeeConfiguration {
+    productCatalog: pulumi.Input<string>;
+    site: pulumi.Input<string>;
+    siteApiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceChartmogulConfiguration {
+    apiKey: pulumi.Input<string>;
+    interval: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    tunnelMethod?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethod {
+    sourceClickhouseSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel>;
+    sourceClickhouseSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication>;
+    sourceClickhouseSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication>;
+    sourceClickhouseUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel>;
+    sourceClickhouseUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication>;
+    sourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceClickupApiConfiguration {
+    apiToken: pulumi.Input<string>;
+    folderId?: pulumi.Input<string>;
+    includeClosedTasks?: pulumi.Input<boolean>;
+    listId?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    spaceId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string>;
+}
+
+export interface SourceClockifyConfiguration {
+    apiKey: pulumi.Input<string>;
+    apiUrl?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    workspaceId: pulumi.Input<string>;
+}
+
+export interface SourceCloseComConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceCodaConfiguration {
+    authToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceCoinApiConfiguration {
+    apiKey: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    environment: pulumi.Input<string>;
+    limit?: pulumi.Input<number>;
+    period: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    symbolId: pulumi.Input<string>;
+}
+
+export interface SourceCoinmarketcapConfiguration {
+    apiKey: pulumi.Input<string>;
+    dataType: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    symbols?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourceConfigcatConfiguration {
+    password: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceConfluenceConfiguration {
+    apiToken: pulumi.Input<string>;
+    domainName: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceConvexConfiguration {
+    accessKey: pulumi.Input<string>;
+    deploymentUrl: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceDatadogConfiguration {
+    apiKey: pulumi.Input<string>;
+    applicationKey: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    maxRecordsPerRequest?: pulumi.Input<number>;
+    queries?: pulumi.Input<pulumi.Input<inputs.SourceDatadogConfigurationQuery>[]>;
+    query?: pulumi.Input<string>;
+    site?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceDatadogConfigurationQuery {
+    dataSource: pulumi.Input<string>;
+    name: pulumi.Input<string>;
+    query: pulumi.Input<string>;
+}
+
+export interface SourceDatascopeConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceDelightedConfiguration {
+    apiKey: pulumi.Input<string>;
+    since: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceDixaConfiguration {
+    apiToken: pulumi.Input<string>;
+    batchSize?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceDockerhubConfiguration {
+    dockerUsername: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceDremioConfiguration {
+    apiKey: pulumi.Input<string>;
+    baseUrl: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceDynamodbConfiguration {
+    accessKeyId: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    reservedAttributeNames?: pulumi.Input<string>;
+    secretAccessKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceE2eTestCloudConfiguration {
+    maxMessages: pulumi.Input<number>;
+    messageIntervalMs?: pulumi.Input<number>;
+    mockCatalog: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalog>;
+    seed?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalog {
+    sourceE2eTestCloudMockCatalogMultiSchema?: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema>;
+    sourceE2eTestCloudMockCatalogSingleSchema?: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema>;
+    sourceE2eTestCloudUpdateMockCatalogMultiSchema?: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema>;
+    sourceE2eTestCloudUpdateMockCatalogSingleSchema?: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema>;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema {
+    streamSchemas: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema {
+    streamDuplication?: pulumi.Input<number>;
+    streamName: pulumi.Input<string>;
+    streamSchema: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema {
+    streamSchemas: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema {
+    streamDuplication?: pulumi.Input<number>;
+    streamName: pulumi.Input<string>;
+    streamSchema: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceEmailoctopusConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceExchangeRatesConfiguration {
+    accessKey: pulumi.Input<string>;
+    base?: pulumi.Input<string>;
+    ignoreWeekends?: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceFacebookMarketingConfiguration {
+    accessToken: pulumi.Input<string>;
+    accountId: pulumi.Input<string>;
+    actionBreakdownsAllowEmpty?: pulumi.Input<boolean>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    customInsights?: pulumi.Input<pulumi.Input<inputs.SourceFacebookMarketingConfigurationCustomInsight>[]>;
+    endDate?: pulumi.Input<string>;
+    fetchThumbnailImages?: pulumi.Input<boolean>;
+    includeDeleted?: pulumi.Input<boolean>;
+    insightsLookbackWindow?: pulumi.Input<number>;
+    maxBatchSize?: pulumi.Input<number>;
+    pageSize?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceFacebookMarketingConfigurationCustomInsight {
+    actionBreakdowns?: pulumi.Input<pulumi.Input<string>[]>;
+    actionReportTime?: pulumi.Input<string>;
+    breakdowns?: pulumi.Input<pulumi.Input<string>[]>;
+    endDate?: pulumi.Input<string>;
+    fields?: pulumi.Input<pulumi.Input<string>[]>;
+    insightsLookbackWindow?: pulumi.Input<number>;
+    level?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+    timeIncrement?: pulumi.Input<number>;
+}
+
+export interface SourceFacebookPagesConfiguration {
+    accessToken: pulumi.Input<string>;
+    pageId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceFakerConfiguration {
+    alwaysUpdated?: pulumi.Input<boolean>;
+    count: pulumi.Input<number>;
+    parallelism?: pulumi.Input<number>;
+    recordsPerSlice?: pulumi.Input<number>;
+    seed?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceFaunaConfiguration {
+    collection?: pulumi.Input<inputs.SourceFaunaConfigurationCollection>;
+    domain: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    scheme: pulumi.Input<string>;
+    secret: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceFaunaConfigurationCollection {
+    deletions: pulumi.Input<inputs.SourceFaunaConfigurationCollectionDeletions>;
+    pageSize: pulumi.Input<number>;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletions {
+    sourceFaunaCollectionDeletionModeDisabled?: pulumi.Input<inputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled>;
+    sourceFaunaCollectionDeletionModeEnabled?: pulumi.Input<inputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled>;
+    sourceFaunaUpdateCollectionDeletionModeDisabled?: pulumi.Input<inputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled>;
+    sourceFaunaUpdateCollectionDeletionModeEnabled?: pulumi.Input<inputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled>;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled {
+    deletionMode: pulumi.Input<string>;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled {
+    column: pulumi.Input<string>;
+    deletionMode: pulumi.Input<string>;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled {
+    deletionMode: pulumi.Input<string>;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled {
+    column: pulumi.Input<string>;
+    deletionMode: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfiguration {
+    datasetName: pulumi.Input<string>;
+    format: pulumi.Input<string>;
+    provider: pulumi.Input<inputs.SourceFileSecureConfigurationProvider>;
+    readerOptions?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProvider {
+    sourceFileSecureStorageProviderAzBlobAzureBlobStorage?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage>;
+    sourceFileSecureStorageProviderGcsGoogleCloudStorage?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage>;
+    sourceFileSecureStorageProviderHttpsPublicWeb?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb>;
+    sourceFileSecureStorageProviderS3AmazonWebServices?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices>;
+    sourceFileSecureStorageProviderScpSecureCopyProtocol?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol>;
+    sourceFileSecureStorageProviderSftpSecureFileTransferProtocol?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol>;
+    sourceFileSecureStorageProviderSshSecureShell?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell>;
+    sourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage>;
+    sourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage>;
+    sourceFileSecureUpdateStorageProviderHttpsPublicWeb?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb>;
+    sourceFileSecureUpdateStorageProviderS3AmazonWebServices?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices>;
+    sourceFileSecureUpdateStorageProviderScpSecureCopyProtocol?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol>;
+    sourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol>;
+    sourceFileSecureUpdateStorageProviderSshSecureShell?: pulumi.Input<inputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage {
+    sasToken?: pulumi.Input<string>;
+    sharedKey?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    storageAccount: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb {
+    storage: pulumi.Input<string>;
+    userAgent?: pulumi.Input<boolean>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices {
+    awsAccessKeyId?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage {
+    sasToken?: pulumi.Input<string>;
+    sharedKey?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    storageAccount: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb {
+    storage: pulumi.Input<string>;
+    userAgent?: pulumi.Input<boolean>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices {
+    awsAccessKeyId?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell {
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port?: pulumi.Input<string>;
+    storage: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceFireboltConfiguration {
+    account?: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    engine?: pulumi.Input<string>;
+    host?: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceFreshcallerConfiguration {
+    apiKey: pulumi.Input<string>;
+    domain: pulumi.Input<string>;
+    requestsPerMinute?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    syncLagMinutes?: pulumi.Input<number>;
+}
+
+export interface SourceFreshdeskConfiguration {
+    apiKey: pulumi.Input<string>;
+    domain: pulumi.Input<string>;
+    requestsPerMinute?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceFreshsalesConfiguration {
+    apiKey: pulumi.Input<string>;
+    domainName: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGainsightPxConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGcsConfiguration {
+    gcsBucket: pulumi.Input<string>;
+    gcsPath: pulumi.Input<string>;
+    serviceAccount: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGetlagoConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGithubConfiguration {
+    branch?: pulumi.Input<string>;
+    credentials?: pulumi.Input<inputs.SourceGithubConfigurationCredentials>;
+    repository: pulumi.Input<string>;
+    requestsPerHour?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceGithubConfigurationCredentials {
+    sourceGithubAuthenticationOAuth?: pulumi.Input<inputs.SourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth>;
+    sourceGithubAuthenticationPersonalAccessToken?: pulumi.Input<inputs.SourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken>;
+    sourceGithubUpdateAuthenticationOAuth?: pulumi.Input<inputs.SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth>;
+    sourceGithubUpdateAuthenticationPersonalAccessToken?: pulumi.Input<inputs.SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken>;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth {
+    accessToken: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    optionTitle?: pulumi.Input<string>;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken {
+    optionTitle?: pulumi.Input<string>;
+    personalAccessToken: pulumi.Input<string>;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth {
+    accessToken: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    optionTitle?: pulumi.Input<string>;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken {
+    optionTitle?: pulumi.Input<string>;
+    personalAccessToken: pulumi.Input<string>;
+}
+
+export interface SourceGitlabConfiguration {
+    apiUrl?: pulumi.Input<string>;
+    credentials: pulumi.Input<inputs.SourceGitlabConfigurationCredentials>;
+    groups?: pulumi.Input<string>;
+    projects?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceGitlabConfigurationCredentials {
+    sourceGitlabAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20>;
+    sourceGitlabAuthorizationMethodPrivateToken?: pulumi.Input<inputs.SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken>;
+    sourceGitlabUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20>;
+    sourceGitlabUpdateAuthorizationMethodPrivateToken?: pulumi.Input<inputs.SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken>;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceGlassfrogConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGnewsConfiguration {
+    apiKey: pulumi.Input<string>;
+    country?: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    ins?: pulumi.Input<pulumi.Input<string>[]>;
+    language?: pulumi.Input<string>;
+    nullables?: pulumi.Input<pulumi.Input<string>[]>;
+    query: pulumi.Input<string>;
+    sortby?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+    topHeadlinesQuery?: pulumi.Input<string>;
+    topHeadlinesTopic?: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAdsConfiguration {
+    conversionWindowDays?: pulumi.Input<number>;
+    credentials: pulumi.Input<inputs.SourceGoogleAdsConfigurationCredentials>;
+    customQueries?: pulumi.Input<pulumi.Input<inputs.SourceGoogleAdsConfigurationCustomQuery>[]>;
+    customerId: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    loginCustomerId?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAdsConfigurationCredentials {
+    accessToken?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    developerToken: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAdsConfigurationCustomQuery {
+    query: pulumi.Input<string>;
+    tableName: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfiguration {
+    credentials?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentials>;
+    customReports?: pulumi.Input<string>;
+    dateRangesStartDate: pulumi.Input<string>;
+    propertyId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    windowInDays?: pulumi.Input<number>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentials {
+    sourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth>;
+    sourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication>;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth>;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication {
+    authType?: pulumi.Input<string>;
+    credentialsJson: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication {
+    authType?: pulumi.Input<string>;
+    credentialsJson: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsV4Configuration {
+    credentials?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentials>;
+    customReports?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    viewId: pulumi.Input<string>;
+    windowInDays?: pulumi.Input<number>;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentials {
+    sourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth>;
+    sourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication>;
+    sourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth>;
+    sourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication>;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth {
+    accessToken?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication {
+    authType?: pulumi.Input<string>;
+    credentialsJson: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication {
+    authType?: pulumi.Input<string>;
+    credentialsJson: pulumi.Input<string>;
+}
+
+export interface SourceGoogleDirectoryConfiguration {
+    credentials?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentials {
+    sourceGoogleDirectoryGoogleCredentialsServiceAccountKey?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey>;
+    sourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth>;
+    sourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey>;
+    sourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth>;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey {
+    credentialsJson: pulumi.Input<string>;
+    credentialsTitle?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    credentialsTitle?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey {
+    credentialsJson: pulumi.Input<string>;
+    credentialsTitle?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    credentialsTitle?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGooglePagespeedInsightsConfiguration {
+    apiKey?: pulumi.Input<string>;
+    categories: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    strategies: pulumi.Input<pulumi.Input<string>[]>;
+    urls: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourceGoogleSearchConsoleConfiguration {
+    authorization: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorization>;
+    customReports?: pulumi.Input<string>;
+    dataState?: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    siteUrls: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorization {
+    sourceGoogleSearchConsoleAuthenticationTypeOAuth?: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth>;
+    sourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication>;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth?: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth>;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication>;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth {
+    accessToken?: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    serviceAccountInfo: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth {
+    accessToken?: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    serviceAccountInfo: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSheetsConfiguration {
+    credentials: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentials>;
+    namesConversion?: pulumi.Input<boolean>;
+    rowBatchSize?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    spreadsheetId: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentials {
+    sourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth?: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth>;
+    sourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication>;
+    sourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth?: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth>;
+    sourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication?: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication>;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication {
+    authType: pulumi.Input<string>;
+    serviceAccountInfo: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication {
+    authType: pulumi.Input<string>;
+    serviceAccountInfo: pulumi.Input<string>;
+}
+
+export interface SourceGoogleWebfontsConfiguration {
+    alt?: pulumi.Input<string>;
+    apiKey: pulumi.Input<string>;
+    prettyPrint?: pulumi.Input<string>;
+    sort?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGoogleWorkspaceAdminReportsConfiguration {
+    credentialsJson: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    lookback?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGreenhouseConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceGridlyConfiguration {
+    apiKey: pulumi.Input<string>;
+    gridId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceHarvestConfiguration {
+    accountId: pulumi.Input<string>;
+    credentials?: pulumi.Input<inputs.SourceHarvestConfigurationCredentials>;
+    replicationEndDate?: pulumi.Input<string>;
+    replicationStartDate: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceHarvestConfigurationCredentials {
+    sourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth?: pulumi.Input<inputs.SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth>;
+    sourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken?: pulumi.Input<inputs.SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken>;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth?: pulumi.Input<inputs.SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth>;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken?: pulumi.Input<inputs.SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken>;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceHubplannerConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceHubspotConfiguration {
+    credentials: pulumi.Input<inputs.SourceHubspotConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceHubspotConfigurationCredentials {
+    sourceHubspotAuthenticationOAuth?: pulumi.Input<inputs.SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth>;
+    sourceHubspotAuthenticationPrivateApp?: pulumi.Input<inputs.SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp>;
+    sourceHubspotUpdateAuthenticationOAuth?: pulumi.Input<inputs.SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth>;
+    sourceHubspotUpdateAuthenticationPrivateApp?: pulumi.Input<inputs.SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp>;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp {
+    accessToken: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp {
+    accessToken: pulumi.Input<string>;
+    credentialsTitle: pulumi.Input<string>;
+}
+
+export interface SourceInsightlyConfiguration {
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceInstagramConfiguration {
+    accessToken: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceInstatusConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceIntercomConfiguration {
+    accessToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceIp2whoisConfiguration {
+    apiKey?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceIterableConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceJiraConfiguration {
+    apiToken: pulumi.Input<string>;
+    domain: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    enableExperimentalStreams?: pulumi.Input<boolean>;
+    expandIssueChangelog?: pulumi.Input<boolean>;
+    projects?: pulumi.Input<pulumi.Input<string>[]>;
+    renderFields?: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceK6CloudConfiguration {
+    apiToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceKlarnaConfiguration {
+    password: pulumi.Input<string>;
+    playground: pulumi.Input<boolean>;
+    region: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceKlaviyoConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceKustomerSingerConfiguration {
+    apiToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceKyveConfiguration {
+    maxPages?: pulumi.Input<number>;
+    pageSize?: pulumi.Input<number>;
+    poolIds: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startIds: pulumi.Input<string>;
+    urlBase?: pulumi.Input<string>;
+}
+
+export interface SourceLaunchdarklyConfiguration {
+    accessToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceLemlistConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceLeverHiringConfiguration {
+    credentials?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentials>;
+    environment?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceLeverHiringConfigurationCredentials {
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey>;
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth>;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey>;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth>;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfiguration {
+    accountIds?: pulumi.Input<pulumi.Input<number>[]>;
+    adAnalyticsReports?: pulumi.Input<pulumi.Input<inputs.SourceLinkedinAdsConfigurationAdAnalyticsReport>[]>;
+    credentials?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfigurationAdAnalyticsReport {
+    name: pulumi.Input<string>;
+    pivotBy: pulumi.Input<string>;
+    timeGranularity: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentials {
+    sourceLinkedinAdsAuthenticationAccessToken?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken>;
+    sourceLinkedinAdsAuthenticationOAuth20?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20>;
+    sourceLinkedinAdsUpdateAuthenticationAccessToken?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken>;
+    sourceLinkedinAdsUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20>;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20 {
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20 {
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinPagesConfiguration {
+    credentials?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentials>;
+    orgId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentials {
+    sourceLinkedinPagesAuthenticationAccessToken?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken>;
+    sourceLinkedinPagesAuthenticationOAuth20?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20>;
+    sourceLinkedinPagesUpdateAuthenticationAccessToken?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken>;
+    sourceLinkedinPagesUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20>;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20 {
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string>;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20 {
+    authMethod?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceLinnworksConfiguration {
+    applicationId: pulumi.Input<string>;
+    applicationSecret: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceLokaliseConfiguration {
+    apiKey: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceMailchimpConfiguration {
+    campaignId?: pulumi.Input<string>;
+    credentials?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceMailchimpConfigurationCredentials {
+    sourceMailchimpAuthenticationApiKey?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey>;
+    sourceMailchimpAuthenticationOAuth20?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20>;
+    sourceMailchimpUpdateAuthenticationApiKey?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey>;
+    sourceMailchimpUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20>;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey {
+    apikey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey {
+    apikey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceMailgunConfiguration {
+    domainRegion?: pulumi.Input<string>;
+    privateKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceMailjetSmsConfiguration {
+    endDate?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<number>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceMarketoConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    domainUrl: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceMetabaseConfiguration {
+    instanceApiUrl: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    sessionToken?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface SourceMicrosoftTeamsConfiguration {
+    credentials?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentials>;
+    period: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentials {
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft>;
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20>;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft>;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20>;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
 export interface SourceMixpanelConfiguration {
     attributionWindow?: pulumi.Input<number>;
     credentials?: pulumi.Input<inputs.SourceMixpanelConfigurationCredentials>;
@@ -125,6 +3788,1267 @@ export interface SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthe
     username: pulumi.Input<string>;
 }
 
+export interface SourceMondayConfiguration {
+    credentials?: pulumi.Input<inputs.SourceMondayConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceMondayConfigurationCredentials {
+    sourceMondayAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken>;
+    sourceMondayAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20>;
+    sourceMondayUpdateAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken>;
+    sourceMondayUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken {
+    apiToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    subdomain?: pulumi.Input<string>;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken {
+    apiToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    subdomain?: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfiguration {
+    authSource?: pulumi.Input<string>;
+    database: pulumi.Input<string>;
+    instanceType?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceType>;
+    password?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    user?: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfigurationInstanceType {
+    sourceMongodbMongoDbInstanceTypeMongoDbAtlas?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas>;
+    sourceMongodbMongoDbInstanceTypeReplicaSet?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet>;
+    sourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance>;
+    sourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas>;
+    sourceMongodbUpdateMongoDbInstanceTypeReplicaSet?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet>;
+    sourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: pulumi.Input<string>;
+    clusterUrl: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet {
+    instance: pulumi.Input<string>;
+    replicaSet?: pulumi.Input<string>;
+    serverAddresses: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: pulumi.Input<string>;
+    clusterUrl: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: pulumi.Input<string>;
+    replicaSet?: pulumi.Input<string>;
+    serverAddresses: pulumi.Input<string>;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: pulumi.Input<string>;
+    instance: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+}
+
+export interface SourceMongodbInternalPocConfiguration {
+    authSource?: pulumi.Input<string>;
+    connectionString?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    replicaSet?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    user?: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    replicationMethod?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethod>;
+    schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    sslMethod?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethod>;
+    tunnelMethod?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationReplicationMethod {
+    sourceMssqlReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc>;
+    sourceMssqlReplicationMethodStandard?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard>;
+    sourceMssqlUpdateReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc>;
+    sourceMssqlUpdateReplicationMethodStandard?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard>;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc {
+    dataToSync?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    method: pulumi.Input<string>;
+    snapshotIsolation?: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc {
+    dataToSync?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    method: pulumi.Input<string>;
+    snapshotIsolation?: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationSslMethod {
+    sourceMssqlSslMethodEncryptedTrustServerCertificate?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate>;
+    sourceMssqlSslMethodEncryptedVerifyCertificate?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate>;
+    sourceMssqlUpdateSslMethodEncryptedTrustServerCertificate?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate>;
+    sourceMssqlUpdateSslMethodEncryptedVerifyCertificate?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate>;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: pulumi.Input<string>;
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: pulumi.Input<string>;
+    sslMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethod {
+    sourceMssqlSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel>;
+    sourceMssqlSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication>;
+    sourceMssqlSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication>;
+    sourceMssqlUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel>;
+    sourceMssqlUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication>;
+    sourceMssqlUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceMyHoursConfiguration {
+    email: pulumi.Input<string>;
+    logsBatchSize?: pulumi.Input<number>;
+    password: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    replicationMethod: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethod>;
+    sourceType: pulumi.Input<string>;
+    sslMode?: pulumi.Input<inputs.SourceMysqlConfigurationSslMode>;
+    tunnelMethod?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationReplicationMethod {
+    sourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc?: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc>;
+    sourceMysqlUpdateMethodScanChangesWithUserDefinedCursor?: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor>;
+    sourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc?: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc>;
+    sourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor?: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor>;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds?: pulumi.Input<number>;
+    method: pulumi.Input<string>;
+    serverTimeZone?: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds?: pulumi.Input<number>;
+    method: pulumi.Input<string>;
+    serverTimeZone?: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor {
+    method: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslMode {
+    sourceMysqlSslModesPreferred?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred>;
+    sourceMysqlSslModesRequired?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesRequired>;
+    sourceMysqlSslModesVerifyCa?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa>;
+    sourceMysqlSslModesVerifyIdentity?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity>;
+    sourceMysqlUpdateSslModesPreferred?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred>;
+    sourceMysqlUpdateSslModesRequired?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired>;
+    sourceMysqlUpdateSslModesVerifyCa?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa>;
+    sourceMysqlUpdateSslModesVerifyIdentity?: pulumi.Input<inputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred {
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesRequired {
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred {
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired {
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity {
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethod {
+    sourceMysqlSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel>;
+    sourceMysqlSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication>;
+    sourceMysqlSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication>;
+    sourceMysqlUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel>;
+    sourceMysqlUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication>;
+    sourceMysqlUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceNetsuiteConfiguration {
+    consumerKey: pulumi.Input<string>;
+    consumerSecret: pulumi.Input<string>;
+    objectTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    realm: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDatetime: pulumi.Input<string>;
+    tokenKey: pulumi.Input<string>;
+    tokenSecret: pulumi.Input<string>;
+    windowInDays?: pulumi.Input<number>;
+}
+
+export interface SourceNotionConfiguration {
+    credentials?: pulumi.Input<inputs.SourceNotionConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceNotionConfigurationCredentials {
+    sourceNotionAuthenticateUsingAccessToken?: pulumi.Input<inputs.SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken>;
+    sourceNotionAuthenticateUsingOAuth20?: pulumi.Input<inputs.SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20>;
+    sourceNotionUpdateAuthenticateUsingAccessToken?: pulumi.Input<inputs.SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken>;
+    sourceNotionUpdateAuthenticateUsingOAuth20?: pulumi.Input<inputs.SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20>;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken {
+    authType: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken {
+    authType: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceNytimesConfiguration {
+    apiKey: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    period: pulumi.Input<number>;
+    shareType?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceOktaConfiguration {
+    credentials?: pulumi.Input<inputs.SourceOktaConfigurationCredentials>;
+    domain?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceOktaConfigurationCredentials {
+    sourceOktaAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken>;
+    sourceOktaAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20>;
+    sourceOktaUpdateAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken>;
+    sourceOktaUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken {
+    apiToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20 {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken {
+    apiToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20 {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceOmnisendConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceOnesignalConfiguration {
+    applications: pulumi.Input<pulumi.Input<inputs.SourceOnesignalConfigurationApplication>[]>;
+    outcomeNames: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    userAuthKey: pulumi.Input<string>;
+}
+
+export interface SourceOnesignalConfigurationApplication {
+    appApiKey: pulumi.Input<string>;
+    appId: pulumi.Input<string>;
+    appName?: pulumi.Input<string>;
+}
+
+export interface SourceOpenweatherConfiguration {
+    appid: pulumi.Input<string>;
+    lang?: pulumi.Input<string>;
+    lat: pulumi.Input<string>;
+    lon: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    units?: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfiguration {
+    connectionData?: pulumi.Input<inputs.SourceOracleConfigurationConnectionData>;
+    encryption: pulumi.Input<inputs.SourceOracleConfigurationEncryption>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    tunnelMethod?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationConnectionData {
+    sourceOracleConnectByServiceName?: pulumi.Input<inputs.SourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName>;
+    sourceOracleConnectBySystemIdSid?: pulumi.Input<inputs.SourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid>;
+    sourceOracleUpdateConnectByServiceName?: pulumi.Input<inputs.SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName>;
+    sourceOracleUpdateConnectBySystemIdSid?: pulumi.Input<inputs.SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid>;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName {
+    connectionType?: pulumi.Input<string>;
+    serviceName: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid {
+    connectionType?: pulumi.Input<string>;
+    sid: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName {
+    connectionType?: pulumi.Input<string>;
+    serviceName: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid {
+    connectionType?: pulumi.Input<string>;
+    sid: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationEncryption {
+    sourceOracleEncryptionNativeNetworkEncryptionNne?: pulumi.Input<inputs.SourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne>;
+    sourceOracleEncryptionTlsEncryptedVerifyCertificate?: pulumi.Input<inputs.SourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate>;
+    sourceOracleUpdateEncryptionNativeNetworkEncryptionNne?: pulumi.Input<inputs.SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne>;
+    sourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate?: pulumi.Input<inputs.SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate>;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm?: pulumi.Input<string>;
+    encryptionMethod: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: pulumi.Input<string>;
+    sslCertificate: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm?: pulumi.Input<string>;
+    encryptionMethod: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: pulumi.Input<string>;
+    sslCertificate: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethod {
+    sourceOracleSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel>;
+    sourceOracleSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication>;
+    sourceOracleSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication>;
+    sourceOracleUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel>;
+    sourceOracleUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication>;
+    sourceOracleUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourceOrbConfiguration {
+    apiKey: pulumi.Input<string>;
+    lookbackWindowDays?: pulumi.Input<number>;
+    numericEventPropertiesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    planId?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    stringEventPropertiesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    subscriptionUsageGroupingKey?: pulumi.Input<string>;
+}
+
+export interface SourceOrbitConfiguration {
+    apiToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+    workspace: pulumi.Input<string>;
+}
+
+export interface SourceOutbrainAmplifyConfiguration {
+    credentials: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentials>;
+    endDate?: pulumi.Input<string>;
+    geoLocationBreakdown?: pulumi.Input<string>;
+    reportGranularity?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentials {
+    sourceOutbrainAmplifyAuthenticationMethodAccessToken?: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken>;
+    sourceOutbrainAmplifyAuthenticationMethodUsernamePassword?: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword>;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken?: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken>;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword?: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword>;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword {
+    password: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword {
+    password: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceOutreachConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    redirectUri: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourcePaypalTransactionConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    isSandbox: pulumi.Input<boolean>;
+    refreshToken?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourcePaystackConfiguration {
+    lookbackWindowDays?: pulumi.Input<number>;
+    secretKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourcePendoConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePersistiqConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePexelsApiConfiguration {
+    apiKey: pulumi.Input<string>;
+    color?: pulumi.Input<string>;
+    locale?: pulumi.Input<string>;
+    orientation?: pulumi.Input<string>;
+    query: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePinterestConfiguration {
+    credentials?: pulumi.Input<inputs.SourcePinterestConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    statuses?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourcePinterestConfigurationCredentials {
+    sourcePinterestAuthorizationMethodAccessToken?: pulumi.Input<inputs.SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken>;
+    sourcePinterestAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20>;
+    sourcePinterestUpdateAuthorizationMethodAccessToken?: pulumi.Input<inputs.SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken>;
+    sourcePinterestUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20 {
+    authMethod: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20 {
+    authMethod: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourcePipedriveConfiguration {
+    authorization?: pulumi.Input<inputs.SourcePipedriveConfigurationAuthorization>;
+    replicationStartDate: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePipedriveConfigurationAuthorization {
+    apiToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourcePocketConfiguration {
+    accessToken: pulumi.Input<string>;
+    consumerKey: pulumi.Input<string>;
+    contentType?: pulumi.Input<string>;
+    detailType?: pulumi.Input<string>;
+    domain?: pulumi.Input<string>;
+    favorite?: pulumi.Input<boolean>;
+    search?: pulumi.Input<string>;
+    since?: pulumi.Input<string>;
+    sort?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
+    tag?: pulumi.Input<string>;
+}
+
+export interface SourcePokeapiConfiguration {
+    pokemonName: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePolygonStockApiConfiguration {
+    adjusted?: pulumi.Input<string>;
+    apiKey: pulumi.Input<string>;
+    endDate: pulumi.Input<string>;
+    limit?: pulumi.Input<number>;
+    multiplier: pulumi.Input<number>;
+    sort?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    stocksTicker: pulumi.Input<string>;
+    timespan: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    replicationMethod?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethod>;
+    schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    sslMode?: pulumi.Input<inputs.SourcePostgresConfigurationSslMode>;
+    tunnelMethod?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethod>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethod {
+    sourcePostgresReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc>;
+    sourcePostgresReplicationMethodStandard?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard>;
+    sourcePostgresReplicationMethodStandardXmin?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin>;
+    sourcePostgresUpdateReplicationMethodLogicalReplicationCdc?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc>;
+    sourcePostgresUpdateReplicationMethodStandard?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard>;
+    sourcePostgresUpdateReplicationMethodStandardXmin?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    lsnCommitBehaviour?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    plugin?: pulumi.Input<string>;
+    publication: pulumi.Input<string>;
+    queueSize?: pulumi.Input<number>;
+    replicationSlot: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin {
+    method: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: pulumi.Input<string>;
+    initialWaitingSeconds?: pulumi.Input<number>;
+    lsnCommitBehaviour?: pulumi.Input<string>;
+    method: pulumi.Input<string>;
+    plugin?: pulumi.Input<string>;
+    publication: pulumi.Input<string>;
+    queueSize?: pulumi.Input<number>;
+    replicationSlot: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard {
+    method: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin {
+    method: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslMode {
+    sourcePostgresSslModesAllow?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesAllow>;
+    sourcePostgresSslModesDisable?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesDisable>;
+    sourcePostgresSslModesPrefer?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer>;
+    sourcePostgresSslModesRequire?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesRequire>;
+    sourcePostgresSslModesVerifyCa?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa>;
+    sourcePostgresSslModesVerifyFull?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull>;
+    sourcePostgresUpdateSslModesAllow?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow>;
+    sourcePostgresUpdateSslModesDisable?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable>;
+    sourcePostgresUpdateSslModesPrefer?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer>;
+    sourcePostgresUpdateSslModesRequire?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire>;
+    sourcePostgresUpdateSslModesVerifyCa?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa>;
+    sourcePostgresUpdateSslModesVerifyFull?: pulumi.Input<inputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesAllow {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesDisable {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesRequire {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire {
+    additionalProperties?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull {
+    additionalProperties?: pulumi.Input<string>;
+    caCertificate: pulumi.Input<string>;
+    clientCertificate?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string>;
+    clientKeyPassword?: pulumi.Input<string>;
+    mode: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethod {
+    sourcePostgresSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel>;
+    sourcePostgresSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication>;
+    sourcePostgresSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication>;
+    sourcePostgresUpdateSshTunnelMethodNoTunnel?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel>;
+    sourcePostgresUpdateSshTunnelMethodPasswordAuthentication?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication>;
+    sourcePostgresUpdateSshTunnelMethodSshKeyAuthentication?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+    tunnelUserPassword: pulumi.Input<string>;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: pulumi.Input<string>;
+    tunnelHost: pulumi.Input<string>;
+    tunnelMethod: pulumi.Input<string>;
+    tunnelPort: pulumi.Input<number>;
+    tunnelUser: pulumi.Input<string>;
+}
+
+export interface SourcePosthogConfiguration {
+    apiKey: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourcePostmarkappConfiguration {
+    sourceType: pulumi.Input<string>;
+    xPostmarkAccountToken: pulumi.Input<string>;
+    xPostmarkServerToken: pulumi.Input<string>;
+}
+
+export interface SourcePrestashopConfiguration {
+    accessKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+}
+
+export interface SourcePublicApisConfiguration {
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePunkApiConfiguration {
+    brewedAfter: pulumi.Input<string>;
+    brewedBefore: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourcePypiConfiguration {
+    projectName: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    version?: pulumi.Input<string>;
+}
+
+export interface SourceQualarooConfiguration {
+    key: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceQuickbooksConfiguration {
+    credentials: pulumi.Input<inputs.SourceQuickbooksConfigurationCredentials>;
+    sandbox: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceQuickbooksConfigurationCredentials {
+    sourceQuickbooksAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20>;
+    sourceQuickbooksUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    realmId: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceRailzConfiguration {
+    clientId: pulumi.Input<string>;
+    secretKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceRechargeConfiguration {
+    accessToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceRecreationConfiguration {
+    apikey: pulumi.Input<string>;
+    queryCampsites?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceRecruiteeConfiguration {
+    apiKey: pulumi.Input<string>;
+    companyId: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceRecurlyConfiguration {
+    apiKey: pulumi.Input<string>;
+    beginTime?: pulumi.Input<string>;
+    endTime?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceRedshiftConfiguration {
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceRetentlyConfiguration {
+    credentials?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentials>;
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceRetentlyConfigurationCredentials {
+    sourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth>;
+    sourceRetentlyAuthenticationMechanismAuthenticateWithApiToken?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken>;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth>;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken>;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiKey: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiKey: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceRkiCovidConfiguration {
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceRssConfiguration {
+    sourceType: pulumi.Input<string>;
+    url: pulumi.Input<string>;
+}
+
+export interface SourceS3Configuration {
+    dataset: pulumi.Input<string>;
+    format?: pulumi.Input<inputs.SourceS3ConfigurationFormat>;
+    pathPattern: pulumi.Input<string>;
+    provider: pulumi.Input<inputs.SourceS3ConfigurationProvider>;
+    schema?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormat {
+    sourceS3FileFormatAvro?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3FileFormatAvro>;
+    sourceS3FileFormatCsv?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3FileFormatCsv>;
+    sourceS3FileFormatJsonl?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3FileFormatJsonl>;
+    sourceS3FileFormatParquet?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3FileFormatParquet>;
+    sourceS3UpdateFileFormatAvro?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro>;
+    sourceS3UpdateFileFormatCsv?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv>;
+    sourceS3UpdateFileFormatJsonl?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl>;
+    sourceS3UpdateFileFormatParquet?: pulumi.Input<inputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatAvro {
+    filetype?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatCsv {
+    additionalReaderOptions?: pulumi.Input<string>;
+    advancedOptions?: pulumi.Input<string>;
+    blockSize?: pulumi.Input<number>;
+    delimiter?: pulumi.Input<string>;
+    doubleQuote?: pulumi.Input<boolean>;
+    encoding?: pulumi.Input<string>;
+    escapeChar?: pulumi.Input<string>;
+    filetype?: pulumi.Input<string>;
+    inferDatatypes?: pulumi.Input<boolean>;
+    newlinesInValues?: pulumi.Input<boolean>;
+    quoteChar?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatJsonl {
+    blockSize?: pulumi.Input<number>;
+    filetype?: pulumi.Input<string>;
+    newlinesInValues?: pulumi.Input<boolean>;
+    unexpectedFieldBehavior?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatParquet {
+    batchSize?: pulumi.Input<number>;
+    bufferSize?: pulumi.Input<number>;
+    columns?: pulumi.Input<pulumi.Input<string>[]>;
+    filetype?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro {
+    filetype?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv {
+    additionalReaderOptions?: pulumi.Input<string>;
+    advancedOptions?: pulumi.Input<string>;
+    blockSize?: pulumi.Input<number>;
+    delimiter?: pulumi.Input<string>;
+    doubleQuote?: pulumi.Input<boolean>;
+    encoding?: pulumi.Input<string>;
+    escapeChar?: pulumi.Input<string>;
+    filetype?: pulumi.Input<string>;
+    inferDatatypes?: pulumi.Input<boolean>;
+    newlinesInValues?: pulumi.Input<boolean>;
+    quoteChar?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl {
+    blockSize?: pulumi.Input<number>;
+    filetype?: pulumi.Input<string>;
+    newlinesInValues?: pulumi.Input<boolean>;
+    unexpectedFieldBehavior?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet {
+    batchSize?: pulumi.Input<number>;
+    bufferSize?: pulumi.Input<number>;
+    columns?: pulumi.Input<pulumi.Input<string>[]>;
+    filetype?: pulumi.Input<string>;
+}
+
+export interface SourceS3ConfigurationProvider {
+    awsAccessKeyId?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
+    bucket: pulumi.Input<string>;
+    endpoint?: pulumi.Input<string>;
+    pathPrefix?: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
 export interface SourceSalesforceConfiguration {
     authType?: pulumi.Input<string>;
     clientId: pulumi.Input<string>;
@@ -140,4 +5064,940 @@ export interface SourceSalesforceConfiguration {
 export interface SourceSalesforceConfigurationStreamsCriteria {
     criteria: pulumi.Input<string>;
     value: pulumi.Input<string>;
+}
+
+export interface SourceSalesloftConfiguration {
+    credentials: pulumi.Input<inputs.SourceSalesloftConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceSalesloftConfigurationCredentials {
+    sourceSalesloftCredentialsAuthenticateViaApiKey?: pulumi.Input<inputs.SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey>;
+    sourceSalesloftCredentialsAuthenticateViaOAuth?: pulumi.Input<inputs.SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth>;
+    sourceSalesloftUpdateCredentialsAuthenticateViaApiKey?: pulumi.Input<inputs.SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey>;
+    sourceSalesloftUpdateCredentialsAuthenticateViaOAuth?: pulumi.Input<inputs.SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth>;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey {
+    apiKey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey {
+    apiKey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth {
+    accessToken: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceSapFieldglassConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSecodaConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSendgridConfiguration {
+    apikey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startTime?: pulumi.Input<string>;
+}
+
+export interface SourceSendinblueConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSenseforceConfiguration {
+    accessToken: pulumi.Input<string>;
+    backendUrl: pulumi.Input<string>;
+    datasetId: pulumi.Input<string>;
+    sliceRange?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceSentryConfiguration {
+    authToken: pulumi.Input<string>;
+    discoverFields?: pulumi.Input<pulumi.Input<string>[]>;
+    hostname?: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
+    project: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSftpBulkConfiguration {
+    fileMostRecent?: pulumi.Input<boolean>;
+    filePattern?: pulumi.Input<string>;
+    fileType?: pulumi.Input<string>;
+    folderPath: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    privateKey?: pulumi.Input<string>;
+    separator?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    streamName: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceSftpConfiguration {
+    credentials?: pulumi.Input<inputs.SourceSftpConfigurationCredentials>;
+    filePattern?: pulumi.Input<string>;
+    fileTypes?: pulumi.Input<string>;
+    folderPath?: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    port: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    user: pulumi.Input<string>;
+}
+
+export interface SourceSftpConfigurationCredentials {
+    sourceSftpAuthenticationWildcardPasswordAuthentication?: pulumi.Input<inputs.SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication>;
+    sourceSftpAuthenticationWildcardSshKeyAuthentication?: pulumi.Input<inputs.SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication>;
+    sourceSftpUpdateAuthenticationWildcardPasswordAuthentication?: pulumi.Input<inputs.SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication>;
+    sourceSftpUpdateAuthenticationWildcardSshKeyAuthentication?: pulumi.Input<inputs.SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication>;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication {
+    authMethod: pulumi.Input<string>;
+    authUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication {
+    authMethod: pulumi.Input<string>;
+    authSshKey: pulumi.Input<string>;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication {
+    authMethod: pulumi.Input<string>;
+    authUserPassword: pulumi.Input<string>;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication {
+    authMethod: pulumi.Input<string>;
+    authSshKey: pulumi.Input<string>;
+}
+
+export interface SourceShopifyConfiguration {
+    credentials?: pulumi.Input<inputs.SourceShopifyConfigurationCredentials>;
+    shop: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceShopifyConfigurationCredentials {
+    sourceShopifyShopifyAuthorizationMethodApiPassword?: pulumi.Input<inputs.SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword>;
+    sourceShopifyShopifyAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20>;
+    sourceShopifyUpdateShopifyAuthorizationMethodApiPassword?: pulumi.Input<inputs.SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword>;
+    sourceShopifyUpdateShopifyAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20>;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword {
+    apiPassword: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword {
+    apiPassword: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceShortioConfiguration {
+    domainId: pulumi.Input<string>;
+    secretKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceSlackConfiguration {
+    channelFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    credentials?: pulumi.Input<inputs.SourceSlackConfigurationCredentials>;
+    joinChannels: pulumi.Input<boolean>;
+    lookbackWindow: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceSlackConfigurationCredentials {
+    sourceSlackAuthenticationMechanismApiToken?: pulumi.Input<inputs.SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken>;
+    sourceSlackAuthenticationMechanismSignInViaSlackOAuth?: pulumi.Input<inputs.SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth>;
+    sourceSlackUpdateAuthenticationMechanismApiToken?: pulumi.Input<inputs.SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken>;
+    sourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth?: pulumi.Input<inputs.SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth>;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken {
+    apiToken: pulumi.Input<string>;
+    optionTitle: pulumi.Input<string>;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    optionTitle: pulumi.Input<string>;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken {
+    apiToken: pulumi.Input<string>;
+    optionTitle: pulumi.Input<string>;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    optionTitle: pulumi.Input<string>;
+}
+
+export interface SourceSmailyConfiguration {
+    apiPassword: pulumi.Input<string>;
+    apiSubdomain: pulumi.Input<string>;
+    apiUsername: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSmartengageConfiguration {
+    apiKey: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceSmartsheetsConfiguration {
+    credentials: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentials>;
+    metadataFields?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    spreadsheetId: pulumi.Input<string>;
+    startDatetime?: pulumi.Input<string>;
+}
+
+export interface SourceSmartsheetsConfigurationCredentials {
+    sourceSmartsheetsAuthorizationMethodApiAccessToken?: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken>;
+    sourceSmartsheetsAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20>;
+    sourceSmartsheetsUpdateAuthorizationMethodApiAccessToken?: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken>;
+    sourceSmartsheetsUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceSnapchatMarketingConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceSnowflakeConfiguration {
+    credentials?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentials>;
+    database: pulumi.Input<string>;
+    host: pulumi.Input<string>;
+    jdbcUrlParams?: pulumi.Input<string>;
+    role: pulumi.Input<string>;
+    schema?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    warehouse: pulumi.Input<string>;
+}
+
+export interface SourceSnowflakeConfigurationCredentials {
+    sourceSnowflakeAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20>;
+    sourceSnowflakeAuthorizationMethodUsernameAndPassword?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword>;
+    sourceSnowflakeUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20>;
+    sourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword>;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken?: pulumi.Input<string>;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword {
+    authType: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken?: pulumi.Input<string>;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword {
+    authType: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceSonarCloudConfiguration {
+    componentKeys: pulumi.Input<pulumi.Input<string>[]>;
+    endDate?: pulumi.Input<string>;
+    organization: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+    userToken: pulumi.Input<string>;
+}
+
+export interface SourceSpaceXApiConfiguration {
+    id?: pulumi.Input<string>;
+    options?: pulumi.Input<string>;
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceSquareConfiguration {
+    credentials?: pulumi.Input<inputs.SourceSquareConfigurationCredentials>;
+    includeDeletedObjects?: pulumi.Input<boolean>;
+    isSandbox: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceSquareConfigurationCredentials {
+    sourceSquareAuthenticationApiKey?: pulumi.Input<inputs.SourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey>;
+    sourceSquareAuthenticationOauthAuthentication?: pulumi.Input<inputs.SourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication>;
+    sourceSquareUpdateAuthenticationApiKey?: pulumi.Input<inputs.SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey>;
+    sourceSquareUpdateAuthenticationOauthAuthentication?: pulumi.Input<inputs.SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication>;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey {
+    apiKey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey {
+    apiKey: pulumi.Input<string>;
+    authType: pulumi.Input<string>;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication {
+    authType: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceStravaConfiguration {
+    athleteId: pulumi.Input<number>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceStripeConfiguration {
+    accountId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    lookbackWindowDays?: pulumi.Input<number>;
+    sliceRange?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceSurveySparrowConfiguration {
+    accessToken: pulumi.Input<string>;
+    region?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegion>;
+    sourceType: pulumi.Input<string>;
+    surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourceSurveySparrowConfigurationRegion {
+    sourceSurveySparrowBaseUrlEuBasedAccount?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount>;
+    sourceSurveySparrowBaseUrlGlobalAccount?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount>;
+    sourceSurveySparrowUpdateBaseUrlEuBasedAccount?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount>;
+    sourceSurveySparrowUpdateBaseUrlGlobalAccount?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount>;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount {
+    urlBase?: pulumi.Input<string>;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount {
+    urlBase?: pulumi.Input<string>;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount {
+    urlBase?: pulumi.Input<string>;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount {
+    urlBase?: pulumi.Input<string>;
+}
+
+export interface SourceSurveymonkeyConfiguration {
+    credentials?: pulumi.Input<inputs.SourceSurveymonkeyConfigurationCredentials>;
+    origin?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SourceSurveymonkeyConfigurationCredentials {
+    accessToken: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceTempoConfiguration {
+    apiToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceTheGuardianApiConfiguration {
+    apiKey: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    query?: pulumi.Input<string>;
+    section?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    tag?: pulumi.Input<string>;
+}
+
+export interface SourceTiktokMarketingConfiguration {
+    attributionWindow?: pulumi.Input<number>;
+    credentials?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentials>;
+    endDate?: pulumi.Input<string>;
+    includeDeleted?: pulumi.Input<boolean>;
+    sourceType?: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentials {
+    sourceTiktokMarketingAuthenticationMethodOAuth20?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20>;
+    sourceTiktokMarketingAuthenticationMethodSandboxAccessToken?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken>;
+    sourceTiktokMarketingUpdateAuthenticationMethodOAuth20?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20>;
+    sourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken>;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    advertiserId?: pulumi.Input<string>;
+    appId: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    secret: pulumi.Input<string>;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken {
+    accessToken: pulumi.Input<string>;
+    advertiserId: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    advertiserId?: pulumi.Input<string>;
+    appId: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    secret: pulumi.Input<string>;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken {
+    accessToken: pulumi.Input<string>;
+    advertiserId: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceTodoistConfiguration {
+    sourceType: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceTrelloConfiguration {
+    boardIds?: pulumi.Input<pulumi.Input<string>[]>;
+    key: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    token: pulumi.Input<string>;
+}
+
+export interface SourceTrustpilotConfiguration {
+    businessUnits: pulumi.Input<pulumi.Input<string>[]>;
+    credentials: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceTrustpilotConfigurationCredentials {
+    sourceTrustpilotAuthorizationMethodApiKey?: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey>;
+    sourceTrustpilotAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20>;
+    sourceTrustpilotUpdateAuthorizationMethodApiKey?: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey>;
+    sourceTrustpilotUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey {
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceTvmazeScheduleConfiguration {
+    domesticScheduleCountryCode: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    webScheduleCountryCode?: pulumi.Input<string>;
+}
+
+export interface SourceTwilioConfiguration {
+    accountSid: pulumi.Input<string>;
+    authToken: pulumi.Input<string>;
+    lookbackWindow?: pulumi.Input<number>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceTwilioTaskrouterConfiguration {
+    accountSid: pulumi.Input<string>;
+    authToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceTwitterConfiguration {
+    apiKey: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    query: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceTypeformConfiguration {
+    credentials: pulumi.Input<inputs.SourceTypeformConfigurationCredentials>;
+    formIds?: pulumi.Input<pulumi.Input<string>[]>;
+    sourceType: pulumi.Input<string>;
+    startDate?: pulumi.Input<string>;
+}
+
+export interface SourceTypeformConfigurationCredentials {
+    sourceTypeformAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20>;
+    sourceTypeformAuthorizationMethodPrivateToken?: pulumi.Input<inputs.SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken>;
+    sourceTypeformUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20>;
+    sourceTypeformUpdateAuthorizationMethodPrivateToken?: pulumi.Input<inputs.SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken>;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken {
+    accessToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+}
+
+export interface SourceUsCensusConfiguration {
+    apiKey: pulumi.Input<string>;
+    queryParams?: pulumi.Input<string>;
+    queryPath: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceVantageConfiguration {
+    accessToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceWebflowConfiguration {
+    apiKey: pulumi.Input<string>;
+    siteId: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceWhiskyHunterConfiguration {
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceWikipediaPageviewsConfiguration {
+    access: pulumi.Input<string>;
+    agent: pulumi.Input<string>;
+    article: pulumi.Input<string>;
+    country: pulumi.Input<string>;
+    end: pulumi.Input<string>;
+    project: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    start: pulumi.Input<string>;
+}
+
+export interface SourceWoocommerceConfiguration {
+    apiKey: pulumi.Input<string>;
+    apiSecret: pulumi.Input<string>;
+    shop: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceXeroConfiguration {
+    authentication: pulumi.Input<inputs.SourceXeroConfigurationAuthentication>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    tenantId: pulumi.Input<string>;
+}
+
+export interface SourceXeroConfigurationAuthentication {
+    accessToken: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    tokenExpiryDate: pulumi.Input<string>;
+}
+
+export interface SourceXkcdConfiguration {
+    sourceType?: pulumi.Input<string>;
+}
+
+export interface SourceYandexMetricaConfiguration {
+    authToken: pulumi.Input<string>;
+    counterId: pulumi.Input<string>;
+    endDate?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceYotpoConfiguration {
+    accessToken: pulumi.Input<string>;
+    appKey: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+}
+
+export interface SourceYouniumConfiguration {
+    legalEntity: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    playground?: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface SourceYoutubeAnalyticsConfiguration {
+    credentials: pulumi.Input<inputs.SourceYoutubeAnalyticsConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceYoutubeAnalyticsConfigurationCredentials {
+    additionalProperties?: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+}
+
+export interface SourceZendeskChatConfiguration {
+    credentials?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    subdomain?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskChatConfigurationCredentials {
+    sourceZendeskChatAuthorizationMethodAccessToken?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken>;
+    sourceZendeskChatAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20>;
+    sourceZendeskChatUpdateAuthorizationMethodAccessToken?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken>;
+    sourceZendeskChatUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    credentials: pulumi.Input<string>;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    credentials: pulumi.Input<string>;
+    refreshToken?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken {
+    accessToken: pulumi.Input<string>;
+    credentials: pulumi.Input<string>;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20 {
+    accessToken?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    credentials: pulumi.Input<string>;
+    refreshToken?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSunshineConfiguration {
+    credentials?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    subdomain: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentials {
+    sourceZendeskSunshineAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken>;
+    sourceZendeskSunshineAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20>;
+    sourceZendeskSunshineUpdateAuthorizationMethodApiToken?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken>;
+    sourceZendeskSunshineUpdateAuthorizationMethodOAuth20?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20>;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    authMethod: pulumi.Input<string>;
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSupportConfiguration {
+    credentials?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentials>;
+    ignorePagination?: pulumi.Input<boolean>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    subdomain: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSupportConfigurationCredentials {
+    sourceZendeskSupportAuthenticationApiToken?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken>;
+    sourceZendeskSupportAuthenticationOAuth20?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20>;
+    sourceZendeskSupportUpdateAuthenticationApiToken?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken>;
+    sourceZendeskSupportUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20>;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskTalkConfiguration {
+    credentials?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentials>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    subdomain: pulumi.Input<string>;
+}
+
+export interface SourceZendeskTalkConfigurationCredentials {
+    sourceZendeskTalkAuthenticationApiToken?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken>;
+    sourceZendeskTalkAuthenticationOAuth20?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20>;
+    sourceZendeskTalkUpdateAuthenticationApiToken?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken>;
+    sourceZendeskTalkUpdateAuthenticationOAuth20?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20>;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken {
+    additionalProperties?: pulumi.Input<string>;
+    apiToken: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    email: pulumi.Input<string>;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20 {
+    accessToken: pulumi.Input<string>;
+    additionalProperties?: pulumi.Input<string>;
+    authType?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+}
+
+export interface SourceZenloopConfiguration {
+    apiToken: pulumi.Input<string>;
+    dateFrom?: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    surveyGroupId?: pulumi.Input<string>;
+    surveyId?: pulumi.Input<string>;
+}
+
+export interface SourceZohoCrmConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    dcRegion: pulumi.Input<string>;
+    edition: pulumi.Input<string>;
+    environment: pulumi.Input<string>;
+    refreshToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDatetime?: pulumi.Input<string>;
+}
+
+export interface SourceZoomConfiguration {
+    jwtToken: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+}
+
+export interface SourceZuoraConfiguration {
+    clientId: pulumi.Input<string>;
+    clientSecret: pulumi.Input<string>;
+    dataQuery: pulumi.Input<string>;
+    sourceType: pulumi.Input<string>;
+    startDate: pulumi.Input<string>;
+    tenantEndpoint: pulumi.Input<string>;
+    windowInDays?: pulumi.Input<string>;
 }

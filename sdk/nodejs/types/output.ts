@@ -22,6 +22,1812 @@ export interface ConnectionSchedule {
     scheduleType: string;
 }
 
+export interface DestinationAWSDatalakeConfiguration {
+    awsAccountId?: string;
+    bucketName: string;
+    bucketPrefix?: string;
+    credentials: outputs.DestinationAWSDatalakeConfigurationCredentials;
+    destinationType: string;
+    format?: outputs.DestinationAWSDatalakeConfigurationFormat;
+    glueCatalogFloatAsDecimal?: boolean;
+    lakeformationDatabaseDefaultTagKey?: string;
+    lakeformationDatabaseDefaultTagValues?: string;
+    lakeformationDatabaseName: string;
+    lakeformationGovernedTables?: boolean;
+    partitioning?: string;
+    region: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentials {
+    destinationAwsDatalakeAuthenticationModeIamRole?: outputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole;
+    destinationAwsDatalakeAuthenticationModeIamUser?: outputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser;
+    destinationAwsDatalakeUpdateAuthenticationModeIamRole?: outputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole;
+    destinationAwsDatalakeUpdateAuthenticationModeIamUser?: outputs.DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole {
+    credentialsTitle: string;
+    roleArn: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    credentialsTitle: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole {
+    credentialsTitle: string;
+    roleArn: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    credentialsTitle: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormat {
+    destinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson?: outputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson;
+    destinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage?: outputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage;
+    destinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson?: outputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson;
+    destinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage?: outputs.DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec?: string;
+    formatType: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec?: string;
+    formatType: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec?: string;
+    formatType: string;
+}
+
+export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec?: string;
+    formatType: string;
+}
+
+export interface DestinationAzurBlobStorageConfiguration {
+    azureBlobStorageAccountKey: string;
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName?: string;
+    azureBlobStorageEndpointDomainName?: string;
+    azureBlobStorageOutputBufferSize?: number;
+    azureBlobStorageSpillSize?: number;
+    destinationType: string;
+    format: outputs.DestinationAzurBlobStorageConfigurationFormat;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormat {
+    destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues?: outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues;
+    destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues?: outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues;
+    destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues {
+    flattening: string;
+    formatType: string;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues {
+    flattening: string;
+    formatType: string;
+}
+
+export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface DestinationBigqueryConfiguration {
+    bigQueryClientBufferSizeMb?: number;
+    credentialsJson?: string;
+    datasetId: string;
+    datasetLocation: string;
+    destinationType: string;
+    loadingMethod?: outputs.DestinationBigqueryConfigurationLoadingMethod;
+    projectId: string;
+    rawDataDataset?: string;
+    transformationPriority?: string;
+    use1s1tFormat?: boolean;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethod {
+    destinationBigqueryLoadingMethodGcsStaging?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging;
+    destinationBigqueryLoadingMethodStandardInserts?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts;
+    destinationBigqueryUpdateLoadingMethodGcsStaging?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging;
+    destinationBigqueryUpdateLoadingMethodStandardInserts?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging {
+    credential: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential;
+    fileBufferCount?: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket?: string;
+    method: string;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential {
+    destinationBigqueryLoadingMethodGcsStagingCredentialHmacKey?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging {
+    credential: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential;
+    fileBufferCount?: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket?: string;
+    method: string;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey?: outputs.DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfiguration {
+    bigQueryClientBufferSizeMb?: number;
+    credentialsJson?: string;
+    datasetId: string;
+    datasetLocation?: string;
+    destinationType: string;
+    loadingMethod?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethod;
+    projectId: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethod {
+    destinationBigqueryDenormalizedLoadingMethodGcsStaging?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging;
+    destinationBigqueryDenormalizedLoadingMethodStandardInserts?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts;
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging;
+    destinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging {
+    credential: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential;
+    fileBufferCount?: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket?: string;
+    method: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging {
+    credential: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential;
+    fileBufferCount?: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket?: string;
+    method: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface DestinationClickhouseConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    tunnelMethod?: outputs.DestinationClickhouseConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethod {
+    destinationClickhouseSshTunnelMethodNoTunnel?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel;
+    destinationClickhouseSshTunnelMethodPasswordAuthentication?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication;
+    destinationClickhouseSshTunnelMethodSshKeyAuthentication?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication;
+    destinationClickhouseUpdateSshTunnelMethodNoTunnel?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel;
+    destinationClickhouseUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication;
+    destinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationConvexConfiguration {
+    accessKey: string;
+    deploymentUrl: string;
+    destinationType: string;
+}
+
+export interface DestinationCumulioConfiguration {
+    apiHost: string;
+    apiKey: string;
+    apiToken: string;
+    destinationType: string;
+}
+
+export interface DestinationDatabendConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    password?: string;
+    port?: number;
+    table?: string;
+    username: string;
+}
+
+export interface DestinationDatabricksConfiguration {
+    acceptTerms: boolean;
+    dataSource: outputs.DestinationDatabricksConfigurationDataSource;
+    database?: string;
+    databricksHttpPath: string;
+    databricksPersonalAccessToken: string;
+    databricksPort?: string;
+    databricksServerHostname: string;
+    destinationType: string;
+    enableSchemaEvolution?: boolean;
+    purgeStagingData?: boolean;
+    schema?: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSource {
+    destinationDatabricksDataSourceAmazonS3?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3;
+    destinationDatabricksDataSourceAzureBlobStorage?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage;
+    destinationDatabricksDataSourceRecommendedManagedTables?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables;
+    destinationDatabricksUpdateDataSourceAmazonS3?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3;
+    destinationDatabricksUpdateDataSourceAzureBlobStorage?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage;
+    destinationDatabricksUpdateDataSourceRecommendedManagedTables?: outputs.DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3 {
+    dataSourceType: string;
+    fileNamePattern?: string;
+    s3AccessKeyId: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3SecretAccessKey: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpointDomainName?: string;
+    azureBlobStorageSasToken: string;
+    dataSourceType: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables {
+    dataSourceType: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3 {
+    dataSourceType: string;
+    fileNamePattern?: string;
+    s3AccessKeyId: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3SecretAccessKey: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpointDomainName?: string;
+    azureBlobStorageSasToken: string;
+    dataSourceType: string;
+}
+
+export interface DestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables {
+    dataSourceType: string;
+}
+
+export interface DestinationDevNullConfiguration {
+    destinationType: string;
+    testDestination: outputs.DestinationDevNullConfigurationTestDestination;
+}
+
+export interface DestinationDevNullConfigurationTestDestination {
+    destinationDevNullTestDestinationSilent?: outputs.DestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent;
+    destinationDevNullUpdateTestDestinationSilent?: outputs.DestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent;
+}
+
+export interface DestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent {
+    testDestinationType: string;
+}
+
+export interface DestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent {
+    testDestinationType: string;
+}
+
+export interface DestinationDynamodbConfiguration {
+    accessKeyId: string;
+    destinationType: string;
+    dynamodbEndpoint?: string;
+    dynamodbRegion: string;
+    dynamodbTableNamePrefix: string;
+    secretAccessKey: string;
+}
+
+export interface DestinationElasticsearchConfiguration {
+    authenticationMethod?: outputs.DestinationElasticsearchConfigurationAuthenticationMethod;
+    caCertificate?: string;
+    destinationType: string;
+    endpoint: string;
+    upsert?: boolean;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethod {
+    destinationElasticsearchAuthenticationMethodApiKeySecret?: outputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret;
+    destinationElasticsearchAuthenticationMethodUsernamePassword?: outputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword;
+    destinationElasticsearchUpdateAuthenticationMethodApiKeySecret?: outputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret;
+    destinationElasticsearchUpdateAuthenticationMethodUsernamePassword?: outputs.DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret {
+    apiKeyId: string;
+    apiKeySecret: string;
+    method: string;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword {
+    method: string;
+    password: string;
+    username: string;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret {
+    apiKeyId: string;
+    apiKeySecret: string;
+    method: string;
+}
+
+export interface DestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword {
+    method: string;
+    password: string;
+    username: string;
+}
+
+export interface DestinationFireboltConfiguration {
+    account?: string;
+    database: string;
+    destinationType: string;
+    engine?: string;
+    host?: string;
+    loadingMethod?: outputs.DestinationFireboltConfigurationLoadingMethod;
+    password: string;
+    username: string;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethod {
+    destinationFireboltLoadingMethodExternalTableViaS3?: outputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3;
+    destinationFireboltLoadingMethodSqlInserts?: outputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts;
+    destinationFireboltUpdateLoadingMethodExternalTableViaS3?: outputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3;
+    destinationFireboltUpdateLoadingMethodSqlInserts?: outputs.DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3 {
+    awsKeyId: string;
+    awsKeySecret: string;
+    method: string;
+    s3Bucket: string;
+    s3Region: string;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts {
+    method: string;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3 {
+    awsKeyId: string;
+    awsKeySecret: string;
+    method: string;
+    s3Bucket: string;
+    s3Region: string;
+}
+
+export interface DestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts {
+    method: string;
+}
+
+export interface DestinationFirestoreConfiguration {
+    credentialsJson?: string;
+    destinationType: string;
+    projectId: string;
+}
+
+export interface DestinationGcsConfiguration {
+    credential: outputs.DestinationGcsConfigurationCredential;
+    destinationType: string;
+    format: outputs.DestinationGcsConfigurationFormat;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    gcsBucketRegion?: string;
+}
+
+export interface DestinationGcsConfigurationCredential {
+    destinationGcsAuthenticationHmacKey?: outputs.DestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey;
+    destinationGcsUpdateAuthenticationHmacKey?: outputs.DestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey;
+}
+
+export interface DestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface DestinationGcsConfigurationFormat {
+    destinationGcsOutputFormatAvroApacheAvro?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro;
+    destinationGcsOutputFormatCsvCommaSeparatedValues?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationGcsOutputFormatParquetColumnarStorage?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage;
+    destinationGcsUpdateOutputFormatAvroApacheAvro?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValues?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationGcsUpdateOutputFormatParquetColumnarStorage?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecXz?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel?: number;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel?: number;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel?: number;
+    includeChecksum?: boolean;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues {
+    compression?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage {
+    blockSizeMb?: number;
+    compressionCodec?: string;
+    dictionaryEncoding?: boolean;
+    dictionaryPageSizeKb?: number;
+    formatType: string;
+    maxPaddingSizeMb?: number;
+    pageSizeKb?: number;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel?: number;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel?: number;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel?: number;
+    includeChecksum?: boolean;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues {
+    compression?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    formatType: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb?: number;
+    compressionCodec?: string;
+    dictionaryEncoding?: boolean;
+    dictionaryPageSizeKb?: number;
+    formatType: string;
+    maxPaddingSizeMb?: number;
+    pageSizeKb?: number;
+}
+
+export interface DestinationGoogleSheetsConfiguration {
+    credentials: outputs.DestinationGoogleSheetsConfigurationCredentials;
+    destinationType: string;
+    spreadsheetId: string;
+}
+
+export interface DestinationGoogleSheetsConfigurationCredentials {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface DestinationKeenConfiguration {
+    apiKey: string;
+    destinationType: string;
+    inferTimestamp?: boolean;
+    projectId: string;
+}
+
+export interface DestinationKinesisConfiguration {
+    accessKey: string;
+    bufferSize: number;
+    destinationType: string;
+    endpoint: string;
+    privateKey: string;
+    region: string;
+    shardCount: number;
+}
+
+export interface DestinationLangchainConfiguration {
+    destinationType: string;
+    embedding: outputs.DestinationLangchainConfigurationEmbedding;
+    indexing: outputs.DestinationLangchainConfigurationIndexing;
+    processing: outputs.DestinationLangchainConfigurationProcessing;
+}
+
+export interface DestinationLangchainConfigurationEmbedding {
+    destinationLangchainEmbeddingFake?: outputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake;
+    destinationLangchainEmbeddingOpenAi?: outputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi;
+    destinationLangchainUpdateEmbeddingFake?: outputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake;
+    destinationLangchainUpdateEmbeddingOpenAi?: outputs.DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake {
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi {
+    mode?: string;
+    openaiKey: string;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake {
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi {
+    mode?: string;
+    openaiKey: string;
+}
+
+export interface DestinationLangchainConfigurationIndexing {
+    destinationLangchainIndexingChromaLocalPersistance?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance;
+    destinationLangchainIndexingDocArrayHnswSearch?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch;
+    destinationLangchainIndexingPinecone?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone;
+    destinationLangchainUpdateIndexingChromaLocalPersistance?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance;
+    destinationLangchainUpdateIndexingDocArrayHnswSearch?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch;
+    destinationLangchainUpdateIndexingPinecone?: outputs.DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance {
+    collectionName?: string;
+    destinationPath: string;
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch {
+    destinationPath: string;
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone {
+    index: string;
+    mode?: string;
+    pineconeEnvironment: string;
+    pineconeKey: string;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance {
+    collectionName?: string;
+    destinationPath: string;
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch {
+    destinationPath: string;
+    mode?: string;
+}
+
+export interface DestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone {
+    index: string;
+    mode?: string;
+    pineconeEnvironment: string;
+    pineconeKey: string;
+}
+
+export interface DestinationLangchainConfigurationProcessing {
+    chunkOverlap?: number;
+    chunkSize: number;
+    textFields: string[];
+}
+
+export interface DestinationMSsqlConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    schema: string;
+    sslMethod?: outputs.DestinationMSsqlConfigurationSslMethod;
+    tunnelMethod?: outputs.DestinationMSsqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationMSsqlConfigurationSslMethod {
+    destinationMssqlSslMethodEncryptedTrustServerCertificate?: outputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate;
+    destinationMssqlSslMethodEncryptedVerifyCertificate?: outputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate;
+    destinationMssqlUpdateSslMethodEncryptedTrustServerCertificate?: outputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate;
+    destinationMssqlUpdateSslMethodEncryptedVerifyCertificate?: outputs.DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: string;
+    sslMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: string;
+    sslMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethod {
+    destinationMssqlSshTunnelMethodNoTunnel?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel;
+    destinationMssqlSshTunnelMethodPasswordAuthentication?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication;
+    destinationMssqlSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication;
+    destinationMssqlUpdateSshTunnelMethodNoTunnel?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel;
+    destinationMssqlUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMssqlUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationMongodbConfiguration {
+    authType: outputs.DestinationMongodbConfigurationAuthType;
+    database: string;
+    destinationType: string;
+    instanceType?: outputs.DestinationMongodbConfigurationInstanceType;
+    tunnelMethod?: outputs.DestinationMongodbConfigurationTunnelMethod;
+}
+
+export interface DestinationMongodbConfigurationAuthType {
+    destinationMongodbAuthorizationTypeLoginPassword?: outputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword;
+    destinationMongodbAuthorizationTypeNone?: outputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone;
+    destinationMongodbUpdateAuthorizationTypeLoginPassword?: outputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword;
+    destinationMongodbUpdateAuthorizationTypeNone?: outputs.DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword {
+    authorization: string;
+    password: string;
+    username: string;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone {
+    authorization: string;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword {
+    authorization: string;
+    password: string;
+    username: string;
+}
+
+export interface DestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone {
+    authorization: string;
+}
+
+export interface DestinationMongodbConfigurationInstanceType {
+    destinationMongodbMongoDbInstanceTypeMongoDbAtlas?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas;
+    destinationMongodbMongoDbInstanceTypeReplicaSet?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet;
+    destinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance;
+    destinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas;
+    destinationMongodbUpdateMongoDbInstanceTypeReplicaSet?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet;
+    destinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance?: outputs.DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet?: string;
+    serverAddresses: string;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet?: string;
+    serverAddresses: string;
+}
+
+export interface DestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethod {
+    destinationMongodbSshTunnelMethodNoTunnel?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel;
+    destinationMongodbSshTunnelMethodPasswordAuthentication?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication;
+    destinationMongodbSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication;
+    destinationMongodbUpdateSshTunnelMethodNoTunnel?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel;
+    destinationMongodbUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMongodbUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationMysqlConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    tunnelMethod?: outputs.DestinationMysqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethod {
+    destinationMysqlSshTunnelMethodNoTunnel?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel;
+    destinationMysqlSshTunnelMethodPasswordAuthentication?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication;
+    destinationMysqlSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication;
+    destinationMysqlUpdateSshTunnelMethodNoTunnel?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel;
+    destinationMysqlUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMysqlUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationOracleConfiguration {
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    schema?: string;
+    sid: string;
+    tunnelMethod?: outputs.DestinationOracleConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethod {
+    destinationOracleSshTunnelMethodNoTunnel?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel;
+    destinationOracleSshTunnelMethodPasswordAuthentication?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication;
+    destinationOracleSshTunnelMethodSshKeyAuthentication?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication;
+    destinationOracleUpdateSshTunnelMethodNoTunnel?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel;
+    destinationOracleUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication;
+    destinationOracleUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationPostgresConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    schema: string;
+    sslMode?: outputs.DestinationPostgresConfigurationSslMode;
+    tunnelMethod?: outputs.DestinationPostgresConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationPostgresConfigurationSslMode {
+    destinationPostgresSslModesAllow?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow;
+    destinationPostgresSslModesDisable?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable;
+    destinationPostgresSslModesPrefer?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer;
+    destinationPostgresSslModesRequire?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire;
+    destinationPostgresSslModesVerifyCa?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa;
+    destinationPostgresSslModesVerifyFull?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull;
+    destinationPostgresUpdateSslModesAllow?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow;
+    destinationPostgresUpdateSslModesDisable?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable;
+    destinationPostgresUpdateSslModesPrefer?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer;
+    destinationPostgresUpdateSslModesRequire?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire;
+    destinationPostgresUpdateSslModesVerifyCa?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa;
+    destinationPostgresUpdateSslModesVerifyFull?: outputs.DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa {
+    caCertificate: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire {
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa {
+    caCertificate: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethod {
+    destinationPostgresSshTunnelMethodNoTunnel?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel;
+    destinationPostgresSshTunnelMethodPasswordAuthentication?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication;
+    destinationPostgresSshTunnelMethodSshKeyAuthentication?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication;
+    destinationPostgresUpdateSshTunnelMethodNoTunnel?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel;
+    destinationPostgresUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication;
+    destinationPostgresUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationPubsubConfiguration {
+    batchingDelayThreshold?: number;
+    batchingElementCountThreshold?: number;
+    batchingEnabled: boolean;
+    batchingRequestBytesThreshold?: number;
+    credentialsJson: string;
+    destinationType: string;
+    orderingEnabled: boolean;
+    projectId: string;
+    topicId: string;
+}
+
+export interface DestinationRedisConfiguration {
+    cacheType: string;
+    destinationType: string;
+    host: string;
+    password?: string;
+    port: number;
+    ssl?: boolean;
+    sslMode?: outputs.DestinationRedisConfigurationSslMode;
+    tunnelMethod?: outputs.DestinationRedisConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationRedisConfigurationSslMode {
+    destinationRedisSslModesDisable?: outputs.DestinationRedisConfigurationSslModeDestinationRedisSslModesDisable;
+    destinationRedisSslModesVerifyFull?: outputs.DestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull;
+    destinationRedisUpdateSslModesDisable?: outputs.DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable;
+    destinationRedisUpdateSslModesVerifyFull?: outputs.DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisSslModesDisable {
+    mode: string;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable {
+    mode: string;
+}
+
+export interface DestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethod {
+    destinationRedisSshTunnelMethodNoTunnel?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel;
+    destinationRedisSshTunnelMethodPasswordAuthentication?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication;
+    destinationRedisSshTunnelMethodSshKeyAuthentication?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication;
+    destinationRedisUpdateSshTunnelMethodNoTunnel?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel;
+    destinationRedisUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication;
+    destinationRedisUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationRedshiftConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password: string;
+    port: number;
+    schema: string;
+    tunnelMethod?: outputs.DestinationRedshiftConfigurationTunnelMethod;
+    uploadingMethod?: outputs.DestinationRedshiftConfigurationUploadingMethod;
+    username: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethod {
+    destinationRedshiftSshTunnelMethodNoTunnel?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel;
+    destinationRedshiftSshTunnelMethodPasswordAuthentication?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication;
+    destinationRedshiftSshTunnelMethodSshKeyAuthentication?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication;
+    destinationRedshiftUpdateSshTunnelMethodNoTunnel?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel;
+    destinationRedshiftUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication;
+    destinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethod {
+    destinationRedshiftUpdateUploadingMethodS3Staging?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging;
+    destinationRedshiftUpdateUploadingMethodStandard?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard;
+    destinationRedshiftUploadingMethodS3Staging?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging;
+    destinationRedshiftUploadingMethodStandard?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging {
+    accessKeyId: string;
+    encryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption;
+    fileBufferCount?: number;
+    fileNamePattern?: string;
+    method: string;
+    purgeStagingData?: boolean;
+    s3BucketName: string;
+    s3BucketPath?: string;
+    s3BucketRegion: string;
+    secretAccessKey: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption {
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption;
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: string;
+    keyEncryptingKey?: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard {
+    method: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging {
+    accessKeyId: string;
+    encryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption;
+    fileBufferCount?: number;
+    fileNamePattern?: string;
+    method: string;
+    purgeStagingData?: boolean;
+    s3BucketName: string;
+    s3BucketPath?: string;
+    s3BucketRegion: string;
+    secretAccessKey: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption {
+    destinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption;
+    destinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption?: outputs.DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: string;
+    keyEncryptingKey?: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: string;
+}
+
+export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard {
+    method: string;
+}
+
+export interface DestinationS3Configuration {
+    accessKeyId?: string;
+    destinationType: string;
+    fileNamePattern?: string;
+    format: outputs.DestinationS3ConfigurationFormat;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3Endpoint?: string;
+    s3PathFormat?: string;
+    secretAccessKey?: string;
+}
+
+export interface DestinationS3ConfigurationFormat {
+    destinationS3OutputFormatAvroApacheAvro?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro;
+    destinationS3OutputFormatCsvCommaSeparatedValues?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3OutputFormatParquetColumnarStorage?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage;
+    destinationS3UpdateOutputFormatAvroApacheAvro?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValues?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3UpdateOutputFormatParquetColumnarStorage?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro {
+    compressionCodec: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecXz?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum?: boolean;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues {
+    compression?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage {
+    blockSizeMb?: number;
+    compressionCodec?: string;
+    dictionaryEncoding?: boolean;
+    dictionaryPageSizeKb?: number;
+    formatType: string;
+    maxPaddingSizeMb?: number;
+    pageSizeKb?: number;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum?: boolean;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues {
+    compression?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb?: number;
+    compressionCodec?: string;
+    dictionaryEncoding?: boolean;
+    dictionaryPageSizeKb?: number;
+    formatType: string;
+    maxPaddingSizeMb?: number;
+    pageSizeKb?: number;
+}
+
+export interface DestinationS3GlueConfiguration {
+    accessKeyId?: string;
+    destinationType: string;
+    fileNamePattern?: string;
+    format: outputs.DestinationS3GlueConfigurationFormat;
+    glueDatabase: string;
+    glueSerializationLibrary: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3Endpoint?: string;
+    s3PathFormat?: string;
+    secretAccessKey?: string;
+}
+
+export interface DestinationS3GlueConfigurationFormat {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening?: string;
+    formatType: string;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression?: outputs.DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType?: string;
+}
+
+export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType?: string;
+}
+
+export interface DestinationSftpJsonConfiguration {
+    destinationPath: string;
+    destinationType: string;
+    host: string;
+    password: string;
+    port?: number;
+    username: string;
+}
+
 export interface DestinationSnowflakeConfiguration {
     credentials?: outputs.DestinationSnowflakeConfigurationCredentials;
     database: string;
@@ -83,6 +1889,88 @@ export interface DestinationSnowflakeConfigurationCredentialsDestinationSnowflak
     password: string;
 }
 
+export interface DestinationTimeplusConfiguration {
+    apikey: string;
+    destinationType: string;
+    endpoint: string;
+}
+
+export interface DestinationTypesenseConfiguration {
+    apiKey: string;
+    batchSize?: string;
+    destinationType: string;
+    host: string;
+    port?: string;
+    protocol?: string;
+}
+
+export interface DestinationVerticaConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    schema: string;
+    tunnelMethod?: outputs.DestinationVerticaConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethod {
+    destinationVerticaSshTunnelMethodNoTunnel?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel;
+    destinationVerticaSshTunnelMethodPasswordAuthentication?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication;
+    destinationVerticaSshTunnelMethodSshKeyAuthentication?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication;
+    destinationVerticaUpdateSshTunnelMethodNoTunnel?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel;
+    destinationVerticaUpdateSshTunnelMethodPasswordAuthentication?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication;
+    destinationVerticaUpdateSshTunnelMethodSshKeyAuthentication?: outputs.DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface DestinationXataConfiguration {
+    apiKey: string;
+    dbUrl: string;
+    destinationType: string;
+}
+
 export interface GetConnectionConfigurations {
     streams: outputs.GetConnectionConfigurationsStream[];
 }
@@ -98,6 +1986,1812 @@ export interface GetConnectionSchedule {
     basicTiming: string;
     cronExpression: string;
     scheduleType: string;
+}
+
+export interface GetDestinationAWSDatalakeConfiguration {
+    awsAccountId: string;
+    bucketName: string;
+    bucketPrefix: string;
+    credentials: outputs.GetDestinationAWSDatalakeConfigurationCredentials;
+    destinationType: string;
+    format: outputs.GetDestinationAWSDatalakeConfigurationFormat;
+    glueCatalogFloatAsDecimal: boolean;
+    lakeformationDatabaseDefaultTagKey: string;
+    lakeformationDatabaseDefaultTagValues: string;
+    lakeformationDatabaseName: string;
+    lakeformationGovernedTables: boolean;
+    partitioning: string;
+    region: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationCredentials {
+    destinationAwsDatalakeAuthenticationModeIamRole: outputs.GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole;
+    destinationAwsDatalakeAuthenticationModeIamUser: outputs.GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser;
+    destinationAwsDatalakeUpdateAuthenticationModeIamRole: outputs.GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole;
+    destinationAwsDatalakeUpdateAuthenticationModeIamUser: outputs.GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamRole {
+    credentialsTitle: string;
+    roleArn: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeAuthenticationModeIamUser {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    credentialsTitle: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamRole {
+    credentialsTitle: string;
+    roleArn: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationCredentialsDestinationAwsDatalakeUpdateAuthenticationModeIamUser {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    credentialsTitle: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationFormat {
+    destinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson: outputs.GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson;
+    destinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage: outputs.GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage;
+    destinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson: outputs.GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson;
+    destinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage: outputs.GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec: string;
+    formatType: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec: string;
+    formatType: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson {
+    compressionCodec: string;
+    formatType: string;
+}
+
+export interface GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage {
+    compressionCodec: string;
+    formatType: string;
+}
+
+export interface GetDestinationAzurBlobStorageConfiguration {
+    azureBlobStorageAccountKey: string;
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpointDomainName: string;
+    azureBlobStorageOutputBufferSize: number;
+    azureBlobStorageSpillSize: number;
+    destinationType: string;
+    format: outputs.GetDestinationAzurBlobStorageConfigurationFormat;
+}
+
+export interface GetDestinationAzurBlobStorageConfigurationFormat {
+    destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues: outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues;
+    destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues: outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues;
+    destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues {
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues {
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface GetDestinationBigqueryConfiguration {
+    bigQueryClientBufferSizeMb: number;
+    credentialsJson: string;
+    datasetId: string;
+    datasetLocation: string;
+    destinationType: string;
+    loadingMethod: outputs.GetDestinationBigqueryConfigurationLoadingMethod;
+    projectId: string;
+    rawDataDataset: string;
+    transformationPriority: string;
+    use1s1tFormat: boolean;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethod {
+    destinationBigqueryLoadingMethodGcsStaging: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging;
+    destinationBigqueryLoadingMethodStandardInserts: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts;
+    destinationBigqueryUpdateLoadingMethodGcsStaging: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging;
+    destinationBigqueryUpdateLoadingMethodStandardInserts: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging {
+    credential: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential;
+    fileBufferCount: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket: string;
+    method: string;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredential {
+    destinationBigqueryLoadingMethodGcsStagingCredentialHmacKey: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingCredentialDestinationBigqueryLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStaging {
+    credential: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential;
+    fileBufferCount: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket: string;
+    method: string;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey: outputs.GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryUpdateLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfiguration {
+    bigQueryClientBufferSizeMb: number;
+    credentialsJson: string;
+    datasetId: string;
+    datasetLocation: string;
+    destinationType: string;
+    loadingMethod: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethod;
+    projectId: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethod {
+    destinationBigqueryDenormalizedLoadingMethodGcsStaging: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging;
+    destinationBigqueryDenormalizedLoadingMethodStandardInserts: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts;
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging;
+    destinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStaging {
+    credential: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential;
+    fileBufferCount: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket: string;
+    method: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStaging {
+    credential: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential;
+    fileBufferCount: number;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    keepFilesInGcsBucket: string;
+    method: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredential {
+    destinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialDestinationBigqueryDenormalizedUpdateLoadingMethodGcsStagingCredentialHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDestinationBigqueryDenormalizedUpdateLoadingMethodStandardInserts {
+    method: string;
+}
+
+export interface GetDestinationClickhouseConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    tunnelMethod: outputs.GetDestinationClickhouseConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethod {
+    destinationClickhouseSshTunnelMethodNoTunnel: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel;
+    destinationClickhouseSshTunnelMethodPasswordAuthentication: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication;
+    destinationClickhouseSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication;
+    destinationClickhouseUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel;
+    destinationClickhouseUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication;
+    destinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationConvexConfiguration {
+    accessKey: string;
+    deploymentUrl: string;
+    destinationType: string;
+}
+
+export interface GetDestinationCumulioConfiguration {
+    apiHost: string;
+    apiKey: string;
+    apiToken: string;
+    destinationType: string;
+}
+
+export interface GetDestinationDatabendConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    password: string;
+    port: number;
+    table: string;
+    username: string;
+}
+
+export interface GetDestinationDatabricksConfiguration {
+    acceptTerms: boolean;
+    dataSource: outputs.GetDestinationDatabricksConfigurationDataSource;
+    database: string;
+    databricksHttpPath: string;
+    databricksPersonalAccessToken: string;
+    databricksPort: string;
+    databricksServerHostname: string;
+    destinationType: string;
+    enableSchemaEvolution: boolean;
+    purgeStagingData: boolean;
+    schema: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSource {
+    destinationDatabricksDataSourceAmazonS3: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3;
+    destinationDatabricksDataSourceAzureBlobStorage: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage;
+    destinationDatabricksDataSourceRecommendedManagedTables: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables;
+    destinationDatabricksUpdateDataSourceAmazonS3: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3;
+    destinationDatabricksUpdateDataSourceAzureBlobStorage: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage;
+    destinationDatabricksUpdateDataSourceRecommendedManagedTables: outputs.GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAmazonS3 {
+    dataSourceType: string;
+    fileNamePattern: string;
+    s3AccessKeyId: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3SecretAccessKey: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpointDomainName: string;
+    azureBlobStorageSasToken: string;
+    dataSourceType: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksDataSourceRecommendedManagedTables {
+    dataSourceType: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAmazonS3 {
+    dataSourceType: string;
+    fileNamePattern: string;
+    s3AccessKeyId: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3SecretAccessKey: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceAzureBlobStorage {
+    azureBlobStorageAccountName: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpointDomainName: string;
+    azureBlobStorageSasToken: string;
+    dataSourceType: string;
+}
+
+export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatabricksUpdateDataSourceRecommendedManagedTables {
+    dataSourceType: string;
+}
+
+export interface GetDestinationDevNullConfiguration {
+    destinationType: string;
+    testDestination: outputs.GetDestinationDevNullConfigurationTestDestination;
+}
+
+export interface GetDestinationDevNullConfigurationTestDestination {
+    destinationDevNullTestDestinationSilent: outputs.GetDestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent;
+    destinationDevNullUpdateTestDestinationSilent: outputs.GetDestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent;
+}
+
+export interface GetDestinationDevNullConfigurationTestDestinationDestinationDevNullTestDestinationSilent {
+    testDestinationType: string;
+}
+
+export interface GetDestinationDevNullConfigurationTestDestinationDestinationDevNullUpdateTestDestinationSilent {
+    testDestinationType: string;
+}
+
+export interface GetDestinationDynamodbConfiguration {
+    accessKeyId: string;
+    destinationType: string;
+    dynamodbEndpoint: string;
+    dynamodbRegion: string;
+    dynamodbTableNamePrefix: string;
+    secretAccessKey: string;
+}
+
+export interface GetDestinationElasticsearchConfiguration {
+    authenticationMethod: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethod;
+    caCertificate: string;
+    destinationType: string;
+    endpoint: string;
+    upsert: boolean;
+}
+
+export interface GetDestinationElasticsearchConfigurationAuthenticationMethod {
+    destinationElasticsearchAuthenticationMethodApiKeySecret: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret;
+    destinationElasticsearchAuthenticationMethodUsernamePassword: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword;
+    destinationElasticsearchUpdateAuthenticationMethodApiKeySecret: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret;
+    destinationElasticsearchUpdateAuthenticationMethodUsernamePassword: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword;
+}
+
+export interface GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodApiKeySecret {
+    apiKeyId: string;
+    apiKeySecret: string;
+    method: string;
+}
+
+export interface GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchAuthenticationMethodUsernamePassword {
+    method: string;
+    password: string;
+    username: string;
+}
+
+export interface GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodApiKeySecret {
+    apiKeyId: string;
+    apiKeySecret: string;
+    method: string;
+}
+
+export interface GetDestinationElasticsearchConfigurationAuthenticationMethodDestinationElasticsearchUpdateAuthenticationMethodUsernamePassword {
+    method: string;
+    password: string;
+    username: string;
+}
+
+export interface GetDestinationFireboltConfiguration {
+    account: string;
+    database: string;
+    destinationType: string;
+    engine: string;
+    host: string;
+    loadingMethod: outputs.GetDestinationFireboltConfigurationLoadingMethod;
+    password: string;
+    username: string;
+}
+
+export interface GetDestinationFireboltConfigurationLoadingMethod {
+    destinationFireboltLoadingMethodExternalTableViaS3: outputs.GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3;
+    destinationFireboltLoadingMethodSqlInserts: outputs.GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts;
+    destinationFireboltUpdateLoadingMethodExternalTableViaS3: outputs.GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3;
+    destinationFireboltUpdateLoadingMethodSqlInserts: outputs.GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts;
+}
+
+export interface GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodExternalTableViaS3 {
+    awsKeyId: string;
+    awsKeySecret: string;
+    method: string;
+    s3Bucket: string;
+    s3Region: string;
+}
+
+export interface GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltLoadingMethodSqlInserts {
+    method: string;
+}
+
+export interface GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodExternalTableViaS3 {
+    awsKeyId: string;
+    awsKeySecret: string;
+    method: string;
+    s3Bucket: string;
+    s3Region: string;
+}
+
+export interface GetDestinationFireboltConfigurationLoadingMethodDestinationFireboltUpdateLoadingMethodSqlInserts {
+    method: string;
+}
+
+export interface GetDestinationFirestoreConfiguration {
+    credentialsJson: string;
+    destinationType: string;
+    projectId: string;
+}
+
+export interface GetDestinationGcsConfiguration {
+    credential: outputs.GetDestinationGcsConfigurationCredential;
+    destinationType: string;
+    format: outputs.GetDestinationGcsConfigurationFormat;
+    gcsBucketName: string;
+    gcsBucketPath: string;
+    gcsBucketRegion: string;
+}
+
+export interface GetDestinationGcsConfigurationCredential {
+    destinationGcsAuthenticationHmacKey: outputs.GetDestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey;
+    destinationGcsUpdateAuthenticationHmacKey: outputs.GetDestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey;
+}
+
+export interface GetDestinationGcsConfigurationCredentialDestinationGcsAuthenticationHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationGcsConfigurationCredentialDestinationGcsUpdateAuthenticationHmacKey {
+    credentialType: string;
+    hmacKeyAccessId: string;
+    hmacKeySecret: string;
+}
+
+export interface GetDestinationGcsConfigurationFormat {
+    destinationGcsOutputFormatAvroApacheAvro: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro;
+    destinationGcsOutputFormatCsvCommaSeparatedValues: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationGcsOutputFormatParquetColumnarStorage: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage;
+    destinationGcsUpdateOutputFormatAvroApacheAvro: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValues: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationGcsUpdateOutputFormatParquetColumnarStorage: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecXz: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatAvroApacheAvroCompressionCodecDestinationGcsOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum: boolean;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValues {
+    compression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsOutputFormatParquetColumnarStorage {
+    blockSizeMb: number;
+    compressionCodec: string;
+    dictionaryEncoding: boolean;
+    dictionaryPageSizeKb: number;
+    formatType: string;
+    maxPaddingSizeMb: number;
+    pageSizeKb: number;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecDestinationGcsUpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum: boolean;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValues {
+    compression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationGcsUpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    formatType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationGcsUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb: number;
+    compressionCodec: string;
+    dictionaryEncoding: boolean;
+    dictionaryPageSizeKb: number;
+    formatType: string;
+    maxPaddingSizeMb: number;
+    pageSizeKb: number;
+}
+
+export interface GetDestinationGoogleSheetsConfiguration {
+    credentials: outputs.GetDestinationGoogleSheetsConfigurationCredentials;
+    destinationType: string;
+    spreadsheetId: string;
+}
+
+export interface GetDestinationGoogleSheetsConfigurationCredentials {
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetDestinationKeenConfiguration {
+    apiKey: string;
+    destinationType: string;
+    inferTimestamp: boolean;
+    projectId: string;
+}
+
+export interface GetDestinationKinesisConfiguration {
+    accessKey: string;
+    bufferSize: number;
+    destinationType: string;
+    endpoint: string;
+    privateKey: string;
+    region: string;
+    shardCount: number;
+}
+
+export interface GetDestinationLangchainConfiguration {
+    destinationType: string;
+    embedding: outputs.GetDestinationLangchainConfigurationEmbedding;
+    indexing: outputs.GetDestinationLangchainConfigurationIndexing;
+    processing: outputs.GetDestinationLangchainConfigurationProcessing;
+}
+
+export interface GetDestinationLangchainConfigurationEmbedding {
+    destinationLangchainEmbeddingFake: outputs.GetDestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake;
+    destinationLangchainEmbeddingOpenAi: outputs.GetDestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi;
+    destinationLangchainUpdateEmbeddingFake: outputs.GetDestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake;
+    destinationLangchainUpdateEmbeddingOpenAi: outputs.GetDestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi;
+}
+
+export interface GetDestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingFake {
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationEmbeddingDestinationLangchainEmbeddingOpenAi {
+    mode: string;
+    openaiKey: string;
+}
+
+export interface GetDestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake {
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingOpenAi {
+    mode: string;
+    openaiKey: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexing {
+    destinationLangchainIndexingChromaLocalPersistance: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance;
+    destinationLangchainIndexingDocArrayHnswSearch: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch;
+    destinationLangchainIndexingPinecone: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone;
+    destinationLangchainUpdateIndexingChromaLocalPersistance: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance;
+    destinationLangchainUpdateIndexingDocArrayHnswSearch: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch;
+    destinationLangchainUpdateIndexingPinecone: outputs.GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingChromaLocalPersistance {
+    collectionName: string;
+    destinationPath: string;
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingDocArrayHnswSearch {
+    destinationPath: string;
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainIndexingPinecone {
+    index: string;
+    mode: string;
+    pineconeEnvironment: string;
+    pineconeKey: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingChromaLocalPersistance {
+    collectionName: string;
+    destinationPath: string;
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingDocArrayHnswSearch {
+    destinationPath: string;
+    mode: string;
+}
+
+export interface GetDestinationLangchainConfigurationIndexingDestinationLangchainUpdateIndexingPinecone {
+    index: string;
+    mode: string;
+    pineconeEnvironment: string;
+    pineconeKey: string;
+}
+
+export interface GetDestinationLangchainConfigurationProcessing {
+    chunkOverlap: number;
+    chunkSize: number;
+    textFields: string[];
+}
+
+export interface GetDestinationMSsqlConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schema: string;
+    sslMethod: outputs.GetDestinationMSsqlConfigurationSslMethod;
+    tunnelMethod: outputs.GetDestinationMSsqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationMSsqlConfigurationSslMethod {
+    destinationMssqlSslMethodEncryptedTrustServerCertificate: outputs.GetDestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate;
+    destinationMssqlSslMethodEncryptedVerifyCertificate: outputs.GetDestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate;
+    destinationMssqlUpdateSslMethodEncryptedTrustServerCertificate: outputs.GetDestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate;
+    destinationMssqlUpdateSslMethodEncryptedVerifyCertificate: outputs.GetDestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate;
+}
+
+export interface GetDestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationSslMethodDestinationMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate: string;
+    sslMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationSslMethodDestinationMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate: string;
+    sslMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethod {
+    destinationMssqlSshTunnelMethodNoTunnel: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel;
+    destinationMssqlSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication;
+    destinationMssqlSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication;
+    destinationMssqlUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel;
+    destinationMssqlUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMssqlUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationMongodbConfiguration {
+    authType: outputs.GetDestinationMongodbConfigurationAuthType;
+    database: string;
+    destinationType: string;
+    instanceType: outputs.GetDestinationMongodbConfigurationInstanceType;
+    tunnelMethod: outputs.GetDestinationMongodbConfigurationTunnelMethod;
+}
+
+export interface GetDestinationMongodbConfigurationAuthType {
+    destinationMongodbAuthorizationTypeLoginPassword: outputs.GetDestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword;
+    destinationMongodbAuthorizationTypeNone: outputs.GetDestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone;
+    destinationMongodbUpdateAuthorizationTypeLoginPassword: outputs.GetDestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword;
+    destinationMongodbUpdateAuthorizationTypeNone: outputs.GetDestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone;
+}
+
+export interface GetDestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeLoginPassword {
+    authorization: string;
+    password: string;
+    username: string;
+}
+
+export interface GetDestinationMongodbConfigurationAuthTypeDestinationMongodbAuthorizationTypeNone {
+    authorization: string;
+}
+
+export interface GetDestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeLoginPassword {
+    authorization: string;
+    password: string;
+    username: string;
+}
+
+export interface GetDestinationMongodbConfigurationAuthTypeDestinationMongodbUpdateAuthorizationTypeNone {
+    authorization: string;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceType {
+    destinationMongodbMongoDbInstanceTypeMongoDbAtlas: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas;
+    destinationMongodbMongoDbInstanceTypeReplicaSet: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet;
+    destinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance;
+    destinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas;
+    destinationMongodbUpdateMongoDbInstanceTypeReplicaSet: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet;
+    destinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance: outputs.GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet: string;
+    serverAddresses: string;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet: string;
+    serverAddresses: string;
+}
+
+export interface GetDestinationMongodbConfigurationInstanceTypeDestinationMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethod {
+    destinationMongodbSshTunnelMethodNoTunnel: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel;
+    destinationMongodbSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication;
+    destinationMongodbSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication;
+    destinationMongodbUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel;
+    destinationMongodbUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMongodbUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationMysqlConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    tunnelMethod: outputs.GetDestinationMysqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethod {
+    destinationMysqlSshTunnelMethodNoTunnel: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel;
+    destinationMysqlSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication;
+    destinationMysqlSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication;
+    destinationMysqlUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel;
+    destinationMysqlUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication;
+    destinationMysqlUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationOracleConfiguration {
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schema: string;
+    sid: string;
+    tunnelMethod: outputs.GetDestinationOracleConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethod {
+    destinationOracleSshTunnelMethodNoTunnel: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel;
+    destinationOracleSshTunnelMethodPasswordAuthentication: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication;
+    destinationOracleSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication;
+    destinationOracleUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel;
+    destinationOracleUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication;
+    destinationOracleUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationPostgresConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schema: string;
+    sslMode: outputs.GetDestinationPostgresConfigurationSslMode;
+    tunnelMethod: outputs.GetDestinationPostgresConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslMode {
+    destinationPostgresSslModesAllow: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow;
+    destinationPostgresSslModesDisable: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable;
+    destinationPostgresSslModesPrefer: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer;
+    destinationPostgresSslModesRequire: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire;
+    destinationPostgresSslModesVerifyCa: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa;
+    destinationPostgresSslModesVerifyFull: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull;
+    destinationPostgresUpdateSslModesAllow: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow;
+    destinationPostgresUpdateSslModesDisable: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable;
+    destinationPostgresUpdateSslModesPrefer: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer;
+    destinationPostgresUpdateSslModesRequire: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire;
+    destinationPostgresUpdateSslModesVerifyCa: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa;
+    destinationPostgresUpdateSslModesVerifyFull: outputs.GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesAllow {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesDisable {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesPrefer {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesRequire {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyCa {
+    caCertificate: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesAllow {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesDisable {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesPrefer {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesRequire {
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyCa {
+    caCertificate: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationSslModeDestinationPostgresUpdateSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethod {
+    destinationPostgresSshTunnelMethodNoTunnel: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel;
+    destinationPostgresSshTunnelMethodPasswordAuthentication: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication;
+    destinationPostgresSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication;
+    destinationPostgresUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel;
+    destinationPostgresUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication;
+    destinationPostgresUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationPubsubConfiguration {
+    batchingDelayThreshold: number;
+    batchingElementCountThreshold: number;
+    batchingEnabled: boolean;
+    batchingRequestBytesThreshold: number;
+    credentialsJson: string;
+    destinationType: string;
+    orderingEnabled: boolean;
+    projectId: string;
+    topicId: string;
+}
+
+export interface GetDestinationRedisConfiguration {
+    cacheType: string;
+    destinationType: string;
+    host: string;
+    password: string;
+    port: number;
+    ssl: boolean;
+    sslMode: outputs.GetDestinationRedisConfigurationSslMode;
+    tunnelMethod: outputs.GetDestinationRedisConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationRedisConfigurationSslMode {
+    destinationRedisSslModesDisable: outputs.GetDestinationRedisConfigurationSslModeDestinationRedisSslModesDisable;
+    destinationRedisSslModesVerifyFull: outputs.GetDestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull;
+    destinationRedisUpdateSslModesDisable: outputs.GetDestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable;
+    destinationRedisUpdateSslModesVerifyFull: outputs.GetDestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull;
+}
+
+export interface GetDestinationRedisConfigurationSslModeDestinationRedisSslModesDisable {
+    mode: string;
+}
+
+export interface GetDestinationRedisConfigurationSslModeDestinationRedisSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesDisable {
+    mode: string;
+}
+
+export interface GetDestinationRedisConfigurationSslModeDestinationRedisUpdateSslModesVerifyFull {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethod {
+    destinationRedisSshTunnelMethodNoTunnel: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel;
+    destinationRedisSshTunnelMethodPasswordAuthentication: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication;
+    destinationRedisSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication;
+    destinationRedisUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel;
+    destinationRedisUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication;
+    destinationRedisUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationRedshiftConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schema: string;
+    tunnelMethod: outputs.GetDestinationRedshiftConfigurationTunnelMethod;
+    uploadingMethod: outputs.GetDestinationRedshiftConfigurationUploadingMethod;
+    username: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethod {
+    destinationRedshiftSshTunnelMethodNoTunnel: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel;
+    destinationRedshiftSshTunnelMethodPasswordAuthentication: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication;
+    destinationRedshiftSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication;
+    destinationRedshiftUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel;
+    destinationRedshiftUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication;
+    destinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationRedshiftConfigurationTunnelMethodDestinationRedshiftUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethod {
+    destinationRedshiftUpdateUploadingMethodS3Staging: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging;
+    destinationRedshiftUpdateUploadingMethodStandard: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard;
+    destinationRedshiftUploadingMethodS3Staging: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging;
+    destinationRedshiftUploadingMethodStandard: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3Staging {
+    accessKeyId: string;
+    encryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption;
+    fileBufferCount: number;
+    fileNamePattern: string;
+    method: string;
+    purgeStagingData: boolean;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    secretAccessKey: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryption {
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption;
+    destinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: string;
+    keyEncryptingKey: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionDestinationRedshiftUpdateUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpdateUploadingMethodStandard {
+    method: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3Staging {
+    accessKeyId: string;
+    encryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption;
+    fileBufferCount: number;
+    fileNamePattern: string;
+    method: string;
+    purgeStagingData: boolean;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    secretAccessKey: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryption {
+    destinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption;
+    destinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption: outputs.GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionAesCbcEnvelopeEncryption {
+    encryptionType: string;
+    keyEncryptingKey: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodS3StagingEncryptionDestinationRedshiftUploadingMethodS3StagingEncryptionNoEncryption {
+    encryptionType: string;
+}
+
+export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUploadingMethodStandard {
+    method: string;
+}
+
+export interface GetDestinationS3Configuration {
+    accessKeyId: string;
+    destinationType: string;
+    fileNamePattern: string;
+    format: outputs.GetDestinationS3ConfigurationFormat;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3Endpoint: string;
+    s3PathFormat: string;
+    secretAccessKey: string;
+}
+
+export interface GetDestinationS3ConfigurationFormat {
+    destinationS3OutputFormatAvroApacheAvro: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro;
+    destinationS3OutputFormatCsvCommaSeparatedValues: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3OutputFormatParquetColumnarStorage: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage;
+    destinationS3UpdateOutputFormatAvroApacheAvro: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValues: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3UpdateOutputFormatParquetColumnarStorage: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvro {
+    compressionCodec: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecXz: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatAvroApacheAvroCompressionCodecDestinationS3OutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum: boolean;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValues {
+    compression: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionDestinationS3OutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3OutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3OutputFormatParquetColumnarStorage {
+    blockSizeMb: number;
+    compressionCodec: string;
+    dictionaryEncoding: boolean;
+    dictionaryPageSizeKb: number;
+    formatType: string;
+    maxPaddingSizeMb: number;
+    pageSizeKb: number;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvro {
+    compressionCodec: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodec {
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz;
+    destinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecBzip2 {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDeflate {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecNoCompression {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecSnappy {
+    codec: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecXz {
+    codec: string;
+    compressionLevel: number;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecDestinationS3UpdateOutputFormatAvroApacheAvroCompressionCodecZstandard {
+    codec: string;
+    compressionLevel: number;
+    includeChecksum: boolean;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValues {
+    compression: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompression {
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip;
+    destinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionDestinationS3UpdateOutputFormatCsvCommaSeparatedValuesCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3UpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParquetColumnarStorage {
+    blockSizeMb: number;
+    compressionCodec: string;
+    dictionaryEncoding: boolean;
+    dictionaryPageSizeKb: number;
+    formatType: string;
+    maxPaddingSizeMb: number;
+    pageSizeKb: number;
+}
+
+export interface GetDestinationS3GlueConfiguration {
+    accessKeyId: string;
+    destinationType: string;
+    fileNamePattern: string;
+    format: outputs.GetDestinationS3GlueConfigurationFormat;
+    glueDatabase: string;
+    glueSerializationLibrary: string;
+    s3BucketName: string;
+    s3BucketPath: string;
+    s3BucketRegion: string;
+    s3Endpoint: string;
+    s3PathFormat: string;
+    secretAccessKey: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormat {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+    compression: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression;
+    flattening: string;
+    formatType: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompression {
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip;
+    destinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression: outputs.GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionGzip {
+    compressionType: string;
+}
+
+export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionDestinationS3GlueUpdateOutputFormatJsonLinesNewlineDelimitedJsonCompressionNoCompression {
+    compressionType: string;
+}
+
+export interface GetDestinationSftpJsonConfiguration {
+    destinationPath: string;
+    destinationType: string;
+    host: string;
+    password: string;
+    port: number;
+    username: string;
 }
 
 export interface GetDestinationSnowflakeConfiguration {
@@ -161,6 +3855,1863 @@ export interface GetDestinationSnowflakeConfigurationCredentialsDestinationSnowf
     password: string;
 }
 
+export interface GetDestinationTimeplusConfiguration {
+    apikey: string;
+    destinationType: string;
+    endpoint: string;
+}
+
+export interface GetDestinationTypesenseConfiguration {
+    apiKey: string;
+    batchSize: string;
+    destinationType: string;
+    host: string;
+    port: string;
+    protocol: string;
+}
+
+export interface GetDestinationVerticaConfiguration {
+    database: string;
+    destinationType: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schema: string;
+    tunnelMethod: outputs.GetDestinationVerticaConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethod {
+    destinationVerticaSshTunnelMethodNoTunnel: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel;
+    destinationVerticaSshTunnelMethodPasswordAuthentication: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication;
+    destinationVerticaSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication;
+    destinationVerticaUpdateSshTunnelMethodNoTunnel: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel;
+    destinationVerticaUpdateSshTunnelMethodPasswordAuthentication: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication;
+    destinationVerticaUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetDestinationXataConfiguration {
+    apiKey: string;
+    dbUrl: string;
+    destinationType: string;
+}
+
+export interface GetSourceAhaConfiguration {
+    apiKey: string;
+    sourceType: string;
+    url: string;
+}
+
+export interface GetSourceAircallConfiguration {
+    apiId: string;
+    apiToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceAirtableConfiguration {
+    credentials: outputs.GetSourceAirtableConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceAirtableConfigurationCredentials {
+    sourceAirtableAuthenticationOAuth20: outputs.GetSourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20;
+    sourceAirtableAuthenticationPersonalAccessToken: outputs.GetSourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken;
+    sourceAirtableUpdateAuthenticationOAuth20: outputs.GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20;
+    sourceAirtableUpdateAuthenticationPersonalAccessToken: outputs.GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken;
+}
+
+export interface GetSourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20 {
+    accessToken: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken {
+    apiKey: string;
+    authMethod: string;
+}
+
+export interface GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken {
+    apiKey: string;
+    authMethod: string;
+}
+
+export interface GetSourceAlloydbConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    replicationMethod: outputs.GetSourceAlloydbConfigurationReplicationMethod;
+    schemas: string[];
+    sourceType: string;
+    sslMode: outputs.GetSourceAlloydbConfigurationSslMode;
+    tunnelMethod: outputs.GetSourceAlloydbConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethod {
+    sourceAlloydbReplicationMethodLogicalReplicationCdc: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc;
+    sourceAlloydbReplicationMethodStandard: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard;
+    sourceAlloydbReplicationMethodStandardXmin: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin;
+    sourceAlloydbUpdateReplicationMethodLogicalReplicationCdc: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc;
+    sourceAlloydbUpdateReplicationMethodStandard: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard;
+    sourceAlloydbUpdateReplicationMethodStandardXmin: outputs.GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds: number;
+    lsnCommitBehaviour: string;
+    method: string;
+    plugin: string;
+    publication: string;
+    queueSize: number;
+    replicationSlot: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds: number;
+    lsnCommitBehaviour: string;
+    method: string;
+    plugin: string;
+    publication: string;
+    queueSize: number;
+    replicationSlot: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslMode {
+    sourceAlloydbSslModesAllow: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow;
+    sourceAlloydbSslModesDisable: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable;
+    sourceAlloydbSslModesPrefer: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer;
+    sourceAlloydbSslModesRequire: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire;
+    sourceAlloydbSslModesVerifyCa: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa;
+    sourceAlloydbSslModesVerifyFull: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull;
+    sourceAlloydbUpdateSslModesAllow: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow;
+    sourceAlloydbUpdateSslModesDisable: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable;
+    sourceAlloydbUpdateSslModesPrefer: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer;
+    sourceAlloydbUpdateSslModesRequire: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire;
+    sourceAlloydbUpdateSslModesVerifyCa: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa;
+    sourceAlloydbUpdateSslModesVerifyFull: outputs.GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethod {
+    sourceAlloydbSshTunnelMethodNoTunnel: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel;
+    sourceAlloydbSshTunnelMethodPasswordAuthentication: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication;
+    sourceAlloydbSshTunnelMethodSshKeyAuthentication: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication;
+    sourceAlloydbUpdateSshTunnelMethodNoTunnel: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel;
+    sourceAlloydbUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication;
+    sourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceAmazonAdsConfiguration {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    lookBackWindow: number;
+    profiles: number[];
+    refreshToken: string;
+    region: string;
+    reportRecordTypes: string[];
+    sourceType: string;
+    startDate: string;
+    stateFilters: string[];
+}
+
+export interface GetSourceAmazonSellerPartnerConfiguration {
+    advancedStreamOptions: string;
+    authType: string;
+    awsAccessKey: string;
+    awsEnvironment: string;
+    awsSecretKey: string;
+    lwaAppId: string;
+    lwaClientSecret: string;
+    maxWaitSeconds: number;
+    periodInDays: number;
+    refreshToken: string;
+    region: string;
+    replicationEndDate: string;
+    replicationStartDate: string;
+    reportOptions: string;
+    roleArn: string;
+    sourceType: string;
+}
+
+export interface GetSourceAmazonSqsConfiguration {
+    accessKey: string;
+    attributesToReturn: string;
+    deleteMessages: boolean;
+    maxBatchSize: number;
+    maxWaitTime: number;
+    queueUrl: string;
+    region: string;
+    secretKey: string;
+    sourceType: string;
+    visibilityTimeout: number;
+}
+
+export interface GetSourceAmplitudeConfiguration {
+    apiKey: string;
+    dataRegion: string;
+    requestTimeRange: number;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceApifyDatasetConfiguration {
+    clean: boolean;
+    datasetId: string;
+    sourceType: string;
+}
+
+export interface GetSourceAppfollowConfiguration {
+    apiSecret: string;
+    sourceType: string;
+}
+
+export interface GetSourceAsanaConfiguration {
+    credentials: outputs.GetSourceAsanaConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceAsanaConfigurationCredentials {
+    sourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth: outputs.GetSourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth;
+    sourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken: outputs.GetSourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth: outputs.GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken: outputs.GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+}
+
+export interface GetSourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle: string;
+    personalAccessToken: string;
+}
+
+export interface GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle: string;
+    personalAccessToken: string;
+}
+
+export interface GetSourceAuth0Configuration {
+    baseUrl: string;
+    credentials: outputs.GetSourceAuth0ConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceAuth0ConfigurationCredentials {
+    sourceAuth0AuthenticationMethodOAuth2AccessToken: outputs.GetSourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken;
+    sourceAuth0AuthenticationMethodOAuth2ConfidentialApplication: outputs.GetSourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication;
+    sourceAuth0UpdateAuthenticationMethodOAuth2AccessToken: outputs.GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken;
+    sourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication: outputs.GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication;
+}
+
+export interface GetSourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication {
+    audience: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication {
+    audience: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceAwsCloudtrailConfiguration {
+    awsKeyId: string;
+    awsRegionName: string;
+    awsSecretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceAzureBlobStorageConfiguration {
+    azureBlobStorageAccountKey: string;
+    azureBlobStorageAccountName: string;
+    azureBlobStorageBlobsPrefix: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpoint: string;
+    azureBlobStorageSchemaInferenceLimit: number;
+    format: outputs.GetSourceAzureBlobStorageConfigurationFormat;
+    sourceType: string;
+}
+
+export interface GetSourceAzureBlobStorageConfigurationFormat {
+    sourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson: outputs.GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson;
+    sourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson: outputs.GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface GetSourceAzureTableConfiguration {
+    sourceType: string;
+    storageAccessKey: string;
+    storageAccountName: string;
+    storageEndpointSuffix: string;
+}
+
+export interface GetSourceBambooHrConfiguration {
+    apiKey: string;
+    customReportsFields: string;
+    customReportsIncludeDefaultFields: boolean;
+    sourceType: string;
+    subdomain: string;
+}
+
+export interface GetSourceBigcommerceConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+    storeHash: string;
+}
+
+export interface GetSourceBigqueryConfiguration {
+    credentialsJson: string;
+    datasetId: string;
+    projectId: string;
+    sourceType: string;
+}
+
+export interface GetSourceBingAdsConfiguration {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    developerToken: string;
+    lookbackWindow: number;
+    refreshToken: string;
+    reportsStartDate: string;
+    sourceType: string;
+    tenantId: string;
+}
+
+export interface GetSourceBraintreeConfiguration {
+    environment: string;
+    merchantId: string;
+    privateKey: string;
+    publicKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceBrazeConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+    url: string;
+}
+
+export interface GetSourceChargebeeConfiguration {
+    productCatalog: string;
+    site: string;
+    siteApiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceChartmogulConfiguration {
+    apiKey: string;
+    interval: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceClickhouseConfiguration {
+    database: string;
+    host: string;
+    password: string;
+    port: number;
+    sourceType: string;
+    tunnelMethod: outputs.GetSourceClickhouseConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethod {
+    sourceClickhouseSshTunnelMethodNoTunnel: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel;
+    sourceClickhouseSshTunnelMethodPasswordAuthentication: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication;
+    sourceClickhouseSshTunnelMethodSshKeyAuthentication: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication;
+    sourceClickhouseUpdateSshTunnelMethodNoTunnel: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel;
+    sourceClickhouseUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication;
+    sourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceClickupApiConfiguration {
+    apiToken: string;
+    folderId: string;
+    includeClosedTasks: boolean;
+    listId: string;
+    sourceType: string;
+    spaceId: string;
+    teamId: string;
+}
+
+export interface GetSourceClockifyConfiguration {
+    apiKey: string;
+    apiUrl: string;
+    sourceType: string;
+    workspaceId: string;
+}
+
+export interface GetSourceCloseComConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceCodaConfiguration {
+    authToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceCoinApiConfiguration {
+    apiKey: string;
+    endDate: string;
+    environment: string;
+    limit: number;
+    period: string;
+    sourceType: string;
+    startDate: string;
+    symbolId: string;
+}
+
+export interface GetSourceCoinmarketcapConfiguration {
+    apiKey: string;
+    dataType: string;
+    sourceType: string;
+    symbols: string[];
+}
+
+export interface GetSourceConfigcatConfiguration {
+    password: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceConfluenceConfiguration {
+    apiToken: string;
+    domainName: string;
+    email: string;
+    sourceType: string;
+}
+
+export interface GetSourceConvexConfiguration {
+    accessKey: string;
+    deploymentUrl: string;
+    sourceType: string;
+}
+
+export interface GetSourceDatadogConfiguration {
+    apiKey: string;
+    applicationKey: string;
+    endDate: string;
+    maxRecordsPerRequest: number;
+    queries: outputs.GetSourceDatadogConfigurationQuery[];
+    query: string;
+    site: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceDatadogConfigurationQuery {
+    dataSource: string;
+    name: string;
+    query: string;
+}
+
+export interface GetSourceDatascopeConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceDelightedConfiguration {
+    apiKey: string;
+    since: string;
+    sourceType: string;
+}
+
+export interface GetSourceDixaConfiguration {
+    apiToken: string;
+    batchSize: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceDockerhubConfiguration {
+    dockerUsername: string;
+    sourceType: string;
+}
+
+export interface GetSourceDremioConfiguration {
+    apiKey: string;
+    baseUrl: string;
+    sourceType: string;
+}
+
+export interface GetSourceDynamodbConfiguration {
+    accessKeyId: string;
+    endpoint: string;
+    region: string;
+    reservedAttributeNames: string;
+    secretAccessKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceE2eTestCloudConfiguration {
+    maxMessages: number;
+    messageIntervalMs: number;
+    mockCatalog: outputs.GetSourceE2eTestCloudConfigurationMockCatalog;
+    seed: number;
+    sourceType: string;
+    type: string;
+}
+
+export interface GetSourceE2eTestCloudConfigurationMockCatalog {
+    sourceE2eTestCloudMockCatalogMultiSchema: outputs.GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema;
+    sourceE2eTestCloudMockCatalogSingleSchema: outputs.GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema;
+    sourceE2eTestCloudUpdateMockCatalogMultiSchema: outputs.GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema;
+    sourceE2eTestCloudUpdateMockCatalogSingleSchema: outputs.GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema;
+}
+
+export interface GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema {
+    streamSchemas: string;
+    type: string;
+}
+
+export interface GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema {
+    streamDuplication: number;
+    streamName: string;
+    streamSchema: string;
+    type: string;
+}
+
+export interface GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema {
+    streamSchemas: string;
+    type: string;
+}
+
+export interface GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema {
+    streamDuplication: number;
+    streamName: string;
+    streamSchema: string;
+    type: string;
+}
+
+export interface GetSourceEmailoctopusConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceExchangeRatesConfiguration {
+    accessKey: string;
+    base: string;
+    ignoreWeekends: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceFacebookMarketingConfiguration {
+    accessToken: string;
+    accountId: string;
+    actionBreakdownsAllowEmpty: boolean;
+    clientId: string;
+    clientSecret: string;
+    customInsights: outputs.GetSourceFacebookMarketingConfigurationCustomInsight[];
+    endDate: string;
+    fetchThumbnailImages: boolean;
+    includeDeleted: boolean;
+    insightsLookbackWindow: number;
+    maxBatchSize: number;
+    pageSize: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceFacebookMarketingConfigurationCustomInsight {
+    actionBreakdowns: string[];
+    actionReportTime: string;
+    breakdowns: string[];
+    endDate: string;
+    fields: string[];
+    insightsLookbackWindow: number;
+    level: string;
+    name: string;
+    startDate: string;
+    timeIncrement: number;
+}
+
+export interface GetSourceFacebookPagesConfiguration {
+    accessToken: string;
+    pageId: string;
+    sourceType: string;
+}
+
+export interface GetSourceFakerConfiguration {
+    alwaysUpdated: boolean;
+    count: number;
+    parallelism: number;
+    recordsPerSlice: number;
+    seed: number;
+    sourceType: string;
+}
+
+export interface GetSourceFaunaConfiguration {
+    collection: outputs.GetSourceFaunaConfigurationCollection;
+    domain: string;
+    port: number;
+    scheme: string;
+    secret: string;
+    sourceType: string;
+}
+
+export interface GetSourceFaunaConfigurationCollection {
+    deletions: outputs.GetSourceFaunaConfigurationCollectionDeletions;
+    pageSize: number;
+}
+
+export interface GetSourceFaunaConfigurationCollectionDeletions {
+    sourceFaunaCollectionDeletionModeDisabled: outputs.GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled;
+    sourceFaunaCollectionDeletionModeEnabled: outputs.GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled;
+    sourceFaunaUpdateCollectionDeletionModeDisabled: outputs.GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled;
+    sourceFaunaUpdateCollectionDeletionModeEnabled: outputs.GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled;
+}
+
+export interface GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled {
+    deletionMode: string;
+}
+
+export interface GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled {
+    column: string;
+    deletionMode: string;
+}
+
+export interface GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled {
+    deletionMode: string;
+}
+
+export interface GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled {
+    column: string;
+    deletionMode: string;
+}
+
+export interface GetSourceFileSecureConfiguration {
+    datasetName: string;
+    format: string;
+    provider: outputs.GetSourceFileSecureConfigurationProvider;
+    readerOptions: string;
+    sourceType: string;
+    url: string;
+}
+
+export interface GetSourceFileSecureConfigurationProvider {
+    sourceFileSecureStorageProviderAzBlobAzureBlobStorage: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage;
+    sourceFileSecureStorageProviderGcsGoogleCloudStorage: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage;
+    sourceFileSecureStorageProviderHttpsPublicWeb: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb;
+    sourceFileSecureStorageProviderS3AmazonWebServices: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices;
+    sourceFileSecureStorageProviderScpSecureCopyProtocol: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol;
+    sourceFileSecureStorageProviderSftpSecureFileTransferProtocol: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol;
+    sourceFileSecureStorageProviderSshSecureShell: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell;
+    sourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage;
+    sourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage;
+    sourceFileSecureUpdateStorageProviderHttpsPublicWeb: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb;
+    sourceFileSecureUpdateStorageProviderS3AmazonWebServices: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices;
+    sourceFileSecureUpdateStorageProviderScpSecureCopyProtocol: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol;
+    sourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol;
+    sourceFileSecureUpdateStorageProviderSshSecureShell: outputs.GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage {
+    sasToken: string;
+    sharedKey: string;
+    storage: string;
+    storageAccount: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson: string;
+    storage: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb {
+    storage: string;
+    userAgent: boolean;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    storage: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage {
+    sasToken: string;
+    sharedKey: string;
+    storage: string;
+    storageAccount: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson: string;
+    storage: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb {
+    storage: string;
+    userAgent: boolean;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    storage: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell {
+    host: string;
+    password: string;
+    port: string;
+    storage: string;
+    user: string;
+}
+
+export interface GetSourceFireboltConfiguration {
+    account: string;
+    database: string;
+    engine: string;
+    host: string;
+    password: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceFreshcallerConfiguration {
+    apiKey: string;
+    domain: string;
+    requestsPerMinute: number;
+    sourceType: string;
+    startDate: string;
+    syncLagMinutes: number;
+}
+
+export interface GetSourceFreshdeskConfiguration {
+    apiKey: string;
+    domain: string;
+    requestsPerMinute: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceFreshsalesConfiguration {
+    apiKey: string;
+    domainName: string;
+    sourceType: string;
+}
+
+export interface GetSourceGainsightPxConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceGcsConfiguration {
+    gcsBucket: string;
+    gcsPath: string;
+    serviceAccount: string;
+    sourceType: string;
+}
+
+export interface GetSourceGetlagoConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceGithubConfiguration {
+    branch: string;
+    credentials: outputs.GetSourceGithubConfigurationCredentials;
+    repository: string;
+    requestsPerHour: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceGithubConfigurationCredentials {
+    sourceGithubAuthenticationOAuth: outputs.GetSourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth;
+    sourceGithubAuthenticationPersonalAccessToken: outputs.GetSourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken;
+    sourceGithubUpdateAuthenticationOAuth: outputs.GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth;
+    sourceGithubUpdateAuthenticationPersonalAccessToken: outputs.GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken;
+}
+
+export interface GetSourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface GetSourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken {
+    optionTitle: string;
+    personalAccessToken: string;
+}
+
+export interface GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken {
+    optionTitle: string;
+    personalAccessToken: string;
+}
+
+export interface GetSourceGitlabConfiguration {
+    apiUrl: string;
+    credentials: outputs.GetSourceGitlabConfigurationCredentials;
+    groups: string;
+    projects: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceGitlabConfigurationCredentials {
+    sourceGitlabAuthorizationMethodOAuth20: outputs.GetSourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20;
+    sourceGitlabAuthorizationMethodPrivateToken: outputs.GetSourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken;
+    sourceGitlabUpdateAuthorizationMethodOAuth20: outputs.GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20;
+    sourceGitlabUpdateAuthorizationMethodPrivateToken: outputs.GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken;
+}
+
+export interface GetSourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceGlassfrogConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceGnewsConfiguration {
+    apiKey: string;
+    country: string;
+    endDate: string;
+    ins: string[];
+    language: string;
+    nullables: string[];
+    query: string;
+    sortby: string;
+    sourceType: string;
+    startDate: string;
+    topHeadlinesQuery: string;
+    topHeadlinesTopic: string;
+}
+
+export interface GetSourceGoogleAdsConfiguration {
+    conversionWindowDays: number;
+    credentials: outputs.GetSourceGoogleAdsConfigurationCredentials;
+    customQueries: outputs.GetSourceGoogleAdsConfigurationCustomQuery[];
+    customerId: string;
+    endDate: string;
+    loginCustomerId: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceGoogleAdsConfigurationCredentials {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    developerToken: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleAdsConfigurationCustomQuery {
+    query: string;
+    tableName: string;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfiguration {
+    credentials: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentials;
+    customReports: string;
+    dateRangesStartDate: string;
+    propertyId: string;
+    sourceType: string;
+    windowInDays: number;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentials {
+    sourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication {
+    authType: string;
+    credentialsJson: string;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication {
+    authType: string;
+    credentialsJson: string;
+}
+
+export interface GetSourceGoogleAnalyticsV4Configuration {
+    credentials: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentials;
+    customReports: string;
+    sourceType: string;
+    startDate: string;
+    viewId: string;
+    windowInDays: number;
+}
+
+export interface GetSourceGoogleAnalyticsV4ConfigurationCredentials {
+    sourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication;
+    sourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication;
+}
+
+export interface GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication {
+    authType: string;
+    credentialsJson: string;
+}
+
+export interface GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication {
+    authType: string;
+    credentialsJson: string;
+}
+
+export interface GetSourceGoogleDirectoryConfiguration {
+    credentials: outputs.GetSourceGoogleDirectoryConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceGoogleDirectoryConfigurationCredentials {
+    sourceGoogleDirectoryGoogleCredentialsServiceAccountKey: outputs.GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey;
+    sourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth: outputs.GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth;
+    sourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey: outputs.GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey;
+    sourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth: outputs.GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth;
+}
+
+export interface GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey {
+    credentialsJson: string;
+    credentialsTitle: string;
+    email: string;
+}
+
+export interface GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey {
+    credentialsJson: string;
+    credentialsTitle: string;
+    email: string;
+}
+
+export interface GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGooglePagespeedInsightsConfiguration {
+    apiKey: string;
+    categories: string[];
+    sourceType: string;
+    strategies: string[];
+    urls: string[];
+}
+
+export interface GetSourceGoogleSearchConsoleConfiguration {
+    authorization: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorization;
+    customReports: string;
+    dataState: string;
+    endDate: string;
+    siteUrls: string[];
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceGoogleSearchConsoleConfigurationAuthorization {
+    sourceGoogleSearchConsoleAuthenticationTypeOAuth: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth;
+    sourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication;
+}
+
+export interface GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: string;
+    email: string;
+    serviceAccountInfo: string;
+}
+
+export interface GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: string;
+    email: string;
+    serviceAccountInfo: string;
+}
+
+export interface GetSourceGoogleSheetsConfiguration {
+    credentials: outputs.GetSourceGoogleSheetsConfigurationCredentials;
+    namesConversion: boolean;
+    rowBatchSize: number;
+    sourceType: string;
+    spreadsheetId: string;
+}
+
+export interface GetSourceGoogleSheetsConfigurationCredentials {
+    sourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth: outputs.GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth;
+    sourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication: outputs.GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication;
+    sourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth: outputs.GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth;
+    sourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication: outputs.GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication;
+}
+
+export interface GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication {
+    authType: string;
+    serviceAccountInfo: string;
+}
+
+export interface GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication {
+    authType: string;
+    serviceAccountInfo: string;
+}
+
+export interface GetSourceGoogleWebfontsConfiguration {
+    alt: string;
+    apiKey: string;
+    prettyPrint: string;
+    sort: string;
+    sourceType: string;
+}
+
+export interface GetSourceGoogleWorkspaceAdminReportsConfiguration {
+    credentialsJson: string;
+    email: string;
+    lookback: number;
+    sourceType: string;
+}
+
+export interface GetSourceGreenhouseConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceGridlyConfiguration {
+    apiKey: string;
+    gridId: string;
+    sourceType: string;
+}
+
+export interface GetSourceHarvestConfiguration {
+    accountId: string;
+    credentials: outputs.GetSourceHarvestConfigurationCredentials;
+    replicationEndDate: string;
+    replicationStartDate: string;
+    sourceType: string;
+}
+
+export interface GetSourceHarvestConfigurationCredentials {
+    sourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth: outputs.GetSourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth;
+    sourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken: outputs.GetSourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth: outputs.GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken: outputs.GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+}
+
+export interface GetSourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceHubplannerConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceHubspotConfiguration {
+    credentials: outputs.GetSourceHubspotConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceHubspotConfigurationCredentials {
+    sourceHubspotAuthenticationOAuth: outputs.GetSourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth;
+    sourceHubspotAuthenticationPrivateApp: outputs.GetSourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp;
+    sourceHubspotUpdateAuthenticationOAuth: outputs.GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth;
+    sourceHubspotUpdateAuthenticationPrivateApp: outputs.GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp;
+}
+
+export interface GetSourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp {
+    accessToken: string;
+    credentialsTitle: string;
+}
+
+export interface GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp {
+    accessToken: string;
+    credentialsTitle: string;
+}
+
+export interface GetSourceInsightlyConfiguration {
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface GetSourceInstagramConfiguration {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceInstatusConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceIntercomConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceIp2whoisConfiguration {
+    apiKey: string;
+    domain: string;
+    sourceType: string;
+}
+
+export interface GetSourceIterableConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceJiraConfiguration {
+    apiToken: string;
+    domain: string;
+    email: string;
+    enableExperimentalStreams: boolean;
+    expandIssueChangelog: boolean;
+    projects: string[];
+    renderFields: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceK6CloudConfiguration {
+    apiToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceKlarnaConfiguration {
+    password: string;
+    playground: boolean;
+    region: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceKlaviyoConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceKustomerSingerConfiguration {
+    apiToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceKyveConfiguration {
+    maxPages: number;
+    pageSize: number;
+    poolIds: string;
+    sourceType: string;
+    startIds: string;
+    urlBase: string;
+}
+
+export interface GetSourceLaunchdarklyConfiguration {
+    accessToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceLemlistConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceLeverHiringConfiguration {
+    credentials: outputs.GetSourceLeverHiringConfigurationCredentials;
+    environment: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceLeverHiringConfigurationCredentials {
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey: outputs.GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey;
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth: outputs.GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey: outputs.GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth: outputs.GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth;
+}
+
+export interface GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLinkedinAdsConfiguration {
+    accountIds: number[];
+    adAnalyticsReports: outputs.GetSourceLinkedinAdsConfigurationAdAnalyticsReport[];
+    credentials: outputs.GetSourceLinkedinAdsConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceLinkedinAdsConfigurationAdAnalyticsReport {
+    name: string;
+    pivotBy: string;
+    timeGranularity: string;
+}
+
+export interface GetSourceLinkedinAdsConfigurationCredentials {
+    sourceLinkedinAdsAuthenticationAccessToken: outputs.GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken;
+    sourceLinkedinAdsAuthenticationOAuth20: outputs.GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20;
+    sourceLinkedinAdsUpdateAuthenticationAccessToken: outputs.GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken;
+    sourceLinkedinAdsUpdateAuthenticationOAuth20: outputs.GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20;
+}
+
+export interface GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLinkedinPagesConfiguration {
+    credentials: outputs.GetSourceLinkedinPagesConfigurationCredentials;
+    orgId: string;
+    sourceType: string;
+}
+
+export interface GetSourceLinkedinPagesConfigurationCredentials {
+    sourceLinkedinPagesAuthenticationAccessToken: outputs.GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken;
+    sourceLinkedinPagesAuthenticationOAuth20: outputs.GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20;
+    sourceLinkedinPagesUpdateAuthenticationAccessToken: outputs.GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken;
+    sourceLinkedinPagesUpdateAuthenticationOAuth20: outputs.GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20;
+}
+
+export interface GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceLinnworksConfiguration {
+    applicationId: string;
+    applicationSecret: string;
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface GetSourceLokaliseConfiguration {
+    apiKey: string;
+    projectId: string;
+    sourceType: string;
+}
+
+export interface GetSourceMailchimpConfiguration {
+    campaignId: string;
+    credentials: outputs.GetSourceMailchimpConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceMailchimpConfigurationCredentials {
+    sourceMailchimpAuthenticationApiKey: outputs.GetSourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey;
+    sourceMailchimpAuthenticationOAuth20: outputs.GetSourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20;
+    sourceMailchimpUpdateAuthenticationApiKey: outputs.GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey;
+    sourceMailchimpUpdateAuthenticationOAuth20: outputs.GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20;
+}
+
+export interface GetSourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey {
+    apikey: string;
+    authType: string;
+}
+
+export interface GetSourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey {
+    apikey: string;
+    authType: string;
+}
+
+export interface GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceMailgunConfiguration {
+    domainRegion: string;
+    privateKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceMailjetSmsConfiguration {
+    endDate: number;
+    sourceType: string;
+    startDate: number;
+    token: string;
+}
+
+export interface GetSourceMarketoConfiguration {
+    clientId: string;
+    clientSecret: string;
+    domainUrl: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceMetabaseConfiguration {
+    instanceApiUrl: string;
+    password: string;
+    sessionToken: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceMicrosoftTeamsConfiguration {
+    credentials: outputs.GetSourceMicrosoftTeamsConfigurationCredentials;
+    period: string;
+    sourceType: string;
+}
+
+export interface GetSourceMicrosoftTeamsConfigurationCredentials {
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft: outputs.GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft;
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20: outputs.GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft: outputs.GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20: outputs.GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20;
+}
+
+export interface GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    tenantId: string;
+}
+
+export interface GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tenantId: string;
+}
+
+export interface GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    tenantId: string;
+}
+
+export interface GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tenantId: string;
+}
+
 export interface GetSourceMixpanelConfiguration {
     attributionWindow: number;
     credentials: outputs.GetSourceMixpanelConfigurationCredentials;
@@ -203,6 +5754,1267 @@ export interface GetSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAu
     username: string;
 }
 
+export interface GetSourceMondayConfiguration {
+    credentials: outputs.GetSourceMondayConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceMondayConfigurationCredentials {
+    sourceMondayAuthorizationMethodApiToken: outputs.GetSourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken;
+    sourceMondayAuthorizationMethodOAuth20: outputs.GetSourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20;
+    sourceMondayUpdateAuthorizationMethodApiToken: outputs.GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken;
+    sourceMondayUpdateAuthorizationMethodOAuth20: outputs.GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    subdomain: string;
+}
+
+export interface GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    subdomain: string;
+}
+
+export interface GetSourceMongodbConfiguration {
+    authSource: string;
+    database: string;
+    instanceType: outputs.GetSourceMongodbConfigurationInstanceType;
+    password: string;
+    sourceType: string;
+    user: string;
+}
+
+export interface GetSourceMongodbConfigurationInstanceType {
+    sourceMongodbMongoDbInstanceTypeMongoDbAtlas: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas;
+    sourceMongodbMongoDbInstanceTypeReplicaSet: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet;
+    sourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance;
+    sourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas;
+    sourceMongodbUpdateMongoDbInstanceTypeReplicaSet: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet;
+    sourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance: outputs.GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: string;
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet: string;
+    serverAddresses: string;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: string;
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet: string;
+    serverAddresses: string;
+}
+
+export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface GetSourceMongodbInternalPocConfiguration {
+    authSource: string;
+    connectionString: string;
+    password: string;
+    replicaSet: string;
+    sourceType: string;
+    user: string;
+}
+
+export interface GetSourceMssqlConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    replicationMethod: outputs.GetSourceMssqlConfigurationReplicationMethod;
+    schemas: string[];
+    sourceType: string;
+    sslMethod: outputs.GetSourceMssqlConfigurationSslMethod;
+    tunnelMethod: outputs.GetSourceMssqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourceMssqlConfigurationReplicationMethod {
+    sourceMssqlReplicationMethodLogicalReplicationCdc: outputs.GetSourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc;
+    sourceMssqlReplicationMethodStandard: outputs.GetSourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard;
+    sourceMssqlUpdateReplicationMethodLogicalReplicationCdc: outputs.GetSourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc;
+    sourceMssqlUpdateReplicationMethodStandard: outputs.GetSourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard;
+}
+
+export interface GetSourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc {
+    dataToSync: string;
+    initialWaitingSeconds: number;
+    method: string;
+    snapshotIsolation: string;
+}
+
+export interface GetSourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc {
+    dataToSync: string;
+    initialWaitingSeconds: number;
+    method: string;
+    snapshotIsolation: string;
+}
+
+export interface GetSourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourceMssqlConfigurationSslMethod {
+    sourceMssqlSslMethodEncryptedTrustServerCertificate: outputs.GetSourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate;
+    sourceMssqlSslMethodEncryptedVerifyCertificate: outputs.GetSourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate;
+    sourceMssqlUpdateSslMethodEncryptedTrustServerCertificate: outputs.GetSourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate;
+    sourceMssqlUpdateSslMethodEncryptedVerifyCertificate: outputs.GetSourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate;
+}
+
+export interface GetSourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate: string;
+    sslMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate: string;
+    sslMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethod {
+    sourceMssqlSshTunnelMethodNoTunnel: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel;
+    sourceMssqlSshTunnelMethodPasswordAuthentication: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication;
+    sourceMssqlSshTunnelMethodSshKeyAuthentication: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication;
+    sourceMssqlUpdateSshTunnelMethodNoTunnel: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel;
+    sourceMssqlUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication;
+    sourceMssqlUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceMyHoursConfiguration {
+    email: string;
+    logsBatchSize: number;
+    password: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceMysqlConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    replicationMethod: outputs.GetSourceMysqlConfigurationReplicationMethod;
+    sourceType: string;
+    sslMode: outputs.GetSourceMysqlConfigurationSslMode;
+    tunnelMethod: outputs.GetSourceMysqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourceMysqlConfigurationReplicationMethod {
+    sourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc: outputs.GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc;
+    sourceMysqlUpdateMethodScanChangesWithUserDefinedCursor: outputs.GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor;
+    sourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc: outputs.GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc;
+    sourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor: outputs.GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor;
+}
+
+export interface GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds: number;
+    method: string;
+    serverTimeZone: string;
+}
+
+export interface GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor {
+    method: string;
+}
+
+export interface GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds: number;
+    method: string;
+    serverTimeZone: string;
+}
+
+export interface GetSourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor {
+    method: string;
+}
+
+export interface GetSourceMysqlConfigurationSslMode {
+    sourceMysqlSslModesPreferred: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred;
+    sourceMysqlSslModesRequired: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlSslModesRequired;
+    sourceMysqlSslModesVerifyCa: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa;
+    sourceMysqlSslModesVerifyIdentity: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity;
+    sourceMysqlUpdateSslModesPreferred: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred;
+    sourceMysqlUpdateSslModesRequired: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired;
+    sourceMysqlUpdateSslModesVerifyCa: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa;
+    sourceMysqlUpdateSslModesVerifyIdentity: outputs.GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred {
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlSslModesRequired {
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred {
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired {
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity {
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethod {
+    sourceMysqlSshTunnelMethodNoTunnel: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel;
+    sourceMysqlSshTunnelMethodPasswordAuthentication: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication;
+    sourceMysqlSshTunnelMethodSshKeyAuthentication: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication;
+    sourceMysqlUpdateSshTunnelMethodNoTunnel: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel;
+    sourceMysqlUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication;
+    sourceMysqlUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceNetsuiteConfiguration {
+    consumerKey: string;
+    consumerSecret: string;
+    objectTypes: string[];
+    realm: string;
+    sourceType: string;
+    startDatetime: string;
+    tokenKey: string;
+    tokenSecret: string;
+    windowInDays: number;
+}
+
+export interface GetSourceNotionConfiguration {
+    credentials: outputs.GetSourceNotionConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceNotionConfigurationCredentials {
+    sourceNotionAuthenticateUsingAccessToken: outputs.GetSourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken;
+    sourceNotionAuthenticateUsingOAuth20: outputs.GetSourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20;
+    sourceNotionUpdateAuthenticateUsingAccessToken: outputs.GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken;
+    sourceNotionUpdateAuthenticateUsingOAuth20: outputs.GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20;
+}
+
+export interface GetSourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken {
+    authType: string;
+    token: string;
+}
+
+export interface GetSourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken {
+    authType: string;
+    token: string;
+}
+
+export interface GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceNytimesConfiguration {
+    apiKey: string;
+    endDate: string;
+    period: number;
+    shareType: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceOktaConfiguration {
+    credentials: outputs.GetSourceOktaConfigurationCredentials;
+    domain: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceOktaConfigurationCredentials {
+    sourceOktaAuthorizationMethodApiToken: outputs.GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken;
+    sourceOktaAuthorizationMethodOAuth20: outputs.GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20;
+    sourceOktaUpdateAuthorizationMethodApiToken: outputs.GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken;
+    sourceOktaUpdateAuthorizationMethodOAuth20: outputs.GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceOmnisendConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceOnesignalConfiguration {
+    applications: outputs.GetSourceOnesignalConfigurationApplication[];
+    outcomeNames: string;
+    sourceType: string;
+    startDate: string;
+    userAuthKey: string;
+}
+
+export interface GetSourceOnesignalConfigurationApplication {
+    appApiKey: string;
+    appId: string;
+    appName: string;
+}
+
+export interface GetSourceOpenweatherConfiguration {
+    appid: string;
+    lang: string;
+    lat: string;
+    lon: string;
+    sourceType: string;
+    units: string;
+}
+
+export interface GetSourceOracleConfiguration {
+    connectionData: outputs.GetSourceOracleConfigurationConnectionData;
+    encryption: outputs.GetSourceOracleConfigurationEncryption;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schemas: string[];
+    sourceType: string;
+    tunnelMethod: outputs.GetSourceOracleConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourceOracleConfigurationConnectionData {
+    sourceOracleConnectByServiceName: outputs.GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName;
+    sourceOracleConnectBySystemIdSid: outputs.GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid;
+    sourceOracleUpdateConnectByServiceName: outputs.GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName;
+    sourceOracleUpdateConnectBySystemIdSid: outputs.GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid;
+}
+
+export interface GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName {
+    connectionType: string;
+    serviceName: string;
+}
+
+export interface GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid {
+    connectionType: string;
+    sid: string;
+}
+
+export interface GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName {
+    connectionType: string;
+    serviceName: string;
+}
+
+export interface GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid {
+    connectionType: string;
+    sid: string;
+}
+
+export interface GetSourceOracleConfigurationEncryption {
+    sourceOracleEncryptionNativeNetworkEncryptionNne: outputs.GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne;
+    sourceOracleEncryptionTlsEncryptedVerifyCertificate: outputs.GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate;
+    sourceOracleUpdateEncryptionNativeNetworkEncryptionNne: outputs.GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne;
+    sourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate: outputs.GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate;
+}
+
+export interface GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm: string;
+    encryptionMethod: string;
+}
+
+export interface GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: string;
+    sslCertificate: string;
+}
+
+export interface GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm: string;
+    encryptionMethod: string;
+}
+
+export interface GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: string;
+    sslCertificate: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethod {
+    sourceOracleSshTunnelMethodNoTunnel: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel;
+    sourceOracleSshTunnelMethodPasswordAuthentication: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication;
+    sourceOracleSshTunnelMethodSshKeyAuthentication: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication;
+    sourceOracleUpdateSshTunnelMethodNoTunnel: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel;
+    sourceOracleUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication;
+    sourceOracleUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourceOrbConfiguration {
+    apiKey: string;
+    lookbackWindowDays: number;
+    numericEventPropertiesKeys: string[];
+    planId: string;
+    sourceType: string;
+    startDate: string;
+    stringEventPropertiesKeys: string[];
+    subscriptionUsageGroupingKey: string;
+}
+
+export interface GetSourceOrbitConfiguration {
+    apiToken: string;
+    sourceType: string;
+    startDate: string;
+    workspace: string;
+}
+
+export interface GetSourceOutbrainAmplifyConfiguration {
+    credentials: outputs.GetSourceOutbrainAmplifyConfigurationCredentials;
+    endDate: string;
+    geoLocationBreakdown: string;
+    reportGranularity: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceOutbrainAmplifyConfigurationCredentials {
+    sourceOutbrainAmplifyAuthenticationMethodAccessToken: outputs.GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken;
+    sourceOutbrainAmplifyAuthenticationMethodUsernamePassword: outputs.GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken: outputs.GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword: outputs.GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword;
+}
+
+export interface GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken {
+    accessToken: string;
+    type: string;
+}
+
+export interface GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword {
+    password: string;
+    type: string;
+    username: string;
+}
+
+export interface GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken {
+    accessToken: string;
+    type: string;
+}
+
+export interface GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword {
+    password: string;
+    type: string;
+    username: string;
+}
+
+export interface GetSourceOutreachConfiguration {
+    clientId: string;
+    clientSecret: string;
+    redirectUri: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourcePaypalTransactionConfiguration {
+    clientId: string;
+    clientSecret: string;
+    isSandbox: boolean;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourcePaystackConfiguration {
+    lookbackWindowDays: number;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourcePendoConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourcePersistiqConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourcePexelsApiConfiguration {
+    apiKey: string;
+    color: string;
+    locale: string;
+    orientation: string;
+    query: string;
+    size: string;
+    sourceType: string;
+}
+
+export interface GetSourcePinterestConfiguration {
+    credentials: outputs.GetSourcePinterestConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    statuses: string[];
+}
+
+export interface GetSourcePinterestConfigurationCredentials {
+    sourcePinterestAuthorizationMethodAccessToken: outputs.GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken;
+    sourcePinterestAuthorizationMethodOAuth20: outputs.GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20;
+    sourcePinterestUpdateAuthorizationMethodAccessToken: outputs.GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken;
+    sourcePinterestUpdateAuthorizationMethodOAuth20: outputs.GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20 {
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourcePipedriveConfiguration {
+    authorization: outputs.GetSourcePipedriveConfigurationAuthorization;
+    replicationStartDate: string;
+    sourceType: string;
+}
+
+export interface GetSourcePipedriveConfigurationAuthorization {
+    apiToken: string;
+    authType: string;
+}
+
+export interface GetSourcePocketConfiguration {
+    accessToken: string;
+    consumerKey: string;
+    contentType: string;
+    detailType: string;
+    domain: string;
+    favorite: boolean;
+    search: string;
+    since: string;
+    sort: string;
+    sourceType: string;
+    state: string;
+    tag: string;
+}
+
+export interface GetSourcePokeapiConfiguration {
+    pokemonName: string;
+    sourceType: string;
+}
+
+export interface GetSourcePolygonStockApiConfiguration {
+    adjusted: string;
+    apiKey: string;
+    endDate: string;
+    limit: number;
+    multiplier: number;
+    sort: string;
+    sourceType: string;
+    startDate: string;
+    stocksTicker: string;
+    timespan: string;
+}
+
+export interface GetSourcePostgresConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    replicationMethod: outputs.GetSourcePostgresConfigurationReplicationMethod;
+    schemas: string[];
+    sourceType: string;
+    sslMode: outputs.GetSourcePostgresConfigurationSslMode;
+    tunnelMethod: outputs.GetSourcePostgresConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethod {
+    sourcePostgresReplicationMethodLogicalReplicationCdc: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc;
+    sourcePostgresReplicationMethodStandard: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard;
+    sourcePostgresReplicationMethodStandardXmin: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin;
+    sourcePostgresUpdateReplicationMethodLogicalReplicationCdc: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc;
+    sourcePostgresUpdateReplicationMethodStandard: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard;
+    sourcePostgresUpdateReplicationMethodStandardXmin: outputs.GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds: number;
+    lsnCommitBehaviour: string;
+    method: string;
+    plugin: string;
+    publication: string;
+    queueSize: number;
+    replicationSlot: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds: number;
+    lsnCommitBehaviour: string;
+    method: string;
+    plugin: string;
+    publication: string;
+    queueSize: number;
+    replicationSlot: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface GetSourcePostgresConfigurationSslMode {
+    sourcePostgresSslModesAllow: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllow;
+    sourcePostgresSslModesDisable: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisable;
+    sourcePostgresSslModesPrefer: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer;
+    sourcePostgresSslModesRequire: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequire;
+    sourcePostgresSslModesVerifyCa: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa;
+    sourcePostgresSslModesVerifyFull: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull;
+    sourcePostgresUpdateSslModesAllow: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow;
+    sourcePostgresUpdateSslModesDisable: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable;
+    sourcePostgresUpdateSslModesPrefer: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer;
+    sourcePostgresUpdateSslModesRequire: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire;
+    sourcePostgresUpdateSslModesVerifyCa: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa;
+    sourcePostgresUpdateSslModesVerifyFull: outputs.GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate: string;
+    clientKey: string;
+    clientKeyPassword: string;
+    mode: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethod {
+    sourcePostgresSshTunnelMethodNoTunnel: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel;
+    sourcePostgresSshTunnelMethodPasswordAuthentication: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication;
+    sourcePostgresSshTunnelMethodSshKeyAuthentication: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication;
+    sourcePostgresUpdateSshTunnelMethodNoTunnel: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel;
+    sourcePostgresUpdateSshTunnelMethodPasswordAuthentication: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication;
+    sourcePostgresUpdateSshTunnelMethodSshKeyAuthentication: outputs.GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface GetSourcePosthogConfiguration {
+    apiKey: string;
+    baseUrl: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourcePostmarkappConfiguration {
+    sourceType: string;
+    xPostmarkAccountToken: string;
+    xPostmarkServerToken: string;
+}
+
+export interface GetSourcePrestashopConfiguration {
+    accessKey: string;
+    sourceType: string;
+    startDate: string;
+    url: string;
+}
+
+export interface GetSourcePublicApisConfiguration {
+    sourceType: string;
+}
+
+export interface GetSourcePunkApiConfiguration {
+    brewedAfter: string;
+    brewedBefore: string;
+    id: string;
+    sourceType: string;
+}
+
+export interface GetSourcePypiConfiguration {
+    projectName: string;
+    sourceType: string;
+    version: string;
+}
+
+export interface GetSourceQualarooConfiguration {
+    key: string;
+    sourceType: string;
+    startDate: string;
+    surveyIds: string[];
+    token: string;
+}
+
+export interface GetSourceQuickbooksConfiguration {
+    credentials: outputs.GetSourceQuickbooksConfigurationCredentials;
+    sandbox: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceQuickbooksConfigurationCredentials {
+    sourceQuickbooksAuthorizationMethodOAuth20: outputs.GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20;
+    sourceQuickbooksUpdateAuthorizationMethodOAuth20: outputs.GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    realmId: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    realmId: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceRailzConfiguration {
+    clientId: string;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceRechargeConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceRecreationConfiguration {
+    apikey: string;
+    queryCampsites: string;
+    sourceType: string;
+}
+
+export interface GetSourceRecruiteeConfiguration {
+    apiKey: string;
+    companyId: number;
+    sourceType: string;
+}
+
+export interface GetSourceRecurlyConfiguration {
+    apiKey: string;
+    beginTime: string;
+    endTime: string;
+    sourceType: string;
+}
+
+export interface GetSourceRedshiftConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    password: string;
+    port: number;
+    schemas: string[];
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceRetentlyConfiguration {
+    credentials: outputs.GetSourceRetentlyConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceRetentlyConfigurationCredentials {
+    sourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth: outputs.GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth;
+    sourceRetentlyAuthenticationMechanismAuthenticateWithApiToken: outputs.GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth: outputs.GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken: outputs.GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken;
+}
+
+export interface GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: string;
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: string;
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceRkiCovidConfiguration {
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceRssConfiguration {
+    sourceType: string;
+    url: string;
+}
+
+export interface GetSourceS3Configuration {
+    dataset: string;
+    format: outputs.GetSourceS3ConfigurationFormat;
+    pathPattern: string;
+    provider: outputs.GetSourceS3ConfigurationProvider;
+    schema: string;
+    sourceType: string;
+}
+
+export interface GetSourceS3ConfigurationFormat {
+    sourceS3FileFormatAvro: outputs.GetSourceS3ConfigurationFormatSourceS3FileFormatAvro;
+    sourceS3FileFormatCsv: outputs.GetSourceS3ConfigurationFormatSourceS3FileFormatCsv;
+    sourceS3FileFormatJsonl: outputs.GetSourceS3ConfigurationFormatSourceS3FileFormatJsonl;
+    sourceS3FileFormatParquet: outputs.GetSourceS3ConfigurationFormatSourceS3FileFormatParquet;
+    sourceS3UpdateFileFormatAvro: outputs.GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro;
+    sourceS3UpdateFileFormatCsv: outputs.GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv;
+    sourceS3UpdateFileFormatJsonl: outputs.GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl;
+    sourceS3UpdateFileFormatParquet: outputs.GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3FileFormatAvro {
+    filetype: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3FileFormatCsv {
+    additionalReaderOptions: string;
+    advancedOptions: string;
+    blockSize: number;
+    delimiter: string;
+    doubleQuote: boolean;
+    encoding: string;
+    escapeChar: string;
+    filetype: string;
+    inferDatatypes: boolean;
+    newlinesInValues: boolean;
+    quoteChar: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3FileFormatJsonl {
+    blockSize: number;
+    filetype: string;
+    newlinesInValues: boolean;
+    unexpectedFieldBehavior: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3FileFormatParquet {
+    batchSize: number;
+    bufferSize: number;
+    columns: string[];
+    filetype: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro {
+    filetype: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv {
+    additionalReaderOptions: string;
+    advancedOptions: string;
+    blockSize: number;
+    delimiter: string;
+    doubleQuote: boolean;
+    encoding: string;
+    escapeChar: string;
+    filetype: string;
+    inferDatatypes: boolean;
+    newlinesInValues: boolean;
+    quoteChar: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl {
+    blockSize: number;
+    filetype: string;
+    newlinesInValues: boolean;
+    unexpectedFieldBehavior: string;
+}
+
+export interface GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet {
+    batchSize: number;
+    bufferSize: number;
+    columns: string[];
+    filetype: string;
+}
+
+export interface GetSourceS3ConfigurationProvider {
+    awsAccessKeyId: string;
+    awsSecretAccessKey: string;
+    bucket: string;
+    endpoint: string;
+    pathPrefix: string;
+    startDate: string;
+}
+
 export interface GetSourceSalesforceConfiguration {
     authType: string;
     clientId: string;
@@ -218,6 +7030,2717 @@ export interface GetSourceSalesforceConfiguration {
 export interface GetSourceSalesforceConfigurationStreamsCriteria {
     criteria: string;
     value: string;
+}
+
+export interface GetSourceSalesloftConfiguration {
+    credentials: outputs.GetSourceSalesloftConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSalesloftConfigurationCredentials {
+    sourceSalesloftCredentialsAuthenticateViaApiKey: outputs.GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey;
+    sourceSalesloftCredentialsAuthenticateViaOAuth: outputs.GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth;
+    sourceSalesloftUpdateCredentialsAuthenticateViaApiKey: outputs.GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey;
+    sourceSalesloftUpdateCredentialsAuthenticateViaOAuth: outputs.GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth;
+}
+
+export interface GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceSapFieldglassConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceSecodaConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceSendgridConfiguration {
+    apikey: string;
+    sourceType: string;
+    startTime: string;
+}
+
+export interface GetSourceSendinblueConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceSenseforceConfiguration {
+    accessToken: string;
+    backendUrl: string;
+    datasetId: string;
+    sliceRange: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSentryConfiguration {
+    authToken: string;
+    discoverFields: string[];
+    hostname: string;
+    organization: string;
+    project: string;
+    sourceType: string;
+}
+
+export interface GetSourceSftpBulkConfiguration {
+    fileMostRecent: boolean;
+    filePattern: string;
+    fileType: string;
+    folderPath: string;
+    host: string;
+    password: string;
+    port: number;
+    privateKey: string;
+    separator: string;
+    sourceType: string;
+    startDate: string;
+    streamName: string;
+    username: string;
+}
+
+export interface GetSourceSftpConfiguration {
+    credentials: outputs.GetSourceSftpConfigurationCredentials;
+    filePattern: string;
+    fileTypes: string;
+    folderPath: string;
+    host: string;
+    port: number;
+    sourceType: string;
+    user: string;
+}
+
+export interface GetSourceSftpConfigurationCredentials {
+    sourceSftpAuthenticationWildcardPasswordAuthentication: outputs.GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication;
+    sourceSftpAuthenticationWildcardSshKeyAuthentication: outputs.GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication;
+    sourceSftpUpdateAuthenticationWildcardPasswordAuthentication: outputs.GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication;
+    sourceSftpUpdateAuthenticationWildcardSshKeyAuthentication: outputs.GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication;
+}
+
+export interface GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication {
+    authMethod: string;
+    authUserPassword: string;
+}
+
+export interface GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication {
+    authMethod: string;
+    authSshKey: string;
+}
+
+export interface GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication {
+    authMethod: string;
+    authUserPassword: string;
+}
+
+export interface GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication {
+    authMethod: string;
+    authSshKey: string;
+}
+
+export interface GetSourceShopifyConfiguration {
+    credentials: outputs.GetSourceShopifyConfigurationCredentials;
+    shop: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceShopifyConfigurationCredentials {
+    sourceShopifyShopifyAuthorizationMethodApiPassword: outputs.GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword;
+    sourceShopifyShopifyAuthorizationMethodOAuth20: outputs.GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20;
+    sourceShopifyUpdateShopifyAuthorizationMethodApiPassword: outputs.GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword;
+    sourceShopifyUpdateShopifyAuthorizationMethodOAuth20: outputs.GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword {
+    apiPassword: string;
+    authMethod: string;
+}
+
+export interface GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword {
+    apiPassword: string;
+    authMethod: string;
+}
+
+export interface GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceShortioConfiguration {
+    domainId: string;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSlackConfiguration {
+    channelFilters: string[];
+    credentials: outputs.GetSourceSlackConfigurationCredentials;
+    joinChannels: boolean;
+    lookbackWindow: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSlackConfigurationCredentials {
+    sourceSlackAuthenticationMechanismApiToken: outputs.GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken;
+    sourceSlackAuthenticationMechanismSignInViaSlackOAuth: outputs.GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth;
+    sourceSlackUpdateAuthenticationMechanismApiToken: outputs.GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken;
+    sourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth: outputs.GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth;
+}
+
+export interface GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken {
+    apiToken: string;
+    optionTitle: string;
+}
+
+export interface GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken {
+    apiToken: string;
+    optionTitle: string;
+}
+
+export interface GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface GetSourceSmailyConfiguration {
+    apiPassword: string;
+    apiSubdomain: string;
+    apiUsername: string;
+    sourceType: string;
+}
+
+export interface GetSourceSmartengageConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface GetSourceSmartsheetsConfiguration {
+    credentials: outputs.GetSourceSmartsheetsConfigurationCredentials;
+    metadataFields: string[];
+    sourceType: string;
+    spreadsheetId: string;
+    startDatetime: string;
+}
+
+export interface GetSourceSmartsheetsConfigurationCredentials {
+    sourceSmartsheetsAuthorizationMethodApiAccessToken: outputs.GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken;
+    sourceSmartsheetsAuthorizationMethodOAuth20: outputs.GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20;
+    sourceSmartsheetsUpdateAuthorizationMethodApiAccessToken: outputs.GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken;
+    sourceSmartsheetsUpdateAuthorizationMethodOAuth20: outputs.GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceSnapchatMarketingConfiguration {
+    clientId: string;
+    clientSecret: string;
+    endDate: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSnowflakeConfiguration {
+    credentials: outputs.GetSourceSnowflakeConfigurationCredentials;
+    database: string;
+    host: string;
+    jdbcUrlParams: string;
+    role: string;
+    schema: string;
+    sourceType: string;
+    warehouse: string;
+}
+
+export interface GetSourceSnowflakeConfigurationCredentials {
+    sourceSnowflakeAuthorizationMethodOAuth20: outputs.GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20;
+    sourceSnowflakeAuthorizationMethodUsernameAndPassword: outputs.GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword;
+    sourceSnowflakeUpdateAuthorizationMethodOAuth20: outputs.GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20;
+    sourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword: outputs.GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword;
+}
+
+export interface GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword {
+    authType: string;
+    password: string;
+    username: string;
+}
+
+export interface GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword {
+    authType: string;
+    password: string;
+    username: string;
+}
+
+export interface GetSourceSonarCloudConfiguration {
+    componentKeys: string[];
+    endDate: string;
+    organization: string;
+    sourceType: string;
+    startDate: string;
+    userToken: string;
+}
+
+export interface GetSourceSpaceXApiConfiguration {
+    id: string;
+    options: string;
+    sourceType: string;
+}
+
+export interface GetSourceSquareConfiguration {
+    credentials: outputs.GetSourceSquareConfigurationCredentials;
+    includeDeletedObjects: boolean;
+    isSandbox: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSquareConfigurationCredentials {
+    sourceSquareAuthenticationApiKey: outputs.GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey;
+    sourceSquareAuthenticationOauthAuthentication: outputs.GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication;
+    sourceSquareUpdateAuthenticationApiKey: outputs.GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey;
+    sourceSquareUpdateAuthenticationOauthAuthentication: outputs.GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication;
+}
+
+export interface GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceStravaConfiguration {
+    athleteId: number;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceStripeConfiguration {
+    accountId: string;
+    clientSecret: string;
+    lookbackWindowDays: number;
+    sliceRange: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceSurveySparrowConfiguration {
+    accessToken: string;
+    region: outputs.GetSourceSurveySparrowConfigurationRegion;
+    sourceType: string;
+    surveyIds: string[];
+}
+
+export interface GetSourceSurveySparrowConfigurationRegion {
+    sourceSurveySparrowBaseUrlEuBasedAccount: outputs.GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount;
+    sourceSurveySparrowBaseUrlGlobalAccount: outputs.GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount;
+    sourceSurveySparrowUpdateBaseUrlEuBasedAccount: outputs.GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount;
+    sourceSurveySparrowUpdateBaseUrlGlobalAccount: outputs.GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount;
+}
+
+export interface GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount {
+    urlBase: string;
+}
+
+export interface GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount {
+    urlBase: string;
+}
+
+export interface GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount {
+    urlBase: string;
+}
+
+export interface GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount {
+    urlBase: string;
+}
+
+export interface GetSourceSurveymonkeyConfiguration {
+    credentials: outputs.GetSourceSurveymonkeyConfigurationCredentials;
+    origin: string;
+    sourceType: string;
+    startDate: string;
+    surveyIds: string[];
+}
+
+export interface GetSourceSurveymonkeyConfigurationCredentials {
+    accessToken: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceTempoConfiguration {
+    apiToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceTheGuardianApiConfiguration {
+    apiKey: string;
+    endDate: string;
+    query: string;
+    section: string;
+    sourceType: string;
+    startDate: string;
+    tag: string;
+}
+
+export interface GetSourceTiktokMarketingConfiguration {
+    attributionWindow: number;
+    credentials: outputs.GetSourceTiktokMarketingConfigurationCredentials;
+    endDate: string;
+    includeDeleted: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceTiktokMarketingConfigurationCredentials {
+    sourceTiktokMarketingAuthenticationMethodOAuth20: outputs.GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20;
+    sourceTiktokMarketingAuthenticationMethodSandboxAccessToken: outputs.GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken;
+    sourceTiktokMarketingUpdateAuthenticationMethodOAuth20: outputs.GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20;
+    sourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken: outputs.GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken;
+}
+
+export interface GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20 {
+    accessToken: string;
+    advertiserId: string;
+    appId: string;
+    authType: string;
+    secret: string;
+}
+
+export interface GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken {
+    accessToken: string;
+    advertiserId: string;
+    authType: string;
+}
+
+export interface GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20 {
+    accessToken: string;
+    advertiserId: string;
+    appId: string;
+    authType: string;
+    secret: string;
+}
+
+export interface GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken {
+    accessToken: string;
+    advertiserId: string;
+    authType: string;
+}
+
+export interface GetSourceTodoistConfiguration {
+    sourceType: string;
+    token: string;
+}
+
+export interface GetSourceTrelloConfiguration {
+    boardIds: string[];
+    key: string;
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface GetSourceTrustpilotConfiguration {
+    businessUnits: string[];
+    credentials: outputs.GetSourceTrustpilotConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceTrustpilotConfigurationCredentials {
+    sourceTrustpilotAuthorizationMethodApiKey: outputs.GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey;
+    sourceTrustpilotAuthorizationMethodOAuth20: outputs.GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20;
+    sourceTrustpilotUpdateAuthorizationMethodApiKey: outputs.GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey;
+    sourceTrustpilotUpdateAuthorizationMethodOAuth20: outputs.GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey {
+    authType: string;
+    clientId: string;
+}
+
+export interface GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey {
+    authType: string;
+    clientId: string;
+}
+
+export interface GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceTvmazeScheduleConfiguration {
+    domesticScheduleCountryCode: string;
+    endDate: string;
+    sourceType: string;
+    startDate: string;
+    webScheduleCountryCode: string;
+}
+
+export interface GetSourceTwilioConfiguration {
+    accountSid: string;
+    authToken: string;
+    lookbackWindow: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceTwilioTaskrouterConfiguration {
+    accountSid: string;
+    authToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceTwitterConfiguration {
+    apiKey: string;
+    endDate: string;
+    query: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceTypeformConfiguration {
+    credentials: outputs.GetSourceTypeformConfigurationCredentials;
+    formIds: string[];
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceTypeformConfigurationCredentials {
+    sourceTypeformAuthorizationMethodOAuth20: outputs.GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20;
+    sourceTypeformAuthorizationMethodPrivateToken: outputs.GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken;
+    sourceTypeformUpdateAuthorizationMethodOAuth20: outputs.GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20;
+    sourceTypeformUpdateAuthorizationMethodPrivateToken: outputs.GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken;
+}
+
+export interface GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface GetSourceUsCensusConfiguration {
+    apiKey: string;
+    queryParams: string;
+    queryPath: string;
+    sourceType: string;
+}
+
+export interface GetSourceVantageConfiguration {
+    accessToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceWebflowConfiguration {
+    apiKey: string;
+    siteId: string;
+    sourceType: string;
+}
+
+export interface GetSourceWhiskyHunterConfiguration {
+    sourceType: string;
+}
+
+export interface GetSourceWikipediaPageviewsConfiguration {
+    access: string;
+    agent: string;
+    article: string;
+    country: string;
+    end: string;
+    project: string;
+    sourceType: string;
+    start: string;
+}
+
+export interface GetSourceWoocommerceConfiguration {
+    apiKey: string;
+    apiSecret: string;
+    shop: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceXeroConfiguration {
+    authentication: outputs.GetSourceXeroConfigurationAuthentication;
+    sourceType: string;
+    startDate: string;
+    tenantId: string;
+}
+
+export interface GetSourceXeroConfigurationAuthentication {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface GetSourceXkcdConfiguration {
+    sourceType: string;
+}
+
+export interface GetSourceYandexMetricaConfiguration {
+    authToken: string;
+    counterId: string;
+    endDate: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceYotpoConfiguration {
+    accessToken: string;
+    appKey: string;
+    email: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface GetSourceYouniumConfiguration {
+    legalEntity: string;
+    password: string;
+    playground: boolean;
+    sourceType: string;
+    username: string;
+}
+
+export interface GetSourceYoutubeAnalyticsConfiguration {
+    credentials: outputs.GetSourceYoutubeAnalyticsConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface GetSourceYoutubeAnalyticsConfigurationCredentials {
+    additionalProperties?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface GetSourceZendeskChatConfiguration {
+    credentials: outputs.GetSourceZendeskChatConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface GetSourceZendeskChatConfigurationCredentials {
+    sourceZendeskChatAuthorizationMethodAccessToken: outputs.GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken;
+    sourceZendeskChatAuthorizationMethodOAuth20: outputs.GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20;
+    sourceZendeskChatUpdateAuthorizationMethodAccessToken: outputs.GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken;
+    sourceZendeskChatUpdateAuthorizationMethodOAuth20: outputs.GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken {
+    accessToken: string;
+    credentials: string;
+}
+
+export interface GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20 {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    credentials: string;
+    refreshToken: string;
+}
+
+export interface GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken {
+    accessToken: string;
+    credentials: string;
+}
+
+export interface GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    credentials: string;
+    refreshToken: string;
+}
+
+export interface GetSourceZendeskSunshineConfiguration {
+    credentials: outputs.GetSourceZendeskSunshineConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface GetSourceZendeskSunshineConfigurationCredentials {
+    sourceZendeskSunshineAuthorizationMethodApiToken: outputs.GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken;
+    sourceZendeskSunshineAuthorizationMethodOAuth20: outputs.GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20;
+    sourceZendeskSunshineUpdateAuthorizationMethodApiToken: outputs.GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken;
+    sourceZendeskSunshineUpdateAuthorizationMethodOAuth20: outputs.GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20;
+}
+
+export interface GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authMethod: string;
+    email: string;
+}
+
+export interface GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authMethod: string;
+    email: string;
+}
+
+export interface GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceZendeskSupportConfiguration {
+    credentials: outputs.GetSourceZendeskSupportConfigurationCredentials;
+    ignorePagination: boolean;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface GetSourceZendeskSupportConfigurationCredentials {
+    sourceZendeskSupportAuthenticationApiToken: outputs.GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken;
+    sourceZendeskSupportAuthenticationOAuth20: outputs.GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20;
+    sourceZendeskSupportUpdateAuthenticationApiToken: outputs.GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken;
+    sourceZendeskSupportUpdateAuthenticationOAuth20: outputs.GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20;
+}
+
+export interface GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    credentials: string;
+    email: string;
+}
+
+export interface GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    clientId: string;
+    clientSecret: string;
+    credentials: string;
+}
+
+export interface GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    credentials: string;
+    email: string;
+}
+
+export interface GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    clientId: string;
+    clientSecret: string;
+    credentials: string;
+}
+
+export interface GetSourceZendeskTalkConfiguration {
+    credentials: outputs.GetSourceZendeskTalkConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface GetSourceZendeskTalkConfigurationCredentials {
+    sourceZendeskTalkAuthenticationApiToken: outputs.GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken;
+    sourceZendeskTalkAuthenticationOAuth20: outputs.GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20;
+    sourceZendeskTalkUpdateAuthenticationApiToken: outputs.GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken;
+    sourceZendeskTalkUpdateAuthenticationOAuth20: outputs.GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20;
+}
+
+export interface GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType: string;
+    email: string;
+}
+
+export interface GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType: string;
+    email: string;
+}
+
+export interface GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface GetSourceZenloopConfiguration {
+    apiToken: string;
+    dateFrom: string;
+    sourceType: string;
+    surveyGroupId: string;
+    surveyId: string;
+}
+
+export interface GetSourceZohoCrmConfiguration {
+    clientId: string;
+    clientSecret: string;
+    dcRegion: string;
+    edition: string;
+    environment: string;
+    refreshToken: string;
+    sourceType: string;
+    startDatetime: string;
+}
+
+export interface GetSourceZoomConfiguration {
+    jwtToken: string;
+    sourceType: string;
+}
+
+export interface GetSourceZuoraConfiguration {
+    clientId: string;
+    clientSecret: string;
+    dataQuery: string;
+    sourceType: string;
+    startDate: string;
+    tenantEndpoint: string;
+    windowInDays: string;
+}
+
+export interface SourceAhaConfiguration {
+    apiKey: string;
+    sourceType: string;
+    url: string;
+}
+
+export interface SourceAircallConfiguration {
+    apiId: string;
+    apiToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceAirtableConfiguration {
+    credentials?: outputs.SourceAirtableConfigurationCredentials;
+    sourceType?: string;
+}
+
+export interface SourceAirtableConfigurationCredentials {
+    sourceAirtableAuthenticationOAuth20?: outputs.SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20;
+    sourceAirtableAuthenticationPersonalAccessToken?: outputs.SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken;
+    sourceAirtableUpdateAuthenticationOAuth20?: outputs.SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20;
+    sourceAirtableUpdateAuthenticationPersonalAccessToken?: outputs.SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationOAuth20 {
+    accessToken?: string;
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate?: string;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableAuthenticationPersonalAccessToken {
+    apiKey: string;
+    authMethod?: string;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationOAuth20 {
+    accessToken?: string;
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate?: string;
+}
+
+export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticationPersonalAccessToken {
+    apiKey: string;
+    authMethod?: string;
+}
+
+export interface SourceAlloydbConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    replicationMethod?: outputs.SourceAlloydbConfigurationReplicationMethod;
+    schemas?: string[];
+    sourceType: string;
+    sslMode?: outputs.SourceAlloydbConfigurationSslMode;
+    tunnelMethod?: outputs.SourceAlloydbConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethod {
+    sourceAlloydbReplicationMethodLogicalReplicationCdc?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc;
+    sourceAlloydbReplicationMethodStandard?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard;
+    sourceAlloydbReplicationMethodStandardXmin?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin;
+    sourceAlloydbUpdateReplicationMethodLogicalReplicationCdc?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc;
+    sourceAlloydbUpdateReplicationMethodStandard?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard;
+    sourceAlloydbUpdateReplicationMethodStandardXmin?: outputs.SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds?: number;
+    lsnCommitBehaviour?: string;
+    method: string;
+    plugin?: string;
+    publication: string;
+    queueSize?: number;
+    replicationSlot: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds?: number;
+    lsnCommitBehaviour?: string;
+    method: string;
+    plugin?: string;
+    publication: string;
+    queueSize?: number;
+    replicationSlot: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourceAlloydbConfigurationReplicationMethodSourceAlloydbUpdateReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface SourceAlloydbConfigurationSslMode {
+    sourceAlloydbSslModesAllow?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow;
+    sourceAlloydbSslModesDisable?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable;
+    sourceAlloydbSslModesPrefer?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer;
+    sourceAlloydbSslModesRequire?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire;
+    sourceAlloydbSslModesVerifyCa?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa;
+    sourceAlloydbSslModesVerifyFull?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull;
+    sourceAlloydbUpdateSslModesAllow?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow;
+    sourceAlloydbUpdateSslModesDisable?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable;
+    sourceAlloydbUpdateSslModesPrefer?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer;
+    sourceAlloydbUpdateSslModesRequire?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire;
+    sourceAlloydbUpdateSslModesVerifyCa?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa;
+    sourceAlloydbUpdateSslModesVerifyFull?: outputs.SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationSslModeSourceAlloydbUpdateSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethod {
+    sourceAlloydbSshTunnelMethodNoTunnel?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel;
+    sourceAlloydbSshTunnelMethodPasswordAuthentication?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication;
+    sourceAlloydbSshTunnelMethodSshKeyAuthentication?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication;
+    sourceAlloydbUpdateSshTunnelMethodNoTunnel?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel;
+    sourceAlloydbUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication;
+    sourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceAmazonAdsConfiguration {
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    lookBackWindow?: number;
+    profiles?: number[];
+    refreshToken: string;
+    region?: string;
+    reportRecordTypes?: string[];
+    sourceType: string;
+    startDate?: string;
+    stateFilters?: string[];
+}
+
+export interface SourceAmazonSellerPartnerConfiguration {
+    advancedStreamOptions?: string;
+    authType?: string;
+    awsAccessKey?: string;
+    awsEnvironment: string;
+    awsSecretKey?: string;
+    lwaAppId: string;
+    lwaClientSecret: string;
+    maxWaitSeconds?: number;
+    periodInDays?: number;
+    refreshToken: string;
+    region: string;
+    replicationEndDate?: string;
+    replicationStartDate: string;
+    reportOptions?: string;
+    roleArn?: string;
+    sourceType: string;
+}
+
+export interface SourceAmazonSqsConfiguration {
+    accessKey?: string;
+    attributesToReturn?: string;
+    deleteMessages: boolean;
+    maxBatchSize?: number;
+    maxWaitTime?: number;
+    queueUrl: string;
+    region: string;
+    secretKey?: string;
+    sourceType: string;
+    visibilityTimeout?: number;
+}
+
+export interface SourceAmplitudeConfiguration {
+    apiKey: string;
+    dataRegion?: string;
+    requestTimeRange?: number;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceApifyDatasetConfiguration {
+    clean?: boolean;
+    datasetId: string;
+    sourceType: string;
+}
+
+export interface SourceAppfollowConfiguration {
+    apiSecret?: string;
+    sourceType: string;
+}
+
+export interface SourceAsanaConfiguration {
+    credentials?: outputs.SourceAsanaConfigurationCredentials;
+    sourceType?: string;
+}
+
+export interface SourceAsanaConfigurationCredentials {
+    sourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth?: outputs.SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth;
+    sourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken?: outputs.SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth?: outputs.SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth;
+    sourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken?: outputs.SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: string;
+    clientSecret: string;
+    optionTitle?: string;
+    refreshToken: string;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle?: string;
+    personalAccessToken: string;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateViaAsanaOauth {
+    clientId: string;
+    clientSecret: string;
+    optionTitle?: string;
+    refreshToken: string;
+}
+
+export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    optionTitle?: string;
+    personalAccessToken: string;
+}
+
+export interface SourceAuth0Configuration {
+    baseUrl: string;
+    credentials: outputs.SourceAuth0ConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface SourceAuth0ConfigurationCredentials {
+    sourceAuth0AuthenticationMethodOAuth2AccessToken?: outputs.SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken;
+    sourceAuth0AuthenticationMethodOAuth2ConfidentialApplication?: outputs.SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication;
+    sourceAuth0UpdateAuthenticationMethodOAuth2AccessToken?: outputs.SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken;
+    sourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication?: outputs.SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2AccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0AuthenticationMethodOAuth2ConfidentialApplication {
+    audience: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2AccessToken {
+    accessToken: string;
+    authType: string;
+}
+
+export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMethodOAuth2ConfidentialApplication {
+    audience: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceAwsCloudtrailConfiguration {
+    awsKeyId: string;
+    awsRegionName: string;
+    awsSecretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceAzureBlobStorageConfiguration {
+    azureBlobStorageAccountKey: string;
+    azureBlobStorageAccountName: string;
+    azureBlobStorageBlobsPrefix?: string;
+    azureBlobStorageContainerName: string;
+    azureBlobStorageEndpoint?: string;
+    azureBlobStorageSchemaInferenceLimit?: number;
+    format: outputs.SourceAzureBlobStorageConfigurationFormat;
+    sourceType: string;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormat {
+    sourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson?: outputs.SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson;
+    sourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson?: outputs.SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdateInputFormatJsonLinesNewlineDelimitedJson {
+    formatType: string;
+}
+
+export interface SourceAzureTableConfiguration {
+    sourceType: string;
+    storageAccessKey: string;
+    storageAccountName: string;
+    storageEndpointSuffix?: string;
+}
+
+export interface SourceBambooHrConfiguration {
+    apiKey: string;
+    customReportsFields?: string;
+    customReportsIncludeDefaultFields?: boolean;
+    sourceType: string;
+    subdomain: string;
+}
+
+export interface SourceBigcommerceConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+    storeHash: string;
+}
+
+export interface SourceBigqueryConfiguration {
+    credentialsJson: string;
+    datasetId?: string;
+    projectId: string;
+    sourceType: string;
+}
+
+export interface SourceBingAdsConfiguration {
+    authMethod?: string;
+    clientId: string;
+    clientSecret?: string;
+    developerToken: string;
+    lookbackWindow?: number;
+    refreshToken: string;
+    reportsStartDate: string;
+    sourceType: string;
+    tenantId?: string;
+}
+
+export interface SourceBraintreeConfiguration {
+    environment: string;
+    merchantId: string;
+    privateKey: string;
+    publicKey: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceBrazeConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+    url: string;
+}
+
+export interface SourceChargebeeConfiguration {
+    productCatalog: string;
+    site: string;
+    siteApiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceChartmogulConfiguration {
+    apiKey: string;
+    interval: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceClickhouseConfiguration {
+    database: string;
+    host: string;
+    password?: string;
+    port: number;
+    sourceType: string;
+    tunnelMethod?: outputs.SourceClickhouseConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethod {
+    sourceClickhouseSshTunnelMethodNoTunnel?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel;
+    sourceClickhouseSshTunnelMethodPasswordAuthentication?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication;
+    sourceClickhouseSshTunnelMethodSshKeyAuthentication?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication;
+    sourceClickhouseUpdateSshTunnelMethodNoTunnel?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel;
+    sourceClickhouseUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication;
+    sourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceClickupApiConfiguration {
+    apiToken: string;
+    folderId?: string;
+    includeClosedTasks?: boolean;
+    listId?: string;
+    sourceType: string;
+    spaceId?: string;
+    teamId?: string;
+}
+
+export interface SourceClockifyConfiguration {
+    apiKey: string;
+    apiUrl?: string;
+    sourceType: string;
+    workspaceId: string;
+}
+
+export interface SourceCloseComConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceCodaConfiguration {
+    authToken: string;
+    sourceType: string;
+}
+
+export interface SourceCoinApiConfiguration {
+    apiKey: string;
+    endDate?: string;
+    environment: string;
+    limit?: number;
+    period: string;
+    sourceType: string;
+    startDate: string;
+    symbolId: string;
+}
+
+export interface SourceCoinmarketcapConfiguration {
+    apiKey: string;
+    dataType: string;
+    sourceType: string;
+    symbols?: string[];
+}
+
+export interface SourceConfigcatConfiguration {
+    password: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface SourceConfluenceConfiguration {
+    apiToken: string;
+    domainName: string;
+    email: string;
+    sourceType: string;
+}
+
+export interface SourceConvexConfiguration {
+    accessKey: string;
+    deploymentUrl: string;
+    sourceType: string;
+}
+
+export interface SourceDatadogConfiguration {
+    apiKey: string;
+    applicationKey: string;
+    endDate?: string;
+    maxRecordsPerRequest?: number;
+    queries?: outputs.SourceDatadogConfigurationQuery[];
+    query?: string;
+    site?: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceDatadogConfigurationQuery {
+    dataSource: string;
+    name: string;
+    query: string;
+}
+
+export interface SourceDatascopeConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceDelightedConfiguration {
+    apiKey: string;
+    since: string;
+    sourceType: string;
+}
+
+export interface SourceDixaConfiguration {
+    apiToken: string;
+    batchSize?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceDockerhubConfiguration {
+    dockerUsername: string;
+    sourceType: string;
+}
+
+export interface SourceDremioConfiguration {
+    apiKey: string;
+    baseUrl: string;
+    sourceType: string;
+}
+
+export interface SourceDynamodbConfiguration {
+    accessKeyId: string;
+    endpoint?: string;
+    region?: string;
+    reservedAttributeNames?: string;
+    secretAccessKey: string;
+    sourceType: string;
+}
+
+export interface SourceE2eTestCloudConfiguration {
+    maxMessages: number;
+    messageIntervalMs?: number;
+    mockCatalog: outputs.SourceE2eTestCloudConfigurationMockCatalog;
+    seed?: number;
+    sourceType: string;
+    type?: string;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalog {
+    sourceE2eTestCloudMockCatalogMultiSchema?: outputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema;
+    sourceE2eTestCloudMockCatalogSingleSchema?: outputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema;
+    sourceE2eTestCloudUpdateMockCatalogMultiSchema?: outputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema;
+    sourceE2eTestCloudUpdateMockCatalogSingleSchema?: outputs.SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogMultiSchema {
+    streamSchemas: string;
+    type: string;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudMockCatalogSingleSchema {
+    streamDuplication?: number;
+    streamName: string;
+    streamSchema: string;
+    type: string;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogMultiSchema {
+    streamSchemas: string;
+    type: string;
+}
+
+export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMockCatalogSingleSchema {
+    streamDuplication?: number;
+    streamName: string;
+    streamSchema: string;
+    type: string;
+}
+
+export interface SourceEmailoctopusConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceExchangeRatesConfiguration {
+    accessKey: string;
+    base?: string;
+    ignoreWeekends?: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceFacebookMarketingConfiguration {
+    accessToken: string;
+    accountId: string;
+    actionBreakdownsAllowEmpty?: boolean;
+    clientId?: string;
+    clientSecret?: string;
+    customInsights?: outputs.SourceFacebookMarketingConfigurationCustomInsight[];
+    endDate?: string;
+    fetchThumbnailImages?: boolean;
+    includeDeleted?: boolean;
+    insightsLookbackWindow?: number;
+    maxBatchSize?: number;
+    pageSize?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceFacebookMarketingConfigurationCustomInsight {
+    actionBreakdowns?: string[];
+    actionReportTime?: string;
+    breakdowns?: string[];
+    endDate?: string;
+    fields?: string[];
+    insightsLookbackWindow?: number;
+    level?: string;
+    name: string;
+    startDate?: string;
+    timeIncrement?: number;
+}
+
+export interface SourceFacebookPagesConfiguration {
+    accessToken: string;
+    pageId: string;
+    sourceType: string;
+}
+
+export interface SourceFakerConfiguration {
+    alwaysUpdated?: boolean;
+    count: number;
+    parallelism?: number;
+    recordsPerSlice?: number;
+    seed?: number;
+    sourceType: string;
+}
+
+export interface SourceFaunaConfiguration {
+    collection?: outputs.SourceFaunaConfigurationCollection;
+    domain: string;
+    port: number;
+    scheme: string;
+    secret: string;
+    sourceType: string;
+}
+
+export interface SourceFaunaConfigurationCollection {
+    deletions: outputs.SourceFaunaConfigurationCollectionDeletions;
+    pageSize: number;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletions {
+    sourceFaunaCollectionDeletionModeDisabled?: outputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled;
+    sourceFaunaCollectionDeletionModeEnabled?: outputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled;
+    sourceFaunaUpdateCollectionDeletionModeDisabled?: outputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled;
+    sourceFaunaUpdateCollectionDeletionModeEnabled?: outputs.SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeDisabled {
+    deletionMode: string;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaCollectionDeletionModeEnabled {
+    column: string;
+    deletionMode: string;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeDisabled {
+    deletionMode: string;
+}
+
+export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectionDeletionModeEnabled {
+    column: string;
+    deletionMode: string;
+}
+
+export interface SourceFileSecureConfiguration {
+    datasetName: string;
+    format: string;
+    provider: outputs.SourceFileSecureConfigurationProvider;
+    readerOptions?: string;
+    sourceType: string;
+    url: string;
+}
+
+export interface SourceFileSecureConfigurationProvider {
+    sourceFileSecureStorageProviderAzBlobAzureBlobStorage?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage;
+    sourceFileSecureStorageProviderGcsGoogleCloudStorage?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage;
+    sourceFileSecureStorageProviderHttpsPublicWeb?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb;
+    sourceFileSecureStorageProviderS3AmazonWebServices?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices;
+    sourceFileSecureStorageProviderScpSecureCopyProtocol?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol;
+    sourceFileSecureStorageProviderSftpSecureFileTransferProtocol?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol;
+    sourceFileSecureStorageProviderSshSecureShell?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell;
+    sourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage;
+    sourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage;
+    sourceFileSecureUpdateStorageProviderHttpsPublicWeb?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb;
+    sourceFileSecureUpdateStorageProviderS3AmazonWebServices?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices;
+    sourceFileSecureUpdateStorageProviderScpSecureCopyProtocol?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol;
+    sourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol;
+    sourceFileSecureUpdateStorageProviderSshSecureShell?: outputs.SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderAzBlobAzureBlobStorage {
+    sasToken?: string;
+    sharedKey?: string;
+    storage: string;
+    storageAccount: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson?: string;
+    storage: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderHttpsPublicWeb {
+    storage: string;
+    userAgent?: boolean;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderS3AmazonWebServices {
+    awsAccessKeyId?: string;
+    awsSecretAccessKey?: string;
+    storage: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderScpSecureCopyProtocol {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSftpSecureFileTransferProtocol {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureStorageProviderSshSecureShell {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderAzBlobAzureBlobStorage {
+    sasToken?: string;
+    sharedKey?: string;
+    storage: string;
+    storageAccount: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderGcsGoogleCloudStorage {
+    serviceAccountJson?: string;
+    storage: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderHttpsPublicWeb {
+    storage: string;
+    userAgent?: boolean;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderS3AmazonWebServices {
+    awsAccessKeyId?: string;
+    awsSecretAccessKey?: string;
+    storage: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderScpSecureCopyProtocol {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSftpSecureFileTransferProtocol {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStorageProviderSshSecureShell {
+    host: string;
+    password?: string;
+    port?: string;
+    storage: string;
+    user: string;
+}
+
+export interface SourceFireboltConfiguration {
+    account?: string;
+    database: string;
+    engine?: string;
+    host?: string;
+    password: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface SourceFreshcallerConfiguration {
+    apiKey: string;
+    domain: string;
+    requestsPerMinute?: number;
+    sourceType: string;
+    startDate: string;
+    syncLagMinutes?: number;
+}
+
+export interface SourceFreshdeskConfiguration {
+    apiKey: string;
+    domain: string;
+    requestsPerMinute?: number;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceFreshsalesConfiguration {
+    apiKey: string;
+    domainName: string;
+    sourceType: string;
+}
+
+export interface SourceGainsightPxConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceGcsConfiguration {
+    gcsBucket: string;
+    gcsPath: string;
+    serviceAccount: string;
+    sourceType: string;
+}
+
+export interface SourceGetlagoConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceGithubConfiguration {
+    branch?: string;
+    credentials?: outputs.SourceGithubConfigurationCredentials;
+    repository: string;
+    requestsPerHour?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceGithubConfigurationCredentials {
+    sourceGithubAuthenticationOAuth?: outputs.SourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth;
+    sourceGithubAuthenticationPersonalAccessToken?: outputs.SourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken;
+    sourceGithubUpdateAuthenticationOAuth?: outputs.SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth;
+    sourceGithubUpdateAuthenticationPersonalAccessToken?: outputs.SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubAuthenticationOAuth {
+    accessToken: string;
+    clientId?: string;
+    clientSecret?: string;
+    optionTitle?: string;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubAuthenticationPersonalAccessToken {
+    optionTitle?: string;
+    personalAccessToken: string;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationOAuth {
+    accessToken: string;
+    clientId?: string;
+    clientSecret?: string;
+    optionTitle?: string;
+}
+
+export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationPersonalAccessToken {
+    optionTitle?: string;
+    personalAccessToken: string;
+}
+
+export interface SourceGitlabConfiguration {
+    apiUrl?: string;
+    credentials: outputs.SourceGitlabConfigurationCredentials;
+    groups?: string;
+    projects?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceGitlabConfigurationCredentials {
+    sourceGitlabAuthorizationMethodOAuth20?: outputs.SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20;
+    sourceGitlabAuthorizationMethodPrivateToken?: outputs.SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken;
+    sourceGitlabUpdateAuthorizationMethodOAuth20?: outputs.SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20;
+    sourceGitlabUpdateAuthorizationMethodPrivateToken?: outputs.SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceGlassfrogConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceGnewsConfiguration {
+    apiKey: string;
+    country?: string;
+    endDate?: string;
+    ins?: string[];
+    language?: string;
+    nullables?: string[];
+    query: string;
+    sortby?: string;
+    sourceType: string;
+    startDate?: string;
+    topHeadlinesQuery?: string;
+    topHeadlinesTopic?: string;
+}
+
+export interface SourceGoogleAdsConfiguration {
+    conversionWindowDays?: number;
+    credentials: outputs.SourceGoogleAdsConfigurationCredentials;
+    customQueries?: outputs.SourceGoogleAdsConfigurationCustomQuery[];
+    customerId: string;
+    endDate?: string;
+    loginCustomerId?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceGoogleAdsConfigurationCredentials {
+    accessToken?: string;
+    clientId: string;
+    clientSecret: string;
+    developerToken: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleAdsConfigurationCustomQuery {
+    query: string;
+    tableName: string;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfiguration {
+    credentials?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentials;
+    customReports?: string;
+    dateRangesStartDate: string;
+    propertyId: string;
+    sourceType: string;
+    windowInDays?: number;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentials {
+    sourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiCredentialsServiceAccountKeyAuthentication {
+    authType?: string;
+    credentialsJson: string;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnalyticsDataApiUpdateCredentialsServiceAccountKeyAuthentication {
+    authType?: string;
+    credentialsJson: string;
+}
+
+export interface SourceGoogleAnalyticsV4Configuration {
+    credentials?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentials;
+    customReports?: string;
+    sourceType: string;
+    startDate: string;
+    viewId: string;
+    windowInDays?: number;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentials {
+    sourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication;
+    sourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth;
+    sourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsAuthenticateViaGoogleOauth {
+    accessToken?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4CredentialsServiceAccountKeyAuthentication {
+    authType?: string;
+    credentialsJson: string;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsAuthenticateViaGoogleOauth {
+    accessToken?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV4UpdateCredentialsServiceAccountKeyAuthentication {
+    authType?: string;
+    credentialsJson: string;
+}
+
+export interface SourceGoogleDirectoryConfiguration {
+    credentials?: outputs.SourceGoogleDirectoryConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentials {
+    sourceGoogleDirectoryGoogleCredentialsServiceAccountKey?: outputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey;
+    sourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth?: outputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth;
+    sourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey?: outputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey;
+    sourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth?: outputs.SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsServiceAccountKey {
+    credentialsJson: string;
+    credentialsTitle?: string;
+    email: string;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle?: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsServiceAccountKey {
+    credentialsJson: string;
+    credentialsTitle?: string;
+    email: string;
+}
+
+export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpdateGoogleCredentialsSignInViaGoogleOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle?: string;
+    refreshToken: string;
+}
+
+export interface SourceGooglePagespeedInsightsConfiguration {
+    apiKey?: string;
+    categories: string[];
+    sourceType: string;
+    strategies: string[];
+    urls: string[];
+}
+
+export interface SourceGoogleSearchConsoleConfiguration {
+    authorization: outputs.SourceGoogleSearchConsoleConfigurationAuthorization;
+    customReports?: string;
+    dataState?: string;
+    endDate?: string;
+    siteUrls: string[];
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorization {
+    sourceGoogleSearchConsoleAuthenticationTypeOAuth?: outputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth;
+    sourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication?: outputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth?: outputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth;
+    sourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication?: outputs.SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeOAuth {
+    accessToken?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: string;
+    email: string;
+    serviceAccountInfo: string;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeOAuth {
+    accessToken?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearchConsoleUpdateAuthenticationTypeServiceAccountKeyAuthentication {
+    authType: string;
+    email: string;
+    serviceAccountInfo: string;
+}
+
+export interface SourceGoogleSheetsConfiguration {
+    credentials: outputs.SourceGoogleSheetsConfigurationCredentials;
+    namesConversion?: boolean;
+    rowBatchSize?: number;
+    sourceType: string;
+    spreadsheetId: string;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentials {
+    sourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth?: outputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth;
+    sourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication?: outputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication;
+    sourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth?: outputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth;
+    sourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication?: outputs.SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationAuthenticateViaGoogleOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsAuthenticationServiceAccountKeyAuthentication {
+    authType: string;
+    serviceAccountInfo: string;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationAuthenticateViaGoogleOAuth {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAuthenticationServiceAccountKeyAuthentication {
+    authType: string;
+    serviceAccountInfo: string;
+}
+
+export interface SourceGoogleWebfontsConfiguration {
+    alt?: string;
+    apiKey: string;
+    prettyPrint?: string;
+    sort?: string;
+    sourceType: string;
+}
+
+export interface SourceGoogleWorkspaceAdminReportsConfiguration {
+    credentialsJson: string;
+    email: string;
+    lookback?: number;
+    sourceType: string;
+}
+
+export interface SourceGreenhouseConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceGridlyConfiguration {
+    apiKey: string;
+    gridId: string;
+    sourceType: string;
+}
+
+export interface SourceHarvestConfiguration {
+    accountId: string;
+    credentials?: outputs.SourceHarvestConfigurationCredentials;
+    replicationEndDate?: string;
+    replicationStartDate: string;
+    sourceType: string;
+}
+
+export interface SourceHarvestConfigurationCredentials {
+    sourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth?: outputs.SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth;
+    sourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken?: outputs.SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth?: outputs.SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth;
+    sourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken?: outputs.SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType?: string;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateViaHarvestOAuth {
+    additionalProperties?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticationMechanismAuthenticateWithPersonalAccessToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType?: string;
+}
+
+export interface SourceHubplannerConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceHubspotConfiguration {
+    credentials: outputs.SourceHubspotConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceHubspotConfigurationCredentials {
+    sourceHubspotAuthenticationOAuth?: outputs.SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth;
+    sourceHubspotAuthenticationPrivateApp?: outputs.SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp;
+    sourceHubspotUpdateAuthenticationOAuth?: outputs.SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth;
+    sourceHubspotUpdateAuthenticationPrivateApp?: outputs.SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotAuthenticationPrivateApp {
+    accessToken: string;
+    credentialsTitle: string;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationOAuth {
+    clientId: string;
+    clientSecret: string;
+    credentialsTitle: string;
+    refreshToken: string;
+}
+
+export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticationPrivateApp {
+    accessToken: string;
+    credentialsTitle: string;
+}
+
+export interface SourceInsightlyConfiguration {
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface SourceInstagramConfiguration {
+    accessToken: string;
+    clientId?: string;
+    clientSecret?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceInstatusConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceIntercomConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceIp2whoisConfiguration {
+    apiKey?: string;
+    domain?: string;
+    sourceType?: string;
+}
+
+export interface SourceIterableConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceJiraConfiguration {
+    apiToken: string;
+    domain: string;
+    email: string;
+    enableExperimentalStreams?: boolean;
+    expandIssueChangelog?: boolean;
+    projects?: string[];
+    renderFields?: boolean;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceK6CloudConfiguration {
+    apiToken: string;
+    sourceType: string;
+}
+
+export interface SourceKlarnaConfiguration {
+    password: string;
+    playground: boolean;
+    region: string;
+    sourceType: string;
+    username: string;
+}
+
+export interface SourceKlaviyoConfiguration {
+    apiKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceKustomerSingerConfiguration {
+    apiToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceKyveConfiguration {
+    maxPages?: number;
+    pageSize?: number;
+    poolIds: string;
+    sourceType: string;
+    startIds: string;
+    urlBase?: string;
+}
+
+export interface SourceLaunchdarklyConfiguration {
+    accessToken: string;
+    sourceType: string;
+}
+
+export interface SourceLemlistConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceLeverHiringConfiguration {
+    credentials?: outputs.SourceLeverHiringConfigurationCredentials;
+    environment?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceLeverHiringConfigurationCredentials {
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey?: outputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey;
+    sourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth?: outputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey?: outputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey;
+    sourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth?: outputs.SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: string;
+    authType?: string;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType?: string;
+    clientId?: string;
+    clientSecret?: string;
+    refreshToken: string;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverApiKey {
+    apiKey: string;
+    authType?: string;
+}
+
+export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthenticationMechanismAuthenticateViaLeverOAuth {
+    authType?: string;
+    clientId?: string;
+    clientSecret?: string;
+    refreshToken: string;
+}
+
+export interface SourceLinkedinAdsConfiguration {
+    accountIds?: number[];
+    adAnalyticsReports?: outputs.SourceLinkedinAdsConfigurationAdAnalyticsReport[];
+    credentials?: outputs.SourceLinkedinAdsConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceLinkedinAdsConfigurationAdAnalyticsReport {
+    name: string;
+    pivotBy: string;
+    timeGranularity: string;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentials {
+    sourceLinkedinAdsAuthenticationAccessToken?: outputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken;
+    sourceLinkedinAdsAuthenticationOAuth20?: outputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20;
+    sourceLinkedinAdsUpdateAuthenticationAccessToken?: outputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken;
+    sourceLinkedinAdsUpdateAuthenticationOAuth20?: outputs.SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationAccessToken {
+    accessToken: string;
+    authMethod?: string;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsAuthenticationOAuth20 {
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationAccessToken {
+    accessToken: string;
+    authMethod?: string;
+}
+
+export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthenticationOAuth20 {
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceLinkedinPagesConfiguration {
+    credentials?: outputs.SourceLinkedinPagesConfigurationCredentials;
+    orgId: string;
+    sourceType: string;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentials {
+    sourceLinkedinPagesAuthenticationAccessToken?: outputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken;
+    sourceLinkedinPagesAuthenticationOAuth20?: outputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20;
+    sourceLinkedinPagesUpdateAuthenticationAccessToken?: outputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken;
+    sourceLinkedinPagesUpdateAuthenticationOAuth20?: outputs.SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationAccessToken {
+    accessToken: string;
+    authMethod?: string;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesAuthenticationOAuth20 {
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationAccessToken {
+    accessToken: string;
+    authMethod?: string;
+}
+
+export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateAuthenticationOAuth20 {
+    authMethod?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceLinnworksConfiguration {
+    applicationId: string;
+    applicationSecret: string;
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface SourceLokaliseConfiguration {
+    apiKey: string;
+    projectId: string;
+    sourceType: string;
+}
+
+export interface SourceMailchimpConfiguration {
+    campaignId?: string;
+    credentials?: outputs.SourceMailchimpConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface SourceMailchimpConfigurationCredentials {
+    sourceMailchimpAuthenticationApiKey?: outputs.SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey;
+    sourceMailchimpAuthenticationOAuth20?: outputs.SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20;
+    sourceMailchimpUpdateAuthenticationApiKey?: outputs.SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey;
+    sourceMailchimpUpdateAuthenticationOAuth20?: outputs.SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationApiKey {
+    apikey: string;
+    authType: string;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpAuthenticationOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationApiKey {
+    apikey: string;
+    authType: string;
+}
+
+export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceMailgunConfiguration {
+    domainRegion?: string;
+    privateKey: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceMailjetSmsConfiguration {
+    endDate?: number;
+    sourceType: string;
+    startDate?: number;
+    token: string;
+}
+
+export interface SourceMarketoConfiguration {
+    clientId: string;
+    clientSecret: string;
+    domainUrl: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceMetabaseConfiguration {
+    instanceApiUrl: string;
+    password?: string;
+    sessionToken?: string;
+    sourceType: string;
+    username?: string;
+}
+
+export interface SourceMicrosoftTeamsConfiguration {
+    credentials?: outputs.SourceMicrosoftTeamsConfigurationCredentials;
+    period: string;
+    sourceType: string;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentials {
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft?: outputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft;
+    sourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20?: outputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft?: outputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft;
+    sourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20?: outputs.SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    tenantId: string;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tenantId: string;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoft {
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    tenantId: string;
+}
+
+export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdateAuthenticationMechanismAuthenticateViaMicrosoftOAuth20 {
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tenantId: string;
 }
 
 export interface SourceMixpanelConfiguration {
@@ -262,6 +9785,1267 @@ export interface SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthe
     username: string;
 }
 
+export interface SourceMondayConfiguration {
+    credentials?: outputs.SourceMondayConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface SourceMondayConfigurationCredentials {
+    sourceMondayAuthorizationMethodApiToken?: outputs.SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken;
+    sourceMondayAuthorizationMethodOAuth20?: outputs.SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20;
+    sourceMondayUpdateAuthorizationMethodApiToken?: outputs.SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken;
+    sourceMondayUpdateAuthorizationMethodOAuth20?: outputs.SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    subdomain?: string;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    subdomain?: string;
+}
+
+export interface SourceMongodbConfiguration {
+    authSource?: string;
+    database: string;
+    instanceType?: outputs.SourceMongodbConfigurationInstanceType;
+    password?: string;
+    sourceType: string;
+    user?: string;
+}
+
+export interface SourceMongodbConfigurationInstanceType {
+    sourceMongodbMongoDbInstanceTypeMongoDbAtlas?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas;
+    sourceMongodbMongoDbInstanceTypeReplicaSet?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet;
+    sourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance;
+    sourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas;
+    sourceMongodbUpdateMongoDbInstanceTypeReplicaSet?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet;
+    sourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance?: outputs.SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: string;
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet?: string;
+    serverAddresses: string;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeMongoDbAtlas {
+    additionalProperties?: string;
+    clusterUrl: string;
+    instance: string;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeReplicaSet {
+    instance: string;
+    replicaSet?: string;
+    serverAddresses: string;
+}
+
+export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInstanceTypeStandaloneMongoDbInstance {
+    host: string;
+    instance: string;
+    port: number;
+}
+
+export interface SourceMongodbInternalPocConfiguration {
+    authSource?: string;
+    connectionString?: string;
+    password?: string;
+    replicaSet?: string;
+    sourceType: string;
+    user?: string;
+}
+
+export interface SourceMssqlConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    replicationMethod?: outputs.SourceMssqlConfigurationReplicationMethod;
+    schemas?: string[];
+    sourceType: string;
+    sslMethod?: outputs.SourceMssqlConfigurationSslMethod;
+    tunnelMethod?: outputs.SourceMssqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourceMssqlConfigurationReplicationMethod {
+    sourceMssqlReplicationMethodLogicalReplicationCdc?: outputs.SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc;
+    sourceMssqlReplicationMethodStandard?: outputs.SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard;
+    sourceMssqlUpdateReplicationMethodLogicalReplicationCdc?: outputs.SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc;
+    sourceMssqlUpdateReplicationMethodStandard?: outputs.SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodLogicalReplicationCdc {
+    dataToSync?: string;
+    initialWaitingSeconds?: number;
+    method: string;
+    snapshotIsolation?: string;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodLogicalReplicationCdc {
+    dataToSync?: string;
+    initialWaitingSeconds?: number;
+    method: string;
+    snapshotIsolation?: string;
+}
+
+export interface SourceMssqlConfigurationReplicationMethodSourceMssqlUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourceMssqlConfigurationSslMethod {
+    sourceMssqlSslMethodEncryptedTrustServerCertificate?: outputs.SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate;
+    sourceMssqlSslMethodEncryptedVerifyCertificate?: outputs.SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate;
+    sourceMssqlUpdateSslMethodEncryptedTrustServerCertificate?: outputs.SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate;
+    sourceMssqlUpdateSslMethodEncryptedVerifyCertificate?: outputs.SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: string;
+    sslMethod: string;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedTrustServerCertificate {
+    sslMethod: string;
+}
+
+export interface SourceMssqlConfigurationSslMethodSourceMssqlUpdateSslMethodEncryptedVerifyCertificate {
+    hostNameInCertificate?: string;
+    sslMethod: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethod {
+    sourceMssqlSshTunnelMethodNoTunnel?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel;
+    sourceMssqlSshTunnelMethodPasswordAuthentication?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication;
+    sourceMssqlSshTunnelMethodSshKeyAuthentication?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication;
+    sourceMssqlUpdateSshTunnelMethodNoTunnel?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel;
+    sourceMssqlUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication;
+    sourceMssqlUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceMyHoursConfiguration {
+    email: string;
+    logsBatchSize?: number;
+    password: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceMysqlConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    replicationMethod: outputs.SourceMysqlConfigurationReplicationMethod;
+    sourceType: string;
+    sslMode?: outputs.SourceMysqlConfigurationSslMode;
+    tunnelMethod?: outputs.SourceMysqlConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourceMysqlConfigurationReplicationMethod {
+    sourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc?: outputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc;
+    sourceMysqlUpdateMethodScanChangesWithUserDefinedCursor?: outputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor;
+    sourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc?: outputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc;
+    sourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor?: outputs.SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds?: number;
+    method: string;
+    serverTimeZone?: string;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateMethodScanChangesWithUserDefinedCursor {
+    method: string;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodReadChangesUsingBinaryLogCdc {
+    initialWaitingSeconds?: number;
+    method: string;
+    serverTimeZone?: string;
+}
+
+export interface SourceMysqlConfigurationReplicationMethodSourceMysqlUpdateUpdateMethodScanChangesWithUserDefinedCursor {
+    method: string;
+}
+
+export interface SourceMysqlConfigurationSslMode {
+    sourceMysqlSslModesPreferred?: outputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred;
+    sourceMysqlSslModesRequired?: outputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesRequired;
+    sourceMysqlSslModesVerifyCa?: outputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa;
+    sourceMysqlSslModesVerifyIdentity?: outputs.SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity;
+    sourceMysqlUpdateSslModesPreferred?: outputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred;
+    sourceMysqlUpdateSslModesRequired?: outputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired;
+    sourceMysqlUpdateSslModesVerifyCa?: outputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa;
+    sourceMysqlUpdateSslModesVerifyIdentity?: outputs.SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesPreferred {
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesRequired {
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyCa {
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlSslModesVerifyIdentity {
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesPreferred {
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesRequired {
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyCa {
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationSslModeSourceMysqlUpdateSslModesVerifyIdentity {
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethod {
+    sourceMysqlSshTunnelMethodNoTunnel?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel;
+    sourceMysqlSshTunnelMethodPasswordAuthentication?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication;
+    sourceMysqlSshTunnelMethodSshKeyAuthentication?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication;
+    sourceMysqlUpdateSshTunnelMethodNoTunnel?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel;
+    sourceMysqlUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication;
+    sourceMysqlUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceNetsuiteConfiguration {
+    consumerKey: string;
+    consumerSecret: string;
+    objectTypes?: string[];
+    realm: string;
+    sourceType: string;
+    startDatetime: string;
+    tokenKey: string;
+    tokenSecret: string;
+    windowInDays?: number;
+}
+
+export interface SourceNotionConfiguration {
+    credentials?: outputs.SourceNotionConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceNotionConfigurationCredentials {
+    sourceNotionAuthenticateUsingAccessToken?: outputs.SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken;
+    sourceNotionAuthenticateUsingOAuth20?: outputs.SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20;
+    sourceNotionUpdateAuthenticateUsingAccessToken?: outputs.SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken;
+    sourceNotionUpdateAuthenticateUsingOAuth20?: outputs.SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingAccessToken {
+    authType: string;
+    token: string;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionAuthenticateUsingOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingAccessToken {
+    authType: string;
+    token: string;
+}
+
+export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsingOAuth20 {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceNytimesConfiguration {
+    apiKey: string;
+    endDate?: string;
+    period: number;
+    shareType?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceOktaConfiguration {
+    credentials?: outputs.SourceOktaConfigurationCredentials;
+    domain?: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceOktaConfigurationCredentials {
+    sourceOktaAuthorizationMethodApiToken?: outputs.SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken;
+    sourceOktaAuthorizationMethodOAuth20?: outputs.SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20;
+    sourceOktaUpdateAuthorizationMethodApiToken?: outputs.SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken;
+    sourceOktaUpdateAuthorizationMethodOAuth20?: outputs.SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken {
+    apiToken: string;
+    authType: string;
+}
+
+export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20 {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceOmnisendConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceOnesignalConfiguration {
+    applications: outputs.SourceOnesignalConfigurationApplication[];
+    outcomeNames: string;
+    sourceType: string;
+    startDate: string;
+    userAuthKey: string;
+}
+
+export interface SourceOnesignalConfigurationApplication {
+    appApiKey: string;
+    appId: string;
+    appName?: string;
+}
+
+export interface SourceOpenweatherConfiguration {
+    appid: string;
+    lang?: string;
+    lat: string;
+    lon: string;
+    sourceType: string;
+    units?: string;
+}
+
+export interface SourceOracleConfiguration {
+    connectionData?: outputs.SourceOracleConfigurationConnectionData;
+    encryption: outputs.SourceOracleConfigurationEncryption;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    schemas?: string[];
+    sourceType: string;
+    tunnelMethod?: outputs.SourceOracleConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourceOracleConfigurationConnectionData {
+    sourceOracleConnectByServiceName?: outputs.SourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName;
+    sourceOracleConnectBySystemIdSid?: outputs.SourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid;
+    sourceOracleUpdateConnectByServiceName?: outputs.SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName;
+    sourceOracleUpdateConnectBySystemIdSid?: outputs.SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName {
+    connectionType?: string;
+    serviceName: string;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid {
+    connectionType?: string;
+    sid: string;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName {
+    connectionType?: string;
+    serviceName: string;
+}
+
+export interface SourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid {
+    connectionType?: string;
+    sid: string;
+}
+
+export interface SourceOracleConfigurationEncryption {
+    sourceOracleEncryptionNativeNetworkEncryptionNne?: outputs.SourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne;
+    sourceOracleEncryptionTlsEncryptedVerifyCertificate?: outputs.SourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate;
+    sourceOracleUpdateEncryptionNativeNetworkEncryptionNne?: outputs.SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne;
+    sourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate?: outputs.SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm?: string;
+    encryptionMethod: string;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: string;
+    sslCertificate: string;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne {
+    encryptionAlgorithm?: string;
+    encryptionMethod: string;
+}
+
+export interface SourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate {
+    encryptionMethod: string;
+    sslCertificate: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethod {
+    sourceOracleSshTunnelMethodNoTunnel?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel;
+    sourceOracleSshTunnelMethodPasswordAuthentication?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication;
+    sourceOracleSshTunnelMethodSshKeyAuthentication?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication;
+    sourceOracleUpdateSshTunnelMethodNoTunnel?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel;
+    sourceOracleUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication;
+    sourceOracleUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourceOrbConfiguration {
+    apiKey: string;
+    lookbackWindowDays?: number;
+    numericEventPropertiesKeys?: string[];
+    planId?: string;
+    sourceType: string;
+    startDate: string;
+    stringEventPropertiesKeys?: string[];
+    subscriptionUsageGroupingKey?: string;
+}
+
+export interface SourceOrbitConfiguration {
+    apiToken: string;
+    sourceType: string;
+    startDate?: string;
+    workspace: string;
+}
+
+export interface SourceOutbrainAmplifyConfiguration {
+    credentials: outputs.SourceOutbrainAmplifyConfigurationCredentials;
+    endDate?: string;
+    geoLocationBreakdown?: string;
+    reportGranularity?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentials {
+    sourceOutbrainAmplifyAuthenticationMethodAccessToken?: outputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken;
+    sourceOutbrainAmplifyAuthenticationMethodUsernamePassword?: outputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken?: outputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken;
+    sourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword?: outputs.SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken {
+    accessToken: string;
+    type: string;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword {
+    password: string;
+    type: string;
+    username: string;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken {
+    accessToken: string;
+    type: string;
+}
+
+export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword {
+    password: string;
+    type: string;
+    username: string;
+}
+
+export interface SourceOutreachConfiguration {
+    clientId: string;
+    clientSecret: string;
+    redirectUri: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourcePaypalTransactionConfiguration {
+    clientId: string;
+    clientSecret: string;
+    isSandbox: boolean;
+    refreshToken?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourcePaystackConfiguration {
+    lookbackWindowDays?: number;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourcePendoConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourcePersistiqConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourcePexelsApiConfiguration {
+    apiKey: string;
+    color?: string;
+    locale?: string;
+    orientation?: string;
+    query: string;
+    size?: string;
+    sourceType: string;
+}
+
+export interface SourcePinterestConfiguration {
+    credentials?: outputs.SourcePinterestConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    statuses?: string[];
+}
+
+export interface SourcePinterestConfigurationCredentials {
+    sourcePinterestAuthorizationMethodAccessToken?: outputs.SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken;
+    sourcePinterestAuthorizationMethodOAuth20?: outputs.SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20;
+    sourcePinterestUpdateAuthorizationMethodAccessToken?: outputs.SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken;
+    sourcePinterestUpdateAuthorizationMethodOAuth20?: outputs.SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20 {
+    authMethod: string;
+    clientId?: string;
+    clientSecret?: string;
+    refreshToken: string;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken {
+    accessToken: string;
+    authMethod: string;
+}
+
+export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20 {
+    authMethod: string;
+    clientId?: string;
+    clientSecret?: string;
+    refreshToken: string;
+}
+
+export interface SourcePipedriveConfiguration {
+    authorization?: outputs.SourcePipedriveConfigurationAuthorization;
+    replicationStartDate: string;
+    sourceType: string;
+}
+
+export interface SourcePipedriveConfigurationAuthorization {
+    apiToken: string;
+    authType: string;
+}
+
+export interface SourcePocketConfiguration {
+    accessToken: string;
+    consumerKey: string;
+    contentType?: string;
+    detailType?: string;
+    domain?: string;
+    favorite?: boolean;
+    search?: string;
+    since?: string;
+    sort?: string;
+    sourceType: string;
+    state?: string;
+    tag?: string;
+}
+
+export interface SourcePokeapiConfiguration {
+    pokemonName: string;
+    sourceType: string;
+}
+
+export interface SourcePolygonStockApiConfiguration {
+    adjusted?: string;
+    apiKey: string;
+    endDate: string;
+    limit?: number;
+    multiplier: number;
+    sort?: string;
+    sourceType: string;
+    startDate: string;
+    stocksTicker: string;
+    timespan: string;
+}
+
+export interface SourcePostgresConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password?: string;
+    port: number;
+    replicationMethod?: outputs.SourcePostgresConfigurationReplicationMethod;
+    schemas?: string[];
+    sourceType: string;
+    sslMode?: outputs.SourcePostgresConfigurationSslMode;
+    tunnelMethod?: outputs.SourcePostgresConfigurationTunnelMethod;
+    username: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethod {
+    sourcePostgresReplicationMethodLogicalReplicationCdc?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc;
+    sourcePostgresReplicationMethodStandard?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard;
+    sourcePostgresReplicationMethodStandardXmin?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin;
+    sourcePostgresUpdateReplicationMethodLogicalReplicationCdc?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc;
+    sourcePostgresUpdateReplicationMethodStandard?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard;
+    sourcePostgresUpdateReplicationMethodStandardXmin?: outputs.SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds?: number;
+    lsnCommitBehaviour?: string;
+    method: string;
+    plugin?: string;
+    publication: string;
+    queueSize?: number;
+    replicationSlot: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc {
+    additionalProperties?: string;
+    initialWaitingSeconds?: number;
+    lsnCommitBehaviour?: string;
+    method: string;
+    plugin?: string;
+    publication: string;
+    queueSize?: number;
+    replicationSlot: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard {
+    method: string;
+}
+
+export interface SourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin {
+    method: string;
+}
+
+export interface SourcePostgresConfigurationSslMode {
+    sourcePostgresSslModesAllow?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesAllow;
+    sourcePostgresSslModesDisable?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesDisable;
+    sourcePostgresSslModesPrefer?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer;
+    sourcePostgresSslModesRequire?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesRequire;
+    sourcePostgresSslModesVerifyCa?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa;
+    sourcePostgresSslModesVerifyFull?: outputs.SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull;
+    sourcePostgresUpdateSslModesAllow?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow;
+    sourcePostgresUpdateSslModesDisable?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable;
+    sourcePostgresUpdateSslModesPrefer?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer;
+    sourcePostgresUpdateSslModesRequire?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire;
+    sourcePostgresUpdateSslModesVerifyCa?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa;
+    sourcePostgresUpdateSslModesVerifyFull?: outputs.SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire {
+    additionalProperties?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull {
+    additionalProperties?: string;
+    caCertificate: string;
+    clientCertificate?: string;
+    clientKey?: string;
+    clientKeyPassword?: string;
+    mode: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethod {
+    sourcePostgresSshTunnelMethodNoTunnel?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel;
+    sourcePostgresSshTunnelMethodPasswordAuthentication?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication;
+    sourcePostgresSshTunnelMethodSshKeyAuthentication?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication;
+    sourcePostgresUpdateSshTunnelMethodNoTunnel?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel;
+    sourcePostgresUpdateSshTunnelMethodPasswordAuthentication?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication;
+    sourcePostgresUpdateSshTunnelMethodSshKeyAuthentication?: outputs.SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel {
+    tunnelMethod: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication {
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+    tunnelUserPassword: string;
+}
+
+export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication {
+    sshKey: string;
+    tunnelHost: string;
+    tunnelMethod: string;
+    tunnelPort: number;
+    tunnelUser: string;
+}
+
+export interface SourcePosthogConfiguration {
+    apiKey: string;
+    baseUrl?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourcePostmarkappConfiguration {
+    sourceType: string;
+    xPostmarkAccountToken: string;
+    xPostmarkServerToken: string;
+}
+
+export interface SourcePrestashopConfiguration {
+    accessKey: string;
+    sourceType: string;
+    startDate: string;
+    url: string;
+}
+
+export interface SourcePublicApisConfiguration {
+    sourceType: string;
+}
+
+export interface SourcePunkApiConfiguration {
+    brewedAfter: string;
+    brewedBefore: string;
+    id?: string;
+    sourceType: string;
+}
+
+export interface SourcePypiConfiguration {
+    projectName: string;
+    sourceType: string;
+    version?: string;
+}
+
+export interface SourceQualarooConfiguration {
+    key: string;
+    sourceType: string;
+    startDate: string;
+    surveyIds?: string[];
+    token: string;
+}
+
+export interface SourceQuickbooksConfiguration {
+    credentials: outputs.SourceQuickbooksConfigurationCredentials;
+    sandbox: boolean;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceQuickbooksConfigurationCredentials {
+    sourceQuickbooksAuthorizationMethodOAuth20?: outputs.SourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20;
+    sourceQuickbooksUpdateAuthorizationMethodOAuth20?: outputs.SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    realmId: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    realmId: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceRailzConfiguration {
+    clientId: string;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceRechargeConfiguration {
+    accessToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceRecreationConfiguration {
+    apikey: string;
+    queryCampsites?: string;
+    sourceType: string;
+}
+
+export interface SourceRecruiteeConfiguration {
+    apiKey: string;
+    companyId: number;
+    sourceType: string;
+}
+
+export interface SourceRecurlyConfiguration {
+    apiKey: string;
+    beginTime?: string;
+    endTime?: string;
+    sourceType: string;
+}
+
+export interface SourceRedshiftConfiguration {
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    password: string;
+    port: number;
+    schemas?: string[];
+    sourceType: string;
+    username: string;
+}
+
+export interface SourceRetentlyConfiguration {
+    credentials?: outputs.SourceRetentlyConfigurationCredentials;
+    sourceType?: string;
+}
+
+export interface SourceRetentlyConfigurationCredentials {
+    sourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth?: outputs.SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth;
+    sourceRetentlyAuthenticationMechanismAuthenticateWithApiToken?: outputs.SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth?: outputs.SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth;
+    sourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken?: outputs.SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: string;
+    apiKey: string;
+    authType?: string;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth {
+    additionalProperties?: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken {
+    additionalProperties?: string;
+    apiKey: string;
+    authType?: string;
+}
+
+export interface SourceRkiCovidConfiguration {
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceRssConfiguration {
+    sourceType: string;
+    url: string;
+}
+
+export interface SourceS3Configuration {
+    dataset: string;
+    format?: outputs.SourceS3ConfigurationFormat;
+    pathPattern: string;
+    provider: outputs.SourceS3ConfigurationProvider;
+    schema?: string;
+    sourceType: string;
+}
+
+export interface SourceS3ConfigurationFormat {
+    sourceS3FileFormatAvro?: outputs.SourceS3ConfigurationFormatSourceS3FileFormatAvro;
+    sourceS3FileFormatCsv?: outputs.SourceS3ConfigurationFormatSourceS3FileFormatCsv;
+    sourceS3FileFormatJsonl?: outputs.SourceS3ConfigurationFormatSourceS3FileFormatJsonl;
+    sourceS3FileFormatParquet?: outputs.SourceS3ConfigurationFormatSourceS3FileFormatParquet;
+    sourceS3UpdateFileFormatAvro?: outputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro;
+    sourceS3UpdateFileFormatCsv?: outputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv;
+    sourceS3UpdateFileFormatJsonl?: outputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl;
+    sourceS3UpdateFileFormatParquet?: outputs.SourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatAvro {
+    filetype?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatCsv {
+    additionalReaderOptions?: string;
+    advancedOptions?: string;
+    blockSize?: number;
+    delimiter?: string;
+    doubleQuote?: boolean;
+    encoding?: string;
+    escapeChar?: string;
+    filetype?: string;
+    inferDatatypes?: boolean;
+    newlinesInValues?: boolean;
+    quoteChar?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatJsonl {
+    blockSize?: number;
+    filetype?: string;
+    newlinesInValues?: boolean;
+    unexpectedFieldBehavior?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3FileFormatParquet {
+    batchSize?: number;
+    bufferSize?: number;
+    columns?: string[];
+    filetype?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro {
+    filetype?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv {
+    additionalReaderOptions?: string;
+    advancedOptions?: string;
+    blockSize?: number;
+    delimiter?: string;
+    doubleQuote?: boolean;
+    encoding?: string;
+    escapeChar?: string;
+    filetype?: string;
+    inferDatatypes?: boolean;
+    newlinesInValues?: boolean;
+    quoteChar?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl {
+    blockSize?: number;
+    filetype?: string;
+    newlinesInValues?: boolean;
+    unexpectedFieldBehavior?: string;
+}
+
+export interface SourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet {
+    batchSize?: number;
+    bufferSize?: number;
+    columns?: string[];
+    filetype?: string;
+}
+
+export interface SourceS3ConfigurationProvider {
+    awsAccessKeyId?: string;
+    awsSecretAccessKey?: string;
+    bucket: string;
+    endpoint?: string;
+    pathPrefix?: string;
+    startDate?: string;
+}
+
 export interface SourceSalesforceConfiguration {
     authType?: string;
     clientId: string;
@@ -277,5 +11061,941 @@ export interface SourceSalesforceConfiguration {
 export interface SourceSalesforceConfigurationStreamsCriteria {
     criteria: string;
     value: string;
+}
+
+export interface SourceSalesloftConfiguration {
+    credentials: outputs.SourceSalesloftConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceSalesloftConfigurationCredentials {
+    sourceSalesloftCredentialsAuthenticateViaApiKey?: outputs.SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey;
+    sourceSalesloftCredentialsAuthenticateViaOAuth?: outputs.SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth;
+    sourceSalesloftUpdateCredentialsAuthenticateViaApiKey?: outputs.SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey;
+    sourceSalesloftUpdateCredentialsAuthenticateViaOAuth?: outputs.SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth {
+    accessToken: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceSapFieldglassConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceSecodaConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceSendgridConfiguration {
+    apikey: string;
+    sourceType: string;
+    startTime?: string;
+}
+
+export interface SourceSendinblueConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceSenseforceConfiguration {
+    accessToken: string;
+    backendUrl: string;
+    datasetId: string;
+    sliceRange?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceSentryConfiguration {
+    authToken: string;
+    discoverFields?: string[];
+    hostname?: string;
+    organization: string;
+    project: string;
+    sourceType: string;
+}
+
+export interface SourceSftpBulkConfiguration {
+    fileMostRecent?: boolean;
+    filePattern?: string;
+    fileType?: string;
+    folderPath: string;
+    host: string;
+    password?: string;
+    port: number;
+    privateKey?: string;
+    separator?: string;
+    sourceType: string;
+    startDate: string;
+    streamName: string;
+    username: string;
+}
+
+export interface SourceSftpConfiguration {
+    credentials?: outputs.SourceSftpConfigurationCredentials;
+    filePattern?: string;
+    fileTypes?: string;
+    folderPath?: string;
+    host: string;
+    port: number;
+    sourceType: string;
+    user: string;
+}
+
+export interface SourceSftpConfigurationCredentials {
+    sourceSftpAuthenticationWildcardPasswordAuthentication?: outputs.SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication;
+    sourceSftpAuthenticationWildcardSshKeyAuthentication?: outputs.SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication;
+    sourceSftpUpdateAuthenticationWildcardPasswordAuthentication?: outputs.SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication;
+    sourceSftpUpdateAuthenticationWildcardSshKeyAuthentication?: outputs.SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication {
+    authMethod: string;
+    authUserPassword: string;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication {
+    authMethod: string;
+    authSshKey: string;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication {
+    authMethod: string;
+    authUserPassword: string;
+}
+
+export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication {
+    authMethod: string;
+    authSshKey: string;
+}
+
+export interface SourceShopifyConfiguration {
+    credentials?: outputs.SourceShopifyConfigurationCredentials;
+    shop: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceShopifyConfigurationCredentials {
+    sourceShopifyShopifyAuthorizationMethodApiPassword?: outputs.SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword;
+    sourceShopifyShopifyAuthorizationMethodOAuth20?: outputs.SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20;
+    sourceShopifyUpdateShopifyAuthorizationMethodApiPassword?: outputs.SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword;
+    sourceShopifyUpdateShopifyAuthorizationMethodOAuth20?: outputs.SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword {
+    apiPassword: string;
+    authMethod: string;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    authMethod: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword {
+    apiPassword: string;
+    authMethod: string;
+}
+
+export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    authMethod: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceShortioConfiguration {
+    domainId: string;
+    secretKey: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceSlackConfiguration {
+    channelFilters?: string[];
+    credentials?: outputs.SourceSlackConfigurationCredentials;
+    joinChannels: boolean;
+    lookbackWindow: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceSlackConfigurationCredentials {
+    sourceSlackAuthenticationMechanismApiToken?: outputs.SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken;
+    sourceSlackAuthenticationMechanismSignInViaSlackOAuth?: outputs.SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth;
+    sourceSlackUpdateAuthenticationMechanismApiToken?: outputs.SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken;
+    sourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth?: outputs.SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken {
+    apiToken: string;
+    optionTitle: string;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken {
+    apiToken: string;
+    optionTitle: string;
+}
+
+export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    optionTitle: string;
+}
+
+export interface SourceSmailyConfiguration {
+    apiPassword: string;
+    apiSubdomain: string;
+    apiUsername: string;
+    sourceType: string;
+}
+
+export interface SourceSmartengageConfiguration {
+    apiKey: string;
+    sourceType: string;
+}
+
+export interface SourceSmartsheetsConfiguration {
+    credentials: outputs.SourceSmartsheetsConfigurationCredentials;
+    metadataFields?: string[];
+    sourceType: string;
+    spreadsheetId: string;
+    startDatetime?: string;
+}
+
+export interface SourceSmartsheetsConfigurationCredentials {
+    sourceSmartsheetsAuthorizationMethodApiAccessToken?: outputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken;
+    sourceSmartsheetsAuthorizationMethodOAuth20?: outputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20;
+    sourceSmartsheetsUpdateAuthorizationMethodApiAccessToken?: outputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken;
+    sourceSmartsheetsUpdateAuthorizationMethodOAuth20?: outputs.SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceSnapchatMarketingConfiguration {
+    clientId: string;
+    clientSecret: string;
+    endDate?: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceSnowflakeConfiguration {
+    credentials?: outputs.SourceSnowflakeConfigurationCredentials;
+    database: string;
+    host: string;
+    jdbcUrlParams?: string;
+    role: string;
+    schema?: string;
+    sourceType: string;
+    warehouse: string;
+}
+
+export interface SourceSnowflakeConfigurationCredentials {
+    sourceSnowflakeAuthorizationMethodOAuth20?: outputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20;
+    sourceSnowflakeAuthorizationMethodUsernameAndPassword?: outputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword;
+    sourceSnowflakeUpdateAuthorizationMethodOAuth20?: outputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20;
+    sourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword?: outputs.SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken?: string;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword {
+    authType: string;
+    password: string;
+    username: string;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken?: string;
+}
+
+export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword {
+    authType: string;
+    password: string;
+    username: string;
+}
+
+export interface SourceSonarCloudConfiguration {
+    componentKeys: string[];
+    endDate?: string;
+    organization: string;
+    sourceType: string;
+    startDate?: string;
+    userToken: string;
+}
+
+export interface SourceSpaceXApiConfiguration {
+    id?: string;
+    options?: string;
+    sourceType?: string;
+}
+
+export interface SourceSquareConfiguration {
+    credentials?: outputs.SourceSquareConfigurationCredentials;
+    includeDeletedObjects?: boolean;
+    isSandbox: boolean;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceSquareConfigurationCredentials {
+    sourceSquareAuthenticationApiKey?: outputs.SourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey;
+    sourceSquareAuthenticationOauthAuthentication?: outputs.SourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication;
+    sourceSquareUpdateAuthenticationApiKey?: outputs.SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey;
+    sourceSquareUpdateAuthenticationOauthAuthentication?: outputs.SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey {
+    apiKey: string;
+    authType: string;
+}
+
+export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication {
+    authType: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceStravaConfiguration {
+    athleteId: number;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceStripeConfiguration {
+    accountId: string;
+    clientSecret: string;
+    lookbackWindowDays?: number;
+    sliceRange?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceSurveySparrowConfiguration {
+    accessToken: string;
+    region?: outputs.SourceSurveySparrowConfigurationRegion;
+    sourceType: string;
+    surveyIds?: string[];
+}
+
+export interface SourceSurveySparrowConfigurationRegion {
+    sourceSurveySparrowBaseUrlEuBasedAccount?: outputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount;
+    sourceSurveySparrowBaseUrlGlobalAccount?: outputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount;
+    sourceSurveySparrowUpdateBaseUrlEuBasedAccount?: outputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount;
+    sourceSurveySparrowUpdateBaseUrlGlobalAccount?: outputs.SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount {
+    urlBase?: string;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount {
+    urlBase?: string;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount {
+    urlBase?: string;
+}
+
+export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount {
+    urlBase?: string;
+}
+
+export interface SourceSurveymonkeyConfiguration {
+    credentials?: outputs.SourceSurveymonkeyConfigurationCredentials;
+    origin?: string;
+    sourceType: string;
+    startDate: string;
+    surveyIds?: string[];
+}
+
+export interface SourceSurveymonkeyConfigurationCredentials {
+    accessToken: string;
+    authMethod: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceTempoConfiguration {
+    apiToken: string;
+    sourceType: string;
+}
+
+export interface SourceTheGuardianApiConfiguration {
+    apiKey: string;
+    endDate?: string;
+    query?: string;
+    section?: string;
+    sourceType: string;
+    startDate: string;
+    tag?: string;
+}
+
+export interface SourceTiktokMarketingConfiguration {
+    attributionWindow?: number;
+    credentials?: outputs.SourceTiktokMarketingConfigurationCredentials;
+    endDate?: string;
+    includeDeleted?: boolean;
+    sourceType?: string;
+    startDate?: string;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentials {
+    sourceTiktokMarketingAuthenticationMethodOAuth20?: outputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20;
+    sourceTiktokMarketingAuthenticationMethodSandboxAccessToken?: outputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken;
+    sourceTiktokMarketingUpdateAuthenticationMethodOAuth20?: outputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20;
+    sourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken?: outputs.SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20 {
+    accessToken: string;
+    advertiserId?: string;
+    appId: string;
+    authType?: string;
+    secret: string;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken {
+    accessToken: string;
+    advertiserId: string;
+    authType?: string;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20 {
+    accessToken: string;
+    advertiserId?: string;
+    appId: string;
+    authType?: string;
+    secret: string;
+}
+
+export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken {
+    accessToken: string;
+    advertiserId: string;
+    authType?: string;
+}
+
+export interface SourceTodoistConfiguration {
+    sourceType: string;
+    token: string;
+}
+
+export interface SourceTrelloConfiguration {
+    boardIds?: string[];
+    key: string;
+    sourceType: string;
+    startDate: string;
+    token: string;
+}
+
+export interface SourceTrustpilotConfiguration {
+    businessUnits: string[];
+    credentials: outputs.SourceTrustpilotConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceTrustpilotConfigurationCredentials {
+    sourceTrustpilotAuthorizationMethodApiKey?: outputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey;
+    sourceTrustpilotAuthorizationMethodOAuth20?: outputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20;
+    sourceTrustpilotUpdateAuthorizationMethodApiKey?: outputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey;
+    sourceTrustpilotUpdateAuthorizationMethodOAuth20?: outputs.SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey {
+    authType?: string;
+    clientId: string;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey {
+    authType?: string;
+    clientId: string;
+}
+
+export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceTvmazeScheduleConfiguration {
+    domesticScheduleCountryCode: string;
+    endDate?: string;
+    sourceType: string;
+    startDate: string;
+    webScheduleCountryCode?: string;
+}
+
+export interface SourceTwilioConfiguration {
+    accountSid: string;
+    authToken: string;
+    lookbackWindow?: number;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceTwilioTaskrouterConfiguration {
+    accountSid: string;
+    authToken: string;
+    sourceType: string;
+}
+
+export interface SourceTwitterConfiguration {
+    apiKey: string;
+    endDate?: string;
+    query: string;
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceTypeformConfiguration {
+    credentials: outputs.SourceTypeformConfigurationCredentials;
+    formIds?: string[];
+    sourceType: string;
+    startDate?: string;
+}
+
+export interface SourceTypeformConfigurationCredentials {
+    sourceTypeformAuthorizationMethodOAuth20?: outputs.SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20;
+    sourceTypeformAuthorizationMethodPrivateToken?: outputs.SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken;
+    sourceTypeformUpdateAuthorizationMethodOAuth20?: outputs.SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20;
+    sourceTypeformUpdateAuthorizationMethodPrivateToken?: outputs.SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    authType?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken {
+    accessToken: string;
+    authType?: string;
+}
+
+export interface SourceUsCensusConfiguration {
+    apiKey: string;
+    queryParams?: string;
+    queryPath: string;
+    sourceType: string;
+}
+
+export interface SourceVantageConfiguration {
+    accessToken: string;
+    sourceType: string;
+}
+
+export interface SourceWebflowConfiguration {
+    apiKey: string;
+    siteId: string;
+    sourceType: string;
+}
+
+export interface SourceWhiskyHunterConfiguration {
+    sourceType?: string;
+}
+
+export interface SourceWikipediaPageviewsConfiguration {
+    access: string;
+    agent: string;
+    article: string;
+    country: string;
+    end: string;
+    project: string;
+    sourceType: string;
+    start: string;
+}
+
+export interface SourceWoocommerceConfiguration {
+    apiKey: string;
+    apiSecret: string;
+    shop: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceXeroConfiguration {
+    authentication: outputs.SourceXeroConfigurationAuthentication;
+    sourceType: string;
+    startDate: string;
+    tenantId: string;
+}
+
+export interface SourceXeroConfigurationAuthentication {
+    accessToken: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+    tokenExpiryDate: string;
+}
+
+export interface SourceXkcdConfiguration {
+    sourceType?: string;
+}
+
+export interface SourceYandexMetricaConfiguration {
+    authToken: string;
+    counterId: string;
+    endDate?: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceYotpoConfiguration {
+    accessToken: string;
+    appKey: string;
+    email: string;
+    sourceType: string;
+    startDate: string;
+}
+
+export interface SourceYouniumConfiguration {
+    legalEntity: string;
+    password: string;
+    playground?: boolean;
+    sourceType: string;
+    username: string;
+}
+
+export interface SourceYoutubeAnalyticsConfiguration {
+    credentials: outputs.SourceYoutubeAnalyticsConfigurationCredentials;
+    sourceType: string;
+}
+
+export interface SourceYoutubeAnalyticsConfigurationCredentials {
+    additionalProperties?: string;
+    clientId: string;
+    clientSecret: string;
+    refreshToken: string;
+}
+
+export interface SourceZendeskChatConfiguration {
+    credentials?: outputs.SourceZendeskChatConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain?: string;
+}
+
+export interface SourceZendeskChatConfigurationCredentials {
+    sourceZendeskChatAuthorizationMethodAccessToken?: outputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken;
+    sourceZendeskChatAuthorizationMethodOAuth20?: outputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20;
+    sourceZendeskChatUpdateAuthorizationMethodAccessToken?: outputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken;
+    sourceZendeskChatUpdateAuthorizationMethodOAuth20?: outputs.SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken {
+    accessToken: string;
+    credentials: string;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    clientId?: string;
+    clientSecret?: string;
+    credentials: string;
+    refreshToken?: string;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken {
+    accessToken: string;
+    credentials: string;
+}
+
+export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20 {
+    accessToken?: string;
+    clientId?: string;
+    clientSecret?: string;
+    credentials: string;
+    refreshToken?: string;
+}
+
+export interface SourceZendeskSunshineConfiguration {
+    credentials?: outputs.SourceZendeskSunshineConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentials {
+    sourceZendeskSunshineAuthorizationMethodApiToken?: outputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken;
+    sourceZendeskSunshineAuthorizationMethodOAuth20?: outputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20;
+    sourceZendeskSunshineUpdateAuthorizationMethodApiToken?: outputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken;
+    sourceZendeskSunshineUpdateAuthorizationMethodOAuth20?: outputs.SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authMethod: string;
+    email: string;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authMethod: string;
+    email: string;
+}
+
+export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authMethod: string;
+    clientId: string;
+    clientSecret: string;
+}
+
+export interface SourceZendeskSupportConfiguration {
+    credentials?: outputs.SourceZendeskSupportConfigurationCredentials;
+    ignorePagination?: boolean;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface SourceZendeskSupportConfigurationCredentials {
+    sourceZendeskSupportAuthenticationApiToken?: outputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken;
+    sourceZendeskSupportAuthenticationOAuth20?: outputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20;
+    sourceZendeskSupportUpdateAuthenticationApiToken?: outputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken;
+    sourceZendeskSupportUpdateAuthenticationOAuth20?: outputs.SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    credentials?: string;
+    email: string;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    clientId?: string;
+    clientSecret?: string;
+    credentials?: string;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    credentials?: string;
+    email: string;
+}
+
+export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    clientId?: string;
+    clientSecret?: string;
+    credentials?: string;
+}
+
+export interface SourceZendeskTalkConfiguration {
+    credentials?: outputs.SourceZendeskTalkConfigurationCredentials;
+    sourceType: string;
+    startDate: string;
+    subdomain: string;
+}
+
+export interface SourceZendeskTalkConfigurationCredentials {
+    sourceZendeskTalkAuthenticationApiToken?: outputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken;
+    sourceZendeskTalkAuthenticationOAuth20?: outputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20;
+    sourceZendeskTalkUpdateAuthenticationApiToken?: outputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken;
+    sourceZendeskTalkUpdateAuthenticationOAuth20?: outputs.SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType?: string;
+    email: string;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authType?: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken {
+    additionalProperties?: string;
+    apiToken: string;
+    authType?: string;
+    email: string;
+}
+
+export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20 {
+    accessToken: string;
+    additionalProperties?: string;
+    authType?: string;
+    clientId?: string;
+    clientSecret?: string;
+}
+
+export interface SourceZenloopConfiguration {
+    apiToken: string;
+    dateFrom?: string;
+    sourceType: string;
+    surveyGroupId?: string;
+    surveyId?: string;
+}
+
+export interface SourceZohoCrmConfiguration {
+    clientId: string;
+    clientSecret: string;
+    dcRegion: string;
+    edition: string;
+    environment: string;
+    refreshToken: string;
+    sourceType: string;
+    startDatetime?: string;
+}
+
+export interface SourceZoomConfiguration {
+    jwtToken: string;
+    sourceType: string;
+}
+
+export interface SourceZuoraConfiguration {
+    clientId: string;
+    clientSecret: string;
+    dataQuery: string;
+    sourceType: string;
+    startDate: string;
+    tenantEndpoint: string;
+    windowInDays?: string;
 }
 
