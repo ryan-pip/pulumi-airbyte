@@ -24,12 +24,12 @@ __all__ = [
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageArgs',
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJsonArgs',
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorageArgs',
-    'DestinationAzurBlobStorageConfigurationArgs',
-    'DestinationAzurBlobStorageConfigurationFormatArgs',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs',
+    'DestinationAzureBlobStorageConfigurationArgs',
+    'DestinationAzureBlobStorageConfigurationFormatArgs',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs',
     'DestinationBigqueryConfigurationArgs',
     'DestinationBigqueryConfigurationLoadingMethodArgs',
     'DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingArgs',
@@ -1502,12 +1502,12 @@ class DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutpu
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationArgs:
+class DestinationAzureBlobStorageConfigurationArgs:
     def __init__(__self__, *,
                  azure_blob_storage_account_key: pulumi.Input[str],
                  azure_blob_storage_account_name: pulumi.Input[str],
                  destination_type: pulumi.Input[str],
-                 format: pulumi.Input['DestinationAzurBlobStorageConfigurationFormatArgs'],
+                 format: pulumi.Input['DestinationAzureBlobStorageConfigurationFormatArgs'],
                  azure_blob_storage_container_name: Optional[pulumi.Input[str]] = None,
                  azure_blob_storage_endpoint_domain_name: Optional[pulumi.Input[str]] = None,
                  azure_blob_storage_output_buffer_size: Optional[pulumi.Input[int]] = None,
@@ -1554,11 +1554,11 @@ class DestinationAzurBlobStorageConfigurationArgs:
 
     @property
     @pulumi.getter
-    def format(self) -> pulumi.Input['DestinationAzurBlobStorageConfigurationFormatArgs']:
+    def format(self) -> pulumi.Input['DestinationAzureBlobStorageConfigurationFormatArgs']:
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: pulumi.Input['DestinationAzurBlobStorageConfigurationFormatArgs']):
+    def format(self, value: pulumi.Input['DestinationAzureBlobStorageConfigurationFormatArgs']):
         pulumi.set(self, "format", value)
 
     @property
@@ -1599,12 +1599,12 @@ class DestinationAzurBlobStorageConfigurationArgs:
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationFormatArgs:
+class DestinationAzureBlobStorageConfigurationFormatArgs:
     def __init__(__self__, *,
-                 destination_azure_blob_storage_output_format_csv_comma_separated_values: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']] = None,
-                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']] = None,
-                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']] = None,
-                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']] = None):
+                 destination_azure_blob_storage_output_format_csv_comma_separated_values: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']] = None,
+                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']] = None,
+                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']] = None,
+                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']] = None):
         if destination_azure_blob_storage_output_format_csv_comma_separated_values is not None:
             pulumi.set(__self__, "destination_azure_blob_storage_output_format_csv_comma_separated_values", destination_azure_blob_storage_output_format_csv_comma_separated_values)
         if destination_azure_blob_storage_output_format_json_lines_newline_delimited_json is not None:
@@ -1616,43 +1616,43 @@ class DestinationAzurBlobStorageConfigurationFormatArgs:
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']]:
+    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']]:
         return pulumi.get(self, "destination_azure_blob_storage_output_format_csv_comma_separated_values")
 
     @destination_azure_blob_storage_output_format_csv_comma_separated_values.setter
-    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self, value: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']]):
+    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self, value: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs']]):
         pulumi.set(self, "destination_azure_blob_storage_output_format_csv_comma_separated_values", value)
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']]:
+    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']]:
         return pulumi.get(self, "destination_azure_blob_storage_output_format_json_lines_newline_delimited_json")
 
     @destination_azure_blob_storage_output_format_json_lines_newline_delimited_json.setter
-    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self, value: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']]):
+    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self, value: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs']]):
         pulumi.set(self, "destination_azure_blob_storage_output_format_json_lines_newline_delimited_json", value)
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']]:
+    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']]:
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_csv_comma_separated_values")
 
     @destination_azure_blob_storage_update_output_format_csv_comma_separated_values.setter
-    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self, value: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']]):
+    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self, value: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs']]):
         pulumi.set(self, "destination_azure_blob_storage_update_output_format_csv_comma_separated_values", value)
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']]:
+    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']]:
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json")
 
     @destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json.setter
-    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self, value: Optional[pulumi.Input['DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']]):
+    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self, value: Optional[pulumi.Input['DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs']]):
         pulumi.set(self, "destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json", value)
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs:
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesArgs:
     def __init__(__self__, *,
                  flattening: pulumi.Input[str],
                  format_type: pulumi.Input[str]):
@@ -1679,7 +1679,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs:
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonArgs:
     def __init__(__self__, *,
                  format_type: pulumi.Input[str]):
         pulumi.set(__self__, "format_type", format_type)
@@ -1695,7 +1695,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs:
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesArgs:
     def __init__(__self__, *,
                  flattening: pulumi.Input[str],
                  format_type: pulumi.Input[str]):
@@ -1722,7 +1722,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUp
 
 
 @pulumi.input_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs:
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonArgs:
     def __init__(__self__, *,
                  format_type: pulumi.Input[str]):
         pulumi.set(__self__, "format_type", format_type)

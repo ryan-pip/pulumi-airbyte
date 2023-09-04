@@ -25,12 +25,12 @@ __all__ = [
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorage',
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJson',
     'DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorage',
-    'DestinationAzurBlobStorageConfiguration',
-    'DestinationAzurBlobStorageConfigurationFormat',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues',
-    'DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson',
+    'DestinationAzureBlobStorageConfiguration',
+    'DestinationAzureBlobStorageConfigurationFormat',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues',
+    'DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson',
     'DestinationBigqueryConfiguration',
     'DestinationBigqueryConfigurationLoadingMethod',
     'DestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStaging',
@@ -901,12 +901,12 @@ __all__ = [
     'GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeOutputFormatWildcardParquetColumnarStorageResult',
     'GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardJsonLinesNewlineDelimitedJsonResult',
     'GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutputFormatWildcardParquetColumnarStorageResult',
-    'GetDestinationAzurBlobStorageConfigurationResult',
-    'GetDestinationAzurBlobStorageConfigurationFormatResult',
-    'GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult',
-    'GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult',
-    'GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult',
-    'GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult',
+    'GetDestinationAzureBlobStorageConfigurationResult',
+    'GetDestinationAzureBlobStorageConfigurationFormatResult',
+    'GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult',
+    'GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult',
+    'GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult',
+    'GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult',
     'GetDestinationBigqueryConfigurationResult',
     'GetDestinationBigqueryConfigurationLoadingMethodResult',
     'GetDestinationBigqueryConfigurationLoadingMethodDestinationBigqueryLoadingMethodGcsStagingResult',
@@ -2468,7 +2468,7 @@ class DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOutpu
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfiguration(dict):
+class DestinationAzureBlobStorageConfiguration(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2488,21 +2488,21 @@ class DestinationAzurBlobStorageConfiguration(dict):
             suggest = "azure_blob_storage_spill_size"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfiguration. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfiguration. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfiguration.__key_warning(key)
+        DestinationAzureBlobStorageConfiguration.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfiguration.__key_warning(key)
+        DestinationAzureBlobStorageConfiguration.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  azure_blob_storage_account_key: str,
                  azure_blob_storage_account_name: str,
                  destination_type: str,
-                 format: 'outputs.DestinationAzurBlobStorageConfigurationFormat',
+                 format: 'outputs.DestinationAzureBlobStorageConfigurationFormat',
                  azure_blob_storage_container_name: Optional[str] = None,
                  azure_blob_storage_endpoint_domain_name: Optional[str] = None,
                  azure_blob_storage_output_buffer_size: Optional[int] = None,
@@ -2537,7 +2537,7 @@ class DestinationAzurBlobStorageConfiguration(dict):
 
     @property
     @pulumi.getter
-    def format(self) -> 'outputs.DestinationAzurBlobStorageConfigurationFormat':
+    def format(self) -> 'outputs.DestinationAzureBlobStorageConfigurationFormat':
         return pulumi.get(self, "format")
 
     @property
@@ -2562,7 +2562,7 @@ class DestinationAzurBlobStorageConfiguration(dict):
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfigurationFormat(dict):
+class DestinationAzureBlobStorageConfigurationFormat(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2576,21 +2576,21 @@ class DestinationAzurBlobStorageConfigurationFormat(dict):
             suggest = "destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfigurationFormat. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfigurationFormat. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfigurationFormat.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormat.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfigurationFormat.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormat.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 destination_azure_blob_storage_output_format_csv_comma_separated_values: Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues'] = None,
-                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson'] = None,
-                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues'] = None,
-                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson'] = None):
+                 destination_azure_blob_storage_output_format_csv_comma_separated_values: Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues'] = None,
+                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson'] = None,
+                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues'] = None,
+                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson'] = None):
         if destination_azure_blob_storage_output_format_csv_comma_separated_values is not None:
             pulumi.set(__self__, "destination_azure_blob_storage_output_format_csv_comma_separated_values", destination_azure_blob_storage_output_format_csv_comma_separated_values)
         if destination_azure_blob_storage_output_format_json_lines_newline_delimited_json is not None:
@@ -2602,27 +2602,27 @@ class DestinationAzurBlobStorageConfigurationFormat(dict):
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues']:
+    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues']:
         return pulumi.get(self, "destination_azure_blob_storage_output_format_csv_comma_separated_values")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson']:
+    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson']:
         return pulumi.get(self, "destination_azure_blob_storage_output_format_json_lines_newline_delimited_json")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues']:
+    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues']:
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_csv_comma_separated_values")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> Optional['outputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson']:
+    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> Optional['outputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson']:
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json")
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues(dict):
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2630,14 +2630,14 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
             suggest = "format_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2658,7 +2658,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson(dict):
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2666,14 +2666,14 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
             suggest = "format_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2687,7 +2687,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOu
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues(dict):
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2695,14 +2695,14 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUp
             suggest = "format_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2723,7 +2723,7 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUp
 
 
 @pulumi.output_type
-class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson(dict):
+class DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2731,14 +2731,14 @@ class DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUp
             suggest = "format_type"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
+        DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -49057,7 +49057,7 @@ class GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatalakeUpdateOu
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationResult(dict):
+class GetDestinationAzureBlobStorageConfigurationResult(dict):
     def __init__(__self__, *,
                  azure_blob_storage_account_key: str,
                  azure_blob_storage_account_name: str,
@@ -49066,7 +49066,7 @@ class GetDestinationAzurBlobStorageConfigurationResult(dict):
                  azure_blob_storage_output_buffer_size: int,
                  azure_blob_storage_spill_size: int,
                  destination_type: str,
-                 format: 'outputs.GetDestinationAzurBlobStorageConfigurationFormatResult'):
+                 format: 'outputs.GetDestinationAzureBlobStorageConfigurationFormatResult'):
         pulumi.set(__self__, "azure_blob_storage_account_key", azure_blob_storage_account_key)
         pulumi.set(__self__, "azure_blob_storage_account_name", azure_blob_storage_account_name)
         pulumi.set(__self__, "azure_blob_storage_container_name", azure_blob_storage_container_name)
@@ -49113,17 +49113,17 @@ class GetDestinationAzurBlobStorageConfigurationResult(dict):
 
     @property
     @pulumi.getter
-    def format(self) -> 'outputs.GetDestinationAzurBlobStorageConfigurationFormatResult':
+    def format(self) -> 'outputs.GetDestinationAzureBlobStorageConfigurationFormatResult':
         return pulumi.get(self, "format")
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationFormatResult(dict):
+class GetDestinationAzureBlobStorageConfigurationFormatResult(dict):
     def __init__(__self__, *,
-                 destination_azure_blob_storage_output_format_csv_comma_separated_values: 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult',
-                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult',
-                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult',
-                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult'):
+                 destination_azure_blob_storage_output_format_csv_comma_separated_values: 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult',
+                 destination_azure_blob_storage_output_format_json_lines_newline_delimited_json: 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult',
+                 destination_azure_blob_storage_update_output_format_csv_comma_separated_values: 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult',
+                 destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json: 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult'):
         pulumi.set(__self__, "destination_azure_blob_storage_output_format_csv_comma_separated_values", destination_azure_blob_storage_output_format_csv_comma_separated_values)
         pulumi.set(__self__, "destination_azure_blob_storage_output_format_json_lines_newline_delimited_json", destination_azure_blob_storage_output_format_json_lines_newline_delimited_json)
         pulumi.set(__self__, "destination_azure_blob_storage_update_output_format_csv_comma_separated_values", destination_azure_blob_storage_update_output_format_csv_comma_separated_values)
@@ -49131,27 +49131,27 @@ class GetDestinationAzurBlobStorageConfigurationFormatResult(dict):
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult':
+    def destination_azure_blob_storage_output_format_csv_comma_separated_values(self) -> 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult':
         return pulumi.get(self, "destination_azure_blob_storage_output_format_csv_comma_separated_values")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult':
+    def destination_azure_blob_storage_output_format_json_lines_newline_delimited_json(self) -> 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult':
         return pulumi.get(self, "destination_azure_blob_storage_output_format_json_lines_newline_delimited_json")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues")
-    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult':
+    def destination_azure_blob_storage_update_output_format_csv_comma_separated_values(self) -> 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult':
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_csv_comma_separated_values")
 
     @property
     @pulumi.getter(name="destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson")
-    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> 'outputs.GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult':
+    def destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json(self) -> 'outputs.GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult':
         return pulumi.get(self, "destination_azure_blob_storage_update_output_format_json_lines_newline_delimited_json")
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult(dict):
+class GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValuesResult(dict):
     def __init__(__self__, *,
                  flattening: str,
                  format_type: str):
@@ -49170,7 +49170,7 @@ class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorag
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult(dict):
+class GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJsonResult(dict):
     def __init__(__self__, *,
                  format_type: str):
         pulumi.set(__self__, "format_type", format_type)
@@ -49182,7 +49182,7 @@ class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorag
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult(dict):
+class GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValuesResult(dict):
     def __init__(__self__, *,
                  flattening: str,
                  format_type: str):
@@ -49201,7 +49201,7 @@ class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorag
 
 
 @pulumi.output_type
-class GetDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult(dict):
+class GetDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJsonResult(dict):
     def __init__(__self__, *,
                  format_type: str):
         pulumi.set(__self__, "format_type", format_type)

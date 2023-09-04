@@ -94,7 +94,7 @@ export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalake
     formatType: pulumi.Input<string>;
 }
 
-export interface DestinationAzurBlobStorageConfiguration {
+export interface DestinationAzureBlobStorageConfiguration {
     azureBlobStorageAccountKey: pulumi.Input<string>;
     azureBlobStorageAccountName: pulumi.Input<string>;
     azureBlobStorageContainerName?: pulumi.Input<string>;
@@ -102,31 +102,31 @@ export interface DestinationAzurBlobStorageConfiguration {
     azureBlobStorageOutputBufferSize?: pulumi.Input<number>;
     azureBlobStorageSpillSize?: pulumi.Input<number>;
     destinationType: pulumi.Input<string>;
-    format: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormat>;
+    format: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormat>;
 }
 
-export interface DestinationAzurBlobStorageConfigurationFormat {
-    destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues>;
-    destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson>;
-    destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues>;
-    destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson>;
+export interface DestinationAzureBlobStorageConfigurationFormat {
+    destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues>;
+    destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson>;
+    destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues?: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues>;
+    destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson?: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson>;
 }
 
-export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues {
+export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues {
     flattening: pulumi.Input<string>;
     formatType: pulumi.Input<string>;
 }
 
-export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson {
+export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson {
     formatType: pulumi.Input<string>;
 }
 
-export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues {
+export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues {
     flattening: pulumi.Input<string>;
     formatType: pulumi.Input<string>;
 }
 
-export interface DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson {
+export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson {
     formatType: pulumi.Input<string>;
 }
 

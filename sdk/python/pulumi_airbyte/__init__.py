@@ -7,7 +7,7 @@ import typing
 # Export this package's modules as members:
 from .connection import *
 from .destination_aws_datalake import *
-from .destination_azur_blob_storage import *
+from .destination_azure_blob_storage import *
 from .destination_bigquery import *
 from .destination_bigquery_denormalized import *
 from .destination_clickhouse import *
@@ -43,7 +43,7 @@ from .destination_vertica import *
 from .destination_xata import *
 from .get_connection import *
 from .get_destination_aws_datalake import *
-from .get_destination_azur_blob_storage import *
+from .get_destination_azure_blob_storage import *
 from .get_destination_bigquery import *
 from .get_destination_bigquery_denormalized import *
 from .get_destination_clickhouse import *
@@ -515,10 +515,10 @@ _utilities.register(
  },
  {
   "pkg": "airbyte",
-  "mod": "index/destinationAzurBlobStorage",
+  "mod": "index/destinationAzureBlobStorage",
   "fqn": "pulumi_airbyte",
   "classes": {
-   "airbyte:index/destinationAzurBlobStorage:DestinationAzurBlobStorage": "DestinationAzurBlobStorage"
+   "airbyte:index/destinationAzureBlobStorage:DestinationAzureBlobStorage": "DestinationAzureBlobStorage"
   }
  },
  {

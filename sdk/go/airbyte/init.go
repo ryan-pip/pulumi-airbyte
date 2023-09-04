@@ -24,8 +24,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Connection{}
 	case "airbyte:index/destinationAWSDatalake:DestinationAWSDatalake":
 		r = &DestinationAWSDatalake{}
-	case "airbyte:index/destinationAzurBlobStorage:DestinationAzurBlobStorage":
-		r = &DestinationAzurBlobStorage{}
+	case "airbyte:index/destinationAzureBlobStorage:DestinationAzureBlobStorage":
+		r = &DestinationAzureBlobStorage{}
 	case "airbyte:index/destinationBigquery:DestinationBigquery":
 		r = &DestinationBigquery{}
 	case "airbyte:index/destinationBigqueryDenormalized:DestinationBigqueryDenormalized":
@@ -538,7 +538,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"airbyte",
-		"index/destinationAzurBlobStorage",
+		"index/destinationAzureBlobStorage",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

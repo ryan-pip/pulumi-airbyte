@@ -15,10 +15,10 @@ export type DestinationAWSDatalake = import("./destinationAWSDatalake").Destinat
 export const DestinationAWSDatalake: typeof import("./destinationAWSDatalake").DestinationAWSDatalake = null as any;
 utilities.lazyLoad(exports, ["DestinationAWSDatalake"], () => require("./destinationAWSDatalake"));
 
-export { DestinationAzurBlobStorageArgs, DestinationAzurBlobStorageState } from "./destinationAzurBlobStorage";
-export type DestinationAzurBlobStorage = import("./destinationAzurBlobStorage").DestinationAzurBlobStorage;
-export const DestinationAzurBlobStorage: typeof import("./destinationAzurBlobStorage").DestinationAzurBlobStorage = null as any;
-utilities.lazyLoad(exports, ["DestinationAzurBlobStorage"], () => require("./destinationAzurBlobStorage"));
+export { DestinationAzureBlobStorageArgs, DestinationAzureBlobStorageState } from "./destinationAzureBlobStorage";
+export type DestinationAzureBlobStorage = import("./destinationAzureBlobStorage").DestinationAzureBlobStorage;
+export const DestinationAzureBlobStorage: typeof import("./destinationAzureBlobStorage").DestinationAzureBlobStorage = null as any;
+utilities.lazyLoad(exports, ["DestinationAzureBlobStorage"], () => require("./destinationAzureBlobStorage"));
 
 export { DestinationBigqueryArgs, DestinationBigqueryState } from "./destinationBigquery";
 export type DestinationBigquery = import("./destinationBigquery").DestinationBigquery;
@@ -195,10 +195,10 @@ export const getDestinationAWSDatalake: typeof import("./getDestinationAWSDatala
 export const getDestinationAWSDatalakeOutput: typeof import("./getDestinationAWSDatalake").getDestinationAWSDatalakeOutput = null as any;
 utilities.lazyLoad(exports, ["getDestinationAWSDatalake","getDestinationAWSDatalakeOutput"], () => require("./getDestinationAWSDatalake"));
 
-export { GetDestinationAzurBlobStorageArgs, GetDestinationAzurBlobStorageResult, GetDestinationAzurBlobStorageOutputArgs } from "./getDestinationAzurBlobStorage";
-export const getDestinationAzurBlobStorage: typeof import("./getDestinationAzurBlobStorage").getDestinationAzurBlobStorage = null as any;
-export const getDestinationAzurBlobStorageOutput: typeof import("./getDestinationAzurBlobStorage").getDestinationAzurBlobStorageOutput = null as any;
-utilities.lazyLoad(exports, ["getDestinationAzurBlobStorage","getDestinationAzurBlobStorageOutput"], () => require("./getDestinationAzurBlobStorage"));
+export { GetDestinationAzureBlobStorageArgs, GetDestinationAzureBlobStorageResult, GetDestinationAzureBlobStorageOutputArgs } from "./getDestinationAzureBlobStorage";
+export const getDestinationAzureBlobStorage: typeof import("./getDestinationAzureBlobStorage").getDestinationAzureBlobStorage = null as any;
+export const getDestinationAzureBlobStorageOutput: typeof import("./getDestinationAzureBlobStorage").getDestinationAzureBlobStorageOutput = null as any;
+utilities.lazyLoad(exports, ["getDestinationAzureBlobStorage","getDestinationAzureBlobStorageOutput"], () => require("./getDestinationAzureBlobStorage"));
 
 export { GetDestinationBigqueryArgs, GetDestinationBigqueryResult, GetDestinationBigqueryOutputArgs } from "./getDestinationBigquery";
 export const getDestinationBigquery: typeof import("./getDestinationBigquery").getDestinationBigquery = null as any;
@@ -2418,8 +2418,8 @@ const _module = {
                 return new Connection(name, <any>undefined, { urn })
             case "airbyte:index/destinationAWSDatalake:DestinationAWSDatalake":
                 return new DestinationAWSDatalake(name, <any>undefined, { urn })
-            case "airbyte:index/destinationAzurBlobStorage:DestinationAzurBlobStorage":
-                return new DestinationAzurBlobStorage(name, <any>undefined, { urn })
+            case "airbyte:index/destinationAzureBlobStorage:DestinationAzureBlobStorage":
+                return new DestinationAzureBlobStorage(name, <any>undefined, { urn })
             case "airbyte:index/destinationBigquery:DestinationBigquery":
                 return new DestinationBigquery(name, <any>undefined, { urn })
             case "airbyte:index/destinationBigqueryDenormalized:DestinationBigqueryDenormalized":
@@ -2899,7 +2899,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("airbyte", "index/connection", _module)
 pulumi.runtime.registerResourceModule("airbyte", "index/destinationAWSDatalake", _module)
-pulumi.runtime.registerResourceModule("airbyte", "index/destinationAzurBlobStorage", _module)
+pulumi.runtime.registerResourceModule("airbyte", "index/destinationAzureBlobStorage", _module)
 pulumi.runtime.registerResourceModule("airbyte", "index/destinationBigquery", _module)
 pulumi.runtime.registerResourceModule("airbyte", "index/destinationBigqueryDenormalized", _module)
 pulumi.runtime.registerResourceModule("airbyte", "index/destinationClickhouse", _module)
