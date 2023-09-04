@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTodoist(ctx *pulumi.Context, args *LookupSourceTodoistArgs, opts ...pulumi.InvokeOption) (*LookupSourceTodoistResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTodoistResult
 	err := ctx.Invoke("airbyte:index/getSourceTodoist:getSourceTodoist", args, &rv, opts...)
 	if err != nil {

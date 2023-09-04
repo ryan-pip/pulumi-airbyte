@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationTimeplus(ctx *pulumi.Context, args *LookupDestinationTimeplusArgs, opts ...pulumi.InvokeOption) (*LookupDestinationTimeplusResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationTimeplusResult
 	err := ctx.Invoke("airbyte:index/getDestinationTimeplus:getDestinationTimeplus", args, &rv, opts...)
 	if err != nil {

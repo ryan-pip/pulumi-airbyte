@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTwilioTaskrouter(ctx *pulumi.Context, args *LookupSourceTwilioTaskrouterArgs, opts ...pulumi.InvokeOption) (*LookupSourceTwilioTaskrouterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTwilioTaskrouterResult
 	err := ctx.Invoke("airbyte:index/getSourceTwilioTaskrouter:getSourceTwilioTaskrouter", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFaker(ctx *pulumi.Context, args *LookupSourceFakerArgs, opts ...pulumi.InvokeOption) (*LookupSourceFakerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFakerResult
 	err := ctx.Invoke("airbyte:index/getSourceFaker:getSourceFaker", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationFirestore(ctx *pulumi.Context, args *LookupDestinationFirestoreArgs, opts ...pulumi.InvokeOption) (*LookupDestinationFirestoreResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationFirestoreResult
 	err := ctx.Invoke("airbyte:index/getDestinationFirestore:getDestinationFirestore", args, &rv, opts...)
 	if err != nil {

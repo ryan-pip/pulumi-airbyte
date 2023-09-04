@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDelighted(ctx *pulumi.Context, args *LookupSourceDelightedArgs, opts ...pulumi.InvokeOption) (*LookupSourceDelightedResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDelightedResult
 	err := ctx.Invoke("airbyte:index/getSourceDelighted:getSourceDelighted", args, &rv, opts...)
 	if err != nil {

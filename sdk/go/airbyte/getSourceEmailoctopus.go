@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceEmailoctopus(ctx *pulumi.Context, args *LookupSourceEmailoctopusArgs, opts ...pulumi.InvokeOption) (*LookupSourceEmailoctopusResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceEmailoctopusResult
 	err := ctx.Invoke("airbyte:index/getSourceEmailoctopus:getSourceEmailoctopus", args, &rv, opts...)
 	if err != nil {

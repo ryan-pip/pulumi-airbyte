@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFileSecure(ctx *pulumi.Context, args *LookupSourceFileSecureArgs, opts ...pulumi.InvokeOption) (*LookupSourceFileSecureResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFileSecureResult
 	err := ctx.Invoke("airbyte:index/getSourceFileSecure:getSourceFileSecure", args, &rv, opts...)
 	if err != nil {

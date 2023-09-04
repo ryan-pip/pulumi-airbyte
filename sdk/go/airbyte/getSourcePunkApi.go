@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePunkApi(ctx *pulumi.Context, args *LookupSourcePunkApiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePunkApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePunkApiResult
 	err := ctx.Invoke("airbyte:index/getSourcePunkApi:getSourcePunkApi", args, &rv, opts...)
 	if err != nil {

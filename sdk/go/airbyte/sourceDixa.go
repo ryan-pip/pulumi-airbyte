@@ -39,6 +39,7 @@ func NewSourceDixa(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceDixa
 	err := ctx.RegisterResource("airbyte:index/sourceDixa:SourceDixa", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceXero(ctx *pulumi.Context, args *LookupSourceXeroArgs, opts ...pulumi.InvokeOption) (*LookupSourceXeroResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceXeroResult
 	err := ctx.Invoke("airbyte:index/getSourceXero:getSourceXero", args, &rv, opts...)
 	if err != nil {

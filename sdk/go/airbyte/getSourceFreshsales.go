@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFreshsales(ctx *pulumi.Context, args *LookupSourceFreshsalesArgs, opts ...pulumi.InvokeOption) (*LookupSourceFreshsalesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFreshsalesResult
 	err := ctx.Invoke("airbyte:index/getSourceFreshsales:getSourceFreshsales", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAmplitude(ctx *pulumi.Context, args *LookupSourceAmplitudeArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmplitudeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmplitudeResult
 	err := ctx.Invoke("airbyte:index/getSourceAmplitude:getSourceAmplitude", args, &rv, opts...)
 	if err != nil {

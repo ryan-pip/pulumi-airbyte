@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRecreation(ctx *pulumi.Context, args *LookupSourceRecreationArgs, opts ...pulumi.InvokeOption) (*LookupSourceRecreationResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRecreationResult
 	err := ctx.Invoke("airbyte:index/getSourceRecreation:getSourceRecreation", args, &rv, opts...)
 	if err != nil {

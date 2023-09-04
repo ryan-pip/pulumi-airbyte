@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationBigqueryDenormalized(ctx *pulumi.Context, args *LookupDestinationBigqueryDenormalizedArgs, opts ...pulumi.InvokeOption) (*LookupDestinationBigqueryDenormalizedResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationBigqueryDenormalizedResult
 	err := ctx.Invoke("airbyte:index/getDestinationBigqueryDenormalized:getDestinationBigqueryDenormalized", args, &rv, opts...)
 	if err != nil {

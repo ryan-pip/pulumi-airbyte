@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTrustpilot(ctx *pulumi.Context, args *LookupSourceTrustpilotArgs, opts ...pulumi.InvokeOption) (*LookupSourceTrustpilotResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTrustpilotResult
 	err := ctx.Invoke("airbyte:index/getSourceTrustpilot:getSourceTrustpilot", args, &rv, opts...)
 	if err != nil {

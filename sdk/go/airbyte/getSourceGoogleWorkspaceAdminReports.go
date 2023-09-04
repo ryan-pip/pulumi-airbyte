@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleWorkspaceAdminReports(ctx *pulumi.Context, args *LookupSourceGoogleWorkspaceAdminReportsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleWorkspaceAdminReportsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleWorkspaceAdminReportsResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleWorkspaceAdminReports:getSourceGoogleWorkspaceAdminReports", args, &rv, opts...)
 	if err != nil {

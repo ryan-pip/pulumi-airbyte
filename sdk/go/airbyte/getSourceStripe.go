@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceStripe(ctx *pulumi.Context, args *LookupSourceStripeArgs, opts ...pulumi.InvokeOption) (*LookupSourceStripeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceStripeResult
 	err := ctx.Invoke("airbyte:index/getSourceStripe:getSourceStripe", args, &rv, opts...)
 	if err != nil {

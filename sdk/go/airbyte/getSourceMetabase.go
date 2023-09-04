@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMetabase(ctx *pulumi.Context, args *LookupSourceMetabaseArgs, opts ...pulumi.InvokeOption) (*LookupSourceMetabaseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMetabaseResult
 	err := ctx.Invoke("airbyte:index/getSourceMetabase:getSourceMetabase", args, &rv, opts...)
 	if err != nil {

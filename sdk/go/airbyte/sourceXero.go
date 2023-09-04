@@ -39,6 +39,7 @@ func NewSourceXero(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceXero
 	err := ctx.RegisterResource("airbyte:index/sourceXero:SourceXero", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMailchimp(ctx *pulumi.Context, args *LookupSourceMailchimpArgs, opts ...pulumi.InvokeOption) (*LookupSourceMailchimpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMailchimpResult
 	err := ctx.Invoke("airbyte:index/getSourceMailchimp:getSourceMailchimp", args, &rv, opts...)
 	if err != nil {

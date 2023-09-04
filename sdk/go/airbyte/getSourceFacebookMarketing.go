@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFacebookMarketing(ctx *pulumi.Context, args *LookupSourceFacebookMarketingArgs, opts ...pulumi.InvokeOption) (*LookupSourceFacebookMarketingResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFacebookMarketingResult
 	err := ctx.Invoke("airbyte:index/getSourceFacebookMarketing:getSourceFacebookMarketing", args, &rv, opts...)
 	if err != nil {

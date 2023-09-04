@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceChartmogul(ctx *pulumi.Context, args *LookupSourceChartmogulArgs, opts ...pulumi.InvokeOption) (*LookupSourceChartmogulResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceChartmogulResult
 	err := ctx.Invoke("airbyte:index/getSourceChartmogul:getSourceChartmogul", args, &rv, opts...)
 	if err != nil {

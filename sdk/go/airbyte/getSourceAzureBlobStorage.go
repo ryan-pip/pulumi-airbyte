@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAzureBlobStorage(ctx *pulumi.Context, args *LookupSourceAzureBlobStorageArgs, opts ...pulumi.InvokeOption) (*LookupSourceAzureBlobStorageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAzureBlobStorageResult
 	err := ctx.Invoke("airbyte:index/getSourceAzureBlobStorage:getSourceAzureBlobStorage", args, &rv, opts...)
 	if err != nil {

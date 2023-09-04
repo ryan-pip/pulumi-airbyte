@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAircall(ctx *pulumi.Context, args *LookupSourceAircallArgs, opts ...pulumi.InvokeOption) (*LookupSourceAircallResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAircallResult
 	err := ctx.Invoke("airbyte:index/getSourceAircall:getSourceAircall", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleSheets(ctx *pulumi.Context, args *LookupSourceGoogleSheetsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleSheetsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleSheetsResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleSheets:getSourceGoogleSheets", args, &rv, opts...)
 	if err != nil {

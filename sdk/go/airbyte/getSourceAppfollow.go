@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAppfollow(ctx *pulumi.Context, args *LookupSourceAppfollowArgs, opts ...pulumi.InvokeOption) (*LookupSourceAppfollowResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAppfollowResult
 	err := ctx.Invoke("airbyte:index/getSourceAppfollow:getSourceAppfollow", args, &rv, opts...)
 	if err != nil {

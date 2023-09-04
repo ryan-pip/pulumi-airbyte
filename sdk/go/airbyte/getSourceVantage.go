@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceVantage(ctx *pulumi.Context, args *LookupSourceVantageArgs, opts ...pulumi.InvokeOption) (*LookupSourceVantageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceVantageResult
 	err := ctx.Invoke("airbyte:index/getSourceVantage:getSourceVantage", args, &rv, opts...)
 	if err != nil {

@@ -39,6 +39,7 @@ func NewSourcePolygonStockApi(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePolygonStockApi
 	err := ctx.RegisterResource("airbyte:index/sourcePolygonStockApi:SourcePolygonStockApi", name, args, &resource, opts...)
 	if err != nil {

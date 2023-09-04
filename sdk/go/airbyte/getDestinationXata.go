@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationXata(ctx *pulumi.Context, args *LookupDestinationXataArgs, opts ...pulumi.InvokeOption) (*LookupDestinationXataResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationXataResult
 	err := ctx.Invoke("airbyte:index/getDestinationXata:getDestinationXata", args, &rv, opts...)
 	if err != nil {

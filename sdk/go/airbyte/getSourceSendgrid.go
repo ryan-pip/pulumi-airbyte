@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSendgrid(ctx *pulumi.Context, args *LookupSourceSendgridArgs, opts ...pulumi.InvokeOption) (*LookupSourceSendgridResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSendgridResult
 	err := ctx.Invoke("airbyte:index/getSourceSendgrid:getSourceSendgrid", args, &rv, opts...)
 	if err != nil {

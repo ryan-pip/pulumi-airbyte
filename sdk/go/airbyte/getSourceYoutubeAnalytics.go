@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceYoutubeAnalytics(ctx *pulumi.Context, args *LookupSourceYoutubeAnalyticsArgs, opts ...pulumi.InvokeOption) (*LookupSourceYoutubeAnalyticsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceYoutubeAnalyticsResult
 	err := ctx.Invoke("airbyte:index/getSourceYoutubeAnalytics:getSourceYoutubeAnalytics", args, &rv, opts...)
 	if err != nil {

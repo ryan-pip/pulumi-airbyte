@@ -39,6 +39,7 @@ func NewSourceConfigcat(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceConfigcat
 	err := ctx.RegisterResource("airbyte:index/sourceConfigcat:SourceConfigcat", name, args, &resource, opts...)
 	if err != nil {

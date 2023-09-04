@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAmazonSqs(ctx *pulumi.Context, args *LookupSourceAmazonSqsArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmazonSqsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmazonSqsResult
 	err := ctx.Invoke("airbyte:index/getSourceAmazonSqs:getSourceAmazonSqs", args, &rv, opts...)
 	if err != nil {

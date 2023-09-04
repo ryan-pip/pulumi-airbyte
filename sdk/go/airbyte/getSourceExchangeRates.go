@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceExchangeRates(ctx *pulumi.Context, args *LookupSourceExchangeRatesArgs, opts ...pulumi.InvokeOption) (*LookupSourceExchangeRatesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceExchangeRatesResult
 	err := ctx.Invoke("airbyte:index/getSourceExchangeRates:getSourceExchangeRates", args, &rv, opts...)
 	if err != nil {

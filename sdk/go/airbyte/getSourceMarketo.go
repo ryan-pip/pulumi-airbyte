@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMarketo(ctx *pulumi.Context, args *LookupSourceMarketoArgs, opts ...pulumi.InvokeOption) (*LookupSourceMarketoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMarketoResult
 	err := ctx.Invoke("airbyte:index/getSourceMarketo:getSourceMarketo", args, &rv, opts...)
 	if err != nil {

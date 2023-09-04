@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleWebfonts(ctx *pulumi.Context, args *LookupSourceGoogleWebfontsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleWebfontsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleWebfontsResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleWebfonts:getSourceGoogleWebfonts", args, &rv, opts...)
 	if err != nil {

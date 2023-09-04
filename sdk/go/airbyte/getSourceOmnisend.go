@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOmnisend(ctx *pulumi.Context, args *LookupSourceOmnisendArgs, opts ...pulumi.InvokeOption) (*LookupSourceOmnisendResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOmnisendResult
 	err := ctx.Invoke("airbyte:index/getSourceOmnisend:getSourceOmnisend", args, &rv, opts...)
 	if err != nil {

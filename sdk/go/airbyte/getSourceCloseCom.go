@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceCloseCom(ctx *pulumi.Context, args *LookupSourceCloseComArgs, opts ...pulumi.InvokeOption) (*LookupSourceCloseComResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceCloseComResult
 	err := ctx.Invoke("airbyte:index/getSourceCloseCom:getSourceCloseCom", args, &rv, opts...)
 	if err != nil {

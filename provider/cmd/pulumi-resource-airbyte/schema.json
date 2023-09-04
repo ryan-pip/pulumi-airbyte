@@ -340,7 +340,7 @@
                 "formatType"
             ]
         },
-        "airbyte:index/DestinationAzurBlobStorageConfiguration:DestinationAzurBlobStorageConfiguration": {
+        "airbyte:index/DestinationAzureBlobStorageConfiguration:DestinationAzureBlobStorageConfiguration": {
             "properties": {
                 "azureBlobStorageAccountKey": {
                     "type": "string"
@@ -364,7 +364,7 @@
                     "type": "string"
                 },
                 "format": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfigurationFormat:DestinationAzurBlobStorageConfigurationFormat"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfigurationFormat:DestinationAzureBlobStorageConfigurationFormat"
                 }
             },
             "type": "object",
@@ -375,24 +375,24 @@
                 "format"
             ]
         },
-        "airbyte:index/DestinationAzurBlobStorageConfigurationFormat:DestinationAzurBlobStorageConfigurationFormat": {
+        "airbyte:index/DestinationAzureBlobStorageConfigurationFormat:DestinationAzureBlobStorageConfigurationFormat": {
             "properties": {
                 "destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues"
                 },
                 "destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson"
                 },
                 "destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues"
                 },
                 "destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson"
                 }
             },
             "type": "object"
         },
-        "airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
+        "airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
             "properties": {
                 "flattening": {
                     "type": "string"
@@ -407,7 +407,7 @@
                 "formatType"
             ]
         },
-        "airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
+        "airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
             "properties": {
                 "formatType": {
                     "type": "string"
@@ -418,7 +418,7 @@
                 "formatType"
             ]
         },
-        "airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
+        "airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
             "properties": {
                 "flattening": {
                     "type": "string"
@@ -433,7 +433,7 @@
                 "formatType"
             ]
         },
-        "airbyte:index/DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
+        "airbyte:index/DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:DestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
             "properties": {
                 "formatType": {
                     "type": "string"
@@ -18450,7 +18450,7 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfiguration:getDestinationAzurBlobStorageConfiguration": {
+        "airbyte:index/getDestinationAzureBlobStorageConfiguration:getDestinationAzureBlobStorageConfiguration": {
             "properties": {
                 "azureBlobStorageAccountKey": {
                     "type": "string"
@@ -18474,7 +18474,7 @@
                     "type": "string"
                 },
                 "format": {
-                    "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfigurationFormat:getDestinationAzurBlobStorageConfigurationFormat"
+                    "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfigurationFormat:getDestinationAzureBlobStorageConfigurationFormat"
                 }
             },
             "type": "object",
@@ -18494,19 +18494,19 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfigurationFormat:getDestinationAzurBlobStorageConfigurationFormat": {
+        "airbyte:index/getDestinationAzureBlobStorageConfigurationFormat:getDestinationAzureBlobStorageConfigurationFormat": {
             "properties": {
                 "destinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
-                    "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues"
+                    "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues"
                 },
                 "destinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
-                    "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson"
+                    "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson"
                 },
                 "destinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
-                    "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues"
+                    "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues"
                 },
                 "destinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
-                    "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson"
+                    "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson"
                 }
             },
             "type": "object",
@@ -18522,7 +18522,7 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
+        "airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatCsvCommaSeparatedValues": {
             "properties": {
                 "flattening": {
                     "type": "string"
@@ -18542,7 +18542,7 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
+        "airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageOutputFormatJsonLinesNewlineDelimitedJson": {
             "properties": {
                 "formatType": {
                     "type": "string"
@@ -18558,7 +18558,7 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
+        "airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatCsvCommaSeparatedValues": {
             "properties": {
                 "flattening": {
                     "type": "string"
@@ -18578,7 +18578,7 @@
                 }
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzurBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
+        "airbyte:index/getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson:getDestinationAzureBlobStorageConfigurationFormatDestinationAzureBlobStorageUpdateOutputFormatJsonLinesNewlineDelimitedJson": {
             "properties": {
                 "formatType": {
                     "type": "string"
@@ -42433,10 +42433,10 @@
                 "type": "object"
             }
         },
-        "airbyte:index/destinationAzurBlobStorage:DestinationAzurBlobStorage": {
+        "airbyte:index/destinationAzureBlobStorage:DestinationAzureBlobStorage": {
             "properties": {
                 "configuration": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfiguration:DestinationAzurBlobStorageConfiguration"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfiguration:DestinationAzureBlobStorageConfiguration"
                 },
                 "destinationId": {
                     "type": "string"
@@ -42460,7 +42460,7 @@
             ],
             "inputProperties": {
                 "configuration": {
-                    "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfiguration:DestinationAzurBlobStorageConfiguration"
+                    "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfiguration:DestinationAzureBlobStorageConfiguration"
                 },
                 "name": {
                     "type": "string"
@@ -42475,10 +42475,10 @@
                 "workspaceId"
             ],
             "stateInputs": {
-                "description": "Input properties used for looking up and filtering DestinationAzurBlobStorage resources.\n",
+                "description": "Input properties used for looking up and filtering DestinationAzureBlobStorage resources.\n",
                 "properties": {
                     "configuration": {
-                        "$ref": "#/types/airbyte:index/DestinationAzurBlobStorageConfiguration:DestinationAzurBlobStorageConfiguration"
+                        "$ref": "#/types/airbyte:index/DestinationAzureBlobStorageConfiguration:DestinationAzureBlobStorageConfiguration"
                     },
                     "destinationId": {
                         "type": "string"
@@ -59895,9 +59895,9 @@
                 ]
             }
         },
-        "airbyte:index/getDestinationAzurBlobStorage:getDestinationAzurBlobStorage": {
+        "airbyte:index/getDestinationAzureBlobStorage:getDestinationAzureBlobStorage": {
             "inputs": {
-                "description": "A collection of arguments for invoking getDestinationAzurBlobStorage.\n",
+                "description": "A collection of arguments for invoking getDestinationAzureBlobStorage.\n",
                 "properties": {
                     "destinationId": {
                         "type": "string"
@@ -59909,10 +59909,10 @@
                 ]
             },
             "outputs": {
-                "description": "A collection of values returned by getDestinationAzurBlobStorage.\n",
+                "description": "A collection of values returned by getDestinationAzureBlobStorage.\n",
                 "properties": {
                     "configuration": {
-                        "$ref": "#/types/airbyte:index/getDestinationAzurBlobStorageConfiguration:getDestinationAzurBlobStorageConfiguration"
+                        "$ref": "#/types/airbyte:index/getDestinationAzureBlobStorageConfiguration:getDestinationAzureBlobStorageConfiguration"
                     },
                     "destinationId": {
                         "type": "string"

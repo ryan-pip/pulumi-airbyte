@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePocket(ctx *pulumi.Context, args *LookupSourcePocketArgs, opts ...pulumi.InvokeOption) (*LookupSourcePocketResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePocketResult
 	err := ctx.Invoke("airbyte:index/getSourcePocket:getSourcePocket", args, &rv, opts...)
 	if err != nil {

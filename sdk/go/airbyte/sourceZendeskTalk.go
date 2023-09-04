@@ -39,6 +39,7 @@ func NewSourceZendeskTalk(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceZendeskTalk
 	err := ctx.RegisterResource("airbyte:index/sourceZendeskTalk:SourceZendeskTalk", name, args, &resource, opts...)
 	if err != nil {

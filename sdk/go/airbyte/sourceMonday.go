@@ -39,6 +39,7 @@ func NewSourceMonday(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceMonday
 	err := ctx.RegisterResource("airbyte:index/sourceMonday:SourceMonday", name, args, &resource, opts...)
 	if err != nil {

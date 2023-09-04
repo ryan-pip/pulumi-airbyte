@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRetently(ctx *pulumi.Context, args *LookupSourceRetentlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceRetentlyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRetentlyResult
 	err := ctx.Invoke("airbyte:index/getSourceRetently:getSourceRetently", args, &rv, opts...)
 	if err != nil {

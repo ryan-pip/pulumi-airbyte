@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationRedis(ctx *pulumi.Context, args *LookupDestinationRedisArgs, opts ...pulumi.InvokeOption) (*LookupDestinationRedisResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationRedisResult
 	err := ctx.Invoke("airbyte:index/getDestinationRedis:getDestinationRedis", args, &rv, opts...)
 	if err != nil {

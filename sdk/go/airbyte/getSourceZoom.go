@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZoom(ctx *pulumi.Context, args *LookupSourceZoomArgs, opts ...pulumi.InvokeOption) (*LookupSourceZoomResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZoomResult
 	err := ctx.Invoke("airbyte:index/getSourceZoom:getSourceZoom", args, &rv, opts...)
 	if err != nil {

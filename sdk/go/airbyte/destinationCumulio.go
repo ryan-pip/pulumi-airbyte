@@ -37,6 +37,7 @@ func NewDestinationCumulio(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationCumulio
 	err := ctx.RegisterResource("airbyte:index/destinationCumulio:DestinationCumulio", name, args, &resource, opts...)
 	if err != nil {

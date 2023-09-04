@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceStrava(ctx *pulumi.Context, args *LookupSourceStravaArgs, opts ...pulumi.InvokeOption) (*LookupSourceStravaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceStravaResult
 	err := ctx.Invoke("airbyte:index/getSourceStrava:getSourceStrava", args, &rv, opts...)
 	if err != nil {

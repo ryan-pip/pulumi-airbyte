@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSpaceXApi(ctx *pulumi.Context, args *LookupSourceSpaceXApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceSpaceXApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSpaceXApiResult
 	err := ctx.Invoke("airbyte:index/getSourceSpaceXApi:getSourceSpaceXApi", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationTypesense(ctx *pulumi.Context, args *LookupDestinationTypesenseArgs, opts ...pulumi.InvokeOption) (*LookupDestinationTypesenseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationTypesenseResult
 	err := ctx.Invoke("airbyte:index/getDestinationTypesense:getDestinationTypesense", args, &rv, opts...)
 	if err != nil {

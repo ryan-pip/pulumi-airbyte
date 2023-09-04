@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZohoCrm(ctx *pulumi.Context, args *LookupSourceZohoCrmArgs, opts ...pulumi.InvokeOption) (*LookupSourceZohoCrmResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZohoCrmResult
 	err := ctx.Invoke("airbyte:index/getSourceZohoCrm:getSourceZohoCrm", args, &rv, opts...)
 	if err != nil {

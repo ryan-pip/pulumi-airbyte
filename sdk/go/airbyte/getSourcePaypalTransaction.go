@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePaypalTransaction(ctx *pulumi.Context, args *LookupSourcePaypalTransactionArgs, opts ...pulumi.InvokeOption) (*LookupSourcePaypalTransactionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePaypalTransactionResult
 	err := ctx.Invoke("airbyte:index/getSourcePaypalTransaction:getSourcePaypalTransaction", args, &rv, opts...)
 	if err != nil {

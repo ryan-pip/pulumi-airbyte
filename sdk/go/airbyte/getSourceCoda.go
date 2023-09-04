@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceCoda(ctx *pulumi.Context, args *LookupSourceCodaArgs, opts ...pulumi.InvokeOption) (*LookupSourceCodaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceCodaResult
 	err := ctx.Invoke("airbyte:index/getSourceCoda:getSourceCoda", args, &rv, opts...)
 	if err != nil {

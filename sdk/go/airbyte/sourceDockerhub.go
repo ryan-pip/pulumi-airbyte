@@ -39,6 +39,7 @@ func NewSourceDockerhub(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceDockerhub
 	err := ctx.RegisterResource("airbyte:index/sourceDockerhub:SourceDockerhub", name, args, &resource, opts...)
 	if err != nil {

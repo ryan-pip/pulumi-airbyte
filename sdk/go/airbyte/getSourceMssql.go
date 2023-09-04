@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMssql(ctx *pulumi.Context, args *LookupSourceMssqlArgs, opts ...pulumi.InvokeOption) (*LookupSourceMssqlResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMssqlResult
 	err := ctx.Invoke("airbyte:index/getSourceMssql:getSourceMssql", args, &rv, opts...)
 	if err != nil {

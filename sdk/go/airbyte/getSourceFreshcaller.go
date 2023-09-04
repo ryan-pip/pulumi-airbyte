@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFreshcaller(ctx *pulumi.Context, args *LookupSourceFreshcallerArgs, opts ...pulumi.InvokeOption) (*LookupSourceFreshcallerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFreshcallerResult
 	err := ctx.Invoke("airbyte:index/getSourceFreshcaller:getSourceFreshcaller", args, &rv, opts...)
 	if err != nil {

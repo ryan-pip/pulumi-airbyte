@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAmazonSellerPartner(ctx *pulumi.Context, args *LookupSourceAmazonSellerPartnerArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmazonSellerPartnerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmazonSellerPartnerResult
 	err := ctx.Invoke("airbyte:index/getSourceAmazonSellerPartner:getSourceAmazonSellerPartner", args, &rv, opts...)
 	if err != nil {

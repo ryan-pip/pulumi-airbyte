@@ -39,6 +39,7 @@ func NewSourceGoogleSheets(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceGoogleSheets
 	err := ctx.RegisterResource("airbyte:index/sourceGoogleSheets:SourceGoogleSheets", name, args, &resource, opts...)
 	if err != nil {

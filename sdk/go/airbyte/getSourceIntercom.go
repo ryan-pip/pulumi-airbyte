@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceIntercom(ctx *pulumi.Context, args *LookupSourceIntercomArgs, opts ...pulumi.InvokeOption) (*LookupSourceIntercomResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceIntercomResult
 	err := ctx.Invoke("airbyte:index/getSourceIntercom:getSourceIntercom", args, &rv, opts...)
 	if err != nil {

@@ -39,6 +39,7 @@ func NewSourceTypeform(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceTypeform
 	err := ctx.RegisterResource("airbyte:index/sourceTypeform:SourceTypeform", name, args, &resource, opts...)
 	if err != nil {

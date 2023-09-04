@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGlassfrog(ctx *pulumi.Context, args *LookupSourceGlassfrogArgs, opts ...pulumi.InvokeOption) (*LookupSourceGlassfrogResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGlassfrogResult
 	err := ctx.Invoke("airbyte:index/getSourceGlassfrog:getSourceGlassfrog", args, &rv, opts...)
 	if err != nil {

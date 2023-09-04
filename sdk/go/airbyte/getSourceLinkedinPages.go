@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLinkedinPages(ctx *pulumi.Context, args *LookupSourceLinkedinPagesArgs, opts ...pulumi.InvokeOption) (*LookupSourceLinkedinPagesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLinkedinPagesResult
 	err := ctx.Invoke("airbyte:index/getSourceLinkedinPages:getSourceLinkedinPages", args, &rv, opts...)
 	if err != nil {

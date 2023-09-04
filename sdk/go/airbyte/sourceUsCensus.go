@@ -39,6 +39,7 @@ func NewSourceUsCensus(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceUsCensus
 	err := ctx.RegisterResource("airbyte:index/sourceUsCensus:SourceUsCensus", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceHarvest(ctx *pulumi.Context, args *LookupSourceHarvestArgs, opts ...pulumi.InvokeOption) (*LookupSourceHarvestResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceHarvestResult
 	err := ctx.Invoke("airbyte:index/getSourceHarvest:getSourceHarvest", args, &rv, opts...)
 	if err != nil {

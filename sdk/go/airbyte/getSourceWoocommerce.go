@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceWoocommerce(ctx *pulumi.Context, args *LookupSourceWoocommerceArgs, opts ...pulumi.InvokeOption) (*LookupSourceWoocommerceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceWoocommerceResult
 	err := ctx.Invoke("airbyte:index/getSourceWoocommerce:getSourceWoocommerce", args, &rv, opts...)
 	if err != nil {

@@ -39,6 +39,7 @@ func NewSourceSapFieldglass(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceSapFieldglass
 	err := ctx.RegisterResource("airbyte:index/sourceSapFieldglass:SourceSapFieldglass", name, args, &resource, opts...)
 	if err != nil {

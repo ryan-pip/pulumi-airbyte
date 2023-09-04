@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZendeskChat(ctx *pulumi.Context, args *LookupSourceZendeskChatArgs, opts ...pulumi.InvokeOption) (*LookupSourceZendeskChatResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZendeskChatResult
 	err := ctx.Invoke("airbyte:index/getSourceZendeskChat:getSourceZendeskChat", args, &rv, opts...)
 	if err != nil {

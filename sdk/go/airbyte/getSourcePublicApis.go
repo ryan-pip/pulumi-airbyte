@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePublicApis(ctx *pulumi.Context, args *LookupSourcePublicApisArgs, opts ...pulumi.InvokeOption) (*LookupSourcePublicApisResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePublicApisResult
 	err := ctx.Invoke("airbyte:index/getSourcePublicApis:getSourcePublicApis", args, &rv, opts...)
 	if err != nil {

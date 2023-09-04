@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceKustomerSinger(ctx *pulumi.Context, args *LookupSourceKustomerSingerArgs, opts ...pulumi.InvokeOption) (*LookupSourceKustomerSingerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKustomerSingerResult
 	err := ctx.Invoke("airbyte:index/getSourceKustomerSinger:getSourceKustomerSinger", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOutbrainAmplify(ctx *pulumi.Context, args *LookupSourceOutbrainAmplifyArgs, opts ...pulumi.InvokeOption) (*LookupSourceOutbrainAmplifyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOutbrainAmplifyResult
 	err := ctx.Invoke("airbyte:index/getSourceOutbrainAmplify:getSourceOutbrainAmplify", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMonday(ctx *pulumi.Context, args *LookupSourceMondayArgs, opts ...pulumi.InvokeOption) (*LookupSourceMondayResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMondayResult
 	err := ctx.Invoke("airbyte:index/getSourceMonday:getSourceMonday", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceShortio(ctx *pulumi.Context, args *LookupSourceShortioArgs, opts ...pulumi.InvokeOption) (*LookupSourceShortioResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceShortioResult
 	err := ctx.Invoke("airbyte:index/getSourceShortio:getSourceShortio", args, &rv, opts...)
 	if err != nil {

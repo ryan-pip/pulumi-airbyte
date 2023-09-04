@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationGcs(ctx *pulumi.Context, args *LookupDestinationGcsArgs, opts ...pulumi.InvokeOption) (*LookupDestinationGcsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationGcsResult
 	err := ctx.Invoke("airbyte:index/getDestinationGcs:getDestinationGcs", args, &rv, opts...)
 	if err != nil {

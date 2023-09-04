@@ -39,6 +39,7 @@ func NewSourceGoogleAnalyticsV4(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceGoogleAnalyticsV4
 	err := ctx.RegisterResource("airbyte:index/sourceGoogleAnalyticsV4:SourceGoogleAnalyticsV4", name, args, &resource, opts...)
 	if err != nil {

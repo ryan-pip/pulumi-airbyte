@@ -39,6 +39,7 @@ func NewSourceKlaviyo(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceKlaviyo
 	err := ctx.RegisterResource("airbyte:index/sourceKlaviyo:SourceKlaviyo", name, args, &resource, opts...)
 	if err != nil {

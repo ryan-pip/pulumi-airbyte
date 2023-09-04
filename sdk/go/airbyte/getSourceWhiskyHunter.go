@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceWhiskyHunter(ctx *pulumi.Context, args *LookupSourceWhiskyHunterArgs, opts ...pulumi.InvokeOption) (*LookupSourceWhiskyHunterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceWhiskyHunterResult
 	err := ctx.Invoke("airbyte:index/getSourceWhiskyHunter:getSourceWhiskyHunter", args, &rv, opts...)
 	if err != nil {

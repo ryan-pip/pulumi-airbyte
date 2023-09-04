@@ -39,6 +39,7 @@ func NewSourceYounium(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceYounium
 	err := ctx.RegisterResource("airbyte:index/sourceYounium:SourceYounium", name, args, &resource, opts...)
 	if err != nil {

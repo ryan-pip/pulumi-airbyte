@@ -39,6 +39,7 @@ func NewSourceClickupApi(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceClickupApi
 	err := ctx.RegisterResource("airbyte:index/sourceClickupApi:SourceClickupApi", name, args, &resource, opts...)
 	if err != nil {

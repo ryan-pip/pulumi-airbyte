@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDockerhub(ctx *pulumi.Context, args *LookupSourceDockerhubArgs, opts ...pulumi.InvokeOption) (*LookupSourceDockerhubResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDockerhubResult
 	err := ctx.Invoke("airbyte:index/getSourceDockerhub:getSourceDockerhub", args, &rv, opts...)
 	if err != nil {

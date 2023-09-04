@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePokeapi(ctx *pulumi.Context, args *LookupSourcePokeapiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePokeapiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePokeapiResult
 	err := ctx.Invoke("airbyte:index/getSourcePokeapi:getSourcePokeapi", args, &rv, opts...)
 	if err != nil {

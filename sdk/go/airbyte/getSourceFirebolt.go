@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFirebolt(ctx *pulumi.Context, args *LookupSourceFireboltArgs, opts ...pulumi.InvokeOption) (*LookupSourceFireboltResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFireboltResult
 	err := ctx.Invoke("airbyte:index/getSourceFirebolt:getSourceFirebolt", args, &rv, opts...)
 	if err != nil {

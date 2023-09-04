@@ -37,6 +37,7 @@ func NewDestinationDatabricks(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationDatabricks
 	err := ctx.RegisterResource("airbyte:index/destinationDatabricks:DestinationDatabricks", name, args, &resource, opts...)
 	if err != nil {

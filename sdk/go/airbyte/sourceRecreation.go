@@ -39,6 +39,7 @@ func NewSourceRecreation(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceRecreation
 	err := ctx.RegisterResource("airbyte:index/sourceRecreation:SourceRecreation", name, args, &resource, opts...)
 	if err != nil {

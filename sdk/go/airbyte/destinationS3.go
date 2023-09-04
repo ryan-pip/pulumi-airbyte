@@ -37,6 +37,7 @@ func NewDestinationS3(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationS3
 	err := ctx.RegisterResource("airbyte:index/destinationS3:DestinationS3", name, args, &resource, opts...)
 	if err != nil {

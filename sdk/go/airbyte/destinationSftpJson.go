@@ -37,6 +37,7 @@ func NewDestinationSftpJson(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationSftpJson
 	err := ctx.RegisterResource("airbyte:index/destinationSftpJson:DestinationSftpJson", name, args, &resource, opts...)
 	if err != nil {

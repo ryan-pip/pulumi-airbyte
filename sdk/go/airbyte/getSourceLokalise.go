@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLokalise(ctx *pulumi.Context, args *LookupSourceLokaliseArgs, opts ...pulumi.InvokeOption) (*LookupSourceLokaliseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLokaliseResult
 	err := ctx.Invoke("airbyte:index/getSourceLokalise:getSourceLokalise", args, &rv, opts...)
 	if err != nil {

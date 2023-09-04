@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSurveySparrow(ctx *pulumi.Context, args *LookupSourceSurveySparrowArgs, opts ...pulumi.InvokeOption) (*LookupSourceSurveySparrowResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSurveySparrowResult
 	err := ctx.Invoke("airbyte:index/getSourceSurveySparrow:getSourceSurveySparrow", args, &rv, opts...)
 	if err != nil {

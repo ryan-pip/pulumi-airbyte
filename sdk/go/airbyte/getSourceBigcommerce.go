@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceBigcommerce(ctx *pulumi.Context, args *LookupSourceBigcommerceArgs, opts ...pulumi.InvokeOption) (*LookupSourceBigcommerceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBigcommerceResult
 	err := ctx.Invoke("airbyte:index/getSourceBigcommerce:getSourceBigcommerce", args, &rv, opts...)
 	if err != nil {

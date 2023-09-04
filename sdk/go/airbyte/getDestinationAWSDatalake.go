@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationAWSDatalake(ctx *pulumi.Context, args *LookupDestinationAWSDatalakeArgs, opts ...pulumi.InvokeOption) (*LookupDestinationAWSDatalakeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationAWSDatalakeResult
 	err := ctx.Invoke("airbyte:index/getDestinationAWSDatalake:getDestinationAWSDatalake", args, &rv, opts...)
 	if err != nil {

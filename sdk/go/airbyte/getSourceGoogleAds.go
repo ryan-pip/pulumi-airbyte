@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleAds(ctx *pulumi.Context, args *LookupSourceGoogleAdsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleAdsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleAdsResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleAds:getSourceGoogleAds", args, &rv, opts...)
 	if err != nil {

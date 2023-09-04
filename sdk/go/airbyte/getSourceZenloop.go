@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZenloop(ctx *pulumi.Context, args *LookupSourceZenloopArgs, opts ...pulumi.InvokeOption) (*LookupSourceZenloopResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZenloopResult
 	err := ctx.Invoke("airbyte:index/getSourceZenloop:getSourceZenloop", args, &rv, opts...)
 	if err != nil {

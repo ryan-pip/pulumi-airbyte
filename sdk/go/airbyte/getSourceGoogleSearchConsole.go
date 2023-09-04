@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleSearchConsole(ctx *pulumi.Context, args *LookupSourceGoogleSearchConsoleArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleSearchConsoleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleSearchConsoleResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleSearchConsole:getSourceGoogleSearchConsole", args, &rv, opts...)
 	if err != nil {

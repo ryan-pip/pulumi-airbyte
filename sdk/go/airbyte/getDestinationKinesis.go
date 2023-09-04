@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationKinesis(ctx *pulumi.Context, args *LookupDestinationKinesisArgs, opts ...pulumi.InvokeOption) (*LookupDestinationKinesisResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationKinesisResult
 	err := ctx.Invoke("airbyte:index/getDestinationKinesis:getDestinationKinesis", args, &rv, opts...)
 	if err != nil {

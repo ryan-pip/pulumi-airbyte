@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePostgres(ctx *pulumi.Context, args *LookupSourcePostgresArgs, opts ...pulumi.InvokeOption) (*LookupSourcePostgresResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePostgresResult
 	err := ctx.Invoke("airbyte:index/getSourcePostgres:getSourcePostgres", args, &rv, opts...)
 	if err != nil {

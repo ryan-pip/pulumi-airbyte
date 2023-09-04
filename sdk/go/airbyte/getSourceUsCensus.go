@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceUsCensus(ctx *pulumi.Context, args *LookupSourceUsCensusArgs, opts ...pulumi.InvokeOption) (*LookupSourceUsCensusResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceUsCensusResult
 	err := ctx.Invoke("airbyte:index/getSourceUsCensus:getSourceUsCensus", args, &rv, opts...)
 	if err != nil {

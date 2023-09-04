@@ -37,6 +37,7 @@ func NewDestinationDynamodb(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationDynamodb
 	err := ctx.RegisterResource("airbyte:index/destinationDynamodb:DestinationDynamodb", name, args, &resource, opts...)
 	if err != nil {

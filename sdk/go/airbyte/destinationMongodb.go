@@ -37,6 +37,7 @@ func NewDestinationMongodb(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationMongodb
 	err := ctx.RegisterResource("airbyte:index/destinationMongodb:DestinationMongodb", name, args, &resource, opts...)
 	if err != nil {

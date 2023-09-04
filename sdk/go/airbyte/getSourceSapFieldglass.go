@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSapFieldglass(ctx *pulumi.Context, args *LookupSourceSapFieldglassArgs, opts ...pulumi.InvokeOption) (*LookupSourceSapFieldglassResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSapFieldglassResult
 	err := ctx.Invoke("airbyte:index/getSourceSapFieldglass:getSourceSapFieldglass", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSquare(ctx *pulumi.Context, args *LookupSourceSquareArgs, opts ...pulumi.InvokeOption) (*LookupSourceSquareResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSquareResult
 	err := ctx.Invoke("airbyte:index/getSourceSquare:getSourceSquare", args, &rv, opts...)
 	if err != nil {

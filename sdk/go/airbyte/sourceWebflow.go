@@ -39,6 +39,7 @@ func NewSourceWebflow(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceWebflow
 	err := ctx.RegisterResource("airbyte:index/sourceWebflow:SourceWebflow", name, args, &resource, opts...)
 	if err != nil {

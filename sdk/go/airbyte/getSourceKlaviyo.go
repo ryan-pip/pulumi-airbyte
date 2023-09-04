@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceKlaviyo(ctx *pulumi.Context, args *LookupSourceKlaviyoArgs, opts ...pulumi.InvokeOption) (*LookupSourceKlaviyoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKlaviyoResult
 	err := ctx.Invoke("airbyte:index/getSourceKlaviyo:getSourceKlaviyo", args, &rv, opts...)
 	if err != nil {

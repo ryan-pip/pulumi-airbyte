@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAha(ctx *pulumi.Context, args *LookupSourceAhaArgs, opts ...pulumi.InvokeOption) (*LookupSourceAhaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAhaResult
 	err := ctx.Invoke("airbyte:index/getSourceAha:getSourceAha", args, &rv, opts...)
 	if err != nil {

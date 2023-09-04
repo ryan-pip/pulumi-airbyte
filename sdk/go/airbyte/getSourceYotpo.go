@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceYotpo(ctx *pulumi.Context, args *LookupSourceYotpoArgs, opts ...pulumi.InvokeOption) (*LookupSourceYotpoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceYotpoResult
 	err := ctx.Invoke("airbyte:index/getSourceYotpo:getSourceYotpo", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceBingAds(ctx *pulumi.Context, args *LookupSourceBingAdsArgs, opts ...pulumi.InvokeOption) (*LookupSourceBingAdsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBingAdsResult
 	err := ctx.Invoke("airbyte:index/getSourceBingAds:getSourceBingAds", args, &rv, opts...)
 	if err != nil {

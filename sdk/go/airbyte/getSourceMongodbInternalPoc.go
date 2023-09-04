@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMongodbInternalPoc(ctx *pulumi.Context, args *LookupSourceMongodbInternalPocArgs, opts ...pulumi.InvokeOption) (*LookupSourceMongodbInternalPocResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMongodbInternalPocResult
 	err := ctx.Invoke("airbyte:index/getSourceMongodbInternalPoc:getSourceMongodbInternalPoc", args, &rv, opts...)
 	if err != nil {

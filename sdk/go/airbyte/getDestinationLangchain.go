@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationLangchain(ctx *pulumi.Context, args *LookupDestinationLangchainArgs, opts ...pulumi.InvokeOption) (*LookupDestinationLangchainResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationLangchainResult
 	err := ctx.Invoke("airbyte:index/getDestinationLangchain:getDestinationLangchain", args, &rv, opts...)
 	if err != nil {

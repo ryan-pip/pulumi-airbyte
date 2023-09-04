@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationS3Glue(ctx *pulumi.Context, args *LookupDestinationS3GlueArgs, opts ...pulumi.InvokeOption) (*LookupDestinationS3GlueResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationS3GlueResult
 	err := ctx.Invoke("airbyte:index/getDestinationS3Glue:getDestinationS3Glue", args, &rv, opts...)
 	if err != nil {

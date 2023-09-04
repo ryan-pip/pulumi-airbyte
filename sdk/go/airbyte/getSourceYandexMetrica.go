@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceYandexMetrica(ctx *pulumi.Context, args *LookupSourceYandexMetricaArgs, opts ...pulumi.InvokeOption) (*LookupSourceYandexMetricaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceYandexMetricaResult
 	err := ctx.Invoke("airbyte:index/getSourceYandexMetrica:getSourceYandexMetrica", args, &rv, opts...)
 	if err != nil {

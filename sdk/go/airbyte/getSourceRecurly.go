@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRecurly(ctx *pulumi.Context, args *LookupSourceRecurlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceRecurlyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRecurlyResult
 	err := ctx.Invoke("airbyte:index/getSourceRecurly:getSourceRecurly", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRss(ctx *pulumi.Context, args *LookupSourceRssArgs, opts ...pulumi.InvokeOption) (*LookupSourceRssResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRssResult
 	err := ctx.Invoke("airbyte:index/getSourceRss:getSourceRss", args, &rv, opts...)
 	if err != nil {

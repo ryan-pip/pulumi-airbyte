@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceInstatus(ctx *pulumi.Context, args *LookupSourceInstatusArgs, opts ...pulumi.InvokeOption) (*LookupSourceInstatusResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceInstatusResult
 	err := ctx.Invoke("airbyte:index/getSourceInstatus:getSourceInstatus", args, &rv, opts...)
 	if err != nil {

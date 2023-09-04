@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTvmazeSchedule(ctx *pulumi.Context, args *LookupSourceTvmazeScheduleArgs, opts ...pulumi.InvokeOption) (*LookupSourceTvmazeScheduleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTvmazeScheduleResult
 	err := ctx.Invoke("airbyte:index/getSourceTvmazeSchedule:getSourceTvmazeSchedule", args, &rv, opts...)
 	if err != nil {

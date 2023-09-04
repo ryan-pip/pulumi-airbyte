@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceQuickbooks(ctx *pulumi.Context, args *LookupSourceQuickbooksArgs, opts ...pulumi.InvokeOption) (*LookupSourceQuickbooksResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceQuickbooksResult
 	err := ctx.Invoke("airbyte:index/getSourceQuickbooks:getSourceQuickbooks", args, &rv, opts...)
 	if err != nil {

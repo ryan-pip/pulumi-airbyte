@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSnowflake(ctx *pulumi.Context, args *LookupSourceSnowflakeArgs, opts ...pulumi.InvokeOption) (*LookupSourceSnowflakeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSnowflakeResult
 	err := ctx.Invoke("airbyte:index/getSourceSnowflake:getSourceSnowflake", args, &rv, opts...)
 	if err != nil {

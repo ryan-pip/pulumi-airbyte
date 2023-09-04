@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSmartsheets(ctx *pulumi.Context, args *LookupSourceSmartsheetsArgs, opts ...pulumi.InvokeOption) (*LookupSourceSmartsheetsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSmartsheetsResult
 	err := ctx.Invoke("airbyte:index/getSourceSmartsheets:getSourceSmartsheets", args, &rv, opts...)
 	if err != nil {

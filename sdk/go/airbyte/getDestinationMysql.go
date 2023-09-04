@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationMysql(ctx *pulumi.Context, args *LookupDestinationMysqlArgs, opts ...pulumi.InvokeOption) (*LookupDestinationMysqlResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationMysqlResult
 	err := ctx.Invoke("airbyte:index/getDestinationMysql:getDestinationMysql", args, &rv, opts...)
 	if err != nil {

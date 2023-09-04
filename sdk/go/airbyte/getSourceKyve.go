@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceKyve(ctx *pulumi.Context, args *LookupSourceKyveArgs, opts ...pulumi.InvokeOption) (*LookupSourceKyveResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKyveResult
 	err := ctx.Invoke("airbyte:index/getSourceKyve:getSourceKyve", args, &rv, opts...)
 	if err != nil {

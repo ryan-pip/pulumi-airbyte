@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSonarCloud(ctx *pulumi.Context, args *LookupSourceSonarCloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceSonarCloudResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSonarCloudResult
 	err := ctx.Invoke("airbyte:index/getSourceSonarCloud:getSourceSonarCloud", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceChargebee(ctx *pulumi.Context, args *LookupSourceChargebeeArgs, opts ...pulumi.InvokeOption) (*LookupSourceChargebeeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceChargebeeResult
 	err := ctx.Invoke("airbyte:index/getSourceChargebee:getSourceChargebee", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSalesloft(ctx *pulumi.Context, args *LookupSourceSalesloftArgs, opts ...pulumi.InvokeOption) (*LookupSourceSalesloftResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSalesloftResult
 	err := ctx.Invoke("airbyte:index/getSourceSalesloft:getSourceSalesloft", args, &rv, opts...)
 	if err != nil {

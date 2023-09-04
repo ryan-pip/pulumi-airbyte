@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDixa(ctx *pulumi.Context, args *LookupSourceDixaArgs, opts ...pulumi.InvokeOption) (*LookupSourceDixaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDixaResult
 	err := ctx.Invoke("airbyte:index/getSourceDixa:getSourceDixa", args, &rv, opts...)
 	if err != nil {

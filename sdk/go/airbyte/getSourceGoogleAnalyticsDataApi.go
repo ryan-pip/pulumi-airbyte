@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleAnalyticsDataApi(ctx *pulumi.Context, args *LookupSourceGoogleAnalyticsDataApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleAnalyticsDataApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleAnalyticsDataApiResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleAnalyticsDataApi:getSourceGoogleAnalyticsDataApi", args, &rv, opts...)
 	if err != nil {

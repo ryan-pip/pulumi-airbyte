@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceConfluence(ctx *pulumi.Context, args *LookupSourceConfluenceArgs, opts ...pulumi.InvokeOption) (*LookupSourceConfluenceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceConfluenceResult
 	err := ctx.Invoke("airbyte:index/getSourceConfluence:getSourceConfluence", args, &rv, opts...)
 	if err != nil {

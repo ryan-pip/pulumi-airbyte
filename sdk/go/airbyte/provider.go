@@ -46,6 +46,7 @@ func NewProvider(ctx *pulumi.Context,
 		"username",
 	})
 	opts = append(opts, secrets)
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:airbyte", name, args, &resource, opts...)
 	if err != nil {

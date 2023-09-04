@@ -39,6 +39,7 @@ func NewSourceAmazonAds(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceAmazonAds
 	err := ctx.RegisterResource("airbyte:index/sourceAmazonAds:SourceAmazonAds", name, args, &resource, opts...)
 	if err != nil {

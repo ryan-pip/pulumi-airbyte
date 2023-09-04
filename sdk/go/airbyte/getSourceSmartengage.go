@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSmartengage(ctx *pulumi.Context, args *LookupSourceSmartengageArgs, opts ...pulumi.InvokeOption) (*LookupSourceSmartengageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSmartengageResult
 	err := ctx.Invoke("airbyte:index/getSourceSmartengage:getSourceSmartengage", args, &rv, opts...)
 	if err != nil {

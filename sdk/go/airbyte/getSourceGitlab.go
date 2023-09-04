@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGitlab(ctx *pulumi.Context, args *LookupSourceGitlabArgs, opts ...pulumi.InvokeOption) (*LookupSourceGitlabResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGitlabResult
 	err := ctx.Invoke("airbyte:index/getSourceGitlab:getSourceGitlab", args, &rv, opts...)
 	if err != nil {

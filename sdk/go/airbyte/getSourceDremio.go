@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDremio(ctx *pulumi.Context, args *LookupSourceDremioArgs, opts ...pulumi.InvokeOption) (*LookupSourceDremioResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDremioResult
 	err := ctx.Invoke("airbyte:index/getSourceDremio:getSourceDremio", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGooglePagespeedInsights(ctx *pulumi.Context, args *LookupSourceGooglePagespeedInsightsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGooglePagespeedInsightsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGooglePagespeedInsightsResult
 	err := ctx.Invoke("airbyte:index/getSourceGooglePagespeedInsights:getSourceGooglePagespeedInsights", args, &rv, opts...)
 	if err != nil {

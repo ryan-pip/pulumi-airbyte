@@ -39,6 +39,7 @@ func NewSourceAircall(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceAircall
 	err := ctx.RegisterResource("airbyte:index/sourceAircall:SourceAircall", name, args, &resource, opts...)
 	if err != nil {

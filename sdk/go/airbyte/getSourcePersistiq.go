@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePersistiq(ctx *pulumi.Context, args *LookupSourcePersistiqArgs, opts ...pulumi.InvokeOption) (*LookupSourcePersistiqResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePersistiqResult
 	err := ctx.Invoke("airbyte:index/getSourcePersistiq:getSourcePersistiq", args, &rv, opts...)
 	if err != nil {

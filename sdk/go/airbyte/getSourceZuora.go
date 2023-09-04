@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZuora(ctx *pulumi.Context, args *LookupSourceZuoraArgs, opts ...pulumi.InvokeOption) (*LookupSourceZuoraResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZuoraResult
 	err := ctx.Invoke("airbyte:index/getSourceZuora:getSourceZuora", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSurveymonkey(ctx *pulumi.Context, args *LookupSourceSurveymonkeyArgs, opts ...pulumi.InvokeOption) (*LookupSourceSurveymonkeyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSurveymonkeyResult
 	err := ctx.Invoke("airbyte:index/getSourceSurveymonkey:getSourceSurveymonkey", args, &rv, opts...)
 	if err != nil {

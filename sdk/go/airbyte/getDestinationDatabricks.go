@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationDatabricks(ctx *pulumi.Context, args *LookupDestinationDatabricksArgs, opts ...pulumi.InvokeOption) (*LookupDestinationDatabricksResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationDatabricksResult
 	err := ctx.Invoke("airbyte:index/getDestinationDatabricks:getDestinationDatabricks", args, &rv, opts...)
 	if err != nil {

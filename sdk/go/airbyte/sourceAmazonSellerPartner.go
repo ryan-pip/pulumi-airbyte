@@ -39,6 +39,7 @@ func NewSourceAmazonSellerPartner(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceAmazonSellerPartner
 	err := ctx.RegisterResource("airbyte:index/sourceAmazonSellerPartner:SourceAmazonSellerPartner", name, args, &resource, opts...)
 	if err != nil {

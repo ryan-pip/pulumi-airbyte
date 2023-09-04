@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceJira(ctx *pulumi.Context, args *LookupSourceJiraArgs, opts ...pulumi.InvokeOption) (*LookupSourceJiraResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceJiraResult
 	err := ctx.Invoke("airbyte:index/getSourceJira:getSourceJira", args, &rv, opts...)
 	if err != nil {

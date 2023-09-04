@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePinterest(ctx *pulumi.Context, args *LookupSourcePinterestArgs, opts ...pulumi.InvokeOption) (*LookupSourcePinterestResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePinterestResult
 	err := ctx.Invoke("airbyte:index/getSourcePinterest:getSourcePinterest", args, &rv, opts...)
 	if err != nil {

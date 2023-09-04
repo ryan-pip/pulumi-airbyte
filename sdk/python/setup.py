@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'airbyte', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'airbyte', PLUGIN_VERSION, '--server', 'github://api.github.com/ryan-pip'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -40,11 +40,18 @@ def readme():
 setup(name='pulumi_airbyte',
       python_requires='>=3.7',
       version=VERSION,
+      description="A Pulumi package for creating and managing xyz cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
+      keywords='pulumi airbyte category/utility',
+      url='https://www.airbyte.com',
+      project_urls={
+          'Repository': 'https://github.com/ryan-pip/pulumi-airbyte'
+      },
+      license='Apache-2.0',
       packages=find_packages(),
       package_data={
           'pulumi_airbyte': [

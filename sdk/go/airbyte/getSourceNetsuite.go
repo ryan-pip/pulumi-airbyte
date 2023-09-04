@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceNetsuite(ctx *pulumi.Context, args *LookupSourceNetsuiteArgs, opts ...pulumi.InvokeOption) (*LookupSourceNetsuiteResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceNetsuiteResult
 	err := ctx.Invoke("airbyte:index/getSourceNetsuite:getSourceNetsuite", args, &rv, opts...)
 	if err != nil {

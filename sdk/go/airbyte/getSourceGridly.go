@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGridly(ctx *pulumi.Context, args *LookupSourceGridlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceGridlyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGridlyResult
 	err := ctx.Invoke("airbyte:index/getSourceGridly:getSourceGridly", args, &rv, opts...)
 	if err != nil {

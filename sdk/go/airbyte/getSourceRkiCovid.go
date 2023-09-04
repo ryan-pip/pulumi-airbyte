@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRkiCovid(ctx *pulumi.Context, args *LookupSourceRkiCovidArgs, opts ...pulumi.InvokeOption) (*LookupSourceRkiCovidResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRkiCovidResult
 	err := ctx.Invoke("airbyte:index/getSourceRkiCovid:getSourceRkiCovid", args, &rv, opts...)
 	if err != nil {

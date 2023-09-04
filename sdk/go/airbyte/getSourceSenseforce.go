@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSenseforce(ctx *pulumi.Context, args *LookupSourceSenseforceArgs, opts ...pulumi.InvokeOption) (*LookupSourceSenseforceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSenseforceResult
 	err := ctx.Invoke("airbyte:index/getSourceSenseforce:getSourceSenseforce", args, &rv, opts...)
 	if err != nil {

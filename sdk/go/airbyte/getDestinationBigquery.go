@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationBigquery(ctx *pulumi.Context, args *LookupDestinationBigqueryArgs, opts ...pulumi.InvokeOption) (*LookupDestinationBigqueryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationBigqueryResult
 	err := ctx.Invoke("airbyte:index/getDestinationBigquery:getDestinationBigquery", args, &rv, opts...)
 	if err != nil {

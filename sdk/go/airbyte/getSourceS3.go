@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceS3(ctx *pulumi.Context, args *LookupSourceS3Args, opts ...pulumi.InvokeOption) (*LookupSourceS3Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceS3Result
 	err := ctx.Invoke("airbyte:index/getSourceS3:getSourceS3", args, &rv, opts...)
 	if err != nil {

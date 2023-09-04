@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceIterable(ctx *pulumi.Context, args *LookupSourceIterableArgs, opts ...pulumi.InvokeOption) (*LookupSourceIterableResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceIterableResult
 	err := ctx.Invoke("airbyte:index/getSourceIterable:getSourceIterable", args, &rv, opts...)
 	if err != nil {

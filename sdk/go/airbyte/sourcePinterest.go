@@ -39,6 +39,7 @@ func NewSourcePinterest(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePinterest
 	err := ctx.RegisterResource("airbyte:index/sourcePinterest:SourcePinterest", name, args, &resource, opts...)
 	if err != nil {

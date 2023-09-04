@@ -39,6 +39,7 @@ func NewSourcePaystack(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePaystack
 	err := ctx.RegisterResource("airbyte:index/sourcePaystack:SourcePaystack", name, args, &resource, opts...)
 	if err != nil {

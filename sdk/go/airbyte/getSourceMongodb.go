@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMongodb(ctx *pulumi.Context, args *LookupSourceMongodbArgs, opts ...pulumi.InvokeOption) (*LookupSourceMongodbResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMongodbResult
 	err := ctx.Invoke("airbyte:index/getSourceMongodb:getSourceMongodb", args, &rv, opts...)
 	if err != nil {

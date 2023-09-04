@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOkta(ctx *pulumi.Context, args *LookupSourceOktaArgs, opts ...pulumi.InvokeOption) (*LookupSourceOktaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOktaResult
 	err := ctx.Invoke("airbyte:index/getSourceOkta:getSourceOkta", args, &rv, opts...)
 	if err != nil {

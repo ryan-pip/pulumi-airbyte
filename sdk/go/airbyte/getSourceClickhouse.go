@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceClickhouse(ctx *pulumi.Context, args *LookupSourceClickhouseArgs, opts ...pulumi.InvokeOption) (*LookupSourceClickhouseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceClickhouseResult
 	err := ctx.Invoke("airbyte:index/getSourceClickhouse:getSourceClickhouse", args, &rv, opts...)
 	if err != nil {

@@ -39,6 +39,7 @@ func NewSourceK6Cloud(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceK6Cloud
 	err := ctx.RegisterResource("airbyte:index/sourceK6Cloud:SourceK6Cloud", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceBraze(ctx *pulumi.Context, args *LookupSourceBrazeArgs, opts ...pulumi.InvokeOption) (*LookupSourceBrazeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBrazeResult
 	err := ctx.Invoke("airbyte:index/getSourceBraze:getSourceBraze", args, &rv, opts...)
 	if err != nil {

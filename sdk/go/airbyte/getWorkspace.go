@@ -11,6 +11,7 @@ import (
 )
 
 func LookupWorkspace(ctx *pulumi.Context, args *LookupWorkspaceArgs, opts ...pulumi.InvokeOption) (*LookupWorkspaceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupWorkspaceResult
 	err := ctx.Invoke("airbyte:index/getWorkspace:getWorkspace", args, &rv, opts...)
 	if err != nil {

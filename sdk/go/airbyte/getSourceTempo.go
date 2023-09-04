@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTempo(ctx *pulumi.Context, args *LookupSourceTempoArgs, opts ...pulumi.InvokeOption) (*LookupSourceTempoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTempoResult
 	err := ctx.Invoke("airbyte:index/getSourceTempo:getSourceTempo", args, &rv, opts...)
 	if err != nil {

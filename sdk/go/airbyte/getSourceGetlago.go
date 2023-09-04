@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGetlago(ctx *pulumi.Context, args *LookupSourceGetlagoArgs, opts ...pulumi.InvokeOption) (*LookupSourceGetlagoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGetlagoResult
 	err := ctx.Invoke("airbyte:index/getSourceGetlago:getSourceGetlago", args, &rv, opts...)
 	if err != nil {

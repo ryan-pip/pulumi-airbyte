@@ -39,6 +39,7 @@ func NewSourceSurveySparrow(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceSurveySparrow
 	err := ctx.RegisterResource("airbyte:index/sourceSurveySparrow:SourceSurveySparrow", name, args, &resource, opts...)
 	if err != nil {

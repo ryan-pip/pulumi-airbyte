@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAirtable(ctx *pulumi.Context, args *LookupSourceAirtableArgs, opts ...pulumi.InvokeOption) (*LookupSourceAirtableResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAirtableResult
 	err := ctx.Invoke("airbyte:index/getSourceAirtable:getSourceAirtable", args, &rv, opts...)
 	if err != nil {

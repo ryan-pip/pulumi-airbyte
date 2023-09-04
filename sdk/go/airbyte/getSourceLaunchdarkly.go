@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLaunchdarkly(ctx *pulumi.Context, args *LookupSourceLaunchdarklyArgs, opts ...pulumi.InvokeOption) (*LookupSourceLaunchdarklyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLaunchdarklyResult
 	err := ctx.Invoke("airbyte:index/getSourceLaunchdarkly:getSourceLaunchdarkly", args, &rv, opts...)
 	if err != nil {

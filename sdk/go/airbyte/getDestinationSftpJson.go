@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationSftpJson(ctx *pulumi.Context, args *LookupDestinationSftpJsonArgs, opts ...pulumi.InvokeOption) (*LookupDestinationSftpJsonResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationSftpJsonResult
 	err := ctx.Invoke("airbyte:index/getDestinationSftpJson:getDestinationSftpJson", args, &rv, opts...)
 	if err != nil {

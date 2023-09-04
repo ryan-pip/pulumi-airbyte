@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceHubspot(ctx *pulumi.Context, args *LookupSourceHubspotArgs, opts ...pulumi.InvokeOption) (*LookupSourceHubspotResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceHubspotResult
 	err := ctx.Invoke("airbyte:index/getSourceHubspot:getSourceHubspot", args, &rv, opts...)
 	if err != nil {

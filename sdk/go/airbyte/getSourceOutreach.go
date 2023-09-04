@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOutreach(ctx *pulumi.Context, args *LookupSourceOutreachArgs, opts ...pulumi.InvokeOption) (*LookupSourceOutreachResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOutreachResult
 	err := ctx.Invoke("airbyte:index/getSourceOutreach:getSourceOutreach", args, &rv, opts...)
 	if err != nil {

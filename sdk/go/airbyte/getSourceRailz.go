@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRailz(ctx *pulumi.Context, args *LookupSourceRailzArgs, opts ...pulumi.InvokeOption) (*LookupSourceRailzResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRailzResult
 	err := ctx.Invoke("airbyte:index/getSourceRailz:getSourceRailz", args, &rv, opts...)
 	if err != nil {

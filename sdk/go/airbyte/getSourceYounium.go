@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceYounium(ctx *pulumi.Context, args *LookupSourceYouniumArgs, opts ...pulumi.InvokeOption) (*LookupSourceYouniumResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceYouniumResult
 	err := ctx.Invoke("airbyte:index/getSourceYounium:getSourceYounium", args, &rv, opts...)
 	if err != nil {

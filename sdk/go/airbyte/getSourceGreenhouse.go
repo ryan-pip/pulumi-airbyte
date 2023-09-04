@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGreenhouse(ctx *pulumi.Context, args *LookupSourceGreenhouseArgs, opts ...pulumi.InvokeOption) (*LookupSourceGreenhouseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGreenhouseResult
 	err := ctx.Invoke("airbyte:index/getSourceGreenhouse:getSourceGreenhouse", args, &rv, opts...)
 	if err != nil {

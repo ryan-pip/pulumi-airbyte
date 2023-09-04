@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMyHours(ctx *pulumi.Context, args *LookupSourceMyHoursArgs, opts ...pulumi.InvokeOption) (*LookupSourceMyHoursResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMyHoursResult
 	err := ctx.Invoke("airbyte:index/getSourceMyHours:getSourceMyHours", args, &rv, opts...)
 	if err != nil {

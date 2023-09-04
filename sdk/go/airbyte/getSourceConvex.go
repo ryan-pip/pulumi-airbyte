@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceConvex(ctx *pulumi.Context, args *LookupSourceConvexArgs, opts ...pulumi.InvokeOption) (*LookupSourceConvexResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceConvexResult
 	err := ctx.Invoke("airbyte:index/getSourceConvex:getSourceConvex", args, &rv, opts...)
 	if err != nil {

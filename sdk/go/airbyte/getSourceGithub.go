@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGithub(ctx *pulumi.Context, args *LookupSourceGithubArgs, opts ...pulumi.InvokeOption) (*LookupSourceGithubResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGithubResult
 	err := ctx.Invoke("airbyte:index/getSourceGithub:getSourceGithub", args, &rv, opts...)
 	if err != nil {

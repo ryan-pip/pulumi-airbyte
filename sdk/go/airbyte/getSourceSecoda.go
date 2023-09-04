@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSecoda(ctx *pulumi.Context, args *LookupSourceSecodaArgs, opts ...pulumi.InvokeOption) (*LookupSourceSecodaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSecodaResult
 	err := ctx.Invoke("airbyte:index/getSourceSecoda:getSourceSecoda", args, &rv, opts...)
 	if err != nil {

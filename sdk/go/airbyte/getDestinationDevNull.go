@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationDevNull(ctx *pulumi.Context, args *LookupDestinationDevNullArgs, opts ...pulumi.InvokeOption) (*LookupDestinationDevNullResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationDevNullResult
 	err := ctx.Invoke("airbyte:index/getDestinationDevNull:getDestinationDevNull", args, &rv, opts...)
 	if err != nil {

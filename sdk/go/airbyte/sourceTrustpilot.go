@@ -39,6 +39,7 @@ func NewSourceTrustpilot(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceTrustpilot
 	err := ctx.RegisterResource("airbyte:index/sourceTrustpilot:SourceTrustpilot", name, args, &resource, opts...)
 	if err != nil {

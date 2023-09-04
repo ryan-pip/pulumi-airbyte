@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceNytimes(ctx *pulumi.Context, args *LookupSourceNytimesArgs, opts ...pulumi.InvokeOption) (*LookupSourceNytimesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceNytimesResult
 	err := ctx.Invoke("airbyte:index/getSourceNytimes:getSourceNytimes", args, &rv, opts...)
 	if err != nil {

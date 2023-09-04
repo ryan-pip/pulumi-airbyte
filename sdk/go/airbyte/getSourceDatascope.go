@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDatascope(ctx *pulumi.Context, args *LookupSourceDatascopeArgs, opts ...pulumi.InvokeOption) (*LookupSourceDatascopeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDatascopeResult
 	err := ctx.Invoke("airbyte:index/getSourceDatascope:getSourceDatascope", args, &rv, opts...)
 	if err != nil {

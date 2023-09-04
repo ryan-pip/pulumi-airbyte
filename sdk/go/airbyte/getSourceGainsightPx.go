@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGainsightPx(ctx *pulumi.Context, args *LookupSourceGainsightPxArgs, opts ...pulumi.InvokeOption) (*LookupSourceGainsightPxResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGainsightPxResult
 	err := ctx.Invoke("airbyte:index/getSourceGainsightPx:getSourceGainsightPx", args, &rv, opts...)
 	if err != nil {

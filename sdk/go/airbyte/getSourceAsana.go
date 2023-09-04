@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAsana(ctx *pulumi.Context, args *LookupSourceAsanaArgs, opts ...pulumi.InvokeOption) (*LookupSourceAsanaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAsanaResult
 	err := ctx.Invoke("airbyte:index/getSourceAsana:getSourceAsana", args, &rv, opts...)
 	if err != nil {

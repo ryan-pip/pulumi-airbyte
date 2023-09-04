@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationDynamodb(ctx *pulumi.Context, args *LookupDestinationDynamodbArgs, opts ...pulumi.InvokeOption) (*LookupDestinationDynamodbResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationDynamodbResult
 	err := ctx.Invoke("airbyte:index/getDestinationDynamodb:getDestinationDynamodb", args, &rv, opts...)
 	if err != nil {

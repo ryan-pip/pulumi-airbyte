@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSendinblue(ctx *pulumi.Context, args *LookupSourceSendinblueArgs, opts ...pulumi.InvokeOption) (*LookupSourceSendinblueResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSendinblueResult
 	err := ctx.Invoke("airbyte:index/getSourceSendinblue:getSourceSendinblue", args, &rv, opts...)
 	if err != nil {

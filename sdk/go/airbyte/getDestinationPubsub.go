@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationPubsub(ctx *pulumi.Context, args *LookupDestinationPubsubArgs, opts ...pulumi.InvokeOption) (*LookupDestinationPubsubResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationPubsubResult
 	err := ctx.Invoke("airbyte:index/getDestinationPubsub:getDestinationPubsub", args, &rv, opts...)
 	if err != nil {

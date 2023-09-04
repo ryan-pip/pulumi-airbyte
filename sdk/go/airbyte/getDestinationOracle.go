@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationOracle(ctx *pulumi.Context, args *LookupDestinationOracleArgs, opts ...pulumi.InvokeOption) (*LookupDestinationOracleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationOracleResult
 	err := ctx.Invoke("airbyte:index/getDestinationOracle:getDestinationOracle", args, &rv, opts...)
 	if err != nil {

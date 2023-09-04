@@ -39,6 +39,7 @@ func NewSourceOracle(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceOracle
 	err := ctx.RegisterResource("airbyte:index/sourceOracle:SourceOracle", name, args, &resource, opts...)
 	if err != nil {

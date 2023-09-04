@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSentry(ctx *pulumi.Context, args *LookupSourceSentryArgs, opts ...pulumi.InvokeOption) (*LookupSourceSentryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSentryResult
 	err := ctx.Invoke("airbyte:index/getSourceSentry:getSourceSentry", args, &rv, opts...)
 	if err != nil {

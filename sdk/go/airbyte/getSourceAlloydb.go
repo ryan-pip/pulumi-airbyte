@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAlloydb(ctx *pulumi.Context, args *LookupSourceAlloydbArgs, opts ...pulumi.InvokeOption) (*LookupSourceAlloydbResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAlloydbResult
 	err := ctx.Invoke("airbyte:index/getSourceAlloydb:getSourceAlloydb", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceApifyDataset(ctx *pulumi.Context, args *LookupSourceApifyDatasetArgs, opts ...pulumi.InvokeOption) (*LookupSourceApifyDatasetResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceApifyDatasetResult
 	err := ctx.Invoke("airbyte:index/getSourceApifyDataset:getSourceApifyDataset", args, &rv, opts...)
 	if err != nil {

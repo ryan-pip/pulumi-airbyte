@@ -39,6 +39,7 @@ func NewSourceMongodbInternalPoc(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceMongodbInternalPoc
 	err := ctx.RegisterResource("airbyte:index/sourceMongodbInternalPoc:SourceMongodbInternalPoc", name, args, &resource, opts...)
 	if err != nil {

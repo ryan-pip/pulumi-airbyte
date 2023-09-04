@@ -39,6 +39,7 @@ func NewSourceYoutubeAnalytics(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceYoutubeAnalytics
 	err := ctx.RegisterResource("airbyte:index/sourceYoutubeAnalytics:SourceYoutubeAnalytics", name, args, &resource, opts...)
 	if err != nil {

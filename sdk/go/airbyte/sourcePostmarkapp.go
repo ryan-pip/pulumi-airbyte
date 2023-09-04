@@ -39,6 +39,7 @@ func NewSourcePostmarkapp(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePostmarkapp
 	err := ctx.RegisterResource("airbyte:index/sourcePostmarkapp:SourcePostmarkapp", name, args, &resource, opts...)
 	if err != nil {

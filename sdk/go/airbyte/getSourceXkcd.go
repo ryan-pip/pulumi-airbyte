@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceXkcd(ctx *pulumi.Context, args *LookupSourceXkcdArgs, opts ...pulumi.InvokeOption) (*LookupSourceXkcdResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceXkcdResult
 	err := ctx.Invoke("airbyte:index/getSourceXkcd:getSourceXkcd", args, &rv, opts...)
 	if err != nil {

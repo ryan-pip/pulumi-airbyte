@@ -39,6 +39,7 @@ func NewSourceAuth0(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceAuth0
 	err := ctx.RegisterResource("airbyte:index/sourceAuth0:SourceAuth0", name, args, &resource, opts...)
 	if err != nil {

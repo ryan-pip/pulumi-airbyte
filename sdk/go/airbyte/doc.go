@@ -1,2 +1,2 @@
-// Package airbyte exports types, functions, subpackages for provisioning airbyte resources.
+// A Pulumi package for creating and managing xyz cloud resources.
 package airbyte

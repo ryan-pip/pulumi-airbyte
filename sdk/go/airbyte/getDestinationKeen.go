@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationKeen(ctx *pulumi.Context, args *LookupDestinationKeenArgs, opts ...pulumi.InvokeOption) (*LookupDestinationKeenResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationKeenResult
 	err := ctx.Invoke("airbyte:index/getDestinationKeen:getDestinationKeen", args, &rv, opts...)
 	if err != nil {

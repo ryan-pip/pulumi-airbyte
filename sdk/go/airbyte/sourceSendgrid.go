@@ -39,6 +39,7 @@ func NewSourceSendgrid(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceSendgrid
 	err := ctx.RegisterResource("airbyte:index/sourceSendgrid:SourceSendgrid", name, args, &resource, opts...)
 	if err != nil {

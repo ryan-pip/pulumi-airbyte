@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSlack(ctx *pulumi.Context, args *LookupSourceSlackArgs, opts ...pulumi.InvokeOption) (*LookupSourceSlackResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSlackResult
 	err := ctx.Invoke("airbyte:index/getSourceSlack:getSourceSlack", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePosthog(ctx *pulumi.Context, args *LookupSourcePosthogArgs, opts ...pulumi.InvokeOption) (*LookupSourcePosthogResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePosthogResult
 	err := ctx.Invoke("airbyte:index/getSourcePosthog:getSourcePosthog", args, &rv, opts...)
 	if err != nil {

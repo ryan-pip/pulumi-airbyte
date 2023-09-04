@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOrb(ctx *pulumi.Context, args *LookupSourceOrbArgs, opts ...pulumi.InvokeOption) (*LookupSourceOrbResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOrbResult
 	err := ctx.Invoke("airbyte:index/getSourceOrb:getSourceOrb", args, &rv, opts...)
 	if err != nil {

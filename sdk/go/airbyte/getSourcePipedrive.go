@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePipedrive(ctx *pulumi.Context, args *LookupSourcePipedriveArgs, opts ...pulumi.InvokeOption) (*LookupSourcePipedriveResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePipedriveResult
 	err := ctx.Invoke("airbyte:index/getSourcePipedrive:getSourcePipedrive", args, &rv, opts...)
 	if err != nil {

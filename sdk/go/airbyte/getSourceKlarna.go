@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceKlarna(ctx *pulumi.Context, args *LookupSourceKlarnaArgs, opts ...pulumi.InvokeOption) (*LookupSourceKlarnaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKlarnaResult
 	err := ctx.Invoke("airbyte:index/getSourceKlarna:getSourceKlarna", args, &rv, opts...)
 	if err != nil {

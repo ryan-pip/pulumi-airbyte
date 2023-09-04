@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceClockify(ctx *pulumi.Context, args *LookupSourceClockifyArgs, opts ...pulumi.InvokeOption) (*LookupSourceClockifyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceClockifyResult
 	err := ctx.Invoke("airbyte:index/getSourceClockify:getSourceClockify", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceBraintree(ctx *pulumi.Context, args *LookupSourceBraintreeArgs, opts ...pulumi.InvokeOption) (*LookupSourceBraintreeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBraintreeResult
 	err := ctx.Invoke("airbyte:index/getSourceBraintree:getSourceBraintree", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSftpBulk(ctx *pulumi.Context, args *LookupSourceSftpBulkArgs, opts ...pulumi.InvokeOption) (*LookupSourceSftpBulkResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSftpBulkResult
 	err := ctx.Invoke("airbyte:index/getSourceSftpBulk:getSourceSftpBulk", args, &rv, opts...)
 	if err != nil {

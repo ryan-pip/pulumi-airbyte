@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationVertica(ctx *pulumi.Context, args *LookupDestinationVerticaArgs, opts ...pulumi.InvokeOption) (*LookupDestinationVerticaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationVerticaResult
 	err := ctx.Invoke("airbyte:index/getDestinationVertica:getDestinationVertica", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceWebflow(ctx *pulumi.Context, args *LookupSourceWebflowArgs, opts ...pulumi.InvokeOption) (*LookupSourceWebflowResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceWebflowResult
 	err := ctx.Invoke("airbyte:index/getSourceWebflow:getSourceWebflow", args, &rv, opts...)
 	if err != nil {

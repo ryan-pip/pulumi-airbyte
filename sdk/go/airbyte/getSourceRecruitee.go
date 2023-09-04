@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRecruitee(ctx *pulumi.Context, args *LookupSourceRecruiteeArgs, opts ...pulumi.InvokeOption) (*LookupSourceRecruiteeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRecruiteeResult
 	err := ctx.Invoke("airbyte:index/getSourceRecruitee:getSourceRecruitee", args, &rv, opts...)
 	if err != nil {

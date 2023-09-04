@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceZendeskSunshine(ctx *pulumi.Context, args *LookupSourceZendeskSunshineArgs, opts ...pulumi.InvokeOption) (*LookupSourceZendeskSunshineResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZendeskSunshineResult
 	err := ctx.Invoke("airbyte:index/getSourceZendeskSunshine:getSourceZendeskSunshine", args, &rv, opts...)
 	if err != nil {

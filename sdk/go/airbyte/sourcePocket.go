@@ -39,6 +39,7 @@ func NewSourcePocket(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePocket
 	err := ctx.RegisterResource("airbyte:index/sourcePocket:SourcePocket", name, args, &resource, opts...)
 	if err != nil {

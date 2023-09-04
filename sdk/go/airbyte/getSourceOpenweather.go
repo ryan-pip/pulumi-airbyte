@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOpenweather(ctx *pulumi.Context, args *LookupSourceOpenweatherArgs, opts ...pulumi.InvokeOption) (*LookupSourceOpenweatherResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOpenweatherResult
 	err := ctx.Invoke("airbyte:index/getSourceOpenweather:getSourceOpenweather", args, &rv, opts...)
 	if err != nil {

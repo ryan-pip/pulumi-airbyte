@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceInstagram(ctx *pulumi.Context, args *LookupSourceInstagramArgs, opts ...pulumi.InvokeOption) (*LookupSourceInstagramResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceInstagramResult
 	err := ctx.Invoke("airbyte:index/getSourceInstagram:getSourceInstagram", args, &rv, opts...)
 	if err != nil {

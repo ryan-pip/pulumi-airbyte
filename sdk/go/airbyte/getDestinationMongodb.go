@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationMongodb(ctx *pulumi.Context, args *LookupDestinationMongodbArgs, opts ...pulumi.InvokeOption) (*LookupDestinationMongodbResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationMongodbResult
 	err := ctx.Invoke("airbyte:index/getDestinationMongodb:getDestinationMongodb", args, &rv, opts...)
 	if err != nil {

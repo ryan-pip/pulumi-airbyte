@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceHubplanner(ctx *pulumi.Context, args *LookupSourceHubplannerArgs, opts ...pulumi.InvokeOption) (*LookupSourceHubplannerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceHubplannerResult
 	err := ctx.Invoke("airbyte:index/getSourceHubplanner:getSourceHubplanner", args, &rv, opts...)
 	if err != nil {

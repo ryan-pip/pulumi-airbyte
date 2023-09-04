@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleDirectory(ctx *pulumi.Context, args *LookupSourceGoogleDirectoryArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleDirectoryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleDirectoryResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleDirectory:getSourceGoogleDirectory", args, &rv, opts...)
 	if err != nil {

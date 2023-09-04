@@ -55,6 +55,7 @@ func NewConnection(ctx *pulumi.Context,
 	if args.SourceId == nil {
 		return nil, errors.New("invalid value for required argument 'SourceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Connection
 	err := ctx.RegisterResource("airbyte:index/connection:Connection", name, args, &resource, opts...)
 	if err != nil {

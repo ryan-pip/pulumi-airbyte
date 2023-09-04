@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLinnworks(ctx *pulumi.Context, args *LookupSourceLinnworksArgs, opts ...pulumi.InvokeOption) (*LookupSourceLinnworksResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLinnworksResult
 	err := ctx.Invoke("airbyte:index/getSourceLinnworks:getSourceLinnworks", args, &rv, opts...)
 	if err != nil {

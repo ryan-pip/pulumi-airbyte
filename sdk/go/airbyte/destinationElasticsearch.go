@@ -37,6 +37,7 @@ func NewDestinationElasticsearch(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationElasticsearch
 	err := ctx.RegisterResource("airbyte:index/destinationElasticsearch:DestinationElasticsearch", name, args, &resource, opts...)
 	if err != nil {

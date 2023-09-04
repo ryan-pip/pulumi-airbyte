@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceRecharge(ctx *pulumi.Context, args *LookupSourceRechargeArgs, opts ...pulumi.InvokeOption) (*LookupSourceRechargeResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRechargeResult
 	err := ctx.Invoke("airbyte:index/getSourceRecharge:getSourceRecharge", args, &rv, opts...)
 	if err != nil {

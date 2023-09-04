@@ -37,6 +37,7 @@ func NewDestinationTypesense(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationTypesense
 	err := ctx.RegisterResource("airbyte:index/destinationTypesense:DestinationTypesense", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSnapchatMarketing(ctx *pulumi.Context, args *LookupSourceSnapchatMarketingArgs, opts ...pulumi.InvokeOption) (*LookupSourceSnapchatMarketingResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSnapchatMarketingResult
 	err := ctx.Invoke("airbyte:index/getSourceSnapchatMarketing:getSourceSnapchatMarketing", args, &rv, opts...)
 	if err != nil {

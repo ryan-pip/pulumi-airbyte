@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTypeform(ctx *pulumi.Context, args *LookupSourceTypeformArgs, opts ...pulumi.InvokeOption) (*LookupSourceTypeformResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTypeformResult
 	err := ctx.Invoke("airbyte:index/getSourceTypeform:getSourceTypeform", args, &rv, opts...)
 	if err != nil {

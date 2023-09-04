@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePostmarkapp(ctx *pulumi.Context, args *LookupSourcePostmarkappArgs, opts ...pulumi.InvokeOption) (*LookupSourcePostmarkappResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePostmarkappResult
 	err := ctx.Invoke("airbyte:index/getSourcePostmarkapp:getSourcePostmarkapp", args, &rv, opts...)
 	if err != nil {

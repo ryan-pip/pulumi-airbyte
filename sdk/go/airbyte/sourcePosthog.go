@@ -39,6 +39,7 @@ func NewSourcePosthog(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePosthog
 	err := ctx.RegisterResource("airbyte:index/sourcePosthog:SourcePosthog", name, args, &resource, opts...)
 	if err != nil {

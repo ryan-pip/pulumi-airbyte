@@ -39,6 +39,7 @@ func NewSourcePaypalTransaction(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourcePaypalTransaction
 	err := ctx.RegisterResource("airbyte:index/sourcePaypalTransaction:SourcePaypalTransaction", name, args, &resource, opts...)
 	if err != nil {

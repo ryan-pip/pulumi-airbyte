@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceWikipediaPageviews(ctx *pulumi.Context, args *LookupSourceWikipediaPageviewsArgs, opts ...pulumi.InvokeOption) (*LookupSourceWikipediaPageviewsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceWikipediaPageviewsResult
 	err := ctx.Invoke("airbyte:index/getSourceWikipediaPageviews:getSourceWikipediaPageviews", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAuth0(ctx *pulumi.Context, args *LookupSourceAuth0Args, opts ...pulumi.InvokeOption) (*LookupSourceAuth0Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAuth0Result
 	err := ctx.Invoke("airbyte:index/getSourceAuth0:getSourceAuth0", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceE2eTestCloud(ctx *pulumi.Context, args *LookupSourceE2eTestCloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceE2eTestCloudResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceE2eTestCloudResult
 	err := ctx.Invoke("airbyte:index/getSourceE2eTestCloud:getSourceE2eTestCloud", args, &rv, opts...)
 	if err != nil {

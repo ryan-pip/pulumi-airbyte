@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceFauna(ctx *pulumi.Context, args *LookupSourceFaunaArgs, opts ...pulumi.InvokeOption) (*LookupSourceFaunaResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFaunaResult
 	err := ctx.Invoke("airbyte:index/getSourceFauna:getSourceFauna", args, &rv, opts...)
 	if err != nil {

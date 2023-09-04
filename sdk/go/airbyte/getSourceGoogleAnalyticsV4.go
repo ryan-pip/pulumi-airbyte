@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGoogleAnalyticsV4(ctx *pulumi.Context, args *LookupSourceGoogleAnalyticsV4Args, opts ...pulumi.InvokeOption) (*LookupSourceGoogleAnalyticsV4Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleAnalyticsV4Result
 	err := ctx.Invoke("airbyte:index/getSourceGoogleAnalyticsV4:getSourceGoogleAnalyticsV4", args, &rv, opts...)
 	if err != nil {

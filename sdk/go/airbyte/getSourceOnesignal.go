@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceOnesignal(ctx *pulumi.Context, args *LookupSourceOnesignalArgs, opts ...pulumi.InvokeOption) (*LookupSourceOnesignalResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOnesignalResult
 	err := ctx.Invoke("airbyte:index/getSourceOnesignal:getSourceOnesignal", args, &rv, opts...)
 	if err != nil {

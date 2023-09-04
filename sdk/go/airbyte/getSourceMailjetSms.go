@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMailjetSms(ctx *pulumi.Context, args *LookupSourceMailjetSmsArgs, opts ...pulumi.InvokeOption) (*LookupSourceMailjetSmsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMailjetSmsResult
 	err := ctx.Invoke("airbyte:index/getSourceMailjetSms:getSourceMailjetSms", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePolygonStockApi(ctx *pulumi.Context, args *LookupSourcePolygonStockApiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePolygonStockApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePolygonStockApiResult
 	err := ctx.Invoke("airbyte:index/getSourcePolygonStockApi:getSourcePolygonStockApi", args, &rv, opts...)
 	if err != nil {

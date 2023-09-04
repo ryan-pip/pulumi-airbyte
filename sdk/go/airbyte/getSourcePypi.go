@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePypi(ctx *pulumi.Context, args *LookupSourcePypiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePypiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePypiResult
 	err := ctx.Invoke("airbyte:index/getSourcePypi:getSourcePypi", args, &rv, opts...)
 	if err != nil {

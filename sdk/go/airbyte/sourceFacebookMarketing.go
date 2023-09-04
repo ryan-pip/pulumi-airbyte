@@ -39,6 +39,7 @@ func NewSourceFacebookMarketing(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceFacebookMarketing
 	err := ctx.RegisterResource("airbyte:index/sourceFacebookMarketing:SourceFacebookMarketing", name, args, &resource, opts...)
 	if err != nil {

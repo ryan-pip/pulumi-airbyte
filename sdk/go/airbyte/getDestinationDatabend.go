@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationDatabend(ctx *pulumi.Context, args *LookupDestinationDatabendArgs, opts ...pulumi.InvokeOption) (*LookupDestinationDatabendResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationDatabendResult
 	err := ctx.Invoke("airbyte:index/getDestinationDatabend:getDestinationDatabend", args, &rv, opts...)
 	if err != nil {

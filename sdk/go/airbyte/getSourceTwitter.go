@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTwitter(ctx *pulumi.Context, args *LookupSourceTwitterArgs, opts ...pulumi.InvokeOption) (*LookupSourceTwitterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTwitterResult
 	err := ctx.Invoke("airbyte:index/getSourceTwitter:getSourceTwitter", args, &rv, opts...)
 	if err != nil {

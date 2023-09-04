@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationMSsql(ctx *pulumi.Context, args *LookupDestinationMSsqlArgs, opts ...pulumi.InvokeOption) (*LookupDestinationMSsqlResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationMSsqlResult
 	err := ctx.Invoke("airbyte:index/getDestinationMSsql:getDestinationMSsql", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceK6Cloud(ctx *pulumi.Context, args *LookupSourceK6CloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceK6CloudResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceK6CloudResult
 	err := ctx.Invoke("airbyte:index/getSourceK6Cloud:getSourceK6Cloud", args, &rv, opts...)
 	if err != nil {

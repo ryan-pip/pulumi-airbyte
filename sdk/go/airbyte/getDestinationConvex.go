@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationConvex(ctx *pulumi.Context, args *LookupDestinationConvexArgs, opts ...pulumi.InvokeOption) (*LookupDestinationConvexResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationConvexResult
 	err := ctx.Invoke("airbyte:index/getDestinationConvex:getDestinationConvex", args, &rv, opts...)
 	if err != nil {

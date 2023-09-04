@@ -39,6 +39,7 @@ func NewSourceGoogleWorkspaceAdminReports(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceGoogleWorkspaceAdminReports
 	err := ctx.RegisterResource("airbyte:index/sourceGoogleWorkspaceAdminReports:SourceGoogleWorkspaceAdminReports", name, args, &resource, opts...)
 	if err != nil {

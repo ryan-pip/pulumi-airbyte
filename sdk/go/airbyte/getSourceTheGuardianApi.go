@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTheGuardianApi(ctx *pulumi.Context, args *LookupSourceTheGuardianApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceTheGuardianApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTheGuardianApiResult
 	err := ctx.Invoke("airbyte:index/getSourceTheGuardianApi:getSourceTheGuardianApi", args, &rv, opts...)
 	if err != nil {

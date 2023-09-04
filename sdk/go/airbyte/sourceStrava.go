@@ -39,6 +39,7 @@ func NewSourceStrava(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceStrava
 	err := ctx.RegisterResource("airbyte:index/sourceStrava:SourceStrava", name, args, &resource, opts...)
 	if err != nil {

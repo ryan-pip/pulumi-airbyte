@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceInsightly(ctx *pulumi.Context, args *LookupSourceInsightlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceInsightlyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceInsightlyResult
 	err := ctx.Invoke("airbyte:index/getSourceInsightly:getSourceInsightly", args, &rv, opts...)
 	if err != nil {

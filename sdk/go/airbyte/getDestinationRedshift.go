@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationRedshift(ctx *pulumi.Context, args *LookupDestinationRedshiftArgs, opts ...pulumi.InvokeOption) (*LookupDestinationRedshiftResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationRedshiftResult
 	err := ctx.Invoke("airbyte:index/getDestinationRedshift:getDestinationRedshift", args, &rv, opts...)
 	if err != nil {

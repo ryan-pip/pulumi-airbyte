@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMailgun(ctx *pulumi.Context, args *LookupSourceMailgunArgs, opts ...pulumi.InvokeOption) (*LookupSourceMailgunResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMailgunResult
 	err := ctx.Invoke("airbyte:index/getSourceMailgun:getSourceMailgun", args, &rv, opts...)
 	if err != nil {

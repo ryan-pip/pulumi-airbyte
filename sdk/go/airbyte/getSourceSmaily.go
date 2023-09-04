@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceSmaily(ctx *pulumi.Context, args *LookupSourceSmailyArgs, opts ...pulumi.InvokeOption) (*LookupSourceSmailyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSmailyResult
 	err := ctx.Invoke("airbyte:index/getSourceSmaily:getSourceSmaily", args, &rv, opts...)
 	if err != nil {

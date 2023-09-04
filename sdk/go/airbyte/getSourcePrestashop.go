@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePrestashop(ctx *pulumi.Context, args *LookupSourcePrestashopArgs, opts ...pulumi.InvokeOption) (*LookupSourcePrestashopResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePrestashopResult
 	err := ctx.Invoke("airbyte:index/getSourcePrestashop:getSourcePrestashop", args, &rv, opts...)
 	if err != nil {

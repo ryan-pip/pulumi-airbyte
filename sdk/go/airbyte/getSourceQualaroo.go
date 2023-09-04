@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceQualaroo(ctx *pulumi.Context, args *LookupSourceQualarooArgs, opts ...pulumi.InvokeOption) (*LookupSourceQualarooResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceQualarooResult
 	err := ctx.Invoke("airbyte:index/getSourceQualaroo:getSourceQualaroo", args, &rv, opts...)
 	if err != nil {

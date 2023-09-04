@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAmazonAds(ctx *pulumi.Context, args *LookupSourceAmazonAdsArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmazonAdsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmazonAdsResult
 	err := ctx.Invoke("airbyte:index/getSourceAmazonAds:getSourceAmazonAds", args, &rv, opts...)
 	if err != nil {

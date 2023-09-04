@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePendo(ctx *pulumi.Context, args *LookupSourcePendoArgs, opts ...pulumi.InvokeOption) (*LookupSourcePendoResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePendoResult
 	err := ctx.Invoke("airbyte:index/getSourcePendo:getSourcePendo", args, &rv, opts...)
 	if err != nil {

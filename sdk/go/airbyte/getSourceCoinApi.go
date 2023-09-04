@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceCoinApi(ctx *pulumi.Context, args *LookupSourceCoinApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceCoinApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceCoinApiResult
 	err := ctx.Invoke("airbyte:index/getSourceCoinApi:getSourceCoinApi", args, &rv, opts...)
 	if err != nil {

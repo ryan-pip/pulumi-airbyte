@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceBambooHr(ctx *pulumi.Context, args *LookupSourceBambooHrArgs, opts ...pulumi.InvokeOption) (*LookupSourceBambooHrResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBambooHrResult
 	err := ctx.Invoke("airbyte:index/getSourceBambooHr:getSourceBambooHr", args, &rv, opts...)
 	if err != nil {

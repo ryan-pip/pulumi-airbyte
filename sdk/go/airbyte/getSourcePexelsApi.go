@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePexelsApi(ctx *pulumi.Context, args *LookupSourcePexelsApiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePexelsApiResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePexelsApiResult
 	err := ctx.Invoke("airbyte:index/getSourcePexelsApi:getSourcePexelsApi", args, &rv, opts...)
 	if err != nil {

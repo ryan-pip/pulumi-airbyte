@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDestinationElasticsearch(ctx *pulumi.Context, args *LookupDestinationElasticsearchArgs, opts ...pulumi.InvokeOption) (*LookupDestinationElasticsearchResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationElasticsearchResult
 	err := ctx.Invoke("airbyte:index/getDestinationElasticsearch:getDestinationElasticsearch", args, &rv, opts...)
 	if err != nil {

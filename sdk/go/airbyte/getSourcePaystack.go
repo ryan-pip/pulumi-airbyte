@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourcePaystack(ctx *pulumi.Context, args *LookupSourcePaystackArgs, opts ...pulumi.InvokeOption) (*LookupSourcePaystackResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePaystackResult
 	err := ctx.Invoke("airbyte:index/getSourcePaystack:getSourcePaystack", args, &rv, opts...)
 	if err != nil {

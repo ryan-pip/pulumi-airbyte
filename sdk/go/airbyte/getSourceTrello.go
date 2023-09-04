@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTrello(ctx *pulumi.Context, args *LookupSourceTrelloArgs, opts ...pulumi.InvokeOption) (*LookupSourceTrelloResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTrelloResult
 	err := ctx.Invoke("airbyte:index/getSourceTrello:getSourceTrello", args, &rv, opts...)
 	if err != nil {

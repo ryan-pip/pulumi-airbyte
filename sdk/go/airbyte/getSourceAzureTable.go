@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAzureTable(ctx *pulumi.Context, args *LookupSourceAzureTableArgs, opts ...pulumi.InvokeOption) (*LookupSourceAzureTableResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAzureTableResult
 	err := ctx.Invoke("airbyte:index/getSourceAzureTable:getSourceAzureTable", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupConnection(ctx *pulumi.Context, args *LookupConnectionArgs, opts ...pulumi.InvokeOption) (*LookupConnectionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupConnectionResult
 	err := ctx.Invoke("airbyte:index/getConnection:getConnection", args, &rv, opts...)
 	if err != nil {

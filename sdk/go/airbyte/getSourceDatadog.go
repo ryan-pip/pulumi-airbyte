@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceDatadog(ctx *pulumi.Context, args *LookupSourceDatadogArgs, opts ...pulumi.InvokeOption) (*LookupSourceDatadogResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDatadogResult
 	err := ctx.Invoke("airbyte:index/getSourceDatadog:getSourceDatadog", args, &rv, opts...)
 	if err != nil {

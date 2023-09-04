@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceIp2whois(ctx *pulumi.Context, args *LookupSourceIp2whoisArgs, opts ...pulumi.InvokeOption) (*LookupSourceIp2whoisResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceIp2whoisResult
 	err := ctx.Invoke("airbyte:index/getSourceIp2whois:getSourceIp2whois", args, &rv, opts...)
 	if err != nil {

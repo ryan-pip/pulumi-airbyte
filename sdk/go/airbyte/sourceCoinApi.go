@@ -39,6 +39,7 @@ func NewSourceCoinApi(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceCoinApi
 	err := ctx.RegisterResource("airbyte:index/sourceCoinApi:SourceCoinApi", name, args, &resource, opts...)
 	if err != nil {

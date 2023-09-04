@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTiktokMarketing(ctx *pulumi.Context, args *LookupSourceTiktokMarketingArgs, opts ...pulumi.InvokeOption) (*LookupSourceTiktokMarketingResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTiktokMarketingResult
 	err := ctx.Invoke("airbyte:index/getSourceTiktokMarketing:getSourceTiktokMarketing", args, &rv, opts...)
 	if err != nil {

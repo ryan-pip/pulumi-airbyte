@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceTwilio(ctx *pulumi.Context, args *LookupSourceTwilioArgs, opts ...pulumi.InvokeOption) (*LookupSourceTwilioResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTwilioResult
 	err := ctx.Invoke("airbyte:index/getSourceTwilio:getSourceTwilio", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceNotion(ctx *pulumi.Context, args *LookupSourceNotionArgs, opts ...pulumi.InvokeOption) (*LookupSourceNotionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceNotionResult
 	err := ctx.Invoke("airbyte:index/getSourceNotion:getSourceNotion", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMixpanel(ctx *pulumi.Context, args *LookupSourceMixpanelArgs, opts ...pulumi.InvokeOption) (*LookupSourceMixpanelResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMixpanelResult
 	err := ctx.Invoke("airbyte:index/getSourceMixpanel:getSourceMixpanel", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLeverHiring(ctx *pulumi.Context, args *LookupSourceLeverHiringArgs, opts ...pulumi.InvokeOption) (*LookupSourceLeverHiringResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLeverHiringResult
 	err := ctx.Invoke("airbyte:index/getSourceLeverHiring:getSourceLeverHiring", args, &rv, opts...)
 	if err != nil {

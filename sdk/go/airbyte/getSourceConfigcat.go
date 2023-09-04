@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceConfigcat(ctx *pulumi.Context, args *LookupSourceConfigcatArgs, opts ...pulumi.InvokeOption) (*LookupSourceConfigcatResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceConfigcatResult
 	err := ctx.Invoke("airbyte:index/getSourceConfigcat:getSourceConfigcat", args, &rv, opts...)
 	if err != nil {

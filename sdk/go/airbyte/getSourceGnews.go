@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceGnews(ctx *pulumi.Context, args *LookupSourceGnewsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGnewsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGnewsResult
 	err := ctx.Invoke("airbyte:index/getSourceGnews:getSourceGnews", args, &rv, opts...)
 	if err != nil {

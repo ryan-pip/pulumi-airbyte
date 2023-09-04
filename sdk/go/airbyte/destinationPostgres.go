@@ -37,6 +37,7 @@ func NewDestinationPostgres(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DestinationPostgres
 	err := ctx.RegisterResource("airbyte:index/destinationPostgres:DestinationPostgres", name, args, &resource, opts...)
 	if err != nil {

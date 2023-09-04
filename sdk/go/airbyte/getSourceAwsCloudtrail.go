@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceAwsCloudtrail(ctx *pulumi.Context, args *LookupSourceAwsCloudtrailArgs, opts ...pulumi.InvokeOption) (*LookupSourceAwsCloudtrailResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAwsCloudtrailResult
 	err := ctx.Invoke("airbyte:index/getSourceAwsCloudtrail:getSourceAwsCloudtrail", args, &rv, opts...)
 	if err != nil {

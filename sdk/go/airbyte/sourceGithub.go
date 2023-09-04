@@ -39,6 +39,7 @@ func NewSourceGithub(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SourceGithub
 	err := ctx.RegisterResource("airbyte:index/sourceGithub:SourceGithub", name, args, &resource, opts...)
 	if err != nil {

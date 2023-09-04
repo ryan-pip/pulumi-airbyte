@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceLemlist(ctx *pulumi.Context, args *LookupSourceLemlistArgs, opts ...pulumi.InvokeOption) (*LookupSourceLemlistResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLemlistResult
 	err := ctx.Invoke("airbyte:index/getSourceLemlist:getSourceLemlist", args, &rv, opts...)
 	if err != nil {

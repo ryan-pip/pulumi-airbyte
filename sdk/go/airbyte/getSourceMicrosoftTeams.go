@@ -11,6 +11,7 @@ import (
 )
 
 func LookupSourceMicrosoftTeams(ctx *pulumi.Context, args *LookupSourceMicrosoftTeamsArgs, opts ...pulumi.InvokeOption) (*LookupSourceMicrosoftTeamsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMicrosoftTeamsResult
 	err := ctx.Invoke("airbyte:index/getSourceMicrosoftTeams:getSourceMicrosoftTeams", args, &rv, opts...)
 	if err != nil {
