@@ -23,6 +23,8 @@ import (
 	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
+	"github.com/ryan-pip/pulumi-airbyte/provider/pkg/version"
 	"github.com/ryan-pip/terraform-provider-airbyte/shim"
 )
 
@@ -81,6 +83,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.airbyte.com",
 		Repository: "https://github.com/ryan-pip/pulumi-airbyte",
+		Version:    version.Version,
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg: "",
