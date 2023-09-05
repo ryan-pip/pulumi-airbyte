@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceYandexMetrica DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceYandexmetrica = airbyte.getSourceYandexMetrica({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceYandexMetrica(args: GetSourceYandexMetricaArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceYandexMetricaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceYandexMetrica(args: GetSourceYandexMetricaArgs, opts?: 
  * A collection of arguments for invoking getSourceYandexMetrica.
  */
 export interface GetSourceYandexMetricaArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceYandexMetricaResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceYandexMetrica DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceYandexmetrica = airbyte.getSourceYandexMetrica({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceYandexMetricaOutput(args: GetSourceYandexMetricaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceYandexMetricaResult> {
     return pulumi.output(args).apply((a: any) => getSourceYandexMetrica(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceYandexMetricaOutput(args: GetSourceYandexMetricaOutputA
  * A collection of arguments for invoking getSourceYandexMetrica.
  */
 export interface GetSourceYandexMetricaOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

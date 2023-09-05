@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceLeverHiring DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceLeverhiring = airbyte.getSourceLeverHiring({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceLeverHiring(args: GetSourceLeverHiringArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceLeverHiringResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceLeverHiring(args: GetSourceLeverHiringArgs, opts?: pulu
  * A collection of arguments for invoking getSourceLeverHiring.
  */
 export interface GetSourceLeverHiringArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceLeverHiringResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceLeverHiring DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceLeverhiring = airbyte.getSourceLeverHiring({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceLeverHiringOutput(args: GetSourceLeverHiringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceLeverHiringResult> {
     return pulumi.output(args).apply((a: any) => getSourceLeverHiring(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceLeverHiringOutput(args: GetSourceLeverHiringOutputArgs,
  * A collection of arguments for invoking getSourceLeverHiring.
  */
 export interface GetSourceLeverHiringOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

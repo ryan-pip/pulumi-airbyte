@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTempo DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTempo = airbyte.getSourceTempo({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTempo(args: GetSourceTempoArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTempoResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTempo(args: GetSourceTempoArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSourceTempo.
  */
 export interface GetSourceTempoArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTempoResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTempo DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTempo = airbyte.getSourceTempo({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTempoOutput(args: GetSourceTempoOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTempoResult> {
     return pulumi.output(args).apply((a: any) => getSourceTempo(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTempoOutput(args: GetSourceTempoOutputArgs, opts?: pulu
  * A collection of arguments for invoking getSourceTempo.
  */
 export interface GetSourceTempoOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

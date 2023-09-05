@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOmnisend DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOmnisend = airbyte.getSourceOmnisend({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOmnisend(args: GetSourceOmnisendArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOmnisendResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOmnisend(args: GetSourceOmnisendArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceOmnisend.
  */
 export interface GetSourceOmnisendArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOmnisendResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOmnisend DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOmnisend = airbyte.getSourceOmnisend({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOmnisendOutput(args: GetSourceOmnisendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOmnisendResult> {
     return pulumi.output(args).apply((a: any) => getSourceOmnisend(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOmnisendOutput(args: GetSourceOmnisendOutputArgs, opts?
  * A collection of arguments for invoking getSourceOmnisend.
  */
 export interface GetSourceOmnisendOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

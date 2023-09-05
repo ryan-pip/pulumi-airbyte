@@ -84,7 +84,16 @@ class AwaitableGetDestinationClickhouseResult(GetDestinationClickhouseResult):
 def get_destination_clickhouse(destination_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationClickhouseResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationClickhouse DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_clickhouse = airbyte.get_destination_clickhouse(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_clickhouse(destination_id: Optional[str] = None,
 def get_destination_clickhouse_output(destination_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationClickhouseResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationClickhouse DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_clickhouse = airbyte.get_destination_clickhouse(destination_id="...my_destination_id...")
+    ```
     """
     ...

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDixa DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDixa = airbyte.getSourceDixa({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDixa(args: GetSourceDixaArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDixaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDixa(args: GetSourceDixaArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getSourceDixa.
  */
 export interface GetSourceDixaArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDixaResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDixa DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDixa = airbyte.getSourceDixa({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDixaOutput(args: GetSourceDixaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDixaResult> {
     return pulumi.output(args).apply((a: any) => getSourceDixa(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDixaOutput(args: GetSourceDixaOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceDixa.
  */
 export interface GetSourceDixaOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

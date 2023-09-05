@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationGcs DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationGcs = airbyte.getDestinationGcs({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationGcs(args: GetDestinationGcsArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationGcsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationGcsResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationGcs DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationGcs = airbyte.getDestinationGcs({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationGcsOutput(args: GetDestinationGcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationGcsResult> {
     return pulumi.output(args).apply((a: any) => getDestinationGcs(a, opts))
 }

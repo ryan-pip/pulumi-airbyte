@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Connection Resource
+ */
 export class Connection extends pulumi.CustomResource {
     /**
      * Get an existing Connection resource's state with the given name, ID, and optional extra
@@ -49,23 +52,21 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-     * destination
+     * must be one of ["source", "destination", "customFormat"]
+     * Define the location where the data will be stored in the destination
      */
     public readonly namespaceDefinition!: pulumi.Output<string>;
     /**
-     * Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-     * "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+     * Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
      */
     public readonly namespaceFormat!: pulumi.Output<string>;
     /**
-     * must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-     * when it detects a non-breaking schema change in the source
+     * must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+     * Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
      */
     public readonly nonBreakingSchemaUpdatesBehavior!: pulumi.Output<string>;
     /**
-     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-     * causes “projects” => “airbyte_projects”).
+     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
      */
     public readonly prefix!: pulumi.Output<string>;
     /**
@@ -151,23 +152,21 @@ export interface ConnectionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-     * destination
+     * must be one of ["source", "destination", "customFormat"]
+     * Define the location where the data will be stored in the destination
      */
     namespaceDefinition?: pulumi.Input<string>;
     /**
-     * Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-     * "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+     * Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
      */
     namespaceFormat?: pulumi.Input<string>;
     /**
-     * must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-     * when it detects a non-breaking schema change in the source
+     * must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+     * Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
      */
     nonBreakingSchemaUpdatesBehavior?: pulumi.Input<string>;
     /**
-     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-     * causes “projects” => “airbyte_projects”).
+     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
      */
     prefix?: pulumi.Input<string>;
     /**
@@ -200,23 +199,21 @@ export interface ConnectionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-     * destination
+     * must be one of ["source", "destination", "customFormat"]
+     * Define the location where the data will be stored in the destination
      */
     namespaceDefinition?: pulumi.Input<string>;
     /**
-     * Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-     * "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+     * Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
      */
     namespaceFormat?: pulumi.Input<string>;
     /**
-     * must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-     * when it detects a non-breaking schema change in the source
+     * must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+     * Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
      */
     nonBreakingSchemaUpdatesBehavior?: pulumi.Input<string>;
     /**
-     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-     * causes “projects” => “airbyte_projects”).
+     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
      */
     prefix?: pulumi.Input<string>;
     /**

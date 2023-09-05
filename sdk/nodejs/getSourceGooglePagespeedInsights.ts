@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGooglePagespeedInsights DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglepagespeedinsights = airbyte.getSourceGooglePagespeedInsights({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGooglePagespeedInsights(args: GetSourceGooglePagespeedInsightsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGooglePagespeedInsightsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGooglePagespeedInsights(args: GetSourceGooglePagespeedI
  * A collection of arguments for invoking getSourceGooglePagespeedInsights.
  */
 export interface GetSourceGooglePagespeedInsightsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGooglePagespeedInsightsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGooglePagespeedInsights DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglepagespeedinsights = airbyte.getSourceGooglePagespeedInsights({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGooglePagespeedInsightsOutput(args: GetSourceGooglePagespeedInsightsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGooglePagespeedInsightsResult> {
     return pulumi.output(args).apply((a: any) => getSourceGooglePagespeedInsights(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGooglePagespeedInsightsOutput(args: GetSourceGooglePage
  * A collection of arguments for invoking getSourceGooglePagespeedInsights.
  */
 export interface GetSourceGooglePagespeedInsightsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -132,7 +132,8 @@ class DestinationSnowflake(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DestinationSnowflake resource with the given unique name, props, and options.
+        DestinationSnowflake Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -143,7 +144,8 @@ class DestinationSnowflake(pulumi.CustomResource):
                  args: DestinationSnowflakeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DestinationSnowflake resource with the given unique name, props, and options.
+        DestinationSnowflake Resource
+
         :param str resource_name: The name of the resource.
         :param DestinationSnowflakeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

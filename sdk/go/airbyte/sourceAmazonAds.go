@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAmazonAds Resource
 type SourceAmazonAds struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceAmazonAds(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceAmazonAds
 	err := ctx.RegisterResource("airbyte:index/sourceAmazonAds:SourceAmazonAds", name, args, &resource, opts...)
 	if err != nil {

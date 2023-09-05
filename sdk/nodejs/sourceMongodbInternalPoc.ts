@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMongodbInternalPoc Resource
+ */
 export class SourceMongodbInternalPoc extends pulumi.CustomResource {
     /**
      * Get an existing SourceMongodbInternalPoc resource's state with the given name, ID, and optional extra

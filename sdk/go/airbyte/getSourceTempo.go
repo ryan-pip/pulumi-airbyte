@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceTempo DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceTempo(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceTempo(ctx *pulumi.Context, args *LookupSourceTempoArgs, opts ...pulumi.InvokeOption) (*LookupSourceTempoResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTempoResult
 	err := ctx.Invoke("airbyte:index/getSourceTempo:getSourceTempo", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceTempo(ctx *pulumi.Context, args *LookupSourceTempoArgs, opts ..
 
 // A collection of arguments for invoking getSourceTempo.
 type LookupSourceTempoArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceTempoArgs struct {
 type LookupSourceTempoResult struct {
 	Configuration GetSourceTempoConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceTempoOutput(ctx *pulumi.Context, args LookupSourceTempoOutputAr
 
 // A collection of arguments for invoking getSourceTempo.
 type LookupSourceTempoOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceTempoResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceTempoResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceTempoResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceTempoResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

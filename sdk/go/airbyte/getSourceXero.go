@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceXero DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceXero(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceXero(ctx *pulumi.Context, args *LookupSourceXeroArgs, opts ...pulumi.InvokeOption) (*LookupSourceXeroResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceXeroResult
 	err := ctx.Invoke("airbyte:index/getSourceXero:getSourceXero", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceXero(ctx *pulumi.Context, args *LookupSourceXeroArgs, opts ...p
 
 // A collection of arguments for invoking getSourceXero.
 type LookupSourceXeroArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceXeroArgs struct {
 type LookupSourceXeroResult struct {
 	Configuration GetSourceXeroConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceXeroOutput(ctx *pulumi.Context, args LookupSourceXeroOutputArgs
 
 // A collection of arguments for invoking getSourceXero.
 type LookupSourceXeroOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceXeroResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceXeroResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceXeroResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceXeroResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

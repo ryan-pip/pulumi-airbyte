@@ -84,7 +84,16 @@ class AwaitableGetDestinationOracleResult(GetDestinationOracleResult):
 def get_destination_oracle(destination_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationOracleResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationOracle DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_oracle = airbyte.get_destination_oracle(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_oracle(destination_id: Optional[str] = None,
 def get_destination_oracle_output(destination_id: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationOracleResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationOracle DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_oracle = airbyte.get_destination_oracle(destination_id="...my_destination_id...")
+    ```
     """
     ...

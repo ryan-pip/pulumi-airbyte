@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceGoogleAnalyticsV4 DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceGoogleAnalyticsV4(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceGoogleAnalyticsV4(ctx *pulumi.Context, args *LookupSourceGoogleAnalyticsV4Args, opts ...pulumi.InvokeOption) (*LookupSourceGoogleAnalyticsV4Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleAnalyticsV4Result
 	err := ctx.Invoke("airbyte:index/getSourceGoogleAnalyticsV4:getSourceGoogleAnalyticsV4", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceGoogleAnalyticsV4(ctx *pulumi.Context, args *LookupSourceGoogle
 
 // A collection of arguments for invoking getSourceGoogleAnalyticsV4.
 type LookupSourceGoogleAnalyticsV4Args struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceGoogleAnalyticsV4Args struct {
 type LookupSourceGoogleAnalyticsV4Result struct {
 	Configuration GetSourceGoogleAnalyticsV4Configuration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceGoogleAnalyticsV4Output(ctx *pulumi.Context, args LookupSourceG
 
 // A collection of arguments for invoking getSourceGoogleAnalyticsV4.
 type LookupSourceGoogleAnalyticsV4OutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceGoogleAnalyticsV4ResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceGoogleAnalyticsV4Result) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceGoogleAnalyticsV4ResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceGoogleAnalyticsV4Result) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

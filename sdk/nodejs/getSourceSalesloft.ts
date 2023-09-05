@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSalesloft DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSalesloft = airbyte.getSourceSalesloft({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSalesloft(args: GetSourceSalesloftArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSalesloftResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSalesloft(args: GetSourceSalesloftArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceSalesloft.
  */
 export interface GetSourceSalesloftArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSalesloftResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSalesloft DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSalesloft = airbyte.getSourceSalesloft({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSalesloftOutput(args: GetSourceSalesloftOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSalesloftResult> {
     return pulumi.output(args).apply((a: any) => getSourceSalesloft(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSalesloftOutput(args: GetSourceSalesloftOutputArgs, opt
  * A collection of arguments for invoking getSourceSalesloft.
  */
 export interface GetSourceSalesloftOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

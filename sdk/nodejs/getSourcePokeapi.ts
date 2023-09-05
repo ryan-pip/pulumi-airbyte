@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePokeapi DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePokeapi = airbyte.getSourcePokeapi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePokeapi(args: GetSourcePokeapiArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePokeapiResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePokeapi(args: GetSourcePokeapiArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourcePokeapi.
  */
 export interface GetSourcePokeapiArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePokeapiResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePokeapi DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePokeapi = airbyte.getSourcePokeapi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePokeapiOutput(args: GetSourcePokeapiOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePokeapiResult> {
     return pulumi.output(args).apply((a: any) => getSourcePokeapi(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePokeapiOutput(args: GetSourcePokeapiOutputArgs, opts?: 
  * A collection of arguments for invoking getSourcePokeapi.
  */
 export interface GetSourcePokeapiOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

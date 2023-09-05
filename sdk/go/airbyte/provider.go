@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
 // The provider type for the airbyte package. By default, resources use package-wide configuration
@@ -31,6 +32,26 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.BearerAuth == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_BEARER_AUTH"); d != nil {
+			args.BearerAuth = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.Password == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_PASSWORD"); d != nil {
+			args.Password = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.ServerUrl == nil {
+		if d := internal.GetEnvOrDefault("https://api.airbyte.com/v1", nil, "AIRBYTE_SERVER_URL"); d != nil {
+			args.ServerUrl = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.Username == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_USERNAME"); d != nil {
+			args.Username = pulumi.StringPtr(d.(string))
+		}
+	}
 	if args.BearerAuth != nil {
 		args.BearerAuth = pulumi.ToSecret(args.BearerAuth).(pulumi.StringPtrInput)
 	}
@@ -46,7 +67,7 @@ func NewProvider(ctx *pulumi.Context,
 		"username",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:airbyte", name, args, &resource, opts...)
 	if err != nil {

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationClickhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationClickhouse = airbyte.getDestinationClickhouse({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationClickhouse(args: GetDestinationClickhouseArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationClickhouseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationClickhouseResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationClickhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationClickhouse = airbyte.getDestinationClickhouse({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationClickhouseOutput(args: GetDestinationClickhouseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationClickhouseResult> {
     return pulumi.output(args).apply((a: any) => getDestinationClickhouse(a, opts))
 }

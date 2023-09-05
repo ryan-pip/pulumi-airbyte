@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceInstagram DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInstagram = airbyte.getSourceInstagram({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInstagram(args: GetSourceInstagramArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceInstagramResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceInstagram(args: GetSourceInstagramArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceInstagram.
  */
 export interface GetSourceInstagramArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceInstagramResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceInstagram DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInstagram = airbyte.getSourceInstagram({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInstagramOutput(args: GetSourceInstagramOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceInstagramResult> {
     return pulumi.output(args).apply((a: any) => getSourceInstagram(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceInstagramOutput(args: GetSourceInstagramOutputArgs, opt
  * A collection of arguments for invoking getSourceInstagram.
  */
 export interface GetSourceInstagramOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

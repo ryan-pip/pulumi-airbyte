@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceGridly DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceGridly(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceGridly(ctx *pulumi.Context, args *LookupSourceGridlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceGridlyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGridlyResult
 	err := ctx.Invoke("airbyte:index/getSourceGridly:getSourceGridly", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceGridly(ctx *pulumi.Context, args *LookupSourceGridlyArgs, opts 
 
 // A collection of arguments for invoking getSourceGridly.
 type LookupSourceGridlyArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceGridlyArgs struct {
 type LookupSourceGridlyResult struct {
 	Configuration GetSourceGridlyConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceGridlyOutput(ctx *pulumi.Context, args LookupSourceGridlyOutput
 
 // A collection of arguments for invoking getSourceGridly.
 type LookupSourceGridlyOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceGridlyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceGridlyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceGridlyResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceGridlyResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

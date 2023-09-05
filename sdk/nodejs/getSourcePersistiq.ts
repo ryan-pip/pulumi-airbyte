@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePersistiq DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePersistiq = airbyte.getSourcePersistiq({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePersistiq(args: GetSourcePersistiqArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePersistiqResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePersistiq(args: GetSourcePersistiqArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourcePersistiq.
  */
 export interface GetSourcePersistiqArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePersistiqResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePersistiq DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePersistiq = airbyte.getSourcePersistiq({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePersistiqOutput(args: GetSourcePersistiqOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePersistiqResult> {
     return pulumi.output(args).apply((a: any) => getSourcePersistiq(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePersistiqOutput(args: GetSourcePersistiqOutputArgs, opt
  * A collection of arguments for invoking getSourcePersistiq.
  */
 export interface GetSourcePersistiqOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

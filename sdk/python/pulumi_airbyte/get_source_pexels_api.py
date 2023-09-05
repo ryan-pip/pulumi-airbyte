@@ -63,6 +63,9 @@ class GetSourcePexelsApiResult:
     @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> Optional[str]:
+        """
+        Optional secretID obtained through the public API OAuth redirect flow.
+        """
         return pulumi.get(self, "secret_id")
 
     @property
@@ -94,7 +97,20 @@ def get_source_pexels_api(secret_id: Optional[str] = None,
                           source_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSourcePexelsApiResult:
     """
-    Use this data source to access information about an existing resource.
+    SourcePexelsAPI DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_source_pexelsapi = airbyte.get_source_pexels_api(secret_id="...my_secret_id...",
+        source_id="...my_source_id...")
+    ```
+
+
+    :param str secret_id: Optional secretID obtained through the public API OAuth redirect flow.
     """
     __args__ = dict()
     __args__['secretId'] = secret_id
@@ -116,6 +132,19 @@ def get_source_pexels_api_output(secret_id: Optional[pulumi.Input[Optional[str]]
                                  source_id: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSourcePexelsApiResult]:
     """
-    Use this data source to access information about an existing resource.
+    SourcePexelsAPI DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_source_pexelsapi = airbyte.get_source_pexels_api(secret_id="...my_secret_id...",
+        source_id="...my_source_id...")
+    ```
+
+
+    :param str secret_id: Optional secretID obtained through the public API OAuth redirect flow.
     """
     ...

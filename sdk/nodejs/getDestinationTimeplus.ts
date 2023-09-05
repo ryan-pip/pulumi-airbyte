@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationTimeplus DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationTimeplus = airbyte.getDestinationTimeplus({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationTimeplus(args: GetDestinationTimeplusArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationTimeplusResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationTimeplusResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationTimeplus DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationTimeplus = airbyte.getDestinationTimeplus({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationTimeplusOutput(args: GetDestinationTimeplusOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationTimeplusResult> {
     return pulumi.output(args).apply((a: any) => getDestinationTimeplus(a, opts))
 }

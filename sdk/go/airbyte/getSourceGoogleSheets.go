@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceGoogleSheets DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceGoogleSheets(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceGoogleSheets(ctx *pulumi.Context, args *LookupSourceGoogleSheetsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGoogleSheetsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGoogleSheetsResult
 	err := ctx.Invoke("airbyte:index/getSourceGoogleSheets:getSourceGoogleSheets", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceGoogleSheets(ctx *pulumi.Context, args *LookupSourceGoogleSheet
 
 // A collection of arguments for invoking getSourceGoogleSheets.
 type LookupSourceGoogleSheetsArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceGoogleSheetsArgs struct {
 type LookupSourceGoogleSheetsResult struct {
 	Configuration GetSourceGoogleSheetsConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceGoogleSheetsOutput(ctx *pulumi.Context, args LookupSourceGoogle
 
 // A collection of arguments for invoking getSourceGoogleSheets.
 type LookupSourceGoogleSheetsOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceGoogleSheetsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceGoogleSheetsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceGoogleSheetsResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceGoogleSheetsResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

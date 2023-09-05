@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSapFieldglass DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSapfieldglass = airbyte.getSourceSapFieldglass({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSapFieldglass(args: GetSourceSapFieldglassArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSapFieldglassResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSapFieldglass(args: GetSourceSapFieldglassArgs, opts?: 
  * A collection of arguments for invoking getSourceSapFieldglass.
  */
 export interface GetSourceSapFieldglassArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSapFieldglassResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSapFieldglass DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSapfieldglass = airbyte.getSourceSapFieldglass({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSapFieldglassOutput(args: GetSourceSapFieldglassOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSapFieldglassResult> {
     return pulumi.output(args).apply((a: any) => getSourceSapFieldglass(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSapFieldglassOutput(args: GetSourceSapFieldglassOutputA
  * A collection of arguments for invoking getSourceSapFieldglass.
  */
 export interface GetSourceSapFieldglassOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

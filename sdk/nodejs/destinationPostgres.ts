@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationPostgres Resource
+ */
 export class DestinationPostgres extends pulumi.CustomResource {
     /**
      * Get an existing DestinationPostgres resource's state with the given name, ID, and optional extra

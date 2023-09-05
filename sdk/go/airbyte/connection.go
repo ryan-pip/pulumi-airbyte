@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// Connection Resource
 type Connection struct {
 	pulumi.CustomResourceState
 
@@ -22,17 +24,15 @@ type Connection struct {
 	DestinationId pulumi.StringOutput `pulumi:"destinationId"`
 	// Optional name of the connection
 	Name pulumi.StringOutput `pulumi:"name"`
-	// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-	// destination
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
 	NamespaceDefinition pulumi.StringOutput `pulumi:"namespaceDefinition"`
-	// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-	// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 	NamespaceFormat pulumi.StringOutput `pulumi:"namespaceFormat"`
-	// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-	// when it detects a non-breaking schema change in the source
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 	NonBreakingSchemaUpdatesBehavior pulumi.StringOutput `pulumi:"nonBreakingSchemaUpdatesBehavior"`
-	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-	// causes “projects” => “airbyte_projects”).
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 	Prefix pulumi.StringOutput `pulumi:"prefix"`
 	// schedule for when the the connection should run, per the schedule type
 	Schedule ConnectionScheduleOutput `pulumi:"schedule"`
@@ -55,7 +55,7 @@ func NewConnection(ctx *pulumi.Context,
 	if args.SourceId == nil {
 		return nil, errors.New("invalid value for required argument 'SourceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Connection
 	err := ctx.RegisterResource("airbyte:index/connection:Connection", name, args, &resource, opts...)
 	if err != nil {
@@ -86,17 +86,15 @@ type connectionState struct {
 	DestinationId *string `pulumi:"destinationId"`
 	// Optional name of the connection
 	Name *string `pulumi:"name"`
-	// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-	// destination
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
 	NamespaceDefinition *string `pulumi:"namespaceDefinition"`
-	// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-	// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 	NamespaceFormat *string `pulumi:"namespaceFormat"`
-	// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-	// when it detects a non-breaking schema change in the source
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 	NonBreakingSchemaUpdatesBehavior *string `pulumi:"nonBreakingSchemaUpdatesBehavior"`
-	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-	// causes “projects” => “airbyte_projects”).
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 	Prefix *string `pulumi:"prefix"`
 	// schedule for when the the connection should run, per the schedule type
 	Schedule *ConnectionSchedule `pulumi:"schedule"`
@@ -115,17 +113,15 @@ type ConnectionState struct {
 	DestinationId pulumi.StringPtrInput
 	// Optional name of the connection
 	Name pulumi.StringPtrInput
-	// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-	// destination
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
 	NamespaceDefinition pulumi.StringPtrInput
-	// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-	// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 	NamespaceFormat pulumi.StringPtrInput
-	// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-	// when it detects a non-breaking schema change in the source
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 	NonBreakingSchemaUpdatesBehavior pulumi.StringPtrInput
-	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-	// causes “projects” => “airbyte_projects”).
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 	Prefix pulumi.StringPtrInput
 	// schedule for when the the connection should run, per the schedule type
 	Schedule ConnectionSchedulePtrInput
@@ -147,17 +143,15 @@ type connectionArgs struct {
 	DestinationId string  `pulumi:"destinationId"`
 	// Optional name of the connection
 	Name *string `pulumi:"name"`
-	// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-	// destination
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
 	NamespaceDefinition *string `pulumi:"namespaceDefinition"`
-	// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-	// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 	NamespaceFormat *string `pulumi:"namespaceFormat"`
-	// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-	// when it detects a non-breaking schema change in the source
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 	NonBreakingSchemaUpdatesBehavior *string `pulumi:"nonBreakingSchemaUpdatesBehavior"`
-	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-	// causes “projects” => “airbyte_projects”).
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 	Prefix *string `pulumi:"prefix"`
 	// schedule for when the the connection should run, per the schedule type
 	Schedule *ConnectionSchedule `pulumi:"schedule"`
@@ -175,17 +169,15 @@ type ConnectionArgs struct {
 	DestinationId pulumi.StringInput
 	// Optional name of the connection
 	Name pulumi.StringPtrInput
-	// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-	// destination
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
 	NamespaceDefinition pulumi.StringPtrInput
-	// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-	// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 	NamespaceFormat pulumi.StringPtrInput
-	// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-	// when it detects a non-breaking schema change in the source
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 	NonBreakingSchemaUpdatesBehavior pulumi.StringPtrInput
-	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-	// causes “projects” => “airbyte_projects”).
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 	Prefix pulumi.StringPtrInput
 	// schedule for when the the connection should run, per the schedule type
 	Schedule ConnectionSchedulePtrInput
@@ -254,26 +246,24 @@ func (o ConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-// destination
+// must be one of ["source", "destination", "customFormat"]
+// Define the location where the data will be stored in the destination
 func (o ConnectionOutput) NamespaceDefinition() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.NamespaceDefinition }).(pulumi.StringOutput)
 }
 
-// Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-// "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 func (o ConnectionOutput) NamespaceFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.NamespaceFormat }).(pulumi.StringOutput)
 }
 
-// must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-// when it detects a non-breaking schema change in the source
+// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 func (o ConnectionOutput) NonBreakingSchemaUpdatesBehavior() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.NonBreakingSchemaUpdatesBehavior }).(pulumi.StringOutput)
 }
 
-// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-// causes “projects” => “airbyte_projects”).
+// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 func (o ConnectionOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
 }

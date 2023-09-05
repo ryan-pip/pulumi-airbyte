@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMailchimp Resource
+ */
 export class SourceMailchimp extends pulumi.CustomResource {
     /**
      * Get an existing SourceMailchimp resource's state with the given name, ID, and optional extra

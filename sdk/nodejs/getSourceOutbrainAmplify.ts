@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOutbrainAmplify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOutbrainamplify = airbyte.getSourceOutbrainAmplify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOutbrainAmplify(args: GetSourceOutbrainAmplifyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOutbrainAmplifyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOutbrainAmplify(args: GetSourceOutbrainAmplifyArgs, opt
  * A collection of arguments for invoking getSourceOutbrainAmplify.
  */
 export interface GetSourceOutbrainAmplifyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOutbrainAmplifyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOutbrainAmplify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOutbrainamplify = airbyte.getSourceOutbrainAmplify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOutbrainAmplifyOutput(args: GetSourceOutbrainAmplifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOutbrainAmplifyResult> {
     return pulumi.output(args).apply((a: any) => getSourceOutbrainAmplify(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOutbrainAmplifyOutput(args: GetSourceOutbrainAmplifyOut
  * A collection of arguments for invoking getSourceOutbrainAmplify.
  */
 export interface GetSourceOutbrainAmplifyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

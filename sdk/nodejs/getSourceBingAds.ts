@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceBingAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBingads = airbyte.getSourceBingAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBingAds(args: GetSourceBingAdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceBingAdsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceBingAds(args: GetSourceBingAdsArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceBingAds.
  */
 export interface GetSourceBingAdsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceBingAdsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceBingAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBingads = airbyte.getSourceBingAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBingAdsOutput(args: GetSourceBingAdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceBingAdsResult> {
     return pulumi.output(args).apply((a: any) => getSourceBingAds(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceBingAdsOutput(args: GetSourceBingAdsOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceBingAds.
  */
 export interface GetSourceBingAdsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

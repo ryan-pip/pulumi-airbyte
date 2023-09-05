@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceLinkedinPages DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceLinkedinPages(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceLinkedinPages(ctx *pulumi.Context, args *LookupSourceLinkedinPagesArgs, opts ...pulumi.InvokeOption) (*LookupSourceLinkedinPagesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceLinkedinPagesResult
 	err := ctx.Invoke("airbyte:index/getSourceLinkedinPages:getSourceLinkedinPages", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceLinkedinPages(ctx *pulumi.Context, args *LookupSourceLinkedinPa
 
 // A collection of arguments for invoking getSourceLinkedinPages.
 type LookupSourceLinkedinPagesArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceLinkedinPagesArgs struct {
 type LookupSourceLinkedinPagesResult struct {
 	Configuration GetSourceLinkedinPagesConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceLinkedinPagesOutput(ctx *pulumi.Context, args LookupSourceLinke
 
 // A collection of arguments for invoking getSourceLinkedinPages.
 type LookupSourceLinkedinPagesOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceLinkedinPagesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceLinkedinPagesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceLinkedinPagesResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceLinkedinPagesResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

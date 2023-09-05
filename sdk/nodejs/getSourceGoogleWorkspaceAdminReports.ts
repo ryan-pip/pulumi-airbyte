@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGoogleWorkspaceAdminReports DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleworkspaceadminreports = airbyte.getSourceGoogleWorkspaceAdminReports({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleWorkspaceAdminReports(args: GetSourceGoogleWorkspaceAdminReportsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGoogleWorkspaceAdminReportsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGoogleWorkspaceAdminReports(args: GetSourceGoogleWorksp
  * A collection of arguments for invoking getSourceGoogleWorkspaceAdminReports.
  */
 export interface GetSourceGoogleWorkspaceAdminReportsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGoogleWorkspaceAdminReportsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGoogleWorkspaceAdminReports DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleworkspaceadminreports = airbyte.getSourceGoogleWorkspaceAdminReports({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleWorkspaceAdminReportsOutput(args: GetSourceGoogleWorkspaceAdminReportsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGoogleWorkspaceAdminReportsResult> {
     return pulumi.output(args).apply((a: any) => getSourceGoogleWorkspaceAdminReports(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGoogleWorkspaceAdminReportsOutput(args: GetSourceGoogle
  * A collection of arguments for invoking getSourceGoogleWorkspaceAdminReports.
  */
 export interface GetSourceGoogleWorkspaceAdminReportsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

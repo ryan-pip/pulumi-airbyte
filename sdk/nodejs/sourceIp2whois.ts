@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceIp2whois Resource
+ */
 export class SourceIp2whois extends pulumi.CustomResource {
     /**
      * Get an existing SourceIp2whois resource's state with the given name, ID, and optional extra

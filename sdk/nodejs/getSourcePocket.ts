@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePocket DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePocket = airbyte.getSourcePocket({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePocket(args: GetSourcePocketArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePocketResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePocket(args: GetSourcePocketArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourcePocket.
  */
 export interface GetSourcePocketArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePocketResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePocket DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePocket = airbyte.getSourcePocket({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePocketOutput(args: GetSourcePocketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePocketResult> {
     return pulumi.output(args).apply((a: any) => getSourcePocket(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePocketOutput(args: GetSourcePocketOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourcePocket.
  */
 export interface GetSourcePocketOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

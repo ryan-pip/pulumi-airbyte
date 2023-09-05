@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationMssql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMssql = airbyte.getDestinationMSsql({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMSsql(args: GetDestinationMSsqlArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationMSsqlResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationMSsqlResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationMssql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMssql = airbyte.getDestinationMSsql({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMSsqlOutput(args: GetDestinationMSsqlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationMSsqlResult> {
     return pulumi.output(args).apply((a: any) => getDestinationMSsql(a, opts))
 }

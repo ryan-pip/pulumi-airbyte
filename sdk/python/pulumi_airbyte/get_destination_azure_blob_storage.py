@@ -84,7 +84,16 @@ class AwaitableGetDestinationAzureBlobStorageResult(GetDestinationAzureBlobStora
 def get_destination_azure_blob_storage(destination_id: Optional[str] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationAzureBlobStorageResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationAzureBlobStorage DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_azureblobstorage = airbyte.get_destination_azure_blob_storage(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_azure_blob_storage(destination_id: Optional[str] = None,
 def get_destination_azure_blob_storage_output(destination_id: Optional[pulumi.Input[str]] = None,
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationAzureBlobStorageResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationAzureBlobStorage DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_azureblobstorage = airbyte.get_destination_azure_blob_storage(destination_id="...my_destination_id...")
+    ```
     """
     ...

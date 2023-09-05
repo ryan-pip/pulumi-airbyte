@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceE2eTestCloud DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceE2etestcloud = airbyte.getSourceE2eTestCloud({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceE2eTestCloud(args: GetSourceE2eTestCloudArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceE2eTestCloudResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceE2eTestCloud(args: GetSourceE2eTestCloudArgs, opts?: pu
  * A collection of arguments for invoking getSourceE2eTestCloud.
  */
 export interface GetSourceE2eTestCloudArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceE2eTestCloudResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceE2eTestCloud DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceE2etestcloud = airbyte.getSourceE2eTestCloud({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceE2eTestCloudOutput(args: GetSourceE2eTestCloudOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceE2eTestCloudResult> {
     return pulumi.output(args).apply((a: any) => getSourceE2eTestCloud(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceE2eTestCloudOutput(args: GetSourceE2eTestCloudOutputArg
  * A collection of arguments for invoking getSourceE2eTestCloud.
  */
 export interface GetSourceE2eTestCloudOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

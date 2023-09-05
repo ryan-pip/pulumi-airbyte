@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceSonarCloud DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceSonarCloud(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceSonarCloud(ctx *pulumi.Context, args *LookupSourceSonarCloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceSonarCloudResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSonarCloudResult
 	err := ctx.Invoke("airbyte:index/getSourceSonarCloud:getSourceSonarCloud", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceSonarCloud(ctx *pulumi.Context, args *LookupSourceSonarCloudArg
 
 // A collection of arguments for invoking getSourceSonarCloud.
 type LookupSourceSonarCloudArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceSonarCloudArgs struct {
 type LookupSourceSonarCloudResult struct {
 	Configuration GetSourceSonarCloudConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceSonarCloudOutput(ctx *pulumi.Context, args LookupSourceSonarClo
 
 // A collection of arguments for invoking getSourceSonarCloud.
 type LookupSourceSonarCloudOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceSonarCloudResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceSonarCloudResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceSonarCloudResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceSonarCloudResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

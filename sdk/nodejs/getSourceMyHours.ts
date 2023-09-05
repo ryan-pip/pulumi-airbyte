@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMyHours DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMyhours = airbyte.getSourceMyHours({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMyHours(args: GetSourceMyHoursArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMyHoursResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMyHours(args: GetSourceMyHoursArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceMyHours.
  */
 export interface GetSourceMyHoursArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMyHoursResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMyHours DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMyhours = airbyte.getSourceMyHours({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMyHoursOutput(args: GetSourceMyHoursOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMyHoursResult> {
     return pulumi.output(args).apply((a: any) => getSourceMyHours(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMyHoursOutput(args: GetSourceMyHoursOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceMyHours.
  */
 export interface GetSourceMyHoursOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

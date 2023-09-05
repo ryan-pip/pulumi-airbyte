@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAirtable DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceAirtable(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceAirtable(ctx *pulumi.Context, args *LookupSourceAirtableArgs, opts ...pulumi.InvokeOption) (*LookupSourceAirtableResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAirtableResult
 	err := ctx.Invoke("airbyte:index/getSourceAirtable:getSourceAirtable", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceAirtable(ctx *pulumi.Context, args *LookupSourceAirtableArgs, o
 
 // A collection of arguments for invoking getSourceAirtable.
 type LookupSourceAirtableArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceAirtableArgs struct {
 type LookupSourceAirtableResult struct {
 	Configuration GetSourceAirtableConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceAirtableOutput(ctx *pulumi.Context, args LookupSourceAirtableOu
 
 // A collection of arguments for invoking getSourceAirtable.
 type LookupSourceAirtableOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceAirtableResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceAirtableResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceAirtableResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceAirtableResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

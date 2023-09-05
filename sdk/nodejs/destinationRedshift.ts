@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationRedshift Resource
+ */
 export class DestinationRedshift extends pulumi.CustomResource {
     /**
      * Get an existing DestinationRedshift resource's state with the given name, ID, and optional extra

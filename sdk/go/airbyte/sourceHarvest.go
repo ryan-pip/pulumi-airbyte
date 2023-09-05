@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceHarvest Resource
 type SourceHarvest struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceHarvest(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceHarvest
 	err := ctx.RegisterResource("airbyte:index/sourceHarvest:SourceHarvest", name, args, &resource, opts...)
 	if err != nil {

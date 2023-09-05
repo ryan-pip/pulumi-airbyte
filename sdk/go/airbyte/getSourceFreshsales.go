@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceFreshsales DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceFreshsales(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceFreshsales(ctx *pulumi.Context, args *LookupSourceFreshsalesArgs, opts ...pulumi.InvokeOption) (*LookupSourceFreshsalesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFreshsalesResult
 	err := ctx.Invoke("airbyte:index/getSourceFreshsales:getSourceFreshsales", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceFreshsales(ctx *pulumi.Context, args *LookupSourceFreshsalesArg
 
 // A collection of arguments for invoking getSourceFreshsales.
 type LookupSourceFreshsalesArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceFreshsalesArgs struct {
 type LookupSourceFreshsalesResult struct {
 	Configuration GetSourceFreshsalesConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceFreshsalesOutput(ctx *pulumi.Context, args LookupSourceFreshsal
 
 // A collection of arguments for invoking getSourceFreshsales.
 type LookupSourceFreshsalesOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceFreshsalesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceFreshsalesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceFreshsalesResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceFreshsalesResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePexelsAPI Resource
+ */
 export class SourcePexelsApi extends pulumi.CustomResource {
     /**
      * Get an existing SourcePexelsApi resource's state with the given name, ID, and optional extra

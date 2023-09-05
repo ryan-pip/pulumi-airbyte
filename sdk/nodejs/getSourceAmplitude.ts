@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAmplitude DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmplitude = airbyte.getSourceAmplitude({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmplitude(args: GetSourceAmplitudeArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAmplitudeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAmplitude(args: GetSourceAmplitudeArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceAmplitude.
  */
 export interface GetSourceAmplitudeArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAmplitudeResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAmplitude DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmplitude = airbyte.getSourceAmplitude({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmplitudeOutput(args: GetSourceAmplitudeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAmplitudeResult> {
     return pulumi.output(args).apply((a: any) => getSourceAmplitude(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAmplitudeOutput(args: GetSourceAmplitudeOutputArgs, opt
  * A collection of arguments for invoking getSourceAmplitude.
  */
 export interface GetSourceAmplitudeOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

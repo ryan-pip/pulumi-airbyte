@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceClickhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClickhouse = airbyte.getSourceClickhouse({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceClickhouse(args: GetSourceClickhouseArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceClickhouseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceClickhouse(args: GetSourceClickhouseArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceClickhouse.
  */
 export interface GetSourceClickhouseArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceClickhouseResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceClickhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClickhouse = airbyte.getSourceClickhouse({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceClickhouseOutput(args: GetSourceClickhouseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceClickhouseResult> {
     return pulumi.output(args).apply((a: any) => getSourceClickhouse(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceClickhouseOutput(args: GetSourceClickhouseOutputArgs, o
  * A collection of arguments for invoking getSourceClickhouse.
  */
 export interface GetSourceClickhouseOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceWikipediaPageviews DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceWikipediaPageviews(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceWikipediaPageviews(ctx *pulumi.Context, args *LookupSourceWikipediaPageviewsArgs, opts ...pulumi.InvokeOption) (*LookupSourceWikipediaPageviewsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceWikipediaPageviewsResult
 	err := ctx.Invoke("airbyte:index/getSourceWikipediaPageviews:getSourceWikipediaPageviews", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceWikipediaPageviews(ctx *pulumi.Context, args *LookupSourceWikip
 
 // A collection of arguments for invoking getSourceWikipediaPageviews.
 type LookupSourceWikipediaPageviewsArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceWikipediaPageviewsArgs struct {
 type LookupSourceWikipediaPageviewsResult struct {
 	Configuration GetSourceWikipediaPageviewsConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceWikipediaPageviewsOutput(ctx *pulumi.Context, args LookupSource
 
 // A collection of arguments for invoking getSourceWikipediaPageviews.
 type LookupSourceWikipediaPageviewsOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceWikipediaPageviewsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceWikipediaPageviewsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceWikipediaPageviewsResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceWikipediaPageviewsResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

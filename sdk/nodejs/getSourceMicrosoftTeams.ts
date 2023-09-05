@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMicrosoftTeams DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMicrosoftteams = airbyte.getSourceMicrosoftTeams({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMicrosoftTeams(args: GetSourceMicrosoftTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMicrosoftTeamsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMicrosoftTeams(args: GetSourceMicrosoftTeamsArgs, opts?
  * A collection of arguments for invoking getSourceMicrosoftTeams.
  */
 export interface GetSourceMicrosoftTeamsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMicrosoftTeamsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMicrosoftTeams DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMicrosoftteams = airbyte.getSourceMicrosoftTeams({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMicrosoftTeamsOutput(args: GetSourceMicrosoftTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMicrosoftTeamsResult> {
     return pulumi.output(args).apply((a: any) => getSourceMicrosoftTeams(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMicrosoftTeamsOutput(args: GetSourceMicrosoftTeamsOutpu
  * A collection of arguments for invoking getSourceMicrosoftTeams.
  */
 export interface GetSourceMicrosoftTeamsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSpacexAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSpacexapi = airbyte.getSourceSpaceXApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSpaceXApi(args: GetSourceSpaceXApiArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSpaceXApiResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSpaceXApi(args: GetSourceSpaceXApiArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceSpaceXApi.
  */
 export interface GetSourceSpaceXApiArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSpaceXApiResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSpacexAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSpacexapi = airbyte.getSourceSpaceXApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSpaceXApiOutput(args: GetSourceSpaceXApiOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSpaceXApiResult> {
     return pulumi.output(args).apply((a: any) => getSourceSpaceXApi(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSpaceXApiOutput(args: GetSourceSpaceXApiOutputArgs, opt
  * A collection of arguments for invoking getSourceSpaceXApi.
  */
 export interface GetSourceSpaceXApiOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

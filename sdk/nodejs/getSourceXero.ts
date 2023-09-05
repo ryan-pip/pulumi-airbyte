@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceXero DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceXero = airbyte.getSourceXero({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceXero(args: GetSourceXeroArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceXeroResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceXero(args: GetSourceXeroArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getSourceXero.
  */
 export interface GetSourceXeroArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceXeroResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceXero DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceXero = airbyte.getSourceXero({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceXeroOutput(args: GetSourceXeroOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceXeroResult> {
     return pulumi.output(args).apply((a: any) => getSourceXero(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceXeroOutput(args: GetSourceXeroOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceXero.
  */
 export interface GetSourceXeroOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

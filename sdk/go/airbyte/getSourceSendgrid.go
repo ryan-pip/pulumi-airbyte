@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceSendgrid DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceSendgrid(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceSendgrid(ctx *pulumi.Context, args *LookupSourceSendgridArgs, opts ...pulumi.InvokeOption) (*LookupSourceSendgridResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSendgridResult
 	err := ctx.Invoke("airbyte:index/getSourceSendgrid:getSourceSendgrid", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceSendgrid(ctx *pulumi.Context, args *LookupSourceSendgridArgs, o
 
 // A collection of arguments for invoking getSourceSendgrid.
 type LookupSourceSendgridArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceSendgridArgs struct {
 type LookupSourceSendgridResult struct {
 	Configuration GetSourceSendgridConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceSendgridOutput(ctx *pulumi.Context, args LookupSourceSendgridOu
 
 // A collection of arguments for invoking getSourceSendgrid.
 type LookupSourceSendgridOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceSendgridResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceSendgridResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceSendgridResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceSendgridResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

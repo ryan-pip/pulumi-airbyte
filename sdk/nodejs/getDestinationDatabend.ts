@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationDatabend DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDatabend = airbyte.getDestinationDatabend({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDatabend(args: GetDestinationDatabendArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationDatabendResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationDatabendResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationDatabend DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDatabend = airbyte.getDestinationDatabend({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDatabendOutput(args: GetDestinationDatabendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationDatabendResult> {
     return pulumi.output(args).apply((a: any) => getDestinationDatabend(a, opts))
 }

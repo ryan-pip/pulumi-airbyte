@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAuth0 Resource
+ */
 export class SourceAuth0 extends pulumi.CustomResource {
     /**
      * Get an existing SourceAuth0 resource's state with the given name, ID, and optional extra

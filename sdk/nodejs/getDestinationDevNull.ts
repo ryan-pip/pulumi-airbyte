@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationDevNull DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDevnull = airbyte.getDestinationDevNull({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDevNull(args: GetDestinationDevNullArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationDevNullResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationDevNullResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationDevNull DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDevnull = airbyte.getDestinationDevNull({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDevNullOutput(args: GetDestinationDevNullOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationDevNullResult> {
     return pulumi.output(args).apply((a: any) => getDestinationDevNull(a, opts))
 }

@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceNetsuite DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceNetsuite(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceNetsuite(ctx *pulumi.Context, args *LookupSourceNetsuiteArgs, opts ...pulumi.InvokeOption) (*LookupSourceNetsuiteResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceNetsuiteResult
 	err := ctx.Invoke("airbyte:index/getSourceNetsuite:getSourceNetsuite", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceNetsuite(ctx *pulumi.Context, args *LookupSourceNetsuiteArgs, o
 
 // A collection of arguments for invoking getSourceNetsuite.
 type LookupSourceNetsuiteArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceNetsuiteArgs struct {
 type LookupSourceNetsuiteResult struct {
 	Configuration GetSourceNetsuiteConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceNetsuiteOutput(ctx *pulumi.Context, args LookupSourceNetsuiteOu
 
 // A collection of arguments for invoking getSourceNetsuite.
 type LookupSourceNetsuiteOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceNetsuiteResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceNetsuiteResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceNetsuiteResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceNetsuiteResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

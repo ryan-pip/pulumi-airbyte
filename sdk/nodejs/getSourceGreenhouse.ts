@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGreenhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGreenhouse = airbyte.getSourceGreenhouse({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGreenhouse(args: GetSourceGreenhouseArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGreenhouseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGreenhouse(args: GetSourceGreenhouseArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceGreenhouse.
  */
 export interface GetSourceGreenhouseArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGreenhouseResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGreenhouse DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGreenhouse = airbyte.getSourceGreenhouse({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGreenhouseOutput(args: GetSourceGreenhouseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGreenhouseResult> {
     return pulumi.output(args).apply((a: any) => getSourceGreenhouse(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGreenhouseOutput(args: GetSourceGreenhouseOutputArgs, o
  * A collection of arguments for invoking getSourceGreenhouse.
  */
 export interface GetSourceGreenhouseOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

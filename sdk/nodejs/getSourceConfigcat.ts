@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceConfigcat DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceConfigcat = airbyte.getSourceConfigcat({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceConfigcat(args: GetSourceConfigcatArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceConfigcatResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceConfigcat(args: GetSourceConfigcatArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceConfigcat.
  */
 export interface GetSourceConfigcatArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceConfigcatResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceConfigcat DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceConfigcat = airbyte.getSourceConfigcat({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceConfigcatOutput(args: GetSourceConfigcatOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceConfigcatResult> {
     return pulumi.output(args).apply((a: any) => getSourceConfigcat(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceConfigcatOutput(args: GetSourceConfigcatOutputArgs, opt
  * A collection of arguments for invoking getSourceConfigcat.
  */
 export interface GetSourceConfigcatOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

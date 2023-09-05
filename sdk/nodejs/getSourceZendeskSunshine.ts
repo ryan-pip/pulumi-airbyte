@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZendeskSunshine DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendesksunshine = airbyte.getSourceZendeskSunshine({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskSunshine(args: GetSourceZendeskSunshineArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceZendeskSunshineResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceZendeskSunshine(args: GetSourceZendeskSunshineArgs, opt
  * A collection of arguments for invoking getSourceZendeskSunshine.
  */
 export interface GetSourceZendeskSunshineArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceZendeskSunshineResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceZendeskSunshine DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendesksunshine = airbyte.getSourceZendeskSunshine({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskSunshineOutput(args: GetSourceZendeskSunshineOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceZendeskSunshineResult> {
     return pulumi.output(args).apply((a: any) => getSourceZendeskSunshine(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceZendeskSunshineOutput(args: GetSourceZendeskSunshineOut
  * A collection of arguments for invoking getSourceZendeskSunshine.
  */
 export interface GetSourceZendeskSunshineOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

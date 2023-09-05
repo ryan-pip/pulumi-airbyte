@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceWhiskyHunter DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWhiskyhunter = airbyte.getSourceWhiskyHunter({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWhiskyHunter(args: GetSourceWhiskyHunterArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceWhiskyHunterResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceWhiskyHunter(args: GetSourceWhiskyHunterArgs, opts?: pu
  * A collection of arguments for invoking getSourceWhiskyHunter.
  */
 export interface GetSourceWhiskyHunterArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceWhiskyHunterResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceWhiskyHunter DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWhiskyhunter = airbyte.getSourceWhiskyHunter({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWhiskyHunterOutput(args: GetSourceWhiskyHunterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceWhiskyHunterResult> {
     return pulumi.output(args).apply((a: any) => getSourceWhiskyHunter(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceWhiskyHunterOutput(args: GetSourceWhiskyHunterOutputArg
  * A collection of arguments for invoking getSourceWhiskyHunter.
  */
 export interface GetSourceWhiskyHunterOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

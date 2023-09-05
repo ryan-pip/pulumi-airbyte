@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAircall DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAircall = airbyte.getSourceAircall({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAircall(args: GetSourceAircallArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAircallResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAircall(args: GetSourceAircallArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceAircall.
  */
 export interface GetSourceAircallArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAircallResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAircall DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAircall = airbyte.getSourceAircall({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAircallOutput(args: GetSourceAircallOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAircallResult> {
     return pulumi.output(args).apply((a: any) => getSourceAircall(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAircallOutput(args: GetSourceAircallOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceAircall.
  */
 export interface GetSourceAircallOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

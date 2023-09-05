@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceTwilioTaskrouter DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceTwilioTaskrouter(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceTwilioTaskrouter(ctx *pulumi.Context, args *LookupSourceTwilioTaskrouterArgs, opts ...pulumi.InvokeOption) (*LookupSourceTwilioTaskrouterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTwilioTaskrouterResult
 	err := ctx.Invoke("airbyte:index/getSourceTwilioTaskrouter:getSourceTwilioTaskrouter", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceTwilioTaskrouter(ctx *pulumi.Context, args *LookupSourceTwilioT
 
 // A collection of arguments for invoking getSourceTwilioTaskrouter.
 type LookupSourceTwilioTaskrouterArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceTwilioTaskrouterArgs struct {
 type LookupSourceTwilioTaskrouterResult struct {
 	Configuration GetSourceTwilioTaskrouterConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceTwilioTaskrouterOutput(ctx *pulumi.Context, args LookupSourceTw
 
 // A collection of arguments for invoking getSourceTwilioTaskrouter.
 type LookupSourceTwilioTaskrouterOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceTwilioTaskrouterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceTwilioTaskrouterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceTwilioTaskrouterResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceTwilioTaskrouterResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceCoda DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceCoda = airbyte.getSourceCoda({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceCoda(args: GetSourceCodaArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceCodaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceCoda(args: GetSourceCodaArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getSourceCoda.
  */
 export interface GetSourceCodaArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceCodaResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceCoda DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceCoda = airbyte.getSourceCoda({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceCodaOutput(args: GetSourceCodaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceCodaResult> {
     return pulumi.output(args).apply((a: any) => getSourceCoda(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceCodaOutput(args: GetSourceCodaOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceCoda.
  */
 export interface GetSourceCodaOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

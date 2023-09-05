@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationPubsub DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationPubsub = airbyte.getDestinationPubsub({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationPubsub(args: GetDestinationPubsubArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationPubsubResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationPubsubResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationPubsub DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationPubsub = airbyte.getDestinationPubsub({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationPubsubOutput(args: GetDestinationPubsubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationPubsubResult> {
     return pulumi.output(args).apply((a: any) => getDestinationPubsub(a, opts))
 }

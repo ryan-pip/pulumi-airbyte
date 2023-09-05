@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceKyve Resource
 type SourceKyve struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceKyve(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceKyve
 	err := ctx.RegisterResource("airbyte:index/sourceKyve:SourceKyve", name, args, &resource, opts...)
 	if err != nil {

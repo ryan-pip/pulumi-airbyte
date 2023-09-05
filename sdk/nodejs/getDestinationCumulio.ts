@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationCumulio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationCumulio = airbyte.getDestinationCumulio({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationCumulio(args: GetDestinationCumulioArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationCumulioResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationCumulioResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationCumulio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationCumulio = airbyte.getDestinationCumulio({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationCumulioOutput(args: GetDestinationCumulioOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationCumulioResult> {
     return pulumi.output(args).apply((a: any) => getDestinationCumulio(a, opts))
 }

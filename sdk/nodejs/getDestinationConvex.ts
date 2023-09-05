@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationConvex DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationConvex = airbyte.getDestinationConvex({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationConvex(args: GetDestinationConvexArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationConvexResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationConvexResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationConvex DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationConvex = airbyte.getDestinationConvex({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationConvexOutput(args: GetDestinationConvexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationConvexResult> {
     return pulumi.output(args).apply((a: any) => getDestinationConvex(a, opts))
 }

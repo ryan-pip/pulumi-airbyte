@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationOracle DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationOracle = airbyte.getDestinationOracle({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationOracle(args: GetDestinationOracleArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationOracleResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationOracleResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationOracle DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationOracle = airbyte.getDestinationOracle({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationOracleOutput(args: GetDestinationOracleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationOracleResult> {
     return pulumi.output(args).apply((a: any) => getDestinationOracle(a, opts))
 }

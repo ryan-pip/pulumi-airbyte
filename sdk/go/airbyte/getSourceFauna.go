@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceFauna DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceFauna(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceFauna(ctx *pulumi.Context, args *LookupSourceFaunaArgs, opts ...pulumi.InvokeOption) (*LookupSourceFaunaResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFaunaResult
 	err := ctx.Invoke("airbyte:index/getSourceFauna:getSourceFauna", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceFauna(ctx *pulumi.Context, args *LookupSourceFaunaArgs, opts ..
 
 // A collection of arguments for invoking getSourceFauna.
 type LookupSourceFaunaArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceFaunaArgs struct {
 type LookupSourceFaunaResult struct {
 	Configuration GetSourceFaunaConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceFaunaOutput(ctx *pulumi.Context, args LookupSourceFaunaOutputAr
 
 // A collection of arguments for invoking getSourceFauna.
 type LookupSourceFaunaOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceFaunaResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceFaunaResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceFaunaResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceFaunaResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

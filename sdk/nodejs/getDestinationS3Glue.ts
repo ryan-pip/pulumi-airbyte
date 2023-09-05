@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationS3Glue DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationS3glue = airbyte.getDestinationS3Glue({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationS3Glue(args: GetDestinationS3GlueArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationS3GlueResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationS3GlueResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationS3Glue DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationS3glue = airbyte.getDestinationS3Glue({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationS3GlueOutput(args: GetDestinationS3GlueOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationS3GlueResult> {
     return pulumi.output(args).apply((a: any) => getDestinationS3Glue(a, opts))
 }

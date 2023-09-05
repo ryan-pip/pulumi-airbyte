@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMixpanel DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMixpanel = airbyte.getSourceMixpanel({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMixpanel(args: GetSourceMixpanelArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMixpanelResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMixpanel(args: GetSourceMixpanelArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceMixpanel.
  */
 export interface GetSourceMixpanelArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMixpanelResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMixpanel DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMixpanel = airbyte.getSourceMixpanel({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMixpanelOutput(args: GetSourceMixpanelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMixpanelResult> {
     return pulumi.output(args).apply((a: any) => getSourceMixpanel(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMixpanelOutput(args: GetSourceMixpanelOutputArgs, opts?
  * A collection of arguments for invoking getSourceMixpanel.
  */
 export interface GetSourceMixpanelOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

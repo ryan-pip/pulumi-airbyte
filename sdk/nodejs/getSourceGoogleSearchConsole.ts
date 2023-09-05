@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGoogleSearchConsole DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglesearchconsole = airbyte.getSourceGoogleSearchConsole({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleSearchConsole(args: GetSourceGoogleSearchConsoleArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGoogleSearchConsoleResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGoogleSearchConsole(args: GetSourceGoogleSearchConsoleA
  * A collection of arguments for invoking getSourceGoogleSearchConsole.
  */
 export interface GetSourceGoogleSearchConsoleArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGoogleSearchConsoleResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGoogleSearchConsole DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglesearchconsole = airbyte.getSourceGoogleSearchConsole({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleSearchConsoleOutput(args: GetSourceGoogleSearchConsoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGoogleSearchConsoleResult> {
     return pulumi.output(args).apply((a: any) => getSourceGoogleSearchConsole(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGoogleSearchConsoleOutput(args: GetSourceGoogleSearchCo
  * A collection of arguments for invoking getSourceGoogleSearchConsole.
  */
 export interface GetSourceGoogleSearchConsoleOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDelighted DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDelighted = airbyte.getSourceDelighted({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDelighted(args: GetSourceDelightedArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDelightedResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDelighted(args: GetSourceDelightedArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceDelighted.
  */
 export interface GetSourceDelightedArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDelightedResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDelighted DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDelighted = airbyte.getSourceDelighted({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDelightedOutput(args: GetSourceDelightedOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDelightedResult> {
     return pulumi.output(args).apply((a: any) => getSourceDelighted(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDelightedOutput(args: GetSourceDelightedOutputArgs, opt
  * A collection of arguments for invoking getSourceDelighted.
  */
 export interface GetSourceDelightedOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

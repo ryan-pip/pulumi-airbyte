@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceBambooHr DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceBambooHr(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceBambooHr(ctx *pulumi.Context, args *LookupSourceBambooHrArgs, opts ...pulumi.InvokeOption) (*LookupSourceBambooHrResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceBambooHrResult
 	err := ctx.Invoke("airbyte:index/getSourceBambooHr:getSourceBambooHr", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceBambooHr(ctx *pulumi.Context, args *LookupSourceBambooHrArgs, o
 
 // A collection of arguments for invoking getSourceBambooHr.
 type LookupSourceBambooHrArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceBambooHrArgs struct {
 type LookupSourceBambooHrResult struct {
 	Configuration GetSourceBambooHrConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceBambooHrOutput(ctx *pulumi.Context, args LookupSourceBambooHrOu
 
 // A collection of arguments for invoking getSourceBambooHr.
 type LookupSourceBambooHrOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceBambooHrResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceBambooHrResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceBambooHrResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceBambooHrResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

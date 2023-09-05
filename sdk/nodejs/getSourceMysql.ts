@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMysql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMysql = airbyte.getSourceMysql({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMysql(args: GetSourceMysqlArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMysqlResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMysql(args: GetSourceMysqlArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSourceMysql.
  */
 export interface GetSourceMysqlArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMysqlResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMysql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMysql = airbyte.getSourceMysql({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMysqlOutput(args: GetSourceMysqlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMysqlResult> {
     return pulumi.output(args).apply((a: any) => getSourceMysql(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMysqlOutput(args: GetSourceMysqlOutputArgs, opts?: pulu
  * A collection of arguments for invoking getSourceMysql.
  */
 export interface GetSourceMysqlOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

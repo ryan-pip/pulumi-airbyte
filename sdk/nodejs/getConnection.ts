@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Connection DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myConnection = airbyte.getConnection({
+ *     connectionId: "...my_connection_id...",
+ * });
+ * ```
+ */
 export function getConnection(args: GetConnectionArgs, opts?: pulumi.InvokeOptions): Promise<GetConnectionResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -25,24 +39,67 @@ export interface GetConnectionArgs {
  * A collection of values returned by getConnection.
  */
 export interface GetConnectionResult {
+    /**
+     * A list of configured stream options for a connection.
+     */
     readonly configurations: outputs.GetConnectionConfigurations;
     readonly connectionId: string;
+    /**
+     * must be one of ["auto", "us", "eu"]
+     */
     readonly dataResidency: string;
     readonly destinationId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Optional name of the connection
+     */
     readonly name: string;
+    /**
+     * must be one of ["source", "destination", "customFormat"]
+     * Define the location where the data will be stored in the destination
+     */
     readonly namespaceDefinition: string;
+    /**
+     * Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+     */
     readonly namespaceFormat: string;
+    /**
+     * must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+     * Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+     */
     readonly nonBreakingSchemaUpdatesBehavior: string;
+    /**
+     * Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
+     */
     readonly prefix: string;
+    /**
+     * schedule for when the the connection should run, per the schedule type
+     */
     readonly schedule: outputs.GetConnectionSchedule;
     readonly sourceId: string;
+    /**
+     * must be one of ["active", "inactive", "deprecated"]
+     */
     readonly status: string;
     readonly workspaceId: string;
 }
+/**
+ * Connection DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myConnection = airbyte.getConnection({
+ *     connectionId: "...my_connection_id...",
+ * });
+ * ```
+ */
 export function getConnectionOutput(args: GetConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetConnectionResult> {
     return pulumi.output(args).apply((a: any) => getConnection(a, opts))
 }

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationMysql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMysql = airbyte.getDestinationMysql({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMysql(args: GetDestinationMysqlArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationMysqlResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationMysqlResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationMysql DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMysql = airbyte.getDestinationMysql({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMysqlOutput(args: GetDestinationMysqlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationMysqlResult> {
     return pulumi.output(args).apply((a: any) => getDestinationMysql(a, opts))
 }

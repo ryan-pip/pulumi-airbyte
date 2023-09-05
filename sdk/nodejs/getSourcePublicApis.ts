@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePublicApis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePublicapis = airbyte.getSourcePublicApis({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePublicApis(args: GetSourcePublicApisArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePublicApisResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePublicApis(args: GetSourcePublicApisArgs, opts?: pulumi
  * A collection of arguments for invoking getSourcePublicApis.
  */
 export interface GetSourcePublicApisArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePublicApisResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePublicApis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePublicapis = airbyte.getSourcePublicApis({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePublicApisOutput(args: GetSourcePublicApisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePublicApisResult> {
     return pulumi.output(args).apply((a: any) => getSourcePublicApis(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePublicApisOutput(args: GetSourcePublicApisOutputArgs, o
  * A collection of arguments for invoking getSourcePublicApis.
  */
 export interface GetSourcePublicApisOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

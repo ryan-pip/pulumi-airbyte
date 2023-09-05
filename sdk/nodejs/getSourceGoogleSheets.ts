@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGoogleSheets DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglesheets = airbyte.getSourceGoogleSheets({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleSheets(args: GetSourceGoogleSheetsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGoogleSheetsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGoogleSheets(args: GetSourceGoogleSheetsArgs, opts?: pu
  * A collection of arguments for invoking getSourceGoogleSheets.
  */
 export interface GetSourceGoogleSheetsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGoogleSheetsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGoogleSheets DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGooglesheets = airbyte.getSourceGoogleSheets({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleSheetsOutput(args: GetSourceGoogleSheetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGoogleSheetsResult> {
     return pulumi.output(args).apply((a: any) => getSourceGoogleSheets(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGoogleSheetsOutput(args: GetSourceGoogleSheetsOutputArg
  * A collection of arguments for invoking getSourceGoogleSheets.
  */
 export interface GetSourceGoogleSheetsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGoogleAnalyticsDataAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleanalyticsdataapi = airbyte.getSourceGoogleAnalyticsDataApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleAnalyticsDataApi(args: GetSourceGoogleAnalyticsDataApiArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGoogleAnalyticsDataApiResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGoogleAnalyticsDataApi(args: GetSourceGoogleAnalyticsDa
  * A collection of arguments for invoking getSourceGoogleAnalyticsDataApi.
  */
 export interface GetSourceGoogleAnalyticsDataApiArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGoogleAnalyticsDataApiResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGoogleAnalyticsDataAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleanalyticsdataapi = airbyte.getSourceGoogleAnalyticsDataApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleAnalyticsDataApiOutput(args: GetSourceGoogleAnalyticsDataApiOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGoogleAnalyticsDataApiResult> {
     return pulumi.output(args).apply((a: any) => getSourceGoogleAnalyticsDataApi(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGoogleAnalyticsDataApiOutput(args: GetSourceGoogleAnaly
  * A collection of arguments for invoking getSourceGoogleAnalyticsDataApi.
  */
 export interface GetSourceGoogleAnalyticsDataApiOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

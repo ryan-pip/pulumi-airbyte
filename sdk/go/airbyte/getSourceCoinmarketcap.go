@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceCoinmarketcap DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceCoinmarketcap(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceCoinmarketcap(ctx *pulumi.Context, args *LookupSourceCoinmarketcapArgs, opts ...pulumi.InvokeOption) (*LookupSourceCoinmarketcapResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceCoinmarketcapResult
 	err := ctx.Invoke("airbyte:index/getSourceCoinmarketcap:getSourceCoinmarketcap", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceCoinmarketcap(ctx *pulumi.Context, args *LookupSourceCoinmarket
 
 // A collection of arguments for invoking getSourceCoinmarketcap.
 type LookupSourceCoinmarketcapArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceCoinmarketcapArgs struct {
 type LookupSourceCoinmarketcapResult struct {
 	Configuration GetSourceCoinmarketcapConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceCoinmarketcapOutput(ctx *pulumi.Context, args LookupSourceCoinm
 
 // A collection of arguments for invoking getSourceCoinmarketcap.
 type LookupSourceCoinmarketcapOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceCoinmarketcapResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceCoinmarketcapResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceCoinmarketcapResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceCoinmarketcapResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

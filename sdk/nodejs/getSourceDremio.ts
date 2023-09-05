@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDremio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDremio = airbyte.getSourceDremio({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDremio(args: GetSourceDremioArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDremioResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDremio(args: GetSourceDremioArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceDremio.
  */
 export interface GetSourceDremioArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDremioResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDremio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDremio = airbyte.getSourceDremio({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDremioOutput(args: GetSourceDremioOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDremioResult> {
     return pulumi.output(args).apply((a: any) => getSourceDremio(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDremioOutput(args: GetSourceDremioOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceDremio.
  */
 export interface GetSourceDremioOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

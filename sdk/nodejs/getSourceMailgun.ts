@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMailgun DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMailgun = airbyte.getSourceMailgun({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMailgun(args: GetSourceMailgunArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMailgunResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMailgun(args: GetSourceMailgunArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceMailgun.
  */
 export interface GetSourceMailgunArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMailgunResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMailgun DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMailgun = airbyte.getSourceMailgun({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMailgunOutput(args: GetSourceMailgunOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMailgunResult> {
     return pulumi.output(args).apply((a: any) => getSourceMailgun(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMailgunOutput(args: GetSourceMailgunOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceMailgun.
  */
 export interface GetSourceMailgunOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

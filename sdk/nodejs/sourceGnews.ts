@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGnews Resource
+ */
 export class SourceGnews extends pulumi.CustomResource {
     /**
      * Get an existing SourceGnews resource's state with the given name, ID, and optional extra

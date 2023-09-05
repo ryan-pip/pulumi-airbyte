@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceNotion Resource
 type SourceNotion struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceNotion(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceNotion
 	err := ctx.RegisterResource("airbyte:index/sourceNotion:SourceNotion", name, args, &resource, opts...)
 	if err != nil {

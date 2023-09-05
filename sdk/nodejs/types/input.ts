@@ -11,6 +11,9 @@ export interface ConnectionConfigurations {
 
 export interface ConnectionConfigurationsStream {
     cursorFields?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Optional name of the connection
+     */
     name: pulumi.Input<string>;
     primaryKeys?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[]>;
     syncMode?: pulumi.Input<string>;
@@ -19,22 +22,66 @@ export interface ConnectionConfigurationsStream {
 export interface ConnectionSchedule {
     basicTiming?: pulumi.Input<string>;
     cronExpression?: pulumi.Input<string>;
+    /**
+     * must be one of ["manual", "cron"]
+     */
     scheduleType: pulumi.Input<string>;
 }
 
 export interface DestinationAWSDatalakeConfiguration {
+    /**
+     * target aws account id
+     */
     awsAccountId?: pulumi.Input<string>;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     bucketName: pulumi.Input<string>;
+    /**
+     * S3 prefix
+     */
     bucketPrefix?: pulumi.Input<string>;
+    /**
+     * Choose How to Authenticate to AWS.
+     */
     credentials: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationCredentials>;
+    /**
+     * must be one of ["aws-datalake"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Format of the data output.
+     */
     format?: pulumi.Input<inputs.DestinationAWSDatalakeConfigurationFormat>;
+    /**
+     * Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source.
+     */
     glueCatalogFloatAsDecimal?: pulumi.Input<boolean>;
+    /**
+     * Add a default tag key to databases created by this destination
+     */
     lakeformationDatabaseDefaultTagKey?: pulumi.Input<string>;
+    /**
+     * Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values.
+     */
     lakeformationDatabaseDefaultTagValues?: pulumi.Input<string>;
+    /**
+     * The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace.
+     */
     lakeformationDatabaseName: pulumi.Input<string>;
+    /**
+     * Whether to create tables as LF governed tables.
+     */
     lakeformationGovernedTables?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["NO PARTITIONING", "DATE", "YEAR", "MONTH", "DAY", "YEAR/MONTH", "YEAR/MONTH/DAY"]
+     * Partition data by cursor fields when a cursor field is a date
+     */
     partitioning?: pulumi.Input<string>;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     region: pulumi.Input<string>;
 }
 
@@ -95,13 +142,37 @@ export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalake
 }
 
 export interface DestinationAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: pulumi.Input<string>;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: pulumi.Input<string>;
+    /**
+     * The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp
+     */
     azureBlobStorageContainerName?: pulumi.Input<string>;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpointDomainName?: pulumi.Input<string>;
+    /**
+     * The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure.
+     */
     azureBlobStorageOutputBufferSize?: pulumi.Input<number>;
+    /**
+     * The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable
+     */
     azureBlobStorageSpillSize?: pulumi.Input<number>;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Output data format
+     */
     format: pulumi.Input<inputs.DestinationAzureBlobStorageConfigurationFormat>;
 }
 
@@ -131,15 +202,47 @@ export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureB
 }
 
 export interface DestinationBigqueryConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb?: pulumi.Input<number>;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: pulumi.Input<string>;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: pulumi.Input<string>;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. Read more \n\nhere\n\n.
+     */
     datasetLocation: pulumi.Input<string>;
+    /**
+     * must be one of ["bigquery"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod?: pulumi.Input<inputs.DestinationBigqueryConfigurationLoadingMethod>;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * (Early Access) The dataset to write raw tables into
+     */
     rawDataDataset?: pulumi.Input<string>;
+    /**
+     * must be one of ["interactive", "batch"]
+     * Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type \n\nhere\n\n. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries \n\nhere\n\n. The default "interactive" value is used if not set explicitly.
+     */
     transformationPriority?: pulumi.Input<string>;
+    /**
+     * (Early Access) Use \n\nDestinations V2\n\n.
+     */
     use1s1tFormat?: pulumi.Input<boolean>;
 }
 
@@ -197,12 +300,34 @@ export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigquer
 }
 
 export interface DestinationBigqueryDenormalizedConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb?: pulumi.Input<number>;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: pulumi.Input<string>;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: pulumi.Input<string>;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     datasetLocation?: pulumi.Input<string>;
+    /**
+     * must be one of ["bigquery-denormalized"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod?: pulumi.Input<inputs.DestinationBigqueryDenormalizedConfigurationLoadingMethod>;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: pulumi.Input<string>;
 }
 
@@ -260,13 +385,37 @@ export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestin
 }
 
 export interface DestinationClickhouseConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["clickhouse"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * HTTP port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationClickhouseConfigurationTunnelMethod>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -320,39 +469,114 @@ export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickh
 }
 
 export interface DestinationConvexConfiguration {
+    /**
+     * API access key used to send data to a Convex deployment.
+     */
     accessKey: pulumi.Input<string>;
+    /**
+     * URL of the Convex deployment that is the destination
+     */
     deploymentUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["convex"]
+     */
     destinationType: pulumi.Input<string>;
 }
 
 export interface DestinationCumulioConfiguration {
+    /**
+     * URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'.
+     */
     apiHost: pulumi.Input<string>;
+    /**
+     * An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["cumulio"]
+     */
     destinationType: pulumi.Input<string>;
 }
 
 export interface DestinationDatabendConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["databend"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * The default  table was written to.
+     */
     table?: pulumi.Input<string>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface DestinationDatabricksConfiguration {
+    /**
+     * You must agree to the Databricks JDBC Driver \n\nTerms & Conditions\n\n to use this connector.
+     */
     acceptTerms: pulumi.Input<boolean>;
+    /**
+     * Storage on which the delta lake is built.
+     */
     dataSource: pulumi.Input<inputs.DestinationDatabricksConfigurationDataSource>;
+    /**
+     * The name of the catalog. If not specified otherwise, the "hiveMetastore" will be used.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Databricks Cluster HTTP Path.
+     */
     databricksHttpPath: pulumi.Input<string>;
+    /**
+     * Databricks Personal Access Token for making authenticated requests.
+     */
     databricksPersonalAccessToken: pulumi.Input<string>;
+    /**
+     * Databricks Cluster Port.
+     */
     databricksPort?: pulumi.Input<string>;
+    /**
+     * Databricks Cluster Server Hostname.
+     */
     databricksServerHostname: pulumi.Input<string>;
+    /**
+     * must be one of ["databricks"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Support schema evolution for all streams. If "false", the connector might fail when a stream's schema changes.
+     */
     enableSchemaEvolution?: pulumi.Input<boolean>;
+    /**
+     * Default to 'true'. Switch it to 'false' for debugging purpose.
+     */
     purgeStagingData?: pulumi.Input<boolean>;
+    /**
+     * The default schema tables are written. If not specified otherwise, the "default" will be used.
+     */
     schema?: pulumi.Input<string>;
 }
 
@@ -410,7 +634,13 @@ export interface DestinationDatabricksConfigurationDataSourceDestinationDatabric
 }
 
 export interface DestinationDevNullConfiguration {
+    /**
+     * must be one of ["dev-null"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The type of destination to be used
+     */
     testDestination: pulumi.Input<inputs.DestinationDevNullConfigurationTestDestination>;
 }
 
@@ -428,19 +658,53 @@ export interface DestinationDevNullConfigurationTestDestinationDestinationDevNul
 }
 
 export interface DestinationDynamodbConfiguration {
+    /**
+     * The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB.
+     */
     accessKeyId: pulumi.Input<string>;
+    /**
+     * must be one of ["dynamodb"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty).
+     */
     dynamodbEndpoint?: pulumi.Input<string>;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the DynamoDB.
+     */
     dynamodbRegion: pulumi.Input<string>;
+    /**
+     * The prefix to use when naming DynamoDB tables.
+     */
     dynamodbTableNamePrefix: pulumi.Input<string>;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: pulumi.Input<string>;
 }
 
 export interface DestinationElasticsearchConfiguration {
+    /**
+     * The type of authentication to be used
+     */
     authenticationMethod?: pulumi.Input<inputs.DestinationElasticsearchConfigurationAuthenticationMethod>;
+    /**
+     * CA certificate
+     */
     caCertificate?: pulumi.Input<string>;
+    /**
+     * must be one of ["elasticsearch"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The full url of the Elasticsearch server
+     */
     endpoint: pulumi.Input<string>;
+    /**
+     * If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys.
+     */
     upsert?: pulumi.Input<boolean>;
 }
 
@@ -476,13 +740,37 @@ export interface DestinationElasticsearchConfigurationAuthenticationMethodDestin
 }
 
 export interface DestinationFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account?: pulumi.Input<string>;
+    /**
+     * The database to connect to.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["firebolt"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Engine name or url to connect to.
+     */
     engine?: pulumi.Input<string>;
+    /**
+     * The host name of your Firebolt database.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * Loading method used to select the way data will be uploaded to Firebolt
+     */
     loadingMethod?: pulumi.Input<inputs.DestinationFireboltConfigurationLoadingMethod>;
+    /**
+     * Firebolt password.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -518,17 +806,45 @@ export interface DestinationFireboltConfigurationLoadingMethodDestinationFirebol
 }
 
 export interface DestinationFirestoreConfiguration {
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: pulumi.Input<string>;
+    /**
+     * must be one of ["firestore"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: pulumi.Input<string>;
 }
 
 export interface DestinationGcsConfiguration {
+    /**
+     * An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more \n\nhere\n\n.
+     */
     credential: pulumi.Input<inputs.DestinationGcsConfigurationCredential>;
+    /**
+     * must be one of ["gcs"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Output data format. One of the following formats must be selected - \n\nAVRO\n\n format, \n\nPARQUET\n\n format, \n\nCSV\n\n format, or \n\nJSONL\n\n format.
+     */
     format: pulumi.Input<inputs.DestinationGcsConfigurationFormat>;
+    /**
+     * You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketName: pulumi.Input<string>;
+    /**
+     * GCS Bucket Path string Subdirectory under the above bucket to sync the data into.
+     */
     gcsBucketPath: pulumi.Input<string>;
+    /**
+     * must be one of ["northamerica-northeast1", "northamerica-northeast2", "us-central1", "us-east1", "us-east4", "us-west1", "us-west2", "us-west3", "us-west4", "southamerica-east1", "southamerica-west1", "europe-central2", "europe-north1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "asia", "eu", "us", "asia1", "eur4", "nam4"]
+     * Select a Region of the GCS Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketRegion?: pulumi.Input<string>;
 }
 
@@ -739,8 +1055,17 @@ export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputForm
 }
 
 export interface DestinationGoogleSheetsConfiguration {
+    /**
+     * Google API Credentials for connecting to Google Sheets and Google Drive APIs
+     */
     credentials: pulumi.Input<inputs.DestinationGoogleSheetsConfigurationCredentials>;
+    /**
+     * must be one of ["google-sheets"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The link to your spreadsheet. See \n\nthis guide\n\n for more details.
+     */
     spreadsheetId: pulumi.Input<string>;
 }
 
@@ -751,25 +1076,67 @@ export interface DestinationGoogleSheetsConfigurationCredentials {
 }
 
 export interface DestinationKeenConfiguration {
+    /**
+     * To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["keen"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Allow connector to guess keen.timestamp value based on the streamed data.
+     */
     inferTimestamp?: pulumi.Input<boolean>;
+    /**
+     * To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     projectId: pulumi.Input<string>;
 }
 
 export interface DestinationKinesisConfiguration {
+    /**
+     * Generate the AWS Access Key for current user.
+     */
     accessKey: pulumi.Input<string>;
+    /**
+     * Buffer size for storing kinesis records before being batch streamed.
+     */
     bufferSize: pulumi.Input<number>;
+    /**
+     * must be one of ["kinesis"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * AWS Kinesis endpoint.
+     */
     endpoint: pulumi.Input<string>;
+    /**
+     * The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a "recovery phrase".
+     */
     privateKey: pulumi.Input<string>;
+    /**
+     * AWS region. Your account determines the Regions that are available to you.
+     */
     region: pulumi.Input<string>;
+    /**
+     * Number of shards to which the data should be streamed.
+     */
     shardCount: pulumi.Input<number>;
 }
 
 export interface DestinationLangchainConfiguration {
+    /**
+     * must be one of ["langchain"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Embedding configuration
+     */
     embedding: pulumi.Input<inputs.DestinationLangchainConfigurationEmbedding>;
+    /**
+     * Indexing configuration
+     */
     indexing: pulumi.Input<inputs.DestinationLangchainConfigurationIndexing>;
     processing: pulumi.Input<inputs.DestinationLangchainConfigurationProcessing>;
 }
@@ -851,15 +1218,45 @@ export interface DestinationLangchainConfigurationProcessing {
 }
 
 export interface DestinationMSsqlConfiguration {
+    /**
+     * The name of the MSSQL database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["mssql"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The host name of the MSSQL database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The password associated with this username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The port of the MSSQL database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: pulumi.Input<string>;
+    /**
+     * The encryption method which is used to communicate with the database.
+     */
     sslMethod?: pulumi.Input<inputs.DestinationMSsqlConfigurationSslMethod>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationMSsqlConfigurationTunnelMethod>;
+    /**
+     * The username which is used to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -938,10 +1335,25 @@ export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdate
 }
 
 export interface DestinationMongodbConfiguration {
+    /**
+     * Authorization type.
+     */
     authType: pulumi.Input<inputs.DestinationMongodbConfigurationAuthType>;
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["mongodb"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType?: pulumi.Input<inputs.DestinationMongodbConfigurationInstanceType>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationMongodbConfigurationTunnelMethod>;
 }
 
@@ -1065,13 +1477,37 @@ export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUp
 }
 
 export interface DestinationMysqlConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["mysql"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationMysqlConfigurationTunnelMethod>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1125,14 +1561,41 @@ export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdate
 }
 
 export interface DestinationOracleConfiguration {
+    /**
+     * must be one of ["oracle"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+     */
     schema?: pulumi.Input<string>;
+    /**
+     * The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+     */
     sid: pulumi.Input<string>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationOracleConfigurationTunnelMethod>;
+    /**
+     * The username to access the database. This user must have CREATE USER privileges in the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1186,15 +1649,52 @@ export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpda
 }
 
 export interface DestinationPostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["postgres"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: pulumi.Input<string>;
+    /**
+     * SSL connection modes.
+     * \n\ndisable\n\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+     * \n\nallow\n\n - Chose this mode to enable encryption only when required by the source database
+     * \n\nprefer\n\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+     * \n\nrequire\n\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+     * \n\nverify-ca\n\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+     * \n\nverify-full\n\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+     * See more information - \n\n in the docs\n\n.
+     */
     sslMode?: pulumi.Input<inputs.DestinationPostgresConfigurationSslMode>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationPostgresConfigurationTunnelMethod>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1323,26 +1823,82 @@ export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgres
 }
 
 export interface DestinationPubsubConfiguration {
+    /**
+     * Number of ms before the buffer is flushed
+     */
     batchingDelayThreshold?: pulumi.Input<number>;
+    /**
+     * Number of messages before the buffer is flushed
+     */
     batchingElementCountThreshold?: pulumi.Input<number>;
+    /**
+     * If TRUE messages will be buffered instead of sending them one by one
+     */
     batchingEnabled: pulumi.Input<boolean>;
+    /**
+     * Number of bytes before the buffer is flushed
+     */
     batchingRequestBytesThreshold?: pulumi.Input<number>;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key.
+     */
     credentialsJson: pulumi.Input<string>;
+    /**
+     * must be one of ["pubsub"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * If TRUE PubSub publisher will have \n\nmessage ordering\n\n enabled. Every message will have an ordering key of stream
+     */
     orderingEnabled: pulumi.Input<boolean>;
+    /**
+     * The GCP project ID for the project containing the target PubSub.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * The PubSub topic ID in the given GCP project ID.
+     */
     topicId: pulumi.Input<string>;
 }
 
 export interface DestinationRedisConfiguration {
+    /**
+     * must be one of ["hash"]
+     * Redis cache type to store data in.
+     */
     cacheType: pulumi.Input<string>;
+    /**
+     * must be one of ["redis"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Redis host to connect to.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Password associated with Redis.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of Redis.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+     */
     ssl?: pulumi.Input<boolean>;
+    /**
+     * SSL connection modes.
+     * \n\n\n\nverify-full\n\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+     */
     sslMode?: pulumi.Input<inputs.DestinationRedisConfigurationSslMode>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationRedisConfigurationTunnelMethod>;
+    /**
+     * Username associated with Redis.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1427,15 +1983,45 @@ export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdate
 }
 
 export interface DestinationRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["redshift"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+     */
     schema: pulumi.Input<string>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationRedshiftConfigurationTunnelMethod>;
+    /**
+     * The method how the data will be uploaded to the database.
+     */
     uploadingMethod?: pulumi.Input<inputs.DestinationRedshiftConfigurationUploadingMethod>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1558,15 +2144,46 @@ export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedsh
 }
 
 export interface DestinationS3Configuration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId?: pulumi.Input<string>;
+    /**
+     * must be one of ["s3"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern?: pulumi.Input<string>;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: pulumi.Input<inputs.DestinationS3ConfigurationFormat>;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: pulumi.Input<string>;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: pulumi.Input<string>;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: pulumi.Input<string>;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint?: pulumi.Input<string>;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat?: pulumi.Input<string>;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey?: pulumi.Input<string>;
 }
 
@@ -1762,17 +2379,55 @@ export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormat
 }
 
 export interface DestinationS3GlueConfiguration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId?: pulumi.Input<string>;
+    /**
+     * must be one of ["s3-glue"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern?: pulumi.Input<string>;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: pulumi.Input<inputs.DestinationS3GlueConfigurationFormat>;
+    /**
+     * Name of the glue database for creating the tables, leave blank if no integration
+     */
     glueDatabase: pulumi.Input<string>;
+    /**
+     * must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+     * The library that your query engine will use for reading and writing data in your lake.
+     */
     glueSerializationLibrary: pulumi.Input<string>;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: pulumi.Input<string>;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: pulumi.Input<string>;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: pulumi.Input<string>;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint?: pulumi.Input<string>;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat?: pulumi.Input<string>;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey?: pulumi.Input<string>;
 }
 
@@ -1820,25 +2475,73 @@ export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutp
 }
 
 export interface DestinationSftpJsonConfiguration {
+    /**
+     * Path to the directory where json files will be written.
+     */
     destinationPath: pulumi.Input<string>;
+    /**
+     * must be one of ["sftp-json"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the SFTP server.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Port of the SFTP server.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Username to use to access the SFTP server.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface DestinationSnowflakeConfiguration {
     credentials?: pulumi.Input<inputs.DestinationSnowflakeConfigurationCredentials>;
+    /**
+     * Enter the name of the \n\ndatabase\n\n you want to sync data into
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["snowflake"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Enter your Snowflake account's \n\nlocator\n\n (in the format \n\n.\n\n.\n\n.snowflakecomputing.com)
+     */
     host: pulumi.Input<string>;
+    /**
+     * Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * (Beta) The schema to write raw tables into
+     */
     rawDataSchema?: pulumi.Input<string>;
+    /**
+     * Enter the \n\nrole\n\n that you want to use to access Snowflake
+     */
     role: pulumi.Input<string>;
+    /**
+     * Enter the name of the default \n\nschema\n\n
+     */
     schema: pulumi.Input<string>;
+    /**
+     * (Beta) Use \n\nDestinations V2\n\n. Contact Airbyte Support to participate in the beta program.
+     */
     use1s1tFormat?: pulumi.Input<boolean>;
+    /**
+     * Enter the name of the user you want to use to access the database
+     */
     username: pulumi.Input<string>;
+    /**
+     * Enter the name of the \n\nwarehouse\n\n that you want to sync data into
+     */
     warehouse: pulumi.Input<string>;
 }
 
@@ -1890,29 +2593,83 @@ export interface DestinationSnowflakeConfigurationCredentialsDestinationSnowflak
 }
 
 export interface DestinationTimeplusConfiguration {
+    /**
+     * Personal API key
+     */
     apikey: pulumi.Input<string>;
+    /**
+     * must be one of ["timeplus"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Timeplus workspace endpoint
+     */
     endpoint: pulumi.Input<string>;
 }
 
 export interface DestinationTypesenseConfiguration {
+    /**
+     * Typesense API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * How many documents should be imported together. Default 1000
+     */
     batchSize?: pulumi.Input<string>;
+    /**
+     * must be one of ["typesense"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the Typesense instance without protocol.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+     */
     port?: pulumi.Input<string>;
+    /**
+     * Protocol of the Typesense instance. Ex: http or https. Default is https
+     */
     protocol?: pulumi.Input<string>;
 }
 
 export interface DestinationVerticaConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * must be one of ["vertica"]
+     */
     destinationType: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Schema for vertica destination
+     */
     schema: pulumi.Input<string>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.DestinationVerticaConfigurationTunnelMethod>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -1966,26 +2723,59 @@ export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUp
 }
 
 export interface DestinationXataConfiguration {
+    /**
+     * API Key to connect.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * URL pointing to your workspace.
+     */
     dbUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["xata"]
+     */
     destinationType: pulumi.Input<string>;
 }
 
 export interface SourceAhaConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["aha"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * URL
+     */
     url: pulumi.Input<string>;
 }
 
 export interface SourceAircallConfiguration {
+    /**
+     * App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+     */
     apiId: pulumi.Input<string>;
+    /**
+     * App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["aircall"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceAirtableConfiguration {
     credentials?: pulumi.Input<inputs.SourceAirtableConfigurationCredentials>;
+    /**
+     * must be one of ["airtable"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
@@ -2025,16 +2815,50 @@ export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthe
 }
 
 export interface SourceAlloydbConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod?: pulumi.Input<inputs.SourceAlloydbConfigurationReplicationMethod>;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["alloydb"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode?: pulumi.Input<inputs.SourceAlloydbConfigurationSslMode>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourceAlloydbConfigurationTunnelMethod>;
+    /**
+     * Username to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -2226,73 +3050,228 @@ export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTun
 }
 
 export interface SourceAmazonAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType?: pulumi.Input<string>;
+    /**
+     * The client ID of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The client secret of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * The amount of days to go back in time to get the updated data from Amazon Ads
+     */
     lookBackWindow?: pulumi.Input<number>;
+    /**
+     * Profile IDs you want to fetch data for. See \n\ndocs\n\n for more details.
+     */
     profiles?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
+     * Amazon Ads refresh token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["NA", "EU", "FE"]
+     * Region to pull data from (EU/NA/FE). See \n\ndocs\n\n for more details.
+     */
     region?: pulumi.Input<string>;
+    /**
+     * Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \n\ndocs\n\n for more details
+     */
     reportRecordTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["amazon-ads"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+     */
     startDate?: pulumi.Input<string>;
+    /**
+     * Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+     */
     stateFilters?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SourceAmazonSellerPartnerConfiguration {
+    /**
+     * Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
+     */
     advancedStreamOptions?: pulumi.Input<string>;
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType?: pulumi.Input<string>;
+    /**
+     * Specifies the AWS access key used as part of the credentials to authenticate the user.
+     */
     awsAccessKey?: pulumi.Input<string>;
+    /**
+     * must be one of ["PRODUCTION", "SANDBOX"]
+     * Select the AWS Environment.
+     */
     awsEnvironment: pulumi.Input<string>;
+    /**
+     * Specifies the AWS secret key used as part of the credentials to authenticate the user.
+     */
     awsSecretKey?: pulumi.Input<string>;
+    /**
+     * Your Login with Amazon Client ID.
+     */
     lwaAppId: pulumi.Input<string>;
+    /**
+     * Your Login with Amazon Client Secret.
+     */
     lwaClientSecret: pulumi.Input<string>;
+    /**
+     * Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+     */
     maxWaitSeconds?: pulumi.Input<number>;
+    /**
+     * Will be used for stream slicing for initial fullRefresh sync when no updated state is present for reports that support sliced incremental sync.
+     */
     periodInDays?: pulumi.Input<number>;
+    /**
+     * The Refresh Token obtained via OAuth flow authorization.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+     * Select the AWS Region.
+     */
     region: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate?: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: pulumi.Input<string>;
+    /**
+     * Additional information passed to reports. This varies by report type. Must be a valid json string.
+     */
     reportOptions?: pulumi.Input<string>;
+    /**
+     * Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+     */
     roleArn?: pulumi.Input<string>;
+    /**
+     * must be one of ["amazon-seller-partner"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceAmazonSqsConfiguration {
+    /**
+     * The Access Key ID of the AWS IAM Role to use for pulling messages
+     */
     accessKey?: pulumi.Input<string>;
+    /**
+     * Comma separated list of Mesage Attribute names to return
+     */
     attributesToReturn?: pulumi.Input<string>;
+    /**
+     * If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+     */
     deleteMessages: pulumi.Input<boolean>;
+    /**
+     * Max amount of messages to get in one batch (10 max)
+     */
     maxBatchSize?: pulumi.Input<number>;
+    /**
+     * Max amount of time in seconds to wait for messages in a single poll (20 max)
+     */
     maxWaitTime?: pulumi.Input<number>;
+    /**
+     * URL of the SQS Queue
+     */
     queueUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * AWS Region of the SQS Queue
+     */
     region: pulumi.Input<string>;
+    /**
+     * The Secret Key of the AWS IAM Role to use for pulling messages
+     */
     secretKey?: pulumi.Input<string>;
+    /**
+     * must be one of ["amazon-sqs"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+     */
     visibilityTimeout?: pulumi.Input<number>;
 }
 
 export interface SourceAmplitudeConfiguration {
+    /**
+     * Amplitude API Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["Standard Server", "EU Residency Server"]
+     * Amplitude data region server
+     */
     dataRegion?: pulumi.Input<string>;
+    /**
+     * According to \n\nConsiderations\n\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+     */
     requestTimeRange?: pulumi.Input<number>;
+    /**
+     * Amplitude Secret Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     secretKey: pulumi.Input<string>;
+    /**
+     * must be one of ["amplitude"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceApifyDatasetConfiguration {
+    /**
+     * If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \n\nApify API docs\n\n. If not sure, set clean to false.
+     */
     clean?: pulumi.Input<boolean>;
+    /**
+     * ID of the dataset you would like to load to Airbyte.
+     */
     datasetId: pulumi.Input<string>;
+    /**
+     * must be one of ["apify-dataset"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceAppfollowConfiguration {
+    /**
+     * API Key provided by Appfollow
+     */
     apiSecret?: pulumi.Input<string>;
+    /**
+     * must be one of ["appfollow"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceAsanaConfiguration {
+    /**
+     * Choose how to authenticate to Github
+     */
     credentials?: pulumi.Input<inputs.SourceAsanaConfigurationCredentials>;
+    /**
+     * must be one of ["asana"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
@@ -2328,8 +3307,14 @@ export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticat
 }
 
 export interface SourceAuth0Configuration {
+    /**
+     * The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
+     */
     baseUrl: pulumi.Input<string>;
     credentials: pulumi.Input<inputs.SourceAuth0ConfigurationCredentials>;
+    /**
+     * must be one of ["auth0"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -2365,21 +3350,60 @@ export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticat
 }
 
 export interface SourceAwsCloudtrailConfiguration {
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsKeyId: pulumi.Input<string>;
+    /**
+     * The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
+     */
     awsRegionName: pulumi.Input<string>;
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsSecretKey: pulumi.Input<string>;
+    /**
+     * must be one of ["aws-cloudtrail"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: pulumi.Input<string>;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: pulumi.Input<string>;
+    /**
+     * The Azure blob storage prefix to be applied
+     */
     azureBlobStorageBlobsPrefix?: pulumi.Input<string>;
+    /**
+     * The name of the Azure blob storage container.
+     */
     azureBlobStorageContainerName: pulumi.Input<string>;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpoint?: pulumi.Input<string>;
+    /**
+     * The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+     */
     azureBlobStorageSchemaInferenceLimit?: pulumi.Input<number>;
+    /**
+     * Input data format
+     */
     format: pulumi.Input<inputs.SourceAzureBlobStorageConfigurationFormat>;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -2397,84 +3421,243 @@ export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorage
 }
 
 export interface SourceAzureTableConfiguration {
+    /**
+     * must be one of ["azure-table"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Azure Table Storage Access Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     storageAccessKey: pulumi.Input<string>;
+    /**
+     * The name of your storage account.
+     */
     storageAccountName: pulumi.Input<string>;
+    /**
+     * Azure Table Storage service account URL suffix. See the \n\ndocs\n\n for more information on how to obtain endpoint suffix
+     */
     storageEndpointSuffix?: pulumi.Input<string>;
 }
 
 export interface SourceBambooHrConfiguration {
+    /**
+     * Api key of bamboo hr
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Comma-separated list of fields to include in custom reports.
+     */
     customReportsFields?: pulumi.Input<string>;
+    /**
+     * If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+     */
     customReportsIncludeDefaultFields?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["bamboo-hr"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Sub Domain of bamboo hr
+     */
     subdomain: pulumi.Input<string>;
 }
 
 export interface SourceBigcommerceConfiguration {
+    /**
+     * Access Token for making authenticated requests.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * must be one of ["bigcommerce"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date you would like to replicate data. Format: YYYY-MM-DD.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+     */
     storeHash: pulumi.Input<string>;
 }
 
 export interface SourceBigqueryConfiguration {
+    /**
+     * The contents of your Service Account Key JSON file. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     credentialsJson: pulumi.Input<string>;
+    /**
+     * The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+     */
     datasetId?: pulumi.Input<string>;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * must be one of ["bigquery"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceBingAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authMethod?: pulumi.Input<string>;
+    /**
+     * The Client ID of your Microsoft Advertising developer application.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Microsoft Advertising developer application.
+     */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * Developer token associated with user. See more info \n\n in the docs\n\n.
+     */
     developerToken: pulumi.Input<string>;
+    /**
+     * Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+     */
     lookbackWindow?: pulumi.Input<number>;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
+     */
     reportsStartDate: pulumi.Input<string>;
+    /**
+     * must be one of ["bing-ads"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+     */
     tenantId?: pulumi.Input<string>;
 }
 
 export interface SourceBraintreeConfiguration {
+    /**
+     * must be one of ["Development", "Sandbox", "Qa", "Production"]
+     * Environment specifies where the data will come from.
+     */
     environment: pulumi.Input<string>;
+    /**
+     * The unique identifier for your entire gateway account. See the \n\ndocs\n\n for more information on how to obtain this ID.
+     */
     merchantId: pulumi.Input<string>;
+    /**
+     * Braintree Private Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     privateKey: pulumi.Input<string>;
+    /**
+     * Braintree Public Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     publicKey: pulumi.Input<string>;
+    /**
+     * must be one of ["braintree"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceBrazeConfiguration {
+    /**
+     * Braze REST API key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["braze"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Rows after this date will be synced
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Braze REST API endpoint
+     */
     url: pulumi.Input<string>;
 }
 
 export interface SourceChargebeeConfiguration {
+    /**
+     * must be one of ["1.0", "2.0"]
+     * Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \n\nhere\n\n under `API Version` section.
+     */
     productCatalog: pulumi.Input<string>;
+    /**
+     * The site prefix for your Chargebee instance.
+     */
     site: pulumi.Input<string>;
+    /**
+     * Chargebee API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     siteApiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["chargebee"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceChartmogulConfiguration {
+    /**
+     * Your Chartmogul API key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["day", "week", "month", "quarter"]
+     * Some APIs such as \n\nMetrics\n\n require intervals to cluster data.
+     */
     interval: pulumi.Input<string>;
+    /**
+     * must be one of ["chartmogul"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceClickhouseConfiguration {
+    /**
+     * The name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * The host endpoint of the Clickhouse cluster.
+     */
     host: pulumi.Input<string>;
+    /**
+     * The password associated with this username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * must be one of ["clickhouse"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourceClickhouseConfigurationTunnelMethod>;
+    /**
+     * The username which is used to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -2528,79 +3711,225 @@ export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdate
 }
 
 export interface SourceClickupApiConfiguration {
+    /**
+     * Every ClickUp API call required authentication. This field is your personal API token. See \n\nhere\n\n.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \n\nhere\n\n.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Include or exclude closed tasks. By default, they are excluded. See \n\nhere\n\n.
+     */
     includeClosedTasks?: pulumi.Input<boolean>;
+    /**
+     * The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \n\nhere\n\n.
+     */
     listId?: pulumi.Input<string>;
+    /**
+     * must be one of ["clickup-api"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \n\nhere\n\n.
+     */
     spaceId?: pulumi.Input<string>;
+    /**
+     * The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \n\nhere\n\n.
+     */
     teamId?: pulumi.Input<string>;
 }
 
 export interface SourceClockifyConfiguration {
+    /**
+     * You can get your api accessKey \n\nhere\n\n This API is Case Sensitive.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+     */
     apiUrl?: pulumi.Input<string>;
+    /**
+     * must be one of ["clockify"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * WorkSpace Id
+     */
     workspaceId: pulumi.Input<string>;
 }
 
 export interface SourceCloseComConfiguration {
+    /**
+     * Close.com API key (usually starts with 'api_'; find yours \n\nhere\n\n).
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["close-com"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceCodaConfiguration {
+    /**
+     * Bearer token
+     */
     authToken: pulumi.Input<string>;
+    /**
+     * must be one of ["coda"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceCoinApiConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The end date in ISO 8601 format. If not supplied, data will be returned
+     * from the start date to the current time, or when the count of result
+     * elements reaches its limit.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * must be one of ["sandbox", "production"]
+     * The environment to use. Either sandbox or production.
+     */
     environment: pulumi.Input<string>;
+    /**
+     * The maximum number of elements to return. If not supplied, the default
+     * is 100. For numbers larger than 100, each 100 items is counted as one
+     * request for pricing purposes. Maximum value is 100000.
+     */
     limit?: pulumi.Input<number>;
+    /**
+     * The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+     */
     period: pulumi.Input<string>;
+    /**
+     * must be one of ["coin-api"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The start date in ISO 8601 format.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The symbol ID to use. See the documentation for a list.
+     * https://docs.coinapi.io/#list-all-symbols-get
+     */
     symbolId: pulumi.Input<string>;
 }
 
 export interface SourceCoinmarketcapConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The token is case sensitive.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["latest", "historical"]
+     * /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \n\nhere\n\n.
+     */
     dataType: pulumi.Input<string>;
+    /**
+     * must be one of ["coinmarketcap"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Cryptocurrency symbols. (only used for quotes stream)
+     */
     symbols?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SourceConfigcatConfiguration {
+    /**
+     * Basic auth password. See \n\nhere\n\n.
+     */
     password: pulumi.Input<string>;
+    /**
+     * must be one of ["configcat"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Basic auth user name. See \n\nhere\n\n.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceConfluenceConfiguration {
+    /**
+     * Please follow the Jira confluence for generating an API token: \n\ngenerating an API token\n\n.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * Your Confluence domain name
+     */
     domainName: pulumi.Input<string>;
+    /**
+     * Your Confluence login email
+     */
     email: pulumi.Input<string>;
+    /**
+     * must be one of ["confluence"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceConvexConfiguration {
+    /**
+     * API access key used to retrieve data from Convex.
+     */
     accessKey: pulumi.Input<string>;
     deploymentUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["convex"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceDatadogConfiguration {
+    /**
+     * Datadog API key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Datadog application key
+     */
     applicationKey: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Maximum number of records to collect per request.
+     */
     maxRecordsPerRequest?: pulumi.Input<number>;
+    /**
+     * List of queries to be run and used as inputs.
+     */
     queries?: pulumi.Input<pulumi.Input<inputs.SourceDatadogConfigurationQuery>[]>;
+    /**
+     * The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+     */
     query?: pulumi.Input<string>;
+    /**
+     * must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+     * The site where Datadog data resides in.
+     */
     site?: pulumi.Input<string>;
+    /**
+     * must be one of ["datadog"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -2611,50 +3940,129 @@ export interface SourceDatadogConfigurationQuery {
 }
 
 export interface SourceDatascopeConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["datascope"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start date for the data to be replicated
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceDelightedConfiguration {
+    /**
+     * A Delighted API key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     since: pulumi.Input<string>;
+    /**
+     * must be one of ["delighted"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceDixaConfiguration {
+    /**
+     * Dixa API token
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * Number of days to batch into one request. Max 31.
+     */
     batchSize?: pulumi.Input<number>;
+    /**
+     * must be one of ["dixa"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The connector pulls records updated from this date onwards.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceDockerhubConfiguration {
+    /**
+     * Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
+     */
     dockerUsername: pulumi.Input<string>;
+    /**
+     * must be one of ["dockerhub"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceDremioConfiguration {
+    /**
+     * API Key that is generated when you authenticate to Dremio API
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * URL of your Dremio instance
+     */
     baseUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["dremio"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceDynamodbConfiguration {
+    /**
+     * The access key id to access Dynamodb. Airbyte requires read permissions to the database
+     */
     accessKeyId: pulumi.Input<string>;
+    /**
+     * the URL of the Dynamodb database
+     */
     endpoint?: pulumi.Input<string>;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the Dynamodb database
+     */
     region?: pulumi.Input<string>;
+    /**
+     * Comma separated reserved attribute names present in your tables
+     */
     reservedAttributeNames?: pulumi.Input<string>;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: pulumi.Input<string>;
+    /**
+     * must be one of ["dynamodb"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceE2eTestCloudConfiguration {
+    /**
+     * Number of records to emit per stream. Min 1. Max 100 billion.
+     */
     maxMessages: pulumi.Input<number>;
+    /**
+     * Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
+     */
     messageIntervalMs?: pulumi.Input<number>;
     mockCatalog: pulumi.Input<inputs.SourceE2eTestCloudConfigurationMockCatalog>;
+    /**
+     * When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+     */
     seed?: pulumi.Input<number>;
+    /**
+     * must be one of ["e2e-test-cloud"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * must be one of ["CONTINUOUS_FEED"]
+     */
     type?: pulumi.Input<string>;
 }
 
@@ -2690,32 +4098,95 @@ export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpd
 }
 
 export interface SourceEmailoctopusConfiguration {
+    /**
+     * EmailOctopus API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["emailoctopus"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceExchangeRatesConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessKey: pulumi.Input<string>;
+    /**
+     * ISO reference currency. See \n\nhere\n\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+     */
     base?: pulumi.Input<string>;
+    /**
+     * Ignore weekends? (Exchanges don't run on weekends)
+     */
     ignoreWeekends?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["exchange-rates"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start getting data from that date.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceFacebookMarketingConfiguration {
+    /**
+     * The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \n\nads*management, ads*read, read*insights, business*management\n\n. Then click on "Get token". See the \n\ndocs\n\n for more information.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \n\ndocs\n\n for more information.
+     */
     accountId: pulumi.Input<string>;
+    /**
+     * Allows actionBreakdowns to be an empty list
+     */
     actionBreakdownsAllowEmpty?: pulumi.Input<boolean>;
+    /**
+     * The Client Id for your OAuth app
+     */
     clientId?: pulumi.Input<string>;
+    /**
+     * The Client Secret for your OAuth app
+     */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+     */
     customInsights?: pulumi.Input<pulumi.Input<inputs.SourceFacebookMarketingConfigurationCustomInsight>[]>;
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+     */
     fetchThumbnailImages?: pulumi.Input<boolean>;
+    /**
+     * Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+     */
     includeDeleted?: pulumi.Input<boolean>;
+    /**
+     * The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+     */
     insightsLookbackWindow?: pulumi.Input<number>;
+    /**
+     * Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     maxBatchSize?: pulumi.Input<number>;
+    /**
+     * Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     pageSize?: pulumi.Input<number>;
+    /**
+     * must be one of ["facebook-marketing"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -2733,26 +4204,71 @@ export interface SourceFacebookMarketingConfigurationCustomInsight {
 }
 
 export interface SourceFacebookPagesConfiguration {
+    /**
+     * Facebook Page Access Token
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * Page ID
+     */
     pageId: pulumi.Input<string>;
+    /**
+     * must be one of ["facebook-pages"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceFakerConfiguration {
+    /**
+     * Should the updatedAt values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+     */
     alwaysUpdated?: pulumi.Input<boolean>;
+    /**
+     * How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+     */
     count: pulumi.Input<number>;
+    /**
+     * How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+     */
     parallelism?: pulumi.Input<number>;
+    /**
+     * How many fake records will be in each page (stream slice), before a state message is emitted?
+     */
     recordsPerSlice?: pulumi.Input<number>;
+    /**
+     * Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+     */
     seed?: pulumi.Input<number>;
+    /**
+     * must be one of ["faker"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceFaunaConfiguration {
+    /**
+     * Settings for the Fauna Collection.
+     */
     collection?: pulumi.Input<inputs.SourceFaunaConfigurationCollection>;
+    /**
+     * Domain of Fauna to query. Defaults db.fauna.com. See \n\nthe docs\n\n.
+     */
     domain: pulumi.Input<string>;
+    /**
+     * Endpoint port.
+     */
     port: pulumi.Input<number>;
+    /**
+     * URL scheme.
+     */
     scheme: pulumi.Input<string>;
+    /**
+     * Fauna secret, used when authenticating with the database.
+     */
     secret: pulumi.Input<string>;
+    /**
+     * must be one of ["fauna"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -2787,11 +4303,30 @@ export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCol
 }
 
 export interface SourceFileSecureConfiguration {
+    /**
+     * The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+     */
     datasetName: pulumi.Input<string>;
+    /**
+     * must be one of ["csv", "json", "jsonl", "excel", "excelBinary", "feather", "parquet", "yaml"]
+     * The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+     */
     format: pulumi.Input<string>;
+    /**
+     * The storage Provider or Location of the file(s) which should be replicated.
+     */
     provider: pulumi.Input<inputs.SourceFileSecureConfigurationProvider>;
+    /**
+     * This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+     */
     readerOptions?: pulumi.Input<string>;
+    /**
+     * must be one of ["file-secure"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The URL path to access the file which should be replicated.
+     */
     url: pulumi.Input<string>;
 }
 
@@ -2907,61 +4442,166 @@ export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStor
 }
 
 export interface SourceFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account?: pulumi.Input<string>;
+    /**
+     * The database to connect to.
+     */
     database: pulumi.Input<string>;
+    /**
+     * Engine name or url to connect to.
+     */
     engine?: pulumi.Input<string>;
+    /**
+     * The host name of your Firebolt database.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * Firebolt password.
+     */
     password: pulumi.Input<string>;
+    /**
+     * must be one of ["firebolt"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceFreshcallerConfiguration {
+    /**
+     * Freshcaller API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Used to construct Base URL for the Freshcaller APIs
+     */
     domain: pulumi.Input<string>;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute?: pulumi.Input<number>;
+    /**
+     * must be one of ["freshcaller"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time. Any data created after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+     */
     syncLagMinutes?: pulumi.Input<number>;
 }
 
 export interface SourceFreshdeskConfiguration {
+    /**
+     * Freshdesk API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Freshdesk domain
+     */
     domain: pulumi.Input<string>;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute?: pulumi.Input<number>;
+    /**
+     * must be one of ["freshdesk"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceFreshsalesConfiguration {
+    /**
+     * Freshsales API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The Name of your Freshsales domain
+     */
     domainName: pulumi.Input<string>;
+    /**
+     * must be one of ["freshsales"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGainsightPxConfiguration {
+    /**
+     * The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["gainsight-px"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGcsConfiguration {
+    /**
+     * GCS bucket name
+     */
     gcsBucket: pulumi.Input<string>;
+    /**
+     * GCS path to data
+     */
     gcsPath: pulumi.Input<string>;
+    /**
+     * Enter your Google Cloud \n\nservice account key\n\n in JSON format
+     */
     serviceAccount: pulumi.Input<string>;
+    /**
+     * must be one of ["gcs"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGetlagoConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["getlago"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGithubConfiguration {
+    /**
+     * Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+     */
     branch?: pulumi.Input<string>;
+    /**
+     * Choose how to authenticate to GitHub
+     */
     credentials?: pulumi.Input<inputs.SourceGithubConfigurationCredentials>;
+    /**
+     * Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+     */
     repository: pulumi.Input<string>;
+    /**
+     * The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+     */
     requestsPerHour?: pulumi.Input<number>;
+    /**
+     * must be one of ["github"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \n\ndocs\n\n for more info
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -2997,11 +4637,26 @@ export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthentic
 }
 
 export interface SourceGitlabConfiguration {
+    /**
+     * Please enter your basic URL from GitLab instance.
+     */
     apiUrl?: pulumi.Input<string>;
     credentials: pulumi.Input<inputs.SourceGitlabConfigurationCredentials>;
+    /**
+     * Space-delimited list of groups. e.g. airbyte.io.
+     */
     groups?: pulumi.Input<string>;
+    /**
+     * Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+     */
     projects?: pulumi.Input<string>;
+    /**
+     * must be one of ["gitlab"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3041,7 +4696,13 @@ export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthoriza
 }
 
 export interface SourceGlassfrogConfiguration {
+    /**
+     * API key provided by Glassfrog
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["glassfrog"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3061,13 +4722,31 @@ export interface SourceGnewsConfiguration {
 }
 
 export interface SourceGoogleAdsConfiguration {
+    /**
+     * A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \n\nGoogle's documentation\n\n.
+     */
     conversionWindowDays?: pulumi.Input<number>;
     credentials: pulumi.Input<inputs.SourceGoogleAdsConfigurationCredentials>;
     customQueries?: pulumi.Input<pulumi.Input<inputs.SourceGoogleAdsConfigurationCustomQuery>[]>;
+    /**
+     * Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \n\ndocumentation\n\n.
+     */
     customerId: pulumi.Input<string>;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \n\nGoogle's documentation\n\n.
+     */
     loginCustomerId?: pulumi.Input<string>;
+    /**
+     * must be one of ["google-ads"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3085,11 +4764,29 @@ export interface SourceGoogleAdsConfigurationCustomQuery {
 }
 
 export interface SourceGoogleAnalyticsDataApiConfiguration {
+    /**
+     * Credentials for the service
+     */
     credentials?: pulumi.Input<inputs.SourceGoogleAnalyticsDataApiConfigurationCredentials>;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe documentation\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: pulumi.Input<string>;
+    /**
+     * The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+     */
     dateRangesStartDate: pulumi.Input<string>;
+    /**
+     * The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \n\nGoogle Analytics documentation\n\n to locate your property ID.
+     */
     propertyId: pulumi.Input<string>;
+    /**
+     * must be one of ["google-analytics-data-api"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \n\nthe documentation\n\n.
+     */
     windowInDays?: pulumi.Input<number>;
 }
 
@@ -3127,11 +4824,29 @@ export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogl
 }
 
 export interface SourceGoogleAnalyticsV4Configuration {
+    /**
+     * Credentials for the service
+     */
     credentials?: pulumi.Input<inputs.SourceGoogleAnalyticsV4ConfigurationCredentials>;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: pulumi.Input<string>;
+    /**
+     * must be one of ["google-analytics-v4"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The ID for the Google Analytics View you want to fetch data from. This can be found from the \n\nGoogle Analytics Account Explorer\n\n.
+     */
     viewId: pulumi.Input<string>;
+    /**
+     * The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \n\nthe docs\n\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+     */
     windowInDays?: pulumi.Input<number>;
 }
 
@@ -3169,7 +4884,13 @@ export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnal
 }
 
 export interface SourceGoogleDirectoryConfiguration {
+    /**
+     * Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \n\nWeb server application\n\n and \n\nService accounts\n\n scenarios.
+     */
     credentials?: pulumi.Input<inputs.SourceGoogleDirectoryConfigurationCredentials>;
+    /**
+     * must be one of ["google-directory"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3207,20 +4928,54 @@ export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirect
 }
 
 export interface SourceGooglePagespeedInsightsConfiguration {
+    /**
+     * Google PageSpeed API Key. See \n\nhere\n\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
+     */
     categories: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["google-pagespeed-insights"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The analyses strategy to use. Either "desktop" or "mobile".
+     */
     strategies: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+     */
     urls: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SourceGoogleSearchConsoleConfiguration {
     authorization: pulumi.Input<inputs.SourceGoogleSearchConsoleConfigurationAuthorization>;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Search Console. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: pulumi.Input<string>;
+    /**
+     * must be one of ["final", "all"]
+     * If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+     */
     dataState?: pulumi.Input<string>;
+    /**
+     * UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * The URLs of the website property attached to your GSC account. Read more \n\nhere\n\n.
+     */
     siteUrls: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["google-search-console"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3260,10 +5015,25 @@ export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogle
 }
 
 export interface SourceGoogleSheetsConfiguration {
+    /**
+     * Credentials for connecting to the Google Sheets API
+     */
     credentials: pulumi.Input<inputs.SourceGoogleSheetsConfigurationCredentials>;
+    /**
+     * Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+     */
     namesConversion?: pulumi.Input<boolean>;
+    /**
+     * The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+     */
     rowBatchSize?: pulumi.Input<number>;
+    /**
+     * must be one of ["google-sheets"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+     */
     spreadsheetId: pulumi.Input<string>;
 }
 
@@ -3299,36 +5069,90 @@ export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpd
 }
 
 export interface SourceGoogleWebfontsConfiguration {
+    /**
+     * Optional, Available params- json, media, proto
+     */
     alt?: pulumi.Input<string>;
+    /**
+     * API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Optional, boolean type
+     */
     prettyPrint?: pulumi.Input<string>;
+    /**
+     * Optional, to find how to sort
+     */
     sort?: pulumi.Input<string>;
+    /**
+     * must be one of ["google-webfonts"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGoogleWorkspaceAdminReportsConfiguration {
+    /**
+     * The contents of the JSON service account key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     credentialsJson: pulumi.Input<string>;
+    /**
+     * The email of the user, which has permissions to access the Google Workspace Admin APIs.
+     */
     email: pulumi.Input<string>;
+    /**
+     * Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+     */
     lookback?: pulumi.Input<number>;
+    /**
+     * must be one of ["google-workspace-admin-reports"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGreenhouseConfiguration {
+    /**
+     * Greenhouse API Key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["greenhouse"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceGridlyConfiguration {
     apiKey: pulumi.Input<string>;
+    /**
+     * ID of a grid, or can be ID of a branch
+     */
     gridId: pulumi.Input<string>;
+    /**
+     * must be one of ["gridly"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceHarvestConfiguration {
+    /**
+     * Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+     */
     accountId: pulumi.Input<string>;
+    /**
+     * Choose how to authenticate to Harvest.
+     */
     credentials?: pulumi.Input<inputs.SourceHarvestConfigurationCredentials>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate?: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: pulumi.Input<string>;
+    /**
+     * must be one of ["harvest"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3368,13 +5192,28 @@ export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthent
 }
 
 export interface SourceHubplannerConfiguration {
+    /**
+     * Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["hubplanner"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceHubspotConfiguration {
+    /**
+     * Choose how to authenticate to HubSpot.
+     */
     credentials: pulumi.Input<inputs.SourceHubspotConfigurationCredentials>;
+    /**
+     * must be one of ["hubspot"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3410,102 +5249,269 @@ export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthent
 }
 
 export interface SourceInsightlyConfiguration {
+    /**
+     * must be one of ["insightly"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Your Insightly API token.
+     */
     token: pulumi.Input<string>;
 }
 
 export interface SourceInstagramConfiguration {
+    /**
+     * The value of the access token generated with \n\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\n\n permissions. See the \n\ndocs\n\n for more information
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * The Client ID for your Oauth application
+     */
     clientId?: pulumi.Input<string>;
+    /**
+     * The Client Secret for your Oauth application
+     */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * must be one of ["instagram"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceInstatusConfiguration {
+    /**
+     * Instatus REST API key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["instatus"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceIntercomConfiguration {
+    /**
+     * Access token for making authenticated requests. See the \n\nIntercom docs\n\n for more information.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * must be one of ["intercom"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceIp2whoisConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey?: pulumi.Input<string>;
+    /**
+     * Domain name. See \n\nhere\n\n.
+     */
     domain?: pulumi.Input<string>;
+    /**
+     * must be one of ["ip2whois"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
 export interface SourceIterableConfiguration {
+    /**
+     * Iterable API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["iterable"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceJiraConfiguration {
+    /**
+     * Jira API Token. See the \n\ndocs\n\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+     */
     domain: pulumi.Input<string>;
+    /**
+     * The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+     */
     email: pulumi.Input<string>;
+    /**
+     * Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+     */
     enableExperimentalStreams?: pulumi.Input<boolean>;
+    /**
+     * Expand the changelog when replicating issues.
+     */
     expandIssueChangelog?: pulumi.Input<boolean>;
+    /**
+     * List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+     */
     projects?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Render issue fields in HTML format in addition to Jira JSON-like format.
+     */
     renderFields?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["jira"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \n\ndocumentation\n\n.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceK6CloudConfiguration {
+    /**
+     * Your API Token. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["k6-cloud"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceKlarnaConfiguration {
+    /**
+     * A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+     */
     password: pulumi.Input<string>;
+    /**
+     * Propertie defining if connector is used against playground or production environment
+     */
     playground: pulumi.Input<boolean>;
+    /**
+     * must be one of ["eu", "us", "oc"]
+     * Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+     */
     region: pulumi.Input<string>;
+    /**
+     * must be one of ["klarna"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceKlaviyoConfiguration {
+    /**
+     * Klaviyo API Key. See our \n\ndocs\n\n if you need help finding this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["klaviyo"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceKustomerSingerConfiguration {
+    /**
+     * Kustomer API Token. See the \n\ndocs\n\n on how to obtain this
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["kustomer-singer"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceKyveConfiguration {
+    /**
+     * The maximum amount of pages to go trough. Set to 'null' for all pages.
+     */
     maxPages?: pulumi.Input<number>;
+    /**
+     * The pagesize for pagination, smaller numbers are used in integration tests.
+     */
     pageSize?: pulumi.Input<number>;
+    /**
+     * The IDs of the KYVE storage pool you want to archive. (Comma separated)
+     */
     poolIds: pulumi.Input<string>;
+    /**
+     * must be one of ["kyve"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+     */
     startIds: pulumi.Input<string>;
+    /**
+     * URL to the KYVE Chain API.
+     */
     urlBase?: pulumi.Input<string>;
 }
 
 export interface SourceLaunchdarklyConfiguration {
+    /**
+     * Your Access token. See \n\nhere\n\n.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * must be one of ["launchdarkly"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceLemlistConfiguration {
+    /**
+     * Lemlist API key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["lemlist"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceLeverHiringConfiguration {
+    /**
+     * Choose how to authenticate to Lever Hiring.
+     */
     credentials?: pulumi.Input<inputs.SourceLeverHiringConfigurationCredentials>;
+    /**
+     * must be one of ["Production", "Sandbox"]
+     * The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * must be one of ["lever-hiring"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3541,10 +5547,19 @@ export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdat
 }
 
 export interface SourceLinkedinAdsConfiguration {
+    /**
+     * Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \n\nLinkedIn Ads docs\n\n for more info.
+     */
     accountIds?: pulumi.Input<pulumi.Input<number>[]>;
     adAnalyticsReports?: pulumi.Input<pulumi.Input<inputs.SourceLinkedinAdsConfigurationAdAnalyticsReport>[]>;
     credentials?: pulumi.Input<inputs.SourceLinkedinAdsConfigurationCredentials>;
+    /**
+     * must be one of ["linkedin-ads"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -3587,7 +5602,13 @@ export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdat
 
 export interface SourceLinkedinPagesConfiguration {
     credentials?: pulumi.Input<inputs.SourceLinkedinPagesConfigurationCredentials>;
+    /**
+     * Specify the Organization ID
+     */
     orgId: pulumi.Input<string>;
+    /**
+     * must be one of ["linkedin-pages"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3623,22 +5644,46 @@ export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesU
 }
 
 export interface SourceLinnworksConfiguration {
+    /**
+     * Linnworks Application ID
+     */
     applicationId: pulumi.Input<string>;
+    /**
+     * Linnworks Application Secret
+     */
     applicationSecret: pulumi.Input<string>;
+    /**
+     * must be one of ["linnworks"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
     token: pulumi.Input<string>;
 }
 
 export interface SourceLokaliseConfiguration {
+    /**
+     * Lokalise API Key with read-access. Available at Profile settings > API tokens. See \n\nhere\n\n.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Lokalise project ID. Available at Project Settings > General.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * must be one of ["lokalise"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceMailchimpConfiguration {
     campaignId?: pulumi.Input<string>;
     credentials?: pulumi.Input<inputs.SourceMailchimpConfigurationCredentials>;
+    /**
+     * must be one of ["mailchimp"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3674,38 +5719,100 @@ export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAut
 }
 
 export interface SourceMailgunConfiguration {
+    /**
+     * Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
+     */
     domainRegion?: pulumi.Input<string>;
+    /**
+     * Primary account API key to access your Mailgun data.
+     */
     privateKey: pulumi.Input<string>;
+    /**
+     * must be one of ["mailgun"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceMailjetSmsConfiguration {
+    /**
+     * Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+     */
     endDate?: pulumi.Input<number>;
+    /**
+     * must be one of ["mailjet-sms"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+     */
     startDate?: pulumi.Input<number>;
+    /**
+     * Your access token. See \n\nhere\n\n.
+     */
     token: pulumi.Input<string>;
 }
 
 export interface SourceMarketoConfiguration {
+    /**
+     * The Client ID of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * Your Marketo Base URL. See \n\n the docs \n\n for info on how to obtain this.
+     */
     domainUrl: pulumi.Input<string>;
+    /**
+     * must be one of ["marketo"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceMetabaseConfiguration {
+    /**
+     * URL to your metabase instance API
+     */
     instanceApiUrl: pulumi.Input<string>;
     password?: pulumi.Input<string>;
+    /**
+     * To generate your session token, you need to run the following command: `curl -X POST \
+     * -H "Content-Type: application/json" \
+     * -d '{"username": "person@metabase.com", "password": "fakepassword"}' \
+     * http://localhost:3000/api/session
+     * ` Then copy the value of the `id` field returned by a successful call to that API.
+     * Note that by default, sessions are good for 14 days and needs to be regenerated.
+     */
     sessionToken?: pulumi.Input<string>;
+    /**
+     * must be one of ["metabase"]
+     */
     sourceType: pulumi.Input<string>;
     username?: pulumi.Input<string>;
 }
 
 export interface SourceMicrosoftTeamsConfiguration {
+    /**
+     * Choose how to authenticate to Microsoft
+     */
     credentials?: pulumi.Input<inputs.SourceMicrosoftTeamsConfigurationCredentials>;
+    /**
+     * Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+     */
     period: pulumi.Input<string>;
+    /**
+     * must be one of ["microsoft-teams"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3747,15 +5854,46 @@ export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeam
 }
 
 export interface SourceMixpanelConfiguration {
+    /**
+     * A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+     */
     attributionWindow?: pulumi.Input<number>;
+    /**
+     * Choose how to authenticate to Mixpanel
+     */
     credentials?: pulumi.Input<inputs.SourceMixpanelConfigurationCredentials>;
+    /**
+     * Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+     */
     dateWindowSize?: pulumi.Input<number>;
+    /**
+     * The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Your project ID number. See the \n\ndocs\n\n for more information on how to obtain this.
+     */
     projectId?: pulumi.Input<number>;
+    /**
+     * Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \n\nMixpanel console\n\n.
+     */
     projectTimezone?: pulumi.Input<string>;
+    /**
+     * must be one of ["US", "EU"]
+     * The region of mixpanel domain instance either US or EU.
+     */
     region?: pulumi.Input<string>;
+    /**
+     * Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+     */
     selectPropertiesByDefault?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["mixpanel"]
+     */
     sourceType?: pulumi.Input<string>;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -3790,6 +5928,9 @@ export interface SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthe
 
 export interface SourceMondayConfiguration {
     credentials?: pulumi.Input<inputs.SourceMondayConfigurationCredentials>;
+    /**
+     * must be one of ["monday"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -3827,11 +5968,29 @@ export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthoriza
 }
 
 export interface SourceMongodbConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource?: pulumi.Input<string>;
+    /**
+     * The database you want to replicate.
+     */
     database: pulumi.Input<string>;
+    /**
+     * The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType?: pulumi.Input<inputs.SourceMongodbConfigurationInstanceType>;
+    /**
+     * The password associated with this username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * must be one of ["mongodb"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The username which is used to access the database.
+     */
     user?: pulumi.Input<string>;
 }
 
@@ -3881,25 +6040,76 @@ export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoD
 }
 
 export interface SourceMongodbInternalPocConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource?: pulumi.Input<string>;
+    /**
+     * The connection string of the database that you want to replicate..
+     */
     connectionString?: pulumi.Input<string>;
+    /**
+     * The password associated with this username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The name of the replica set to be replicated.
+     */
     replicaSet?: pulumi.Input<string>;
+    /**
+     * must be one of ["mongodb-internal-poc"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The username which is used to access the database.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface SourceMssqlConfiguration {
+    /**
+     * The name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * The hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
+     */
     replicationMethod?: pulumi.Input<inputs.SourceMssqlConfigurationReplicationMethod>;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["mssql"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The encryption method which is used when communicating with the database.
+     */
     sslMethod?: pulumi.Input<inputs.SourceMssqlConfigurationSslMethod>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourceMssqlConfigurationTunnelMethod>;
+    /**
+     * The username which is used to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -4007,23 +6217,68 @@ export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelM
 }
 
 export interface SourceMyHoursConfiguration {
+    /**
+     * Your My Hours username
+     */
     email: pulumi.Input<string>;
+    /**
+     * Pagination size used for retrieving logs in days
+     */
     logsBatchSize?: pulumi.Input<number>;
+    /**
+     * The password associated to the username
+     */
     password: pulumi.Input<string>;
+    /**
+     * must be one of ["my-hours"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start date for collecting time logs
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceMysqlConfiguration {
+    /**
+     * The database name.
+     */
     database: pulumi.Input<string>;
+    /**
+     * The host name of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The port to connect to.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Configures how data is extracted from the database.
+     */
     replicationMethod: pulumi.Input<inputs.SourceMysqlConfigurationReplicationMethod>;
+    /**
+     * must be one of ["mysql"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * SSL connection modes. Read more \n\n in the docs\n\n.
+     */
     sslMode?: pulumi.Input<inputs.SourceMysqlConfigurationSslMode>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourceMysqlConfigurationTunnelMethod>;
+    /**
+     * The username which is used to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -4163,20 +6418,56 @@ export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelM
 }
 
 export interface SourceNetsuiteConfiguration {
+    /**
+     * Consumer key associated with your integration
+     */
     consumerKey: pulumi.Input<string>;
+    /**
+     * Consumer secret associated with your integration
+     */
     consumerSecret: pulumi.Input<string>;
+    /**
+     * The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+     */
     objectTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+     */
     realm: pulumi.Input<string>;
+    /**
+     * must be one of ["netsuite"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+     */
     startDatetime: pulumi.Input<string>;
+    /**
+     * Access token key
+     */
     tokenKey: pulumi.Input<string>;
+    /**
+     * Access token secret
+     */
     tokenSecret: pulumi.Input<string>;
+    /**
+     * The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+     */
     windowInDays?: pulumi.Input<number>;
 }
 
 export interface SourceNotionConfiguration {
+    /**
+     * Pick an authentication method.
+     */
     credentials?: pulumi.Input<inputs.SourceNotionConfigurationCredentials>;
+    /**
+     * must be one of ["notion"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -4212,18 +6503,47 @@ export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthentic
 }
 
 export interface SourceNytimesConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * End date to stop the article retrieval (format YYYY-MM)
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * must be one of ["1", "7", "30"]
+     * Period of time (in days)
+     */
     period: pulumi.Input<number>;
+    /**
+     * must be one of ["facebook"]
+     * Share Type
+     */
     shareType?: pulumi.Input<string>;
+    /**
+     * must be one of ["nytimes"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start date to begin the article retrieval (format YYYY-MM)
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceOktaConfiguration {
     credentials?: pulumi.Input<inputs.SourceOktaConfigurationCredentials>;
+    /**
+     * The Okta domain. See the \n\ndocs\n\n for instructions on how to find it.
+     */
     domain?: pulumi.Input<string>;
+    /**
+     * must be one of ["okta"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -4259,15 +6579,36 @@ export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorization
 }
 
 export interface SourceOmnisendConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["omnisend"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceOnesignalConfiguration {
+    /**
+     * Applications keys, see the \n\ndocs\n\n for more information on how to obtain this data
+     */
     applications: pulumi.Input<pulumi.Input<inputs.SourceOnesignalConfigurationApplication>[]>;
+    /**
+     * Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \n\ndocs\n\n for more details
+     */
     outcomeNames: pulumi.Input<string>;
+    /**
+     * must be one of ["onesignal"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * OneSignal User Auth Key, see the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     userAuthKey: pulumi.Input<string>;
 }
 
@@ -4278,24 +6619,77 @@ export interface SourceOnesignalConfigurationApplication {
 }
 
 export interface SourceOpenweatherConfiguration {
+    /**
+     * Your OpenWeather API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     appid: pulumi.Input<string>;
+    /**
+     * must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zhTw", "zu"]
+     * You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \n\nhere\n\n for the list of supported languages.
+     */
     lang?: pulumi.Input<string>;
+    /**
+     * Latitude for which you want to get weather condition from. (min -90, max 90)
+     */
     lat: pulumi.Input<string>;
+    /**
+     * Longitude for which you want to get weather condition from. (min -180, max 180)
+     */
     lon: pulumi.Input<string>;
+    /**
+     * must be one of ["openweather"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * must be one of ["standard", "metric", "imperial"]
+     * Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+     */
     units?: pulumi.Input<string>;
 }
 
 export interface SourceOracleConfiguration {
+    /**
+     * Connect data that will be used for DB connection
+     */
     connectionData?: pulumi.Input<inputs.SourceOracleConfigurationConnectionData>;
+    /**
+     * The encryption method with is used when communicating with the database.
+     */
     encryption: pulumi.Input<inputs.SourceOracleConfigurationEncryption>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     * Oracle Corporations recommends the following port numbers:
+     * 1521 - Default listening port for client connections to the listener.
+     * 2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+     */
     port: pulumi.Input<number>;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["oracle"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourceOracleConfigurationTunnelMethod>;
+    /**
+     * The username which is used to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -4403,29 +6797,85 @@ export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunne
 }
 
 export interface SourceOrbConfiguration {
+    /**
+     * Orb API Key, issued from the Orb admin console.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+     */
     lookbackWindowDays?: pulumi.Input<number>;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     numericEventPropertiesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Orb Plan ID to filter subscriptions that should have usage fetched.
+     */
     planId?: pulumi.Input<string>;
+    /**
+     * must be one of ["orb"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2022-03-01T00:00:00Z. Any data with createdAt before this data will not be synced. For Subscription Usage, this becomes the `timeframeStart` API parameter.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     stringEventPropertiesKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Property key name to group subscription usage by.
+     */
     subscriptionUsageGroupingKey?: pulumi.Input<string>;
 }
 
 export interface SourceOrbitConfiguration {
+    /**
+     * Authorizes you to work with Orbit workspaces associated with the token.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["orbit"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Date in the format 2022-06-26. Only load members whose last activities are after this date.
+     */
     startDate?: pulumi.Input<string>;
+    /**
+     * The unique name of the workspace that your API token is associated with.
+     */
     workspace: pulumi.Input<string>;
 }
 
 export interface SourceOutbrainAmplifyConfiguration {
+    /**
+     * Credentials for making authenticated requests requires either username/password or access_token.
+     */
     credentials: pulumi.Input<inputs.SourceOutbrainAmplifyConfigurationCredentials>;
+    /**
+     * Date in the format YYYY-MM-DD.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * must be one of ["country", "region", "subregion"]
+     * The granularity used for geo location data in reports.
+     */
     geoLocationBreakdown?: pulumi.Input<string>;
+    /**
+     * must be one of ["daily", "weekly", "monthly"]
+     * The granularity used for periodic data in reports. See \n\nthe docs\n\n.
+     */
     reportGranularity?: pulumi.Input<string>;
+    /**
+     * must be one of ["outbrain-amplify"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -4459,54 +6909,141 @@ export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmpl
 }
 
 export interface SourceOutreachConfiguration {
+    /**
+     * The Client ID of your Outreach developer application.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Outreach developer application.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+     */
     redirectUri: pulumi.Input<string>;
+    /**
+     * The token for obtaining the new access token.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["outreach"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourcePaypalTransactionConfiguration {
+    /**
+     * The Client ID of your Paypal developer application.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Paypal developer application.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: pulumi.Input<boolean>;
+    /**
+     * The key to refresh the expired access token.
+     */
     refreshToken?: pulumi.Input<string>;
+    /**
+     * must be one of ["paypal-transaction"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start Date for data extraction in \n\nISO format\n\n. Date must be in range from 3 years till 12 hrs before present time.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourcePaystackConfiguration {
+    /**
+     * When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+     */
     lookbackWindowDays?: pulumi.Input<number>;
+    /**
+     * The Paystack API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     secretKey: pulumi.Input<string>;
+    /**
+     * must be one of ["paystack"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourcePendoConfiguration {
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["pendo"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePersistiqConfiguration {
+    /**
+     * PersistIq API Key. See the \n\ndocs\n\n for more information on where to find that key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["persistiq"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePexelsApiConfiguration {
+    /**
+     * API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+     */
     color?: pulumi.Input<string>;
+    /**
+     * Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+     */
     locale?: pulumi.Input<string>;
+    /**
+     * Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+     */
     orientation?: pulumi.Input<string>;
+    /**
+     * Optional, the search query, Example Ocean, Tigers, Pears, etc.
+     */
     query: pulumi.Input<string>;
+    /**
+     * Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+     */
     size?: pulumi.Input<string>;
+    /**
+     * must be one of ["pexels-api"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePinterestConfiguration {
     credentials?: pulumi.Input<inputs.SourcePinterestConfigurationCredentials>;
+    /**
+     * must be one of ["pinterest"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+     */
     statuses?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -4543,7 +7080,13 @@ export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAut
 
 export interface SourcePipedriveConfiguration {
     authorization?: pulumi.Input<inputs.SourcePipedriveConfigurationAuthorization>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+     */
     replicationStartDate: pulumi.Input<string>;
+    /**
+     * must be one of ["pipedrive"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -4553,49 +7096,159 @@ export interface SourcePipedriveConfigurationAuthorization {
 }
 
 export interface SourcePocketConfiguration {
+    /**
+     * The user's Pocket access token.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * Your application's Consumer Key.
+     */
     consumerKey: pulumi.Input<string>;
+    /**
+     * must be one of ["article", "video", "image"]
+     * Select the content type of the items to retrieve.
+     */
     contentType?: pulumi.Input<string>;
+    /**
+     * must be one of ["simple", "complete"]
+     * Select the granularity of the information about each item.
+     */
     detailType?: pulumi.Input<string>;
+    /**
+     * Only return items from a particular `domain`.
+     */
     domain?: pulumi.Input<string>;
+    /**
+     * Retrieve only favorited items.
+     */
     favorite?: pulumi.Input<boolean>;
+    /**
+     * Only return items whose title or url contain the `search` string.
+     */
     search?: pulumi.Input<string>;
+    /**
+     * Only return items modified since the given timestamp.
+     */
     since?: pulumi.Input<string>;
+    /**
+     * must be one of ["newest", "oldest", "title", "site"]
+     * Sort retrieved items by the given criteria.
+     */
     sort?: pulumi.Input<string>;
+    /**
+     * must be one of ["pocket"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * must be one of ["unread", "archive", "all"]
+     * Select the state of the items to retrieve.
+     */
     state?: pulumi.Input<string>;
+    /**
+     * Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+     */
     tag?: pulumi.Input<string>;
 }
 
 export interface SourcePokeapiConfiguration {
+    /**
+     * Pokemon requested from the API.
+     */
     pokemonName: pulumi.Input<string>;
+    /**
+     * must be one of ["pokeapi"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePolygonStockApiConfiguration {
+    /**
+     * Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+     */
     adjusted?: pulumi.Input<string>;
+    /**
+     * Your API ACCESS Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The target date for the aggregate window.
+     */
     endDate: pulumi.Input<string>;
+    /**
+     * The target date for the aggregate window.
+     */
     limit?: pulumi.Input<number>;
+    /**
+     * The size of the timespan multiplier.
+     */
     multiplier: pulumi.Input<number>;
+    /**
+     * Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+     */
     sort?: pulumi.Input<string>;
+    /**
+     * must be one of ["polygon-stock-api"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The beginning date for the aggregate window.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The exchange symbol that this item is traded under.
+     */
     stocksTicker: pulumi.Input<string>;
+    /**
+     * The size of the time window.
+     */
     timespan: pulumi.Input<string>;
 }
 
 export interface SourcePostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * Hostname of the database.
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod?: pulumi.Input<inputs.SourcePostgresConfigurationReplicationMethod>;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["postgres"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode?: pulumi.Input<inputs.SourcePostgresConfigurationSslMode>;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: pulumi.Input<inputs.SourcePostgresConfigurationTunnelMethod>;
+    /**
+     * Username to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
@@ -4787,54 +7440,135 @@ export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshT
 }
 
 export interface SourcePosthogConfiguration {
+    /**
+     * API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+     */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * must be one of ["posthog"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourcePostmarkappConfiguration {
+    /**
+     * must be one of ["postmarkapp"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * API Key for account
+     */
     xPostmarkAccountToken: pulumi.Input<string>;
+    /**
+     * API Key for server
+     */
     xPostmarkServerToken: pulumi.Input<string>;
 }
 
 export interface SourcePrestashopConfiguration {
+    /**
+     * Your PrestaShop access key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     accessKey: pulumi.Input<string>;
+    /**
+     * must be one of ["prestashop"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The Start date in the format YYYY-MM-DD.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Shop URL without trailing slash.
+     */
     url: pulumi.Input<string>;
 }
 
 export interface SourcePublicApisConfiguration {
+    /**
+     * must be one of ["public-apis"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePunkApiConfiguration {
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedAfter: pulumi.Input<string>;
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedBefore: pulumi.Input<string>;
+    /**
+     * To extract specific data with Unique ID
+     */
     id?: pulumi.Input<string>;
+    /**
+     * must be one of ["punk-api"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourcePypiConfiguration {
+    /**
+     * Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+     */
     projectName: pulumi.Input<string>;
+    /**
+     * must be one of ["pypi"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Version of the project/package.  Use it to find a particular release instead of all releases.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface SourceQualarooConfiguration {
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: pulumi.Input<string>;
+    /**
+     * must be one of ["qualaroo"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+     */
     surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: pulumi.Input<string>;
 }
 
 export interface SourceQuickbooksConfiguration {
     credentials: pulumi.Input<inputs.SourceQuickbooksConfigurationCredentials>;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     sandbox: pulumi.Input<boolean>;
+    /**
+     * must be one of ["quickbooks"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -4864,50 +7598,128 @@ export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateA
 }
 
 export interface SourceRailzConfiguration {
+    /**
+     * Client ID (client_id)
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * Secret key (secret_key)
+     */
     secretKey: pulumi.Input<string>;
+    /**
+     * must be one of ["railz"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start date
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceRechargeConfiguration {
+    /**
+     * The value of the Access Token generated. See the \n\ndocs\n\n for more information.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * must be one of ["recharge"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceRecreationConfiguration {
+    /**
+     * API Key
+     */
     apikey: pulumi.Input<string>;
     queryCampsites?: pulumi.Input<string>;
+    /**
+     * must be one of ["recreation"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceRecruiteeConfiguration {
+    /**
+     * Recruitee API Key. See \n\nhere\n\n.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Recruitee Company ID. You can also find this ID on the \n\nRecruitee API tokens page\n\n.
+     */
     companyId: pulumi.Input<number>;
+    /**
+     * must be one of ["recruitee"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceRecurlyConfiguration {
+    /**
+     * Recurly API Key. See the  \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * ISO8601 timestamp from which the replication from Recurly API will start from.
+     */
     beginTime?: pulumi.Input<string>;
+    /**
+     * ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+     */
     endTime?: pulumi.Input<string>;
+    /**
+     * must be one of ["recurly"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: pulumi.Input<string>;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * Password associated with the username.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Port of the database.
+     */
     port: pulumi.Input<number>;
+    /**
+     * The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+     */
     schemas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["redshift"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Username to use to access the database.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceRetentlyConfiguration {
+    /**
+     * Choose how to authenticate to Retently
+     */
     credentials?: pulumi.Input<inputs.SourceRetentlyConfigurationCredentials>;
+    /**
+     * must be one of ["retently"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
@@ -4947,21 +7759,51 @@ export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthe
 }
 
 export interface SourceRkiCovidConfiguration {
+    /**
+     * must be one of ["rki-covid"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceRssConfiguration {
+    /**
+     * must be one of ["rss"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * RSS Feed URL
+     */
     url: pulumi.Input<string>;
 }
 
 export interface SourceS3Configuration {
+    /**
+     * The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+     */
     dataset: pulumi.Input<string>;
+    /**
+     * The format of the files you'd like to replicate
+     */
     format?: pulumi.Input<inputs.SourceS3ConfigurationFormat>;
+    /**
+     * A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \n\nthis page\n\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \n\n**\n\n to pick up all files.
+     */
     pathPattern: pulumi.Input<string>;
+    /**
+     * Use this to load files from S3 or S3-compatible services
+     */
     provider: pulumi.Input<inputs.SourceS3ConfigurationProvider>;
+    /**
+     * Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \n\n{ "column" : "type" }\n\n, where types are valid \n\nJSON Schema datatypes\n\n. Leave as {} to auto-infer the schema.
+     */
     schema?: pulumi.Input<string>;
+    /**
+     * must be one of ["s3"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -5050,14 +7892,41 @@ export interface SourceS3ConfigurationProvider {
 }
 
 export interface SourceSalesforceConfiguration {
+    /**
+     * must be one of ["Client"]
+     */
     authType?: pulumi.Input<string>;
+    /**
+     * Enter your Salesforce developer application's \n\nClient ID\n\n
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * Enter your Salesforce developer application's \n\nClient secret\n\n
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * Toggle to use Bulk API (this might cause empty fields for some streams)
+     */
     forceUseBulkApi?: pulumi.Input<boolean>;
+    /**
+     * Toggle if you're using a \n\nSalesforce Sandbox\n\n
+     */
     isSandbox?: pulumi.Input<boolean>;
+    /**
+     * Enter your application's \n\nSalesforce Refresh Token\n\n used for Airbyte to access your Salesforce account.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["salesforce"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+     */
     startDate?: pulumi.Input<string>;
+    /**
+     * Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+     */
     streamsCriterias?: pulumi.Input<pulumi.Input<inputs.SourceSalesforceConfigurationStreamsCriteria>[]>;
 }
 
@@ -5068,7 +7937,13 @@ export interface SourceSalesforceConfigurationStreamsCriteria {
 
 export interface SourceSalesloftConfiguration {
     credentials: pulumi.Input<inputs.SourceSalesloftConfigurationCredentials>;
+    /**
+     * must be one of ["salesloft"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -5108,68 +7983,195 @@ export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCre
 }
 
 export interface SourceSapFieldglassConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["sap-fieldglass"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSecodaConfiguration {
+    /**
+     * Your API Access Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["secoda"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSendgridConfiguration {
+    /**
+     * API Key, use \n\nadmin\n\n to generate this key.
+     */
     apikey: pulumi.Input<string>;
+    /**
+     * must be one of ["sendgrid"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start time in ISO8601 format. Any data before this time point will not be replicated.
+     */
     startTime?: pulumi.Input<string>;
 }
 
 export interface SourceSendinblueConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["sendinblue"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSenseforceConfiguration {
+    /**
+     * Your API access token. See \n\nhere\n\n. The toke is case sensitive.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * Your Senseforce API backend URL. This is the URL shown during the Login screen. See \n\nhere\n\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+     */
     backendUrl: pulumi.Input<string>;
+    /**
+     * The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \n\nhere\n\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+     */
     datasetId: pulumi.Input<string>;
+    /**
+     * The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+     */
     sliceRange?: pulumi.Input<number>;
+    /**
+     * must be one of ["senseforce"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the startDate to 2020-10-10 or later
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceSentryConfiguration {
+    /**
+     * Log into Sentry and then \n\ncreate authentication tokens\n\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+     */
     authToken: pulumi.Input<string>;
+    /**
+     * Fields to retrieve when fetching discover events
+     */
     discoverFields?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+     */
     hostname?: pulumi.Input<string>;
+    /**
+     * The slug of the organization the groups belong to.
+     */
     organization: pulumi.Input<string>;
+    /**
+     * The name (slug) of the Project you want to sync.
+     */
     project: pulumi.Input<string>;
+    /**
+     * must be one of ["sentry"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSftpBulkConfiguration {
+    /**
+     * Sync only the most recent file for the configured folder path and file pattern
+     */
     fileMostRecent?: pulumi.Input<boolean>;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern?: pulumi.Input<string>;
+    /**
+     * must be one of ["csv", "json"]
+     * The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+     */
     fileType?: pulumi.Input<string>;
+    /**
+     * The directory to search files for sync
+     */
     folderPath: pulumi.Input<string>;
+    /**
+     * The server host address
+     */
     host: pulumi.Input<string>;
+    /**
+     * OS-level password for logging into the jump server host
+     */
     password?: pulumi.Input<string>;
+    /**
+     * The server port
+     */
     port: pulumi.Input<number>;
+    /**
+     * The private key
+     */
     privateKey?: pulumi.Input<string>;
+    /**
+     * The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+     */
     separator?: pulumi.Input<string>;
+    /**
+     * must be one of ["sftp-bulk"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The name of the stream or table you want to create
+     */
     streamName: pulumi.Input<string>;
+    /**
+     * The server user
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceSftpConfiguration {
+    /**
+     * The server authentication method
+     */
     credentials?: pulumi.Input<inputs.SourceSftpConfigurationCredentials>;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern?: pulumi.Input<string>;
+    /**
+     * Coma separated file types. Currently only 'csv' and 'json' types are supported.
+     */
     fileTypes?: pulumi.Input<string>;
+    /**
+     * The directory to search files for sync
+     */
     folderPath?: pulumi.Input<string>;
+    /**
+     * The server host address
+     */
     host: pulumi.Input<string>;
+    /**
+     * The server port
+     */
     port: pulumi.Input<number>;
+    /**
+     * must be one of ["sftp"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The server user
+     */
     user: pulumi.Input<string>;
 }
 
@@ -5201,9 +8203,21 @@ export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticatio
 }
 
 export interface SourceShopifyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from Shopify
+     */
     credentials?: pulumi.Input<inputs.SourceShopifyConfigurationCredentials>;
+    /**
+     * The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+     */
     shop: pulumi.Input<string>;
+    /**
+     * must be one of ["shopify"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -5240,17 +8254,44 @@ export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopify
 
 export interface SourceShortioConfiguration {
     domainId: pulumi.Input<string>;
+    /**
+     * Short.io Secret Key
+     */
     secretKey: pulumi.Input<string>;
+    /**
+     * must be one of ["shortio"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceSlackConfiguration {
+    /**
+     * A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+     */
     channelFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Choose how to authenticate into Slack
+     */
     credentials?: pulumi.Input<inputs.SourceSlackConfigurationCredentials>;
+    /**
+     * Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+     */
     joinChannels: pulumi.Input<boolean>;
+    /**
+     * How far into the past to look for messages in threads, default is 0 days
+     */
     lookbackWindow: pulumi.Input<number>;
+    /**
+     * must be one of ["slack"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -5286,22 +8327,52 @@ export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticat
 }
 
 export interface SourceSmailyConfiguration {
+    /**
+     * API user password. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiPassword: pulumi.Input<string>;
+    /**
+     * API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiSubdomain: pulumi.Input<string>;
+    /**
+     * API user username. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiUsername: pulumi.Input<string>;
+    /**
+     * must be one of ["smaily"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSmartengageConfiguration {
+    /**
+     * API Key
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * must be one of ["smartengage"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceSmartsheetsConfiguration {
     credentials: pulumi.Input<inputs.SourceSmartsheetsConfigurationCredentials>;
+    /**
+     * A List of available columns which metadata can be pulled from.
+     */
     metadataFields?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["smartsheets"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+     */
     spreadsheetId: pulumi.Input<string>;
+    /**
+     * Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+     */
     startDatetime?: pulumi.Input<string>;
 }
 
@@ -5341,22 +8412,61 @@ export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdat
 }
 
 export interface SourceSnapchatMarketingConfiguration {
+    /**
+     * The Client ID of your Snapchat developer application.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Snapchat developer application.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * Date in the format 2017-01-25. Any data after this date will not be replicated.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["snapchat-marketing"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Date in the format 2022-01-01. Any data before this date will not be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceSnowflakeConfiguration {
     credentials?: pulumi.Input<inputs.SourceSnowflakeConfigurationCredentials>;
+    /**
+     * The database you created for Airbyte to access data.
+     */
     database: pulumi.Input<string>;
+    /**
+     * The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+     */
     host: pulumi.Input<string>;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: pulumi.Input<string>;
+    /**
+     * The role you created for Airbyte to access Snowflake.
+     */
     role: pulumi.Input<string>;
+    /**
+     * The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+     */
     schema?: pulumi.Input<string>;
+    /**
+     * must be one of ["snowflake"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The warehouse you created for Airbyte to access data.
+     */
     warehouse: pulumi.Input<string>;
 }
 
@@ -5396,25 +8506,61 @@ export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAut
 }
 
 export interface SourceSonarCloudConfiguration {
+    /**
+     * Comma-separated list of component keys.
+     */
     componentKeys: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * To retrieve issues created before the given date (inclusive).
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Organization key. See \n\nhere\n\n.
+     */
     organization: pulumi.Input<string>;
+    /**
+     * must be one of ["sonar-cloud"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * To retrieve issues created after the given date (inclusive).
+     */
     startDate?: pulumi.Input<string>;
+    /**
+     * Your User Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     userToken: pulumi.Input<string>;
 }
 
 export interface SourceSpaceXApiConfiguration {
     id?: pulumi.Input<string>;
     options?: pulumi.Input<string>;
+    /**
+     * must be one of ["spacex-api"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
 export interface SourceSquareConfiguration {
+    /**
+     * Choose how to authenticate to Square.
+     */
     credentials?: pulumi.Input<inputs.SourceSquareConfigurationCredentials>;
+    /**
+     * In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+     */
     includeDeletedObjects?: pulumi.Input<boolean>;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: pulumi.Input<boolean>;
+    /**
+     * must be one of ["square"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -5450,28 +8596,79 @@ export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthentic
 }
 
 export interface SourceStravaConfiguration {
+    /**
+     * The Athlete ID of your Strava developer application.
+     */
     athleteId: pulumi.Input<number>;
+    /**
+     * must be one of ["Client"]
+     */
     authType?: pulumi.Input<string>;
+    /**
+     * The Client ID of your Strava developer application.
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * The Client Secret of your Strava developer application.
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * The Refresh Token with the activity: readAll permissions.
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["strava"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceStripeConfiguration {
+    /**
+     * Your Stripe account ID (starts with 'acct_', find yours \n\nhere\n\n).
+     */
     accountId: pulumi.Input<string>;
+    /**
+     * Stripe API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \n\nhere\n\n
+     */
     lookbackWindowDays?: pulumi.Input<number>;
+    /**
+     * The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+     */
     sliceRange?: pulumi.Input<number>;
+    /**
+     * must be one of ["stripe"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceSurveySparrowConfiguration {
+    /**
+     * Your access token. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * Is your account location is EU based? If yes, the base url to retrieve data will be different.
+     */
     region?: pulumi.Input<inputs.SourceSurveySparrowConfigurationRegion>;
+    /**
+     * must be one of ["survey-sparrow"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * A List of your survey ids for survey-specific stream
+     */
     surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -5499,10 +8696,26 @@ export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdate
 }
 
 export interface SourceSurveymonkeyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from SurveyMonkey
+     */
     credentials?: pulumi.Input<inputs.SourceSurveymonkeyConfigurationCredentials>;
+    /**
+     * must be one of ["USA", "Europe", "Canada"]
+     * Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+     */
     origin?: pulumi.Input<string>;
+    /**
+     * must be one of ["surveymonkey"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+     */
     surveyIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -5514,26 +8727,71 @@ export interface SourceSurveymonkeyConfigurationCredentials {
 }
 
 export interface SourceTempoConfiguration {
+    /**
+     * Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * must be one of ["tempo"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceTheGuardianApiConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the endDate will not be shown. Default is set to the current date (today) for incremental syncs.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+     */
     query?: pulumi.Input<string>;
+    /**
+     * (Optional) Use this to filter the results by a particular section. See \n\nhere\n\n for a list of all sections, and \n\nhere\n\n for the sections endpoint documentation.
+     */
     section?: pulumi.Input<string>;
+    /**
+     * must be one of ["the-guardian-api"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the startDate will not be shown.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \n\nhere\n\n for a list of all tags, and \n\nhere\n\n for the tags endpoint documentation.
+     */
     tag?: pulumi.Input<string>;
 }
 
 export interface SourceTiktokMarketingConfiguration {
+    /**
+     * The attribution window in days.
+     */
     attributionWindow?: pulumi.Input<number>;
+    /**
+     * Authentication method
+     */
     credentials?: pulumi.Input<inputs.SourceTiktokMarketingConfigurationCredentials>;
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between startDate and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Set to active if you want to include deleted data in reports.
+     */
     includeDeleted?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["tiktok-marketing"]
+     */
     sourceType?: pulumi.Input<string>;
+    /**
+     * The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -5573,22 +8831,52 @@ export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarket
 }
 
 export interface SourceTodoistConfiguration {
+    /**
+     * must be one of ["todoist"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Your API Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     token: pulumi.Input<string>;
 }
 
 export interface SourceTrelloConfiguration {
+    /**
+     * IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+     */
     boardIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Trello API key. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: pulumi.Input<string>;
+    /**
+     * must be one of ["trello"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Trello API token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: pulumi.Input<string>;
 }
 
 export interface SourceTrustpilotConfiguration {
+    /**
+     * The names of business units which shall be synchronized. Some streams e.g. configured*business*units or privateReviews use this configuration.
+     */
     businessUnits: pulumi.Input<pulumi.Input<string>[]>;
     credentials: pulumi.Input<inputs.SourceTrustpilotConfigurationCredentials>;
+    /**
+     * must be one of ["trustpilot"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * For streams with sync. method incremental the start date time to be used
+     */
     startDate: pulumi.Input<string>;
 }
 
@@ -5628,39 +8916,104 @@ export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateA
 }
 
 export interface SourceTvmazeScheduleConfiguration {
+    /**
+     * Country code for domestic TV schedule retrieval.
+     */
     domesticScheduleCountryCode: pulumi.Input<string>;
+    /**
+     * End date for TV schedule retrieval. May be in the future. Optional.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * must be one of ["tvmaze-schedule"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start date for TV schedule retrieval. May be in the future.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+     * all countries plus global web channels (e.g. Netflix). Alternatively,
+     * set to 'global' for just global web channels.
+     */
     webScheduleCountryCode?: pulumi.Input<string>;
 }
 
 export interface SourceTwilioConfiguration {
+    /**
+     * Twilio account SID
+     */
     accountSid: pulumi.Input<string>;
+    /**
+     * Twilio Auth Token.
+     */
     authToken: pulumi.Input<string>;
+    /**
+     * How far into the past to look for records. (in minutes)
+     */
     lookbackWindow?: pulumi.Input<number>;
+    /**
+     * must be one of ["twilio"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceTwilioTaskrouterConfiguration {
+    /**
+     * Twilio Account ID
+     */
     accountSid: pulumi.Input<string>;
+    /**
+     * Twilio Auth Token
+     */
     authToken: pulumi.Input<string>;
+    /**
+     * must be one of ["twilio-taskrouter"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceTwitterConfiguration {
+    /**
+     * App only Bearer Token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * Query for matching Tweets. You can learn how to build this query by reading \n\n build a query guide \n\n.
+     */
     query: pulumi.Input<string>;
+    /**
+     * must be one of ["twitter"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The start date for retrieving tweets cannot be more than 7 days in the past.
+     */
     startDate?: pulumi.Input<string>;
 }
 
 export interface SourceTypeformConfiguration {
     credentials: pulumi.Input<inputs.SourceTypeformConfigurationCredentials>;
+    /**
+     * When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the formId is u6nXL7. You can find form URLs on Share panel
+     */
     formIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * must be one of ["typeform"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate?: pulumi.Input<string>;
 }
 
@@ -5700,50 +9053,128 @@ export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAutho
 }
 
 export interface SourceUsCensusConfiguration {
+    /**
+     * Your API Key. Get your key \n\nhere\n\n.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The query parameters portion of the GET request, without the api key
+     */
     queryParams?: pulumi.Input<string>;
+    /**
+     * The path portion of the GET request
+     */
     queryPath: pulumi.Input<string>;
+    /**
+     * must be one of ["us-census"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceVantageConfiguration {
+    /**
+     * Your API Access token. See \n\nhere\n\n.
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * must be one of ["vantage"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceWebflowConfiguration {
+    /**
+     * The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+     */
     siteId: pulumi.Input<string>;
+    /**
+     * must be one of ["webflow"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceWhiskyHunterConfiguration {
+    /**
+     * must be one of ["whisky-hunter"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
 export interface SourceWikipediaPageviewsConfiguration {
+    /**
+     * If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+     */
     access: pulumi.Input<string>;
+    /**
+     * If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+     */
     agent: pulumi.Input<string>;
+    /**
+     * The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+     */
     article: pulumi.Input<string>;
+    /**
+     * The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+     */
     country: pulumi.Input<string>;
+    /**
+     * The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     end: pulumi.Input<string>;
+    /**
+     * If you want to filter by project, use the domain of any Wikimedia project.
+     */
     project: pulumi.Input<string>;
+    /**
+     * must be one of ["wikipedia-pageviews"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     start: pulumi.Input<string>;
 }
 
 export interface SourceWoocommerceConfiguration {
+    /**
+     * Customer Key for API in WooCommerce shop
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * Customer Secret for API in WooCommerce shop
+     */
     apiSecret: pulumi.Input<string>;
+    /**
+     * The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+     */
     shop: pulumi.Input<string>;
+    /**
+     * must be one of ["woocommerce"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceXeroConfiguration {
     authentication: pulumi.Input<inputs.SourceXeroConfigurationAuthentication>;
+    /**
+     * must be one of ["xero"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with createdAt before this data will not be synced.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Enter your Xero organization's Tenant ID
+     */
     tenantId: pulumi.Input<string>;
 }
 
@@ -5756,35 +9187,86 @@ export interface SourceXeroConfigurationAuthentication {
 }
 
 export interface SourceXkcdConfiguration {
+    /**
+     * must be one of ["xkcd"]
+     */
     sourceType?: pulumi.Input<string>;
 }
 
 export interface SourceYandexMetricaConfiguration {
+    /**
+     * Your Yandex Metrica API access token
+     */
     authToken: pulumi.Input<string>;
+    /**
+     * Counter ID
+     */
     counterId: pulumi.Input<string>;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+     */
     endDate?: pulumi.Input<string>;
+    /**
+     * must be one of ["yandex-metrica"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD".
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceYotpoConfiguration {
+    /**
+     * Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+     */
     accessToken: pulumi.Input<string>;
+    /**
+     * App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+     */
     appKey: pulumi.Input<string>;
+    /**
+     * Email address registered with yotpo.
+     */
     email: pulumi.Input<string>;
+    /**
+     * must be one of ["yotpo"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: pulumi.Input<string>;
 }
 
 export interface SourceYouniumConfiguration {
+    /**
+     * Legal Entity that data should be pulled from
+     */
     legalEntity: pulumi.Input<string>;
+    /**
+     * Account password for younium account API key
+     */
     password: pulumi.Input<string>;
+    /**
+     * Property defining if connector is used against playground or production environment
+     */
     playground?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["younium"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Username for Younium account
+     */
     username: pulumi.Input<string>;
 }
 
 export interface SourceYoutubeAnalyticsConfiguration {
     credentials: pulumi.Input<inputs.SourceYoutubeAnalyticsConfigurationCredentials>;
+    /**
+     * must be one of ["youtube-analytics"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
@@ -5797,8 +9279,17 @@ export interface SourceYoutubeAnalyticsConfigurationCredentials {
 
 export interface SourceZendeskChatConfiguration {
     credentials?: pulumi.Input<inputs.SourceZendeskChatConfigurationCredentials>;
+    /**
+     * must be one of ["zendesk-chat"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * Required if you access Zendesk Chat from a Zendesk Support subdomain.
+     */
     subdomain?: pulumi.Input<string>;
 }
 
@@ -5837,8 +9328,17 @@ export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdat
 
 export interface SourceZendeskSunshineConfiguration {
     credentials?: pulumi.Input<inputs.SourceZendeskSunshineConfigurationCredentials>;
+    /**
+     * must be one of ["zendesk-sunshine"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * The subdomain for your Zendesk Account.
+     */
     subdomain: pulumi.Input<string>;
 }
 
@@ -5880,10 +9380,25 @@ export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunsh
 }
 
 export interface SourceZendeskSupportConfiguration {
+    /**
+     * Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+     */
     credentials?: pulumi.Input<inputs.SourceZendeskSupportConfigurationCredentials>;
+    /**
+     * Makes each stream read a single page of data.
+     */
     ignorePagination?: pulumi.Input<boolean>;
+    /**
+     * must be one of ["zendesk-support"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: pulumi.Input<string>;
 }
 
@@ -5925,9 +9440,21 @@ export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSuppor
 }
 
 export interface SourceZendeskTalkConfiguration {
+    /**
+     * Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+     */
     credentials?: pulumi.Input<inputs.SourceZendeskTalkConfigurationCredentials>;
+    /**
+     * must be one of ["zendesk-talk"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: pulumi.Input<string>;
 }
 
@@ -5969,35 +9496,106 @@ export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdat
 }
 
 export interface SourceZenloopConfiguration {
+    /**
+     * Zenloop API Token. You can get the API token in settings page \n\nhere\n\n
+     */
     apiToken: pulumi.Input<string>;
+    /**
+     * Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+     */
     dateFrom?: pulumi.Input<string>;
+    /**
+     * must be one of ["zenloop"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+     */
     surveyGroupId?: pulumi.Input<string>;
+    /**
+     * Zenloop Survey ID. Can be found \n\nhere\n\n. Leave empty to pull answers from all surveys
+     */
     surveyId?: pulumi.Input<string>;
 }
 
 export interface SourceZohoCrmConfiguration {
+    /**
+     * OAuth2.0 Client ID
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * OAuth2.0 Client Secret
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+     * Please choose the region of your Data Center location. More info by this \n\nLink\n\n
+     */
     dcRegion: pulumi.Input<string>;
+    /**
+     * must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+     * Choose your Edition of Zoho CRM to determine API Concurrency Limits
+     */
     edition: pulumi.Input<string>;
+    /**
+     * must be one of ["Production", "Developer", "Sandbox"]
+     * Please choose the environment
+     */
     environment: pulumi.Input<string>;
+    /**
+     * OAuth2.0 Refresh Token
+     */
     refreshToken: pulumi.Input<string>;
+    /**
+     * must be one of ["zoho-crm"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+     */
     startDatetime?: pulumi.Input<string>;
 }
 
 export interface SourceZoomConfiguration {
+    /**
+     * JWT Token
+     */
     jwtToken: pulumi.Input<string>;
+    /**
+     * must be one of ["zoom"]
+     */
     sourceType: pulumi.Input<string>;
 }
 
 export interface SourceZuoraConfiguration {
+    /**
+     * Your OAuth user Client ID
+     */
     clientId: pulumi.Input<string>;
+    /**
+     * Your OAuth user Client Secret
+     */
     clientSecret: pulumi.Input<string>;
+    /**
+     * must be one of ["Live", "Unlimited"]
+     * Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \n\nLink\n\n
+     */
     dataQuery: pulumi.Input<string>;
+    /**
+     * must be one of ["zuora"]
+     */
     sourceType: pulumi.Input<string>;
+    /**
+     * Start Date in format: YYYY-MM-DD
+     */
     startDate: pulumi.Input<string>;
+    /**
+     * must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+     * Please choose the right endpoint where your Tenant is located. More info by this \n\nLink\n\n
+     */
     tenantEndpoint: pulumi.Input<string>;
+    /**
+     * The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+     */
     windowInDays?: pulumi.Input<string>;
 }

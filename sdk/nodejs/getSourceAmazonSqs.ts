@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAmazonSqs DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonsqs = airbyte.getSourceAmazonSqs({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonSqs(args: GetSourceAmazonSqsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAmazonSqsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAmazonSqs(args: GetSourceAmazonSqsArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceAmazonSqs.
  */
 export interface GetSourceAmazonSqsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAmazonSqsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAmazonSqs DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonsqs = airbyte.getSourceAmazonSqs({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonSqsOutput(args: GetSourceAmazonSqsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAmazonSqsResult> {
     return pulumi.output(args).apply((a: any) => getSourceAmazonSqs(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAmazonSqsOutput(args: GetSourceAmazonSqsOutputArgs, opt
  * A collection of arguments for invoking getSourceAmazonSqs.
  */
 export interface GetSourceAmazonSqsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

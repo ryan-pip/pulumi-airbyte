@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceOmnisend DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceOmnisend(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceOmnisend(ctx *pulumi.Context, args *LookupSourceOmnisendArgs, opts ...pulumi.InvokeOption) (*LookupSourceOmnisendResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOmnisendResult
 	err := ctx.Invoke("airbyte:index/getSourceOmnisend:getSourceOmnisend", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceOmnisend(ctx *pulumi.Context, args *LookupSourceOmnisendArgs, o
 
 // A collection of arguments for invoking getSourceOmnisend.
 type LookupSourceOmnisendArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceOmnisendArgs struct {
 type LookupSourceOmnisendResult struct {
 	Configuration GetSourceOmnisendConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceOmnisendOutput(ctx *pulumi.Context, args LookupSourceOmnisendOu
 
 // A collection of arguments for invoking getSourceOmnisend.
 type LookupSourceOmnisendOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceOmnisendResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceOmnisendResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceOmnisendResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceOmnisendResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

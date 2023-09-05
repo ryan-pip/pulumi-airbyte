@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationRedis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationRedis = airbyte.getDestinationRedis({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationRedis(args: GetDestinationRedisArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationRedisResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationRedisResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationRedis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationRedis = airbyte.getDestinationRedis({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationRedisOutput(args: GetDestinationRedisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationRedisResult> {
     return pulumi.output(args).apply((a: any) => getDestinationRedis(a, opts))
 }

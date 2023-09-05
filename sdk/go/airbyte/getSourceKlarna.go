@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceKlarna DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceKlarna(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceKlarna(ctx *pulumi.Context, args *LookupSourceKlarnaArgs, opts ...pulumi.InvokeOption) (*LookupSourceKlarnaResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKlarnaResult
 	err := ctx.Invoke("airbyte:index/getSourceKlarna:getSourceKlarna", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceKlarna(ctx *pulumi.Context, args *LookupSourceKlarnaArgs, opts 
 
 // A collection of arguments for invoking getSourceKlarna.
 type LookupSourceKlarnaArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceKlarnaArgs struct {
 type LookupSourceKlarnaResult struct {
 	Configuration GetSourceKlarnaConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceKlarnaOutput(ctx *pulumi.Context, args LookupSourceKlarnaOutput
 
 // A collection of arguments for invoking getSourceKlarna.
 type LookupSourceKlarnaOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceKlarnaResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceKlarnaResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceKlarnaResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceKlarnaResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

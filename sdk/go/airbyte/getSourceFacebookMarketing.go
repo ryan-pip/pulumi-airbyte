@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceFacebookMarketing DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceFacebookMarketing(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceFacebookMarketing(ctx *pulumi.Context, args *LookupSourceFacebookMarketingArgs, opts ...pulumi.InvokeOption) (*LookupSourceFacebookMarketingResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFacebookMarketingResult
 	err := ctx.Invoke("airbyte:index/getSourceFacebookMarketing:getSourceFacebookMarketing", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceFacebookMarketing(ctx *pulumi.Context, args *LookupSourceFacebo
 
 // A collection of arguments for invoking getSourceFacebookMarketing.
 type LookupSourceFacebookMarketingArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceFacebookMarketingArgs struct {
 type LookupSourceFacebookMarketingResult struct {
 	Configuration GetSourceFacebookMarketingConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceFacebookMarketingOutput(ctx *pulumi.Context, args LookupSourceF
 
 // A collection of arguments for invoking getSourceFacebookMarketing.
 type LookupSourceFacebookMarketingOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceFacebookMarketingResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceFacebookMarketingResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceFacebookMarketingResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceFacebookMarketingResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

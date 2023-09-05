@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceIntercom Resource
 type SourceIntercom struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceIntercom(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceIntercom
 	err := ctx.RegisterResource("airbyte:index/sourceIntercom:SourceIntercom", name, args, &resource, opts...)
 	if err != nil {

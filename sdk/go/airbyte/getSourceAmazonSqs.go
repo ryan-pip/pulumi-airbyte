@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAmazonSqs DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceAmazonSqs(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceAmazonSqs(ctx *pulumi.Context, args *LookupSourceAmazonSqsArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmazonSqsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmazonSqsResult
 	err := ctx.Invoke("airbyte:index/getSourceAmazonSqs:getSourceAmazonSqs", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceAmazonSqs(ctx *pulumi.Context, args *LookupSourceAmazonSqsArgs,
 
 // A collection of arguments for invoking getSourceAmazonSqs.
 type LookupSourceAmazonSqsArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceAmazonSqsArgs struct {
 type LookupSourceAmazonSqsResult struct {
 	Configuration GetSourceAmazonSqsConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceAmazonSqsOutput(ctx *pulumi.Context, args LookupSourceAmazonSqs
 
 // A collection of arguments for invoking getSourceAmazonSqs.
 type LookupSourceAmazonSqsOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceAmazonSqsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceAmazonSqsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceAmazonSqsResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceAmazonSqsResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

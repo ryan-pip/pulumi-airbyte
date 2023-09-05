@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceChartmogul Resource
 type SourceChartmogul struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceChartmogul(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceChartmogul
 	err := ctx.RegisterResource("airbyte:index/sourceChartmogul:SourceChartmogul", name, args, &resource, opts...)
 	if err != nil {

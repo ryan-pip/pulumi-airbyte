@@ -32,14 +32,12 @@ class ConnectionArgs:
         :param pulumi.Input['ConnectionConfigurationsArgs'] configurations: A list of configured stream options for a connection.
         :param pulumi.Input[str] data_residency: must be one of ["auto", "us", "eu"]
         :param pulumi.Input[str] name: Optional name of the connection
-        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-               destination
-        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-               "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
-        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-               when it detects a non-breaking schema change in the source
-        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-               causes “projects” => “airbyte_projects”).
+        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"]
+               Define the location where the data will be stored in the destination
+        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+               Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         :param pulumi.Input['ConnectionScheduleArgs'] schedule: schedule for when the the connection should run, per the schedule type
         :param pulumi.Input[str] status: must be one of ["active", "inactive", "deprecated"]
         """
@@ -122,8 +120,8 @@ class ConnectionArgs:
     @pulumi.getter(name="namespaceDefinition")
     def namespace_definition(self) -> Optional[pulumi.Input[str]]:
         """
-        must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-        destination
+        must be one of ["source", "destination", "custom_format"]
+        Define the location where the data will be stored in the destination
         """
         return pulumi.get(self, "namespace_definition")
 
@@ -135,8 +133,7 @@ class ConnectionArgs:
     @pulumi.getter(name="namespaceFormat")
     def namespace_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-        "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
         """
         return pulumi.get(self, "namespace_format")
 
@@ -148,8 +145,8 @@ class ConnectionArgs:
     @pulumi.getter(name="nonBreakingSchemaUpdatesBehavior")
     def non_breaking_schema_updates_behavior(self) -> Optional[pulumi.Input[str]]:
         """
-        must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-        when it detects a non-breaking schema change in the source
+        must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+        Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
         """
         return pulumi.get(self, "non_breaking_schema_updates_behavior")
 
@@ -161,8 +158,7 @@ class ConnectionArgs:
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-        causes “projects” => “airbyte_projects”).
+        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         """
         return pulumi.get(self, "prefix")
 
@@ -216,14 +212,12 @@ class _ConnectionState:
         :param pulumi.Input['ConnectionConfigurationsArgs'] configurations: A list of configured stream options for a connection.
         :param pulumi.Input[str] data_residency: must be one of ["auto", "us", "eu"]
         :param pulumi.Input[str] name: Optional name of the connection
-        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-               destination
-        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-               "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
-        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-               when it detects a non-breaking schema change in the source
-        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-               causes “projects” => “airbyte_projects”).
+        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"]
+               Define the location where the data will be stored in the destination
+        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+               Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         :param pulumi.Input['ConnectionScheduleArgs'] schedule: schedule for when the the connection should run, per the schedule type
         :param pulumi.Input[str] status: must be one of ["active", "inactive", "deprecated"]
         """
@@ -312,8 +306,8 @@ class _ConnectionState:
     @pulumi.getter(name="namespaceDefinition")
     def namespace_definition(self) -> Optional[pulumi.Input[str]]:
         """
-        must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-        destination
+        must be one of ["source", "destination", "custom_format"]
+        Define the location where the data will be stored in the destination
         """
         return pulumi.get(self, "namespace_definition")
 
@@ -325,8 +319,7 @@ class _ConnectionState:
     @pulumi.getter(name="namespaceFormat")
     def namespace_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-        "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
         """
         return pulumi.get(self, "namespace_format")
 
@@ -338,8 +331,8 @@ class _ConnectionState:
     @pulumi.getter(name="nonBreakingSchemaUpdatesBehavior")
     def non_breaking_schema_updates_behavior(self) -> Optional[pulumi.Input[str]]:
         """
-        must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-        when it detects a non-breaking schema change in the source
+        must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+        Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
         """
         return pulumi.get(self, "non_breaking_schema_updates_behavior")
 
@@ -351,8 +344,7 @@ class _ConnectionState:
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-        causes “projects” => “airbyte_projects”).
+        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         """
         return pulumi.get(self, "prefix")
 
@@ -421,20 +413,19 @@ class Connection(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Connection resource with the given unique name, props, and options.
+        Connection Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ConnectionConfigurationsArgs']] configurations: A list of configured stream options for a connection.
         :param pulumi.Input[str] data_residency: must be one of ["auto", "us", "eu"]
         :param pulumi.Input[str] name: Optional name of the connection
-        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-               destination
-        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-               "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
-        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-               when it detects a non-breaking schema change in the source
-        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-               causes “projects” => “airbyte_projects”).
+        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"]
+               Define the location where the data will be stored in the destination
+        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+               Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         :param pulumi.Input[pulumi.InputType['ConnectionScheduleArgs']] schedule: schedule for when the the connection should run, per the schedule type
         :param pulumi.Input[str] status: must be one of ["active", "inactive", "deprecated"]
         """
@@ -445,7 +436,8 @@ class Connection(pulumi.CustomResource):
                  args: ConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Connection resource with the given unique name, props, and options.
+        Connection Resource
+
         :param str resource_name: The name of the resource.
         :param ConnectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -531,14 +523,12 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ConnectionConfigurationsArgs']] configurations: A list of configured stream options for a connection.
         :param pulumi.Input[str] data_residency: must be one of ["auto", "us", "eu"]
         :param pulumi.Input[str] name: Optional name of the connection
-        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-               destination
-        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-               "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
-        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-               when it detects a non-breaking schema change in the source
-        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-               causes “projects” => “airbyte_projects”).
+        :param pulumi.Input[str] namespace_definition: must be one of ["source", "destination", "custom_format"]
+               Define the location where the data will be stored in the destination
+        :param pulumi.Input[str] namespace_format: Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        :param pulumi.Input[str] non_breaking_schema_updates_behavior: must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+               Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+        :param pulumi.Input[str] prefix: Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         :param pulumi.Input[pulumi.InputType['ConnectionScheduleArgs']] schedule: schedule for when the the connection should run, per the schedule type
         :param pulumi.Input[str] status: must be one of ["active", "inactive", "deprecated"]
         """
@@ -599,8 +589,8 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="namespaceDefinition")
     def namespace_definition(self) -> pulumi.Output[str]:
         """
-        must be one of ["source", "destination", "custom_format"] Define the location where the data will be stored in the
-        destination
+        must be one of ["source", "destination", "custom_format"]
+        Define the location where the data will be stored in the destination
         """
         return pulumi.get(self, "namespace_definition")
 
@@ -608,8 +598,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="namespaceFormat")
     def namespace_format(self) -> pulumi.Output[str]:
         """
-        Used when namespaceDefinition is 'custom_format'. If blank then behaves like namespaceDefinition = 'destination'. If
-        "${SOURCE_NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
         """
         return pulumi.get(self, "namespace_format")
 
@@ -617,8 +606,8 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="nonBreakingSchemaUpdatesBehavior")
     def non_breaking_schema_updates_behavior(self) -> pulumi.Output[str]:
         """
-        must be one of ["ignore", "disable_connection", "propagate_columns", "propagate_fully"] Set how Airbyte handles syncs
-        when it detects a non-breaking schema change in the source
+        must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+        Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
         """
         return pulumi.get(self, "non_breaking_schema_updates_behavior")
 
@@ -626,8 +615,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter
     def prefix(self) -> pulumi.Output[str]:
         """
-        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte_”
-        causes “projects” => “airbyte_projects”).
+        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
         """
         return pulumi.get(self, "prefix")
 

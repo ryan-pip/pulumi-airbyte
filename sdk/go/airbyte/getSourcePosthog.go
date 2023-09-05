@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourcePosthog DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourcePosthog(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourcePosthog(ctx *pulumi.Context, args *LookupSourcePosthogArgs, opts ...pulumi.InvokeOption) (*LookupSourcePosthogResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePosthogResult
 	err := ctx.Invoke("airbyte:index/getSourcePosthog:getSourcePosthog", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourcePosthog(ctx *pulumi.Context, args *LookupSourcePosthogArgs, opt
 
 // A collection of arguments for invoking getSourcePosthog.
 type LookupSourcePosthogArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourcePosthogArgs struct {
 type LookupSourcePosthogResult struct {
 	Configuration GetSourcePosthogConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourcePosthogOutput(ctx *pulumi.Context, args LookupSourcePosthogOutp
 
 // A collection of arguments for invoking getSourcePosthog.
 type LookupSourcePosthogOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourcePosthogResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourcePosthogResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourcePosthogResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourcePosthogResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

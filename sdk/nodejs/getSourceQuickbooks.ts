@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceQuickbooks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceQuickbooks = airbyte.getSourceQuickbooks({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceQuickbooks(args: GetSourceQuickbooksArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceQuickbooksResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceQuickbooks(args: GetSourceQuickbooksArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceQuickbooks.
  */
 export interface GetSourceQuickbooksArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceQuickbooksResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceQuickbooks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceQuickbooks = airbyte.getSourceQuickbooks({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceQuickbooksOutput(args: GetSourceQuickbooksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceQuickbooksResult> {
     return pulumi.output(args).apply((a: any) => getSourceQuickbooks(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceQuickbooksOutput(args: GetSourceQuickbooksOutputArgs, o
  * A collection of arguments for invoking getSourceQuickbooks.
  */
 export interface GetSourceQuickbooksOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

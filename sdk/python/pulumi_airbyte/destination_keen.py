@@ -132,7 +132,8 @@ class DestinationKeen(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DestinationKeen resource with the given unique name, props, and options.
+        DestinationKeen Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -143,7 +144,8 @@ class DestinationKeen(pulumi.CustomResource):
                  args: DestinationKeenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DestinationKeen resource with the given unique name, props, and options.
+        DestinationKeen Resource
+
         :param str resource_name: The name of the resource.
         :param DestinationKeenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

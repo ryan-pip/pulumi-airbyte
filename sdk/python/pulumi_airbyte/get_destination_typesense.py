@@ -84,7 +84,16 @@ class AwaitableGetDestinationTypesenseResult(GetDestinationTypesenseResult):
 def get_destination_typesense(destination_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationTypesenseResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationTypesense DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_typesense = airbyte.get_destination_typesense(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_typesense(destination_id: Optional[str] = None,
 def get_destination_typesense_output(destination_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationTypesenseResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationTypesense DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_typesense = airbyte.get_destination_typesense(destination_id="...my_destination_id...")
+    ```
     """
     ...

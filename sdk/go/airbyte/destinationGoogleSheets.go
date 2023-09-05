@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// DestinationGoogleSheets Resource
 type DestinationGoogleSheets struct {
 	pulumi.CustomResourceState
 
@@ -37,7 +39,7 @@ func NewDestinationGoogleSheets(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DestinationGoogleSheets
 	err := ctx.RegisterResource("airbyte:index/destinationGoogleSheets:DestinationGoogleSheets", name, args, &resource, opts...)
 	if err != nil {

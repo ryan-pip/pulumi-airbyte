@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationMongodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMongodb = airbyte.getDestinationMongodb({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMongodb(args: GetDestinationMongodbArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationMongodbResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationMongodbResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationMongodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationMongodb = airbyte.getDestinationMongodb({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationMongodbOutput(args: GetDestinationMongodbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationMongodbResult> {
     return pulumi.output(args).apply((a: any) => getDestinationMongodb(a, opts))
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAmazonAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonads = airbyte.getSourceAmazonAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonAds(args: GetSourceAmazonAdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAmazonAdsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAmazonAds(args: GetSourceAmazonAdsArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceAmazonAds.
  */
 export interface GetSourceAmazonAdsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAmazonAdsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAmazonAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonads = airbyte.getSourceAmazonAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonAdsOutput(args: GetSourceAmazonAdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAmazonAdsResult> {
     return pulumi.output(args).apply((a: any) => getSourceAmazonAds(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAmazonAdsOutput(args: GetSourceAmazonAdsOutputArgs, opt
  * A collection of arguments for invoking getSourceAmazonAds.
  */
 export interface GetSourceAmazonAdsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

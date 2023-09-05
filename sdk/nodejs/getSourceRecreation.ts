@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceRecreation DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecreation = airbyte.getSourceRecreation({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRecreation(args: GetSourceRecreationArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceRecreationResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceRecreation(args: GetSourceRecreationArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceRecreation.
  */
 export interface GetSourceRecreationArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceRecreationResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceRecreation DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecreation = airbyte.getSourceRecreation({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRecreationOutput(args: GetSourceRecreationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceRecreationResult> {
     return pulumi.output(args).apply((a: any) => getSourceRecreation(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceRecreationOutput(args: GetSourceRecreationOutputArgs, o
  * A collection of arguments for invoking getSourceRecreation.
  */
 export interface GetSourceRecreationOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

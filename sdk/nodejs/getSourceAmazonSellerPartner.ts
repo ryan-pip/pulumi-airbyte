@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAmazonSellerPartner DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonsellerpartner = airbyte.getSourceAmazonSellerPartner({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonSellerPartner(args: GetSourceAmazonSellerPartnerArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAmazonSellerPartnerResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAmazonSellerPartner(args: GetSourceAmazonSellerPartnerA
  * A collection of arguments for invoking getSourceAmazonSellerPartner.
  */
 export interface GetSourceAmazonSellerPartnerArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAmazonSellerPartnerResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAmazonSellerPartner DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAmazonsellerpartner = airbyte.getSourceAmazonSellerPartner({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAmazonSellerPartnerOutput(args: GetSourceAmazonSellerPartnerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAmazonSellerPartnerResult> {
     return pulumi.output(args).apply((a: any) => getSourceAmazonSellerPartner(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAmazonSellerPartnerOutput(args: GetSourceAmazonSellerPa
  * A collection of arguments for invoking getSourceAmazonSellerPartner.
  */
 export interface GetSourceAmazonSellerPartnerOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

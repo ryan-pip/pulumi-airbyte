@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceWhiskyHunter Resource
+ */
 export class SourceWhiskyHunter extends pulumi.CustomResource {
     /**
      * Get an existing SourceWhiskyHunter resource's state with the given name, ID, and optional extra

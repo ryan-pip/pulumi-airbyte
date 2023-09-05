@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// DestinationMongodb Resource
 type DestinationMongodb struct {
 	pulumi.CustomResourceState
 
@@ -37,7 +39,7 @@ func NewDestinationMongodb(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DestinationMongodb
 	err := ctx.RegisterResource("airbyte:index/destinationMongodb:DestinationMongodb", name, args, &resource, opts...)
 	if err != nil {

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationBigqueryDenormalized DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationBigquerydenormalized = airbyte.getDestinationBigqueryDenormalized({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationBigqueryDenormalized(args: GetDestinationBigqueryDenormalizedArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationBigqueryDenormalizedResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationBigqueryDenormalizedResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationBigqueryDenormalized DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationBigquerydenormalized = airbyte.getDestinationBigqueryDenormalized({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationBigqueryDenormalizedOutput(args: GetDestinationBigqueryDenormalizedOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationBigqueryDenormalizedResult> {
     return pulumi.output(args).apply((a: any) => getDestinationBigqueryDenormalized(a, opts))
 }

@@ -10,7 +10,7 @@ const __config = new pulumi.Config("airbyte");
 export declare const bearerAuth: string | undefined;
 Object.defineProperty(exports, "bearerAuth", {
     get() {
-        return __config.get("bearerAuth");
+        return __config.get("bearerAuth") ?? utilities.getEnv("AIRBYTE_BEARER_AUTH");
     },
     enumerable: true,
 });
@@ -18,7 +18,7 @@ Object.defineProperty(exports, "bearerAuth", {
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
     get() {
-        return __config.get("password");
+        return __config.get("password") ?? utilities.getEnv("AIRBYTE_PASSWORD");
     },
     enumerable: true,
 });
@@ -26,10 +26,10 @@ Object.defineProperty(exports, "password", {
 /**
  * Server URL (defaults to https://api.airbyte.com/v1)
  */
-export declare const serverUrl: string | undefined;
+export declare const serverUrl: string;
 Object.defineProperty(exports, "serverUrl", {
     get() {
-        return __config.get("serverUrl");
+        return __config.get("serverUrl") ?? (utilities.getEnv("AIRBYTE_SERVER_URL") || "https://api.airbyte.com/v1");
     },
     enumerable: true,
 });
@@ -37,7 +37,7 @@ Object.defineProperty(exports, "serverUrl", {
 export declare const username: string | undefined;
 Object.defineProperty(exports, "username", {
     get() {
-        return __config.get("username");
+        return __config.get("username") ?? utilities.getEnv("AIRBYTE_USERNAME");
     },
     enumerable: true,
 });

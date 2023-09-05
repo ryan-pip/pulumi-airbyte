@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZendeskSupport DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendesksupport = airbyte.getSourceZendeskSupport({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskSupport(args: GetSourceZendeskSupportArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceZendeskSupportResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceZendeskSupport(args: GetSourceZendeskSupportArgs, opts?
  * A collection of arguments for invoking getSourceZendeskSupport.
  */
 export interface GetSourceZendeskSupportArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceZendeskSupportResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceZendeskSupport DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendesksupport = airbyte.getSourceZendeskSupport({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskSupportOutput(args: GetSourceZendeskSupportOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceZendeskSupportResult> {
     return pulumi.output(args).apply((a: any) => getSourceZendeskSupport(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceZendeskSupportOutput(args: GetSourceZendeskSupportOutpu
  * A collection of arguments for invoking getSourceZendeskSupport.
  */
 export interface GetSourceZendeskSupportOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

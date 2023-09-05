@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMetabase DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMetabase = airbyte.getSourceMetabase({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMetabase(args: GetSourceMetabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMetabaseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMetabase(args: GetSourceMetabaseArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceMetabase.
  */
 export interface GetSourceMetabaseArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMetabaseResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMetabase DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMetabase = airbyte.getSourceMetabase({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMetabaseOutput(args: GetSourceMetabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMetabaseResult> {
     return pulumi.output(args).apply((a: any) => getSourceMetabase(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMetabaseOutput(args: GetSourceMetabaseOutputArgs, opts?
  * A collection of arguments for invoking getSourceMetabase.
  */
 export interface GetSourceMetabaseOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

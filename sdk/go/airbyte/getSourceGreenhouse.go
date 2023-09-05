@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceGreenhouse DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceGreenhouse(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceGreenhouse(ctx *pulumi.Context, args *LookupSourceGreenhouseArgs, opts ...pulumi.InvokeOption) (*LookupSourceGreenhouseResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGreenhouseResult
 	err := ctx.Invoke("airbyte:index/getSourceGreenhouse:getSourceGreenhouse", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceGreenhouse(ctx *pulumi.Context, args *LookupSourceGreenhouseArg
 
 // A collection of arguments for invoking getSourceGreenhouse.
 type LookupSourceGreenhouseArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceGreenhouseArgs struct {
 type LookupSourceGreenhouseResult struct {
 	Configuration GetSourceGreenhouseConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceGreenhouseOutput(ctx *pulumi.Context, args LookupSourceGreenhou
 
 // A collection of arguments for invoking getSourceGreenhouse.
 type LookupSourceGreenhouseOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceGreenhouseResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceGreenhouseResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceGreenhouseResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceGreenhouseResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

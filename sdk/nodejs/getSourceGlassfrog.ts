@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGlassfrog DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGlassfrog = airbyte.getSourceGlassfrog({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGlassfrog(args: GetSourceGlassfrogArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGlassfrogResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGlassfrog(args: GetSourceGlassfrogArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceGlassfrog.
  */
 export interface GetSourceGlassfrogArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGlassfrogResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGlassfrog DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGlassfrog = airbyte.getSourceGlassfrog({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGlassfrogOutput(args: GetSourceGlassfrogOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGlassfrogResult> {
     return pulumi.output(args).apply((a: any) => getSourceGlassfrog(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGlassfrogOutput(args: GetSourceGlassfrogOutputArgs, opt
  * A collection of arguments for invoking getSourceGlassfrog.
  */
 export interface GetSourceGlassfrogOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

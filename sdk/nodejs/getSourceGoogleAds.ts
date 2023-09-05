@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceGoogleAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleads = airbyte.getSourceGoogleAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleAds(args: GetSourceGoogleAdsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceGoogleAdsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceGoogleAds(args: GetSourceGoogleAdsArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceGoogleAds.
  */
 export interface GetSourceGoogleAdsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceGoogleAdsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceGoogleAds DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceGoogleads = airbyte.getSourceGoogleAds({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceGoogleAdsOutput(args: GetSourceGoogleAdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceGoogleAdsResult> {
     return pulumi.output(args).apply((a: any) => getSourceGoogleAds(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceGoogleAdsOutput(args: GetSourceGoogleAdsOutputArgs, opt
  * A collection of arguments for invoking getSourceGoogleAds.
  */
 export interface GetSourceGoogleAdsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

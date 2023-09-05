@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceClickupAPI DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceClickupApi(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceClickupApi(ctx *pulumi.Context, args *LookupSourceClickupApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceClickupApiResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceClickupApiResult
 	err := ctx.Invoke("airbyte:index/getSourceClickupApi:getSourceClickupApi", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceClickupApi(ctx *pulumi.Context, args *LookupSourceClickupApiArg
 
 // A collection of arguments for invoking getSourceClickupApi.
 type LookupSourceClickupApiArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceClickupApiArgs struct {
 type LookupSourceClickupApiResult struct {
 	Configuration GetSourceClickupApiConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceClickupApiOutput(ctx *pulumi.Context, args LookupSourceClickupA
 
 // A collection of arguments for invoking getSourceClickupApi.
 type LookupSourceClickupApiOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceClickupApiResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceClickupApiResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceClickupApiResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceClickupApiResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

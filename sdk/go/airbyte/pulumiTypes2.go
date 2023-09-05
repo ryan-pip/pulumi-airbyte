@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type GetDestinationLangchainConfigurationEmbeddingDestinationLangchainUpdateEmbeddingFake struct {
 	Mode string `pulumi:"mode"`
@@ -385,16 +388,26 @@ func (o GetDestinationLangchainConfigurationProcessingOutput) TextFields() pulum
 }
 
 type GetDestinationMSsqlConfiguration struct {
-	Database        string                                       `pulumi:"database"`
-	DestinationType string                                       `pulumi:"destinationType"`
-	Host            string                                       `pulumi:"host"`
-	JdbcUrlParams   string                                       `pulumi:"jdbcUrlParams"`
-	Password        string                                       `pulumi:"password"`
-	Port            int                                          `pulumi:"port"`
-	Schema          string                                       `pulumi:"schema"`
-	SslMethod       GetDestinationMSsqlConfigurationSslMethod    `pulumi:"sslMethod"`
-	TunnelMethod    GetDestinationMSsqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                       `pulumi:"username"`
+	// The name of the MSSQL database.
+	Database string `pulumi:"database"`
+	// must be one of ["mssql"]
+	DestinationType string `pulumi:"destinationType"`
+	// The host name of the MSSQL database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// The password associated with this username.
+	Password string `pulumi:"password"`
+	// The port of the MSSQL database.
+	Port int `pulumi:"port"`
+	// The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+	Schema string `pulumi:"schema"`
+	// The encryption method which is used to communicate with the database.
+	SslMethod GetDestinationMSsqlConfigurationSslMethod `pulumi:"sslMethod"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationMSsqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// The username which is used to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationMSsqlConfigurationOutput struct{ *pulumi.OutputState }
@@ -411,44 +424,54 @@ func (o GetDestinationMSsqlConfigurationOutput) ToGetDestinationMSsqlConfigurati
 	return o
 }
 
+// The name of the MSSQL database.
 func (o GetDestinationMSsqlConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["mssql"]
 func (o GetDestinationMSsqlConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// The host name of the MSSQL database.
 func (o GetDestinationMSsqlConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationMSsqlConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// The password associated with this username.
 func (o GetDestinationMSsqlConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The port of the MSSQL database.
 func (o GetDestinationMSsqlConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
 func (o GetDestinationMSsqlConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// The encryption method which is used to communicate with the database.
 func (o GetDestinationMSsqlConfigurationOutput) SslMethod() GetDestinationMSsqlConfigurationSslMethodOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) GetDestinationMSsqlConfigurationSslMethod { return v.SslMethod }).(GetDestinationMSsqlConfigurationSslMethodOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationMSsqlConfigurationOutput) TunnelMethod() GetDestinationMSsqlConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) GetDestinationMSsqlConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationMSsqlConfigurationTunnelMethodOutput)
 }
 
+// The username which is used to access the database.
 func (o GetDestinationMSsqlConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMSsqlConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -924,11 +947,16 @@ func (o GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdateSshTun
 }
 
 type GetDestinationMongodbConfiguration struct {
-	AuthType        GetDestinationMongodbConfigurationAuthType     `pulumi:"authType"`
-	Database        string                                         `pulumi:"database"`
-	DestinationType string                                         `pulumi:"destinationType"`
-	InstanceType    GetDestinationMongodbConfigurationInstanceType `pulumi:"instanceType"`
-	TunnelMethod    GetDestinationMongodbConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Authorization type.
+	AuthType GetDestinationMongodbConfigurationAuthType `pulumi:"authType"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// must be one of ["mongodb"]
+	DestinationType string `pulumi:"destinationType"`
+	// MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+	InstanceType GetDestinationMongodbConfigurationInstanceType `pulumi:"instanceType"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationMongodbConfigurationTunnelMethod `pulumi:"tunnelMethod"`
 }
 
 type GetDestinationMongodbConfigurationOutput struct{ *pulumi.OutputState }
@@ -945,26 +973,31 @@ func (o GetDestinationMongodbConfigurationOutput) ToGetDestinationMongodbConfigu
 	return o
 }
 
+// Authorization type.
 func (o GetDestinationMongodbConfigurationOutput) AuthType() GetDestinationMongodbConfigurationAuthTypeOutput {
 	return o.ApplyT(func(v GetDestinationMongodbConfiguration) GetDestinationMongodbConfigurationAuthType {
 		return v.AuthType
 	}).(GetDestinationMongodbConfigurationAuthTypeOutput)
 }
 
+// Name of the database.
 func (o GetDestinationMongodbConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMongodbConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["mongodb"]
 func (o GetDestinationMongodbConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMongodbConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
 func (o GetDestinationMongodbConfigurationOutput) InstanceType() GetDestinationMongodbConfigurationInstanceTypeOutput {
 	return o.ApplyT(func(v GetDestinationMongodbConfiguration) GetDestinationMongodbConfigurationInstanceType {
 		return v.InstanceType
 	}).(GetDestinationMongodbConfigurationInstanceTypeOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationMongodbConfigurationOutput) TunnelMethod() GetDestinationMongodbConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationMongodbConfiguration) GetDestinationMongodbConfigurationTunnelMethod {
 		return v.TunnelMethod
@@ -1729,14 +1762,22 @@ func (o GetDestinationMongodbConfigurationTunnelMethodDestinationMongodbUpdateSs
 }
 
 type GetDestinationMysqlConfiguration struct {
-	Database        string                                       `pulumi:"database"`
-	DestinationType string                                       `pulumi:"destinationType"`
-	Host            string                                       `pulumi:"host"`
-	JdbcUrlParams   string                                       `pulumi:"jdbcUrlParams"`
-	Password        string                                       `pulumi:"password"`
-	Port            int                                          `pulumi:"port"`
-	TunnelMethod    GetDestinationMysqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                       `pulumi:"username"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// must be one of ["mysql"]
+	DestinationType string `pulumi:"destinationType"`
+	// Hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the database.
+	Port int `pulumi:"port"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationMysqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Username to use to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationMysqlConfigurationOutput struct{ *pulumi.OutputState }
@@ -1753,36 +1794,44 @@ func (o GetDestinationMysqlConfigurationOutput) ToGetDestinationMysqlConfigurati
 	return o
 }
 
+// Name of the database.
 func (o GetDestinationMysqlConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["mysql"]
 func (o GetDestinationMysqlConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Hostname of the database.
 func (o GetDestinationMysqlConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationMysqlConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetDestinationMysqlConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the database.
 func (o GetDestinationMysqlConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationMysqlConfigurationOutput) TunnelMethod() GetDestinationMysqlConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) GetDestinationMysqlConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationMysqlConfigurationTunnelMethodOutput)
 }
 
+// Username to use to access the database.
 func (o GetDestinationMysqlConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationMysqlConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2103,15 +2152,24 @@ func (o GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdateSshTun
 }
 
 type GetDestinationOracleConfiguration struct {
-	DestinationType string                                        `pulumi:"destinationType"`
-	Host            string                                        `pulumi:"host"`
-	JdbcUrlParams   string                                        `pulumi:"jdbcUrlParams"`
-	Password        string                                        `pulumi:"password"`
-	Port            int                                           `pulumi:"port"`
-	Schema          string                                        `pulumi:"schema"`
-	Sid             string                                        `pulumi:"sid"`
-	TunnelMethod    GetDestinationOracleConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                        `pulumi:"username"`
+	// must be one of ["oracle"]
+	DestinationType string `pulumi:"destinationType"`
+	// The hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// The password associated with the username.
+	Password string `pulumi:"password"`
+	// The port of the database.
+	Port int `pulumi:"port"`
+	// The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+	Schema string `pulumi:"schema"`
+	// The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+	Sid string `pulumi:"sid"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationOracleConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// The username to access the database. This user must have CREATE USER privileges in the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationOracleConfigurationOutput struct{ *pulumi.OutputState }
@@ -2128,40 +2186,49 @@ func (o GetDestinationOracleConfigurationOutput) ToGetDestinationOracleConfigura
 	return o
 }
 
+// must be one of ["oracle"]
 func (o GetDestinationOracleConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// The hostname of the database.
 func (o GetDestinationOracleConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationOracleConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// The password associated with the username.
 func (o GetDestinationOracleConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The port of the database.
 func (o GetDestinationOracleConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
 func (o GetDestinationOracleConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
 func (o GetDestinationOracleConfigurationOutput) Sid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.Sid }).(pulumi.StringOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationOracleConfigurationOutput) TunnelMethod() GetDestinationOracleConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) GetDestinationOracleConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationOracleConfigurationTunnelMethodOutput)
 }
 
+// The username to access the database. This user must have CREATE USER privileges in the database.
 func (o GetDestinationOracleConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationOracleConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2482,16 +2549,33 @@ func (o GetDestinationOracleConfigurationTunnelMethodDestinationOracleUpdateSshT
 }
 
 type GetDestinationPostgresConfiguration struct {
-	Database        string                                          `pulumi:"database"`
-	DestinationType string                                          `pulumi:"destinationType"`
-	Host            string                                          `pulumi:"host"`
-	JdbcUrlParams   string                                          `pulumi:"jdbcUrlParams"`
-	Password        string                                          `pulumi:"password"`
-	Port            int                                             `pulumi:"port"`
-	Schema          string                                          `pulumi:"schema"`
-	SslMode         GetDestinationPostgresConfigurationSslMode      `pulumi:"sslMode"`
-	TunnelMethod    GetDestinationPostgresConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                          `pulumi:"username"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// must be one of ["postgres"]
+	DestinationType string `pulumi:"destinationType"`
+	// Hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the database.
+	Port int `pulumi:"port"`
+	// The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+	Schema string `pulumi:"schema"`
+	// SSL connection modes.
+	// \n\ndisable\n\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+	// \n\nallow\n\n - Chose this mode to enable encryption only when required by the source database
+	// \n\nprefer\n\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+	// \n\nrequire\n\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+	// \n\nverify-ca\n\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+	// \n\nverify-full\n\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+	// See more information - \n\n in the docs\n\n.
+	SslMode GetDestinationPostgresConfigurationSslMode `pulumi:"sslMode"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationPostgresConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Username to use to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationPostgresConfigurationOutput struct{ *pulumi.OutputState }
@@ -2508,46 +2592,63 @@ func (o GetDestinationPostgresConfigurationOutput) ToGetDestinationPostgresConfi
 	return o
 }
 
+// Name of the database.
 func (o GetDestinationPostgresConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["postgres"]
 func (o GetDestinationPostgresConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Hostname of the database.
 func (o GetDestinationPostgresConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationPostgresConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetDestinationPostgresConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the database.
 func (o GetDestinationPostgresConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
 func (o GetDestinationPostgresConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// SSL connection modes.
+// \n\ndisable\n\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+// \n\nallow\n\n - Chose this mode to enable encryption only when required by the source database
+// \n\nprefer\n\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+// \n\nrequire\n\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+// \n\nverify-ca\n\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+// \n\nverify-full\n\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+// See more information - \n\n in the docs\n\n.
 func (o GetDestinationPostgresConfigurationOutput) SslMode() GetDestinationPostgresConfigurationSslModeOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) GetDestinationPostgresConfigurationSslMode {
 		return v.SslMode
 	}).(GetDestinationPostgresConfigurationSslModeOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationPostgresConfigurationOutput) TunnelMethod() GetDestinationPostgresConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) GetDestinationPostgresConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationPostgresConfigurationTunnelMethodOutput)
 }
 
+// Username to use to access the database.
 func (o GetDestinationPostgresConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPostgresConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -3341,15 +3442,24 @@ func (o GetDestinationPostgresConfigurationTunnelMethodDestinationPostgresUpdate
 }
 
 type GetDestinationPubsubConfiguration struct {
-	BatchingDelayThreshold        int    `pulumi:"batchingDelayThreshold"`
-	BatchingElementCountThreshold int    `pulumi:"batchingElementCountThreshold"`
-	BatchingEnabled               bool   `pulumi:"batchingEnabled"`
-	BatchingRequestBytesThreshold int    `pulumi:"batchingRequestBytesThreshold"`
-	CredentialsJson               string `pulumi:"credentialsJson"`
-	DestinationType               string `pulumi:"destinationType"`
-	OrderingEnabled               bool   `pulumi:"orderingEnabled"`
-	ProjectId                     string `pulumi:"projectId"`
-	TopicId                       string `pulumi:"topicId"`
+	// Number of ms before the buffer is flushed
+	BatchingDelayThreshold int `pulumi:"batchingDelayThreshold"`
+	// Number of messages before the buffer is flushed
+	BatchingElementCountThreshold int `pulumi:"batchingElementCountThreshold"`
+	// If TRUE messages will be buffered instead of sending them one by one
+	BatchingEnabled bool `pulumi:"batchingEnabled"`
+	// Number of bytes before the buffer is flushed
+	BatchingRequestBytesThreshold int `pulumi:"batchingRequestBytesThreshold"`
+	// The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key.
+	CredentialsJson string `pulumi:"credentialsJson"`
+	// must be one of ["pubsub"]
+	DestinationType string `pulumi:"destinationType"`
+	// If TRUE PubSub publisher will have \n\nmessage ordering\n\n enabled. Every message will have an ordering key of stream
+	OrderingEnabled bool `pulumi:"orderingEnabled"`
+	// The GCP project ID for the project containing the target PubSub.
+	ProjectId string `pulumi:"projectId"`
+	// The PubSub topic ID in the given GCP project ID.
+	TopicId string `pulumi:"topicId"`
 }
 
 type GetDestinationPubsubConfigurationOutput struct{ *pulumi.OutputState }
@@ -3366,52 +3476,72 @@ func (o GetDestinationPubsubConfigurationOutput) ToGetDestinationPubsubConfigura
 	return o
 }
 
+// Number of ms before the buffer is flushed
 func (o GetDestinationPubsubConfigurationOutput) BatchingDelayThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) int { return v.BatchingDelayThreshold }).(pulumi.IntOutput)
 }
 
+// Number of messages before the buffer is flushed
 func (o GetDestinationPubsubConfigurationOutput) BatchingElementCountThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) int { return v.BatchingElementCountThreshold }).(pulumi.IntOutput)
 }
 
+// If TRUE messages will be buffered instead of sending them one by one
 func (o GetDestinationPubsubConfigurationOutput) BatchingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) bool { return v.BatchingEnabled }).(pulumi.BoolOutput)
 }
 
+// Number of bytes before the buffer is flushed
 func (o GetDestinationPubsubConfigurationOutput) BatchingRequestBytesThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) int { return v.BatchingRequestBytesThreshold }).(pulumi.IntOutput)
 }
 
+// The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key.
 func (o GetDestinationPubsubConfigurationOutput) CredentialsJson() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) string { return v.CredentialsJson }).(pulumi.StringOutput)
 }
 
+// must be one of ["pubsub"]
 func (o GetDestinationPubsubConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// If TRUE PubSub publisher will have \n\nmessage ordering\n\n enabled. Every message will have an ordering key of stream
 func (o GetDestinationPubsubConfigurationOutput) OrderingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) bool { return v.OrderingEnabled }).(pulumi.BoolOutput)
 }
 
+// The GCP project ID for the project containing the target PubSub.
 func (o GetDestinationPubsubConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The PubSub topic ID in the given GCP project ID.
 func (o GetDestinationPubsubConfigurationOutput) TopicId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationPubsubConfiguration) string { return v.TopicId }).(pulumi.StringOutput)
 }
 
 type GetDestinationRedisConfiguration struct {
-	CacheType       string                                       `pulumi:"cacheType"`
-	DestinationType string                                       `pulumi:"destinationType"`
-	Host            string                                       `pulumi:"host"`
-	Password        string                                       `pulumi:"password"`
-	Port            int                                          `pulumi:"port"`
-	Ssl             bool                                         `pulumi:"ssl"`
-	SslMode         GetDestinationRedisConfigurationSslMode      `pulumi:"sslMode"`
-	TunnelMethod    GetDestinationRedisConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                       `pulumi:"username"`
+	// must be one of ["hash"]
+	// Redis cache type to store data in.
+	CacheType string `pulumi:"cacheType"`
+	// must be one of ["redis"]
+	DestinationType string `pulumi:"destinationType"`
+	// Redis host to connect to.
+	Host string `pulumi:"host"`
+	// Password associated with Redis.
+	Password string `pulumi:"password"`
+	// Port of Redis.
+	Port int `pulumi:"port"`
+	// Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+	Ssl bool `pulumi:"ssl"`
+	// SSL connection modes.
+	// \n\n\n\nverify-full\n\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+	SslMode GetDestinationRedisConfigurationSslMode `pulumi:"sslMode"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationRedisConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Username associated with Redis.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationRedisConfigurationOutput struct{ *pulumi.OutputState }
@@ -3428,40 +3558,51 @@ func (o GetDestinationRedisConfigurationOutput) ToGetDestinationRedisConfigurati
 	return o
 }
 
+// must be one of ["hash"]
+// Redis cache type to store data in.
 func (o GetDestinationRedisConfigurationOutput) CacheType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) string { return v.CacheType }).(pulumi.StringOutput)
 }
 
+// must be one of ["redis"]
 func (o GetDestinationRedisConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Redis host to connect to.
 func (o GetDestinationRedisConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Password associated with Redis.
 func (o GetDestinationRedisConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of Redis.
 func (o GetDestinationRedisConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
 func (o GetDestinationRedisConfigurationOutput) Ssl() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) bool { return v.Ssl }).(pulumi.BoolOutput)
 }
 
+// SSL connection modes.
+// \n\n\n\nverify-full\n\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
 func (o GetDestinationRedisConfigurationOutput) SslMode() GetDestinationRedisConfigurationSslModeOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) GetDestinationRedisConfigurationSslMode { return v.SslMode }).(GetDestinationRedisConfigurationSslModeOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationRedisConfigurationOutput) TunnelMethod() GetDestinationRedisConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) GetDestinationRedisConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationRedisConfigurationTunnelMethodOutput)
 }
 
+// Username associated with Redis.
 func (o GetDestinationRedisConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedisConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -3977,16 +4118,26 @@ func (o GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpdateSshTun
 }
 
 type GetDestinationRedshiftConfiguration struct {
-	Database        string                                             `pulumi:"database"`
-	DestinationType string                                             `pulumi:"destinationType"`
-	Host            string                                             `pulumi:"host"`
-	JdbcUrlParams   string                                             `pulumi:"jdbcUrlParams"`
-	Password        string                                             `pulumi:"password"`
-	Port            int                                                `pulumi:"port"`
-	Schema          string                                             `pulumi:"schema"`
-	TunnelMethod    GetDestinationRedshiftConfigurationTunnelMethod    `pulumi:"tunnelMethod"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// must be one of ["redshift"]
+	DestinationType string `pulumi:"destinationType"`
+	// Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the database.
+	Port int `pulumi:"port"`
+	// The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+	Schema string `pulumi:"schema"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationRedshiftConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// The method how the data will be uploaded to the database.
 	UploadingMethod GetDestinationRedshiftConfigurationUploadingMethod `pulumi:"uploadingMethod"`
-	Username        string                                             `pulumi:"username"`
+	// Username to use to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationRedshiftConfigurationOutput struct{ *pulumi.OutputState }
@@ -4003,46 +4154,56 @@ func (o GetDestinationRedshiftConfigurationOutput) ToGetDestinationRedshiftConfi
 	return o
 }
 
+// Name of the database.
 func (o GetDestinationRedshiftConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["redshift"]
 func (o GetDestinationRedshiftConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
 func (o GetDestinationRedshiftConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationRedshiftConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetDestinationRedshiftConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the database.
 func (o GetDestinationRedshiftConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
 func (o GetDestinationRedshiftConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationRedshiftConfigurationOutput) TunnelMethod() GetDestinationRedshiftConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) GetDestinationRedshiftConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationRedshiftConfigurationTunnelMethodOutput)
 }
 
+// The method how the data will be uploaded to the database.
 func (o GetDestinationRedshiftConfigurationOutput) UploadingMethod() GetDestinationRedshiftConfigurationUploadingMethodOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) GetDestinationRedshiftConfigurationUploadingMethod {
 		return v.UploadingMethod
 	}).(GetDestinationRedshiftConfigurationUploadingMethodOutput)
 }
 
+// Username to use to access the database.
 func (o GetDestinationRedshiftConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationRedshiftConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -4802,16 +4963,27 @@ func (o GetDestinationRedshiftConfigurationUploadingMethodDestinationRedshiftUpl
 }
 
 type GetDestinationS3Configuration struct {
-	AccessKeyId     string                              `pulumi:"accessKeyId"`
-	DestinationType string                              `pulumi:"destinationType"`
-	FileNamePattern string                              `pulumi:"fileNamePattern"`
-	Format          GetDestinationS3ConfigurationFormat `pulumi:"format"`
-	S3BucketName    string                              `pulumi:"s3BucketName"`
-	S3BucketPath    string                              `pulumi:"s3BucketPath"`
-	S3BucketRegion  string                              `pulumi:"s3BucketRegion"`
-	S3Endpoint      string                              `pulumi:"s3Endpoint"`
-	S3PathFormat    string                              `pulumi:"s3PathFormat"`
-	SecretAccessKey string                              `pulumi:"secretAccessKey"`
+	// The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// must be one of ["s3"]
+	DestinationType string `pulumi:"destinationType"`
+	// The pattern allows you to set the file-name format for the S3 staging file(s)
+	FileNamePattern string `pulumi:"fileNamePattern"`
+	// Format of the data output. See \n\nhere\n\n for more details
+	Format GetDestinationS3ConfigurationFormat `pulumi:"format"`
+	// The name of the S3 bucket. Read more \n\nhere\n\n.
+	S3BucketName string `pulumi:"s3BucketName"`
+	// Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+	S3BucketPath string `pulumi:"s3BucketPath"`
+	// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+	// The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+	S3BucketRegion string `pulumi:"s3BucketRegion"`
+	// Your S3 endpoint url. Read more \n\nhere\n\n
+	S3Endpoint string `pulumi:"s3Endpoint"`
+	// Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+	S3PathFormat string `pulumi:"s3PathFormat"`
+	// The corresponding secret to the access key ID. Read more \n\nhere\n\n
+	SecretAccessKey string `pulumi:"secretAccessKey"`
 }
 
 type GetDestinationS3ConfigurationOutput struct{ *pulumi.OutputState }
@@ -4828,42 +5000,53 @@ func (o GetDestinationS3ConfigurationOutput) ToGetDestinationS3ConfigurationOutp
 	return o
 }
 
+// The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
 func (o GetDestinationS3ConfigurationOutput) AccessKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.AccessKeyId }).(pulumi.StringOutput)
 }
 
+// must be one of ["s3"]
 func (o GetDestinationS3ConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// The pattern allows you to set the file-name format for the S3 staging file(s)
 func (o GetDestinationS3ConfigurationOutput) FileNamePattern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.FileNamePattern }).(pulumi.StringOutput)
 }
 
+// Format of the data output. See \n\nhere\n\n for more details
 func (o GetDestinationS3ConfigurationOutput) Format() GetDestinationS3ConfigurationFormatOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) GetDestinationS3ConfigurationFormat { return v.Format }).(GetDestinationS3ConfigurationFormatOutput)
 }
 
+// The name of the S3 bucket. Read more \n\nhere\n\n.
 func (o GetDestinationS3ConfigurationOutput) S3BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.S3BucketName }).(pulumi.StringOutput)
 }
 
+// Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
 func (o GetDestinationS3ConfigurationOutput) S3BucketPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.S3BucketPath }).(pulumi.StringOutput)
 }
 
+// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+// The region of the S3 bucket. See \n\nhere\n\n for all region codes.
 func (o GetDestinationS3ConfigurationOutput) S3BucketRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.S3BucketRegion }).(pulumi.StringOutput)
 }
 
+// Your S3 endpoint url. Read more \n\nhere\n\n
 func (o GetDestinationS3ConfigurationOutput) S3Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.S3Endpoint }).(pulumi.StringOutput)
 }
 
+// Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
 func (o GetDestinationS3ConfigurationOutput) S3PathFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.S3PathFormat }).(pulumi.StringOutput)
 }
 
+// The corresponding secret to the access key ID. Read more \n\nhere\n\n
 func (o GetDestinationS3ConfigurationOutput) SecretAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3Configuration) string { return v.SecretAccessKey }).(pulumi.StringOutput)
 }
@@ -6066,18 +6249,32 @@ func (o GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFormatParque
 }
 
 type GetDestinationS3GlueConfiguration struct {
-	AccessKeyId              string                                  `pulumi:"accessKeyId"`
-	DestinationType          string                                  `pulumi:"destinationType"`
-	FileNamePattern          string                                  `pulumi:"fileNamePattern"`
-	Format                   GetDestinationS3GlueConfigurationFormat `pulumi:"format"`
-	GlueDatabase             string                                  `pulumi:"glueDatabase"`
-	GlueSerializationLibrary string                                  `pulumi:"glueSerializationLibrary"`
-	S3BucketName             string                                  `pulumi:"s3BucketName"`
-	S3BucketPath             string                                  `pulumi:"s3BucketPath"`
-	S3BucketRegion           string                                  `pulumi:"s3BucketRegion"`
-	S3Endpoint               string                                  `pulumi:"s3Endpoint"`
-	S3PathFormat             string                                  `pulumi:"s3PathFormat"`
-	SecretAccessKey          string                                  `pulumi:"secretAccessKey"`
+	// The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// must be one of ["s3-glue"]
+	DestinationType string `pulumi:"destinationType"`
+	// The pattern allows you to set the file-name format for the S3 staging file(s)
+	FileNamePattern string `pulumi:"fileNamePattern"`
+	// Format of the data output. See \n\nhere\n\n for more details
+	Format GetDestinationS3GlueConfigurationFormat `pulumi:"format"`
+	// Name of the glue database for creating the tables, leave blank if no integration
+	GlueDatabase string `pulumi:"glueDatabase"`
+	// must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+	// The library that your query engine will use for reading and writing data in your lake.
+	GlueSerializationLibrary string `pulumi:"glueSerializationLibrary"`
+	// The name of the S3 bucket. Read more \n\nhere\n\n.
+	S3BucketName string `pulumi:"s3BucketName"`
+	// Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+	S3BucketPath string `pulumi:"s3BucketPath"`
+	// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+	// The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+	S3BucketRegion string `pulumi:"s3BucketRegion"`
+	// Your S3 endpoint url. Read more \n\nhere\n\n
+	S3Endpoint string `pulumi:"s3Endpoint"`
+	// Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+	S3PathFormat string `pulumi:"s3PathFormat"`
+	// The corresponding secret to the access key ID. Read more \n\nhere\n\n
+	SecretAccessKey string `pulumi:"secretAccessKey"`
 }
 
 type GetDestinationS3GlueConfigurationOutput struct{ *pulumi.OutputState }
@@ -6094,50 +6291,64 @@ func (o GetDestinationS3GlueConfigurationOutput) ToGetDestinationS3GlueConfigura
 	return o
 }
 
+// The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
 func (o GetDestinationS3GlueConfigurationOutput) AccessKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.AccessKeyId }).(pulumi.StringOutput)
 }
 
+// must be one of ["s3-glue"]
 func (o GetDestinationS3GlueConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// The pattern allows you to set the file-name format for the S3 staging file(s)
 func (o GetDestinationS3GlueConfigurationOutput) FileNamePattern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.FileNamePattern }).(pulumi.StringOutput)
 }
 
+// Format of the data output. See \n\nhere\n\n for more details
 func (o GetDestinationS3GlueConfigurationOutput) Format() GetDestinationS3GlueConfigurationFormatOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) GetDestinationS3GlueConfigurationFormat { return v.Format }).(GetDestinationS3GlueConfigurationFormatOutput)
 }
 
+// Name of the glue database for creating the tables, leave blank if no integration
 func (o GetDestinationS3GlueConfigurationOutput) GlueDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.GlueDatabase }).(pulumi.StringOutput)
 }
 
+// must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+// The library that your query engine will use for reading and writing data in your lake.
 func (o GetDestinationS3GlueConfigurationOutput) GlueSerializationLibrary() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.GlueSerializationLibrary }).(pulumi.StringOutput)
 }
 
+// The name of the S3 bucket. Read more \n\nhere\n\n.
 func (o GetDestinationS3GlueConfigurationOutput) S3BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.S3BucketName }).(pulumi.StringOutput)
 }
 
+// Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
 func (o GetDestinationS3GlueConfigurationOutput) S3BucketPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.S3BucketPath }).(pulumi.StringOutput)
 }
 
+// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+// The region of the S3 bucket. See \n\nhere\n\n for all region codes.
 func (o GetDestinationS3GlueConfigurationOutput) S3BucketRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.S3BucketRegion }).(pulumi.StringOutput)
 }
 
+// Your S3 endpoint url. Read more \n\nhere\n\n
 func (o GetDestinationS3GlueConfigurationOutput) S3Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.S3Endpoint }).(pulumi.StringOutput)
 }
 
+// Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
 func (o GetDestinationS3GlueConfigurationOutput) S3PathFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.S3PathFormat }).(pulumi.StringOutput)
 }
 
+// The corresponding secret to the access key ID. Read more \n\nhere\n\n
 func (o GetDestinationS3GlueConfigurationOutput) SecretAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationS3GlueConfiguration) string { return v.SecretAccessKey }).(pulumi.StringOutput)
 }
@@ -6408,12 +6619,18 @@ func (o GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutputForm
 }
 
 type GetDestinationSftpJsonConfiguration struct {
+	// Path to the directory where json files will be written.
 	DestinationPath string `pulumi:"destinationPath"`
+	// must be one of ["sftp-json"]
 	DestinationType string `pulumi:"destinationType"`
-	Host            string `pulumi:"host"`
-	Password        string `pulumi:"password"`
-	Port            int    `pulumi:"port"`
-	Username        string `pulumi:"username"`
+	// Hostname of the SFTP server.
+	Host string `pulumi:"host"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the SFTP server.
+	Port int `pulumi:"port"`
+	// Username to use to access the SFTP server.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationSftpJsonConfigurationOutput struct{ *pulumi.OutputState }
@@ -6430,42 +6647,58 @@ func (o GetDestinationSftpJsonConfigurationOutput) ToGetDestinationSftpJsonConfi
 	return o
 }
 
+// Path to the directory where json files will be written.
 func (o GetDestinationSftpJsonConfigurationOutput) DestinationPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) string { return v.DestinationPath }).(pulumi.StringOutput)
 }
 
+// must be one of ["sftp-json"]
 func (o GetDestinationSftpJsonConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Hostname of the SFTP server.
 func (o GetDestinationSftpJsonConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetDestinationSftpJsonConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the SFTP server.
 func (o GetDestinationSftpJsonConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Username to use to access the SFTP server.
 func (o GetDestinationSftpJsonConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSftpJsonConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetDestinationSnowflakeConfiguration struct {
-	Credentials     GetDestinationSnowflakeConfigurationCredentials `pulumi:"credentials"`
-	Database        string                                          `pulumi:"database"`
-	DestinationType string                                          `pulumi:"destinationType"`
-	Host            string                                          `pulumi:"host"`
-	JdbcUrlParams   string                                          `pulumi:"jdbcUrlParams"`
-	RawDataSchema   string                                          `pulumi:"rawDataSchema"`
-	Role            string                                          `pulumi:"role"`
-	Schema          string                                          `pulumi:"schema"`
-	Use1s1tFormat   bool                                            `pulumi:"use1s1tFormat"`
-	Username        string                                          `pulumi:"username"`
-	Warehouse       string                                          `pulumi:"warehouse"`
+	Credentials GetDestinationSnowflakeConfigurationCredentials `pulumi:"credentials"`
+	// Enter the name of the \n\ndatabase\n\n you want to sync data into
+	Database string `pulumi:"database"`
+	// must be one of ["snowflake"]
+	DestinationType string `pulumi:"destinationType"`
+	// Enter your Snowflake account's \n\nlocator\n\n (in the format \n\n.\n\n.\n\n.snowflakecomputing.com)
+	Host string `pulumi:"host"`
+	// Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// (Beta) The schema to write raw tables into
+	RawDataSchema string `pulumi:"rawDataSchema"`
+	// Enter the \n\nrole\n\n that you want to use to access Snowflake
+	Role string `pulumi:"role"`
+	// Enter the name of the default \n\nschema\n\n
+	Schema string `pulumi:"schema"`
+	// (Beta) Use \n\nDestinations V2\n\n. Contact Airbyte Support to participate in the beta program.
+	Use1s1tFormat bool `pulumi:"use1s1tFormat"`
+	// Enter the name of the user you want to use to access the database
+	Username string `pulumi:"username"`
+	// Enter the name of the \n\nwarehouse\n\n that you want to sync data into
+	Warehouse string `pulumi:"warehouse"`
 }
 
 type GetDestinationSnowflakeConfigurationOutput struct{ *pulumi.OutputState }
@@ -6488,42 +6721,52 @@ func (o GetDestinationSnowflakeConfigurationOutput) Credentials() GetDestination
 	}).(GetDestinationSnowflakeConfigurationCredentialsOutput)
 }
 
+// Enter the name of the \n\ndatabase\n\n you want to sync data into
 func (o GetDestinationSnowflakeConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["snowflake"]
 func (o GetDestinationSnowflakeConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Enter your Snowflake account's \n\nlocator\n\n (in the format \n\n.\n\n.\n\n.snowflakecomputing.com)
 func (o GetDestinationSnowflakeConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
 func (o GetDestinationSnowflakeConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// (Beta) The schema to write raw tables into
 func (o GetDestinationSnowflakeConfigurationOutput) RawDataSchema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.RawDataSchema }).(pulumi.StringOutput)
 }
 
+// Enter the \n\nrole\n\n that you want to use to access Snowflake
 func (o GetDestinationSnowflakeConfigurationOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Role }).(pulumi.StringOutput)
 }
 
+// Enter the name of the default \n\nschema\n\n
 func (o GetDestinationSnowflakeConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// (Beta) Use \n\nDestinations V2\n\n. Contact Airbyte Support to participate in the beta program.
 func (o GetDestinationSnowflakeConfigurationOutput) Use1s1tFormat() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) bool { return v.Use1s1tFormat }).(pulumi.BoolOutput)
 }
 
+// Enter the name of the user you want to use to access the database
 func (o GetDestinationSnowflakeConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
 
+// Enter the name of the \n\nwarehouse\n\n that you want to sync data into
 func (o GetDestinationSnowflakeConfigurationOutput) Warehouse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationSnowflakeConfiguration) string { return v.Warehouse }).(pulumi.StringOutput)
 }
@@ -6830,9 +7073,12 @@ func (o GetDestinationSnowflakeConfigurationCredentialsDestinationSnowflakeUpdat
 }
 
 type GetDestinationTimeplusConfiguration struct {
-	Apikey          string `pulumi:"apikey"`
+	// Personal API key
+	Apikey string `pulumi:"apikey"`
+	// must be one of ["timeplus"]
 	DestinationType string `pulumi:"destinationType"`
-	Endpoint        string `pulumi:"endpoint"`
+	// Timeplus workspace endpoint
+	Endpoint string `pulumi:"endpoint"`
 }
 
 type GetDestinationTimeplusConfigurationOutput struct{ *pulumi.OutputState }
@@ -6849,25 +7095,34 @@ func (o GetDestinationTimeplusConfigurationOutput) ToGetDestinationTimeplusConfi
 	return o
 }
 
+// Personal API key
 func (o GetDestinationTimeplusConfigurationOutput) Apikey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTimeplusConfiguration) string { return v.Apikey }).(pulumi.StringOutput)
 }
 
+// must be one of ["timeplus"]
 func (o GetDestinationTimeplusConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTimeplusConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Timeplus workspace endpoint
 func (o GetDestinationTimeplusConfigurationOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTimeplusConfiguration) string { return v.Endpoint }).(pulumi.StringOutput)
 }
 
 type GetDestinationTypesenseConfiguration struct {
-	ApiKey          string `pulumi:"apiKey"`
-	BatchSize       string `pulumi:"batchSize"`
+	// Typesense API Key
+	ApiKey string `pulumi:"apiKey"`
+	// How many documents should be imported together. Default 1000
+	BatchSize string `pulumi:"batchSize"`
+	// must be one of ["typesense"]
 	DestinationType string `pulumi:"destinationType"`
-	Host            string `pulumi:"host"`
-	Port            string `pulumi:"port"`
-	Protocol        string `pulumi:"protocol"`
+	// Hostname of the Typesense instance without protocol.
+	Host string `pulumi:"host"`
+	// Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+	Port string `pulumi:"port"`
+	// Protocol of the Typesense instance. Ex: http or https. Default is https
+	Protocol string `pulumi:"protocol"`
 }
 
 type GetDestinationTypesenseConfigurationOutput struct{ *pulumi.OutputState }
@@ -6884,40 +7139,55 @@ func (o GetDestinationTypesenseConfigurationOutput) ToGetDestinationTypesenseCon
 	return o
 }
 
+// Typesense API Key
 func (o GetDestinationTypesenseConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// How many documents should be imported together. Default 1000
 func (o GetDestinationTypesenseConfigurationOutput) BatchSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.BatchSize }).(pulumi.StringOutput)
 }
 
+// must be one of ["typesense"]
 func (o GetDestinationTypesenseConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Hostname of the Typesense instance without protocol.
 func (o GetDestinationTypesenseConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
 func (o GetDestinationTypesenseConfigurationOutput) Port() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.Port }).(pulumi.StringOutput)
 }
 
+// Protocol of the Typesense instance. Ex: http or https. Default is https
 func (o GetDestinationTypesenseConfigurationOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationTypesenseConfiguration) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 type GetDestinationVerticaConfiguration struct {
-	Database        string                                         `pulumi:"database"`
-	DestinationType string                                         `pulumi:"destinationType"`
-	Host            string                                         `pulumi:"host"`
-	JdbcUrlParams   string                                         `pulumi:"jdbcUrlParams"`
-	Password        string                                         `pulumi:"password"`
-	Port            int                                            `pulumi:"port"`
-	Schema          string                                         `pulumi:"schema"`
-	TunnelMethod    GetDestinationVerticaConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username        string                                         `pulumi:"username"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// must be one of ["vertica"]
+	DestinationType string `pulumi:"destinationType"`
+	// Hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the database.
+	Port int `pulumi:"port"`
+	// Schema for vertica destination
+	Schema string `pulumi:"schema"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetDestinationVerticaConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Username to use to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetDestinationVerticaConfigurationOutput struct{ *pulumi.OutputState }
@@ -6934,40 +7204,49 @@ func (o GetDestinationVerticaConfigurationOutput) ToGetDestinationVerticaConfigu
 	return o
 }
 
+// Name of the database.
 func (o GetDestinationVerticaConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// must be one of ["vertica"]
 func (o GetDestinationVerticaConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
+// Hostname of the database.
 func (o GetDestinationVerticaConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetDestinationVerticaConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetDestinationVerticaConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the database.
 func (o GetDestinationVerticaConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Schema for vertica destination
 func (o GetDestinationVerticaConfigurationOutput) Schema() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.Schema }).(pulumi.StringOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetDestinationVerticaConfigurationOutput) TunnelMethod() GetDestinationVerticaConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) GetDestinationVerticaConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetDestinationVerticaConfigurationTunnelMethodOutput)
 }
 
+// Username to use to access the database.
 func (o GetDestinationVerticaConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationVerticaConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -7288,8 +7567,11 @@ func (o GetDestinationVerticaConfigurationTunnelMethodDestinationVerticaUpdateSs
 }
 
 type GetDestinationXataConfiguration struct {
-	ApiKey          string `pulumi:"apiKey"`
-	DbUrl           string `pulumi:"dbUrl"`
+	// API Key to connect.
+	ApiKey string `pulumi:"apiKey"`
+	// URL pointing to your workspace.
+	DbUrl string `pulumi:"dbUrl"`
+	// must be one of ["xata"]
 	DestinationType string `pulumi:"destinationType"`
 }
 
@@ -7307,22 +7589,28 @@ func (o GetDestinationXataConfigurationOutput) ToGetDestinationXataConfiguration
 	return o
 }
 
+// API Key to connect.
 func (o GetDestinationXataConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationXataConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// URL pointing to your workspace.
 func (o GetDestinationXataConfigurationOutput) DbUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationXataConfiguration) string { return v.DbUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["xata"]
 func (o GetDestinationXataConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDestinationXataConfiguration) string { return v.DestinationType }).(pulumi.StringOutput)
 }
 
 type GetSourceAhaConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// API Key
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["aha"]
 	SourceType string `pulumi:"sourceType"`
-	Url        string `pulumi:"url"`
+	// URL
+	Url string `pulumi:"url"`
 }
 
 type GetSourceAhaConfigurationOutput struct{ *pulumi.OutputState }
@@ -7339,23 +7627,30 @@ func (o GetSourceAhaConfigurationOutput) ToGetSourceAhaConfigurationOutputWithCo
 	return o
 }
 
+// API Key
 func (o GetSourceAhaConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAhaConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["aha"]
 func (o GetSourceAhaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAhaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// URL
 func (o GetSourceAhaConfigurationOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAhaConfiguration) string { return v.Url }).(pulumi.StringOutput)
 }
 
 type GetSourceAircallConfiguration struct {
-	ApiId      string `pulumi:"apiId"`
-	ApiToken   string `pulumi:"apiToken"`
+	// App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+	ApiId string `pulumi:"apiId"`
+	// App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+	ApiToken string `pulumi:"apiToken"`
+	// must be one of ["aircall"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// Date time filter for incremental filter, Specify which date to extract from.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceAircallConfigurationOutput struct{ *pulumi.OutputState }
@@ -7372,25 +7667,30 @@ func (o GetSourceAircallConfigurationOutput) ToGetSourceAircallConfigurationOutp
 	return o
 }
 
+// App ID found at settings https://dashboard.aircall.io/integrations/api-keys
 func (o GetSourceAircallConfigurationOutput) ApiId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAircallConfiguration) string { return v.ApiId }).(pulumi.StringOutput)
 }
 
+// App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
 func (o GetSourceAircallConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAircallConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["aircall"]
 func (o GetSourceAircallConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAircallConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Date time filter for incremental filter, Specify which date to extract from.
 func (o GetSourceAircallConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAircallConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceAirtableConfiguration struct {
 	Credentials GetSourceAirtableConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                    `pulumi:"sourceType"`
+	// must be one of ["airtable"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceAirtableConfigurationOutput struct{ *pulumi.OutputState }
@@ -7411,6 +7711,7 @@ func (o GetSourceAirtableConfigurationOutput) Credentials() GetSourceAirtableCon
 	return o.ApplyT(func(v GetSourceAirtableConfiguration) GetSourceAirtableConfigurationCredentials { return v.Credentials }).(GetSourceAirtableConfigurationCredentialsOutput)
 }
 
+// must be one of ["airtable"]
 func (o GetSourceAirtableConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAirtableConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -7641,17 +7942,29 @@ func (o GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthenticat
 }
 
 type GetSourceAlloydbConfiguration struct {
-	Database          string                                         `pulumi:"database"`
-	Host              string                                         `pulumi:"host"`
-	JdbcUrlParams     string                                         `pulumi:"jdbcUrlParams"`
-	Password          string                                         `pulumi:"password"`
-	Port              int                                            `pulumi:"port"`
+	// Name of the database.
+	Database string `pulumi:"database"`
+	// Hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password string `pulumi:"password"`
+	// Port of the database.
+	Port int `pulumi:"port"`
+	// Replication method for extracting data from the database.
 	ReplicationMethod GetSourceAlloydbConfigurationReplicationMethod `pulumi:"replicationMethod"`
-	Schemas           []string                                       `pulumi:"schemas"`
-	SourceType        string                                         `pulumi:"sourceType"`
-	SslMode           GetSourceAlloydbConfigurationSslMode           `pulumi:"sslMode"`
-	TunnelMethod      GetSourceAlloydbConfigurationTunnelMethod      `pulumi:"tunnelMethod"`
-	Username          string                                         `pulumi:"username"`
+	// The list of schemas (case sensitive) to sync from. Defaults to public.
+	Schemas []string `pulumi:"schemas"`
+	// must be one of ["alloydb"]
+	SourceType string `pulumi:"sourceType"`
+	// SSL connection modes.
+	// Read more \n\n in the docs\n\n.
+	SslMode GetSourceAlloydbConfigurationSslMode `pulumi:"sslMode"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetSourceAlloydbConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// Username to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceAlloydbConfigurationOutput struct{ *pulumi.OutputState }
@@ -7668,48 +7981,60 @@ func (o GetSourceAlloydbConfigurationOutput) ToGetSourceAlloydbConfigurationOutp
 	return o
 }
 
+// Name of the database.
 func (o GetSourceAlloydbConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// Hostname of the database.
 func (o GetSourceAlloydbConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
 func (o GetSourceAlloydbConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// Password associated with the username.
 func (o GetSourceAlloydbConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Port of the database.
 func (o GetSourceAlloydbConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Replication method for extracting data from the database.
 func (o GetSourceAlloydbConfigurationOutput) ReplicationMethod() GetSourceAlloydbConfigurationReplicationMethodOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) GetSourceAlloydbConfigurationReplicationMethod {
 		return v.ReplicationMethod
 	}).(GetSourceAlloydbConfigurationReplicationMethodOutput)
 }
 
+// The list of schemas (case sensitive) to sync from. Defaults to public.
 func (o GetSourceAlloydbConfigurationOutput) Schemas() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) []string { return v.Schemas }).(pulumi.StringArrayOutput)
 }
 
+// must be one of ["alloydb"]
 func (o GetSourceAlloydbConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// SSL connection modes.
+// Read more \n\n in the docs\n\n.
 func (o GetSourceAlloydbConfigurationOutput) SslMode() GetSourceAlloydbConfigurationSslModeOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) GetSourceAlloydbConfigurationSslMode { return v.SslMode }).(GetSourceAlloydbConfigurationSslModeOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetSourceAlloydbConfigurationOutput) TunnelMethod() GetSourceAlloydbConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) GetSourceAlloydbConfigurationTunnelMethod { return v.TunnelMethod }).(GetSourceAlloydbConfigurationTunnelMethodOutput)
 }
 
+// Username to access the database.
 func (o GetSourceAlloydbConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAlloydbConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -8890,17 +9215,29 @@ func (o GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTunnelMet
 }
 
 type GetSourceAmazonAdsConfiguration struct {
-	AuthType          string   `pulumi:"authType"`
-	ClientId          string   `pulumi:"clientId"`
-	ClientSecret      string   `pulumi:"clientSecret"`
-	LookBackWindow    int      `pulumi:"lookBackWindow"`
-	Profiles          []int    `pulumi:"profiles"`
-	RefreshToken      string   `pulumi:"refreshToken"`
-	Region            string   `pulumi:"region"`
+	// must be one of ["oauth2.0"]
+	AuthType string `pulumi:"authType"`
+	// The client ID of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+	ClientId string `pulumi:"clientId"`
+	// The client secret of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+	ClientSecret string `pulumi:"clientSecret"`
+	// The amount of days to go back in time to get the updated data from Amazon Ads
+	LookBackWindow int `pulumi:"lookBackWindow"`
+	// Profile IDs you want to fetch data for. See \n\ndocs\n\n for more details.
+	Profiles []int `pulumi:"profiles"`
+	// Amazon Ads refresh token. See the \n\ndocs\n\n for more information on how to obtain this token.
+	RefreshToken string `pulumi:"refreshToken"`
+	// must be one of ["NA", "EU", "FE"]
+	// Region to pull data from (EU/NA/FE). See \n\ndocs\n\n for more details.
+	Region string `pulumi:"region"`
+	// Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \n\ndocs\n\n for more details
 	ReportRecordTypes []string `pulumi:"reportRecordTypes"`
-	SourceType        string   `pulumi:"sourceType"`
-	StartDate         string   `pulumi:"startDate"`
-	StateFilters      []string `pulumi:"stateFilters"`
+	// must be one of ["amazon-ads"]
+	SourceType string `pulumi:"sourceType"`
+	// The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+	StartDate string `pulumi:"startDate"`
+	// Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+	StateFilters []string `pulumi:"stateFilters"`
 }
 
 type GetSourceAmazonAdsConfigurationOutput struct{ *pulumi.OutputState }
@@ -8917,67 +9254,97 @@ func (o GetSourceAmazonAdsConfigurationOutput) ToGetSourceAmazonAdsConfiguration
 	return o
 }
 
+// must be one of ["oauth2.0"]
 func (o GetSourceAmazonAdsConfigurationOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.AuthType }).(pulumi.StringOutput)
 }
 
+// The client ID of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
 func (o GetSourceAmazonAdsConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// The client secret of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
 func (o GetSourceAmazonAdsConfigurationOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
+// The amount of days to go back in time to get the updated data from Amazon Ads
 func (o GetSourceAmazonAdsConfigurationOutput) LookBackWindow() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) int { return v.LookBackWindow }).(pulumi.IntOutput)
 }
 
+// Profile IDs you want to fetch data for. See \n\ndocs\n\n for more details.
 func (o GetSourceAmazonAdsConfigurationOutput) Profiles() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) []int { return v.Profiles }).(pulumi.IntArrayOutput)
 }
 
+// Amazon Ads refresh token. See the \n\ndocs\n\n for more information on how to obtain this token.
 func (o GetSourceAmazonAdsConfigurationOutput) RefreshToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.RefreshToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["NA", "EU", "FE"]
+// Region to pull data from (EU/NA/FE). See \n\ndocs\n\n for more details.
 func (o GetSourceAmazonAdsConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \n\ndocs\n\n for more details
 func (o GetSourceAmazonAdsConfigurationOutput) ReportRecordTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) []string { return v.ReportRecordTypes }).(pulumi.StringArrayOutput)
 }
 
+// must be one of ["amazon-ads"]
 func (o GetSourceAmazonAdsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
 func (o GetSourceAmazonAdsConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
 func (o GetSourceAmazonAdsConfigurationOutput) StateFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceAmazonAdsConfiguration) []string { return v.StateFilters }).(pulumi.StringArrayOutput)
 }
 
 type GetSourceAmazonSellerPartnerConfiguration struct {
+	// Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
 	AdvancedStreamOptions string `pulumi:"advancedStreamOptions"`
-	AuthType              string `pulumi:"authType"`
-	AwsAccessKey          string `pulumi:"awsAccessKey"`
-	AwsEnvironment        string `pulumi:"awsEnvironment"`
-	AwsSecretKey          string `pulumi:"awsSecretKey"`
-	LwaAppId              string `pulumi:"lwaAppId"`
-	LwaClientSecret       string `pulumi:"lwaClientSecret"`
-	MaxWaitSeconds        int    `pulumi:"maxWaitSeconds"`
-	PeriodInDays          int    `pulumi:"periodInDays"`
-	RefreshToken          string `pulumi:"refreshToken"`
-	Region                string `pulumi:"region"`
-	ReplicationEndDate    string `pulumi:"replicationEndDate"`
-	ReplicationStartDate  string `pulumi:"replicationStartDate"`
-	ReportOptions         string `pulumi:"reportOptions"`
-	RoleArn               string `pulumi:"roleArn"`
-	SourceType            string `pulumi:"sourceType"`
+	// must be one of ["oauth2.0"]
+	AuthType string `pulumi:"authType"`
+	// Specifies the AWS access key used as part of the credentials to authenticate the user.
+	AwsAccessKey string `pulumi:"awsAccessKey"`
+	// must be one of ["PRODUCTION", "SANDBOX"]
+	// Select the AWS Environment.
+	AwsEnvironment string `pulumi:"awsEnvironment"`
+	// Specifies the AWS secret key used as part of the credentials to authenticate the user.
+	AwsSecretKey string `pulumi:"awsSecretKey"`
+	// Your Login with Amazon Client ID.
+	LwaAppId string `pulumi:"lwaAppId"`
+	// Your Login with Amazon Client Secret.
+	LwaClientSecret string `pulumi:"lwaClientSecret"`
+	// Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+	MaxWaitSeconds int `pulumi:"maxWaitSeconds"`
+	// Will be used for stream slicing for initial fullRefresh sync when no updated state is present for reports that support sliced incremental sync.
+	PeriodInDays int `pulumi:"periodInDays"`
+	// The Refresh Token obtained via OAuth flow authorization.
+	RefreshToken string `pulumi:"refreshToken"`
+	// must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+	// Select the AWS Region.
+	Region string `pulumi:"region"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+	ReplicationEndDate string `pulumi:"replicationEndDate"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	ReplicationStartDate string `pulumi:"replicationStartDate"`
+	// Additional information passed to reports. This varies by report type. Must be a valid json string.
+	ReportOptions string `pulumi:"reportOptions"`
+	// Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+	RoleArn string `pulumi:"roleArn"`
+	// must be one of ["amazon-seller-partner"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceAmazonSellerPartnerConfigurationOutput struct{ *pulumi.OutputState }
@@ -8994,81 +9361,110 @@ func (o GetSourceAmazonSellerPartnerConfigurationOutput) ToGetSourceAmazonSeller
 	return o
 }
 
+// Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) AdvancedStreamOptions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.AdvancedStreamOptions }).(pulumi.StringOutput)
 }
 
+// must be one of ["oauth2.0"]
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.AuthType }).(pulumi.StringOutput)
 }
 
+// Specifies the AWS access key used as part of the credentials to authenticate the user.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) AwsAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.AwsAccessKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["PRODUCTION", "SANDBOX"]
+// Select the AWS Environment.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) AwsEnvironment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.AwsEnvironment }).(pulumi.StringOutput)
 }
 
+// Specifies the AWS secret key used as part of the credentials to authenticate the user.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) AwsSecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.AwsSecretKey }).(pulumi.StringOutput)
 }
 
+// Your Login with Amazon Client ID.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) LwaAppId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.LwaAppId }).(pulumi.StringOutput)
 }
 
+// Your Login with Amazon Client Secret.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) LwaClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.LwaClientSecret }).(pulumi.StringOutput)
 }
 
+// Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) MaxWaitSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) int { return v.MaxWaitSeconds }).(pulumi.IntOutput)
 }
 
+// Will be used for stream slicing for initial fullRefresh sync when no updated state is present for reports that support sliced incremental sync.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) PeriodInDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) int { return v.PeriodInDays }).(pulumi.IntOutput)
 }
 
+// The Refresh Token obtained via OAuth flow authorization.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) RefreshToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.RefreshToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+// Select the AWS Region.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) ReplicationEndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.ReplicationEndDate }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) ReplicationStartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.ReplicationStartDate }).(pulumi.StringOutput)
 }
 
+// Additional information passed to reports. This varies by report type. Must be a valid json string.
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) ReportOptions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.ReportOptions }).(pulumi.StringOutput)
 }
 
+// Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+// must be one of ["amazon-seller-partner"]
 func (o GetSourceAmazonSellerPartnerConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSellerPartnerConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceAmazonSqsConfiguration struct {
-	AccessKey          string `pulumi:"accessKey"`
+	// The Access Key ID of the AWS IAM Role to use for pulling messages
+	AccessKey string `pulumi:"accessKey"`
+	// Comma separated list of Mesage Attribute names to return
 	AttributesToReturn string `pulumi:"attributesToReturn"`
-	DeleteMessages     bool   `pulumi:"deleteMessages"`
-	MaxBatchSize       int    `pulumi:"maxBatchSize"`
-	MaxWaitTime        int    `pulumi:"maxWaitTime"`
-	QueueUrl           string `pulumi:"queueUrl"`
-	Region             string `pulumi:"region"`
-	SecretKey          string `pulumi:"secretKey"`
-	SourceType         string `pulumi:"sourceType"`
-	VisibilityTimeout  int    `pulumi:"visibilityTimeout"`
+	// If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+	DeleteMessages bool `pulumi:"deleteMessages"`
+	// Max amount of messages to get in one batch (10 max)
+	MaxBatchSize int `pulumi:"maxBatchSize"`
+	// Max amount of time in seconds to wait for messages in a single poll (20 max)
+	MaxWaitTime int `pulumi:"maxWaitTime"`
+	// URL of the SQS Queue
+	QueueUrl string `pulumi:"queueUrl"`
+	// must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+	// AWS Region of the SQS Queue
+	Region string `pulumi:"region"`
+	// The Secret Key of the AWS IAM Role to use for pulling messages
+	SecretKey string `pulumi:"secretKey"`
+	// must be one of ["amazon-sqs"]
+	SourceType string `pulumi:"sourceType"`
+	// Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+	VisibilityTimeout int `pulumi:"visibilityTimeout"`
 }
 
 type GetSourceAmazonSqsConfigurationOutput struct{ *pulumi.OutputState }
@@ -9085,53 +9481,71 @@ func (o GetSourceAmazonSqsConfigurationOutput) ToGetSourceAmazonSqsConfiguration
 	return o
 }
 
+// The Access Key ID of the AWS IAM Role to use for pulling messages
 func (o GetSourceAmazonSqsConfigurationOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// Comma separated list of Mesage Attribute names to return
 func (o GetSourceAmazonSqsConfigurationOutput) AttributesToReturn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.AttributesToReturn }).(pulumi.StringOutput)
 }
 
+// If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
 func (o GetSourceAmazonSqsConfigurationOutput) DeleteMessages() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) bool { return v.DeleteMessages }).(pulumi.BoolOutput)
 }
 
+// Max amount of messages to get in one batch (10 max)
 func (o GetSourceAmazonSqsConfigurationOutput) MaxBatchSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) int { return v.MaxBatchSize }).(pulumi.IntOutput)
 }
 
+// Max amount of time in seconds to wait for messages in a single poll (20 max)
 func (o GetSourceAmazonSqsConfigurationOutput) MaxWaitTime() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) int { return v.MaxWaitTime }).(pulumi.IntOutput)
 }
 
+// URL of the SQS Queue
 func (o GetSourceAmazonSqsConfigurationOutput) QueueUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.QueueUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+// AWS Region of the SQS Queue
 func (o GetSourceAmazonSqsConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The Secret Key of the AWS IAM Role to use for pulling messages
 func (o GetSourceAmazonSqsConfigurationOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["amazon-sqs"]
 func (o GetSourceAmazonSqsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
 func (o GetSourceAmazonSqsConfigurationOutput) VisibilityTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmazonSqsConfiguration) int { return v.VisibilityTimeout }).(pulumi.IntOutput)
 }
 
 type GetSourceAmplitudeConfiguration struct {
-	ApiKey           string `pulumi:"apiKey"`
-	DataRegion       string `pulumi:"dataRegion"`
-	RequestTimeRange int    `pulumi:"requestTimeRange"`
-	SecretKey        string `pulumi:"secretKey"`
-	SourceType       string `pulumi:"sourceType"`
-	StartDate        string `pulumi:"startDate"`
+	// Amplitude API Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["Standard Server", "EU Residency Server"]
+	// Amplitude data region server
+	DataRegion string `pulumi:"dataRegion"`
+	// According to \n\nConsiderations\n\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+	RequestTimeRange int `pulumi:"requestTimeRange"`
+	// Amplitude Secret Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+	SecretKey string `pulumi:"secretKey"`
+	// must be one of ["amplitude"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceAmplitudeConfigurationOutput struct{ *pulumi.OutputState }
@@ -9148,33 +9562,43 @@ func (o GetSourceAmplitudeConfigurationOutput) ToGetSourceAmplitudeConfiguration
 	return o
 }
 
+// Amplitude API Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
 func (o GetSourceAmplitudeConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["Standard Server", "EU Residency Server"]
+// Amplitude data region server
 func (o GetSourceAmplitudeConfigurationOutput) DataRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) string { return v.DataRegion }).(pulumi.StringOutput)
 }
 
+// According to \n\nConsiderations\n\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
 func (o GetSourceAmplitudeConfigurationOutput) RequestTimeRange() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) int { return v.RequestTimeRange }).(pulumi.IntOutput)
 }
 
+// Amplitude Secret Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
 func (o GetSourceAmplitudeConfigurationOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["amplitude"]
 func (o GetSourceAmplitudeConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceAmplitudeConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAmplitudeConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceApifyDatasetConfiguration struct {
-	Clean      bool   `pulumi:"clean"`
-	DatasetId  string `pulumi:"datasetId"`
+	// If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \n\nApify API docs\n\n. If not sure, set clean to false.
+	Clean bool `pulumi:"clean"`
+	// ID of the dataset you would like to load to Airbyte.
+	DatasetId string `pulumi:"datasetId"`
+	// must be one of ["apify-dataset"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -9192,20 +9616,25 @@ func (o GetSourceApifyDatasetConfigurationOutput) ToGetSourceApifyDatasetConfigu
 	return o
 }
 
+// If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \n\nApify API docs\n\n. If not sure, set clean to false.
 func (o GetSourceApifyDatasetConfigurationOutput) Clean() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceApifyDatasetConfiguration) bool { return v.Clean }).(pulumi.BoolOutput)
 }
 
+// ID of the dataset you would like to load to Airbyte.
 func (o GetSourceApifyDatasetConfigurationOutput) DatasetId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceApifyDatasetConfiguration) string { return v.DatasetId }).(pulumi.StringOutput)
 }
 
+// must be one of ["apify-dataset"]
 func (o GetSourceApifyDatasetConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceApifyDatasetConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceAppfollowConfiguration struct {
-	ApiSecret  string `pulumi:"apiSecret"`
+	// API Key provided by Appfollow
+	ApiSecret string `pulumi:"apiSecret"`
+	// must be one of ["appfollow"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -9223,17 +9652,21 @@ func (o GetSourceAppfollowConfigurationOutput) ToGetSourceAppfollowConfiguration
 	return o
 }
 
+// API Key provided by Appfollow
 func (o GetSourceAppfollowConfigurationOutput) ApiSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAppfollowConfiguration) string { return v.ApiSecret }).(pulumi.StringOutput)
 }
 
+// must be one of ["appfollow"]
 func (o GetSourceAppfollowConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAppfollowConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceAsanaConfiguration struct {
+	// Choose how to authenticate to Github
 	Credentials GetSourceAsanaConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                 `pulumi:"sourceType"`
+	// must be one of ["asana"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceAsanaConfigurationOutput struct{ *pulumi.OutputState }
@@ -9250,10 +9683,12 @@ func (o GetSourceAsanaConfigurationOutput) ToGetSourceAsanaConfigurationOutputWi
 	return o
 }
 
+// Choose how to authenticate to Github
 func (o GetSourceAsanaConfigurationOutput) Credentials() GetSourceAsanaConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceAsanaConfiguration) GetSourceAsanaConfigurationCredentials { return v.Credentials }).(GetSourceAsanaConfigurationCredentialsOutput)
 }
 
+// must be one of ["asana"]
 func (o GetSourceAsanaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAsanaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -9456,9 +9891,11 @@ func (o GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticationMec
 }
 
 type GetSourceAuth0Configuration struct {
+	// The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
 	BaseUrl     string                                 `pulumi:"baseUrl"`
 	Credentials GetSourceAuth0ConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                 `pulumi:"sourceType"`
+	// must be one of ["auth0"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceAuth0ConfigurationOutput struct{ *pulumi.OutputState }
@@ -9475,6 +9912,7 @@ func (o GetSourceAuth0ConfigurationOutput) ToGetSourceAuth0ConfigurationOutputWi
 	return o
 }
 
+// The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
 func (o GetSourceAuth0ConfigurationOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAuth0Configuration) string { return v.BaseUrl }).(pulumi.StringOutput)
 }
@@ -9483,6 +9921,7 @@ func (o GetSourceAuth0ConfigurationOutput) Credentials() GetSourceAuth0Configura
 	return o.ApplyT(func(v GetSourceAuth0Configuration) GetSourceAuth0ConfigurationCredentials { return v.Credentials }).(GetSourceAuth0ConfigurationCredentialsOutput)
 }
 
+// must be one of ["auth0"]
 func (o GetSourceAuth0ConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAuth0Configuration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -9685,11 +10124,16 @@ func (o GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticationMet
 }
 
 type GetSourceAwsCloudtrailConfiguration struct {
-	AwsKeyId      string `pulumi:"awsKeyId"`
+	// AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+	AwsKeyId string `pulumi:"awsKeyId"`
+	// The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
 	AwsRegionName string `pulumi:"awsRegionName"`
-	AwsSecretKey  string `pulumi:"awsSecretKey"`
-	SourceType    string `pulumi:"sourceType"`
-	StartDate     string `pulumi:"startDate"`
+	// AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+	AwsSecretKey string `pulumi:"awsSecretKey"`
+	// must be one of ["aws-cloudtrail"]
+	SourceType string `pulumi:"sourceType"`
+	// The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceAwsCloudtrailConfigurationOutput struct{ *pulumi.OutputState }
@@ -9706,35 +10150,48 @@ func (o GetSourceAwsCloudtrailConfigurationOutput) ToGetSourceAwsCloudtrailConfi
 	return o
 }
 
+// AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceAwsCloudtrailConfigurationOutput) AwsKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAwsCloudtrailConfiguration) string { return v.AwsKeyId }).(pulumi.StringOutput)
 }
 
+// The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
 func (o GetSourceAwsCloudtrailConfigurationOutput) AwsRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAwsCloudtrailConfiguration) string { return v.AwsRegionName }).(pulumi.StringOutput)
 }
 
+// AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceAwsCloudtrailConfigurationOutput) AwsSecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAwsCloudtrailConfiguration) string { return v.AwsSecretKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["aws-cloudtrail"]
 func (o GetSourceAwsCloudtrailConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAwsCloudtrailConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
 func (o GetSourceAwsCloudtrailConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAwsCloudtrailConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceAzureBlobStorageConfiguration struct {
-	AzureBlobStorageAccountKey           string                                       `pulumi:"azureBlobStorageAccountKey"`
-	AzureBlobStorageAccountName          string                                       `pulumi:"azureBlobStorageAccountName"`
-	AzureBlobStorageBlobsPrefix          string                                       `pulumi:"azureBlobStorageBlobsPrefix"`
-	AzureBlobStorageContainerName        string                                       `pulumi:"azureBlobStorageContainerName"`
-	AzureBlobStorageEndpoint             string                                       `pulumi:"azureBlobStorageEndpoint"`
-	AzureBlobStorageSchemaInferenceLimit int                                          `pulumi:"azureBlobStorageSchemaInferenceLimit"`
-	Format                               GetSourceAzureBlobStorageConfigurationFormat `pulumi:"format"`
-	SourceType                           string                                       `pulumi:"sourceType"`
+	// The Azure blob storage account key.
+	AzureBlobStorageAccountKey string `pulumi:"azureBlobStorageAccountKey"`
+	// The account's name of the Azure Blob Storage.
+	AzureBlobStorageAccountName string `pulumi:"azureBlobStorageAccountName"`
+	// The Azure blob storage prefix to be applied
+	AzureBlobStorageBlobsPrefix string `pulumi:"azureBlobStorageBlobsPrefix"`
+	// The name of the Azure blob storage container.
+	AzureBlobStorageContainerName string `pulumi:"azureBlobStorageContainerName"`
+	// This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+	AzureBlobStorageEndpoint string `pulumi:"azureBlobStorageEndpoint"`
+	// The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+	AzureBlobStorageSchemaInferenceLimit int `pulumi:"azureBlobStorageSchemaInferenceLimit"`
+	// Input data format
+	Format GetSourceAzureBlobStorageConfigurationFormat `pulumi:"format"`
+	// must be one of ["azure-blob-storage"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceAzureBlobStorageConfigurationOutput struct{ *pulumi.OutputState }
@@ -9751,36 +10208,44 @@ func (o GetSourceAzureBlobStorageConfigurationOutput) ToGetSourceAzureBlobStorag
 	return o
 }
 
+// The Azure blob storage account key.
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageAccountKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.AzureBlobStorageAccountKey }).(pulumi.StringOutput)
 }
 
+// The account's name of the Azure Blob Storage.
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageAccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.AzureBlobStorageAccountName }).(pulumi.StringOutput)
 }
 
+// The Azure blob storage prefix to be applied
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageBlobsPrefix() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.AzureBlobStorageBlobsPrefix }).(pulumi.StringOutput)
 }
 
+// The name of the Azure blob storage container.
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageContainerName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.AzureBlobStorageContainerName }).(pulumi.StringOutput)
 }
 
+// This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.AzureBlobStorageEndpoint }).(pulumi.StringOutput)
 }
 
+// The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
 func (o GetSourceAzureBlobStorageConfigurationOutput) AzureBlobStorageSchemaInferenceLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) int { return v.AzureBlobStorageSchemaInferenceLimit }).(pulumi.IntOutput)
 }
 
+// Input data format
 func (o GetSourceAzureBlobStorageConfigurationOutput) Format() GetSourceAzureBlobStorageConfigurationFormatOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) GetSourceAzureBlobStorageConfigurationFormat {
 		return v.Format
 	}).(GetSourceAzureBlobStorageConfigurationFormatOutput)
 }
 
+// must be one of ["azure-blob-storage"]
 func (o GetSourceAzureBlobStorageConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureBlobStorageConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -9865,9 +10330,13 @@ func (o GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorageUpdate
 }
 
 type GetSourceAzureTableConfiguration struct {
-	SourceType            string `pulumi:"sourceType"`
-	StorageAccessKey      string `pulumi:"storageAccessKey"`
-	StorageAccountName    string `pulumi:"storageAccountName"`
+	// must be one of ["azure-table"]
+	SourceType string `pulumi:"sourceType"`
+	// Azure Table Storage Access Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	StorageAccessKey string `pulumi:"storageAccessKey"`
+	// The name of your storage account.
+	StorageAccountName string `pulumi:"storageAccountName"`
+	// Azure Table Storage service account URL suffix. See the \n\ndocs\n\n for more information on how to obtain endpoint suffix
 	StorageEndpointSuffix string `pulumi:"storageEndpointSuffix"`
 }
 
@@ -9885,28 +10354,37 @@ func (o GetSourceAzureTableConfigurationOutput) ToGetSourceAzureTableConfigurati
 	return o
 }
 
+// must be one of ["azure-table"]
 func (o GetSourceAzureTableConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureTableConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Azure Table Storage Access Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceAzureTableConfigurationOutput) StorageAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureTableConfiguration) string { return v.StorageAccessKey }).(pulumi.StringOutput)
 }
 
+// The name of your storage account.
 func (o GetSourceAzureTableConfigurationOutput) StorageAccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureTableConfiguration) string { return v.StorageAccountName }).(pulumi.StringOutput)
 }
 
+// Azure Table Storage service account URL suffix. See the \n\ndocs\n\n for more information on how to obtain endpoint suffix
 func (o GetSourceAzureTableConfigurationOutput) StorageEndpointSuffix() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceAzureTableConfiguration) string { return v.StorageEndpointSuffix }).(pulumi.StringOutput)
 }
 
 type GetSourceBambooHrConfiguration struct {
-	ApiKey                            string `pulumi:"apiKey"`
-	CustomReportsFields               string `pulumi:"customReportsFields"`
-	CustomReportsIncludeDefaultFields bool   `pulumi:"customReportsIncludeDefaultFields"`
-	SourceType                        string `pulumi:"sourceType"`
-	Subdomain                         string `pulumi:"subdomain"`
+	// Api key of bamboo hr
+	ApiKey string `pulumi:"apiKey"`
+	// Comma-separated list of fields to include in custom reports.
+	CustomReportsFields string `pulumi:"customReportsFields"`
+	// If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+	CustomReportsIncludeDefaultFields bool `pulumi:"customReportsIncludeDefaultFields"`
+	// must be one of ["bamboo-hr"]
+	SourceType string `pulumi:"sourceType"`
+	// Sub Domain of bamboo hr
+	Subdomain string `pulumi:"subdomain"`
 }
 
 type GetSourceBambooHrConfigurationOutput struct{ *pulumi.OutputState }
@@ -9923,31 +10401,40 @@ func (o GetSourceBambooHrConfigurationOutput) ToGetSourceBambooHrConfigurationOu
 	return o
 }
 
+// Api key of bamboo hr
 func (o GetSourceBambooHrConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBambooHrConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Comma-separated list of fields to include in custom reports.
 func (o GetSourceBambooHrConfigurationOutput) CustomReportsFields() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBambooHrConfiguration) string { return v.CustomReportsFields }).(pulumi.StringOutput)
 }
 
+// If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
 func (o GetSourceBambooHrConfigurationOutput) CustomReportsIncludeDefaultFields() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceBambooHrConfiguration) bool { return v.CustomReportsIncludeDefaultFields }).(pulumi.BoolOutput)
 }
 
+// must be one of ["bamboo-hr"]
 func (o GetSourceBambooHrConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBambooHrConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Sub Domain of bamboo hr
 func (o GetSourceBambooHrConfigurationOutput) Subdomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBambooHrConfiguration) string { return v.Subdomain }).(pulumi.StringOutput)
 }
 
 type GetSourceBigcommerceConfiguration struct {
+	// Access Token for making authenticated requests.
 	AccessToken string `pulumi:"accessToken"`
-	SourceType  string `pulumi:"sourceType"`
-	StartDate   string `pulumi:"startDate"`
-	StoreHash   string `pulumi:"storeHash"`
+	// must be one of ["bigcommerce"]
+	SourceType string `pulumi:"sourceType"`
+	// The date you would like to replicate data. Format: YYYY-MM-DD.
+	StartDate string `pulumi:"startDate"`
+	// The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+	StoreHash string `pulumi:"storeHash"`
 }
 
 type GetSourceBigcommerceConfigurationOutput struct{ *pulumi.OutputState }
@@ -9964,27 +10451,35 @@ func (o GetSourceBigcommerceConfigurationOutput) ToGetSourceBigcommerceConfigura
 	return o
 }
 
+// Access Token for making authenticated requests.
 func (o GetSourceBigcommerceConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigcommerceConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["bigcommerce"]
 func (o GetSourceBigcommerceConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigcommerceConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date you would like to replicate data. Format: YYYY-MM-DD.
 func (o GetSourceBigcommerceConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigcommerceConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
 func (o GetSourceBigcommerceConfigurationOutput) StoreHash() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigcommerceConfiguration) string { return v.StoreHash }).(pulumi.StringOutput)
 }
 
 type GetSourceBigqueryConfiguration struct {
+	// The contents of your Service Account Key JSON file. See the \n\ndocs\n\n for more information on how to obtain this key.
 	CredentialsJson string `pulumi:"credentialsJson"`
-	DatasetId       string `pulumi:"datasetId"`
-	ProjectId       string `pulumi:"projectId"`
-	SourceType      string `pulumi:"sourceType"`
+	// The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+	DatasetId string `pulumi:"datasetId"`
+	// The GCP project ID for the project containing the target BigQuery dataset.
+	ProjectId string `pulumi:"projectId"`
+	// must be one of ["bigquery"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceBigqueryConfigurationOutput struct{ *pulumi.OutputState }
@@ -10001,32 +10496,45 @@ func (o GetSourceBigqueryConfigurationOutput) ToGetSourceBigqueryConfigurationOu
 	return o
 }
 
+// The contents of your Service Account Key JSON file. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceBigqueryConfigurationOutput) CredentialsJson() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigqueryConfiguration) string { return v.CredentialsJson }).(pulumi.StringOutput)
 }
 
+// The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
 func (o GetSourceBigqueryConfigurationOutput) DatasetId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigqueryConfiguration) string { return v.DatasetId }).(pulumi.StringOutput)
 }
 
+// The GCP project ID for the project containing the target BigQuery dataset.
 func (o GetSourceBigqueryConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigqueryConfiguration) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// must be one of ["bigquery"]
 func (o GetSourceBigqueryConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBigqueryConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceBingAdsConfiguration struct {
-	AuthMethod       string `pulumi:"authMethod"`
-	ClientId         string `pulumi:"clientId"`
-	ClientSecret     string `pulumi:"clientSecret"`
-	DeveloperToken   string `pulumi:"developerToken"`
-	LookbackWindow   int    `pulumi:"lookbackWindow"`
-	RefreshToken     string `pulumi:"refreshToken"`
+	// must be one of ["oauth2.0"]
+	AuthMethod string `pulumi:"authMethod"`
+	// The Client ID of your Microsoft Advertising developer application.
+	ClientId string `pulumi:"clientId"`
+	// The Client Secret of your Microsoft Advertising developer application.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Developer token associated with user. See more info \n\n in the docs\n\n.
+	DeveloperToken string `pulumi:"developerToken"`
+	// Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+	LookbackWindow int `pulumi:"lookbackWindow"`
+	// Refresh Token to renew the expired Access Token.
+	RefreshToken string `pulumi:"refreshToken"`
+	// The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
 	ReportsStartDate string `pulumi:"reportsStartDate"`
-	SourceType       string `pulumi:"sourceType"`
-	TenantId         string `pulumi:"tenantId"`
+	// must be one of ["bing-ads"]
+	SourceType string `pulumi:"sourceType"`
+	// The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+	TenantId string `pulumi:"tenantId"`
 }
 
 type GetSourceBingAdsConfigurationOutput struct{ *pulumi.OutputState }
@@ -10043,49 +10551,65 @@ func (o GetSourceBingAdsConfigurationOutput) ToGetSourceBingAdsConfigurationOutp
 	return o
 }
 
+// must be one of ["oauth2.0"]
 func (o GetSourceBingAdsConfigurationOutput) AuthMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.AuthMethod }).(pulumi.StringOutput)
 }
 
+// The Client ID of your Microsoft Advertising developer application.
 func (o GetSourceBingAdsConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// The Client Secret of your Microsoft Advertising developer application.
 func (o GetSourceBingAdsConfigurationOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
+// Developer token associated with user. See more info \n\n in the docs\n\n.
 func (o GetSourceBingAdsConfigurationOutput) DeveloperToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.DeveloperToken }).(pulumi.StringOutput)
 }
 
+// Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
 func (o GetSourceBingAdsConfigurationOutput) LookbackWindow() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) int { return v.LookbackWindow }).(pulumi.IntOutput)
 }
 
+// Refresh Token to renew the expired Access Token.
 func (o GetSourceBingAdsConfigurationOutput) RefreshToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.RefreshToken }).(pulumi.StringOutput)
 }
 
+// The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
 func (o GetSourceBingAdsConfigurationOutput) ReportsStartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.ReportsStartDate }).(pulumi.StringOutput)
 }
 
+// must be one of ["bing-ads"]
 func (o GetSourceBingAdsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
 func (o GetSourceBingAdsConfigurationOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBingAdsConfiguration) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
 type GetSourceBraintreeConfiguration struct {
+	// must be one of ["Development", "Sandbox", "Qa", "Production"]
+	// Environment specifies where the data will come from.
 	Environment string `pulumi:"environment"`
-	MerchantId  string `pulumi:"merchantId"`
-	PrivateKey  string `pulumi:"privateKey"`
-	PublicKey   string `pulumi:"publicKey"`
-	SourceType  string `pulumi:"sourceType"`
-	StartDate   string `pulumi:"startDate"`
+	// The unique identifier for your entire gateway account. See the \n\ndocs\n\n for more information on how to obtain this ID.
+	MerchantId string `pulumi:"merchantId"`
+	// Braintree Private Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	PrivateKey string `pulumi:"privateKey"`
+	// Braintree Public Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	PublicKey string `pulumi:"publicKey"`
+	// must be one of ["braintree"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceBraintreeConfigurationOutput struct{ *pulumi.OutputState }
@@ -10102,35 +10626,46 @@ func (o GetSourceBraintreeConfigurationOutput) ToGetSourceBraintreeConfiguration
 	return o
 }
 
+// must be one of ["Development", "Sandbox", "Qa", "Production"]
+// Environment specifies where the data will come from.
 func (o GetSourceBraintreeConfigurationOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The unique identifier for your entire gateway account. See the \n\ndocs\n\n for more information on how to obtain this ID.
 func (o GetSourceBraintreeConfigurationOutput) MerchantId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.MerchantId }).(pulumi.StringOutput)
 }
 
+// Braintree Private Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceBraintreeConfigurationOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+// Braintree Public Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceBraintreeConfigurationOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["braintree"]
 func (o GetSourceBraintreeConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceBraintreeConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBraintreeConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceBrazeConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Braze REST API key
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["braze"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
-	Url        string `pulumi:"url"`
+	// Rows after this date will be synced
+	StartDate string `pulumi:"startDate"`
+	// Braze REST API endpoint
+	Url string `pulumi:"url"`
 }
 
 type GetSourceBrazeConfigurationOutput struct{ *pulumi.OutputState }
@@ -10147,28 +10682,38 @@ func (o GetSourceBrazeConfigurationOutput) ToGetSourceBrazeConfigurationOutputWi
 	return o
 }
 
+// Braze REST API key
 func (o GetSourceBrazeConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBrazeConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["braze"]
 func (o GetSourceBrazeConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBrazeConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Rows after this date will be synced
 func (o GetSourceBrazeConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBrazeConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// Braze REST API endpoint
 func (o GetSourceBrazeConfigurationOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceBrazeConfiguration) string { return v.Url }).(pulumi.StringOutput)
 }
 
 type GetSourceChargebeeConfiguration struct {
+	// must be one of ["1.0", "2.0"]
+	// Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \n\nhere\n\n under `API Version` section.
 	ProductCatalog string `pulumi:"productCatalog"`
-	Site           string `pulumi:"site"`
-	SiteApiKey     string `pulumi:"siteApiKey"`
-	SourceType     string `pulumi:"sourceType"`
-	StartDate      string `pulumi:"startDate"`
+	// The site prefix for your Chargebee instance.
+	Site string `pulumi:"site"`
+	// Chargebee API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	SiteApiKey string `pulumi:"siteApiKey"`
+	// must be one of ["chargebee"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceChargebeeConfigurationOutput struct{ *pulumi.OutputState }
@@ -10185,31 +10730,42 @@ func (o GetSourceChargebeeConfigurationOutput) ToGetSourceChargebeeConfiguration
 	return o
 }
 
+// must be one of ["1.0", "2.0"]
+// Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \n\nhere\n\n under `API Version` section.
 func (o GetSourceChargebeeConfigurationOutput) ProductCatalog() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChargebeeConfiguration) string { return v.ProductCatalog }).(pulumi.StringOutput)
 }
 
+// The site prefix for your Chargebee instance.
 func (o GetSourceChargebeeConfigurationOutput) Site() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChargebeeConfiguration) string { return v.Site }).(pulumi.StringOutput)
 }
 
+// Chargebee API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceChargebeeConfigurationOutput) SiteApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChargebeeConfiguration) string { return v.SiteApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["chargebee"]
 func (o GetSourceChargebeeConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChargebeeConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceChargebeeConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChargebeeConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceChartmogulConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	Interval   string `pulumi:"interval"`
+	// Your Chartmogul API key. See \n\n the docs \n\n for info on how to obtain this.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["day", "week", "month", "quarter"]
+	// Some APIs such as \n\nMetrics\n\n require intervals to cluster data.
+	Interval string `pulumi:"interval"`
+	// must be one of ["chartmogul"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceChartmogulConfigurationOutput struct{ *pulumi.OutputState }
@@ -10226,30 +10782,42 @@ func (o GetSourceChartmogulConfigurationOutput) ToGetSourceChartmogulConfigurati
 	return o
 }
 
+// Your Chartmogul API key. See \n\n the docs \n\n for info on how to obtain this.
 func (o GetSourceChartmogulConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChartmogulConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["day", "week", "month", "quarter"]
+// Some APIs such as \n\nMetrics\n\n require intervals to cluster data.
 func (o GetSourceChartmogulConfigurationOutput) Interval() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChartmogulConfiguration) string { return v.Interval }).(pulumi.StringOutput)
 }
 
+// must be one of ["chartmogul"]
 func (o GetSourceChartmogulConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChartmogulConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
 func (o GetSourceChartmogulConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceChartmogulConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceClickhouseConfiguration struct {
-	Database     string                                       `pulumi:"database"`
-	Host         string                                       `pulumi:"host"`
-	Password     string                                       `pulumi:"password"`
-	Port         int                                          `pulumi:"port"`
-	SourceType   string                                       `pulumi:"sourceType"`
+	// The name of the database.
+	Database string `pulumi:"database"`
+	// The host endpoint of the Clickhouse cluster.
+	Host string `pulumi:"host"`
+	// The password associated with this username.
+	Password string `pulumi:"password"`
+	// The port of the database.
+	Port int `pulumi:"port"`
+	// must be one of ["clickhouse"]
+	SourceType string `pulumi:"sourceType"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 	TunnelMethod GetSourceClickhouseConfigurationTunnelMethod `pulumi:"tunnelMethod"`
-	Username     string                                       `pulumi:"username"`
+	// The username which is used to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceClickhouseConfigurationOutput struct{ *pulumi.OutputState }
@@ -10266,32 +10834,39 @@ func (o GetSourceClickhouseConfigurationOutput) ToGetSourceClickhouseConfigurati
 	return o
 }
 
+// The name of the database.
 func (o GetSourceClickhouseConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// The host endpoint of the Clickhouse cluster.
 func (o GetSourceClickhouseConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// The password associated with this username.
 func (o GetSourceClickhouseConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The port of the database.
 func (o GetSourceClickhouseConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// must be one of ["clickhouse"]
 func (o GetSourceClickhouseConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetSourceClickhouseConfigurationOutput) TunnelMethod() GetSourceClickhouseConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) GetSourceClickhouseConfigurationTunnelMethod {
 		return v.TunnelMethod
 	}).(GetSourceClickhouseConfigurationTunnelMethodOutput)
 }
 
+// The username which is used to access the database.
 func (o GetSourceClickhouseConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickhouseConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -10612,13 +11187,20 @@ func (o GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdateSshTun
 }
 
 type GetSourceClickupApiConfiguration struct {
-	ApiToken           string `pulumi:"apiToken"`
-	FolderId           string `pulumi:"folderId"`
-	IncludeClosedTasks bool   `pulumi:"includeClosedTasks"`
-	ListId             string `pulumi:"listId"`
-	SourceType         string `pulumi:"sourceType"`
-	SpaceId            string `pulumi:"spaceId"`
-	TeamId             string `pulumi:"teamId"`
+	// Every ClickUp API call required authentication. This field is your personal API token. See \n\nhere\n\n.
+	ApiToken string `pulumi:"apiToken"`
+	// The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \n\nhere\n\n.
+	FolderId string `pulumi:"folderId"`
+	// Include or exclude closed tasks. By default, they are excluded. See \n\nhere\n\n.
+	IncludeClosedTasks bool `pulumi:"includeClosedTasks"`
+	// The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \n\nhere\n\n.
+	ListId string `pulumi:"listId"`
+	// must be one of ["clickup-api"]
+	SourceType string `pulumi:"sourceType"`
+	// The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \n\nhere\n\n.
+	SpaceId string `pulumi:"spaceId"`
+	// The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \n\nhere\n\n.
+	TeamId string `pulumi:"teamId"`
 }
 
 type GetSourceClickupApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -10635,38 +11217,49 @@ func (o GetSourceClickupApiConfigurationOutput) ToGetSourceClickupApiConfigurati
 	return o
 }
 
+// Every ClickUp API call required authentication. This field is your personal API token. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Include or exclude closed tasks. By default, they are excluded. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) IncludeClosedTasks() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) bool { return v.IncludeClosedTasks }).(pulumi.BoolOutput)
 }
 
+// The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) ListId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.ListId }).(pulumi.StringOutput)
 }
 
+// must be one of ["clickup-api"]
 func (o GetSourceClickupApiConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) SpaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.SpaceId }).(pulumi.StringOutput)
 }
 
+// The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \n\nhere\n\n.
 func (o GetSourceClickupApiConfigurationOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClickupApiConfiguration) string { return v.TeamId }).(pulumi.StringOutput)
 }
 
 type GetSourceClockifyConfiguration struct {
-	ApiKey      string `pulumi:"apiKey"`
-	ApiUrl      string `pulumi:"apiUrl"`
-	SourceType  string `pulumi:"sourceType"`
+	// You can get your api accessKey \n\nhere\n\n This API is Case Sensitive.
+	ApiKey string `pulumi:"apiKey"`
+	// The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+	ApiUrl string `pulumi:"apiUrl"`
+	// must be one of ["clockify"]
+	SourceType string `pulumi:"sourceType"`
+	// WorkSpace Id
 	WorkspaceId string `pulumi:"workspaceId"`
 }
 
@@ -10684,26 +11277,33 @@ func (o GetSourceClockifyConfigurationOutput) ToGetSourceClockifyConfigurationOu
 	return o
 }
 
+// You can get your api accessKey \n\nhere\n\n This API is Case Sensitive.
 func (o GetSourceClockifyConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClockifyConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
 func (o GetSourceClockifyConfigurationOutput) ApiUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClockifyConfiguration) string { return v.ApiUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["clockify"]
 func (o GetSourceClockifyConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClockifyConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// WorkSpace Id
 func (o GetSourceClockifyConfigurationOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceClockifyConfiguration) string { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
 type GetSourceCloseComConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Close.com API key (usually starts with 'api_'; find yours \n\nhere\n\n).
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["close-com"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceCloseComConfigurationOutput struct{ *pulumi.OutputState }
@@ -10720,20 +11320,25 @@ func (o GetSourceCloseComConfigurationOutput) ToGetSourceCloseComConfigurationOu
 	return o
 }
 
+// Close.com API key (usually starts with 'api_'; find yours \n\nhere\n\n).
 func (o GetSourceCloseComConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCloseComConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["close-com"]
 func (o GetSourceCloseComConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCloseComConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
 func (o GetSourceCloseComConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCloseComConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceCodaConfiguration struct {
-	AuthToken  string `pulumi:"authToken"`
+	// Bearer token
+	AuthToken string `pulumi:"authToken"`
+	// must be one of ["coda"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -10751,23 +11356,39 @@ func (o GetSourceCodaConfigurationOutput) ToGetSourceCodaConfigurationOutputWith
 	return o
 }
 
+// Bearer token
 func (o GetSourceCodaConfigurationOutput) AuthToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCodaConfiguration) string { return v.AuthToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["coda"]
 func (o GetSourceCodaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCodaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceCoinApiConfiguration struct {
-	ApiKey      string `pulumi:"apiKey"`
-	EndDate     string `pulumi:"endDate"`
+	// API Key
+	ApiKey string `pulumi:"apiKey"`
+	// The end date in ISO 8601 format. If not supplied, data will be returned
+	// from the start date to the current time, or when the count of result
+	// elements reaches its limit.
+	EndDate string `pulumi:"endDate"`
+	// must be one of ["sandbox", "production"]
+	// The environment to use. Either sandbox or production.
 	Environment string `pulumi:"environment"`
-	Limit       int    `pulumi:"limit"`
-	Period      string `pulumi:"period"`
-	SourceType  string `pulumi:"sourceType"`
-	StartDate   string `pulumi:"startDate"`
-	SymbolId    string `pulumi:"symbolId"`
+	// The maximum number of elements to return. If not supplied, the default
+	// is 100. For numbers larger than 100, each 100 items is counted as one
+	// request for pricing purposes. Maximum value is 100000.
+	Limit int `pulumi:"limit"`
+	// The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+	Period string `pulumi:"period"`
+	// must be one of ["coin-api"]
+	SourceType string `pulumi:"sourceType"`
+	// The start date in ISO 8601 format.
+	StartDate string `pulumi:"startDate"`
+	// The symbol ID to use. See the documentation for a list.
+	// https://docs.coinapi.io/#list-all-symbols-get
+	SymbolId string `pulumi:"symbolId"`
 }
 
 type GetSourceCoinApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -10784,43 +11405,62 @@ func (o GetSourceCoinApiConfigurationOutput) ToGetSourceCoinApiConfigurationOutp
 	return o
 }
 
+// API Key
 func (o GetSourceCoinApiConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// The end date in ISO 8601 format. If not supplied, data will be returned
+// from the start date to the current time, or when the count of result
+// elements reaches its limit.
 func (o GetSourceCoinApiConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// must be one of ["sandbox", "production"]
+// The environment to use. Either sandbox or production.
 func (o GetSourceCoinApiConfigurationOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The maximum number of elements to return. If not supplied, the default
+// is 100. For numbers larger than 100, each 100 items is counted as one
+// request for pricing purposes. Maximum value is 100000.
 func (o GetSourceCoinApiConfigurationOutput) Limit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) int { return v.Limit }).(pulumi.IntOutput)
 }
 
+// The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
 func (o GetSourceCoinApiConfigurationOutput) Period() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.Period }).(pulumi.StringOutput)
 }
 
+// must be one of ["coin-api"]
 func (o GetSourceCoinApiConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The start date in ISO 8601 format.
 func (o GetSourceCoinApiConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// The symbol ID to use. See the documentation for a list.
+// https://docs.coinapi.io/#list-all-symbols-get
 func (o GetSourceCoinApiConfigurationOutput) SymbolId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinApiConfiguration) string { return v.SymbolId }).(pulumi.StringOutput)
 }
 
 type GetSourceCoinmarketcapConfiguration struct {
-	ApiKey     string   `pulumi:"apiKey"`
-	DataType   string   `pulumi:"dataType"`
-	SourceType string   `pulumi:"sourceType"`
-	Symbols    []string `pulumi:"symbols"`
+	// Your API Key. See \n\nhere\n\n. The token is case sensitive.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["latest", "historical"]
+	// /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \n\nhere\n\n.
+	DataType string `pulumi:"dataType"`
+	// must be one of ["coinmarketcap"]
+	SourceType string `pulumi:"sourceType"`
+	// Cryptocurrency symbols. (only used for quotes stream)
+	Symbols []string `pulumi:"symbols"`
 }
 
 type GetSourceCoinmarketcapConfigurationOutput struct{ *pulumi.OutputState }
@@ -10837,26 +11477,34 @@ func (o GetSourceCoinmarketcapConfigurationOutput) ToGetSourceCoinmarketcapConfi
 	return o
 }
 
+// Your API Key. See \n\nhere\n\n. The token is case sensitive.
 func (o GetSourceCoinmarketcapConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinmarketcapConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["latest", "historical"]
+// /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \n\nhere\n\n.
 func (o GetSourceCoinmarketcapConfigurationOutput) DataType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinmarketcapConfiguration) string { return v.DataType }).(pulumi.StringOutput)
 }
 
+// must be one of ["coinmarketcap"]
 func (o GetSourceCoinmarketcapConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceCoinmarketcapConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Cryptocurrency symbols. (only used for quotes stream)
 func (o GetSourceCoinmarketcapConfigurationOutput) Symbols() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceCoinmarketcapConfiguration) []string { return v.Symbols }).(pulumi.StringArrayOutput)
 }
 
 type GetSourceConfigcatConfiguration struct {
-	Password   string `pulumi:"password"`
+	// Basic auth password. See \n\nhere\n\n.
+	Password string `pulumi:"password"`
+	// must be one of ["configcat"]
 	SourceType string `pulumi:"sourceType"`
-	Username   string `pulumi:"username"`
+	// Basic auth user name. See \n\nhere\n\n.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceConfigcatConfigurationOutput struct{ *pulumi.OutputState }
@@ -10873,22 +11521,29 @@ func (o GetSourceConfigcatConfigurationOutput) ToGetSourceConfigcatConfiguration
 	return o
 }
 
+// Basic auth password. See \n\nhere\n\n.
 func (o GetSourceConfigcatConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfigcatConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// must be one of ["configcat"]
 func (o GetSourceConfigcatConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfigcatConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Basic auth user name. See \n\nhere\n\n.
 func (o GetSourceConfigcatConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfigcatConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetSourceConfluenceConfiguration struct {
-	ApiToken   string `pulumi:"apiToken"`
+	// Please follow the Jira confluence for generating an API token: \n\ngenerating an API token\n\n.
+	ApiToken string `pulumi:"apiToken"`
+	// Your Confluence domain name
 	DomainName string `pulumi:"domainName"`
-	Email      string `pulumi:"email"`
+	// Your Confluence login email
+	Email string `pulumi:"email"`
+	// must be one of ["confluence"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -10906,26 +11561,32 @@ func (o GetSourceConfluenceConfigurationOutput) ToGetSourceConfluenceConfigurati
 	return o
 }
 
+// Please follow the Jira confluence for generating an API token: \n\ngenerating an API token\n\n.
 func (o GetSourceConfluenceConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfluenceConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// Your Confluence domain name
 func (o GetSourceConfluenceConfigurationOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfluenceConfiguration) string { return v.DomainName }).(pulumi.StringOutput)
 }
 
+// Your Confluence login email
 func (o GetSourceConfluenceConfigurationOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfluenceConfiguration) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// must be one of ["confluence"]
 func (o GetSourceConfluenceConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConfluenceConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceConvexConfiguration struct {
+	// API access key used to retrieve data from Convex.
 	AccessKey     string `pulumi:"accessKey"`
 	DeploymentUrl string `pulumi:"deploymentUrl"`
-	SourceType    string `pulumi:"sourceType"`
+	// must be one of ["convex"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceConvexConfigurationOutput struct{ *pulumi.OutputState }
@@ -10942,6 +11603,7 @@ func (o GetSourceConvexConfigurationOutput) ToGetSourceConvexConfigurationOutput
 	return o
 }
 
+// API access key used to retrieve data from Convex.
 func (o GetSourceConvexConfigurationOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConvexConfiguration) string { return v.AccessKey }).(pulumi.StringOutput)
 }
@@ -10950,20 +11612,31 @@ func (o GetSourceConvexConfigurationOutput) DeploymentUrl() pulumi.StringOutput 
 	return o.ApplyT(func(v GetSourceConvexConfiguration) string { return v.DeploymentUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["convex"]
 func (o GetSourceConvexConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceConvexConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceDatadogConfiguration struct {
-	ApiKey               string                               `pulumi:"apiKey"`
-	ApplicationKey       string                               `pulumi:"applicationKey"`
-	EndDate              string                               `pulumi:"endDate"`
-	MaxRecordsPerRequest int                                  `pulumi:"maxRecordsPerRequest"`
-	Queries              []GetSourceDatadogConfigurationQuery `pulumi:"queries"`
-	Query                string                               `pulumi:"query"`
-	Site                 string                               `pulumi:"site"`
-	SourceType           string                               `pulumi:"sourceType"`
-	StartDate            string                               `pulumi:"startDate"`
+	// Datadog API key
+	ApiKey string `pulumi:"apiKey"`
+	// Datadog application key
+	ApplicationKey string `pulumi:"applicationKey"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+	EndDate string `pulumi:"endDate"`
+	// Maximum number of records to collect per request.
+	MaxRecordsPerRequest int `pulumi:"maxRecordsPerRequest"`
+	// List of queries to be run and used as inputs.
+	Queries []GetSourceDatadogConfigurationQuery `pulumi:"queries"`
+	// The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+	Query string `pulumi:"query"`
+	// must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+	// The site where Datadog data resides in.
+	Site string `pulumi:"site"`
+	// must be one of ["datadog"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceDatadogConfigurationOutput struct{ *pulumi.OutputState }
@@ -10980,38 +11653,48 @@ func (o GetSourceDatadogConfigurationOutput) ToGetSourceDatadogConfigurationOutp
 	return o
 }
 
+// Datadog API key
 func (o GetSourceDatadogConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Datadog application key
 func (o GetSourceDatadogConfigurationOutput) ApplicationKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.ApplicationKey }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
 func (o GetSourceDatadogConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// Maximum number of records to collect per request.
 func (o GetSourceDatadogConfigurationOutput) MaxRecordsPerRequest() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) int { return v.MaxRecordsPerRequest }).(pulumi.IntOutput)
 }
 
+// List of queries to be run and used as inputs.
 func (o GetSourceDatadogConfigurationOutput) Queries() GetSourceDatadogConfigurationQueryArrayOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) []GetSourceDatadogConfigurationQuery { return v.Queries }).(GetSourceDatadogConfigurationQueryArrayOutput)
 }
 
+// The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
 func (o GetSourceDatadogConfigurationOutput) Query() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.Query }).(pulumi.StringOutput)
 }
 
+// must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+// The site where Datadog data resides in.
 func (o GetSourceDatadogConfigurationOutput) Site() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.Site }).(pulumi.StringOutput)
 }
 
+// must be one of ["datadog"]
 func (o GetSourceDatadogConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
 func (o GetSourceDatadogConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatadogConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -11069,9 +11752,12 @@ func (o GetSourceDatadogConfigurationQueryArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetSourceDatascopeConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// API Key
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["datascope"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// Start date for the data to be replicated
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceDatascopeConfigurationOutput struct{ *pulumi.OutputState }
@@ -11088,21 +11774,27 @@ func (o GetSourceDatascopeConfigurationOutput) ToGetSourceDatascopeConfiguration
 	return o
 }
 
+// API Key
 func (o GetSourceDatascopeConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatascopeConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["datascope"]
 func (o GetSourceDatascopeConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatascopeConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Start date for the data to be replicated
 func (o GetSourceDatascopeConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDatascopeConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceDelightedConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	Since      string `pulumi:"since"`
+	// A Delighted API key.
+	ApiKey string `pulumi:"apiKey"`
+	// The date from which you'd like to replicate the data
+	Since string `pulumi:"since"`
+	// must be one of ["delighted"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -11120,23 +11812,30 @@ func (o GetSourceDelightedConfigurationOutput) ToGetSourceDelightedConfiguration
 	return o
 }
 
+// A Delighted API key.
 func (o GetSourceDelightedConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDelightedConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate the data
 func (o GetSourceDelightedConfigurationOutput) Since() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDelightedConfiguration) string { return v.Since }).(pulumi.StringOutput)
 }
 
+// must be one of ["delighted"]
 func (o GetSourceDelightedConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDelightedConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceDixaConfiguration struct {
-	ApiToken   string `pulumi:"apiToken"`
-	BatchSize  int    `pulumi:"batchSize"`
+	// Dixa API token
+	ApiToken string `pulumi:"apiToken"`
+	// Number of days to batch into one request. Max 31.
+	BatchSize int `pulumi:"batchSize"`
+	// must be one of ["dixa"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// The connector pulls records updated from this date onwards.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceDixaConfigurationOutput struct{ *pulumi.OutputState }
@@ -11153,25 +11852,31 @@ func (o GetSourceDixaConfigurationOutput) ToGetSourceDixaConfigurationOutputWith
 	return o
 }
 
+// Dixa API token
 func (o GetSourceDixaConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDixaConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// Number of days to batch into one request. Max 31.
 func (o GetSourceDixaConfigurationOutput) BatchSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceDixaConfiguration) int { return v.BatchSize }).(pulumi.IntOutput)
 }
 
+// must be one of ["dixa"]
 func (o GetSourceDixaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDixaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The connector pulls records updated from this date onwards.
 func (o GetSourceDixaConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDixaConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceDockerhubConfiguration struct {
+	// Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
 	DockerUsername string `pulumi:"dockerUsername"`
-	SourceType     string `pulumi:"sourceType"`
+	// must be one of ["dockerhub"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceDockerhubConfigurationOutput struct{ *pulumi.OutputState }
@@ -11188,17 +11893,22 @@ func (o GetSourceDockerhubConfigurationOutput) ToGetSourceDockerhubConfiguration
 	return o
 }
 
+// Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
 func (o GetSourceDockerhubConfigurationOutput) DockerUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDockerhubConfiguration) string { return v.DockerUsername }).(pulumi.StringOutput)
 }
 
+// must be one of ["dockerhub"]
 func (o GetSourceDockerhubConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDockerhubConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceDremioConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	BaseUrl    string `pulumi:"baseUrl"`
+	// API Key that is generated when you authenticate to Dremio API
+	ApiKey string `pulumi:"apiKey"`
+	// URL of your Dremio instance
+	BaseUrl string `pulumi:"baseUrl"`
+	// must be one of ["dremio"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -11216,25 +11926,35 @@ func (o GetSourceDremioConfigurationOutput) ToGetSourceDremioConfigurationOutput
 	return o
 }
 
+// API Key that is generated when you authenticate to Dremio API
 func (o GetSourceDremioConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDremioConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// URL of your Dremio instance
 func (o GetSourceDremioConfigurationOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDremioConfiguration) string { return v.BaseUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["dremio"]
 func (o GetSourceDremioConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDremioConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceDynamodbConfiguration struct {
-	AccessKeyId            string `pulumi:"accessKeyId"`
-	Endpoint               string `pulumi:"endpoint"`
-	Region                 string `pulumi:"region"`
+	// The access key id to access Dynamodb. Airbyte requires read permissions to the database
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// the URL of the Dynamodb database
+	Endpoint string `pulumi:"endpoint"`
+	// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+	// The region of the Dynamodb database
+	Region string `pulumi:"region"`
+	// Comma separated reserved attribute names present in your tables
 	ReservedAttributeNames string `pulumi:"reservedAttributeNames"`
-	SecretAccessKey        string `pulumi:"secretAccessKey"`
-	SourceType             string `pulumi:"sourceType"`
+	// The corresponding secret to the access key id.
+	SecretAccessKey string `pulumi:"secretAccessKey"`
+	// must be one of ["dynamodb"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceDynamodbConfigurationOutput struct{ *pulumi.OutputState }
@@ -11251,37 +11971,49 @@ func (o GetSourceDynamodbConfigurationOutput) ToGetSourceDynamodbConfigurationOu
 	return o
 }
 
+// The access key id to access Dynamodb. Airbyte requires read permissions to the database
 func (o GetSourceDynamodbConfigurationOutput) AccessKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.AccessKeyId }).(pulumi.StringOutput)
 }
 
+// the URL of the Dynamodb database
 func (o GetSourceDynamodbConfigurationOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.Endpoint }).(pulumi.StringOutput)
 }
 
+// must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+// The region of the Dynamodb database
 func (o GetSourceDynamodbConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Comma separated reserved attribute names present in your tables
 func (o GetSourceDynamodbConfigurationOutput) ReservedAttributeNames() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.ReservedAttributeNames }).(pulumi.StringOutput)
 }
 
+// The corresponding secret to the access key id.
 func (o GetSourceDynamodbConfigurationOutput) SecretAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.SecretAccessKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["dynamodb"]
 func (o GetSourceDynamodbConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceDynamodbConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceE2eTestCloudConfiguration struct {
-	MaxMessages       int                                           `pulumi:"maxMessages"`
+	// Number of records to emit per stream. Min 1. Max 100 billion.
+	MaxMessages int `pulumi:"maxMessages"`
+	// Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
 	MessageIntervalMs int                                           `pulumi:"messageIntervalMs"`
 	MockCatalog       GetSourceE2eTestCloudConfigurationMockCatalog `pulumi:"mockCatalog"`
-	Seed              int                                           `pulumi:"seed"`
-	SourceType        string                                        `pulumi:"sourceType"`
-	Type              string                                        `pulumi:"type"`
+	// When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+	Seed int `pulumi:"seed"`
+	// must be one of ["e2e-test-cloud"]
+	SourceType string `pulumi:"sourceType"`
+	// must be one of ["CONTINUOUS_FEED"]
+	Type string `pulumi:"type"`
 }
 
 type GetSourceE2eTestCloudConfigurationOutput struct{ *pulumi.OutputState }
@@ -11298,10 +12030,12 @@ func (o GetSourceE2eTestCloudConfigurationOutput) ToGetSourceE2eTestCloudConfigu
 	return o
 }
 
+// Number of records to emit per stream. Min 1. Max 100 billion.
 func (o GetSourceE2eTestCloudConfigurationOutput) MaxMessages() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceE2eTestCloudConfiguration) int { return v.MaxMessages }).(pulumi.IntOutput)
 }
 
+// Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
 func (o GetSourceE2eTestCloudConfigurationOutput) MessageIntervalMs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceE2eTestCloudConfiguration) int { return v.MessageIntervalMs }).(pulumi.IntOutput)
 }
@@ -11312,14 +12046,17 @@ func (o GetSourceE2eTestCloudConfigurationOutput) MockCatalog() GetSourceE2eTest
 	}).(GetSourceE2eTestCloudConfigurationMockCatalogOutput)
 }
 
+// When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
 func (o GetSourceE2eTestCloudConfigurationOutput) Seed() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceE2eTestCloudConfiguration) int { return v.Seed }).(pulumi.IntOutput)
 }
 
+// must be one of ["e2e-test-cloud"]
 func (o GetSourceE2eTestCloudConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceE2eTestCloudConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// must be one of ["CONTINUOUS_FEED"]
 func (o GetSourceE2eTestCloudConfigurationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceE2eTestCloudConfiguration) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -11522,7 +12259,9 @@ func (o GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpdateMoc
 }
 
 type GetSourceEmailoctopusConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// EmailOctopus API Key. See the \n\ndocs\n\n for information on how to generate this key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["emailoctopus"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -11540,20 +12279,27 @@ func (o GetSourceEmailoctopusConfigurationOutput) ToGetSourceEmailoctopusConfigu
 	return o
 }
 
+// EmailOctopus API Key. See the \n\ndocs\n\n for information on how to generate this key.
 func (o GetSourceEmailoctopusConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceEmailoctopusConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["emailoctopus"]
 func (o GetSourceEmailoctopusConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceEmailoctopusConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceExchangeRatesConfiguration struct {
-	AccessKey      string `pulumi:"accessKey"`
-	Base           string `pulumi:"base"`
-	IgnoreWeekends bool   `pulumi:"ignoreWeekends"`
-	SourceType     string `pulumi:"sourceType"`
-	StartDate      string `pulumi:"startDate"`
+	// Your API Key. See \n\nhere\n\n. The key is case sensitive.
+	AccessKey string `pulumi:"accessKey"`
+	// ISO reference currency. See \n\nhere\n\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+	Base string `pulumi:"base"`
+	// Ignore weekends? (Exchanges don't run on weekends)
+	IgnoreWeekends bool `pulumi:"ignoreWeekends"`
+	// must be one of ["exchange-rates"]
+	SourceType string `pulumi:"sourceType"`
+	// Start getting data from that date.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceExchangeRatesConfigurationOutput struct{ *pulumi.OutputState }
@@ -11570,41 +12316,60 @@ func (o GetSourceExchangeRatesConfigurationOutput) ToGetSourceExchangeRatesConfi
 	return o
 }
 
+// Your API Key. See \n\nhere\n\n. The key is case sensitive.
 func (o GetSourceExchangeRatesConfigurationOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceExchangeRatesConfiguration) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// ISO reference currency. See \n\nhere\n\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
 func (o GetSourceExchangeRatesConfigurationOutput) Base() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceExchangeRatesConfiguration) string { return v.Base }).(pulumi.StringOutput)
 }
 
+// Ignore weekends? (Exchanges don't run on weekends)
 func (o GetSourceExchangeRatesConfigurationOutput) IgnoreWeekends() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceExchangeRatesConfiguration) bool { return v.IgnoreWeekends }).(pulumi.BoolOutput)
 }
 
+// must be one of ["exchange-rates"]
 func (o GetSourceExchangeRatesConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceExchangeRatesConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Start getting data from that date.
 func (o GetSourceExchangeRatesConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceExchangeRatesConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceFacebookMarketingConfiguration struct {
-	AccessToken                string                                                 `pulumi:"accessToken"`
-	AccountId                  string                                                 `pulumi:"accountId"`
-	ActionBreakdownsAllowEmpty bool                                                   `pulumi:"actionBreakdownsAllowEmpty"`
-	ClientId                   string                                                 `pulumi:"clientId"`
-	ClientSecret               string                                                 `pulumi:"clientSecret"`
-	CustomInsights             []GetSourceFacebookMarketingConfigurationCustomInsight `pulumi:"customInsights"`
-	EndDate                    string                                                 `pulumi:"endDate"`
-	FetchThumbnailImages       bool                                                   `pulumi:"fetchThumbnailImages"`
-	IncludeDeleted             bool                                                   `pulumi:"includeDeleted"`
-	InsightsLookbackWindow     int                                                    `pulumi:"insightsLookbackWindow"`
-	MaxBatchSize               int                                                    `pulumi:"maxBatchSize"`
-	PageSize                   int                                                    `pulumi:"pageSize"`
-	SourceType                 string                                                 `pulumi:"sourceType"`
-	StartDate                  string                                                 `pulumi:"startDate"`
+	// The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \n\nads*management, ads*read, read*insights, business*management\n\n. Then click on "Get token". See the \n\ndocs\n\n for more information.
+	AccessToken string `pulumi:"accessToken"`
+	// The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \n\ndocs\n\n for more information.
+	AccountId string `pulumi:"accountId"`
+	// Allows actionBreakdowns to be an empty list
+	ActionBreakdownsAllowEmpty bool `pulumi:"actionBreakdownsAllowEmpty"`
+	// The Client Id for your OAuth app
+	ClientId string `pulumi:"clientId"`
+	// The Client Secret for your OAuth app
+	ClientSecret string `pulumi:"clientSecret"`
+	// A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+	CustomInsights []GetSourceFacebookMarketingConfigurationCustomInsight `pulumi:"customInsights"`
+	// The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+	EndDate string `pulumi:"endDate"`
+	// Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+	FetchThumbnailImages bool `pulumi:"fetchThumbnailImages"`
+	// Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+	IncludeDeleted bool `pulumi:"includeDeleted"`
+	// The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+	InsightsLookbackWindow int `pulumi:"insightsLookbackWindow"`
+	// Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+	MaxBatchSize int `pulumi:"maxBatchSize"`
+	// Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+	PageSize int `pulumi:"pageSize"`
+	// must be one of ["facebook-marketing"]
+	SourceType string `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceFacebookMarketingConfigurationOutput struct{ *pulumi.OutputState }
@@ -11621,60 +12386,74 @@ func (o GetSourceFacebookMarketingConfigurationOutput) ToGetSourceFacebookMarket
 	return o
 }
 
+// The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \n\nads*management, ads*read, read*insights, business*management\n\n. Then click on "Get token". See the \n\ndocs\n\n for more information.
 func (o GetSourceFacebookMarketingConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \n\ndocs\n\n for more information.
 func (o GetSourceFacebookMarketingConfigurationOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
+// Allows actionBreakdowns to be an empty list
 func (o GetSourceFacebookMarketingConfigurationOutput) ActionBreakdownsAllowEmpty() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) bool { return v.ActionBreakdownsAllowEmpty }).(pulumi.BoolOutput)
 }
 
+// The Client Id for your OAuth app
 func (o GetSourceFacebookMarketingConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// The Client Secret for your OAuth app
 func (o GetSourceFacebookMarketingConfigurationOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
+// A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
 func (o GetSourceFacebookMarketingConfigurationOutput) CustomInsights() GetSourceFacebookMarketingConfigurationCustomInsightArrayOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) []GetSourceFacebookMarketingConfigurationCustomInsight {
 		return v.CustomInsights
 	}).(GetSourceFacebookMarketingConfigurationCustomInsightArrayOutput)
 }
 
+// The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
 func (o GetSourceFacebookMarketingConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
 func (o GetSourceFacebookMarketingConfigurationOutput) FetchThumbnailImages() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) bool { return v.FetchThumbnailImages }).(pulumi.BoolOutput)
 }
 
+// Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
 func (o GetSourceFacebookMarketingConfigurationOutput) IncludeDeleted() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) bool { return v.IncludeDeleted }).(pulumi.BoolOutput)
 }
 
+// The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
 func (o GetSourceFacebookMarketingConfigurationOutput) InsightsLookbackWindow() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) int { return v.InsightsLookbackWindow }).(pulumi.IntOutput)
 }
 
+// Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
 func (o GetSourceFacebookMarketingConfigurationOutput) MaxBatchSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) int { return v.MaxBatchSize }).(pulumi.IntOutput)
 }
 
+// Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
 func (o GetSourceFacebookMarketingConfigurationOutput) PageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) int { return v.PageSize }).(pulumi.IntOutput)
 }
 
+// must be one of ["facebook-marketing"]
 func (o GetSourceFacebookMarketingConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
 func (o GetSourceFacebookMarketingConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookMarketingConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -11767,9 +12546,12 @@ func (o GetSourceFacebookMarketingConfigurationCustomInsightArrayOutput) Index(i
 }
 
 type GetSourceFacebookPagesConfiguration struct {
+	// Facebook Page Access Token
 	AccessToken string `pulumi:"accessToken"`
-	PageId      string `pulumi:"pageId"`
-	SourceType  string `pulumi:"sourceType"`
+	// Page ID
+	PageId string `pulumi:"pageId"`
+	// must be one of ["facebook-pages"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceFacebookPagesConfigurationOutput struct{ *pulumi.OutputState }
@@ -11786,25 +12568,34 @@ func (o GetSourceFacebookPagesConfigurationOutput) ToGetSourceFacebookPagesConfi
 	return o
 }
 
+// Facebook Page Access Token
 func (o GetSourceFacebookPagesConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookPagesConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// Page ID
 func (o GetSourceFacebookPagesConfigurationOutput) PageId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookPagesConfiguration) string { return v.PageId }).(pulumi.StringOutput)
 }
 
+// must be one of ["facebook-pages"]
 func (o GetSourceFacebookPagesConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFacebookPagesConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceFakerConfiguration struct {
-	AlwaysUpdated   bool   `pulumi:"alwaysUpdated"`
-	Count           int    `pulumi:"count"`
-	Parallelism     int    `pulumi:"parallelism"`
-	RecordsPerSlice int    `pulumi:"recordsPerSlice"`
-	Seed            int    `pulumi:"seed"`
-	SourceType      string `pulumi:"sourceType"`
+	// Should the updatedAt values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+	AlwaysUpdated bool `pulumi:"alwaysUpdated"`
+	// How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+	Count int `pulumi:"count"`
+	// How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+	Parallelism int `pulumi:"parallelism"`
+	// How many fake records will be in each page (stream slice), before a state message is emitted?
+	RecordsPerSlice int `pulumi:"recordsPerSlice"`
+	// Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+	Seed int `pulumi:"seed"`
+	// must be one of ["faker"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceFakerConfigurationOutput struct{ *pulumi.OutputState }
@@ -11821,37 +12612,49 @@ func (o GetSourceFakerConfigurationOutput) ToGetSourceFakerConfigurationOutputWi
 	return o
 }
 
+// Should the updatedAt values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
 func (o GetSourceFakerConfigurationOutput) AlwaysUpdated() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) bool { return v.AlwaysUpdated }).(pulumi.BoolOutput)
 }
 
+// How many users should be generated in total.  This setting does not apply to the purchases or products stream.
 func (o GetSourceFakerConfigurationOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) int { return v.Count }).(pulumi.IntOutput)
 }
 
+// How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
 func (o GetSourceFakerConfigurationOutput) Parallelism() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) int { return v.Parallelism }).(pulumi.IntOutput)
 }
 
+// How many fake records will be in each page (stream slice), before a state message is emitted?
 func (o GetSourceFakerConfigurationOutput) RecordsPerSlice() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) int { return v.RecordsPerSlice }).(pulumi.IntOutput)
 }
 
+// Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
 func (o GetSourceFakerConfigurationOutput) Seed() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) int { return v.Seed }).(pulumi.IntOutput)
 }
 
+// must be one of ["faker"]
 func (o GetSourceFakerConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFakerConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceFaunaConfiguration struct {
+	// Settings for the Fauna Collection.
 	Collection GetSourceFaunaConfigurationCollection `pulumi:"collection"`
-	Domain     string                                `pulumi:"domain"`
-	Port       int                                   `pulumi:"port"`
-	Scheme     string                                `pulumi:"scheme"`
-	Secret     string                                `pulumi:"secret"`
-	SourceType string                                `pulumi:"sourceType"`
+	// Domain of Fauna to query. Defaults db.fauna.com. See \n\nthe docs\n\n.
+	Domain string `pulumi:"domain"`
+	// Endpoint port.
+	Port int `pulumi:"port"`
+	// URL scheme.
+	Scheme string `pulumi:"scheme"`
+	// Fauna secret, used when authenticating with the database.
+	Secret string `pulumi:"secret"`
+	// must be one of ["fauna"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceFaunaConfigurationOutput struct{ *pulumi.OutputState }
@@ -11868,26 +12671,32 @@ func (o GetSourceFaunaConfigurationOutput) ToGetSourceFaunaConfigurationOutputWi
 	return o
 }
 
+// Settings for the Fauna Collection.
 func (o GetSourceFaunaConfigurationOutput) Collection() GetSourceFaunaConfigurationCollectionOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) GetSourceFaunaConfigurationCollection { return v.Collection }).(GetSourceFaunaConfigurationCollectionOutput)
 }
 
+// Domain of Fauna to query. Defaults db.fauna.com. See \n\nthe docs\n\n.
 func (o GetSourceFaunaConfigurationOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// Endpoint port.
 func (o GetSourceFaunaConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// URL scheme.
 func (o GetSourceFaunaConfigurationOutput) Scheme() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) string { return v.Scheme }).(pulumi.StringOutput)
 }
 
+// Fauna secret, used when authenticating with the database.
 func (o GetSourceFaunaConfigurationOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) string { return v.Secret }).(pulumi.StringOutput)
 }
 
+// must be one of ["fauna"]
 func (o GetSourceFaunaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFaunaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -12077,12 +12886,19 @@ func (o GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCollectio
 }
 
 type GetSourceFileSecureConfiguration struct {
-	DatasetName   string                                   `pulumi:"datasetName"`
-	Format        string                                   `pulumi:"format"`
-	Provider      GetSourceFileSecureConfigurationProvider `pulumi:"provider"`
-	ReaderOptions string                                   `pulumi:"readerOptions"`
-	SourceType    string                                   `pulumi:"sourceType"`
-	Url           string                                   `pulumi:"url"`
+	// The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+	DatasetName string `pulumi:"datasetName"`
+	// must be one of ["csv", "json", "jsonl", "excel", "excelBinary", "feather", "parquet", "yaml"]
+	// The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+	Format string `pulumi:"format"`
+	// The storage Provider or Location of the file(s) which should be replicated.
+	Provider GetSourceFileSecureConfigurationProvider `pulumi:"provider"`
+	// This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+	ReaderOptions string `pulumi:"readerOptions"`
+	// must be one of ["file-secure"]
+	SourceType string `pulumi:"sourceType"`
+	// The URL path to access the file which should be replicated.
+	Url string `pulumi:"url"`
 }
 
 type GetSourceFileSecureConfigurationOutput struct{ *pulumi.OutputState }
@@ -12099,26 +12915,33 @@ func (o GetSourceFileSecureConfigurationOutput) ToGetSourceFileSecureConfigurati
 	return o
 }
 
+// The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
 func (o GetSourceFileSecureConfigurationOutput) DatasetName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) string { return v.DatasetName }).(pulumi.StringOutput)
 }
 
+// must be one of ["csv", "json", "jsonl", "excel", "excelBinary", "feather", "parquet", "yaml"]
+// The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
 func (o GetSourceFileSecureConfigurationOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) string { return v.Format }).(pulumi.StringOutput)
 }
 
+// The storage Provider or Location of the file(s) which should be replicated.
 func (o GetSourceFileSecureConfigurationOutput) Provider() GetSourceFileSecureConfigurationProviderOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) GetSourceFileSecureConfigurationProvider { return v.Provider }).(GetSourceFileSecureConfigurationProviderOutput)
 }
 
+// This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
 func (o GetSourceFileSecureConfigurationOutput) ReaderOptions() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) string { return v.ReaderOptions }).(pulumi.StringOutput)
 }
 
+// must be one of ["file-secure"]
 func (o GetSourceFileSecureConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The URL path to access the file which should be replicated.
 func (o GetSourceFileSecureConfigurationOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFileSecureConfiguration) string { return v.Url }).(pulumi.StringOutput)
 }
@@ -12841,13 +13664,20 @@ func (o GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateStoragePro
 }
 
 type GetSourceFireboltConfiguration struct {
-	Account    string `pulumi:"account"`
-	Database   string `pulumi:"database"`
-	Engine     string `pulumi:"engine"`
-	Host       string `pulumi:"host"`
-	Password   string `pulumi:"password"`
+	// Firebolt account to login.
+	Account string `pulumi:"account"`
+	// The database to connect to.
+	Database string `pulumi:"database"`
+	// Engine name or url to connect to.
+	Engine string `pulumi:"engine"`
+	// The host name of your Firebolt database.
+	Host string `pulumi:"host"`
+	// Firebolt password.
+	Password string `pulumi:"password"`
+	// must be one of ["firebolt"]
 	SourceType string `pulumi:"sourceType"`
-	Username   string `pulumi:"username"`
+	// Firebolt email address you use to login.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceFireboltConfigurationOutput struct{ *pulumi.OutputState }
@@ -12864,41 +13694,54 @@ func (o GetSourceFireboltConfigurationOutput) ToGetSourceFireboltConfigurationOu
 	return o
 }
 
+// Firebolt account to login.
 func (o GetSourceFireboltConfigurationOutput) Account() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Account }).(pulumi.StringOutput)
 }
 
+// The database to connect to.
 func (o GetSourceFireboltConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// Engine name or url to connect to.
 func (o GetSourceFireboltConfigurationOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Engine }).(pulumi.StringOutput)
 }
 
+// The host name of your Firebolt database.
 func (o GetSourceFireboltConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Firebolt password.
 func (o GetSourceFireboltConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// must be one of ["firebolt"]
 func (o GetSourceFireboltConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Firebolt email address you use to login.
 func (o GetSourceFireboltConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFireboltConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetSourceFreshcallerConfiguration struct {
-	ApiKey            string `pulumi:"apiKey"`
-	Domain            string `pulumi:"domain"`
-	RequestsPerMinute int    `pulumi:"requestsPerMinute"`
-	SourceType        string `pulumi:"sourceType"`
-	StartDate         string `pulumi:"startDate"`
-	SyncLagMinutes    int    `pulumi:"syncLagMinutes"`
+	// Freshcaller API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	ApiKey string `pulumi:"apiKey"`
+	// Used to construct Base URL for the Freshcaller APIs
+	Domain string `pulumi:"domain"`
+	// The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+	RequestsPerMinute int `pulumi:"requestsPerMinute"`
+	// must be one of ["freshcaller"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time. Any data created after this date will be replicated.
+	StartDate string `pulumi:"startDate"`
+	// Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+	SyncLagMinutes int `pulumi:"syncLagMinutes"`
 }
 
 type GetSourceFreshcallerConfigurationOutput struct{ *pulumi.OutputState }
@@ -12915,36 +13758,47 @@ func (o GetSourceFreshcallerConfigurationOutput) ToGetSourceFreshcallerConfigura
 	return o
 }
 
+// Freshcaller API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceFreshcallerConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Used to construct Base URL for the Freshcaller APIs
 func (o GetSourceFreshcallerConfigurationOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
 func (o GetSourceFreshcallerConfigurationOutput) RequestsPerMinute() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) int { return v.RequestsPerMinute }).(pulumi.IntOutput)
 }
 
+// must be one of ["freshcaller"]
 func (o GetSourceFreshcallerConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time. Any data created after this date will be replicated.
 func (o GetSourceFreshcallerConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
 func (o GetSourceFreshcallerConfigurationOutput) SyncLagMinutes() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFreshcallerConfiguration) int { return v.SyncLagMinutes }).(pulumi.IntOutput)
 }
 
 type GetSourceFreshdeskConfiguration struct {
-	ApiKey            string `pulumi:"apiKey"`
-	Domain            string `pulumi:"domain"`
-	RequestsPerMinute int    `pulumi:"requestsPerMinute"`
-	SourceType        string `pulumi:"sourceType"`
-	StartDate         string `pulumi:"startDate"`
+	// Freshdesk API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	ApiKey string `pulumi:"apiKey"`
+	// Freshdesk domain
+	Domain string `pulumi:"domain"`
+	// The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+	RequestsPerMinute int `pulumi:"requestsPerMinute"`
+	// must be one of ["freshdesk"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceFreshdeskConfigurationOutput struct{ *pulumi.OutputState }
@@ -12961,29 +13815,37 @@ func (o GetSourceFreshdeskConfigurationOutput) ToGetSourceFreshdeskConfiguration
 	return o
 }
 
+// Freshdesk API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceFreshdeskConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshdeskConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Freshdesk domain
 func (o GetSourceFreshdeskConfigurationOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshdeskConfiguration) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
 func (o GetSourceFreshdeskConfigurationOutput) RequestsPerMinute() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceFreshdeskConfiguration) int { return v.RequestsPerMinute }).(pulumi.IntOutput)
 }
 
+// must be one of ["freshdesk"]
 func (o GetSourceFreshdeskConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshdeskConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
 func (o GetSourceFreshdeskConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshdeskConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceFreshsalesConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Freshsales API Key. See \n\nhere\n\n. The key is case sensitive.
+	ApiKey string `pulumi:"apiKey"`
+	// The Name of your Freshsales domain
 	DomainName string `pulumi:"domainName"`
+	// must be one of ["freshsales"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -13001,20 +13863,25 @@ func (o GetSourceFreshsalesConfigurationOutput) ToGetSourceFreshsalesConfigurati
 	return o
 }
 
+// Freshsales API Key. See \n\nhere\n\n. The key is case sensitive.
 func (o GetSourceFreshsalesConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshsalesConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// The Name of your Freshsales domain
 func (o GetSourceFreshsalesConfigurationOutput) DomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshsalesConfiguration) string { return v.DomainName }).(pulumi.StringOutput)
 }
 
+// must be one of ["freshsales"]
 func (o GetSourceFreshsalesConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceFreshsalesConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGainsightPxConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["gainsight-px"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -13032,19 +13899,25 @@ func (o GetSourceGainsightPxConfigurationOutput) ToGetSourceGainsightPxConfigura
 	return o
 }
 
+// The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
 func (o GetSourceGainsightPxConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGainsightPxConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["gainsight-px"]
 func (o GetSourceGainsightPxConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGainsightPxConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGcsConfiguration struct {
-	GcsBucket      string `pulumi:"gcsBucket"`
-	GcsPath        string `pulumi:"gcsPath"`
+	// GCS bucket name
+	GcsBucket string `pulumi:"gcsBucket"`
+	// GCS path to data
+	GcsPath string `pulumi:"gcsPath"`
+	// Enter your Google Cloud \n\nservice account key\n\n in JSON format
 	ServiceAccount string `pulumi:"serviceAccount"`
-	SourceType     string `pulumi:"sourceType"`
+	// must be one of ["gcs"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceGcsConfigurationOutput struct{ *pulumi.OutputState }
@@ -13061,24 +13934,30 @@ func (o GetSourceGcsConfigurationOutput) ToGetSourceGcsConfigurationOutputWithCo
 	return o
 }
 
+// GCS bucket name
 func (o GetSourceGcsConfigurationOutput) GcsBucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGcsConfiguration) string { return v.GcsBucket }).(pulumi.StringOutput)
 }
 
+// GCS path to data
 func (o GetSourceGcsConfigurationOutput) GcsPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGcsConfiguration) string { return v.GcsPath }).(pulumi.StringOutput)
 }
 
+// Enter your Google Cloud \n\nservice account key\n\n in JSON format
 func (o GetSourceGcsConfigurationOutput) ServiceAccount() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGcsConfiguration) string { return v.ServiceAccount }).(pulumi.StringOutput)
 }
 
+// must be one of ["gcs"]
 func (o GetSourceGcsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGcsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGetlagoConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Your API Key. See \n\nhere\n\n.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["getlago"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -13096,21 +13975,29 @@ func (o GetSourceGetlagoConfigurationOutput) ToGetSourceGetlagoConfigurationOutp
 	return o
 }
 
+// Your API Key. See \n\nhere\n\n.
 func (o GetSourceGetlagoConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGetlagoConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["getlago"]
 func (o GetSourceGetlagoConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGetlagoConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGithubConfiguration struct {
-	Branch          string                                  `pulumi:"branch"`
-	Credentials     GetSourceGithubConfigurationCredentials `pulumi:"credentials"`
-	Repository      string                                  `pulumi:"repository"`
-	RequestsPerHour int                                     `pulumi:"requestsPerHour"`
-	SourceType      string                                  `pulumi:"sourceType"`
-	StartDate       string                                  `pulumi:"startDate"`
+	// Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+	Branch string `pulumi:"branch"`
+	// Choose how to authenticate to GitHub
+	Credentials GetSourceGithubConfigurationCredentials `pulumi:"credentials"`
+	// Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+	Repository string `pulumi:"repository"`
+	// The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+	RequestsPerHour int `pulumi:"requestsPerHour"`
+	// must be one of ["github"]
+	SourceType string `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \n\ndocs\n\n for more info
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceGithubConfigurationOutput struct{ *pulumi.OutputState }
@@ -13127,26 +14014,32 @@ func (o GetSourceGithubConfigurationOutput) ToGetSourceGithubConfigurationOutput
 	return o
 }
 
+// Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
 func (o GetSourceGithubConfigurationOutput) Branch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) string { return v.Branch }).(pulumi.StringOutput)
 }
 
+// Choose how to authenticate to GitHub
 func (o GetSourceGithubConfigurationOutput) Credentials() GetSourceGithubConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) GetSourceGithubConfigurationCredentials { return v.Credentials }).(GetSourceGithubConfigurationCredentialsOutput)
 }
 
+// Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
 func (o GetSourceGithubConfigurationOutput) Repository() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) string { return v.Repository }).(pulumi.StringOutput)
 }
 
+// The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
 func (o GetSourceGithubConfigurationOutput) RequestsPerHour() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) int { return v.RequestsPerHour }).(pulumi.IntOutput)
 }
 
+// must be one of ["github"]
 func (o GetSourceGithubConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \n\ndocs\n\n for more info
 func (o GetSourceGithubConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGithubConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -13349,12 +14242,17 @@ func (o GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthenticationP
 }
 
 type GetSourceGitlabConfiguration struct {
+	// Please enter your basic URL from GitLab instance.
 	ApiUrl      string                                  `pulumi:"apiUrl"`
 	Credentials GetSourceGitlabConfigurationCredentials `pulumi:"credentials"`
-	Groups      string                                  `pulumi:"groups"`
-	Projects    string                                  `pulumi:"projects"`
-	SourceType  string                                  `pulumi:"sourceType"`
-	StartDate   string                                  `pulumi:"startDate"`
+	// Space-delimited list of groups. e.g. airbyte.io.
+	Groups string `pulumi:"groups"`
+	// Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+	Projects string `pulumi:"projects"`
+	// must be one of ["gitlab"]
+	SourceType string `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceGitlabConfigurationOutput struct{ *pulumi.OutputState }
@@ -13371,6 +14269,7 @@ func (o GetSourceGitlabConfigurationOutput) ToGetSourceGitlabConfigurationOutput
 	return o
 }
 
+// Please enter your basic URL from GitLab instance.
 func (o GetSourceGitlabConfigurationOutput) ApiUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) string { return v.ApiUrl }).(pulumi.StringOutput)
 }
@@ -13379,18 +14278,22 @@ func (o GetSourceGitlabConfigurationOutput) Credentials() GetSourceGitlabConfigu
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) GetSourceGitlabConfigurationCredentials { return v.Credentials }).(GetSourceGitlabConfigurationCredentialsOutput)
 }
 
+// Space-delimited list of groups. e.g. airbyte.io.
 func (o GetSourceGitlabConfigurationOutput) Groups() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) string { return v.Groups }).(pulumi.StringOutput)
 }
 
+// Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
 func (o GetSourceGitlabConfigurationOutput) Projects() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) string { return v.Projects }).(pulumi.StringOutput)
 }
 
+// must be one of ["gitlab"]
 func (o GetSourceGitlabConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
 func (o GetSourceGitlabConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGitlabConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -13621,7 +14524,9 @@ func (o GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthorizationMe
 }
 
 type GetSourceGlassfrogConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// API key provided by Glassfrog
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["glassfrog"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -13639,10 +14544,12 @@ func (o GetSourceGlassfrogConfigurationOutput) ToGetSourceGlassfrogConfiguration
 	return o
 }
 
+// API key provided by Glassfrog
 func (o GetSourceGlassfrogConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGlassfrogConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["glassfrog"]
 func (o GetSourceGlassfrogConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGlassfrogConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -13725,14 +14632,20 @@ func (o GetSourceGnewsConfigurationOutput) TopHeadlinesTopic() pulumi.StringOutp
 }
 
 type GetSourceGoogleAdsConfiguration struct {
+	// A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \n\nGoogle's documentation\n\n.
 	ConversionWindowDays int                                          `pulumi:"conversionWindowDays"`
 	Credentials          GetSourceGoogleAdsConfigurationCredentials   `pulumi:"credentials"`
 	CustomQueries        []GetSourceGoogleAdsConfigurationCustomQuery `pulumi:"customQueries"`
-	CustomerId           string                                       `pulumi:"customerId"`
-	EndDate              string                                       `pulumi:"endDate"`
-	LoginCustomerId      string                                       `pulumi:"loginCustomerId"`
-	SourceType           string                                       `pulumi:"sourceType"`
-	StartDate            string                                       `pulumi:"startDate"`
+	// Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \n\ndocumentation\n\n.
+	CustomerId string `pulumi:"customerId"`
+	// UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+	EndDate string `pulumi:"endDate"`
+	// If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \n\nGoogle's documentation\n\n.
+	LoginCustomerId string `pulumi:"loginCustomerId"`
+	// must be one of ["google-ads"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceGoogleAdsConfigurationOutput struct{ *pulumi.OutputState }
@@ -13749,6 +14662,7 @@ func (o GetSourceGoogleAdsConfigurationOutput) ToGetSourceGoogleAdsConfiguration
 	return o
 }
 
+// A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \n\nGoogle's documentation\n\n.
 func (o GetSourceGoogleAdsConfigurationOutput) ConversionWindowDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) int { return v.ConversionWindowDays }).(pulumi.IntOutput)
 }
@@ -13765,22 +14679,27 @@ func (o GetSourceGoogleAdsConfigurationOutput) CustomQueries() GetSourceGoogleAd
 	}).(GetSourceGoogleAdsConfigurationCustomQueryArrayOutput)
 }
 
+// Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \n\ndocumentation\n\n.
 func (o GetSourceGoogleAdsConfigurationOutput) CustomerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) string { return v.CustomerId }).(pulumi.StringOutput)
 }
 
+// UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
 func (o GetSourceGoogleAdsConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \n\nGoogle's documentation\n\n.
 func (o GetSourceGoogleAdsConfigurationOutput) LoginCustomerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) string { return v.LoginCustomerId }).(pulumi.StringOutput)
 }
 
+// must be one of ["google-ads"]
 func (o GetSourceGoogleAdsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
 func (o GetSourceGoogleAdsConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAdsConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -13875,12 +14794,18 @@ func (o GetSourceGoogleAdsConfigurationCustomQueryArrayOutput) Index(i pulumi.In
 }
 
 type GetSourceGoogleAnalyticsDataApiConfiguration struct {
-	Credentials         GetSourceGoogleAnalyticsDataApiConfigurationCredentials `pulumi:"credentials"`
-	CustomReports       string                                                  `pulumi:"customReports"`
-	DateRangesStartDate string                                                  `pulumi:"dateRangesStartDate"`
-	PropertyId          string                                                  `pulumi:"propertyId"`
-	SourceType          string                                                  `pulumi:"sourceType"`
-	WindowInDays        int                                                     `pulumi:"windowInDays"`
+	// Credentials for the service
+	Credentials GetSourceGoogleAnalyticsDataApiConfigurationCredentials `pulumi:"credentials"`
+	// A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe documentation\n\n for more information about the exact format you can use to fill out this field.
+	CustomReports string `pulumi:"customReports"`
+	// The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+	DateRangesStartDate string `pulumi:"dateRangesStartDate"`
+	// The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \n\nGoogle Analytics documentation\n\n to locate your property ID.
+	PropertyId string `pulumi:"propertyId"`
+	// must be one of ["google-analytics-data-api"]
+	SourceType string `pulumi:"sourceType"`
+	// The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \n\nthe documentation\n\n.
+	WindowInDays int `pulumi:"windowInDays"`
 }
 
 type GetSourceGoogleAnalyticsDataApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -13897,28 +14822,34 @@ func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) ToGetSourceGoogleAna
 	return o
 }
 
+// Credentials for the service
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) Credentials() GetSourceGoogleAnalyticsDataApiConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) GetSourceGoogleAnalyticsDataApiConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceGoogleAnalyticsDataApiConfigurationCredentialsOutput)
 }
 
+// A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe documentation\n\n for more information about the exact format you can use to fill out this field.
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) CustomReports() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) string { return v.CustomReports }).(pulumi.StringOutput)
 }
 
+// The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) DateRangesStartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) string { return v.DateRangesStartDate }).(pulumi.StringOutput)
 }
 
+// The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \n\nGoogle Analytics documentation\n\n to locate your property ID.
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) PropertyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) string { return v.PropertyId }).(pulumi.StringOutput)
 }
 
+// must be one of ["google-analytics-data-api"]
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \n\nthe documentation\n\n.
 func (o GetSourceGoogleAnalyticsDataApiConfigurationOutput) WindowInDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsDataApiConfiguration) int { return v.WindowInDays }).(pulumi.IntOutput)
 }
@@ -14135,12 +15066,18 @@ func (o GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogleAnaly
 }
 
 type GetSourceGoogleAnalyticsV4Configuration struct {
-	Credentials   GetSourceGoogleAnalyticsV4ConfigurationCredentials `pulumi:"credentials"`
-	CustomReports string                                             `pulumi:"customReports"`
-	SourceType    string                                             `pulumi:"sourceType"`
-	StartDate     string                                             `pulumi:"startDate"`
-	ViewId        string                                             `pulumi:"viewId"`
-	WindowInDays  int                                                `pulumi:"windowInDays"`
+	// Credentials for the service
+	Credentials GetSourceGoogleAnalyticsV4ConfigurationCredentials `pulumi:"credentials"`
+	// A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+	CustomReports string `pulumi:"customReports"`
+	// must be one of ["google-analytics-v4"]
+	SourceType string `pulumi:"sourceType"`
+	// The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
+	// The ID for the Google Analytics View you want to fetch data from. This can be found from the \n\nGoogle Analytics Account Explorer\n\n.
+	ViewId string `pulumi:"viewId"`
+	// The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \n\nthe docs\n\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+	WindowInDays int `pulumi:"windowInDays"`
 }
 
 type GetSourceGoogleAnalyticsV4ConfigurationOutput struct{ *pulumi.OutputState }
@@ -14157,28 +15094,34 @@ func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) ToGetSourceGoogleAnalytic
 	return o
 }
 
+// Credentials for the service
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) Credentials() GetSourceGoogleAnalyticsV4ConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) GetSourceGoogleAnalyticsV4ConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceGoogleAnalyticsV4ConfigurationCredentialsOutput)
 }
 
+// A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) CustomReports() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) string { return v.CustomReports }).(pulumi.StringOutput)
 }
 
+// must be one of ["google-analytics-v4"]
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// The ID for the Google Analytics View you want to fetch data from. This can be found from the \n\nGoogle Analytics Account Explorer\n\n.
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) ViewId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) string { return v.ViewId }).(pulumi.StringOutput)
 }
 
+// The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \n\nthe docs\n\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
 func (o GetSourceGoogleAnalyticsV4ConfigurationOutput) WindowInDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGoogleAnalyticsV4Configuration) int { return v.WindowInDays }).(pulumi.IntOutput)
 }
@@ -14395,8 +15338,10 @@ func (o GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnalyticsV
 }
 
 type GetSourceGoogleDirectoryConfiguration struct {
+	// Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \n\nWeb server application\n\n and \n\nService accounts\n\n scenarios.
 	Credentials GetSourceGoogleDirectoryConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                           `pulumi:"sourceType"`
+	// must be one of ["google-directory"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceGoogleDirectoryConfigurationOutput struct{ *pulumi.OutputState }
@@ -14413,12 +15358,14 @@ func (o GetSourceGoogleDirectoryConfigurationOutput) ToGetSourceGoogleDirectoryC
 	return o
 }
 
+// Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \n\nWeb server application\n\n and \n\nService accounts\n\n scenarios.
 func (o GetSourceGoogleDirectoryConfigurationOutput) Credentials() GetSourceGoogleDirectoryConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceGoogleDirectoryConfiguration) GetSourceGoogleDirectoryConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceGoogleDirectoryConfigurationCredentialsOutput)
 }
 
+// must be one of ["google-directory"]
 func (o GetSourceGoogleDirectoryConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleDirectoryConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -14635,11 +15582,16 @@ func (o GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirectoryUpd
 }
 
 type GetSourceGooglePagespeedInsightsConfiguration struct {
-	ApiKey     string   `pulumi:"apiKey"`
+	// Google PageSpeed API Key. See \n\nhere\n\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+	ApiKey string `pulumi:"apiKey"`
+	// Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
 	Categories []string `pulumi:"categories"`
-	SourceType string   `pulumi:"sourceType"`
+	// must be one of ["google-pagespeed-insights"]
+	SourceType string `pulumi:"sourceType"`
+	// The analyses strategy to use. Either "desktop" or "mobile".
 	Strategies []string `pulumi:"strategies"`
-	Urls       []string `pulumi:"urls"`
+	// The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+	Urls []string `pulumi:"urls"`
 }
 
 type GetSourceGooglePagespeedInsightsConfigurationOutput struct{ *pulumi.OutputState }
@@ -14656,34 +15608,46 @@ func (o GetSourceGooglePagespeedInsightsConfigurationOutput) ToGetSourceGooglePa
 	return o
 }
 
+// Google PageSpeed API Key. See \n\nhere\n\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
 func (o GetSourceGooglePagespeedInsightsConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGooglePagespeedInsightsConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
 func (o GetSourceGooglePagespeedInsightsConfigurationOutput) Categories() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceGooglePagespeedInsightsConfiguration) []string { return v.Categories }).(pulumi.StringArrayOutput)
 }
 
+// must be one of ["google-pagespeed-insights"]
 func (o GetSourceGooglePagespeedInsightsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGooglePagespeedInsightsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The analyses strategy to use. Either "desktop" or "mobile".
 func (o GetSourceGooglePagespeedInsightsConfigurationOutput) Strategies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceGooglePagespeedInsightsConfiguration) []string { return v.Strategies }).(pulumi.StringArrayOutput)
 }
 
+// The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
 func (o GetSourceGooglePagespeedInsightsConfigurationOutput) Urls() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceGooglePagespeedInsightsConfiguration) []string { return v.Urls }).(pulumi.StringArrayOutput)
 }
 
 type GetSourceGoogleSearchConsoleConfiguration struct {
 	Authorization GetSourceGoogleSearchConsoleConfigurationAuthorization `pulumi:"authorization"`
-	CustomReports string                                                 `pulumi:"customReports"`
-	DataState     string                                                 `pulumi:"dataState"`
-	EndDate       string                                                 `pulumi:"endDate"`
-	SiteUrls      []string                                               `pulumi:"siteUrls"`
-	SourceType    string                                                 `pulumi:"sourceType"`
-	StartDate     string                                                 `pulumi:"startDate"`
+	// A JSON array describing the custom reports you want to sync from Google Search Console. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+	CustomReports string `pulumi:"customReports"`
+	// must be one of ["final", "all"]
+	// If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+	DataState string `pulumi:"dataState"`
+	// UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+	EndDate string `pulumi:"endDate"`
+	// The URLs of the website property attached to your GSC account. Read more \n\nhere\n\n.
+	SiteUrls []string `pulumi:"siteUrls"`
+	// must be one of ["google-search-console"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceGoogleSearchConsoleConfigurationOutput struct{ *pulumi.OutputState }
@@ -14706,26 +15670,33 @@ func (o GetSourceGoogleSearchConsoleConfigurationOutput) Authorization() GetSour
 	}).(GetSourceGoogleSearchConsoleConfigurationAuthorizationOutput)
 }
 
+// A JSON array describing the custom reports you want to sync from Google Search Console. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) CustomReports() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) string { return v.CustomReports }).(pulumi.StringOutput)
 }
 
+// must be one of ["final", "all"]
+// If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) DataState() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) string { return v.DataState }).(pulumi.StringOutput)
 }
 
+// UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// The URLs of the website property attached to your GSC account. Read more \n\nhere\n\n.
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) SiteUrls() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) []string { return v.SiteUrls }).(pulumi.StringArrayOutput)
 }
 
+// must be one of ["google-search-console"]
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date in the format 2017-01-25. Any data before this date will not be replicated.
 func (o GetSourceGoogleSearchConsoleConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSearchConsoleConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -14956,11 +15927,16 @@ func (o GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogleSearch
 }
 
 type GetSourceGoogleSheetsConfiguration struct {
-	Credentials     GetSourceGoogleSheetsConfigurationCredentials `pulumi:"credentials"`
-	NamesConversion bool                                          `pulumi:"namesConversion"`
-	RowBatchSize    int                                           `pulumi:"rowBatchSize"`
-	SourceType      string                                        `pulumi:"sourceType"`
-	SpreadsheetId   string                                        `pulumi:"spreadsheetId"`
+	// Credentials for connecting to the Google Sheets API
+	Credentials GetSourceGoogleSheetsConfigurationCredentials `pulumi:"credentials"`
+	// Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+	NamesConversion bool `pulumi:"namesConversion"`
+	// The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+	RowBatchSize int `pulumi:"rowBatchSize"`
+	// must be one of ["google-sheets"]
+	SourceType string `pulumi:"sourceType"`
+	// Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+	SpreadsheetId string `pulumi:"spreadsheetId"`
 }
 
 type GetSourceGoogleSheetsConfigurationOutput struct{ *pulumi.OutputState }
@@ -14977,24 +15953,29 @@ func (o GetSourceGoogleSheetsConfigurationOutput) ToGetSourceGoogleSheetsConfigu
 	return o
 }
 
+// Credentials for connecting to the Google Sheets API
 func (o GetSourceGoogleSheetsConfigurationOutput) Credentials() GetSourceGoogleSheetsConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceGoogleSheetsConfiguration) GetSourceGoogleSheetsConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceGoogleSheetsConfigurationCredentialsOutput)
 }
 
+// Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
 func (o GetSourceGoogleSheetsConfigurationOutput) NamesConversion() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceGoogleSheetsConfiguration) bool { return v.NamesConversion }).(pulumi.BoolOutput)
 }
 
+// The number of rows fetched when making a Google Sheet API call. Defaults to 200.
 func (o GetSourceGoogleSheetsConfigurationOutput) RowBatchSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGoogleSheetsConfiguration) int { return v.RowBatchSize }).(pulumi.IntOutput)
 }
 
+// must be one of ["google-sheets"]
 func (o GetSourceGoogleSheetsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSheetsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
 func (o GetSourceGoogleSheetsConfigurationOutput) SpreadsheetId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleSheetsConfiguration) string { return v.SpreadsheetId }).(pulumi.StringOutput)
 }
@@ -15197,11 +16178,16 @@ func (o GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpdateAut
 }
 
 type GetSourceGoogleWebfontsConfiguration struct {
-	Alt         string `pulumi:"alt"`
-	ApiKey      string `pulumi:"apiKey"`
+	// Optional, Available params- json, media, proto
+	Alt string `pulumi:"alt"`
+	// API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+	ApiKey string `pulumi:"apiKey"`
+	// Optional, boolean type
 	PrettyPrint string `pulumi:"prettyPrint"`
-	Sort        string `pulumi:"sort"`
-	SourceType  string `pulumi:"sourceType"`
+	// Optional, to find how to sort
+	Sort string `pulumi:"sort"`
+	// must be one of ["google-webfonts"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceGoogleWebfontsConfigurationOutput struct{ *pulumi.OutputState }
@@ -15218,31 +16204,40 @@ func (o GetSourceGoogleWebfontsConfigurationOutput) ToGetSourceGoogleWebfontsCon
 	return o
 }
 
+// Optional, Available params- json, media, proto
 func (o GetSourceGoogleWebfontsConfigurationOutput) Alt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWebfontsConfiguration) string { return v.Alt }).(pulumi.StringOutput)
 }
 
+// API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
 func (o GetSourceGoogleWebfontsConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWebfontsConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Optional, boolean type
 func (o GetSourceGoogleWebfontsConfigurationOutput) PrettyPrint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWebfontsConfiguration) string { return v.PrettyPrint }).(pulumi.StringOutput)
 }
 
+// Optional, to find how to sort
 func (o GetSourceGoogleWebfontsConfigurationOutput) Sort() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWebfontsConfiguration) string { return v.Sort }).(pulumi.StringOutput)
 }
 
+// must be one of ["google-webfonts"]
 func (o GetSourceGoogleWebfontsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWebfontsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGoogleWorkspaceAdminReportsConfiguration struct {
+	// The contents of the JSON service account key. See the \n\ndocs\n\n for more information on how to generate this key.
 	CredentialsJson string `pulumi:"credentialsJson"`
-	Email           string `pulumi:"email"`
-	Lookback        int    `pulumi:"lookback"`
-	SourceType      string `pulumi:"sourceType"`
+	// The email of the user, which has permissions to access the Google Workspace Admin APIs.
+	Email string `pulumi:"email"`
+	// Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+	Lookback int `pulumi:"lookback"`
+	// must be one of ["google-workspace-admin-reports"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceGoogleWorkspaceAdminReportsConfigurationOutput struct{ *pulumi.OutputState }
@@ -15259,24 +16254,30 @@ func (o GetSourceGoogleWorkspaceAdminReportsConfigurationOutput) ToGetSourceGoog
 	return o
 }
 
+// The contents of the JSON service account key. See the \n\ndocs\n\n for more information on how to generate this key.
 func (o GetSourceGoogleWorkspaceAdminReportsConfigurationOutput) CredentialsJson() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWorkspaceAdminReportsConfiguration) string { return v.CredentialsJson }).(pulumi.StringOutput)
 }
 
+// The email of the user, which has permissions to access the Google Workspace Admin APIs.
 func (o GetSourceGoogleWorkspaceAdminReportsConfigurationOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWorkspaceAdminReportsConfiguration) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
 func (o GetSourceGoogleWorkspaceAdminReportsConfigurationOutput) Lookback() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceGoogleWorkspaceAdminReportsConfiguration) int { return v.Lookback }).(pulumi.IntOutput)
 }
 
+// must be one of ["google-workspace-admin-reports"]
 func (o GetSourceGoogleWorkspaceAdminReportsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGoogleWorkspaceAdminReportsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGreenhouseConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Greenhouse API Key. See the \n\ndocs\n\n for more information on how to generate this key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["greenhouse"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -15294,17 +16295,21 @@ func (o GetSourceGreenhouseConfigurationOutput) ToGetSourceGreenhouseConfigurati
 	return o
 }
 
+// Greenhouse API Key. See the \n\ndocs\n\n for more information on how to generate this key.
 func (o GetSourceGreenhouseConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGreenhouseConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["greenhouse"]
 func (o GetSourceGreenhouseConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGreenhouseConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceGridlyConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	GridId     string `pulumi:"gridId"`
+	ApiKey string `pulumi:"apiKey"`
+	// ID of a grid, or can be ID of a branch
+	GridId string `pulumi:"gridId"`
+	// must be one of ["gridly"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -15326,20 +16331,27 @@ func (o GetSourceGridlyConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGridlyConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// ID of a grid, or can be ID of a branch
 func (o GetSourceGridlyConfigurationOutput) GridId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGridlyConfiguration) string { return v.GridId }).(pulumi.StringOutput)
 }
 
+// must be one of ["gridly"]
 func (o GetSourceGridlyConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceGridlyConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceHarvestConfiguration struct {
-	AccountId            string                                   `pulumi:"accountId"`
-	Credentials          GetSourceHarvestConfigurationCredentials `pulumi:"credentials"`
-	ReplicationEndDate   string                                   `pulumi:"replicationEndDate"`
-	ReplicationStartDate string                                   `pulumi:"replicationStartDate"`
-	SourceType           string                                   `pulumi:"sourceType"`
+	// Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+	AccountId string `pulumi:"accountId"`
+	// Choose how to authenticate to Harvest.
+	Credentials GetSourceHarvestConfigurationCredentials `pulumi:"credentials"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+	ReplicationEndDate string `pulumi:"replicationEndDate"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	ReplicationStartDate string `pulumi:"replicationStartDate"`
+	// must be one of ["harvest"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceHarvestConfigurationOutput struct{ *pulumi.OutputState }
@@ -15356,22 +16368,27 @@ func (o GetSourceHarvestConfigurationOutput) ToGetSourceHarvestConfigurationOutp
 	return o
 }
 
+// Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
 func (o GetSourceHarvestConfigurationOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHarvestConfiguration) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
+// Choose how to authenticate to Harvest.
 func (o GetSourceHarvestConfigurationOutput) Credentials() GetSourceHarvestConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceHarvestConfiguration) GetSourceHarvestConfigurationCredentials { return v.Credentials }).(GetSourceHarvestConfigurationCredentialsOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
 func (o GetSourceHarvestConfigurationOutput) ReplicationEndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHarvestConfiguration) string { return v.ReplicationEndDate }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceHarvestConfigurationOutput) ReplicationStartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHarvestConfiguration) string { return v.ReplicationStartDate }).(pulumi.StringOutput)
 }
 
+// must be one of ["harvest"]
 func (o GetSourceHarvestConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHarvestConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -15602,7 +16619,9 @@ func (o GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthenticatio
 }
 
 type GetSourceHubplannerConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["hubplanner"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -15620,18 +16639,23 @@ func (o GetSourceHubplannerConfigurationOutput) ToGetSourceHubplannerConfigurati
 	return o
 }
 
+// Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
 func (o GetSourceHubplannerConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHubplannerConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["hubplanner"]
 func (o GetSourceHubplannerConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHubplannerConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceHubspotConfiguration struct {
+	// Choose how to authenticate to HubSpot.
 	Credentials GetSourceHubspotConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                   `pulumi:"sourceType"`
-	StartDate   string                                   `pulumi:"startDate"`
+	// must be one of ["hubspot"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceHubspotConfigurationOutput struct{ *pulumi.OutputState }
@@ -15648,14 +16672,17 @@ func (o GetSourceHubspotConfigurationOutput) ToGetSourceHubspotConfigurationOutp
 	return o
 }
 
+// Choose how to authenticate to HubSpot.
 func (o GetSourceHubspotConfigurationOutput) Credentials() GetSourceHubspotConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceHubspotConfiguration) GetSourceHubspotConfigurationCredentials { return v.Credentials }).(GetSourceHubspotConfigurationCredentialsOutput)
 }
 
+// must be one of ["hubspot"]
 func (o GetSourceHubspotConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHubspotConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceHubspotConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceHubspotConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -15858,9 +16885,12 @@ func (o GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthenticatio
 }
 
 type GetSourceInsightlyConfiguration struct {
+	// must be one of ["insightly"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
-	Token      string `pulumi:"token"`
+	// The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+	StartDate string `pulumi:"startDate"`
+	// Your Insightly API token.
+	Token string `pulumi:"token"`
 }
 
 type GetSourceInsightlyConfigurationOutput struct{ *pulumi.OutputState }
@@ -15877,24 +16907,32 @@ func (o GetSourceInsightlyConfigurationOutput) ToGetSourceInsightlyConfiguration
 	return o
 }
 
+// must be one of ["insightly"]
 func (o GetSourceInsightlyConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInsightlyConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
 func (o GetSourceInsightlyConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInsightlyConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// Your Insightly API token.
 func (o GetSourceInsightlyConfigurationOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInsightlyConfiguration) string { return v.Token }).(pulumi.StringOutput)
 }
 
 type GetSourceInstagramConfiguration struct {
-	AccessToken  string `pulumi:"accessToken"`
-	ClientId     string `pulumi:"clientId"`
+	// The value of the access token generated with \n\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\n\n permissions. See the \n\ndocs\n\n for more information
+	AccessToken string `pulumi:"accessToken"`
+	// The Client ID for your Oauth application
+	ClientId string `pulumi:"clientId"`
+	// The Client Secret for your Oauth application
 	ClientSecret string `pulumi:"clientSecret"`
-	SourceType   string `pulumi:"sourceType"`
-	StartDate    string `pulumi:"startDate"`
+	// must be one of ["instagram"]
+	SourceType string `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceInstagramConfigurationOutput struct{ *pulumi.OutputState }
@@ -15911,28 +16949,35 @@ func (o GetSourceInstagramConfigurationOutput) ToGetSourceInstagramConfiguration
 	return o
 }
 
+// The value of the access token generated with \n\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\n\n permissions. See the \n\ndocs\n\n for more information
 func (o GetSourceInstagramConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstagramConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// The Client ID for your Oauth application
 func (o GetSourceInstagramConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstagramConfiguration) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// The Client Secret for your Oauth application
 func (o GetSourceInstagramConfigurationOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstagramConfiguration) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
+// must be one of ["instagram"]
 func (o GetSourceInstagramConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstagramConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
 func (o GetSourceInstagramConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstagramConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceInstatusConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Instatus REST API key
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["instatus"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -15950,18 +16995,23 @@ func (o GetSourceInstatusConfigurationOutput) ToGetSourceInstatusConfigurationOu
 	return o
 }
 
+// Instatus REST API key
 func (o GetSourceInstatusConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstatusConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["instatus"]
 func (o GetSourceInstatusConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceInstatusConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceIntercomConfiguration struct {
+	// Access token for making authenticated requests. See the \n\nIntercom docs\n\n for more information.
 	AccessToken string `pulumi:"accessToken"`
-	SourceType  string `pulumi:"sourceType"`
-	StartDate   string `pulumi:"startDate"`
+	// must be one of ["intercom"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceIntercomConfigurationOutput struct{ *pulumi.OutputState }
@@ -15978,21 +17028,27 @@ func (o GetSourceIntercomConfigurationOutput) ToGetSourceIntercomConfigurationOu
 	return o
 }
 
+// Access token for making authenticated requests. See the \n\nIntercom docs\n\n for more information.
 func (o GetSourceIntercomConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIntercomConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["intercom"]
 func (o GetSourceIntercomConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIntercomConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceIntercomConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIntercomConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceIp2whoisConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	Domain     string `pulumi:"domain"`
+	// Your API Key. See \n\nhere\n\n.
+	ApiKey string `pulumi:"apiKey"`
+	// Domain name. See \n\nhere\n\n.
+	Domain string `pulumi:"domain"`
+	// must be one of ["ip2whois"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -16010,22 +17066,28 @@ func (o GetSourceIp2whoisConfigurationOutput) ToGetSourceIp2whoisConfigurationOu
 	return o
 }
 
+// Your API Key. See \n\nhere\n\n.
 func (o GetSourceIp2whoisConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIp2whoisConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Domain name. See \n\nhere\n\n.
 func (o GetSourceIp2whoisConfigurationOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIp2whoisConfiguration) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// must be one of ["ip2whois"]
 func (o GetSourceIp2whoisConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIp2whoisConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceIterableConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Iterable API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["iterable"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceIterableConfigurationOutput struct{ *pulumi.OutputState }
@@ -16042,28 +17104,40 @@ func (o GetSourceIterableConfigurationOutput) ToGetSourceIterableConfigurationOu
 	return o
 }
 
+// Iterable API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
 func (o GetSourceIterableConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIterableConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["iterable"]
 func (o GetSourceIterableConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIterableConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
 func (o GetSourceIterableConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceIterableConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceJiraConfiguration struct {
-	ApiToken                  string   `pulumi:"apiToken"`
-	Domain                    string   `pulumi:"domain"`
-	Email                     string   `pulumi:"email"`
-	EnableExperimentalStreams bool     `pulumi:"enableExperimentalStreams"`
-	ExpandIssueChangelog      bool     `pulumi:"expandIssueChangelog"`
-	Projects                  []string `pulumi:"projects"`
-	RenderFields              bool     `pulumi:"renderFields"`
-	SourceType                string   `pulumi:"sourceType"`
-	StartDate                 string   `pulumi:"startDate"`
+	// Jira API Token. See the \n\ndocs\n\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+	ApiToken string `pulumi:"apiToken"`
+	// The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+	Domain string `pulumi:"domain"`
+	// The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+	Email string `pulumi:"email"`
+	// Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+	EnableExperimentalStreams bool `pulumi:"enableExperimentalStreams"`
+	// Expand the changelog when replicating issues.
+	ExpandIssueChangelog bool `pulumi:"expandIssueChangelog"`
+	// List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+	Projects []string `pulumi:"projects"`
+	// Render issue fields in HTML format in addition to Jira JSON-like format.
+	RenderFields bool `pulumi:"renderFields"`
+	// must be one of ["jira"]
+	SourceType string `pulumi:"sourceType"`
+	// The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \n\ndocumentation\n\n.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceJiraConfigurationOutput struct{ *pulumi.OutputState }
@@ -16080,44 +17154,55 @@ func (o GetSourceJiraConfigurationOutput) ToGetSourceJiraConfigurationOutputWith
 	return o
 }
 
+// Jira API Token. See the \n\ndocs\n\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
 func (o GetSourceJiraConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
 func (o GetSourceJiraConfigurationOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) string { return v.Domain }).(pulumi.StringOutput)
 }
 
+// The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
 func (o GetSourceJiraConfigurationOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
 func (o GetSourceJiraConfigurationOutput) EnableExperimentalStreams() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) bool { return v.EnableExperimentalStreams }).(pulumi.BoolOutput)
 }
 
+// Expand the changelog when replicating issues.
 func (o GetSourceJiraConfigurationOutput) ExpandIssueChangelog() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) bool { return v.ExpandIssueChangelog }).(pulumi.BoolOutput)
 }
 
+// List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
 func (o GetSourceJiraConfigurationOutput) Projects() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) []string { return v.Projects }).(pulumi.StringArrayOutput)
 }
 
+// Render issue fields in HTML format in addition to Jira JSON-like format.
 func (o GetSourceJiraConfigurationOutput) RenderFields() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) bool { return v.RenderFields }).(pulumi.BoolOutput)
 }
 
+// must be one of ["jira"]
 func (o GetSourceJiraConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \n\ndocumentation\n\n.
 func (o GetSourceJiraConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceJiraConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceK6CloudConfiguration struct {
-	ApiToken   string `pulumi:"apiToken"`
+	// Your API Token. See \n\nhere\n\n. The key is case sensitive.
+	ApiToken string `pulumi:"apiToken"`
+	// must be one of ["k6-cloud"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -16135,20 +17220,28 @@ func (o GetSourceK6CloudConfigurationOutput) ToGetSourceK6CloudConfigurationOutp
 	return o
 }
 
+// Your API Token. See \n\nhere\n\n. The key is case sensitive.
 func (o GetSourceK6CloudConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceK6CloudConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["k6-cloud"]
 func (o GetSourceK6CloudConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceK6CloudConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceKlarnaConfiguration struct {
-	Password   string `pulumi:"password"`
-	Playground bool   `pulumi:"playground"`
-	Region     string `pulumi:"region"`
+	// A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+	Password string `pulumi:"password"`
+	// Propertie defining if connector is used against playground or production environment
+	Playground bool `pulumi:"playground"`
+	// must be one of ["eu", "us", "oc"]
+	// Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+	Region string `pulumi:"region"`
+	// must be one of ["klarna"]
 	SourceType string `pulumi:"sourceType"`
-	Username   string `pulumi:"username"`
+	// Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+	Username string `pulumi:"username"`
 }
 
 type GetSourceKlarnaConfigurationOutput struct{ *pulumi.OutputState }
@@ -16165,30 +17258,39 @@ func (o GetSourceKlarnaConfigurationOutput) ToGetSourceKlarnaConfigurationOutput
 	return o
 }
 
+// A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
 func (o GetSourceKlarnaConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlarnaConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// Propertie defining if connector is used against playground or production environment
 func (o GetSourceKlarnaConfigurationOutput) Playground() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceKlarnaConfiguration) bool { return v.Playground }).(pulumi.BoolOutput)
 }
 
+// must be one of ["eu", "us", "oc"]
+// Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
 func (o GetSourceKlarnaConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlarnaConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// must be one of ["klarna"]
 func (o GetSourceKlarnaConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlarnaConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
 func (o GetSourceKlarnaConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlarnaConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetSourceKlaviyoConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Klaviyo API Key. See our \n\ndocs\n\n if you need help finding this key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["klaviyo"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceKlaviyoConfigurationOutput struct{ *pulumi.OutputState }
@@ -16205,22 +17307,28 @@ func (o GetSourceKlaviyoConfigurationOutput) ToGetSourceKlaviyoConfigurationOutp
 	return o
 }
 
+// Klaviyo API Key. See our \n\ndocs\n\n if you need help finding this key.
 func (o GetSourceKlaviyoConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlaviyoConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["klaviyo"]
 func (o GetSourceKlaviyoConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlaviyoConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceKlaviyoConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKlaviyoConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceKustomerSingerConfiguration struct {
-	ApiToken   string `pulumi:"apiToken"`
+	// Kustomer API Token. See the \n\ndocs\n\n on how to obtain this
+	ApiToken string `pulumi:"apiToken"`
+	// must be one of ["kustomer-singer"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// The date from which you'd like to replicate the data
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceKustomerSingerConfigurationOutput struct{ *pulumi.OutputState }
@@ -16237,25 +17345,34 @@ func (o GetSourceKustomerSingerConfigurationOutput) ToGetSourceKustomerSingerCon
 	return o
 }
 
+// Kustomer API Token. See the \n\ndocs\n\n on how to obtain this
 func (o GetSourceKustomerSingerConfigurationOutput) ApiToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKustomerSingerConfiguration) string { return v.ApiToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["kustomer-singer"]
 func (o GetSourceKustomerSingerConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKustomerSingerConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date from which you'd like to replicate the data
 func (o GetSourceKustomerSingerConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKustomerSingerConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceKyveConfiguration struct {
-	MaxPages   int    `pulumi:"maxPages"`
-	PageSize   int    `pulumi:"pageSize"`
-	PoolIds    string `pulumi:"poolIds"`
+	// The maximum amount of pages to go trough. Set to 'null' for all pages.
+	MaxPages int `pulumi:"maxPages"`
+	// The pagesize for pagination, smaller numbers are used in integration tests.
+	PageSize int `pulumi:"pageSize"`
+	// The IDs of the KYVE storage pool you want to archive. (Comma separated)
+	PoolIds string `pulumi:"poolIds"`
+	// must be one of ["kyve"]
 	SourceType string `pulumi:"sourceType"`
-	StartIds   string `pulumi:"startIds"`
-	UrlBase    string `pulumi:"urlBase"`
+	// The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+	StartIds string `pulumi:"startIds"`
+	// URL to the KYVE Chain API.
+	UrlBase string `pulumi:"urlBase"`
 }
 
 type GetSourceKyveConfigurationOutput struct{ *pulumi.OutputState }
@@ -16272,33 +17389,41 @@ func (o GetSourceKyveConfigurationOutput) ToGetSourceKyveConfigurationOutputWith
 	return o
 }
 
+// The maximum amount of pages to go trough. Set to 'null' for all pages.
 func (o GetSourceKyveConfigurationOutput) MaxPages() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) int { return v.MaxPages }).(pulumi.IntOutput)
 }
 
+// The pagesize for pagination, smaller numbers are used in integration tests.
 func (o GetSourceKyveConfigurationOutput) PageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) int { return v.PageSize }).(pulumi.IntOutput)
 }
 
+// The IDs of the KYVE storage pool you want to archive. (Comma separated)
 func (o GetSourceKyveConfigurationOutput) PoolIds() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) string { return v.PoolIds }).(pulumi.StringOutput)
 }
 
+// must be one of ["kyve"]
 func (o GetSourceKyveConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
 func (o GetSourceKyveConfigurationOutput) StartIds() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) string { return v.StartIds }).(pulumi.StringOutput)
 }
 
+// URL to the KYVE Chain API.
 func (o GetSourceKyveConfigurationOutput) UrlBase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceKyveConfiguration) string { return v.UrlBase }).(pulumi.StringOutput)
 }
 
 type GetSourceLaunchdarklyConfiguration struct {
+	// Your Access token. See \n\nhere\n\n.
 	AccessToken string `pulumi:"accessToken"`
-	SourceType  string `pulumi:"sourceType"`
+	// must be one of ["launchdarkly"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceLaunchdarklyConfigurationOutput struct{ *pulumi.OutputState }
@@ -16315,16 +17440,20 @@ func (o GetSourceLaunchdarklyConfigurationOutput) ToGetSourceLaunchdarklyConfigu
 	return o
 }
 
+// Your Access token. See \n\nhere\n\n.
 func (o GetSourceLaunchdarklyConfigurationOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLaunchdarklyConfiguration) string { return v.AccessToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["launchdarkly"]
 func (o GetSourceLaunchdarklyConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLaunchdarklyConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceLemlistConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
+	// Lemlist API key.
+	ApiKey string `pulumi:"apiKey"`
+	// must be one of ["lemlist"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -16342,19 +17471,26 @@ func (o GetSourceLemlistConfigurationOutput) ToGetSourceLemlistConfigurationOutp
 	return o
 }
 
+// Lemlist API key.
 func (o GetSourceLemlistConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLemlistConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["lemlist"]
 func (o GetSourceLemlistConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLemlistConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
 type GetSourceLeverHiringConfiguration struct {
+	// Choose how to authenticate to Lever Hiring.
 	Credentials GetSourceLeverHiringConfigurationCredentials `pulumi:"credentials"`
-	Environment string                                       `pulumi:"environment"`
-	SourceType  string                                       `pulumi:"sourceType"`
-	StartDate   string                                       `pulumi:"startDate"`
+	// must be one of ["Production", "Sandbox"]
+	// The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+	Environment string `pulumi:"environment"`
+	// must be one of ["lever-hiring"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceLeverHiringConfigurationOutput struct{ *pulumi.OutputState }
@@ -16371,20 +17507,25 @@ func (o GetSourceLeverHiringConfigurationOutput) ToGetSourceLeverHiringConfigura
 	return o
 }
 
+// Choose how to authenticate to Lever Hiring.
 func (o GetSourceLeverHiringConfigurationOutput) Credentials() GetSourceLeverHiringConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceLeverHiringConfiguration) GetSourceLeverHiringConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceLeverHiringConfigurationCredentialsOutput)
 }
 
+// must be one of ["Production", "Sandbox"]
+// The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
 func (o GetSourceLeverHiringConfigurationOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLeverHiringConfiguration) string { return v.Environment }).(pulumi.StringOutput)
 }
 
+// must be one of ["lever-hiring"]
 func (o GetSourceLeverHiringConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLeverHiringConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
 func (o GetSourceLeverHiringConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLeverHiringConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -16587,11 +17728,14 @@ func (o GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdateAuthe
 }
 
 type GetSourceLinkedinAdsConfiguration struct {
+	// Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \n\nLinkedIn Ads docs\n\n for more info.
 	AccountIds         []int                                                `pulumi:"accountIds"`
 	AdAnalyticsReports []GetSourceLinkedinAdsConfigurationAdAnalyticsReport `pulumi:"adAnalyticsReports"`
 	Credentials        GetSourceLinkedinAdsConfigurationCredentials         `pulumi:"credentials"`
-	SourceType         string                                               `pulumi:"sourceType"`
-	StartDate          string                                               `pulumi:"startDate"`
+	// must be one of ["linkedin-ads"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceLinkedinAdsConfigurationOutput struct{ *pulumi.OutputState }
@@ -16608,6 +17752,7 @@ func (o GetSourceLinkedinAdsConfigurationOutput) ToGetSourceLinkedinAdsConfigura
 	return o
 }
 
+// Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \n\nLinkedIn Ads docs\n\n for more info.
 func (o GetSourceLinkedinAdsConfigurationOutput) AccountIds() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v GetSourceLinkedinAdsConfiguration) []int { return v.AccountIds }).(pulumi.IntArrayOutput)
 }
@@ -16624,10 +17769,12 @@ func (o GetSourceLinkedinAdsConfigurationOutput) Credentials() GetSourceLinkedin
 	}).(GetSourceLinkedinAdsConfigurationCredentialsOutput)
 }
 
+// must be one of ["linkedin-ads"]
 func (o GetSourceLinkedinAdsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinkedinAdsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date in the format 2020-09-17. Any data before this date will not be replicated.
 func (o GetSourceLinkedinAdsConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinkedinAdsConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -16883,8 +18030,10 @@ func (o GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdateAuthe
 
 type GetSourceLinkedinPagesConfiguration struct {
 	Credentials GetSourceLinkedinPagesConfigurationCredentials `pulumi:"credentials"`
-	OrgId       string                                         `pulumi:"orgId"`
-	SourceType  string                                         `pulumi:"sourceType"`
+	// Specify the Organization ID
+	OrgId string `pulumi:"orgId"`
+	// must be one of ["linkedin-pages"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceLinkedinPagesConfigurationOutput struct{ *pulumi.OutputState }
@@ -16907,10 +18056,12 @@ func (o GetSourceLinkedinPagesConfigurationOutput) Credentials() GetSourceLinked
 	}).(GetSourceLinkedinPagesConfigurationCredentialsOutput)
 }
 
+// Specify the Organization ID
 func (o GetSourceLinkedinPagesConfigurationOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinkedinPagesConfiguration) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
+// must be one of ["linkedin-pages"]
 func (o GetSourceLinkedinPagesConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinkedinPagesConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -17113,11 +18264,15 @@ func (o GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesUpdateA
 }
 
 type GetSourceLinnworksConfiguration struct {
-	ApplicationId     string `pulumi:"applicationId"`
+	// Linnworks Application ID
+	ApplicationId string `pulumi:"applicationId"`
+	// Linnworks Application Secret
 	ApplicationSecret string `pulumi:"applicationSecret"`
-	SourceType        string `pulumi:"sourceType"`
-	StartDate         string `pulumi:"startDate"`
-	Token             string `pulumi:"token"`
+	// must be one of ["linnworks"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
+	Token     string `pulumi:"token"`
 }
 
 type GetSourceLinnworksConfigurationOutput struct{ *pulumi.OutputState }
@@ -17134,18 +18289,22 @@ func (o GetSourceLinnworksConfigurationOutput) ToGetSourceLinnworksConfiguration
 	return o
 }
 
+// Linnworks Application ID
 func (o GetSourceLinnworksConfigurationOutput) ApplicationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinnworksConfiguration) string { return v.ApplicationId }).(pulumi.StringOutput)
 }
 
+// Linnworks Application Secret
 func (o GetSourceLinnworksConfigurationOutput) ApplicationSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinnworksConfiguration) string { return v.ApplicationSecret }).(pulumi.StringOutput)
 }
 
+// must be one of ["linnworks"]
 func (o GetSourceLinnworksConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinnworksConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceLinnworksConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLinnworksConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -17155,8 +18314,11 @@ func (o GetSourceLinnworksConfigurationOutput) Token() pulumi.StringOutput {
 }
 
 type GetSourceLokaliseConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	ProjectId  string `pulumi:"projectId"`
+	// Lokalise API Key with read-access. Available at Profile settings > API tokens. See \n\nhere\n\n.
+	ApiKey string `pulumi:"apiKey"`
+	// Lokalise project ID. Available at Project Settings > General.
+	ProjectId string `pulumi:"projectId"`
+	// must be one of ["lokalise"]
 	SourceType string `pulumi:"sourceType"`
 }
 
@@ -17174,14 +18336,17 @@ func (o GetSourceLokaliseConfigurationOutput) ToGetSourceLokaliseConfigurationOu
 	return o
 }
 
+// Lokalise API Key with read-access. Available at Profile settings > API tokens. See \n\nhere\n\n.
 func (o GetSourceLokaliseConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLokaliseConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// Lokalise project ID. Available at Project Settings > General.
 func (o GetSourceLokaliseConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLokaliseConfiguration) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// must be one of ["lokalise"]
 func (o GetSourceLokaliseConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceLokaliseConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -17189,7 +18354,8 @@ func (o GetSourceLokaliseConfigurationOutput) SourceType() pulumi.StringOutput {
 type GetSourceMailchimpConfiguration struct {
 	CampaignId  string                                     `pulumi:"campaignId"`
 	Credentials GetSourceMailchimpConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                     `pulumi:"sourceType"`
+	// must be one of ["mailchimp"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceMailchimpConfigurationOutput struct{ *pulumi.OutputState }
@@ -17216,6 +18382,7 @@ func (o GetSourceMailchimpConfigurationOutput) Credentials() GetSourceMailchimpC
 	}).(GetSourceMailchimpConfigurationCredentialsOutput)
 }
 
+// must be one of ["mailchimp"]
 func (o GetSourceMailchimpConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailchimpConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -17418,10 +18585,14 @@ func (o GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAuthentic
 }
 
 type GetSourceMailgunConfiguration struct {
+	// Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
 	DomainRegion string `pulumi:"domainRegion"`
-	PrivateKey   string `pulumi:"privateKey"`
-	SourceType   string `pulumi:"sourceType"`
-	StartDate    string `pulumi:"startDate"`
+	// Primary account API key to access your Mailgun data.
+	PrivateKey string `pulumi:"privateKey"`
+	// must be one of ["mailgun"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceMailgunConfigurationOutput struct{ *pulumi.OutputState }
@@ -17438,27 +18609,35 @@ func (o GetSourceMailgunConfigurationOutput) ToGetSourceMailgunConfigurationOutp
 	return o
 }
 
+// Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
 func (o GetSourceMailgunConfigurationOutput) DomainRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailgunConfiguration) string { return v.DomainRegion }).(pulumi.StringOutput)
 }
 
+// Primary account API key to access your Mailgun data.
 func (o GetSourceMailgunConfigurationOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailgunConfiguration) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+// must be one of ["mailgun"]
 func (o GetSourceMailgunConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailgunConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
 func (o GetSourceMailgunConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailgunConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceMailjetSmsConfiguration struct {
-	EndDate    int    `pulumi:"endDate"`
+	// Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+	EndDate int `pulumi:"endDate"`
+	// must be one of ["mailjet-sms"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  int    `pulumi:"startDate"`
-	Token      string `pulumi:"token"`
+	// Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+	StartDate int `pulumi:"startDate"`
+	// Your access token. See \n\nhere\n\n.
+	Token string `pulumi:"token"`
 }
 
 type GetSourceMailjetSmsConfigurationOutput struct{ *pulumi.OutputState }
@@ -17475,28 +18654,37 @@ func (o GetSourceMailjetSmsConfigurationOutput) ToGetSourceMailjetSmsConfigurati
 	return o
 }
 
+// Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
 func (o GetSourceMailjetSmsConfigurationOutput) EndDate() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMailjetSmsConfiguration) int { return v.EndDate }).(pulumi.IntOutput)
 }
 
+// must be one of ["mailjet-sms"]
 func (o GetSourceMailjetSmsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailjetSmsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
 func (o GetSourceMailjetSmsConfigurationOutput) StartDate() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMailjetSmsConfiguration) int { return v.StartDate }).(pulumi.IntOutput)
 }
 
+// Your access token. See \n\nhere\n\n.
 func (o GetSourceMailjetSmsConfigurationOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMailjetSmsConfiguration) string { return v.Token }).(pulumi.StringOutput)
 }
 
 type GetSourceMarketoConfiguration struct {
-	ClientId     string `pulumi:"clientId"`
+	// The Client ID of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+	ClientId string `pulumi:"clientId"`
+	// The Client Secret of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
 	ClientSecret string `pulumi:"clientSecret"`
-	DomainUrl    string `pulumi:"domainUrl"`
-	SourceType   string `pulumi:"sourceType"`
-	StartDate    string `pulumi:"startDate"`
+	// Your Marketo Base URL. See \n\n the docs \n\n for info on how to obtain this.
+	DomainUrl string `pulumi:"domainUrl"`
+	// must be one of ["marketo"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceMarketoConfigurationOutput struct{ *pulumi.OutputState }
@@ -17513,32 +18701,45 @@ func (o GetSourceMarketoConfigurationOutput) ToGetSourceMarketoConfigurationOutp
 	return o
 }
 
+// The Client ID of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
 func (o GetSourceMarketoConfigurationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMarketoConfiguration) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// The Client Secret of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
 func (o GetSourceMarketoConfigurationOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMarketoConfiguration) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
+// Your Marketo Base URL. See \n\n the docs \n\n for info on how to obtain this.
 func (o GetSourceMarketoConfigurationOutput) DomainUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMarketoConfiguration) string { return v.DomainUrl }).(pulumi.StringOutput)
 }
 
+// must be one of ["marketo"]
 func (o GetSourceMarketoConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMarketoConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 func (o GetSourceMarketoConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMarketoConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceMetabaseConfiguration struct {
+	// URL to your metabase instance API
 	InstanceApiUrl string `pulumi:"instanceApiUrl"`
 	Password       string `pulumi:"password"`
-	SessionToken   string `pulumi:"sessionToken"`
-	SourceType     string `pulumi:"sourceType"`
-	Username       string `pulumi:"username"`
+	// To generate your session token, you need to run the following command: `curl -X POST \
+	// -H "Content-Type: application/json" \
+	// -d '{"username": "person@metabase.com", "password": "fakepassword"}' \
+	// http://localhost:3000/api/session
+	// ` Then copy the value of the `id` field returned by a successful call to that API.
+	// Note that by default, sessions are good for 14 days and needs to be regenerated.
+	SessionToken string `pulumi:"sessionToken"`
+	// must be one of ["metabase"]
+	SourceType string `pulumi:"sourceType"`
+	Username   string `pulumi:"username"`
 }
 
 type GetSourceMetabaseConfigurationOutput struct{ *pulumi.OutputState }
@@ -17555,6 +18756,7 @@ func (o GetSourceMetabaseConfigurationOutput) ToGetSourceMetabaseConfigurationOu
 	return o
 }
 
+// URL to your metabase instance API
 func (o GetSourceMetabaseConfigurationOutput) InstanceApiUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMetabaseConfiguration) string { return v.InstanceApiUrl }).(pulumi.StringOutput)
 }
@@ -17563,10 +18765,17 @@ func (o GetSourceMetabaseConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMetabaseConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// To generate your session token, you need to run the following command: `curl -X POST \
+// -H "Content-Type: application/json" \
+// -d '{"username": "person@metabase.com", "password": "fakepassword"}' \
+// http://localhost:3000/api/session
+// ` Then copy the value of the `id` field returned by a successful call to that API.
+// Note that by default, sessions are good for 14 days and needs to be regenerated.
 func (o GetSourceMetabaseConfigurationOutput) SessionToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMetabaseConfiguration) string { return v.SessionToken }).(pulumi.StringOutput)
 }
 
+// must be one of ["metabase"]
 func (o GetSourceMetabaseConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMetabaseConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -17576,9 +18785,12 @@ func (o GetSourceMetabaseConfigurationOutput) Username() pulumi.StringOutput {
 }
 
 type GetSourceMicrosoftTeamsConfiguration struct {
+	// Choose how to authenticate to Microsoft
 	Credentials GetSourceMicrosoftTeamsConfigurationCredentials `pulumi:"credentials"`
-	Period      string                                          `pulumi:"period"`
-	SourceType  string                                          `pulumi:"sourceType"`
+	// Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+	Period string `pulumi:"period"`
+	// must be one of ["microsoft-teams"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceMicrosoftTeamsConfigurationOutput struct{ *pulumi.OutputState }
@@ -17595,16 +18807,19 @@ func (o GetSourceMicrosoftTeamsConfigurationOutput) ToGetSourceMicrosoftTeamsCon
 	return o
 }
 
+// Choose how to authenticate to Microsoft
 func (o GetSourceMicrosoftTeamsConfigurationOutput) Credentials() GetSourceMicrosoftTeamsConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceMicrosoftTeamsConfiguration) GetSourceMicrosoftTeamsConfigurationCredentials {
 		return v.Credentials
 	}).(GetSourceMicrosoftTeamsConfigurationCredentialsOutput)
 }
 
+// Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
 func (o GetSourceMicrosoftTeamsConfigurationOutput) Period() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMicrosoftTeamsConfiguration) string { return v.Period }).(pulumi.StringOutput)
 }
 
+// must be one of ["microsoft-teams"]
 func (o GetSourceMicrosoftTeamsConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMicrosoftTeamsConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -17849,16 +19064,27 @@ func (o GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeamsUpdat
 }
 
 type GetSourceMixpanelConfiguration struct {
-	AttributionWindow         int                                       `pulumi:"attributionWindow"`
-	Credentials               GetSourceMixpanelConfigurationCredentials `pulumi:"credentials"`
-	DateWindowSize            int                                       `pulumi:"dateWindowSize"`
-	EndDate                   string                                    `pulumi:"endDate"`
-	ProjectId                 int                                       `pulumi:"projectId"`
-	ProjectTimezone           string                                    `pulumi:"projectTimezone"`
-	Region                    string                                    `pulumi:"region"`
-	SelectPropertiesByDefault bool                                      `pulumi:"selectPropertiesByDefault"`
-	SourceType                string                                    `pulumi:"sourceType"`
-	StartDate                 string                                    `pulumi:"startDate"`
+	// A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+	AttributionWindow int `pulumi:"attributionWindow"`
+	// Choose how to authenticate to Mixpanel
+	Credentials GetSourceMixpanelConfigurationCredentials `pulumi:"credentials"`
+	// Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+	DateWindowSize int `pulumi:"dateWindowSize"`
+	// The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+	EndDate string `pulumi:"endDate"`
+	// Your project ID number. See the \n\ndocs\n\n for more information on how to obtain this.
+	ProjectId int `pulumi:"projectId"`
+	// Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \n\nMixpanel console\n\n.
+	ProjectTimezone string `pulumi:"projectTimezone"`
+	// must be one of ["US", "EU"]
+	// The region of mixpanel domain instance either US or EU.
+	Region string `pulumi:"region"`
+	// Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+	SelectPropertiesByDefault bool `pulumi:"selectPropertiesByDefault"`
+	// must be one of ["mixpanel"]
+	SourceType string `pulumi:"sourceType"`
+	// The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceMixpanelConfigurationOutput struct{ *pulumi.OutputState }
@@ -17875,42 +19101,53 @@ func (o GetSourceMixpanelConfigurationOutput) ToGetSourceMixpanelConfigurationOu
 	return o
 }
 
+// A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
 func (o GetSourceMixpanelConfigurationOutput) AttributionWindow() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) int { return v.AttributionWindow }).(pulumi.IntOutput)
 }
 
+// Choose how to authenticate to Mixpanel
 func (o GetSourceMixpanelConfigurationOutput) Credentials() GetSourceMixpanelConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) GetSourceMixpanelConfigurationCredentials { return v.Credentials }).(GetSourceMixpanelConfigurationCredentialsOutput)
 }
 
+// Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
 func (o GetSourceMixpanelConfigurationOutput) DateWindowSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) int { return v.DateWindowSize }).(pulumi.IntOutput)
 }
 
+// The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
 func (o GetSourceMixpanelConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// Your project ID number. See the \n\ndocs\n\n for more information on how to obtain this.
 func (o GetSourceMixpanelConfigurationOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) int { return v.ProjectId }).(pulumi.IntOutput)
 }
 
+// Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \n\nMixpanel console\n\n.
 func (o GetSourceMixpanelConfigurationOutput) ProjectTimezone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) string { return v.ProjectTimezone }).(pulumi.StringOutput)
 }
 
+// must be one of ["US", "EU"]
+// The region of mixpanel domain instance either US or EU.
 func (o GetSourceMixpanelConfigurationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
 func (o GetSourceMixpanelConfigurationOutput) SelectPropertiesByDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) bool { return v.SelectPropertiesByDefault }).(pulumi.BoolOutput)
 }
 
+// must be one of ["mixpanel"]
 func (o GetSourceMixpanelConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
 func (o GetSourceMixpanelConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMixpanelConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -18100,7 +19337,8 @@ func (o GetSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthenticat
 
 type GetSourceMondayConfiguration struct {
 	Credentials GetSourceMondayConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                  `pulumi:"sourceType"`
+	// must be one of ["monday"]
+	SourceType string `pulumi:"sourceType"`
 }
 
 type GetSourceMondayConfigurationOutput struct{ *pulumi.OutputState }
@@ -18121,6 +19359,7 @@ func (o GetSourceMondayConfigurationOutput) Credentials() GetSourceMondayConfigu
 	return o.ApplyT(func(v GetSourceMondayConfiguration) GetSourceMondayConfigurationCredentials { return v.Credentials }).(GetSourceMondayConfigurationCredentialsOutput)
 }
 
+// must be one of ["monday"]
 func (o GetSourceMondayConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMondayConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
@@ -18337,12 +19576,18 @@ func (o GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthorizationMe
 }
 
 type GetSourceMongodbConfiguration struct {
-	AuthSource   string                                    `pulumi:"authSource"`
-	Database     string                                    `pulumi:"database"`
+	// The authentication source where the user information is stored.
+	AuthSource string `pulumi:"authSource"`
+	// The database you want to replicate.
+	Database string `pulumi:"database"`
+	// The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
 	InstanceType GetSourceMongodbConfigurationInstanceType `pulumi:"instanceType"`
-	Password     string                                    `pulumi:"password"`
-	SourceType   string                                    `pulumi:"sourceType"`
-	User         string                                    `pulumi:"user"`
+	// The password associated with this username.
+	Password string `pulumi:"password"`
+	// must be one of ["mongodb"]
+	SourceType string `pulumi:"sourceType"`
+	// The username which is used to access the database.
+	User string `pulumi:"user"`
 }
 
 type GetSourceMongodbConfigurationOutput struct{ *pulumi.OutputState }
@@ -18359,26 +19604,32 @@ func (o GetSourceMongodbConfigurationOutput) ToGetSourceMongodbConfigurationOutp
 	return o
 }
 
+// The authentication source where the user information is stored.
 func (o GetSourceMongodbConfigurationOutput) AuthSource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) string { return v.AuthSource }).(pulumi.StringOutput)
 }
 
+// The database you want to replicate.
 func (o GetSourceMongodbConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
 func (o GetSourceMongodbConfigurationOutput) InstanceType() GetSourceMongodbConfigurationInstanceTypeOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) GetSourceMongodbConfigurationInstanceType { return v.InstanceType }).(GetSourceMongodbConfigurationInstanceTypeOutput)
 }
 
+// The password associated with this username.
 func (o GetSourceMongodbConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// must be one of ["mongodb"]
 func (o GetSourceMongodbConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The username which is used to access the database.
 func (o GetSourceMongodbConfigurationOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbConfiguration) string { return v.User }).(pulumi.StringOutput)
 }
@@ -18671,12 +19922,18 @@ func (o GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoDbInsta
 }
 
 type GetSourceMongodbInternalPocConfiguration struct {
-	AuthSource       string `pulumi:"authSource"`
+	// The authentication source where the user information is stored.
+	AuthSource string `pulumi:"authSource"`
+	// The connection string of the database that you want to replicate..
 	ConnectionString string `pulumi:"connectionString"`
-	Password         string `pulumi:"password"`
-	ReplicaSet       string `pulumi:"replicaSet"`
-	SourceType       string `pulumi:"sourceType"`
-	User             string `pulumi:"user"`
+	// The password associated with this username.
+	Password string `pulumi:"password"`
+	// The name of the replica set to be replicated.
+	ReplicaSet string `pulumi:"replicaSet"`
+	// must be one of ["mongodb-internal-poc"]
+	SourceType string `pulumi:"sourceType"`
+	// The username which is used to access the database.
+	User string `pulumi:"user"`
 }
 
 type GetSourceMongodbInternalPocConfigurationOutput struct{ *pulumi.OutputState }
@@ -18693,42 +19950,59 @@ func (o GetSourceMongodbInternalPocConfigurationOutput) ToGetSourceMongodbIntern
 	return o
 }
 
+// The authentication source where the user information is stored.
 func (o GetSourceMongodbInternalPocConfigurationOutput) AuthSource() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.AuthSource }).(pulumi.StringOutput)
 }
 
+// The connection string of the database that you want to replicate..
 func (o GetSourceMongodbInternalPocConfigurationOutput) ConnectionString() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.ConnectionString }).(pulumi.StringOutput)
 }
 
+// The password associated with this username.
 func (o GetSourceMongodbInternalPocConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The name of the replica set to be replicated.
 func (o GetSourceMongodbInternalPocConfigurationOutput) ReplicaSet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.ReplicaSet }).(pulumi.StringOutput)
 }
 
+// must be one of ["mongodb-internal-poc"]
 func (o GetSourceMongodbInternalPocConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The username which is used to access the database.
 func (o GetSourceMongodbInternalPocConfigurationOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMongodbInternalPocConfiguration) string { return v.User }).(pulumi.StringOutput)
 }
 
 type GetSourceMssqlConfiguration struct {
-	Database          string                                       `pulumi:"database"`
-	Host              string                                       `pulumi:"host"`
-	JdbcUrlParams     string                                       `pulumi:"jdbcUrlParams"`
-	Password          string                                       `pulumi:"password"`
-	Port              int                                          `pulumi:"port"`
+	// The name of the database.
+	Database string `pulumi:"database"`
+	// The hostname of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// The password associated with the username.
+	Password string `pulumi:"password"`
+	// The port of the database.
+	Port int `pulumi:"port"`
+	// The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
 	ReplicationMethod GetSourceMssqlConfigurationReplicationMethod `pulumi:"replicationMethod"`
-	Schemas           []string                                     `pulumi:"schemas"`
-	SourceType        string                                       `pulumi:"sourceType"`
-	SslMethod         GetSourceMssqlConfigurationSslMethod         `pulumi:"sslMethod"`
-	TunnelMethod      GetSourceMssqlConfigurationTunnelMethod      `pulumi:"tunnelMethod"`
-	Username          string                                       `pulumi:"username"`
+	// The list of schemas to sync from. Defaults to user. Case sensitive.
+	Schemas []string `pulumi:"schemas"`
+	// must be one of ["mssql"]
+	SourceType string `pulumi:"sourceType"`
+	// The encryption method which is used when communicating with the database.
+	SslMethod GetSourceMssqlConfigurationSslMethod `pulumi:"sslMethod"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetSourceMssqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// The username which is used to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceMssqlConfigurationOutput struct{ *pulumi.OutputState }
@@ -18745,48 +20019,59 @@ func (o GetSourceMssqlConfigurationOutput) ToGetSourceMssqlConfigurationOutputWi
 	return o
 }
 
+// The name of the database.
 func (o GetSourceMssqlConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// The hostname of the database.
 func (o GetSourceMssqlConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
 func (o GetSourceMssqlConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// The password associated with the username.
 func (o GetSourceMssqlConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The port of the database.
 func (o GetSourceMssqlConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
 func (o GetSourceMssqlConfigurationOutput) ReplicationMethod() GetSourceMssqlConfigurationReplicationMethodOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) GetSourceMssqlConfigurationReplicationMethod {
 		return v.ReplicationMethod
 	}).(GetSourceMssqlConfigurationReplicationMethodOutput)
 }
 
+// The list of schemas to sync from. Defaults to user. Case sensitive.
 func (o GetSourceMssqlConfigurationOutput) Schemas() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) []string { return v.Schemas }).(pulumi.StringArrayOutput)
 }
 
+// must be one of ["mssql"]
 func (o GetSourceMssqlConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// The encryption method which is used when communicating with the database.
 func (o GetSourceMssqlConfigurationOutput) SslMethod() GetSourceMssqlConfigurationSslMethodOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) GetSourceMssqlConfigurationSslMethod { return v.SslMethod }).(GetSourceMssqlConfigurationSslMethodOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetSourceMssqlConfigurationOutput) TunnelMethod() GetSourceMssqlConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) GetSourceMssqlConfigurationTunnelMethod { return v.TunnelMethod }).(GetSourceMssqlConfigurationTunnelMethodOutput)
 }
 
+// The username which is used to access the database.
 func (o GetSourceMssqlConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMssqlConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -19445,11 +20730,16 @@ func (o GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelMethodS
 }
 
 type GetSourceMyHoursConfiguration struct {
-	Email         string `pulumi:"email"`
-	LogsBatchSize int    `pulumi:"logsBatchSize"`
-	Password      string `pulumi:"password"`
-	SourceType    string `pulumi:"sourceType"`
-	StartDate     string `pulumi:"startDate"`
+	// Your My Hours username
+	Email string `pulumi:"email"`
+	// Pagination size used for retrieving logs in days
+	LogsBatchSize int `pulumi:"logsBatchSize"`
+	// The password associated to the username
+	Password string `pulumi:"password"`
+	// must be one of ["my-hours"]
+	SourceType string `pulumi:"sourceType"`
+	// Start date for collecting time logs
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceMyHoursConfigurationOutput struct{ *pulumi.OutputState }
@@ -19466,37 +20756,52 @@ func (o GetSourceMyHoursConfigurationOutput) ToGetSourceMyHoursConfigurationOutp
 	return o
 }
 
+// Your My Hours username
 func (o GetSourceMyHoursConfigurationOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMyHoursConfiguration) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// Pagination size used for retrieving logs in days
 func (o GetSourceMyHoursConfigurationOutput) LogsBatchSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMyHoursConfiguration) int { return v.LogsBatchSize }).(pulumi.IntOutput)
 }
 
+// The password associated to the username
 func (o GetSourceMyHoursConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMyHoursConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// must be one of ["my-hours"]
 func (o GetSourceMyHoursConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMyHoursConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Start date for collecting time logs
 func (o GetSourceMyHoursConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMyHoursConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
 type GetSourceMysqlConfiguration struct {
-	Database          string                                       `pulumi:"database"`
-	Host              string                                       `pulumi:"host"`
-	JdbcUrlParams     string                                       `pulumi:"jdbcUrlParams"`
-	Password          string                                       `pulumi:"password"`
-	Port              int                                          `pulumi:"port"`
+	// The database name.
+	Database string `pulumi:"database"`
+	// The host name of the database.
+	Host string `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+	JdbcUrlParams string `pulumi:"jdbcUrlParams"`
+	// The password associated with the username.
+	Password string `pulumi:"password"`
+	// The port to connect to.
+	Port int `pulumi:"port"`
+	// Configures how data is extracted from the database.
 	ReplicationMethod GetSourceMysqlConfigurationReplicationMethod `pulumi:"replicationMethod"`
-	SourceType        string                                       `pulumi:"sourceType"`
-	SslMode           GetSourceMysqlConfigurationSslMode           `pulumi:"sslMode"`
-	TunnelMethod      GetSourceMysqlConfigurationTunnelMethod      `pulumi:"tunnelMethod"`
-	Username          string                                       `pulumi:"username"`
+	// must be one of ["mysql"]
+	SourceType string `pulumi:"sourceType"`
+	// SSL connection modes. Read more \n\n in the docs\n\n.
+	SslMode GetSourceMysqlConfigurationSslMode `pulumi:"sslMode"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetSourceMysqlConfigurationTunnelMethod `pulumi:"tunnelMethod"`
+	// The username which is used to access the database.
+	Username string `pulumi:"username"`
 }
 
 type GetSourceMysqlConfigurationOutput struct{ *pulumi.OutputState }
@@ -19513,44 +20818,54 @@ func (o GetSourceMysqlConfigurationOutput) ToGetSourceMysqlConfigurationOutputWi
 	return o
 }
 
+// The database name.
 func (o GetSourceMysqlConfigurationOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// The host name of the database.
 func (o GetSourceMysqlConfigurationOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
 func (o GetSourceMysqlConfigurationOutput) JdbcUrlParams() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.JdbcUrlParams }).(pulumi.StringOutput)
 }
 
+// The password associated with the username.
 func (o GetSourceMysqlConfigurationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The port to connect to.
 func (o GetSourceMysqlConfigurationOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Configures how data is extracted from the database.
 func (o GetSourceMysqlConfigurationOutput) ReplicationMethod() GetSourceMysqlConfigurationReplicationMethodOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) GetSourceMysqlConfigurationReplicationMethod {
 		return v.ReplicationMethod
 	}).(GetSourceMysqlConfigurationReplicationMethodOutput)
 }
 
+// must be one of ["mysql"]
 func (o GetSourceMysqlConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// SSL connection modes. Read more \n\n in the docs\n\n.
 func (o GetSourceMysqlConfigurationOutput) SslMode() GetSourceMysqlConfigurationSslModeOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) GetSourceMysqlConfigurationSslMode { return v.SslMode }).(GetSourceMysqlConfigurationSslModeOutput)
 }
 
+// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
 func (o GetSourceMysqlConfigurationOutput) TunnelMethod() GetSourceMysqlConfigurationTunnelMethodOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) GetSourceMysqlConfigurationTunnelMethod { return v.TunnelMethod }).(GetSourceMysqlConfigurationTunnelMethodOutput)
 }
 
+// The username which is used to access the database.
 func (o GetSourceMysqlConfigurationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceMysqlConfiguration) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -20395,15 +21710,24 @@ func (o GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelMethodS
 }
 
 type GetSourceNetsuiteConfiguration struct {
-	ConsumerKey    string   `pulumi:"consumerKey"`
-	ConsumerSecret string   `pulumi:"consumerSecret"`
-	ObjectTypes    []string `pulumi:"objectTypes"`
-	Realm          string   `pulumi:"realm"`
-	SourceType     string   `pulumi:"sourceType"`
-	StartDatetime  string   `pulumi:"startDatetime"`
-	TokenKey       string   `pulumi:"tokenKey"`
-	TokenSecret    string   `pulumi:"tokenSecret"`
-	WindowInDays   int      `pulumi:"windowInDays"`
+	// Consumer key associated with your integration
+	ConsumerKey string `pulumi:"consumerKey"`
+	// Consumer secret associated with your integration
+	ConsumerSecret string `pulumi:"consumerSecret"`
+	// The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+	ObjectTypes []string `pulumi:"objectTypes"`
+	// Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+	Realm string `pulumi:"realm"`
+	// must be one of ["netsuite"]
+	SourceType string `pulumi:"sourceType"`
+	// Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+	StartDatetime string `pulumi:"startDatetime"`
+	// Access token key
+	TokenKey string `pulumi:"tokenKey"`
+	// Access token secret
+	TokenSecret string `pulumi:"tokenSecret"`
+	// The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+	WindowInDays int `pulumi:"windowInDays"`
 }
 
 type GetSourceNetsuiteConfigurationOutput struct{ *pulumi.OutputState }
@@ -20420,46 +21744,58 @@ func (o GetSourceNetsuiteConfigurationOutput) ToGetSourceNetsuiteConfigurationOu
 	return o
 }
 
+// Consumer key associated with your integration
 func (o GetSourceNetsuiteConfigurationOutput) ConsumerKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.ConsumerKey }).(pulumi.StringOutput)
 }
 
+// Consumer secret associated with your integration
 func (o GetSourceNetsuiteConfigurationOutput) ConsumerSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.ConsumerSecret }).(pulumi.StringOutput)
 }
 
+// The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
 func (o GetSourceNetsuiteConfigurationOutput) ObjectTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) []string { return v.ObjectTypes }).(pulumi.StringArrayOutput)
 }
 
+// Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
 func (o GetSourceNetsuiteConfigurationOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.Realm }).(pulumi.StringOutput)
 }
 
+// must be one of ["netsuite"]
 func (o GetSourceNetsuiteConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
 func (o GetSourceNetsuiteConfigurationOutput) StartDatetime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.StartDatetime }).(pulumi.StringOutput)
 }
 
+// Access token key
 func (o GetSourceNetsuiteConfigurationOutput) TokenKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.TokenKey }).(pulumi.StringOutput)
 }
 
+// Access token secret
 func (o GetSourceNetsuiteConfigurationOutput) TokenSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) string { return v.TokenSecret }).(pulumi.StringOutput)
 }
 
+// The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
 func (o GetSourceNetsuiteConfigurationOutput) WindowInDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceNetsuiteConfiguration) int { return v.WindowInDays }).(pulumi.IntOutput)
 }
 
 type GetSourceNotionConfiguration struct {
+	// Pick an authentication method.
 	Credentials GetSourceNotionConfigurationCredentials `pulumi:"credentials"`
-	SourceType  string                                  `pulumi:"sourceType"`
-	StartDate   string                                  `pulumi:"startDate"`
+	// must be one of ["notion"]
+	SourceType string `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceNotionConfigurationOutput struct{ *pulumi.OutputState }
@@ -20476,14 +21812,17 @@ func (o GetSourceNotionConfigurationOutput) ToGetSourceNotionConfigurationOutput
 	return o
 }
 
+// Pick an authentication method.
 func (o GetSourceNotionConfigurationOutput) Credentials() GetSourceNotionConfigurationCredentialsOutput {
 	return o.ApplyT(func(v GetSourceNotionConfiguration) GetSourceNotionConfigurationCredentials { return v.Credentials }).(GetSourceNotionConfigurationCredentialsOutput)
 }
 
+// must be one of ["notion"]
 func (o GetSourceNotionConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNotionConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
 func (o GetSourceNotionConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNotionConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }
@@ -20686,12 +22025,20 @@ func (o GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthenticateUsi
 }
 
 type GetSourceNytimesConfiguration struct {
-	ApiKey     string `pulumi:"apiKey"`
-	EndDate    string `pulumi:"endDate"`
-	Period     int    `pulumi:"period"`
-	ShareType  string `pulumi:"shareType"`
+	// API Key
+	ApiKey string `pulumi:"apiKey"`
+	// End date to stop the article retrieval (format YYYY-MM)
+	EndDate string `pulumi:"endDate"`
+	// must be one of ["1", "7", "30"]
+	// Period of time (in days)
+	Period int `pulumi:"period"`
+	// must be one of ["facebook"]
+	// Share Type
+	ShareType string `pulumi:"shareType"`
+	// must be one of ["nytimes"]
 	SourceType string `pulumi:"sourceType"`
-	StartDate  string `pulumi:"startDate"`
+	// Start date to begin the article retrieval (format YYYY-MM)
+	StartDate string `pulumi:"startDate"`
 }
 
 type GetSourceNytimesConfigurationOutput struct{ *pulumi.OutputState }
@@ -20708,26 +22055,34 @@ func (o GetSourceNytimesConfigurationOutput) ToGetSourceNytimesConfigurationOutp
 	return o
 }
 
+// API Key
 func (o GetSourceNytimesConfigurationOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) string { return v.ApiKey }).(pulumi.StringOutput)
 }
 
+// End date to stop the article retrieval (format YYYY-MM)
 func (o GetSourceNytimesConfigurationOutput) EndDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) string { return v.EndDate }).(pulumi.StringOutput)
 }
 
+// must be one of ["1", "7", "30"]
+// Period of time (in days)
 func (o GetSourceNytimesConfigurationOutput) Period() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) int { return v.Period }).(pulumi.IntOutput)
 }
 
+// must be one of ["facebook"]
+// Share Type
 func (o GetSourceNytimesConfigurationOutput) ShareType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) string { return v.ShareType }).(pulumi.StringOutput)
 }
 
+// must be one of ["nytimes"]
 func (o GetSourceNytimesConfigurationOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) string { return v.SourceType }).(pulumi.StringOutput)
 }
 
+// Start date to begin the article retrieval (format YYYY-MM)
 func (o GetSourceNytimesConfigurationOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourceNytimesConfiguration) string { return v.StartDate }).(pulumi.StringOutput)
 }

@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceTempo Resource
 type SourceTempo struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceTempo(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceTempo
 	err := ctx.RegisterResource("airbyte:index/sourceTempo:SourceTempo", name, args, &resource, opts...)
 	if err != nil {

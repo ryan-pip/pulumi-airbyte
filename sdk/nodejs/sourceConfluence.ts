@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceConfluence Resource
+ */
 export class SourceConfluence extends pulumi.CustomResource {
     /**
      * Get an existing SourceConfluence resource's state with the given name, ID, and optional extra

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceStrava DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceStrava = airbyte.getSourceStrava({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceStrava(args: GetSourceStravaArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceStravaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceStrava(args: GetSourceStravaArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceStrava.
  */
 export interface GetSourceStravaArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceStravaResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceStrava DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceStrava = airbyte.getSourceStrava({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceStravaOutput(args: GetSourceStravaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceStravaResult> {
     return pulumi.output(args).apply((a: any) => getSourceStrava(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceStravaOutput(args: GetSourceStravaOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceStrava.
  */
 export interface GetSourceStravaOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

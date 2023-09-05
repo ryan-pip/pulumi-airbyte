@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePipedrive DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePipedrive = airbyte.getSourcePipedrive({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePipedrive(args: GetSourcePipedriveArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePipedriveResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePipedrive(args: GetSourcePipedriveArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourcePipedrive.
  */
 export interface GetSourcePipedriveArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePipedriveResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePipedrive DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePipedrive = airbyte.getSourcePipedrive({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePipedriveOutput(args: GetSourcePipedriveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePipedriveResult> {
     return pulumi.output(args).apply((a: any) => getSourcePipedrive(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePipedriveOutput(args: GetSourcePipedriveOutputArgs, opt
  * A collection of arguments for invoking getSourcePipedrive.
  */
 export interface GetSourcePipedriveOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

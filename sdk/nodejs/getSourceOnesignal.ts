@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOnesignal DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOnesignal = airbyte.getSourceOnesignal({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOnesignal(args: GetSourceOnesignalArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOnesignalResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOnesignal(args: GetSourceOnesignalArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceOnesignal.
  */
 export interface GetSourceOnesignalArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOnesignalResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOnesignal DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOnesignal = airbyte.getSourceOnesignal({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOnesignalOutput(args: GetSourceOnesignalOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOnesignalResult> {
     return pulumi.output(args).apply((a: any) => getSourceOnesignal(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOnesignalOutput(args: GetSourceOnesignalOutputArgs, opt
  * A collection of arguments for invoking getSourceOnesignal.
  */
 export interface GetSourceOnesignalOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

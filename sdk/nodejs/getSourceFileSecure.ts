@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceFileSecure DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFilesecure = airbyte.getSourceFileSecure({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFileSecure(args: GetSourceFileSecureArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceFileSecureResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceFileSecure(args: GetSourceFileSecureArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceFileSecure.
  */
 export interface GetSourceFileSecureArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceFileSecureResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceFileSecure DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFilesecure = airbyte.getSourceFileSecure({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFileSecureOutput(args: GetSourceFileSecureOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceFileSecureResult> {
     return pulumi.output(args).apply((a: any) => getSourceFileSecure(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceFileSecureOutput(args: GetSourceFileSecureOutputArgs, o
  * A collection of arguments for invoking getSourceFileSecure.
  */
 export interface GetSourceFileSecureOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

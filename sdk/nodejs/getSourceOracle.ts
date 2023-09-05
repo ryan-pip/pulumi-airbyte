@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOracle DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOracle = airbyte.getSourceOracle({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOracle(args: GetSourceOracleArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOracleResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOracle(args: GetSourceOracleArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceOracle.
  */
 export interface GetSourceOracleArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOracleResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOracle DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOracle = airbyte.getSourceOracle({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOracleOutput(args: GetSourceOracleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOracleResult> {
     return pulumi.output(args).apply((a: any) => getSourceOracle(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOracleOutput(args: GetSourceOracleOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceOracle.
  */
 export interface GetSourceOracleOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

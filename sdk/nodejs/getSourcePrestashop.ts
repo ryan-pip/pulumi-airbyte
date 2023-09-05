@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePrestashop DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePrestashop = airbyte.getSourcePrestashop({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePrestashop(args: GetSourcePrestashopArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePrestashopResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePrestashop(args: GetSourcePrestashopArgs, opts?: pulumi
  * A collection of arguments for invoking getSourcePrestashop.
  */
 export interface GetSourcePrestashopArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePrestashopResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePrestashop DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePrestashop = airbyte.getSourcePrestashop({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePrestashopOutput(args: GetSourcePrestashopOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePrestashopResult> {
     return pulumi.output(args).apply((a: any) => getSourcePrestashop(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePrestashopOutput(args: GetSourcePrestashopOutputArgs, o
  * A collection of arguments for invoking getSourcePrestashop.
  */
 export interface GetSourcePrestashopOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

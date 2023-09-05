@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourcePocket DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourcePocket(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourcePocket(ctx *pulumi.Context, args *LookupSourcePocketArgs, opts ...pulumi.InvokeOption) (*LookupSourcePocketResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourcePocketResult
 	err := ctx.Invoke("airbyte:index/getSourcePocket:getSourcePocket", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourcePocket(ctx *pulumi.Context, args *LookupSourcePocketArgs, opts 
 
 // A collection of arguments for invoking getSourcePocket.
 type LookupSourcePocketArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourcePocketArgs struct {
 type LookupSourcePocketResult struct {
 	Configuration GetSourcePocketConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourcePocketOutput(ctx *pulumi.Context, args LookupSourcePocketOutput
 
 // A collection of arguments for invoking getSourcePocket.
 type LookupSourcePocketOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourcePocketResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourcePocketResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourcePocketResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourcePocketResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

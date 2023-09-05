@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationGoogleSheets DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationGooglesheets = airbyte.getDestinationGoogleSheets({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationGoogleSheets(args: GetDestinationGoogleSheetsArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationGoogleSheetsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationGoogleSheetsResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationGoogleSheets DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationGooglesheets = airbyte.getDestinationGoogleSheets({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationGoogleSheetsOutput(args: GetDestinationGoogleSheetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationGoogleSheetsResult> {
     return pulumi.output(args).apply((a: any) => getDestinationGoogleSheets(a, opts))
 }

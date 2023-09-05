@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationTypesense DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationTypesense = airbyte.getDestinationTypesense({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationTypesense(args: GetDestinationTypesenseArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationTypesenseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationTypesenseResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationTypesense DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationTypesense = airbyte.getDestinationTypesense({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationTypesenseOutput(args: GetDestinationTypesenseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationTypesenseResult> {
     return pulumi.output(args).apply((a: any) => getDestinationTypesense(a, opts))
 }

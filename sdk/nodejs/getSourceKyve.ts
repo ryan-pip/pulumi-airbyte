@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceKyve DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceKyve = airbyte.getSourceKyve({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceKyve(args: GetSourceKyveArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceKyveResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceKyve(args: GetSourceKyveArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getSourceKyve.
  */
 export interface GetSourceKyveArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceKyveResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceKyve DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceKyve = airbyte.getSourceKyve({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceKyveOutput(args: GetSourceKyveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceKyveResult> {
     return pulumi.output(args).apply((a: any) => getSourceKyve(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceKyveOutput(args: GetSourceKyveOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceKyve.
  */
 export interface GetSourceKyveOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

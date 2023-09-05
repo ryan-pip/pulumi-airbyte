@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// Workspace DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupWorkspace(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupWorkspace(ctx *pulumi.Context, args *LookupWorkspaceArgs, opts ...pulumi.InvokeOption) (*LookupWorkspaceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWorkspaceResult
 	err := ctx.Invoke("airbyte:index/getWorkspace:getWorkspace", args, &rv, opts...)
 	if err != nil {
@@ -27,9 +51,11 @@ type LookupWorkspaceArgs struct {
 
 // A collection of values returned by getWorkspace.
 type LookupWorkspaceResult struct {
+	// must be one of ["auto", "us", "eu"]
 	DataResidency string `pulumi:"dataResidency"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Name of the workspace
 	Name        string `pulumi:"name"`
 	WorkspaceId string `pulumi:"workspaceId"`
 }
@@ -71,6 +97,7 @@ func (o LookupWorkspaceResultOutput) ToLookupWorkspaceResultOutputWithContext(ct
 	return o
 }
 
+// must be one of ["auto", "us", "eu"]
 func (o LookupWorkspaceResultOutput) DataResidency() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.DataResidency }).(pulumi.StringOutput)
 }
@@ -80,6 +107,7 @@ func (o LookupWorkspaceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of the workspace
 func (o LookupWorkspaceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkspaceResult) string { return v.Name }).(pulumi.StringOutput)
 }

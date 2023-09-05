@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceConvex DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceConvex = airbyte.getSourceConvex({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceConvex(args: GetSourceConvexArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceConvexResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceConvex(args: GetSourceConvexArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceConvex.
  */
 export interface GetSourceConvexArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceConvexResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceConvex DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceConvex = airbyte.getSourceConvex({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceConvexOutput(args: GetSourceConvexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceConvexResult> {
     return pulumi.output(args).apply((a: any) => getSourceConvex(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceConvexOutput(args: GetSourceConvexOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceConvex.
  */
 export interface GetSourceConvexOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

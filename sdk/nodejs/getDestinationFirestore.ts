@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationFirestore DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationFirestore = airbyte.getDestinationFirestore({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationFirestore(args: GetDestinationFirestoreArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationFirestoreResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationFirestoreResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationFirestore DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationFirestore = airbyte.getDestinationFirestore({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationFirestoreOutput(args: GetDestinationFirestoreOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationFirestoreResult> {
     return pulumi.output(args).apply((a: any) => getDestinationFirestore(a, opts))
 }

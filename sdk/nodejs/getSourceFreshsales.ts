@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceFreshsales DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFreshsales = airbyte.getSourceFreshsales({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFreshsales(args: GetSourceFreshsalesArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceFreshsalesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceFreshsales(args: GetSourceFreshsalesArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceFreshsales.
  */
 export interface GetSourceFreshsalesArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceFreshsalesResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceFreshsales DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFreshsales = airbyte.getSourceFreshsales({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFreshsalesOutput(args: GetSourceFreshsalesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceFreshsalesResult> {
     return pulumi.output(args).apply((a: any) => getSourceFreshsales(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceFreshsalesOutput(args: GetSourceFreshsalesOutputArgs, o
  * A collection of arguments for invoking getSourceFreshsales.
  */
 export interface GetSourceFreshsalesOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

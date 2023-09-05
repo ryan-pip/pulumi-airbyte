@@ -22,7 +22,7 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     public readonly bearerAuth!: pulumi.Output<string | undefined>;
@@ -44,10 +44,10 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["bearerAuth"] = args?.bearerAuth ? pulumi.secret(args.bearerAuth) : undefined;
-            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["serverUrl"] = args ? args.serverUrl : undefined;
-            resourceInputs["username"] = args?.username ? pulumi.secret(args.username) : undefined;
+            resourceInputs["bearerAuth"] = (args?.bearerAuth ? pulumi.secret(args.bearerAuth) : undefined) ?? utilities.getEnv("AIRBYTE_BEARER_AUTH");
+            resourceInputs["password"] = (args?.password ? pulumi.secret(args.password) : undefined) ?? utilities.getEnv("AIRBYTE_PASSWORD");
+            resourceInputs["serverUrl"] = (args ? args.serverUrl : undefined) ?? (utilities.getEnv("AIRBYTE_SERVER_URL") || "https://api.airbyte.com/v1");
+            resourceInputs["username"] = (args?.username ? pulumi.secret(args.username) : undefined) ?? utilities.getEnv("AIRBYTE_USERNAME");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["bearerAuth", "password", "username"] };

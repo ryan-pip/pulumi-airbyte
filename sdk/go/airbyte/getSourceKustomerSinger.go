@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceKustomerSinger DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceKustomerSinger(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceKustomerSinger(ctx *pulumi.Context, args *LookupSourceKustomerSingerArgs, opts ...pulumi.InvokeOption) (*LookupSourceKustomerSingerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceKustomerSingerResult
 	err := ctx.Invoke("airbyte:index/getSourceKustomerSinger:getSourceKustomerSinger", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceKustomerSinger(ctx *pulumi.Context, args *LookupSourceKustomerS
 
 // A collection of arguments for invoking getSourceKustomerSinger.
 type LookupSourceKustomerSingerArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceKustomerSingerArgs struct {
 type LookupSourceKustomerSingerResult struct {
 	Configuration GetSourceKustomerSingerConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceKustomerSingerOutput(ctx *pulumi.Context, args LookupSourceKust
 
 // A collection of arguments for invoking getSourceKustomerSinger.
 type LookupSourceKustomerSingerOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceKustomerSingerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceKustomerSingerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceKustomerSingerResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceKustomerSingerResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

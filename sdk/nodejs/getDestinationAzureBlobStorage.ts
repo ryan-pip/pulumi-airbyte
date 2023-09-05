@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationAzureBlobStorage DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationAzureblobstorage = airbyte.getDestinationAzureBlobStorage({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationAzureBlobStorage(args: GetDestinationAzureBlobStorageArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationAzureBlobStorageResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationAzureBlobStorageResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationAzureBlobStorage DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationAzureblobstorage = airbyte.getDestinationAzureBlobStorage({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationAzureBlobStorageOutput(args: GetDestinationAzureBlobStorageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationAzureBlobStorageResult> {
     return pulumi.output(args).apply((a: any) => getDestinationAzureBlobStorage(a, opts))
 }

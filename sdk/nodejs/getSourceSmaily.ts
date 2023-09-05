@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSmaily DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSmaily = airbyte.getSourceSmaily({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSmaily(args: GetSourceSmailyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSmailyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSmaily(args: GetSourceSmailyArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceSmaily.
  */
 export interface GetSourceSmailyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSmailyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSmaily DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSmaily = airbyte.getSourceSmaily({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSmailyOutput(args: GetSourceSmailyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSmailyResult> {
     return pulumi.output(args).apply((a: any) => getSourceSmaily(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSmailyOutput(args: GetSourceSmailyOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceSmaily.
  */
 export interface GetSourceSmailyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

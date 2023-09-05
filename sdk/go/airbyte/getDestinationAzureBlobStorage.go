@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// DestinationAzureBlobStorage DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupDestinationAzureBlobStorage(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupDestinationAzureBlobStorage(ctx *pulumi.Context, args *LookupDestinationAzureBlobStorageArgs, opts ...pulumi.InvokeOption) (*LookupDestinationAzureBlobStorageResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDestinationAzureBlobStorageResult
 	err := ctx.Invoke("airbyte:index/getDestinationAzureBlobStorage:getDestinationAzureBlobStorage", args, &rv, opts...)
 	if err != nil {

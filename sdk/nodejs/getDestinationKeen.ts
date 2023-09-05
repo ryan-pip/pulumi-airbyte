@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationKeen DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationKeen = airbyte.getDestinationKeen({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationKeen(args: GetDestinationKeenArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationKeenResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationKeenResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationKeen DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationKeen = airbyte.getDestinationKeen({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationKeenOutput(args: GetDestinationKeenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationKeenResult> {
     return pulumi.output(args).apply((a: any) => getDestinationKeen(a, opts))
 }

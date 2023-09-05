@@ -6,19 +6,54 @@ package config
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"internal"
 )
 
+var _ = internal.GetEnvOrDefault
+
 func GetBearerAuth(ctx *pulumi.Context) string {
-	return config.Get(ctx, "airbyte:bearerAuth")
+	v, err := config.Try(ctx, "airbyte:bearerAuth")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_BEARER_AUTH"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 func GetPassword(ctx *pulumi.Context) string {
-	return config.Get(ctx, "airbyte:password")
+	v, err := config.Try(ctx, "airbyte:password")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_PASSWORD"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Server URL (defaults to https://api.airbyte.com/v1)
 func GetServerUrl(ctx *pulumi.Context) string {
-	return config.Get(ctx, "airbyte:serverUrl")
+	v, err := config.Try(ctx, "airbyte:serverUrl")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault("https://api.airbyte.com/v1", nil, "AIRBYTE_SERVER_URL"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 func GetUsername(ctx *pulumi.Context) string {
-	return config.Get(ctx, "airbyte:username")
+	v, err := config.Try(ctx, "airbyte:username")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "AIRBYTE_USERNAME"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

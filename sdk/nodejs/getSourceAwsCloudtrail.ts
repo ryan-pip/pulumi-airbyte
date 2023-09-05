@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAwsCloudtrail DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAwscloudtrail = airbyte.getSourceAwsCloudtrail({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAwsCloudtrail(args: GetSourceAwsCloudtrailArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAwsCloudtrailResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAwsCloudtrail(args: GetSourceAwsCloudtrailArgs, opts?: 
  * A collection of arguments for invoking getSourceAwsCloudtrail.
  */
 export interface GetSourceAwsCloudtrailArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAwsCloudtrailResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAwsCloudtrail DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAwscloudtrail = airbyte.getSourceAwsCloudtrail({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAwsCloudtrailOutput(args: GetSourceAwsCloudtrailOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAwsCloudtrailResult> {
     return pulumi.output(args).apply((a: any) => getSourceAwsCloudtrail(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAwsCloudtrailOutput(args: GetSourceAwsCloudtrailOutputA
  * A collection of arguments for invoking getSourceAwsCloudtrail.
  */
 export interface GetSourceAwsCloudtrailOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

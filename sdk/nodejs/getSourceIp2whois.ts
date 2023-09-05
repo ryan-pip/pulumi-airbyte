@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceIp2whois DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceIp2whois = airbyte.getSourceIp2whois({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceIp2whois(args: GetSourceIp2whoisArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceIp2whoisResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceIp2whois(args: GetSourceIp2whoisArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceIp2whois.
  */
 export interface GetSourceIp2whoisArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceIp2whoisResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceIp2whois DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceIp2whois = airbyte.getSourceIp2whois({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceIp2whoisOutput(args: GetSourceIp2whoisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceIp2whoisResult> {
     return pulumi.output(args).apply((a: any) => getSourceIp2whois(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceIp2whoisOutput(args: GetSourceIp2whoisOutputArgs, opts?
  * A collection of arguments for invoking getSourceIp2whois.
  */
 export interface GetSourceIp2whoisOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

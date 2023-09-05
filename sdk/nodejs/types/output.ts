@@ -11,6 +11,9 @@ export interface ConnectionConfigurations {
 
 export interface ConnectionConfigurationsStream {
     cursorFields: string[];
+    /**
+     * Optional name of the connection
+     */
     name: string;
     primaryKeys: string[][];
     syncMode: string;
@@ -19,22 +22,66 @@ export interface ConnectionConfigurationsStream {
 export interface ConnectionSchedule {
     basicTiming: string;
     cronExpression: string;
+    /**
+     * must be one of ["manual", "cron"]
+     */
     scheduleType: string;
 }
 
 export interface DestinationAWSDatalakeConfiguration {
+    /**
+     * target aws account id
+     */
     awsAccountId?: string;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     bucketName: string;
+    /**
+     * S3 prefix
+     */
     bucketPrefix?: string;
+    /**
+     * Choose How to Authenticate to AWS.
+     */
     credentials: outputs.DestinationAWSDatalakeConfigurationCredentials;
+    /**
+     * must be one of ["aws-datalake"]
+     */
     destinationType: string;
+    /**
+     * Format of the data output.
+     */
     format?: outputs.DestinationAWSDatalakeConfigurationFormat;
+    /**
+     * Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source.
+     */
     glueCatalogFloatAsDecimal?: boolean;
+    /**
+     * Add a default tag key to databases created by this destination
+     */
     lakeformationDatabaseDefaultTagKey?: string;
+    /**
+     * Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values.
+     */
     lakeformationDatabaseDefaultTagValues?: string;
+    /**
+     * The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace.
+     */
     lakeformationDatabaseName: string;
+    /**
+     * Whether to create tables as LF governed tables.
+     */
     lakeformationGovernedTables?: boolean;
+    /**
+     * must be one of ["NO PARTITIONING", "DATE", "YEAR", "MONTH", "DAY", "YEAR/MONTH", "YEAR/MONTH/DAY"]
+     * Partition data by cursor fields when a cursor field is a date
+     */
     partitioning?: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     region: string;
 }
 
@@ -95,13 +142,37 @@ export interface DestinationAWSDatalakeConfigurationFormatDestinationAwsDatalake
 }
 
 export interface DestinationAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: string;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: string;
+    /**
+     * The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp
+     */
     azureBlobStorageContainerName?: string;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpointDomainName?: string;
+    /**
+     * The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure.
+     */
     azureBlobStorageOutputBufferSize?: number;
+    /**
+     * The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable
+     */
     azureBlobStorageSpillSize?: number;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     destinationType: string;
+    /**
+     * Output data format
+     */
     format: outputs.DestinationAzureBlobStorageConfigurationFormat;
 }
 
@@ -131,15 +202,47 @@ export interface DestinationAzureBlobStorageConfigurationFormatDestinationAzureB
 }
 
 export interface DestinationBigqueryConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb?: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: string;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: string;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. Read more \n\nhere\n\n.
+     */
     datasetLocation: string;
+    /**
+     * must be one of ["bigquery"]
+     */
     destinationType: string;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod?: outputs.DestinationBigqueryConfigurationLoadingMethod;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: string;
+    /**
+     * (Early Access) The dataset to write raw tables into
+     */
     rawDataDataset?: string;
+    /**
+     * must be one of ["interactive", "batch"]
+     * Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type \n\nhere\n\n. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries \n\nhere\n\n. The default "interactive" value is used if not set explicitly.
+     */
     transformationPriority?: string;
+    /**
+     * (Early Access) Use \n\nDestinations V2\n\n.
+     */
     use1s1tFormat?: boolean;
 }
 
@@ -197,12 +300,34 @@ export interface DestinationBigqueryConfigurationLoadingMethodDestinationBigquer
 }
 
 export interface DestinationBigqueryDenormalizedConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb?: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: string;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: string;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     datasetLocation?: string;
+    /**
+     * must be one of ["bigquery-denormalized"]
+     */
     destinationType: string;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod?: outputs.DestinationBigqueryDenormalizedConfigurationLoadingMethod;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: string;
 }
 
@@ -260,13 +385,37 @@ export interface DestinationBigqueryDenormalizedConfigurationLoadingMethodDestin
 }
 
 export interface DestinationClickhouseConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["clickhouse"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * HTTP port of the database.
+     */
     port: number;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationClickhouseConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -320,39 +469,114 @@ export interface DestinationClickhouseConfigurationTunnelMethodDestinationClickh
 }
 
 export interface DestinationConvexConfiguration {
+    /**
+     * API access key used to send data to a Convex deployment.
+     */
     accessKey: string;
+    /**
+     * URL of the Convex deployment that is the destination
+     */
     deploymentUrl: string;
+    /**
+     * must be one of ["convex"]
+     */
     destinationType: string;
 }
 
 export interface DestinationCumulioConfiguration {
+    /**
+     * URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'.
+     */
     apiHost: string;
+    /**
+     * An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiKey: string;
+    /**
+     * The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiToken: string;
+    /**
+     * must be one of ["cumulio"]
+     */
     destinationType: string;
 }
 
 export interface DestinationDatabendConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["databend"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port?: number;
+    /**
+     * The default  table was written to.
+     */
     table?: string;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
 export interface DestinationDatabricksConfiguration {
+    /**
+     * You must agree to the Databricks JDBC Driver \n\nTerms & Conditions\n\n to use this connector.
+     */
     acceptTerms: boolean;
+    /**
+     * Storage on which the delta lake is built.
+     */
     dataSource: outputs.DestinationDatabricksConfigurationDataSource;
+    /**
+     * The name of the catalog. If not specified otherwise, the "hiveMetastore" will be used.
+     */
     database?: string;
+    /**
+     * Databricks Cluster HTTP Path.
+     */
     databricksHttpPath: string;
+    /**
+     * Databricks Personal Access Token for making authenticated requests.
+     */
     databricksPersonalAccessToken: string;
+    /**
+     * Databricks Cluster Port.
+     */
     databricksPort?: string;
+    /**
+     * Databricks Cluster Server Hostname.
+     */
     databricksServerHostname: string;
+    /**
+     * must be one of ["databricks"]
+     */
     destinationType: string;
+    /**
+     * Support schema evolution for all streams. If "false", the connector might fail when a stream's schema changes.
+     */
     enableSchemaEvolution?: boolean;
+    /**
+     * Default to 'true'. Switch it to 'false' for debugging purpose.
+     */
     purgeStagingData?: boolean;
+    /**
+     * The default schema tables are written. If not specified otherwise, the "default" will be used.
+     */
     schema?: string;
 }
 
@@ -410,7 +634,13 @@ export interface DestinationDatabricksConfigurationDataSourceDestinationDatabric
 }
 
 export interface DestinationDevNullConfiguration {
+    /**
+     * must be one of ["dev-null"]
+     */
     destinationType: string;
+    /**
+     * The type of destination to be used
+     */
     testDestination: outputs.DestinationDevNullConfigurationTestDestination;
 }
 
@@ -428,19 +658,53 @@ export interface DestinationDevNullConfigurationTestDestinationDestinationDevNul
 }
 
 export interface DestinationDynamodbConfiguration {
+    /**
+     * The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB.
+     */
     accessKeyId: string;
+    /**
+     * must be one of ["dynamodb"]
+     */
     destinationType: string;
+    /**
+     * This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty).
+     */
     dynamodbEndpoint?: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the DynamoDB.
+     */
     dynamodbRegion: string;
+    /**
+     * The prefix to use when naming DynamoDB tables.
+     */
     dynamodbTableNamePrefix: string;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: string;
 }
 
 export interface DestinationElasticsearchConfiguration {
+    /**
+     * The type of authentication to be used
+     */
     authenticationMethod?: outputs.DestinationElasticsearchConfigurationAuthenticationMethod;
+    /**
+     * CA certificate
+     */
     caCertificate?: string;
+    /**
+     * must be one of ["elasticsearch"]
+     */
     destinationType: string;
+    /**
+     * The full url of the Elasticsearch server
+     */
     endpoint: string;
+    /**
+     * If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys.
+     */
     upsert?: boolean;
 }
 
@@ -476,13 +740,37 @@ export interface DestinationElasticsearchConfigurationAuthenticationMethodDestin
 }
 
 export interface DestinationFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account?: string;
+    /**
+     * The database to connect to.
+     */
     database: string;
+    /**
+     * must be one of ["firebolt"]
+     */
     destinationType: string;
+    /**
+     * Engine name or url to connect to.
+     */
     engine?: string;
+    /**
+     * The host name of your Firebolt database.
+     */
     host?: string;
+    /**
+     * Loading method used to select the way data will be uploaded to Firebolt
+     */
     loadingMethod?: outputs.DestinationFireboltConfigurationLoadingMethod;
+    /**
+     * Firebolt password.
+     */
     password: string;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: string;
 }
 
@@ -518,17 +806,45 @@ export interface DestinationFireboltConfigurationLoadingMethodDestinationFirebol
 }
 
 export interface DestinationFirestoreConfiguration {
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson?: string;
+    /**
+     * must be one of ["firestore"]
+     */
     destinationType: string;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: string;
 }
 
 export interface DestinationGcsConfiguration {
+    /**
+     * An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more \n\nhere\n\n.
+     */
     credential: outputs.DestinationGcsConfigurationCredential;
+    /**
+     * must be one of ["gcs"]
+     */
     destinationType: string;
+    /**
+     * Output data format. One of the following formats must be selected - \n\nAVRO\n\n format, \n\nPARQUET\n\n format, \n\nCSV\n\n format, or \n\nJSONL\n\n format.
+     */
     format: outputs.DestinationGcsConfigurationFormat;
+    /**
+     * You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketName: string;
+    /**
+     * GCS Bucket Path string Subdirectory under the above bucket to sync the data into.
+     */
     gcsBucketPath: string;
+    /**
+     * must be one of ["northamerica-northeast1", "northamerica-northeast2", "us-central1", "us-east1", "us-east4", "us-west1", "us-west2", "us-west3", "us-west4", "southamerica-east1", "southamerica-west1", "europe-central2", "europe-north1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "asia", "eu", "us", "asia1", "eur4", "nam4"]
+     * Select a Region of the GCS Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketRegion?: string;
 }
 
@@ -739,8 +1055,17 @@ export interface DestinationGcsConfigurationFormatDestinationGcsUpdateOutputForm
 }
 
 export interface DestinationGoogleSheetsConfiguration {
+    /**
+     * Google API Credentials for connecting to Google Sheets and Google Drive APIs
+     */
     credentials: outputs.DestinationGoogleSheetsConfigurationCredentials;
+    /**
+     * must be one of ["google-sheets"]
+     */
     destinationType: string;
+    /**
+     * The link to your spreadsheet. See \n\nthis guide\n\n for more details.
+     */
     spreadsheetId: string;
 }
 
@@ -751,25 +1076,67 @@ export interface DestinationGoogleSheetsConfigurationCredentials {
 }
 
 export interface DestinationKeenConfiguration {
+    /**
+     * To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     apiKey: string;
+    /**
+     * must be one of ["keen"]
+     */
     destinationType: string;
+    /**
+     * Allow connector to guess keen.timestamp value based on the streamed data.
+     */
     inferTimestamp?: boolean;
+    /**
+     * To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     projectId: string;
 }
 
 export interface DestinationKinesisConfiguration {
+    /**
+     * Generate the AWS Access Key for current user.
+     */
     accessKey: string;
+    /**
+     * Buffer size for storing kinesis records before being batch streamed.
+     */
     bufferSize: number;
+    /**
+     * must be one of ["kinesis"]
+     */
     destinationType: string;
+    /**
+     * AWS Kinesis endpoint.
+     */
     endpoint: string;
+    /**
+     * The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a "recovery phrase".
+     */
     privateKey: string;
+    /**
+     * AWS region. Your account determines the Regions that are available to you.
+     */
     region: string;
+    /**
+     * Number of shards to which the data should be streamed.
+     */
     shardCount: number;
 }
 
 export interface DestinationLangchainConfiguration {
+    /**
+     * must be one of ["langchain"]
+     */
     destinationType: string;
+    /**
+     * Embedding configuration
+     */
     embedding: outputs.DestinationLangchainConfigurationEmbedding;
+    /**
+     * Indexing configuration
+     */
     indexing: outputs.DestinationLangchainConfigurationIndexing;
     processing: outputs.DestinationLangchainConfigurationProcessing;
 }
@@ -851,15 +1218,45 @@ export interface DestinationLangchainConfigurationProcessing {
 }
 
 export interface DestinationMSsqlConfiguration {
+    /**
+     * The name of the MSSQL database.
+     */
     database: string;
+    /**
+     * must be one of ["mssql"]
+     */
     destinationType: string;
+    /**
+     * The host name of the MSSQL database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * The password associated with this username.
+     */
     password?: string;
+    /**
+     * The port of the MSSQL database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * The encryption method which is used to communicate with the database.
+     */
     sslMethod?: outputs.DestinationMSsqlConfigurationSslMethod;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationMSsqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -938,10 +1335,25 @@ export interface DestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpdate
 }
 
 export interface DestinationMongodbConfiguration {
+    /**
+     * Authorization type.
+     */
     authType: outputs.DestinationMongodbConfigurationAuthType;
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["mongodb"]
+     */
     destinationType: string;
+    /**
+     * MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType?: outputs.DestinationMongodbConfigurationInstanceType;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationMongodbConfigurationTunnelMethod;
 }
 
@@ -1065,13 +1477,37 @@ export interface DestinationMongodbConfigurationTunnelMethodDestinationMongodbUp
 }
 
 export interface DestinationMysqlConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["mysql"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationMysqlConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -1125,14 +1561,41 @@ export interface DestinationMysqlConfigurationTunnelMethodDestinationMysqlUpdate
 }
 
 export interface DestinationOracleConfiguration {
+    /**
+     * must be one of ["oracle"]
+     */
     destinationType: string;
+    /**
+     * The hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * The password associated with the username.
+     */
     password?: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+     */
     schema?: string;
+    /**
+     * The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+     */
     sid: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationOracleConfigurationTunnelMethod;
+    /**
+     * The username to access the database. This user must have CREATE USER privileges in the database.
+     */
     username: string;
 }
 
@@ -1186,15 +1649,52 @@ export interface DestinationOracleConfigurationTunnelMethodDestinationOracleUpda
 }
 
 export interface DestinationPostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["postgres"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * SSL connection modes.
+     * \n\ndisable\n\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+     * \n\nallow\n\n - Chose this mode to enable encryption only when required by the source database
+     * \n\nprefer\n\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+     * \n\nrequire\n\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+     * \n\nverify-ca\n\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+     * \n\nverify-full\n\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+     * See more information - \n\n in the docs\n\n.
+     */
     sslMode?: outputs.DestinationPostgresConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationPostgresConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -1323,26 +1823,82 @@ export interface DestinationPostgresConfigurationTunnelMethodDestinationPostgres
 }
 
 export interface DestinationPubsubConfiguration {
+    /**
+     * Number of ms before the buffer is flushed
+     */
     batchingDelayThreshold?: number;
+    /**
+     * Number of messages before the buffer is flushed
+     */
     batchingElementCountThreshold?: number;
+    /**
+     * If TRUE messages will be buffered instead of sending them one by one
+     */
     batchingEnabled: boolean;
+    /**
+     * Number of bytes before the buffer is flushed
+     */
     batchingRequestBytesThreshold?: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key.
+     */
     credentialsJson: string;
+    /**
+     * must be one of ["pubsub"]
+     */
     destinationType: string;
+    /**
+     * If TRUE PubSub publisher will have \n\nmessage ordering\n\n enabled. Every message will have an ordering key of stream
+     */
     orderingEnabled: boolean;
+    /**
+     * The GCP project ID for the project containing the target PubSub.
+     */
     projectId: string;
+    /**
+     * The PubSub topic ID in the given GCP project ID.
+     */
     topicId: string;
 }
 
 export interface DestinationRedisConfiguration {
+    /**
+     * must be one of ["hash"]
+     * Redis cache type to store data in.
+     */
     cacheType: string;
+    /**
+     * must be one of ["redis"]
+     */
     destinationType: string;
+    /**
+     * Redis host to connect to.
+     */
     host: string;
+    /**
+     * Password associated with Redis.
+     */
     password?: string;
+    /**
+     * Port of Redis.
+     */
     port: number;
+    /**
+     * Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+     */
     ssl?: boolean;
+    /**
+     * SSL connection modes.
+     * \n\n\n\nverify-full\n\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+     */
     sslMode?: outputs.DestinationRedisConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationRedisConfigurationTunnelMethod;
+    /**
+     * Username associated with Redis.
+     */
     username: string;
 }
 
@@ -1427,15 +1983,45 @@ export interface DestinationRedisConfigurationTunnelMethodDestinationRedisUpdate
 }
 
 export interface DestinationRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["redshift"]
+     */
     destinationType: string;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationRedshiftConfigurationTunnelMethod;
+    /**
+     * The method how the data will be uploaded to the database.
+     */
     uploadingMethod?: outputs.DestinationRedshiftConfigurationUploadingMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -1558,15 +2144,46 @@ export interface DestinationRedshiftConfigurationUploadingMethodDestinationRedsh
 }
 
 export interface DestinationS3Configuration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId?: string;
+    /**
+     * must be one of ["s3"]
+     */
     destinationType: string;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern?: string;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: outputs.DestinationS3ConfigurationFormat;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: string;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: string;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint?: string;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat?: string;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey?: string;
 }
 
@@ -1762,17 +2379,55 @@ export interface DestinationS3ConfigurationFormatDestinationS3UpdateOutputFormat
 }
 
 export interface DestinationS3GlueConfiguration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId?: string;
+    /**
+     * must be one of ["s3-glue"]
+     */
     destinationType: string;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern?: string;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: outputs.DestinationS3GlueConfigurationFormat;
+    /**
+     * Name of the glue database for creating the tables, leave blank if no integration
+     */
     glueDatabase: string;
+    /**
+     * must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+     * The library that your query engine will use for reading and writing data in your lake.
+     */
     glueSerializationLibrary: string;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: string;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: string;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint?: string;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat?: string;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey?: string;
 }
 
@@ -1820,25 +2475,73 @@ export interface DestinationS3GlueConfigurationFormatDestinationS3GlueUpdateOutp
 }
 
 export interface DestinationSftpJsonConfiguration {
+    /**
+     * Path to the directory where json files will be written.
+     */
     destinationPath: string;
+    /**
+     * must be one of ["sftp-json"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the SFTP server.
+     */
     host: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the SFTP server.
+     */
     port?: number;
+    /**
+     * Username to use to access the SFTP server.
+     */
     username: string;
 }
 
 export interface DestinationSnowflakeConfiguration {
     credentials?: outputs.DestinationSnowflakeConfigurationCredentials;
+    /**
+     * Enter the name of the \n\ndatabase\n\n you want to sync data into
+     */
     database: string;
+    /**
+     * must be one of ["snowflake"]
+     */
     destinationType: string;
+    /**
+     * Enter your Snowflake account's \n\nlocator\n\n (in the format \n\n.\n\n.\n\n.snowflakecomputing.com)
+     */
     host: string;
+    /**
+     * Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+     */
     jdbcUrlParams?: string;
+    /**
+     * (Beta) The schema to write raw tables into
+     */
     rawDataSchema?: string;
+    /**
+     * Enter the \n\nrole\n\n that you want to use to access Snowflake
+     */
     role: string;
+    /**
+     * Enter the name of the default \n\nschema\n\n
+     */
     schema: string;
+    /**
+     * (Beta) Use \n\nDestinations V2\n\n. Contact Airbyte Support to participate in the beta program.
+     */
     use1s1tFormat?: boolean;
+    /**
+     * Enter the name of the user you want to use to access the database
+     */
     username: string;
+    /**
+     * Enter the name of the \n\nwarehouse\n\n that you want to sync data into
+     */
     warehouse: string;
 }
 
@@ -1890,29 +2593,83 @@ export interface DestinationSnowflakeConfigurationCredentialsDestinationSnowflak
 }
 
 export interface DestinationTimeplusConfiguration {
+    /**
+     * Personal API key
+     */
     apikey: string;
+    /**
+     * must be one of ["timeplus"]
+     */
     destinationType: string;
+    /**
+     * Timeplus workspace endpoint
+     */
     endpoint: string;
 }
 
 export interface DestinationTypesenseConfiguration {
+    /**
+     * Typesense API Key
+     */
     apiKey: string;
+    /**
+     * How many documents should be imported together. Default 1000
+     */
     batchSize?: string;
+    /**
+     * must be one of ["typesense"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the Typesense instance without protocol.
+     */
     host: string;
+    /**
+     * Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+     */
     port?: string;
+    /**
+     * Protocol of the Typesense instance. Ex: http or https. Default is https
+     */
     protocol?: string;
 }
 
 export interface DestinationVerticaConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["vertica"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Schema for vertica destination
+     */
     schema: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.DestinationVerticaConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -1966,8 +2723,17 @@ export interface DestinationVerticaConfigurationTunnelMethodDestinationVerticaUp
 }
 
 export interface DestinationXataConfiguration {
+    /**
+     * API Key to connect.
+     */
     apiKey: string;
+    /**
+     * URL pointing to your workspace.
+     */
     dbUrl: string;
+    /**
+     * must be one of ["xata"]
+     */
     destinationType: string;
 }
 
@@ -1977,6 +2743,9 @@ export interface GetConnectionConfigurations {
 
 export interface GetConnectionConfigurationsStream {
     cursorFields: string[];
+    /**
+     * Optional name of the connection
+     */
     name: string;
     primaryKeys: string[][];
     syncMode: string;
@@ -1985,22 +2754,66 @@ export interface GetConnectionConfigurationsStream {
 export interface GetConnectionSchedule {
     basicTiming: string;
     cronExpression: string;
+    /**
+     * must be one of ["manual", "cron"]
+     */
     scheduleType: string;
 }
 
 export interface GetDestinationAWSDatalakeConfiguration {
+    /**
+     * target aws account id
+     */
     awsAccountId: string;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     bucketName: string;
+    /**
+     * S3 prefix
+     */
     bucketPrefix: string;
+    /**
+     * Choose How to Authenticate to AWS.
+     */
     credentials: outputs.GetDestinationAWSDatalakeConfigurationCredentials;
+    /**
+     * must be one of ["aws-datalake"]
+     */
     destinationType: string;
+    /**
+     * Format of the data output.
+     */
     format: outputs.GetDestinationAWSDatalakeConfigurationFormat;
+    /**
+     * Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source.
+     */
     glueCatalogFloatAsDecimal: boolean;
+    /**
+     * Add a default tag key to databases created by this destination
+     */
     lakeformationDatabaseDefaultTagKey: string;
+    /**
+     * Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values.
+     */
     lakeformationDatabaseDefaultTagValues: string;
+    /**
+     * The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace.
+     */
     lakeformationDatabaseName: string;
+    /**
+     * Whether to create tables as LF governed tables.
+     */
     lakeformationGovernedTables: boolean;
+    /**
+     * must be one of ["NO PARTITIONING", "DATE", "YEAR", "MONTH", "DAY", "YEAR/MONTH", "YEAR/MONTH/DAY"]
+     * Partition data by cursor fields when a cursor field is a date
+     */
     partitioning: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     region: string;
 }
 
@@ -2061,13 +2874,37 @@ export interface GetDestinationAWSDatalakeConfigurationFormatDestinationAwsDatal
 }
 
 export interface GetDestinationAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: string;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: string;
+    /**
+     * The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp
+     */
     azureBlobStorageContainerName: string;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpointDomainName: string;
+    /**
+     * The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure.
+     */
     azureBlobStorageOutputBufferSize: number;
+    /**
+     * The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable
+     */
     azureBlobStorageSpillSize: number;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     destinationType: string;
+    /**
+     * Output data format
+     */
     format: outputs.GetDestinationAzureBlobStorageConfigurationFormat;
 }
 
@@ -2097,15 +2934,47 @@ export interface GetDestinationAzureBlobStorageConfigurationFormatDestinationAzu
 }
 
 export interface GetDestinationBigqueryConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson: string;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: string;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. Read more \n\nhere\n\n.
+     */
     datasetLocation: string;
+    /**
+     * must be one of ["bigquery"]
+     */
     destinationType: string;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod: outputs.GetDestinationBigqueryConfigurationLoadingMethod;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: string;
+    /**
+     * (Early Access) The dataset to write raw tables into
+     */
     rawDataDataset: string;
+    /**
+     * must be one of ["interactive", "batch"]
+     * Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type \n\nhere\n\n. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries \n\nhere\n\n. The default "interactive" value is used if not set explicitly.
+     */
     transformationPriority: string;
+    /**
+     * (Early Access) Use \n\nDestinations V2\n\n.
+     */
     use1s1tFormat: boolean;
 }
 
@@ -2163,12 +3032,34 @@ export interface GetDestinationBigqueryConfigurationLoadingMethodDestinationBigq
 }
 
 export interface GetDestinationBigqueryDenormalizedConfiguration {
+    /**
+     * Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     bigQueryClientBufferSizeMb: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson: string;
+    /**
+     * The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \n\nhere\n\n.
+     */
     datasetId: string;
+    /**
+     * must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+     * The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more \n\nhere\n\n.
+     */
     datasetLocation: string;
+    /**
+     * must be one of ["bigquery-denormalized"]
+     */
     destinationType: string;
+    /**
+     * Loading method used to send select the way data will be uploaded to BigQuery. \n\n\n\nStandard Inserts\n\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \n\n\n\nGCS Staging\n\n - Writes large batches of records to a file, uploads the file to GCS, then uses \n\nCOPY INTO table\n\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \n\nhere\n\n.
+     */
     loadingMethod: outputs.GetDestinationBigqueryDenormalizedConfigurationLoadingMethod;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset. Read more \n\nhere\n\n.
+     */
     projectId: string;
 }
 
@@ -2226,13 +3117,37 @@ export interface GetDestinationBigqueryDenormalizedConfigurationLoadingMethodDes
 }
 
 export interface GetDestinationClickhouseConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["clickhouse"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * HTTP port of the database.
+     */
     port: number;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationClickhouseConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -2286,39 +3201,114 @@ export interface GetDestinationClickhouseConfigurationTunnelMethodDestinationCli
 }
 
 export interface GetDestinationConvexConfiguration {
+    /**
+     * API access key used to send data to a Convex deployment.
+     */
     accessKey: string;
+    /**
+     * URL of the Convex deployment that is the destination
+     */
     deploymentUrl: string;
+    /**
+     * must be one of ["convex"]
+     */
     destinationType: string;
 }
 
 export interface GetDestinationCumulioConfiguration {
+    /**
+     * URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'.
+     */
     apiHost: string;
+    /**
+     * An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiKey: string;
+    /**
+     * The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+     */
     apiToken: string;
+    /**
+     * must be one of ["cumulio"]
+     */
     destinationType: string;
 }
 
 export interface GetDestinationDatabendConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["databend"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The default  table was written to.
+     */
     table: string;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
 export interface GetDestinationDatabricksConfiguration {
+    /**
+     * You must agree to the Databricks JDBC Driver \n\nTerms & Conditions\n\n to use this connector.
+     */
     acceptTerms: boolean;
+    /**
+     * Storage on which the delta lake is built.
+     */
     dataSource: outputs.GetDestinationDatabricksConfigurationDataSource;
+    /**
+     * The name of the catalog. If not specified otherwise, the "hiveMetastore" will be used.
+     */
     database: string;
+    /**
+     * Databricks Cluster HTTP Path.
+     */
     databricksHttpPath: string;
+    /**
+     * Databricks Personal Access Token for making authenticated requests.
+     */
     databricksPersonalAccessToken: string;
+    /**
+     * Databricks Cluster Port.
+     */
     databricksPort: string;
+    /**
+     * Databricks Cluster Server Hostname.
+     */
     databricksServerHostname: string;
+    /**
+     * must be one of ["databricks"]
+     */
     destinationType: string;
+    /**
+     * Support schema evolution for all streams. If "false", the connector might fail when a stream's schema changes.
+     */
     enableSchemaEvolution: boolean;
+    /**
+     * Default to 'true'. Switch it to 'false' for debugging purpose.
+     */
     purgeStagingData: boolean;
+    /**
+     * The default schema tables are written. If not specified otherwise, the "default" will be used.
+     */
     schema: string;
 }
 
@@ -2376,7 +3366,13 @@ export interface GetDestinationDatabricksConfigurationDataSourceDestinationDatab
 }
 
 export interface GetDestinationDevNullConfiguration {
+    /**
+     * must be one of ["dev-null"]
+     */
     destinationType: string;
+    /**
+     * The type of destination to be used
+     */
     testDestination: outputs.GetDestinationDevNullConfigurationTestDestination;
 }
 
@@ -2394,19 +3390,53 @@ export interface GetDestinationDevNullConfigurationTestDestinationDestinationDev
 }
 
 export interface GetDestinationDynamodbConfiguration {
+    /**
+     * The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB.
+     */
     accessKeyId: string;
+    /**
+     * must be one of ["dynamodb"]
+     */
     destinationType: string;
+    /**
+     * This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty).
+     */
     dynamodbEndpoint: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the DynamoDB.
+     */
     dynamodbRegion: string;
+    /**
+     * The prefix to use when naming DynamoDB tables.
+     */
     dynamodbTableNamePrefix: string;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: string;
 }
 
 export interface GetDestinationElasticsearchConfiguration {
+    /**
+     * The type of authentication to be used
+     */
     authenticationMethod: outputs.GetDestinationElasticsearchConfigurationAuthenticationMethod;
+    /**
+     * CA certificate
+     */
     caCertificate: string;
+    /**
+     * must be one of ["elasticsearch"]
+     */
     destinationType: string;
+    /**
+     * The full url of the Elasticsearch server
+     */
     endpoint: string;
+    /**
+     * If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys.
+     */
     upsert: boolean;
 }
 
@@ -2442,13 +3472,37 @@ export interface GetDestinationElasticsearchConfigurationAuthenticationMethodDes
 }
 
 export interface GetDestinationFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account: string;
+    /**
+     * The database to connect to.
+     */
     database: string;
+    /**
+     * must be one of ["firebolt"]
+     */
     destinationType: string;
+    /**
+     * Engine name or url to connect to.
+     */
     engine: string;
+    /**
+     * The host name of your Firebolt database.
+     */
     host: string;
+    /**
+     * Loading method used to select the way data will be uploaded to Firebolt
+     */
     loadingMethod: outputs.GetDestinationFireboltConfigurationLoadingMethod;
+    /**
+     * Firebolt password.
+     */
     password: string;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: string;
 }
 
@@ -2484,17 +3538,45 @@ export interface GetDestinationFireboltConfigurationLoadingMethodDestinationFire
 }
 
 export interface GetDestinationFirestoreConfiguration {
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key. Default credentials will be used if this field is left empty.
+     */
     credentialsJson: string;
+    /**
+     * must be one of ["firestore"]
+     */
     destinationType: string;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: string;
 }
 
 export interface GetDestinationGcsConfiguration {
+    /**
+     * An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more \n\nhere\n\n.
+     */
     credential: outputs.GetDestinationGcsConfigurationCredential;
+    /**
+     * must be one of ["gcs"]
+     */
     destinationType: string;
+    /**
+     * Output data format. One of the following formats must be selected - \n\nAVRO\n\n format, \n\nPARQUET\n\n format, \n\nCSV\n\n format, or \n\nJSONL\n\n format.
+     */
     format: outputs.GetDestinationGcsConfigurationFormat;
+    /**
+     * You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketName: string;
+    /**
+     * GCS Bucket Path string Subdirectory under the above bucket to sync the data into.
+     */
     gcsBucketPath: string;
+    /**
+     * must be one of ["northamerica-northeast1", "northamerica-northeast2", "us-central1", "us-east1", "us-east4", "us-west1", "us-west2", "us-west3", "us-west4", "southamerica-east1", "southamerica-west1", "europe-central2", "europe-north1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "asia", "eu", "us", "asia1", "eur4", "nam4"]
+     * Select a Region of the GCS Bucket. Read more \n\nhere\n\n.
+     */
     gcsBucketRegion: string;
 }
 
@@ -2705,8 +3787,17 @@ export interface GetDestinationGcsConfigurationFormatDestinationGcsUpdateOutputF
 }
 
 export interface GetDestinationGoogleSheetsConfiguration {
+    /**
+     * Google API Credentials for connecting to Google Sheets and Google Drive APIs
+     */
     credentials: outputs.GetDestinationGoogleSheetsConfigurationCredentials;
+    /**
+     * must be one of ["google-sheets"]
+     */
     destinationType: string;
+    /**
+     * The link to your spreadsheet. See \n\nthis guide\n\n for more details.
+     */
     spreadsheetId: string;
 }
 
@@ -2717,25 +3808,67 @@ export interface GetDestinationGoogleSheetsConfigurationCredentials {
 }
 
 export interface GetDestinationKeenConfiguration {
+    /**
+     * To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     apiKey: string;
+    /**
+     * must be one of ["keen"]
+     */
     destinationType: string;
+    /**
+     * Allow connector to guess keen.timestamp value based on the streamed data.
+     */
     inferTimestamp: boolean;
+    /**
+     * To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+     */
     projectId: string;
 }
 
 export interface GetDestinationKinesisConfiguration {
+    /**
+     * Generate the AWS Access Key for current user.
+     */
     accessKey: string;
+    /**
+     * Buffer size for storing kinesis records before being batch streamed.
+     */
     bufferSize: number;
+    /**
+     * must be one of ["kinesis"]
+     */
     destinationType: string;
+    /**
+     * AWS Kinesis endpoint.
+     */
     endpoint: string;
+    /**
+     * The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a "recovery phrase".
+     */
     privateKey: string;
+    /**
+     * AWS region. Your account determines the Regions that are available to you.
+     */
     region: string;
+    /**
+     * Number of shards to which the data should be streamed.
+     */
     shardCount: number;
 }
 
 export interface GetDestinationLangchainConfiguration {
+    /**
+     * must be one of ["langchain"]
+     */
     destinationType: string;
+    /**
+     * Embedding configuration
+     */
     embedding: outputs.GetDestinationLangchainConfigurationEmbedding;
+    /**
+     * Indexing configuration
+     */
     indexing: outputs.GetDestinationLangchainConfigurationIndexing;
     processing: outputs.GetDestinationLangchainConfigurationProcessing;
 }
@@ -2817,15 +3950,45 @@ export interface GetDestinationLangchainConfigurationProcessing {
 }
 
 export interface GetDestinationMSsqlConfiguration {
+    /**
+     * The name of the MSSQL database.
+     */
     database: string;
+    /**
+     * must be one of ["mssql"]
+     */
     destinationType: string;
+    /**
+     * The host name of the MSSQL database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * The password associated with this username.
+     */
     password: string;
+    /**
+     * The port of the MSSQL database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * The encryption method which is used to communicate with the database.
+     */
     sslMethod: outputs.GetDestinationMSsqlConfigurationSslMethod;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationMSsqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -2904,10 +4067,25 @@ export interface GetDestinationMSsqlConfigurationTunnelMethodDestinationMssqlUpd
 }
 
 export interface GetDestinationMongodbConfiguration {
+    /**
+     * Authorization type.
+     */
     authType: outputs.GetDestinationMongodbConfigurationAuthType;
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["mongodb"]
+     */
     destinationType: string;
+    /**
+     * MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType: outputs.GetDestinationMongodbConfigurationInstanceType;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationMongodbConfigurationTunnelMethod;
 }
 
@@ -3031,13 +4209,37 @@ export interface GetDestinationMongodbConfigurationTunnelMethodDestinationMongod
 }
 
 export interface GetDestinationMysqlConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["mysql"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationMysqlConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -3091,14 +4293,41 @@ export interface GetDestinationMysqlConfigurationTunnelMethodDestinationMysqlUpd
 }
 
 export interface GetDestinationOracleConfiguration {
+    /**
+     * must be one of ["oracle"]
+     */
     destinationType: string;
+    /**
+     * The hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * The password associated with the username.
+     */
     password: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+     */
     schema: string;
+    /**
+     * The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+     */
     sid: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationOracleConfigurationTunnelMethod;
+    /**
+     * The username to access the database. This user must have CREATE USER privileges in the database.
+     */
     username: string;
 }
 
@@ -3152,15 +4381,52 @@ export interface GetDestinationOracleConfigurationTunnelMethodDestinationOracleU
 }
 
 export interface GetDestinationPostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["postgres"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * SSL connection modes.
+     * \n\ndisable\n\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+     * \n\nallow\n\n - Chose this mode to enable encryption only when required by the source database
+     * \n\nprefer\n\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+     * \n\nrequire\n\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+     * \n\nverify-ca\n\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+     * \n\nverify-full\n\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+     * See more information - \n\n in the docs\n\n.
+     */
     sslMode: outputs.GetDestinationPostgresConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationPostgresConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -3289,26 +4555,82 @@ export interface GetDestinationPostgresConfigurationTunnelMethodDestinationPostg
 }
 
 export interface GetDestinationPubsubConfiguration {
+    /**
+     * Number of ms before the buffer is flushed
+     */
     batchingDelayThreshold: number;
+    /**
+     * Number of messages before the buffer is flushed
+     */
     batchingElementCountThreshold: number;
+    /**
+     * If TRUE messages will be buffered instead of sending them one by one
+     */
     batchingEnabled: boolean;
+    /**
+     * Number of bytes before the buffer is flushed
+     */
     batchingRequestBytesThreshold: number;
+    /**
+     * The contents of the JSON service account key. Check out the \n\ndocs\n\n if you need help generating this key.
+     */
     credentialsJson: string;
+    /**
+     * must be one of ["pubsub"]
+     */
     destinationType: string;
+    /**
+     * If TRUE PubSub publisher will have \n\nmessage ordering\n\n enabled. Every message will have an ordering key of stream
+     */
     orderingEnabled: boolean;
+    /**
+     * The GCP project ID for the project containing the target PubSub.
+     */
     projectId: string;
+    /**
+     * The PubSub topic ID in the given GCP project ID.
+     */
     topicId: string;
 }
 
 export interface GetDestinationRedisConfiguration {
+    /**
+     * must be one of ["hash"]
+     * Redis cache type to store data in.
+     */
     cacheType: string;
+    /**
+     * must be one of ["redis"]
+     */
     destinationType: string;
+    /**
+     * Redis host to connect to.
+     */
     host: string;
+    /**
+     * Password associated with Redis.
+     */
     password: string;
+    /**
+     * Port of Redis.
+     */
     port: number;
+    /**
+     * Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+     */
     ssl: boolean;
+    /**
+     * SSL connection modes.
+     * \n\n\n\nverify-full\n\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+     */
     sslMode: outputs.GetDestinationRedisConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationRedisConfigurationTunnelMethod;
+    /**
+     * Username associated with Redis.
+     */
     username: string;
 }
 
@@ -3393,15 +4715,45 @@ export interface GetDestinationRedisConfigurationTunnelMethodDestinationRedisUpd
 }
 
 export interface GetDestinationRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["redshift"]
+     */
     destinationType: string;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+     */
     schema: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationRedshiftConfigurationTunnelMethod;
+    /**
+     * The method how the data will be uploaded to the database.
+     */
     uploadingMethod: outputs.GetDestinationRedshiftConfigurationUploadingMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -3524,15 +4876,46 @@ export interface GetDestinationRedshiftConfigurationUploadingMethodDestinationRe
 }
 
 export interface GetDestinationS3Configuration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId: string;
+    /**
+     * must be one of ["s3"]
+     */
     destinationType: string;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern: string;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: outputs.GetDestinationS3ConfigurationFormat;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: string;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: string;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint: string;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat: string;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey: string;
 }
 
@@ -3728,17 +5111,55 @@ export interface GetDestinationS3ConfigurationFormatDestinationS3UpdateOutputFor
 }
 
 export interface GetDestinationS3GlueConfiguration {
+    /**
+     * The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \n\nhere\n\n.
+     */
     accessKeyId: string;
+    /**
+     * must be one of ["s3-glue"]
+     */
     destinationType: string;
+    /**
+     * The pattern allows you to set the file-name format for the S3 staging file(s)
+     */
     fileNamePattern: string;
+    /**
+     * Format of the data output. See \n\nhere\n\n for more details
+     */
     format: outputs.GetDestinationS3GlueConfigurationFormat;
+    /**
+     * Name of the glue database for creating the tables, leave blank if no integration
+     */
     glueDatabase: string;
+    /**
+     * must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+     * The library that your query engine will use for reading and writing data in your lake.
+     */
     glueSerializationLibrary: string;
+    /**
+     * The name of the S3 bucket. Read more \n\nhere\n\n.
+     */
     s3BucketName: string;
+    /**
+     * Directory under the S3 bucket where data will be written. Read more \n\nhere\n\n
+     */
     s3BucketPath: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the S3 bucket. See \n\nhere\n\n for all region codes.
+     */
     s3BucketRegion: string;
+    /**
+     * Your S3 endpoint url. Read more \n\nhere\n\n
+     */
     s3Endpoint: string;
+    /**
+     * Format string on how data will be organized inside the S3 bucket directory. Read more \n\nhere\n\n
+     */
     s3PathFormat: string;
+    /**
+     * The corresponding secret to the access key ID. Read more \n\nhere\n\n
+     */
     secretAccessKey: string;
 }
 
@@ -3786,25 +5207,73 @@ export interface GetDestinationS3GlueConfigurationFormatDestinationS3GlueUpdateO
 }
 
 export interface GetDestinationSftpJsonConfiguration {
+    /**
+     * Path to the directory where json files will be written.
+     */
     destinationPath: string;
+    /**
+     * must be one of ["sftp-json"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the SFTP server.
+     */
     host: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the SFTP server.
+     */
     port: number;
+    /**
+     * Username to use to access the SFTP server.
+     */
     username: string;
 }
 
 export interface GetDestinationSnowflakeConfiguration {
     credentials: outputs.GetDestinationSnowflakeConfigurationCredentials;
+    /**
+     * Enter the name of the \n\ndatabase\n\n you want to sync data into
+     */
     database: string;
+    /**
+     * must be one of ["snowflake"]
+     */
     destinationType: string;
+    /**
+     * Enter your Snowflake account's \n\nlocator\n\n (in the format \n\n.\n\n.\n\n.snowflakecomputing.com)
+     */
     host: string;
+    /**
+     * Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+     */
     jdbcUrlParams: string;
+    /**
+     * (Beta) The schema to write raw tables into
+     */
     rawDataSchema: string;
+    /**
+     * Enter the \n\nrole\n\n that you want to use to access Snowflake
+     */
     role: string;
+    /**
+     * Enter the name of the default \n\nschema\n\n
+     */
     schema: string;
+    /**
+     * (Beta) Use \n\nDestinations V2\n\n. Contact Airbyte Support to participate in the beta program.
+     */
     use1s1tFormat: boolean;
+    /**
+     * Enter the name of the user you want to use to access the database
+     */
     username: string;
+    /**
+     * Enter the name of the \n\nwarehouse\n\n that you want to sync data into
+     */
     warehouse: string;
 }
 
@@ -3856,29 +5325,83 @@ export interface GetDestinationSnowflakeConfigurationCredentialsDestinationSnowf
 }
 
 export interface GetDestinationTimeplusConfiguration {
+    /**
+     * Personal API key
+     */
     apikey: string;
+    /**
+     * must be one of ["timeplus"]
+     */
     destinationType: string;
+    /**
+     * Timeplus workspace endpoint
+     */
     endpoint: string;
 }
 
 export interface GetDestinationTypesenseConfiguration {
+    /**
+     * Typesense API Key
+     */
     apiKey: string;
+    /**
+     * How many documents should be imported together. Default 1000
+     */
     batchSize: string;
+    /**
+     * must be one of ["typesense"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the Typesense instance without protocol.
+     */
     host: string;
+    /**
+     * Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+     */
     port: string;
+    /**
+     * Protocol of the Typesense instance. Ex: http or https. Default is https
+     */
     protocol: string;
 }
 
 export interface GetDestinationVerticaConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * must be one of ["vertica"]
+     */
     destinationType: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Schema for vertica destination
+     */
     schema: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetDestinationVerticaConfigurationTunnelMethod;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
@@ -3932,26 +5455,59 @@ export interface GetDestinationVerticaConfigurationTunnelMethodDestinationVertic
 }
 
 export interface GetDestinationXataConfiguration {
+    /**
+     * API Key to connect.
+     */
     apiKey: string;
+    /**
+     * URL pointing to your workspace.
+     */
     dbUrl: string;
+    /**
+     * must be one of ["xata"]
+     */
     destinationType: string;
 }
 
 export interface GetSourceAhaConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["aha"]
+     */
     sourceType: string;
+    /**
+     * URL
+     */
     url: string;
 }
 
 export interface GetSourceAircallConfiguration {
+    /**
+     * App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+     */
     apiId: string;
+    /**
+     * App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+     */
     apiToken: string;
+    /**
+     * must be one of ["aircall"]
+     */
     sourceType: string;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: string;
 }
 
 export interface GetSourceAirtableConfiguration {
     credentials: outputs.GetSourceAirtableConfigurationCredentials;
+    /**
+     * must be one of ["airtable"]
+     */
     sourceType: string;
 }
 
@@ -3991,16 +5547,50 @@ export interface GetSourceAirtableConfigurationCredentialsSourceAirtableUpdateAu
 }
 
 export interface GetSourceAlloydbConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod: outputs.GetSourceAlloydbConfigurationReplicationMethod;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas: string[];
+    /**
+     * must be one of ["alloydb"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode: outputs.GetSourceAlloydbConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourceAlloydbConfigurationTunnelMethod;
+    /**
+     * Username to access the database.
+     */
     username: string;
 }
 
@@ -4192,73 +5782,228 @@ export interface GetSourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSsh
 }
 
 export interface GetSourceAmazonAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType: string;
+    /**
+     * The client ID of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientId: string;
+    /**
+     * The client secret of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientSecret: string;
+    /**
+     * The amount of days to go back in time to get the updated data from Amazon Ads
+     */
     lookBackWindow: number;
+    /**
+     * Profile IDs you want to fetch data for. See \n\ndocs\n\n for more details.
+     */
     profiles: number[];
+    /**
+     * Amazon Ads refresh token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["NA", "EU", "FE"]
+     * Region to pull data from (EU/NA/FE). See \n\ndocs\n\n for more details.
+     */
     region: string;
+    /**
+     * Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \n\ndocs\n\n for more details
+     */
     reportRecordTypes: string[];
+    /**
+     * must be one of ["amazon-ads"]
+     */
     sourceType: string;
+    /**
+     * The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+     */
     startDate: string;
+    /**
+     * Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+     */
     stateFilters: string[];
 }
 
 export interface GetSourceAmazonSellerPartnerConfiguration {
+    /**
+     * Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
+     */
     advancedStreamOptions: string;
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType: string;
+    /**
+     * Specifies the AWS access key used as part of the credentials to authenticate the user.
+     */
     awsAccessKey: string;
+    /**
+     * must be one of ["PRODUCTION", "SANDBOX"]
+     * Select the AWS Environment.
+     */
     awsEnvironment: string;
+    /**
+     * Specifies the AWS secret key used as part of the credentials to authenticate the user.
+     */
     awsSecretKey: string;
+    /**
+     * Your Login with Amazon Client ID.
+     */
     lwaAppId: string;
+    /**
+     * Your Login with Amazon Client Secret.
+     */
     lwaClientSecret: string;
+    /**
+     * Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+     */
     maxWaitSeconds: number;
+    /**
+     * Will be used for stream slicing for initial fullRefresh sync when no updated state is present for reports that support sliced incremental sync.
+     */
     periodInDays: number;
+    /**
+     * The Refresh Token obtained via OAuth flow authorization.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+     * Select the AWS Region.
+     */
     region: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: string;
+    /**
+     * Additional information passed to reports. This varies by report type. Must be a valid json string.
+     */
     reportOptions: string;
+    /**
+     * Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+     */
     roleArn: string;
+    /**
+     * must be one of ["amazon-seller-partner"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceAmazonSqsConfiguration {
+    /**
+     * The Access Key ID of the AWS IAM Role to use for pulling messages
+     */
     accessKey: string;
+    /**
+     * Comma separated list of Mesage Attribute names to return
+     */
     attributesToReturn: string;
+    /**
+     * If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+     */
     deleteMessages: boolean;
+    /**
+     * Max amount of messages to get in one batch (10 max)
+     */
     maxBatchSize: number;
+    /**
+     * Max amount of time in seconds to wait for messages in a single poll (20 max)
+     */
     maxWaitTime: number;
+    /**
+     * URL of the SQS Queue
+     */
     queueUrl: string;
+    /**
+     * must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * AWS Region of the SQS Queue
+     */
     region: string;
+    /**
+     * The Secret Key of the AWS IAM Role to use for pulling messages
+     */
     secretKey: string;
+    /**
+     * must be one of ["amazon-sqs"]
+     */
     sourceType: string;
+    /**
+     * Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+     */
     visibilityTimeout: number;
 }
 
 export interface GetSourceAmplitudeConfiguration {
+    /**
+     * Amplitude API Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["Standard Server", "EU Residency Server"]
+     * Amplitude data region server
+     */
     dataRegion: string;
+    /**
+     * According to \n\nConsiderations\n\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+     */
     requestTimeRange: number;
+    /**
+     * Amplitude Secret Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     secretKey: string;
+    /**
+     * must be one of ["amplitude"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceApifyDatasetConfiguration {
+    /**
+     * If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \n\nApify API docs\n\n. If not sure, set clean to false.
+     */
     clean: boolean;
+    /**
+     * ID of the dataset you would like to load to Airbyte.
+     */
     datasetId: string;
+    /**
+     * must be one of ["apify-dataset"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceAppfollowConfiguration {
+    /**
+     * API Key provided by Appfollow
+     */
     apiSecret: string;
+    /**
+     * must be one of ["appfollow"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceAsanaConfiguration {
+    /**
+     * Choose how to authenticate to Github
+     */
     credentials: outputs.GetSourceAsanaConfigurationCredentials;
+    /**
+     * must be one of ["asana"]
+     */
     sourceType: string;
 }
 
@@ -4294,8 +6039,14 @@ export interface GetSourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenti
 }
 
 export interface GetSourceAuth0Configuration {
+    /**
+     * The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
+     */
     baseUrl: string;
     credentials: outputs.GetSourceAuth0ConfigurationCredentials;
+    /**
+     * must be one of ["auth0"]
+     */
     sourceType: string;
 }
 
@@ -4331,21 +6082,60 @@ export interface GetSourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenti
 }
 
 export interface GetSourceAwsCloudtrailConfiguration {
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsKeyId: string;
+    /**
+     * The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
+     */
     awsRegionName: string;
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsSecretKey: string;
+    /**
+     * must be one of ["aws-cloudtrail"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+     */
     startDate: string;
 }
 
 export interface GetSourceAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: string;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: string;
+    /**
+     * The Azure blob storage prefix to be applied
+     */
     azureBlobStorageBlobsPrefix: string;
+    /**
+     * The name of the Azure blob storage container.
+     */
     azureBlobStorageContainerName: string;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpoint: string;
+    /**
+     * The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+     */
     azureBlobStorageSchemaInferenceLimit: number;
+    /**
+     * Input data format
+     */
     format: outputs.GetSourceAzureBlobStorageConfigurationFormat;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     sourceType: string;
 }
 
@@ -4363,84 +6153,243 @@ export interface GetSourceAzureBlobStorageConfigurationFormatSourceAzureBlobStor
 }
 
 export interface GetSourceAzureTableConfiguration {
+    /**
+     * must be one of ["azure-table"]
+     */
     sourceType: string;
+    /**
+     * Azure Table Storage Access Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     storageAccessKey: string;
+    /**
+     * The name of your storage account.
+     */
     storageAccountName: string;
+    /**
+     * Azure Table Storage service account URL suffix. See the \n\ndocs\n\n for more information on how to obtain endpoint suffix
+     */
     storageEndpointSuffix: string;
 }
 
 export interface GetSourceBambooHrConfiguration {
+    /**
+     * Api key of bamboo hr
+     */
     apiKey: string;
+    /**
+     * Comma-separated list of fields to include in custom reports.
+     */
     customReportsFields: string;
+    /**
+     * If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+     */
     customReportsIncludeDefaultFields: boolean;
+    /**
+     * must be one of ["bamboo-hr"]
+     */
     sourceType: string;
+    /**
+     * Sub Domain of bamboo hr
+     */
     subdomain: string;
 }
 
 export interface GetSourceBigcommerceConfiguration {
+    /**
+     * Access Token for making authenticated requests.
+     */
     accessToken: string;
+    /**
+     * must be one of ["bigcommerce"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data. Format: YYYY-MM-DD.
+     */
     startDate: string;
+    /**
+     * The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+     */
     storeHash: string;
 }
 
 export interface GetSourceBigqueryConfiguration {
+    /**
+     * The contents of your Service Account Key JSON file. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     credentialsJson: string;
+    /**
+     * The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+     */
     datasetId: string;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: string;
+    /**
+     * must be one of ["bigquery"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceBingAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authMethod: string;
+    /**
+     * The Client ID of your Microsoft Advertising developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Microsoft Advertising developer application.
+     */
     clientSecret: string;
+    /**
+     * Developer token associated with user. See more info \n\n in the docs\n\n.
+     */
     developerToken: string;
+    /**
+     * Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+     */
     lookbackWindow: number;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: string;
+    /**
+     * The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
+     */
     reportsStartDate: string;
+    /**
+     * must be one of ["bing-ads"]
+     */
     sourceType: string;
+    /**
+     * The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+     */
     tenantId: string;
 }
 
 export interface GetSourceBraintreeConfiguration {
+    /**
+     * must be one of ["Development", "Sandbox", "Qa", "Production"]
+     * Environment specifies where the data will come from.
+     */
     environment: string;
+    /**
+     * The unique identifier for your entire gateway account. See the \n\ndocs\n\n for more information on how to obtain this ID.
+     */
     merchantId: string;
+    /**
+     * Braintree Private Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     privateKey: string;
+    /**
+     * Braintree Public Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     publicKey: string;
+    /**
+     * must be one of ["braintree"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceBrazeConfiguration {
+    /**
+     * Braze REST API key
+     */
     apiKey: string;
+    /**
+     * must be one of ["braze"]
+     */
     sourceType: string;
+    /**
+     * Rows after this date will be synced
+     */
     startDate: string;
+    /**
+     * Braze REST API endpoint
+     */
     url: string;
 }
 
 export interface GetSourceChargebeeConfiguration {
+    /**
+     * must be one of ["1.0", "2.0"]
+     * Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \n\nhere\n\n under `API Version` section.
+     */
     productCatalog: string;
+    /**
+     * The site prefix for your Chargebee instance.
+     */
     site: string;
+    /**
+     * Chargebee API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     siteApiKey: string;
+    /**
+     * must be one of ["chargebee"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceChartmogulConfiguration {
+    /**
+     * Your Chartmogul API key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     apiKey: string;
+    /**
+     * must be one of ["day", "week", "month", "quarter"]
+     * Some APIs such as \n\nMetrics\n\n require intervals to cluster data.
+     */
     interval: string;
+    /**
+     * must be one of ["chartmogul"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceClickhouseConfiguration {
+    /**
+     * The name of the database.
+     */
     database: string;
+    /**
+     * The host endpoint of the Clickhouse cluster.
+     */
     host: string;
+    /**
+     * The password associated with this username.
+     */
     password: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * must be one of ["clickhouse"]
+     */
     sourceType: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourceClickhouseConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -4494,79 +6443,225 @@ export interface GetSourceClickhouseConfigurationTunnelMethodSourceClickhouseUpd
 }
 
 export interface GetSourceClickupApiConfiguration {
+    /**
+     * Every ClickUp API call required authentication. This field is your personal API token. See \n\nhere\n\n.
+     */
     apiToken: string;
+    /**
+     * The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \n\nhere\n\n.
+     */
     folderId: string;
+    /**
+     * Include or exclude closed tasks. By default, they are excluded. See \n\nhere\n\n.
+     */
     includeClosedTasks: boolean;
+    /**
+     * The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \n\nhere\n\n.
+     */
     listId: string;
+    /**
+     * must be one of ["clickup-api"]
+     */
     sourceType: string;
+    /**
+     * The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \n\nhere\n\n.
+     */
     spaceId: string;
+    /**
+     * The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \n\nhere\n\n.
+     */
     teamId: string;
 }
 
 export interface GetSourceClockifyConfiguration {
+    /**
+     * You can get your api accessKey \n\nhere\n\n This API is Case Sensitive.
+     */
     apiKey: string;
+    /**
+     * The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+     */
     apiUrl: string;
+    /**
+     * must be one of ["clockify"]
+     */
     sourceType: string;
+    /**
+     * WorkSpace Id
+     */
     workspaceId: string;
 }
 
 export interface GetSourceCloseComConfiguration {
+    /**
+     * Close.com API key (usually starts with 'api_'; find yours \n\nhere\n\n).
+     */
     apiKey: string;
+    /**
+     * must be one of ["close-com"]
+     */
     sourceType: string;
+    /**
+     * The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+     */
     startDate: string;
 }
 
 export interface GetSourceCodaConfiguration {
+    /**
+     * Bearer token
+     */
     authToken: string;
+    /**
+     * must be one of ["coda"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceCoinApiConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * The end date in ISO 8601 format. If not supplied, data will be returned
+     * from the start date to the current time, or when the count of result
+     * elements reaches its limit.
+     */
     endDate: string;
+    /**
+     * must be one of ["sandbox", "production"]
+     * The environment to use. Either sandbox or production.
+     */
     environment: string;
+    /**
+     * The maximum number of elements to return. If not supplied, the default
+     * is 100. For numbers larger than 100, each 100 items is counted as one
+     * request for pricing purposes. Maximum value is 100000.
+     */
     limit: number;
+    /**
+     * The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+     */
     period: string;
+    /**
+     * must be one of ["coin-api"]
+     */
     sourceType: string;
+    /**
+     * The start date in ISO 8601 format.
+     */
     startDate: string;
+    /**
+     * The symbol ID to use. See the documentation for a list.
+     * https://docs.coinapi.io/#list-all-symbols-get
+     */
     symbolId: string;
 }
 
 export interface GetSourceCoinmarketcapConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The token is case sensitive.
+     */
     apiKey: string;
+    /**
+     * must be one of ["latest", "historical"]
+     * /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \n\nhere\n\n.
+     */
     dataType: string;
+    /**
+     * must be one of ["coinmarketcap"]
+     */
     sourceType: string;
+    /**
+     * Cryptocurrency symbols. (only used for quotes stream)
+     */
     symbols: string[];
 }
 
 export interface GetSourceConfigcatConfiguration {
+    /**
+     * Basic auth password. See \n\nhere\n\n.
+     */
     password: string;
+    /**
+     * must be one of ["configcat"]
+     */
     sourceType: string;
+    /**
+     * Basic auth user name. See \n\nhere\n\n.
+     */
     username: string;
 }
 
 export interface GetSourceConfluenceConfiguration {
+    /**
+     * Please follow the Jira confluence for generating an API token: \n\ngenerating an API token\n\n.
+     */
     apiToken: string;
+    /**
+     * Your Confluence domain name
+     */
     domainName: string;
+    /**
+     * Your Confluence login email
+     */
     email: string;
+    /**
+     * must be one of ["confluence"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceConvexConfiguration {
+    /**
+     * API access key used to retrieve data from Convex.
+     */
     accessKey: string;
     deploymentUrl: string;
+    /**
+     * must be one of ["convex"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceDatadogConfiguration {
+    /**
+     * Datadog API key
+     */
     apiKey: string;
+    /**
+     * Datadog application key
+     */
     applicationKey: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+     */
     endDate: string;
+    /**
+     * Maximum number of records to collect per request.
+     */
     maxRecordsPerRequest: number;
+    /**
+     * List of queries to be run and used as inputs.
+     */
     queries: outputs.GetSourceDatadogConfigurationQuery[];
+    /**
+     * The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+     */
     query: string;
+    /**
+     * must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+     * The site where Datadog data resides in.
+     */
     site: string;
+    /**
+     * must be one of ["datadog"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+     */
     startDate: string;
 }
 
@@ -4577,50 +6672,129 @@ export interface GetSourceDatadogConfigurationQuery {
 }
 
 export interface GetSourceDatascopeConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["datascope"]
+     */
     sourceType: string;
+    /**
+     * Start date for the data to be replicated
+     */
     startDate: string;
 }
 
 export interface GetSourceDelightedConfiguration {
+    /**
+     * A Delighted API key.
+     */
     apiKey: string;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     since: string;
+    /**
+     * must be one of ["delighted"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceDixaConfiguration {
+    /**
+     * Dixa API token
+     */
     apiToken: string;
+    /**
+     * Number of days to batch into one request. Max 31.
+     */
     batchSize: number;
+    /**
+     * must be one of ["dixa"]
+     */
     sourceType: string;
+    /**
+     * The connector pulls records updated from this date onwards.
+     */
     startDate: string;
 }
 
 export interface GetSourceDockerhubConfiguration {
+    /**
+     * Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
+     */
     dockerUsername: string;
+    /**
+     * must be one of ["dockerhub"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceDremioConfiguration {
+    /**
+     * API Key that is generated when you authenticate to Dremio API
+     */
     apiKey: string;
+    /**
+     * URL of your Dremio instance
+     */
     baseUrl: string;
+    /**
+     * must be one of ["dremio"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceDynamodbConfiguration {
+    /**
+     * The access key id to access Dynamodb. Airbyte requires read permissions to the database
+     */
     accessKeyId: string;
+    /**
+     * the URL of the Dynamodb database
+     */
     endpoint: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the Dynamodb database
+     */
     region: string;
+    /**
+     * Comma separated reserved attribute names present in your tables
+     */
     reservedAttributeNames: string;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: string;
+    /**
+     * must be one of ["dynamodb"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceE2eTestCloudConfiguration {
+    /**
+     * Number of records to emit per stream. Min 1. Max 100 billion.
+     */
     maxMessages: number;
+    /**
+     * Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
+     */
     messageIntervalMs: number;
     mockCatalog: outputs.GetSourceE2eTestCloudConfigurationMockCatalog;
+    /**
+     * When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+     */
     seed: number;
+    /**
+     * must be one of ["e2e-test-cloud"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["CONTINUOUS_FEED"]
+     */
     type: string;
 }
 
@@ -4656,32 +6830,95 @@ export interface GetSourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloud
 }
 
 export interface GetSourceEmailoctopusConfiguration {
+    /**
+     * EmailOctopus API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["emailoctopus"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceExchangeRatesConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessKey: string;
+    /**
+     * ISO reference currency. See \n\nhere\n\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+     */
     base: string;
+    /**
+     * Ignore weekends? (Exchanges don't run on weekends)
+     */
     ignoreWeekends: boolean;
+    /**
+     * must be one of ["exchange-rates"]
+     */
     sourceType: string;
+    /**
+     * Start getting data from that date.
+     */
     startDate: string;
 }
 
 export interface GetSourceFacebookMarketingConfiguration {
+    /**
+     * The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \n\nads*management, ads*read, read*insights, business*management\n\n. Then click on "Get token". See the \n\ndocs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \n\ndocs\n\n for more information.
+     */
     accountId: string;
+    /**
+     * Allows actionBreakdowns to be an empty list
+     */
     actionBreakdownsAllowEmpty: boolean;
+    /**
+     * The Client Id for your OAuth app
+     */
     clientId: string;
+    /**
+     * The Client Secret for your OAuth app
+     */
     clientSecret: string;
+    /**
+     * A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+     */
     customInsights: outputs.GetSourceFacebookMarketingConfigurationCustomInsight[];
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+     */
     endDate: string;
+    /**
+     * Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+     */
     fetchThumbnailImages: boolean;
+    /**
+     * Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+     */
     includeDeleted: boolean;
+    /**
+     * The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+     */
     insightsLookbackWindow: number;
+    /**
+     * Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     maxBatchSize: number;
+    /**
+     * Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     pageSize: number;
+    /**
+     * must be one of ["facebook-marketing"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -4699,26 +6936,71 @@ export interface GetSourceFacebookMarketingConfigurationCustomInsight {
 }
 
 export interface GetSourceFacebookPagesConfiguration {
+    /**
+     * Facebook Page Access Token
+     */
     accessToken: string;
+    /**
+     * Page ID
+     */
     pageId: string;
+    /**
+     * must be one of ["facebook-pages"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceFakerConfiguration {
+    /**
+     * Should the updatedAt values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+     */
     alwaysUpdated: boolean;
+    /**
+     * How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+     */
     count: number;
+    /**
+     * How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+     */
     parallelism: number;
+    /**
+     * How many fake records will be in each page (stream slice), before a state message is emitted?
+     */
     recordsPerSlice: number;
+    /**
+     * Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+     */
     seed: number;
+    /**
+     * must be one of ["faker"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceFaunaConfiguration {
+    /**
+     * Settings for the Fauna Collection.
+     */
     collection: outputs.GetSourceFaunaConfigurationCollection;
+    /**
+     * Domain of Fauna to query. Defaults db.fauna.com. See \n\nthe docs\n\n.
+     */
     domain: string;
+    /**
+     * Endpoint port.
+     */
     port: number;
+    /**
+     * URL scheme.
+     */
     scheme: string;
+    /**
+     * Fauna secret, used when authenticating with the database.
+     */
     secret: string;
+    /**
+     * must be one of ["fauna"]
+     */
     sourceType: string;
 }
 
@@ -4753,11 +7035,30 @@ export interface GetSourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdate
 }
 
 export interface GetSourceFileSecureConfiguration {
+    /**
+     * The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+     */
     datasetName: string;
+    /**
+     * must be one of ["csv", "json", "jsonl", "excel", "excelBinary", "feather", "parquet", "yaml"]
+     * The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+     */
     format: string;
+    /**
+     * The storage Provider or Location of the file(s) which should be replicated.
+     */
     provider: outputs.GetSourceFileSecureConfigurationProvider;
+    /**
+     * This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+     */
     readerOptions: string;
+    /**
+     * must be one of ["file-secure"]
+     */
     sourceType: string;
+    /**
+     * The URL path to access the file which should be replicated.
+     */
     url: string;
 }
 
@@ -4873,61 +7174,166 @@ export interface GetSourceFileSecureConfigurationProviderSourceFileSecureUpdateS
 }
 
 export interface GetSourceFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account: string;
+    /**
+     * The database to connect to.
+     */
     database: string;
+    /**
+     * Engine name or url to connect to.
+     */
     engine: string;
+    /**
+     * The host name of your Firebolt database.
+     */
     host: string;
+    /**
+     * Firebolt password.
+     */
     password: string;
+    /**
+     * must be one of ["firebolt"]
+     */
     sourceType: string;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: string;
 }
 
 export interface GetSourceFreshcallerConfiguration {
+    /**
+     * Freshcaller API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * Used to construct Base URL for the Freshcaller APIs
+     */
     domain: string;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute: number;
+    /**
+     * must be one of ["freshcaller"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data created after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+     */
     syncLagMinutes: number;
 }
 
 export interface GetSourceFreshdeskConfiguration {
+    /**
+     * Freshdesk API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * Freshdesk domain
+     */
     domain: string;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute: number;
+    /**
+     * must be one of ["freshdesk"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceFreshsalesConfiguration {
+    /**
+     * Freshsales API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * The Name of your Freshsales domain
+     */
     domainName: string;
+    /**
+     * must be one of ["freshsales"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGainsightPxConfiguration {
+    /**
+     * The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+     */
     apiKey: string;
+    /**
+     * must be one of ["gainsight-px"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGcsConfiguration {
+    /**
+     * GCS bucket name
+     */
     gcsBucket: string;
+    /**
+     * GCS path to data
+     */
     gcsPath: string;
+    /**
+     * Enter your Google Cloud \n\nservice account key\n\n in JSON format
+     */
     serviceAccount: string;
+    /**
+     * must be one of ["gcs"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGetlagoConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * must be one of ["getlago"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGithubConfiguration {
+    /**
+     * Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+     */
     branch: string;
+    /**
+     * Choose how to authenticate to GitHub
+     */
     credentials: outputs.GetSourceGithubConfigurationCredentials;
+    /**
+     * Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+     */
     repository: string;
+    /**
+     * The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+     */
     requestsPerHour: number;
+    /**
+     * must be one of ["github"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \n\ndocs\n\n for more info
+     */
     startDate: string;
 }
 
@@ -4963,11 +7369,26 @@ export interface GetSourceGithubConfigurationCredentialsSourceGithubUpdateAuthen
 }
 
 export interface GetSourceGitlabConfiguration {
+    /**
+     * Please enter your basic URL from GitLab instance.
+     */
     apiUrl: string;
     credentials: outputs.GetSourceGitlabConfigurationCredentials;
+    /**
+     * Space-delimited list of groups. e.g. airbyte.io.
+     */
     groups: string;
+    /**
+     * Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+     */
     projects: string;
+    /**
+     * must be one of ["gitlab"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -5007,7 +7428,13 @@ export interface GetSourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthor
 }
 
 export interface GetSourceGlassfrogConfiguration {
+    /**
+     * API key provided by Glassfrog
+     */
     apiKey: string;
+    /**
+     * must be one of ["glassfrog"]
+     */
     sourceType: string;
 }
 
@@ -5027,13 +7454,31 @@ export interface GetSourceGnewsConfiguration {
 }
 
 export interface GetSourceGoogleAdsConfiguration {
+    /**
+     * A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \n\nGoogle's documentation\n\n.
+     */
     conversionWindowDays: number;
     credentials: outputs.GetSourceGoogleAdsConfigurationCredentials;
     customQueries: outputs.GetSourceGoogleAdsConfigurationCustomQuery[];
+    /**
+     * Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \n\ndocumentation\n\n.
+     */
     customerId: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+     */
     endDate: string;
+    /**
+     * If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \n\nGoogle's documentation\n\n.
+     */
     loginCustomerId: string;
+    /**
+     * must be one of ["google-ads"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -5051,11 +7496,29 @@ export interface GetSourceGoogleAdsConfigurationCustomQuery {
 }
 
 export interface GetSourceGoogleAnalyticsDataApiConfiguration {
+    /**
+     * Credentials for the service
+     */
     credentials: outputs.GetSourceGoogleAnalyticsDataApiConfigurationCredentials;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe documentation\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports: string;
+    /**
+     * The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+     */
     dateRangesStartDate: string;
+    /**
+     * The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \n\nGoogle Analytics documentation\n\n to locate your property ID.
+     */
     propertyId: string;
+    /**
+     * must be one of ["google-analytics-data-api"]
+     */
     sourceType: string;
+    /**
+     * The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \n\nthe documentation\n\n.
+     */
     windowInDays: number;
 }
 
@@ -5093,11 +7556,29 @@ export interface GetSourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGo
 }
 
 export interface GetSourceGoogleAnalyticsV4Configuration {
+    /**
+     * Credentials for the service
+     */
     credentials: outputs.GetSourceGoogleAnalyticsV4ConfigurationCredentials;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports: string;
+    /**
+     * must be one of ["google-analytics-v4"]
+     */
     sourceType: string;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * The ID for the Google Analytics View you want to fetch data from. This can be found from the \n\nGoogle Analytics Account Explorer\n\n.
+     */
     viewId: string;
+    /**
+     * The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \n\nthe docs\n\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+     */
     windowInDays: number;
 }
 
@@ -5135,7 +7616,13 @@ export interface GetSourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleA
 }
 
 export interface GetSourceGoogleDirectoryConfiguration {
+    /**
+     * Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \n\nWeb server application\n\n and \n\nService accounts\n\n scenarios.
+     */
     credentials: outputs.GetSourceGoogleDirectoryConfigurationCredentials;
+    /**
+     * must be one of ["google-directory"]
+     */
     sourceType: string;
 }
 
@@ -5173,20 +7660,54 @@ export interface GetSourceGoogleDirectoryConfigurationCredentialsSourceGoogleDir
 }
 
 export interface GetSourceGooglePagespeedInsightsConfiguration {
+    /**
+     * Google PageSpeed API Key. See \n\nhere\n\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
+     */
     categories: string[];
+    /**
+     * must be one of ["google-pagespeed-insights"]
+     */
     sourceType: string;
+    /**
+     * The analyses strategy to use. Either "desktop" or "mobile".
+     */
     strategies: string[];
+    /**
+     * The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+     */
     urls: string[];
 }
 
 export interface GetSourceGoogleSearchConsoleConfiguration {
     authorization: outputs.GetSourceGoogleSearchConsoleConfigurationAuthorization;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Search Console. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports: string;
+    /**
+     * must be one of ["final", "all"]
+     * If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+     */
     dataState: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+     */
     endDate: string;
+    /**
+     * The URLs of the website property attached to your GSC account. Read more \n\nhere\n\n.
+     */
     siteUrls: string[];
+    /**
+     * must be one of ["google-search-console"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -5226,10 +7747,25 @@ export interface GetSourceGoogleSearchConsoleConfigurationAuthorizationSourceGoo
 }
 
 export interface GetSourceGoogleSheetsConfiguration {
+    /**
+     * Credentials for connecting to the Google Sheets API
+     */
     credentials: outputs.GetSourceGoogleSheetsConfigurationCredentials;
+    /**
+     * Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+     */
     namesConversion: boolean;
+    /**
+     * The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+     */
     rowBatchSize: number;
+    /**
+     * must be one of ["google-sheets"]
+     */
     sourceType: string;
+    /**
+     * Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+     */
     spreadsheetId: string;
 }
 
@@ -5265,36 +7801,90 @@ export interface GetSourceGoogleSheetsConfigurationCredentialsSourceGoogleSheets
 }
 
 export interface GetSourceGoogleWebfontsConfiguration {
+    /**
+     * Optional, Available params- json, media, proto
+     */
     alt: string;
+    /**
+     * API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+     */
     apiKey: string;
+    /**
+     * Optional, boolean type
+     */
     prettyPrint: string;
+    /**
+     * Optional, to find how to sort
+     */
     sort: string;
+    /**
+     * must be one of ["google-webfonts"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGoogleWorkspaceAdminReportsConfiguration {
+    /**
+     * The contents of the JSON service account key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     credentialsJson: string;
+    /**
+     * The email of the user, which has permissions to access the Google Workspace Admin APIs.
+     */
     email: string;
+    /**
+     * Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+     */
     lookback: number;
+    /**
+     * must be one of ["google-workspace-admin-reports"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGreenhouseConfiguration {
+    /**
+     * Greenhouse API Key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["greenhouse"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceGridlyConfiguration {
     apiKey: string;
+    /**
+     * ID of a grid, or can be ID of a branch
+     */
     gridId: string;
+    /**
+     * must be one of ["gridly"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceHarvestConfiguration {
+    /**
+     * Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+     */
     accountId: string;
+    /**
+     * Choose how to authenticate to Harvest.
+     */
     credentials: outputs.GetSourceHarvestConfigurationCredentials;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: string;
+    /**
+     * must be one of ["harvest"]
+     */
     sourceType: string;
 }
 
@@ -5334,13 +7924,28 @@ export interface GetSourceHarvestConfigurationCredentialsSourceHarvestUpdateAuth
 }
 
 export interface GetSourceHubplannerConfiguration {
+    /**
+     * Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+     */
     apiKey: string;
+    /**
+     * must be one of ["hubplanner"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceHubspotConfiguration {
+    /**
+     * Choose how to authenticate to HubSpot.
+     */
     credentials: outputs.GetSourceHubspotConfigurationCredentials;
+    /**
+     * must be one of ["hubspot"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -5376,102 +7981,269 @@ export interface GetSourceHubspotConfigurationCredentialsSourceHubspotUpdateAuth
 }
 
 export interface GetSourceInsightlyConfiguration {
+    /**
+     * must be one of ["insightly"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+     */
     startDate: string;
+    /**
+     * Your Insightly API token.
+     */
     token: string;
 }
 
 export interface GetSourceInstagramConfiguration {
+    /**
+     * The value of the access token generated with \n\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\n\n permissions. See the \n\ndocs\n\n for more information
+     */
     accessToken: string;
+    /**
+     * The Client ID for your Oauth application
+     */
     clientId: string;
+    /**
+     * The Client Secret for your Oauth application
+     */
     clientSecret: string;
+    /**
+     * must be one of ["instagram"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceInstatusConfiguration {
+    /**
+     * Instatus REST API key
+     */
     apiKey: string;
+    /**
+     * must be one of ["instatus"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceIntercomConfiguration {
+    /**
+     * Access token for making authenticated requests. See the \n\nIntercom docs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * must be one of ["intercom"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceIp2whoisConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * Domain name. See \n\nhere\n\n.
+     */
     domain: string;
+    /**
+     * must be one of ["ip2whois"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceIterableConfiguration {
+    /**
+     * Iterable API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["iterable"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceJiraConfiguration {
+    /**
+     * Jira API Token. See the \n\ndocs\n\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+     */
     apiToken: string;
+    /**
+     * The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+     */
     domain: string;
+    /**
+     * The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+     */
     email: string;
+    /**
+     * Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+     */
     enableExperimentalStreams: boolean;
+    /**
+     * Expand the changelog when replicating issues.
+     */
     expandIssueChangelog: boolean;
+    /**
+     * List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+     */
     projects: string[];
+    /**
+     * Render issue fields in HTML format in addition to Jira JSON-like format.
+     */
     renderFields: boolean;
+    /**
+     * must be one of ["jira"]
+     */
     sourceType: string;
+    /**
+     * The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \n\ndocumentation\n\n.
+     */
     startDate: string;
 }
 
 export interface GetSourceK6CloudConfiguration {
+    /**
+     * Your API Token. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiToken: string;
+    /**
+     * must be one of ["k6-cloud"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceKlarnaConfiguration {
+    /**
+     * A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+     */
     password: string;
+    /**
+     * Propertie defining if connector is used against playground or production environment
+     */
     playground: boolean;
+    /**
+     * must be one of ["eu", "us", "oc"]
+     * Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+     */
     region: string;
+    /**
+     * must be one of ["klarna"]
+     */
     sourceType: string;
+    /**
+     * Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+     */
     username: string;
 }
 
 export interface GetSourceKlaviyoConfiguration {
+    /**
+     * Klaviyo API Key. See our \n\ndocs\n\n if you need help finding this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["klaviyo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceKustomerSingerConfiguration {
+    /**
+     * Kustomer API Token. See the \n\ndocs\n\n on how to obtain this
+     */
     apiToken: string;
+    /**
+     * must be one of ["kustomer-singer"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     startDate: string;
 }
 
 export interface GetSourceKyveConfiguration {
+    /**
+     * The maximum amount of pages to go trough. Set to 'null' for all pages.
+     */
     maxPages: number;
+    /**
+     * The pagesize for pagination, smaller numbers are used in integration tests.
+     */
     pageSize: number;
+    /**
+     * The IDs of the KYVE storage pool you want to archive. (Comma separated)
+     */
     poolIds: string;
+    /**
+     * must be one of ["kyve"]
+     */
     sourceType: string;
+    /**
+     * The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+     */
     startIds: string;
+    /**
+     * URL to the KYVE Chain API.
+     */
     urlBase: string;
 }
 
 export interface GetSourceLaunchdarklyConfiguration {
+    /**
+     * Your Access token. See \n\nhere\n\n.
+     */
     accessToken: string;
+    /**
+     * must be one of ["launchdarkly"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceLemlistConfiguration {
+    /**
+     * Lemlist API key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["lemlist"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceLeverHiringConfiguration {
+    /**
+     * Choose how to authenticate to Lever Hiring.
+     */
     credentials: outputs.GetSourceLeverHiringConfigurationCredentials;
+    /**
+     * must be one of ["Production", "Sandbox"]
+     * The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+     */
     environment: string;
+    /**
+     * must be one of ["lever-hiring"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+     */
     startDate: string;
 }
 
@@ -5507,10 +8279,19 @@ export interface GetSourceLeverHiringConfigurationCredentialsSourceLeverHiringUp
 }
 
 export interface GetSourceLinkedinAdsConfiguration {
+    /**
+     * Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \n\nLinkedIn Ads docs\n\n for more info.
+     */
     accountIds: number[];
     adAnalyticsReports: outputs.GetSourceLinkedinAdsConfigurationAdAnalyticsReport[];
     credentials: outputs.GetSourceLinkedinAdsConfigurationCredentials;
+    /**
+     * must be one of ["linkedin-ads"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -5553,7 +8334,13 @@ export interface GetSourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUp
 
 export interface GetSourceLinkedinPagesConfiguration {
     credentials: outputs.GetSourceLinkedinPagesConfigurationCredentials;
+    /**
+     * Specify the Organization ID
+     */
     orgId: string;
+    /**
+     * must be one of ["linkedin-pages"]
+     */
     sourceType: string;
 }
 
@@ -5589,22 +8376,46 @@ export interface GetSourceLinkedinPagesConfigurationCredentialsSourceLinkedinPag
 }
 
 export interface GetSourceLinnworksConfiguration {
+    /**
+     * Linnworks Application ID
+     */
     applicationId: string;
+    /**
+     * Linnworks Application Secret
+     */
     applicationSecret: string;
+    /**
+     * must be one of ["linnworks"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
     token: string;
 }
 
 export interface GetSourceLokaliseConfiguration {
+    /**
+     * Lokalise API Key with read-access. Available at Profile settings > API tokens. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * Lokalise project ID. Available at Project Settings > General.
+     */
     projectId: string;
+    /**
+     * must be one of ["lokalise"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceMailchimpConfiguration {
     campaignId: string;
     credentials: outputs.GetSourceMailchimpConfigurationCredentials;
+    /**
+     * must be one of ["mailchimp"]
+     */
     sourceType: string;
 }
 
@@ -5640,38 +8451,100 @@ export interface GetSourceMailchimpConfigurationCredentialsSourceMailchimpUpdate
 }
 
 export interface GetSourceMailgunConfiguration {
+    /**
+     * Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
+     */
     domainRegion: string;
+    /**
+     * Primary account API key to access your Mailgun data.
+     */
     privateKey: string;
+    /**
+     * must be one of ["mailgun"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+     */
     startDate: string;
 }
 
 export interface GetSourceMailjetSmsConfiguration {
+    /**
+     * Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+     */
     endDate: number;
+    /**
+     * must be one of ["mailjet-sms"]
+     */
     sourceType: string;
+    /**
+     * Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+     */
     startDate: number;
+    /**
+     * Your access token. See \n\nhere\n\n.
+     */
     token: string;
 }
 
 export interface GetSourceMarketoConfiguration {
+    /**
+     * The Client ID of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientSecret: string;
+    /**
+     * Your Marketo Base URL. See \n\n the docs \n\n for info on how to obtain this.
+     */
     domainUrl: string;
+    /**
+     * must be one of ["marketo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceMetabaseConfiguration {
+    /**
+     * URL to your metabase instance API
+     */
     instanceApiUrl: string;
     password: string;
+    /**
+     * To generate your session token, you need to run the following command: `curl -X POST \
+     * -H "Content-Type: application/json" \
+     * -d '{"username": "person@metabase.com", "password": "fakepassword"}' \
+     * http://localhost:3000/api/session
+     * ` Then copy the value of the `id` field returned by a successful call to that API.
+     * Note that by default, sessions are good for 14 days and needs to be regenerated.
+     */
     sessionToken: string;
+    /**
+     * must be one of ["metabase"]
+     */
     sourceType: string;
     username: string;
 }
 
 export interface GetSourceMicrosoftTeamsConfiguration {
+    /**
+     * Choose how to authenticate to Microsoft
+     */
     credentials: outputs.GetSourceMicrosoftTeamsConfigurationCredentials;
+    /**
+     * Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+     */
     period: string;
+    /**
+     * must be one of ["microsoft-teams"]
+     */
     sourceType: string;
 }
 
@@ -5713,15 +8586,46 @@ export interface GetSourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftT
 }
 
 export interface GetSourceMixpanelConfiguration {
+    /**
+     * A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+     */
     attributionWindow: number;
+    /**
+     * Choose how to authenticate to Mixpanel
+     */
     credentials: outputs.GetSourceMixpanelConfigurationCredentials;
+    /**
+     * Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+     */
     dateWindowSize: number;
+    /**
+     * The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+     */
     endDate: string;
+    /**
+     * Your project ID number. See the \n\ndocs\n\n for more information on how to obtain this.
+     */
     projectId: number;
+    /**
+     * Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \n\nMixpanel console\n\n.
+     */
     projectTimezone: string;
+    /**
+     * must be one of ["US", "EU"]
+     * The region of mixpanel domain instance either US or EU.
+     */
     region: string;
+    /**
+     * Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+     */
     selectPropertiesByDefault: boolean;
+    /**
+     * must be one of ["mixpanel"]
+     */
     sourceType: string;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+     */
     startDate: string;
 }
 
@@ -5756,6 +8660,9 @@ export interface GetSourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAu
 
 export interface GetSourceMondayConfiguration {
     credentials: outputs.GetSourceMondayConfigurationCredentials;
+    /**
+     * must be one of ["monday"]
+     */
     sourceType: string;
 }
 
@@ -5793,11 +8700,29 @@ export interface GetSourceMondayConfigurationCredentialsSourceMondayUpdateAuthor
 }
 
 export interface GetSourceMongodbConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource: string;
+    /**
+     * The database you want to replicate.
+     */
     database: string;
+    /**
+     * The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType: outputs.GetSourceMongodbConfigurationInstanceType;
+    /**
+     * The password associated with this username.
+     */
     password: string;
+    /**
+     * must be one of ["mongodb"]
+     */
     sourceType: string;
+    /**
+     * The username which is used to access the database.
+     */
     user: string;
 }
 
@@ -5847,25 +8772,76 @@ export interface GetSourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMon
 }
 
 export interface GetSourceMongodbInternalPocConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource: string;
+    /**
+     * The connection string of the database that you want to replicate..
+     */
     connectionString: string;
+    /**
+     * The password associated with this username.
+     */
     password: string;
+    /**
+     * The name of the replica set to be replicated.
+     */
     replicaSet: string;
+    /**
+     * must be one of ["mongodb-internal-poc"]
+     */
     sourceType: string;
+    /**
+     * The username which is used to access the database.
+     */
     user: string;
 }
 
 export interface GetSourceMssqlConfiguration {
+    /**
+     * The name of the database.
+     */
     database: string;
+    /**
+     * The hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * The password associated with the username.
+     */
     password: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
+     */
     replicationMethod: outputs.GetSourceMssqlConfigurationReplicationMethod;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas: string[];
+    /**
+     * must be one of ["mssql"]
+     */
     sourceType: string;
+    /**
+     * The encryption method which is used when communicating with the database.
+     */
     sslMethod: outputs.GetSourceMssqlConfigurationSslMethod;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourceMssqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -5973,23 +8949,68 @@ export interface GetSourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunn
 }
 
 export interface GetSourceMyHoursConfiguration {
+    /**
+     * Your My Hours username
+     */
     email: string;
+    /**
+     * Pagination size used for retrieving logs in days
+     */
     logsBatchSize: number;
+    /**
+     * The password associated to the username
+     */
     password: string;
+    /**
+     * must be one of ["my-hours"]
+     */
     sourceType: string;
+    /**
+     * Start date for collecting time logs
+     */
     startDate: string;
 }
 
 export interface GetSourceMysqlConfiguration {
+    /**
+     * The database name.
+     */
     database: string;
+    /**
+     * The host name of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams: string;
+    /**
+     * The password associated with the username.
+     */
     password: string;
+    /**
+     * The port to connect to.
+     */
     port: number;
+    /**
+     * Configures how data is extracted from the database.
+     */
     replicationMethod: outputs.GetSourceMysqlConfigurationReplicationMethod;
+    /**
+     * must be one of ["mysql"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes. Read more \n\n in the docs\n\n.
+     */
     sslMode: outputs.GetSourceMysqlConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourceMysqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -6129,20 +9150,56 @@ export interface GetSourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunn
 }
 
 export interface GetSourceNetsuiteConfiguration {
+    /**
+     * Consumer key associated with your integration
+     */
     consumerKey: string;
+    /**
+     * Consumer secret associated with your integration
+     */
     consumerSecret: string;
+    /**
+     * The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+     */
     objectTypes: string[];
+    /**
+     * Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+     */
     realm: string;
+    /**
+     * must be one of ["netsuite"]
+     */
     sourceType: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+     */
     startDatetime: string;
+    /**
+     * Access token key
+     */
     tokenKey: string;
+    /**
+     * Access token secret
+     */
     tokenSecret: string;
+    /**
+     * The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+     */
     windowInDays: number;
 }
 
 export interface GetSourceNotionConfiguration {
+    /**
+     * Pick an authentication method.
+     */
     credentials: outputs.GetSourceNotionConfigurationCredentials;
+    /**
+     * must be one of ["notion"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -6178,18 +9235,47 @@ export interface GetSourceNotionConfigurationCredentialsSourceNotionUpdateAuthen
 }
 
 export interface GetSourceNytimesConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * End date to stop the article retrieval (format YYYY-MM)
+     */
     endDate: string;
+    /**
+     * must be one of ["1", "7", "30"]
+     * Period of time (in days)
+     */
     period: number;
+    /**
+     * must be one of ["facebook"]
+     * Share Type
+     */
     shareType: string;
+    /**
+     * must be one of ["nytimes"]
+     */
     sourceType: string;
+    /**
+     * Start date to begin the article retrieval (format YYYY-MM)
+     */
     startDate: string;
 }
 
 export interface GetSourceOktaConfiguration {
     credentials: outputs.GetSourceOktaConfigurationCredentials;
+    /**
+     * The Okta domain. See the \n\ndocs\n\n for instructions on how to find it.
+     */
     domain: string;
+    /**
+     * must be one of ["okta"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -6225,15 +9311,36 @@ export interface GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizat
 }
 
 export interface GetSourceOmnisendConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["omnisend"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceOnesignalConfiguration {
+    /**
+     * Applications keys, see the \n\ndocs\n\n for more information on how to obtain this data
+     */
     applications: outputs.GetSourceOnesignalConfigurationApplication[];
+    /**
+     * Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \n\ndocs\n\n for more details
+     */
     outcomeNames: string;
+    /**
+     * must be one of ["onesignal"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * OneSignal User Auth Key, see the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     userAuthKey: string;
 }
 
@@ -6244,24 +9351,77 @@ export interface GetSourceOnesignalConfigurationApplication {
 }
 
 export interface GetSourceOpenweatherConfiguration {
+    /**
+     * Your OpenWeather API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     appid: string;
+    /**
+     * must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zhTw", "zu"]
+     * You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \n\nhere\n\n for the list of supported languages.
+     */
     lang: string;
+    /**
+     * Latitude for which you want to get weather condition from. (min -90, max 90)
+     */
     lat: string;
+    /**
+     * Longitude for which you want to get weather condition from. (min -180, max 180)
+     */
     lon: string;
+    /**
+     * must be one of ["openweather"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["standard", "metric", "imperial"]
+     * Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+     */
     units: string;
 }
 
 export interface GetSourceOracleConfiguration {
+    /**
+     * Connect data that will be used for DB connection
+     */
     connectionData: outputs.GetSourceOracleConfigurationConnectionData;
+    /**
+     * The encryption method with is used when communicating with the database.
+     */
     encryption: outputs.GetSourceOracleConfigurationEncryption;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * The password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     * Oracle Corporations recommends the following port numbers:
+     * 1521 - Default listening port for client connections to the listener.
+     * 2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+     */
     port: number;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas: string[];
+    /**
+     * must be one of ["oracle"]
+     */
     sourceType: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourceOracleConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -6369,29 +9529,85 @@ export interface GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTu
 }
 
 export interface GetSourceOrbConfiguration {
+    /**
+     * Orb API Key, issued from the Orb admin console.
+     */
     apiKey: string;
+    /**
+     * When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+     */
     lookbackWindowDays: number;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     numericEventPropertiesKeys: string[];
+    /**
+     * Orb Plan ID to filter subscriptions that should have usage fetched.
+     */
     planId: string;
+    /**
+     * must be one of ["orb"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2022-03-01T00:00:00Z. Any data with createdAt before this data will not be synced. For Subscription Usage, this becomes the `timeframeStart` API parameter.
+     */
     startDate: string;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     stringEventPropertiesKeys: string[];
+    /**
+     * Property key name to group subscription usage by.
+     */
     subscriptionUsageGroupingKey: string;
 }
 
 export interface GetSourceOrbitConfiguration {
+    /**
+     * Authorizes you to work with Orbit workspaces associated with the token.
+     */
     apiToken: string;
+    /**
+     * must be one of ["orbit"]
+     */
     sourceType: string;
+    /**
+     * Date in the format 2022-06-26. Only load members whose last activities are after this date.
+     */
     startDate: string;
+    /**
+     * The unique name of the workspace that your API token is associated with.
+     */
     workspace: string;
 }
 
 export interface GetSourceOutbrainAmplifyConfiguration {
+    /**
+     * Credentials for making authenticated requests requires either username/password or access_token.
+     */
     credentials: outputs.GetSourceOutbrainAmplifyConfigurationCredentials;
+    /**
+     * Date in the format YYYY-MM-DD.
+     */
     endDate: string;
+    /**
+     * must be one of ["country", "region", "subregion"]
+     * The granularity used for geo location data in reports.
+     */
     geoLocationBreakdown: string;
+    /**
+     * must be one of ["daily", "weekly", "monthly"]
+     * The granularity used for periodic data in reports. See \n\nthe docs\n\n.
+     */
     reportGranularity: string;
+    /**
+     * must be one of ["outbrain-amplify"]
+     */
     sourceType: string;
+    /**
+     * Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -6425,54 +9641,141 @@ export interface GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainA
 }
 
 export interface GetSourceOutreachConfiguration {
+    /**
+     * The Client ID of your Outreach developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Outreach developer application.
+     */
     clientSecret: string;
+    /**
+     * A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+     */
     redirectUri: string;
+    /**
+     * The token for obtaining the new access token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["outreach"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourcePaypalTransactionConfiguration {
+    /**
+     * The Client ID of your Paypal developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Paypal developer application.
+     */
     clientSecret: string;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: boolean;
+    /**
+     * The key to refresh the expired access token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["paypal-transaction"]
+     */
     sourceType: string;
+    /**
+     * Start Date for data extraction in \n\nISO format\n\n. Date must be in range from 3 years till 12 hrs before present time.
+     */
     startDate: string;
 }
 
 export interface GetSourcePaystackConfiguration {
+    /**
+     * When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+     */
     lookbackWindowDays: number;
+    /**
+     * The Paystack API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     secretKey: string;
+    /**
+     * must be one of ["paystack"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourcePendoConfiguration {
     apiKey: string;
+    /**
+     * must be one of ["pendo"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePersistiqConfiguration {
+    /**
+     * PersistIq API Key. See the \n\ndocs\n\n for more information on where to find that key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["persistiq"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePexelsApiConfiguration {
+    /**
+     * API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+     */
     apiKey: string;
+    /**
+     * Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+     */
     color: string;
+    /**
+     * Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+     */
     locale: string;
+    /**
+     * Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+     */
     orientation: string;
+    /**
+     * Optional, the search query, Example Ocean, Tigers, Pears, etc.
+     */
     query: string;
+    /**
+     * Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+     */
     size: string;
+    /**
+     * must be one of ["pexels-api"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePinterestConfiguration {
     credentials: outputs.GetSourcePinterestConfigurationCredentials;
+    /**
+     * must be one of ["pinterest"]
+     */
     sourceType: string;
+    /**
+     * A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+     */
     startDate: string;
+    /**
+     * Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+     */
     statuses: string[];
 }
 
@@ -6509,7 +9812,13 @@ export interface GetSourcePinterestConfigurationCredentialsSourcePinterestUpdate
 
 export interface GetSourcePipedriveConfiguration {
     authorization: outputs.GetSourcePipedriveConfigurationAuthorization;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+     */
     replicationStartDate: string;
+    /**
+     * must be one of ["pipedrive"]
+     */
     sourceType: string;
 }
 
@@ -6519,49 +9828,159 @@ export interface GetSourcePipedriveConfigurationAuthorization {
 }
 
 export interface GetSourcePocketConfiguration {
+    /**
+     * The user's Pocket access token.
+     */
     accessToken: string;
+    /**
+     * Your application's Consumer Key.
+     */
     consumerKey: string;
+    /**
+     * must be one of ["article", "video", "image"]
+     * Select the content type of the items to retrieve.
+     */
     contentType: string;
+    /**
+     * must be one of ["simple", "complete"]
+     * Select the granularity of the information about each item.
+     */
     detailType: string;
+    /**
+     * Only return items from a particular `domain`.
+     */
     domain: string;
+    /**
+     * Retrieve only favorited items.
+     */
     favorite: boolean;
+    /**
+     * Only return items whose title or url contain the `search` string.
+     */
     search: string;
+    /**
+     * Only return items modified since the given timestamp.
+     */
     since: string;
+    /**
+     * must be one of ["newest", "oldest", "title", "site"]
+     * Sort retrieved items by the given criteria.
+     */
     sort: string;
+    /**
+     * must be one of ["pocket"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["unread", "archive", "all"]
+     * Select the state of the items to retrieve.
+     */
     state: string;
+    /**
+     * Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+     */
     tag: string;
 }
 
 export interface GetSourcePokeapiConfiguration {
+    /**
+     * Pokemon requested from the API.
+     */
     pokemonName: string;
+    /**
+     * must be one of ["pokeapi"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePolygonStockApiConfiguration {
+    /**
+     * Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+     */
     adjusted: string;
+    /**
+     * Your API ACCESS Key
+     */
     apiKey: string;
+    /**
+     * The target date for the aggregate window.
+     */
     endDate: string;
+    /**
+     * The target date for the aggregate window.
+     */
     limit: number;
+    /**
+     * The size of the timespan multiplier.
+     */
     multiplier: number;
+    /**
+     * Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+     */
     sort: string;
+    /**
+     * must be one of ["polygon-stock-api"]
+     */
     sourceType: string;
+    /**
+     * The beginning date for the aggregate window.
+     */
     startDate: string;
+    /**
+     * The exchange symbol that this item is traded under.
+     */
     stocksTicker: string;
+    /**
+     * The size of the time window.
+     */
     timespan: string;
 }
 
 export interface GetSourcePostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod: outputs.GetSourcePostgresConfigurationReplicationMethod;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas: string[];
+    /**
+     * must be one of ["postgres"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode: outputs.GetSourcePostgresConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod: outputs.GetSourcePostgresConfigurationTunnelMethod;
+    /**
+     * Username to access the database.
+     */
     username: string;
 }
 
@@ -6753,54 +10172,135 @@ export interface GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateS
 }
 
 export interface GetSourcePosthogConfiguration {
+    /**
+     * API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+     */
     baseUrl: string;
+    /**
+     * must be one of ["posthog"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourcePostmarkappConfiguration {
+    /**
+     * must be one of ["postmarkapp"]
+     */
     sourceType: string;
+    /**
+     * API Key for account
+     */
     xPostmarkAccountToken: string;
+    /**
+     * API Key for server
+     */
     xPostmarkServerToken: string;
 }
 
 export interface GetSourcePrestashopConfiguration {
+    /**
+     * Your PrestaShop access key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     accessKey: string;
+    /**
+     * must be one of ["prestashop"]
+     */
     sourceType: string;
+    /**
+     * The Start date in the format YYYY-MM-DD.
+     */
     startDate: string;
+    /**
+     * Shop URL without trailing slash.
+     */
     url: string;
 }
 
 export interface GetSourcePublicApisConfiguration {
+    /**
+     * must be one of ["public-apis"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePunkApiConfiguration {
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedAfter: string;
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedBefore: string;
+    /**
+     * To extract specific data with Unique ID
+     */
     id: string;
+    /**
+     * must be one of ["punk-api"]
+     */
     sourceType: string;
 }
 
 export interface GetSourcePypiConfiguration {
+    /**
+     * Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+     */
     projectName: string;
+    /**
+     * must be one of ["pypi"]
+     */
     sourceType: string;
+    /**
+     * Version of the project/package.  Use it to find a particular release instead of all releases.
+     */
     version: string;
 }
 
 export interface GetSourceQualarooConfiguration {
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: string;
+    /**
+     * must be one of ["qualaroo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+     */
     surveyIds: string[];
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: string;
 }
 
 export interface GetSourceQuickbooksConfiguration {
     credentials: outputs.GetSourceQuickbooksConfigurationCredentials;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     sandbox: boolean;
+    /**
+     * must be one of ["quickbooks"]
+     */
     sourceType: string;
+    /**
+     * The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -6830,50 +10330,128 @@ export interface GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpda
 }
 
 export interface GetSourceRailzConfiguration {
+    /**
+     * Client ID (client_id)
+     */
     clientId: string;
+    /**
+     * Secret key (secret_key)
+     */
     secretKey: string;
+    /**
+     * must be one of ["railz"]
+     */
     sourceType: string;
+    /**
+     * Start date
+     */
     startDate: string;
 }
 
 export interface GetSourceRechargeConfiguration {
+    /**
+     * The value of the Access Token generated. See the \n\ndocs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * must be one of ["recharge"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceRecreationConfiguration {
+    /**
+     * API Key
+     */
     apikey: string;
     queryCampsites: string;
+    /**
+     * must be one of ["recreation"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceRecruiteeConfiguration {
+    /**
+     * Recruitee API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * Recruitee Company ID. You can also find this ID on the \n\nRecruitee API tokens page\n\n.
+     */
     companyId: number;
+    /**
+     * must be one of ["recruitee"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceRecurlyConfiguration {
+    /**
+     * Recurly API Key. See the  \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * ISO8601 timestamp from which the replication from Recurly API will start from.
+     */
     beginTime: string;
+    /**
+     * ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+     */
     endTime: string;
+    /**
+     * must be one of ["recurly"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+     */
     schemas: string[];
+    /**
+     * must be one of ["redshift"]
+     */
     sourceType: string;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
 export interface GetSourceRetentlyConfiguration {
+    /**
+     * Choose how to authenticate to Retently
+     */
     credentials: outputs.GetSourceRetentlyConfigurationCredentials;
+    /**
+     * must be one of ["retently"]
+     */
     sourceType: string;
 }
 
@@ -6913,21 +10491,51 @@ export interface GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAu
 }
 
 export interface GetSourceRkiCovidConfiguration {
+    /**
+     * must be one of ["rki-covid"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceRssConfiguration {
+    /**
+     * must be one of ["rss"]
+     */
     sourceType: string;
+    /**
+     * RSS Feed URL
+     */
     url: string;
 }
 
 export interface GetSourceS3Configuration {
+    /**
+     * The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+     */
     dataset: string;
+    /**
+     * The format of the files you'd like to replicate
+     */
     format: outputs.GetSourceS3ConfigurationFormat;
+    /**
+     * A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \n\nthis page\n\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \n\n**\n\n to pick up all files.
+     */
     pathPattern: string;
+    /**
+     * Use this to load files from S3 or S3-compatible services
+     */
     provider: outputs.GetSourceS3ConfigurationProvider;
+    /**
+     * Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \n\n{ "column" : "type" }\n\n, where types are valid \n\nJSON Schema datatypes\n\n. Leave as {} to auto-infer the schema.
+     */
     schema: string;
+    /**
+     * must be one of ["s3"]
+     */
     sourceType: string;
 }
 
@@ -7016,14 +10624,41 @@ export interface GetSourceS3ConfigurationProvider {
 }
 
 export interface GetSourceSalesforceConfiguration {
+    /**
+     * must be one of ["Client"]
+     */
     authType: string;
+    /**
+     * Enter your Salesforce developer application's \n\nClient ID\n\n
+     */
     clientId: string;
+    /**
+     * Enter your Salesforce developer application's \n\nClient secret\n\n
+     */
     clientSecret: string;
+    /**
+     * Toggle to use Bulk API (this might cause empty fields for some streams)
+     */
     forceUseBulkApi: boolean;
+    /**
+     * Toggle if you're using a \n\nSalesforce Sandbox\n\n
+     */
     isSandbox: boolean;
+    /**
+     * Enter your application's \n\nSalesforce Refresh Token\n\n used for Airbyte to access your Salesforce account.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["salesforce"]
+     */
     sourceType: string;
+    /**
+     * Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+     */
     startDate: string;
+    /**
+     * Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+     */
     streamsCriterias: outputs.GetSourceSalesforceConfigurationStreamsCriteria[];
 }
 
@@ -7034,7 +10669,13 @@ export interface GetSourceSalesforceConfigurationStreamsCriteria {
 
 export interface GetSourceSalesloftConfiguration {
     credentials: outputs.GetSourceSalesloftConfigurationCredentials;
+    /**
+     * must be one of ["salesloft"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -7074,68 +10715,195 @@ export interface GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdate
 }
 
 export interface GetSourceSapFieldglassConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["sap-fieldglass"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSecodaConfiguration {
+    /**
+     * Your API Access Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * must be one of ["secoda"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSendgridConfiguration {
+    /**
+     * API Key, use \n\nadmin\n\n to generate this key.
+     */
     apikey: string;
+    /**
+     * must be one of ["sendgrid"]
+     */
     sourceType: string;
+    /**
+     * Start time in ISO8601 format. Any data before this time point will not be replicated.
+     */
     startTime: string;
 }
 
 export interface GetSourceSendinblueConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * must be one of ["sendinblue"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSenseforceConfiguration {
+    /**
+     * Your API access token. See \n\nhere\n\n. The toke is case sensitive.
+     */
     accessToken: string;
+    /**
+     * Your Senseforce API backend URL. This is the URL shown during the Login screen. See \n\nhere\n\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+     */
     backendUrl: string;
+    /**
+     * The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \n\nhere\n\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+     */
     datasetId: string;
+    /**
+     * The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+     */
     sliceRange: number;
+    /**
+     * must be one of ["senseforce"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the startDate to 2020-10-10 or later
+     */
     startDate: string;
 }
 
 export interface GetSourceSentryConfiguration {
+    /**
+     * Log into Sentry and then \n\ncreate authentication tokens\n\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+     */
     authToken: string;
+    /**
+     * Fields to retrieve when fetching discover events
+     */
     discoverFields: string[];
+    /**
+     * Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+     */
     hostname: string;
+    /**
+     * The slug of the organization the groups belong to.
+     */
     organization: string;
+    /**
+     * The name (slug) of the Project you want to sync.
+     */
     project: string;
+    /**
+     * must be one of ["sentry"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSftpBulkConfiguration {
+    /**
+     * Sync only the most recent file for the configured folder path and file pattern
+     */
     fileMostRecent: boolean;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern: string;
+    /**
+     * must be one of ["csv", "json"]
+     * The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+     */
     fileType: string;
+    /**
+     * The directory to search files for sync
+     */
     folderPath: string;
+    /**
+     * The server host address
+     */
     host: string;
+    /**
+     * OS-level password for logging into the jump server host
+     */
     password: string;
+    /**
+     * The server port
+     */
     port: number;
+    /**
+     * The private key
+     */
     privateKey: string;
+    /**
+     * The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+     */
     separator: string;
+    /**
+     * must be one of ["sftp-bulk"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * The name of the stream or table you want to create
+     */
     streamName: string;
+    /**
+     * The server user
+     */
     username: string;
 }
 
 export interface GetSourceSftpConfiguration {
+    /**
+     * The server authentication method
+     */
     credentials: outputs.GetSourceSftpConfigurationCredentials;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern: string;
+    /**
+     * Coma separated file types. Currently only 'csv' and 'json' types are supported.
+     */
     fileTypes: string;
+    /**
+     * The directory to search files for sync
+     */
     folderPath: string;
+    /**
+     * The server host address
+     */
     host: string;
+    /**
+     * The server port
+     */
     port: number;
+    /**
+     * must be one of ["sftp"]
+     */
     sourceType: string;
+    /**
+     * The server user
+     */
     user: string;
 }
 
@@ -7167,9 +10935,21 @@ export interface GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthentica
 }
 
 export interface GetSourceShopifyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from Shopify
+     */
     credentials: outputs.GetSourceShopifyConfigurationCredentials;
+    /**
+     * The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+     */
     shop: string;
+    /**
+     * must be one of ["shopify"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -7206,17 +10986,44 @@ export interface GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShop
 
 export interface GetSourceShortioConfiguration {
     domainId: string;
+    /**
+     * Short.io Secret Key
+     */
     secretKey: string;
+    /**
+     * must be one of ["shortio"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceSlackConfiguration {
+    /**
+     * A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+     */
     channelFilters: string[];
+    /**
+     * Choose how to authenticate into Slack
+     */
     credentials: outputs.GetSourceSlackConfigurationCredentials;
+    /**
+     * Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+     */
     joinChannels: boolean;
+    /**
+     * How far into the past to look for messages in threads, default is 0 days
+     */
     lookbackWindow: number;
+    /**
+     * must be one of ["slack"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -7252,22 +11059,52 @@ export interface GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenti
 }
 
 export interface GetSourceSmailyConfiguration {
+    /**
+     * API user password. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiPassword: string;
+    /**
+     * API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiSubdomain: string;
+    /**
+     * API user username. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiUsername: string;
+    /**
+     * must be one of ["smaily"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSmartengageConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["smartengage"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSmartsheetsConfiguration {
     credentials: outputs.GetSourceSmartsheetsConfigurationCredentials;
+    /**
+     * A List of available columns which metadata can be pulled from.
+     */
     metadataFields: string[];
+    /**
+     * must be one of ["smartsheets"]
+     */
     sourceType: string;
+    /**
+     * The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+     */
     spreadsheetId: string;
+    /**
+     * Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+     */
     startDatetime: string;
 }
 
@@ -7307,22 +11144,61 @@ export interface GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUp
 }
 
 export interface GetSourceSnapchatMarketingConfiguration {
+    /**
+     * The Client ID of your Snapchat developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Snapchat developer application.
+     */
     clientSecret: string;
+    /**
+     * Date in the format 2017-01-25. Any data after this date will not be replicated.
+     */
     endDate: string;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["snapchat-marketing"]
+     */
     sourceType: string;
+    /**
+     * Date in the format 2022-01-01. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceSnowflakeConfiguration {
     credentials: outputs.GetSourceSnowflakeConfigurationCredentials;
+    /**
+     * The database you created for Airbyte to access data.
+     */
     database: string;
+    /**
+     * The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams: string;
+    /**
+     * The role you created for Airbyte to access Snowflake.
+     */
     role: string;
+    /**
+     * The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+     */
     schema: string;
+    /**
+     * must be one of ["snowflake"]
+     */
     sourceType: string;
+    /**
+     * The warehouse you created for Airbyte to access data.
+     */
     warehouse: string;
 }
 
@@ -7362,25 +11238,61 @@ export interface GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdate
 }
 
 export interface GetSourceSonarCloudConfiguration {
+    /**
+     * Comma-separated list of component keys.
+     */
     componentKeys: string[];
+    /**
+     * To retrieve issues created before the given date (inclusive).
+     */
     endDate: string;
+    /**
+     * Organization key. See \n\nhere\n\n.
+     */
     organization: string;
+    /**
+     * must be one of ["sonar-cloud"]
+     */
     sourceType: string;
+    /**
+     * To retrieve issues created after the given date (inclusive).
+     */
     startDate: string;
+    /**
+     * Your User Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     userToken: string;
 }
 
 export interface GetSourceSpaceXApiConfiguration {
     id: string;
     options: string;
+    /**
+     * must be one of ["spacex-api"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceSquareConfiguration {
+    /**
+     * Choose how to authenticate to Square.
+     */
     credentials: outputs.GetSourceSquareConfigurationCredentials;
+    /**
+     * In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+     */
     includeDeletedObjects: boolean;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: boolean;
+    /**
+     * must be one of ["square"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+     */
     startDate: string;
 }
 
@@ -7416,28 +11328,79 @@ export interface GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthen
 }
 
 export interface GetSourceStravaConfiguration {
+    /**
+     * The Athlete ID of your Strava developer application.
+     */
     athleteId: number;
+    /**
+     * must be one of ["Client"]
+     */
     authType: string;
+    /**
+     * The Client ID of your Strava developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Strava developer application.
+     */
     clientSecret: string;
+    /**
+     * The Refresh Token with the activity: readAll permissions.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["strava"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceStripeConfiguration {
+    /**
+     * Your Stripe account ID (starts with 'acct_', find yours \n\nhere\n\n).
+     */
     accountId: string;
+    /**
+     * Stripe API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     clientSecret: string;
+    /**
+     * When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \n\nhere\n\n
+     */
     lookbackWindowDays: number;
+    /**
+     * The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+     */
     sliceRange: number;
+    /**
+     * must be one of ["stripe"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceSurveySparrowConfiguration {
+    /**
+     * Your access token. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessToken: string;
+    /**
+     * Is your account location is EU based? If yes, the base url to retrieve data will be different.
+     */
     region: outputs.GetSourceSurveySparrowConfigurationRegion;
+    /**
+     * must be one of ["survey-sparrow"]
+     */
     sourceType: string;
+    /**
+     * A List of your survey ids for survey-specific stream
+     */
     surveyIds: string[];
 }
 
@@ -7465,10 +11428,26 @@ export interface GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpd
 }
 
 export interface GetSourceSurveymonkeyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from SurveyMonkey
+     */
     credentials: outputs.GetSourceSurveymonkeyConfigurationCredentials;
+    /**
+     * must be one of ["USA", "Europe", "Canada"]
+     * Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+     */
     origin: string;
+    /**
+     * must be one of ["surveymonkey"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+     */
     surveyIds: string[];
 }
 
@@ -7480,26 +11459,71 @@ export interface GetSourceSurveymonkeyConfigurationCredentials {
 }
 
 export interface GetSourceTempoConfiguration {
+    /**
+     * Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+     */
     apiToken: string;
+    /**
+     * must be one of ["tempo"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceTheGuardianApiConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the endDate will not be shown. Default is set to the current date (today) for incremental syncs.
+     */
     endDate: string;
+    /**
+     * (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+     */
     query: string;
+    /**
+     * (Optional) Use this to filter the results by a particular section. See \n\nhere\n\n for a list of all sections, and \n\nhere\n\n for the sections endpoint documentation.
+     */
     section: string;
+    /**
+     * must be one of ["the-guardian-api"]
+     */
     sourceType: string;
+    /**
+     * Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the startDate will not be shown.
+     */
     startDate: string;
+    /**
+     * (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \n\nhere\n\n for a list of all tags, and \n\nhere\n\n for the tags endpoint documentation.
+     */
     tag: string;
 }
 
 export interface GetSourceTiktokMarketingConfiguration {
+    /**
+     * The attribution window in days.
+     */
     attributionWindow: number;
+    /**
+     * Authentication method
+     */
     credentials: outputs.GetSourceTiktokMarketingConfigurationCredentials;
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between startDate and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+     */
     endDate: string;
+    /**
+     * Set to active if you want to include deleted data in reports.
+     */
     includeDeleted: boolean;
+    /**
+     * must be one of ["tiktok-marketing"]
+     */
     sourceType: string;
+    /**
+     * The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate: string;
 }
 
@@ -7539,22 +11563,52 @@ export interface GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMar
 }
 
 export interface GetSourceTodoistConfiguration {
+    /**
+     * must be one of ["todoist"]
+     */
     sourceType: string;
+    /**
+     * Your API Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     token: string;
 }
 
 export interface GetSourceTrelloConfiguration {
+    /**
+     * IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+     */
     boardIds: string[];
+    /**
+     * Trello API key. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: string;
+    /**
+     * must be one of ["trello"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * Trello API token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: string;
 }
 
 export interface GetSourceTrustpilotConfiguration {
+    /**
+     * The names of business units which shall be synchronized. Some streams e.g. configured*business*units or privateReviews use this configuration.
+     */
     businessUnits: string[];
     credentials: outputs.GetSourceTrustpilotConfigurationCredentials;
+    /**
+     * must be one of ["trustpilot"]
+     */
     sourceType: string;
+    /**
+     * For streams with sync. method incremental the start date time to be used
+     */
     startDate: string;
 }
 
@@ -7594,39 +11648,104 @@ export interface GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpda
 }
 
 export interface GetSourceTvmazeScheduleConfiguration {
+    /**
+     * Country code for domestic TV schedule retrieval.
+     */
     domesticScheduleCountryCode: string;
+    /**
+     * End date for TV schedule retrieval. May be in the future. Optional.
+     */
     endDate: string;
+    /**
+     * must be one of ["tvmaze-schedule"]
+     */
     sourceType: string;
+    /**
+     * Start date for TV schedule retrieval. May be in the future.
+     */
     startDate: string;
+    /**
+     * ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+     * all countries plus global web channels (e.g. Netflix). Alternatively,
+     * set to 'global' for just global web channels.
+     */
     webScheduleCountryCode: string;
 }
 
 export interface GetSourceTwilioConfiguration {
+    /**
+     * Twilio account SID
+     */
     accountSid: string;
+    /**
+     * Twilio Auth Token.
+     */
     authToken: string;
+    /**
+     * How far into the past to look for records. (in minutes)
+     */
     lookbackWindow: number;
+    /**
+     * must be one of ["twilio"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface GetSourceTwilioTaskrouterConfiguration {
+    /**
+     * Twilio Account ID
+     */
     accountSid: string;
+    /**
+     * Twilio Auth Token
+     */
     authToken: string;
+    /**
+     * must be one of ["twilio-taskrouter"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceTwitterConfiguration {
+    /**
+     * App only Bearer Token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     apiKey: string;
+    /**
+     * The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+     */
     endDate: string;
+    /**
+     * Query for matching Tweets. You can learn how to build this query by reading \n\n build a query guide \n\n.
+     */
     query: string;
+    /**
+     * must be one of ["twitter"]
+     */
     sourceType: string;
+    /**
+     * The start date for retrieving tweets cannot be more than 7 days in the past.
+     */
     startDate: string;
 }
 
 export interface GetSourceTypeformConfiguration {
     credentials: outputs.GetSourceTypeformConfigurationCredentials;
+    /**
+     * When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the formId is u6nXL7. You can find form URLs on Share panel
+     */
     formIds: string[];
+    /**
+     * must be one of ["typeform"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -7666,50 +11785,128 @@ export interface GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAu
 }
 
 export interface GetSourceUsCensusConfiguration {
+    /**
+     * Your API Key. Get your key \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * The query parameters portion of the GET request, without the api key
+     */
     queryParams: string;
+    /**
+     * The path portion of the GET request
+     */
     queryPath: string;
+    /**
+     * must be one of ["us-census"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceVantageConfiguration {
+    /**
+     * Your API Access token. See \n\nhere\n\n.
+     */
     accessToken: string;
+    /**
+     * must be one of ["vantage"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceWebflowConfiguration {
+    /**
+     * The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+     */
     apiKey: string;
+    /**
+     * The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+     */
     siteId: string;
+    /**
+     * must be one of ["webflow"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceWhiskyHunterConfiguration {
+    /**
+     * must be one of ["whisky-hunter"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceWikipediaPageviewsConfiguration {
+    /**
+     * If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+     */
     access: string;
+    /**
+     * If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+     */
     agent: string;
+    /**
+     * The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+     */
     article: string;
+    /**
+     * The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+     */
     country: string;
+    /**
+     * The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     end: string;
+    /**
+     * If you want to filter by project, use the domain of any Wikimedia project.
+     */
     project: string;
+    /**
+     * must be one of ["wikipedia-pageviews"]
+     */
     sourceType: string;
+    /**
+     * The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     start: string;
 }
 
 export interface GetSourceWoocommerceConfiguration {
+    /**
+     * Customer Key for API in WooCommerce shop
+     */
     apiKey: string;
+    /**
+     * Customer Secret for API in WooCommerce shop
+     */
     apiSecret: string;
+    /**
+     * The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+     */
     shop: string;
+    /**
+     * must be one of ["woocommerce"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD
+     */
     startDate: string;
 }
 
 export interface GetSourceXeroConfiguration {
     authentication: outputs.GetSourceXeroConfigurationAuthentication;
+    /**
+     * must be one of ["xero"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with createdAt before this data will not be synced.
+     */
     startDate: string;
+    /**
+     * Enter your Xero organization's Tenant ID
+     */
     tenantId: string;
 }
 
@@ -7722,35 +11919,86 @@ export interface GetSourceXeroConfigurationAuthentication {
 }
 
 export interface GetSourceXkcdConfiguration {
+    /**
+     * must be one of ["xkcd"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceYandexMetricaConfiguration {
+    /**
+     * Your Yandex Metrica API access token
+     */
     authToken: string;
+    /**
+     * Counter ID
+     */
     counterId: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+     */
     endDate: string;
+    /**
+     * must be one of ["yandex-metrica"]
+     */
     sourceType: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD".
+     */
     startDate: string;
 }
 
 export interface GetSourceYotpoConfiguration {
+    /**
+     * Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+     */
     accessToken: string;
+    /**
+     * App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+     */
     appKey: string;
+    /**
+     * Email address registered with yotpo.
+     */
     email: string;
+    /**
+     * must be one of ["yotpo"]
+     */
     sourceType: string;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: string;
 }
 
 export interface GetSourceYouniumConfiguration {
+    /**
+     * Legal Entity that data should be pulled from
+     */
     legalEntity: string;
+    /**
+     * Account password for younium account API key
+     */
     password: string;
+    /**
+     * Property defining if connector is used against playground or production environment
+     */
     playground: boolean;
+    /**
+     * must be one of ["younium"]
+     */
     sourceType: string;
+    /**
+     * Username for Younium account
+     */
     username: string;
 }
 
 export interface GetSourceYoutubeAnalyticsConfiguration {
     credentials: outputs.GetSourceYoutubeAnalyticsConfigurationCredentials;
+    /**
+     * must be one of ["youtube-analytics"]
+     */
     sourceType: string;
 }
 
@@ -7763,8 +12011,17 @@ export interface GetSourceYoutubeAnalyticsConfigurationCredentials {
 
 export interface GetSourceZendeskChatConfiguration {
     credentials: outputs.GetSourceZendeskChatConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-chat"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: string;
+    /**
+     * Required if you access Zendesk Chat from a Zendesk Support subdomain.
+     */
     subdomain: string;
 }
 
@@ -7803,8 +12060,17 @@ export interface GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUp
 
 export interface GetSourceZendeskSunshineConfiguration {
     credentials: outputs.GetSourceZendeskSunshineConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-sunshine"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: string;
+    /**
+     * The subdomain for your Zendesk Account.
+     */
     subdomain: string;
 }
 
@@ -7846,10 +12112,25 @@ export interface GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSu
 }
 
 export interface GetSourceZendeskSupportConfiguration {
+    /**
+     * Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+     */
     credentials: outputs.GetSourceZendeskSupportConfigurationCredentials;
+    /**
+     * Makes each stream read a single page of data.
+     */
     ignorePagination: boolean;
+    /**
+     * must be one of ["zendesk-support"]
+     */
     sourceType: string;
+    /**
+     * The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: string;
 }
 
@@ -7891,9 +12172,21 @@ export interface GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSup
 }
 
 export interface GetSourceZendeskTalkConfiguration {
+    /**
+     * Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+     */
     credentials: outputs.GetSourceZendeskTalkConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-talk"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: string;
 }
 
@@ -7935,54 +12228,149 @@ export interface GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUp
 }
 
 export interface GetSourceZenloopConfiguration {
+    /**
+     * Zenloop API Token. You can get the API token in settings page \n\nhere\n\n
+     */
     apiToken: string;
+    /**
+     * Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+     */
     dateFrom: string;
+    /**
+     * must be one of ["zenloop"]
+     */
     sourceType: string;
+    /**
+     * Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+     */
     surveyGroupId: string;
+    /**
+     * Zenloop Survey ID. Can be found \n\nhere\n\n. Leave empty to pull answers from all surveys
+     */
     surveyId: string;
 }
 
 export interface GetSourceZohoCrmConfiguration {
+    /**
+     * OAuth2.0 Client ID
+     */
     clientId: string;
+    /**
+     * OAuth2.0 Client Secret
+     */
     clientSecret: string;
+    /**
+     * must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+     * Please choose the region of your Data Center location. More info by this \n\nLink\n\n
+     */
     dcRegion: string;
+    /**
+     * must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+     * Choose your Edition of Zoho CRM to determine API Concurrency Limits
+     */
     edition: string;
+    /**
+     * must be one of ["Production", "Developer", "Sandbox"]
+     * Please choose the environment
+     */
     environment: string;
+    /**
+     * OAuth2.0 Refresh Token
+     */
     refreshToken: string;
+    /**
+     * must be one of ["zoho-crm"]
+     */
     sourceType: string;
+    /**
+     * ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+     */
     startDatetime: string;
 }
 
 export interface GetSourceZoomConfiguration {
+    /**
+     * JWT Token
+     */
     jwtToken: string;
+    /**
+     * must be one of ["zoom"]
+     */
     sourceType: string;
 }
 
 export interface GetSourceZuoraConfiguration {
+    /**
+     * Your OAuth user Client ID
+     */
     clientId: string;
+    /**
+     * Your OAuth user Client Secret
+     */
     clientSecret: string;
+    /**
+     * must be one of ["Live", "Unlimited"]
+     * Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \n\nLink\n\n
+     */
     dataQuery: string;
+    /**
+     * must be one of ["zuora"]
+     */
     sourceType: string;
+    /**
+     * Start Date in format: YYYY-MM-DD
+     */
     startDate: string;
+    /**
+     * must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+     * Please choose the right endpoint where your Tenant is located. More info by this \n\nLink\n\n
+     */
     tenantEndpoint: string;
+    /**
+     * The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+     */
     windowInDays: string;
 }
 
 export interface SourceAhaConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["aha"]
+     */
     sourceType: string;
+    /**
+     * URL
+     */
     url: string;
 }
 
 export interface SourceAircallConfiguration {
+    /**
+     * App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+     */
     apiId: string;
+    /**
+     * App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+     */
     apiToken: string;
+    /**
+     * must be one of ["aircall"]
+     */
     sourceType: string;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: string;
 }
 
 export interface SourceAirtableConfiguration {
     credentials?: outputs.SourceAirtableConfigurationCredentials;
+    /**
+     * must be one of ["airtable"]
+     */
     sourceType?: string;
 }
 
@@ -8022,16 +12410,50 @@ export interface SourceAirtableConfigurationCredentialsSourceAirtableUpdateAuthe
 }
 
 export interface SourceAlloydbConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod?: outputs.SourceAlloydbConfigurationReplicationMethod;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas?: string[];
+    /**
+     * must be one of ["alloydb"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode?: outputs.SourceAlloydbConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourceAlloydbConfigurationTunnelMethod;
+    /**
+     * Username to access the database.
+     */
     username: string;
 }
 
@@ -8223,73 +12645,228 @@ export interface SourceAlloydbConfigurationTunnelMethodSourceAlloydbUpdateSshTun
 }
 
 export interface SourceAmazonAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType?: string;
+    /**
+     * The client ID of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientId: string;
+    /**
+     * The client secret of your Amazon Ads developer application. See the \n\ndocs\n\n for more information.
+     */
     clientSecret: string;
+    /**
+     * The amount of days to go back in time to get the updated data from Amazon Ads
+     */
     lookBackWindow?: number;
+    /**
+     * Profile IDs you want to fetch data for. See \n\ndocs\n\n for more details.
+     */
     profiles?: number[];
+    /**
+     * Amazon Ads refresh token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["NA", "EU", "FE"]
+     * Region to pull data from (EU/NA/FE). See \n\ndocs\n\n for more details.
+     */
     region?: string;
+    /**
+     * Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \n\ndocs\n\n for more details
+     */
     reportRecordTypes?: string[];
+    /**
+     * must be one of ["amazon-ads"]
+     */
     sourceType: string;
+    /**
+     * The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+     */
     startDate?: string;
+    /**
+     * Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+     */
     stateFilters?: string[];
 }
 
 export interface SourceAmazonSellerPartnerConfiguration {
+    /**
+     * Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
+     */
     advancedStreamOptions?: string;
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authType?: string;
+    /**
+     * Specifies the AWS access key used as part of the credentials to authenticate the user.
+     */
     awsAccessKey?: string;
+    /**
+     * must be one of ["PRODUCTION", "SANDBOX"]
+     * Select the AWS Environment.
+     */
     awsEnvironment: string;
+    /**
+     * Specifies the AWS secret key used as part of the credentials to authenticate the user.
+     */
     awsSecretKey?: string;
+    /**
+     * Your Login with Amazon Client ID.
+     */
     lwaAppId: string;
+    /**
+     * Your Login with Amazon Client Secret.
+     */
     lwaClientSecret: string;
+    /**
+     * Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+     */
     maxWaitSeconds?: number;
+    /**
+     * Will be used for stream slicing for initial fullRefresh sync when no updated state is present for reports that support sliced incremental sync.
+     */
     periodInDays?: number;
+    /**
+     * The Refresh Token obtained via OAuth flow authorization.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+     * Select the AWS Region.
+     */
     region: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate?: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: string;
+    /**
+     * Additional information passed to reports. This varies by report type. Must be a valid json string.
+     */
     reportOptions?: string;
+    /**
+     * Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+     */
     roleArn?: string;
+    /**
+     * must be one of ["amazon-seller-partner"]
+     */
     sourceType: string;
 }
 
 export interface SourceAmazonSqsConfiguration {
+    /**
+     * The Access Key ID of the AWS IAM Role to use for pulling messages
+     */
     accessKey?: string;
+    /**
+     * Comma separated list of Mesage Attribute names to return
+     */
     attributesToReturn?: string;
+    /**
+     * If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+     */
     deleteMessages: boolean;
+    /**
+     * Max amount of messages to get in one batch (10 max)
+     */
     maxBatchSize?: number;
+    /**
+     * Max amount of time in seconds to wait for messages in a single poll (20 max)
+     */
     maxWaitTime?: number;
+    /**
+     * URL of the SQS Queue
+     */
     queueUrl: string;
+    /**
+     * must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * AWS Region of the SQS Queue
+     */
     region: string;
+    /**
+     * The Secret Key of the AWS IAM Role to use for pulling messages
+     */
     secretKey?: string;
+    /**
+     * must be one of ["amazon-sqs"]
+     */
     sourceType: string;
+    /**
+     * Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+     */
     visibilityTimeout?: number;
 }
 
 export interface SourceAmplitudeConfiguration {
+    /**
+     * Amplitude API Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["Standard Server", "EU Residency Server"]
+     * Amplitude data region server
+     */
     dataRegion?: string;
+    /**
+     * According to \n\nConsiderations\n\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+     */
     requestTimeRange?: number;
+    /**
+     * Amplitude Secret Key. See the \n\nsetup guide\n\n for more information on how to obtain this key.
+     */
     secretKey: string;
+    /**
+     * must be one of ["amplitude"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceApifyDatasetConfiguration {
+    /**
+     * If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \n\nApify API docs\n\n. If not sure, set clean to false.
+     */
     clean?: boolean;
+    /**
+     * ID of the dataset you would like to load to Airbyte.
+     */
     datasetId: string;
+    /**
+     * must be one of ["apify-dataset"]
+     */
     sourceType: string;
 }
 
 export interface SourceAppfollowConfiguration {
+    /**
+     * API Key provided by Appfollow
+     */
     apiSecret?: string;
+    /**
+     * must be one of ["appfollow"]
+     */
     sourceType: string;
 }
 
 export interface SourceAsanaConfiguration {
+    /**
+     * Choose how to authenticate to Github
+     */
     credentials?: outputs.SourceAsanaConfigurationCredentials;
+    /**
+     * must be one of ["asana"]
+     */
     sourceType?: string;
 }
 
@@ -8325,8 +12902,14 @@ export interface SourceAsanaConfigurationCredentialsSourceAsanaUpdateAuthenticat
 }
 
 export interface SourceAuth0Configuration {
+    /**
+     * The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
+     */
     baseUrl: string;
     credentials: outputs.SourceAuth0ConfigurationCredentials;
+    /**
+     * must be one of ["auth0"]
+     */
     sourceType: string;
 }
 
@@ -8362,21 +12945,60 @@ export interface SourceAuth0ConfigurationCredentialsSourceAuth0UpdateAuthenticat
 }
 
 export interface SourceAwsCloudtrailConfiguration {
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsKeyId: string;
+    /**
+     * The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
+     */
     awsRegionName: string;
+    /**
+     * AWS CloudTrail Access Key ID. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     awsSecretKey: string;
+    /**
+     * must be one of ["aws-cloudtrail"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+     */
     startDate: string;
 }
 
 export interface SourceAzureBlobStorageConfiguration {
+    /**
+     * The Azure blob storage account key.
+     */
     azureBlobStorageAccountKey: string;
+    /**
+     * The account's name of the Azure Blob Storage.
+     */
     azureBlobStorageAccountName: string;
+    /**
+     * The Azure blob storage prefix to be applied
+     */
     azureBlobStorageBlobsPrefix?: string;
+    /**
+     * The name of the Azure blob storage container.
+     */
     azureBlobStorageContainerName: string;
+    /**
+     * This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+     */
     azureBlobStorageEndpoint?: string;
+    /**
+     * The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+     */
     azureBlobStorageSchemaInferenceLimit?: number;
+    /**
+     * Input data format
+     */
     format: outputs.SourceAzureBlobStorageConfigurationFormat;
+    /**
+     * must be one of ["azure-blob-storage"]
+     */
     sourceType: string;
 }
 
@@ -8394,84 +13016,243 @@ export interface SourceAzureBlobStorageConfigurationFormatSourceAzureBlobStorage
 }
 
 export interface SourceAzureTableConfiguration {
+    /**
+     * must be one of ["azure-table"]
+     */
     sourceType: string;
+    /**
+     * Azure Table Storage Access Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     storageAccessKey: string;
+    /**
+     * The name of your storage account.
+     */
     storageAccountName: string;
+    /**
+     * Azure Table Storage service account URL suffix. See the \n\ndocs\n\n for more information on how to obtain endpoint suffix
+     */
     storageEndpointSuffix?: string;
 }
 
 export interface SourceBambooHrConfiguration {
+    /**
+     * Api key of bamboo hr
+     */
     apiKey: string;
+    /**
+     * Comma-separated list of fields to include in custom reports.
+     */
     customReportsFields?: string;
+    /**
+     * If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+     */
     customReportsIncludeDefaultFields?: boolean;
+    /**
+     * must be one of ["bamboo-hr"]
+     */
     sourceType: string;
+    /**
+     * Sub Domain of bamboo hr
+     */
     subdomain: string;
 }
 
 export interface SourceBigcommerceConfiguration {
+    /**
+     * Access Token for making authenticated requests.
+     */
     accessToken: string;
+    /**
+     * must be one of ["bigcommerce"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data. Format: YYYY-MM-DD.
+     */
     startDate: string;
+    /**
+     * The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+     */
     storeHash: string;
 }
 
 export interface SourceBigqueryConfiguration {
+    /**
+     * The contents of your Service Account Key JSON file. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     credentialsJson: string;
+    /**
+     * The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+     */
     datasetId?: string;
+    /**
+     * The GCP project ID for the project containing the target BigQuery dataset.
+     */
     projectId: string;
+    /**
+     * must be one of ["bigquery"]
+     */
     sourceType: string;
 }
 
 export interface SourceBingAdsConfiguration {
+    /**
+     * must be one of ["oauth2.0"]
+     */
     authMethod?: string;
+    /**
+     * The Client ID of your Microsoft Advertising developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Microsoft Advertising developer application.
+     */
     clientSecret?: string;
+    /**
+     * Developer token associated with user. See more info \n\n in the docs\n\n.
+     */
     developerToken: string;
+    /**
+     * Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+     */
     lookbackWindow?: number;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: string;
+    /**
+     * The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
+     */
     reportsStartDate: string;
+    /**
+     * must be one of ["bing-ads"]
+     */
     sourceType: string;
+    /**
+     * The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+     */
     tenantId?: string;
 }
 
 export interface SourceBraintreeConfiguration {
+    /**
+     * must be one of ["Development", "Sandbox", "Qa", "Production"]
+     * Environment specifies where the data will come from.
+     */
     environment: string;
+    /**
+     * The unique identifier for your entire gateway account. See the \n\ndocs\n\n for more information on how to obtain this ID.
+     */
     merchantId: string;
+    /**
+     * Braintree Private Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     privateKey: string;
+    /**
+     * Braintree Public Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     publicKey: string;
+    /**
+     * must be one of ["braintree"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate?: string;
 }
 
 export interface SourceBrazeConfiguration {
+    /**
+     * Braze REST API key
+     */
     apiKey: string;
+    /**
+     * must be one of ["braze"]
+     */
     sourceType: string;
+    /**
+     * Rows after this date will be synced
+     */
     startDate: string;
+    /**
+     * Braze REST API endpoint
+     */
     url: string;
 }
 
 export interface SourceChargebeeConfiguration {
+    /**
+     * must be one of ["1.0", "2.0"]
+     * Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \n\nhere\n\n under `API Version` section.
+     */
     productCatalog: string;
+    /**
+     * The site prefix for your Chargebee instance.
+     */
     site: string;
+    /**
+     * Chargebee API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     siteApiKey: string;
+    /**
+     * must be one of ["chargebee"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceChartmogulConfiguration {
+    /**
+     * Your Chartmogul API key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     apiKey: string;
+    /**
+     * must be one of ["day", "week", "month", "quarter"]
+     * Some APIs such as \n\nMetrics\n\n require intervals to cluster data.
+     */
     interval: string;
+    /**
+     * must be one of ["chartmogul"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceClickhouseConfiguration {
+    /**
+     * The name of the database.
+     */
     database: string;
+    /**
+     * The host endpoint of the Clickhouse cluster.
+     */
     host: string;
+    /**
+     * The password associated with this username.
+     */
     password?: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * must be one of ["clickhouse"]
+     */
     sourceType: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourceClickhouseConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -8525,79 +13306,225 @@ export interface SourceClickhouseConfigurationTunnelMethodSourceClickhouseUpdate
 }
 
 export interface SourceClickupApiConfiguration {
+    /**
+     * Every ClickUp API call required authentication. This field is your personal API token. See \n\nhere\n\n.
+     */
     apiToken: string;
+    /**
+     * The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \n\nhere\n\n.
+     */
     folderId?: string;
+    /**
+     * Include or exclude closed tasks. By default, they are excluded. See \n\nhere\n\n.
+     */
     includeClosedTasks?: boolean;
+    /**
+     * The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \n\nhere\n\n.
+     */
     listId?: string;
+    /**
+     * must be one of ["clickup-api"]
+     */
     sourceType: string;
+    /**
+     * The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \n\nhere\n\n.
+     */
     spaceId?: string;
+    /**
+     * The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \n\nhere\n\n.
+     */
     teamId?: string;
 }
 
 export interface SourceClockifyConfiguration {
+    /**
+     * You can get your api accessKey \n\nhere\n\n This API is Case Sensitive.
+     */
     apiKey: string;
+    /**
+     * The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+     */
     apiUrl?: string;
+    /**
+     * must be one of ["clockify"]
+     */
     sourceType: string;
+    /**
+     * WorkSpace Id
+     */
     workspaceId: string;
 }
 
 export interface SourceCloseComConfiguration {
+    /**
+     * Close.com API key (usually starts with 'api_'; find yours \n\nhere\n\n).
+     */
     apiKey: string;
+    /**
+     * must be one of ["close-com"]
+     */
     sourceType: string;
+    /**
+     * The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+     */
     startDate?: string;
 }
 
 export interface SourceCodaConfiguration {
+    /**
+     * Bearer token
+     */
     authToken: string;
+    /**
+     * must be one of ["coda"]
+     */
     sourceType: string;
 }
 
 export interface SourceCoinApiConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * The end date in ISO 8601 format. If not supplied, data will be returned
+     * from the start date to the current time, or when the count of result
+     * elements reaches its limit.
+     */
     endDate?: string;
+    /**
+     * must be one of ["sandbox", "production"]
+     * The environment to use. Either sandbox or production.
+     */
     environment: string;
+    /**
+     * The maximum number of elements to return. If not supplied, the default
+     * is 100. For numbers larger than 100, each 100 items is counted as one
+     * request for pricing purposes. Maximum value is 100000.
+     */
     limit?: number;
+    /**
+     * The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+     */
     period: string;
+    /**
+     * must be one of ["coin-api"]
+     */
     sourceType: string;
+    /**
+     * The start date in ISO 8601 format.
+     */
     startDate: string;
+    /**
+     * The symbol ID to use. See the documentation for a list.
+     * https://docs.coinapi.io/#list-all-symbols-get
+     */
     symbolId: string;
 }
 
 export interface SourceCoinmarketcapConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The token is case sensitive.
+     */
     apiKey: string;
+    /**
+     * must be one of ["latest", "historical"]
+     * /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \n\nhere\n\n.
+     */
     dataType: string;
+    /**
+     * must be one of ["coinmarketcap"]
+     */
     sourceType: string;
+    /**
+     * Cryptocurrency symbols. (only used for quotes stream)
+     */
     symbols?: string[];
 }
 
 export interface SourceConfigcatConfiguration {
+    /**
+     * Basic auth password. See \n\nhere\n\n.
+     */
     password: string;
+    /**
+     * must be one of ["configcat"]
+     */
     sourceType: string;
+    /**
+     * Basic auth user name. See \n\nhere\n\n.
+     */
     username: string;
 }
 
 export interface SourceConfluenceConfiguration {
+    /**
+     * Please follow the Jira confluence for generating an API token: \n\ngenerating an API token\n\n.
+     */
     apiToken: string;
+    /**
+     * Your Confluence domain name
+     */
     domainName: string;
+    /**
+     * Your Confluence login email
+     */
     email: string;
+    /**
+     * must be one of ["confluence"]
+     */
     sourceType: string;
 }
 
 export interface SourceConvexConfiguration {
+    /**
+     * API access key used to retrieve data from Convex.
+     */
     accessKey: string;
     deploymentUrl: string;
+    /**
+     * must be one of ["convex"]
+     */
     sourceType: string;
 }
 
 export interface SourceDatadogConfiguration {
+    /**
+     * Datadog API key
+     */
     apiKey: string;
+    /**
+     * Datadog application key
+     */
     applicationKey: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+     */
     endDate?: string;
+    /**
+     * Maximum number of records to collect per request.
+     */
     maxRecordsPerRequest?: number;
+    /**
+     * List of queries to be run and used as inputs.
+     */
     queries?: outputs.SourceDatadogConfigurationQuery[];
+    /**
+     * The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+     */
     query?: string;
+    /**
+     * must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+     * The site where Datadog data resides in.
+     */
     site?: string;
+    /**
+     * must be one of ["datadog"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+     */
     startDate?: string;
 }
 
@@ -8608,50 +13535,129 @@ export interface SourceDatadogConfigurationQuery {
 }
 
 export interface SourceDatascopeConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["datascope"]
+     */
     sourceType: string;
+    /**
+     * Start date for the data to be replicated
+     */
     startDate: string;
 }
 
 export interface SourceDelightedConfiguration {
+    /**
+     * A Delighted API key.
+     */
     apiKey: string;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     since: string;
+    /**
+     * must be one of ["delighted"]
+     */
     sourceType: string;
 }
 
 export interface SourceDixaConfiguration {
+    /**
+     * Dixa API token
+     */
     apiToken: string;
+    /**
+     * Number of days to batch into one request. Max 31.
+     */
     batchSize?: number;
+    /**
+     * must be one of ["dixa"]
+     */
     sourceType: string;
+    /**
+     * The connector pulls records updated from this date onwards.
+     */
     startDate: string;
 }
 
 export interface SourceDockerhubConfiguration {
+    /**
+     * Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
+     */
     dockerUsername: string;
+    /**
+     * must be one of ["dockerhub"]
+     */
     sourceType: string;
 }
 
 export interface SourceDremioConfiguration {
+    /**
+     * API Key that is generated when you authenticate to Dremio API
+     */
     apiKey: string;
+    /**
+     * URL of your Dremio instance
+     */
     baseUrl: string;
+    /**
+     * must be one of ["dremio"]
+     */
     sourceType: string;
 }
 
 export interface SourceDynamodbConfiguration {
+    /**
+     * The access key id to access Dynamodb. Airbyte requires read permissions to the database
+     */
     accessKeyId: string;
+    /**
+     * the URL of the Dynamodb database
+     */
     endpoint?: string;
+    /**
+     * must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+     * The region of the Dynamodb database
+     */
     region?: string;
+    /**
+     * Comma separated reserved attribute names present in your tables
+     */
     reservedAttributeNames?: string;
+    /**
+     * The corresponding secret to the access key id.
+     */
     secretAccessKey: string;
+    /**
+     * must be one of ["dynamodb"]
+     */
     sourceType: string;
 }
 
 export interface SourceE2eTestCloudConfiguration {
+    /**
+     * Number of records to emit per stream. Min 1. Max 100 billion.
+     */
     maxMessages: number;
+    /**
+     * Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
+     */
     messageIntervalMs?: number;
     mockCatalog: outputs.SourceE2eTestCloudConfigurationMockCatalog;
+    /**
+     * When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+     */
     seed?: number;
+    /**
+     * must be one of ["e2e-test-cloud"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["CONTINUOUS_FEED"]
+     */
     type?: string;
 }
 
@@ -8687,32 +13693,95 @@ export interface SourceE2eTestCloudConfigurationMockCatalogSourceE2eTestCloudUpd
 }
 
 export interface SourceEmailoctopusConfiguration {
+    /**
+     * EmailOctopus API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["emailoctopus"]
+     */
     sourceType: string;
 }
 
 export interface SourceExchangeRatesConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessKey: string;
+    /**
+     * ISO reference currency. See \n\nhere\n\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+     */
     base?: string;
+    /**
+     * Ignore weekends? (Exchanges don't run on weekends)
+     */
     ignoreWeekends?: boolean;
+    /**
+     * must be one of ["exchange-rates"]
+     */
     sourceType: string;
+    /**
+     * Start getting data from that date.
+     */
     startDate: string;
 }
 
 export interface SourceFacebookMarketingConfiguration {
+    /**
+     * The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \n\nads*management, ads*read, read*insights, business*management\n\n. Then click on "Get token". See the \n\ndocs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \n\ndocs\n\n for more information.
+     */
     accountId: string;
+    /**
+     * Allows actionBreakdowns to be an empty list
+     */
     actionBreakdownsAllowEmpty?: boolean;
+    /**
+     * The Client Id for your OAuth app
+     */
     clientId?: string;
+    /**
+     * The Client Secret for your OAuth app
+     */
     clientSecret?: string;
+    /**
+     * A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+     */
     customInsights?: outputs.SourceFacebookMarketingConfigurationCustomInsight[];
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+     */
     endDate?: string;
+    /**
+     * Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+     */
     fetchThumbnailImages?: boolean;
+    /**
+     * Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+     */
     includeDeleted?: boolean;
+    /**
+     * The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+     */
     insightsLookbackWindow?: number;
+    /**
+     * Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     maxBatchSize?: number;
+    /**
+     * Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+     */
     pageSize?: number;
+    /**
+     * must be one of ["facebook-marketing"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -8730,26 +13799,71 @@ export interface SourceFacebookMarketingConfigurationCustomInsight {
 }
 
 export interface SourceFacebookPagesConfiguration {
+    /**
+     * Facebook Page Access Token
+     */
     accessToken: string;
+    /**
+     * Page ID
+     */
     pageId: string;
+    /**
+     * must be one of ["facebook-pages"]
+     */
     sourceType: string;
 }
 
 export interface SourceFakerConfiguration {
+    /**
+     * Should the updatedAt values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+     */
     alwaysUpdated?: boolean;
+    /**
+     * How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+     */
     count: number;
+    /**
+     * How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+     */
     parallelism?: number;
+    /**
+     * How many fake records will be in each page (stream slice), before a state message is emitted?
+     */
     recordsPerSlice?: number;
+    /**
+     * Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+     */
     seed?: number;
+    /**
+     * must be one of ["faker"]
+     */
     sourceType: string;
 }
 
 export interface SourceFaunaConfiguration {
+    /**
+     * Settings for the Fauna Collection.
+     */
     collection?: outputs.SourceFaunaConfigurationCollection;
+    /**
+     * Domain of Fauna to query. Defaults db.fauna.com. See \n\nthe docs\n\n.
+     */
     domain: string;
+    /**
+     * Endpoint port.
+     */
     port: number;
+    /**
+     * URL scheme.
+     */
     scheme: string;
+    /**
+     * Fauna secret, used when authenticating with the database.
+     */
     secret: string;
+    /**
+     * must be one of ["fauna"]
+     */
     sourceType: string;
 }
 
@@ -8784,11 +13898,30 @@ export interface SourceFaunaConfigurationCollectionDeletionsSourceFaunaUpdateCol
 }
 
 export interface SourceFileSecureConfiguration {
+    /**
+     * The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+     */
     datasetName: string;
+    /**
+     * must be one of ["csv", "json", "jsonl", "excel", "excelBinary", "feather", "parquet", "yaml"]
+     * The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+     */
     format: string;
+    /**
+     * The storage Provider or Location of the file(s) which should be replicated.
+     */
     provider: outputs.SourceFileSecureConfigurationProvider;
+    /**
+     * This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+     */
     readerOptions?: string;
+    /**
+     * must be one of ["file-secure"]
+     */
     sourceType: string;
+    /**
+     * The URL path to access the file which should be replicated.
+     */
     url: string;
 }
 
@@ -8904,61 +14037,166 @@ export interface SourceFileSecureConfigurationProviderSourceFileSecureUpdateStor
 }
 
 export interface SourceFireboltConfiguration {
+    /**
+     * Firebolt account to login.
+     */
     account?: string;
+    /**
+     * The database to connect to.
+     */
     database: string;
+    /**
+     * Engine name or url to connect to.
+     */
     engine?: string;
+    /**
+     * The host name of your Firebolt database.
+     */
     host?: string;
+    /**
+     * Firebolt password.
+     */
     password: string;
+    /**
+     * must be one of ["firebolt"]
+     */
     sourceType: string;
+    /**
+     * Firebolt email address you use to login.
+     */
     username: string;
 }
 
 export interface SourceFreshcallerConfiguration {
+    /**
+     * Freshcaller API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * Used to construct Base URL for the Freshcaller APIs
+     */
     domain: string;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute?: number;
+    /**
+     * must be one of ["freshcaller"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data created after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+     */
     syncLagMinutes?: number;
 }
 
 export interface SourceFreshdeskConfiguration {
+    /**
+     * Freshdesk API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * Freshdesk domain
+     */
     domain: string;
+    /**
+     * The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+     */
     requestsPerMinute?: number;
+    /**
+     * must be one of ["freshdesk"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate?: string;
 }
 
 export interface SourceFreshsalesConfiguration {
+    /**
+     * Freshsales API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * The Name of your Freshsales domain
+     */
     domainName: string;
+    /**
+     * must be one of ["freshsales"]
+     */
     sourceType: string;
 }
 
 export interface SourceGainsightPxConfiguration {
+    /**
+     * The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+     */
     apiKey: string;
+    /**
+     * must be one of ["gainsight-px"]
+     */
     sourceType: string;
 }
 
 export interface SourceGcsConfiguration {
+    /**
+     * GCS bucket name
+     */
     gcsBucket: string;
+    /**
+     * GCS path to data
+     */
     gcsPath: string;
+    /**
+     * Enter your Google Cloud \n\nservice account key\n\n in JSON format
+     */
     serviceAccount: string;
+    /**
+     * must be one of ["gcs"]
+     */
     sourceType: string;
 }
 
 export interface SourceGetlagoConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * must be one of ["getlago"]
+     */
     sourceType: string;
 }
 
 export interface SourceGithubConfiguration {
+    /**
+     * Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+     */
     branch?: string;
+    /**
+     * Choose how to authenticate to GitHub
+     */
     credentials?: outputs.SourceGithubConfigurationCredentials;
+    /**
+     * Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+     */
     repository: string;
+    /**
+     * The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+     */
     requestsPerHour?: number;
+    /**
+     * must be one of ["github"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \n\ndocs\n\n for more info
+     */
     startDate: string;
 }
 
@@ -8994,11 +14232,26 @@ export interface SourceGithubConfigurationCredentialsSourceGithubUpdateAuthentic
 }
 
 export interface SourceGitlabConfiguration {
+    /**
+     * Please enter your basic URL from GitLab instance.
+     */
     apiUrl?: string;
     credentials: outputs.SourceGitlabConfigurationCredentials;
+    /**
+     * Space-delimited list of groups. e.g. airbyte.io.
+     */
     groups?: string;
+    /**
+     * Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+     */
     projects?: string;
+    /**
+     * must be one of ["gitlab"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -9038,7 +14291,13 @@ export interface SourceGitlabConfigurationCredentialsSourceGitlabUpdateAuthoriza
 }
 
 export interface SourceGlassfrogConfiguration {
+    /**
+     * API key provided by Glassfrog
+     */
     apiKey: string;
+    /**
+     * must be one of ["glassfrog"]
+     */
     sourceType: string;
 }
 
@@ -9058,13 +14317,31 @@ export interface SourceGnewsConfiguration {
 }
 
 export interface SourceGoogleAdsConfiguration {
+    /**
+     * A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \n\nGoogle's documentation\n\n.
+     */
     conversionWindowDays?: number;
     credentials: outputs.SourceGoogleAdsConfigurationCredentials;
     customQueries?: outputs.SourceGoogleAdsConfigurationCustomQuery[];
+    /**
+     * Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \n\ndocumentation\n\n.
+     */
     customerId: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+     */
     endDate?: string;
+    /**
+     * If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \n\nGoogle's documentation\n\n.
+     */
     loginCustomerId?: string;
+    /**
+     * must be one of ["google-ads"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -9082,11 +14359,29 @@ export interface SourceGoogleAdsConfigurationCustomQuery {
 }
 
 export interface SourceGoogleAnalyticsDataApiConfiguration {
+    /**
+     * Credentials for the service
+     */
     credentials?: outputs.SourceGoogleAnalyticsDataApiConfigurationCredentials;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe documentation\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: string;
+    /**
+     * The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+     */
     dateRangesStartDate: string;
+    /**
+     * The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \n\nGoogle Analytics documentation\n\n to locate your property ID.
+     */
     propertyId: string;
+    /**
+     * must be one of ["google-analytics-data-api"]
+     */
     sourceType: string;
+    /**
+     * The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \n\nthe documentation\n\n.
+     */
     windowInDays?: number;
 }
 
@@ -9124,11 +14419,29 @@ export interface SourceGoogleAnalyticsDataApiConfigurationCredentialsSourceGoogl
 }
 
 export interface SourceGoogleAnalyticsV4Configuration {
+    /**
+     * Credentials for the service
+     */
     credentials?: outputs.SourceGoogleAnalyticsV4ConfigurationCredentials;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Analytics. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: string;
+    /**
+     * must be one of ["google-analytics-v4"]
+     */
     sourceType: string;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * The ID for the Google Analytics View you want to fetch data from. This can be found from the \n\nGoogle Analytics Account Explorer\n\n.
+     */
     viewId: string;
+    /**
+     * The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \n\nthe docs\n\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+     */
     windowInDays?: number;
 }
 
@@ -9166,7 +14479,13 @@ export interface SourceGoogleAnalyticsV4ConfigurationCredentialsSourceGoogleAnal
 }
 
 export interface SourceGoogleDirectoryConfiguration {
+    /**
+     * Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \n\nWeb server application\n\n and \n\nService accounts\n\n scenarios.
+     */
     credentials?: outputs.SourceGoogleDirectoryConfigurationCredentials;
+    /**
+     * must be one of ["google-directory"]
+     */
     sourceType: string;
 }
 
@@ -9204,20 +14523,54 @@ export interface SourceGoogleDirectoryConfigurationCredentialsSourceGoogleDirect
 }
 
 export interface SourceGooglePagespeedInsightsConfiguration {
+    /**
+     * Google PageSpeed API Key. See \n\nhere\n\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+     */
     apiKey?: string;
+    /**
+     * Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
+     */
     categories: string[];
+    /**
+     * must be one of ["google-pagespeed-insights"]
+     */
     sourceType: string;
+    /**
+     * The analyses strategy to use. Either "desktop" or "mobile".
+     */
     strategies: string[];
+    /**
+     * The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+     */
     urls: string[];
 }
 
 export interface SourceGoogleSearchConsoleConfiguration {
     authorization: outputs.SourceGoogleSearchConsoleConfigurationAuthorization;
+    /**
+     * A JSON array describing the custom reports you want to sync from Google Search Console. See \n\nthe docs\n\n for more information about the exact format you can use to fill out this field.
+     */
     customReports?: string;
+    /**
+     * must be one of ["final", "all"]
+     * If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+     */
     dataState?: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+     */
     endDate?: string;
+    /**
+     * The URLs of the website property attached to your GSC account. Read more \n\nhere\n\n.
+     */
     siteUrls: string[];
+    /**
+     * must be one of ["google-search-console"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -9257,10 +14610,25 @@ export interface SourceGoogleSearchConsoleConfigurationAuthorizationSourceGoogle
 }
 
 export interface SourceGoogleSheetsConfiguration {
+    /**
+     * Credentials for connecting to the Google Sheets API
+     */
     credentials: outputs.SourceGoogleSheetsConfigurationCredentials;
+    /**
+     * Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+     */
     namesConversion?: boolean;
+    /**
+     * The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+     */
     rowBatchSize?: number;
+    /**
+     * must be one of ["google-sheets"]
+     */
     sourceType: string;
+    /**
+     * Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+     */
     spreadsheetId: string;
 }
 
@@ -9296,36 +14664,90 @@ export interface SourceGoogleSheetsConfigurationCredentialsSourceGoogleSheetsUpd
 }
 
 export interface SourceGoogleWebfontsConfiguration {
+    /**
+     * Optional, Available params- json, media, proto
+     */
     alt?: string;
+    /**
+     * API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+     */
     apiKey: string;
+    /**
+     * Optional, boolean type
+     */
     prettyPrint?: string;
+    /**
+     * Optional, to find how to sort
+     */
     sort?: string;
+    /**
+     * must be one of ["google-webfonts"]
+     */
     sourceType: string;
 }
 
 export interface SourceGoogleWorkspaceAdminReportsConfiguration {
+    /**
+     * The contents of the JSON service account key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     credentialsJson: string;
+    /**
+     * The email of the user, which has permissions to access the Google Workspace Admin APIs.
+     */
     email: string;
+    /**
+     * Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+     */
     lookback?: number;
+    /**
+     * must be one of ["google-workspace-admin-reports"]
+     */
     sourceType: string;
 }
 
 export interface SourceGreenhouseConfiguration {
+    /**
+     * Greenhouse API Key. See the \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["greenhouse"]
+     */
     sourceType: string;
 }
 
 export interface SourceGridlyConfiguration {
     apiKey: string;
+    /**
+     * ID of a grid, or can be ID of a branch
+     */
     gridId: string;
+    /**
+     * must be one of ["gridly"]
+     */
     sourceType: string;
 }
 
 export interface SourceHarvestConfiguration {
+    /**
+     * Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+     */
     accountId: string;
+    /**
+     * Choose how to authenticate to Harvest.
+     */
     credentials?: outputs.SourceHarvestConfigurationCredentials;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+     */
     replicationEndDate?: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     replicationStartDate: string;
+    /**
+     * must be one of ["harvest"]
+     */
     sourceType: string;
 }
 
@@ -9365,13 +14787,28 @@ export interface SourceHarvestConfigurationCredentialsSourceHarvestUpdateAuthent
 }
 
 export interface SourceHubplannerConfiguration {
+    /**
+     * Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+     */
     apiKey: string;
+    /**
+     * must be one of ["hubplanner"]
+     */
     sourceType: string;
 }
 
 export interface SourceHubspotConfiguration {
+    /**
+     * Choose how to authenticate to HubSpot.
+     */
     credentials: outputs.SourceHubspotConfigurationCredentials;
+    /**
+     * must be one of ["hubspot"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -9407,102 +14844,269 @@ export interface SourceHubspotConfigurationCredentialsSourceHubspotUpdateAuthent
 }
 
 export interface SourceInsightlyConfiguration {
+    /**
+     * must be one of ["insightly"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+     */
     startDate: string;
+    /**
+     * Your Insightly API token.
+     */
     token: string;
 }
 
 export interface SourceInstagramConfiguration {
+    /**
+     * The value of the access token generated with \n\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\n\n permissions. See the \n\ndocs\n\n for more information
+     */
     accessToken: string;
+    /**
+     * The Client ID for your Oauth application
+     */
     clientId?: string;
+    /**
+     * The Client Secret for your Oauth application
+     */
     clientSecret?: string;
+    /**
+     * must be one of ["instagram"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceInstatusConfiguration {
+    /**
+     * Instatus REST API key
+     */
     apiKey: string;
+    /**
+     * must be one of ["instatus"]
+     */
     sourceType: string;
 }
 
 export interface SourceIntercomConfiguration {
+    /**
+     * Access token for making authenticated requests. See the \n\nIntercom docs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * must be one of ["intercom"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceIp2whoisConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey?: string;
+    /**
+     * Domain name. See \n\nhere\n\n.
+     */
     domain?: string;
+    /**
+     * must be one of ["ip2whois"]
+     */
     sourceType?: string;
 }
 
 export interface SourceIterableConfiguration {
+    /**
+     * Iterable API Key. See the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["iterable"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceJiraConfiguration {
+    /**
+     * Jira API Token. See the \n\ndocs\n\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+     */
     apiToken: string;
+    /**
+     * The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+     */
     domain: string;
+    /**
+     * The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+     */
     email: string;
+    /**
+     * Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+     */
     enableExperimentalStreams?: boolean;
+    /**
+     * Expand the changelog when replicating issues.
+     */
     expandIssueChangelog?: boolean;
+    /**
+     * List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+     */
     projects?: string[];
+    /**
+     * Render issue fields in HTML format in addition to Jira JSON-like format.
+     */
     renderFields?: boolean;
+    /**
+     * must be one of ["jira"]
+     */
     sourceType: string;
+    /**
+     * The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \n\ndocumentation\n\n.
+     */
     startDate?: string;
 }
 
 export interface SourceK6CloudConfiguration {
+    /**
+     * Your API Token. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiToken: string;
+    /**
+     * must be one of ["k6-cloud"]
+     */
     sourceType: string;
 }
 
 export interface SourceKlarnaConfiguration {
+    /**
+     * A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+     */
     password: string;
+    /**
+     * Propertie defining if connector is used against playground or production environment
+     */
     playground: boolean;
+    /**
+     * must be one of ["eu", "us", "oc"]
+     * Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+     */
     region: string;
+    /**
+     * must be one of ["klarna"]
+     */
     sourceType: string;
+    /**
+     * Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+     */
     username: string;
 }
 
 export interface SourceKlaviyoConfiguration {
+    /**
+     * Klaviyo API Key. See our \n\ndocs\n\n if you need help finding this key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["klaviyo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceKustomerSingerConfiguration {
+    /**
+     * Kustomer API Token. See the \n\ndocs\n\n on how to obtain this
+     */
     apiToken: string;
+    /**
+     * must be one of ["kustomer-singer"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate the data
+     */
     startDate: string;
 }
 
 export interface SourceKyveConfiguration {
+    /**
+     * The maximum amount of pages to go trough. Set to 'null' for all pages.
+     */
     maxPages?: number;
+    /**
+     * The pagesize for pagination, smaller numbers are used in integration tests.
+     */
     pageSize?: number;
+    /**
+     * The IDs of the KYVE storage pool you want to archive. (Comma separated)
+     */
     poolIds: string;
+    /**
+     * must be one of ["kyve"]
+     */
     sourceType: string;
+    /**
+     * The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+     */
     startIds: string;
+    /**
+     * URL to the KYVE Chain API.
+     */
     urlBase?: string;
 }
 
 export interface SourceLaunchdarklyConfiguration {
+    /**
+     * Your Access token. See \n\nhere\n\n.
+     */
     accessToken: string;
+    /**
+     * must be one of ["launchdarkly"]
+     */
     sourceType: string;
 }
 
 export interface SourceLemlistConfiguration {
+    /**
+     * Lemlist API key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["lemlist"]
+     */
     sourceType: string;
 }
 
 export interface SourceLeverHiringConfiguration {
+    /**
+     * Choose how to authenticate to Lever Hiring.
+     */
     credentials?: outputs.SourceLeverHiringConfigurationCredentials;
+    /**
+     * must be one of ["Production", "Sandbox"]
+     * The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+     */
     environment?: string;
+    /**
+     * must be one of ["lever-hiring"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+     */
     startDate: string;
 }
 
@@ -9538,10 +15142,19 @@ export interface SourceLeverHiringConfigurationCredentialsSourceLeverHiringUpdat
 }
 
 export interface SourceLinkedinAdsConfiguration {
+    /**
+     * Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \n\nLinkedIn Ads docs\n\n for more info.
+     */
     accountIds?: number[];
     adAnalyticsReports?: outputs.SourceLinkedinAdsConfigurationAdAnalyticsReport[];
     credentials?: outputs.SourceLinkedinAdsConfigurationCredentials;
+    /**
+     * must be one of ["linkedin-ads"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -9584,7 +15197,13 @@ export interface SourceLinkedinAdsConfigurationCredentialsSourceLinkedinAdsUpdat
 
 export interface SourceLinkedinPagesConfiguration {
     credentials?: outputs.SourceLinkedinPagesConfigurationCredentials;
+    /**
+     * Specify the Organization ID
+     */
     orgId: string;
+    /**
+     * must be one of ["linkedin-pages"]
+     */
     sourceType: string;
 }
 
@@ -9620,22 +15239,46 @@ export interface SourceLinkedinPagesConfigurationCredentialsSourceLinkedinPagesU
 }
 
 export interface SourceLinnworksConfiguration {
+    /**
+     * Linnworks Application ID
+     */
     applicationId: string;
+    /**
+     * Linnworks Application Secret
+     */
     applicationSecret: string;
+    /**
+     * must be one of ["linnworks"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
     token: string;
 }
 
 export interface SourceLokaliseConfiguration {
+    /**
+     * Lokalise API Key with read-access. Available at Profile settings > API tokens. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * Lokalise project ID. Available at Project Settings > General.
+     */
     projectId: string;
+    /**
+     * must be one of ["lokalise"]
+     */
     sourceType: string;
 }
 
 export interface SourceMailchimpConfiguration {
     campaignId?: string;
     credentials?: outputs.SourceMailchimpConfigurationCredentials;
+    /**
+     * must be one of ["mailchimp"]
+     */
     sourceType: string;
 }
 
@@ -9671,38 +15314,100 @@ export interface SourceMailchimpConfigurationCredentialsSourceMailchimpUpdateAut
 }
 
 export interface SourceMailgunConfiguration {
+    /**
+     * Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
+     */
     domainRegion?: string;
+    /**
+     * Primary account API key to access your Mailgun data.
+     */
     privateKey: string;
+    /**
+     * must be one of ["mailgun"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+     */
     startDate?: string;
 }
 
 export interface SourceMailjetSmsConfiguration {
+    /**
+     * Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+     */
     endDate?: number;
+    /**
+     * must be one of ["mailjet-sms"]
+     */
     sourceType: string;
+    /**
+     * Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+     */
     startDate?: number;
+    /**
+     * Your access token. See \n\nhere\n\n.
+     */
     token: string;
 }
 
 export interface SourceMarketoConfiguration {
+    /**
+     * The Client ID of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Marketo developer application. See \n\n the docs \n\n for info on how to obtain this.
+     */
     clientSecret: string;
+    /**
+     * Your Marketo Base URL. See \n\n the docs \n\n for info on how to obtain this.
+     */
     domainUrl: string;
+    /**
+     * must be one of ["marketo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceMetabaseConfiguration {
+    /**
+     * URL to your metabase instance API
+     */
     instanceApiUrl: string;
     password?: string;
+    /**
+     * To generate your session token, you need to run the following command: `curl -X POST \
+     * -H "Content-Type: application/json" \
+     * -d '{"username": "person@metabase.com", "password": "fakepassword"}' \
+     * http://localhost:3000/api/session
+     * ` Then copy the value of the `id` field returned by a successful call to that API.
+     * Note that by default, sessions are good for 14 days and needs to be regenerated.
+     */
     sessionToken?: string;
+    /**
+     * must be one of ["metabase"]
+     */
     sourceType: string;
     username?: string;
 }
 
 export interface SourceMicrosoftTeamsConfiguration {
+    /**
+     * Choose how to authenticate to Microsoft
+     */
     credentials?: outputs.SourceMicrosoftTeamsConfigurationCredentials;
+    /**
+     * Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+     */
     period: string;
+    /**
+     * must be one of ["microsoft-teams"]
+     */
     sourceType: string;
 }
 
@@ -9744,15 +15449,46 @@ export interface SourceMicrosoftTeamsConfigurationCredentialsSourceMicrosoftTeam
 }
 
 export interface SourceMixpanelConfiguration {
+    /**
+     * A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+     */
     attributionWindow?: number;
+    /**
+     * Choose how to authenticate to Mixpanel
+     */
     credentials?: outputs.SourceMixpanelConfigurationCredentials;
+    /**
+     * Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+     */
     dateWindowSize?: number;
+    /**
+     * The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+     */
     endDate?: string;
+    /**
+     * Your project ID number. See the \n\ndocs\n\n for more information on how to obtain this.
+     */
     projectId?: number;
+    /**
+     * Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \n\nMixpanel console\n\n.
+     */
     projectTimezone?: string;
+    /**
+     * must be one of ["US", "EU"]
+     * The region of mixpanel domain instance either US or EU.
+     */
     region?: string;
+    /**
+     * Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+     */
     selectPropertiesByDefault?: boolean;
+    /**
+     * must be one of ["mixpanel"]
+     */
     sourceType?: string;
+    /**
+     * The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+     */
     startDate?: string;
 }
 
@@ -9787,6 +15523,9 @@ export interface SourceMixpanelConfigurationCredentialsSourceMixpanelUpdateAuthe
 
 export interface SourceMondayConfiguration {
     credentials?: outputs.SourceMondayConfigurationCredentials;
+    /**
+     * must be one of ["monday"]
+     */
     sourceType: string;
 }
 
@@ -9824,11 +15563,29 @@ export interface SourceMondayConfigurationCredentialsSourceMondayUpdateAuthoriza
 }
 
 export interface SourceMongodbConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource?: string;
+    /**
+     * The database you want to replicate.
+     */
     database: string;
+    /**
+     * The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+     */
     instanceType?: outputs.SourceMongodbConfigurationInstanceType;
+    /**
+     * The password associated with this username.
+     */
     password?: string;
+    /**
+     * must be one of ["mongodb"]
+     */
     sourceType: string;
+    /**
+     * The username which is used to access the database.
+     */
     user?: string;
 }
 
@@ -9878,25 +15635,76 @@ export interface SourceMongodbConfigurationInstanceTypeSourceMongodbUpdateMongoD
 }
 
 export interface SourceMongodbInternalPocConfiguration {
+    /**
+     * The authentication source where the user information is stored.
+     */
     authSource?: string;
+    /**
+     * The connection string of the database that you want to replicate..
+     */
     connectionString?: string;
+    /**
+     * The password associated with this username.
+     */
     password?: string;
+    /**
+     * The name of the replica set to be replicated.
+     */
     replicaSet?: string;
+    /**
+     * must be one of ["mongodb-internal-poc"]
+     */
     sourceType: string;
+    /**
+     * The username which is used to access the database.
+     */
     user?: string;
 }
 
 export interface SourceMssqlConfiguration {
+    /**
+     * The name of the database.
+     */
     database: string;
+    /**
+     * The hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * The password associated with the username.
+     */
     password?: string;
+    /**
+     * The port of the database.
+     */
     port: number;
+    /**
+     * The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
+     */
     replicationMethod?: outputs.SourceMssqlConfigurationReplicationMethod;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas?: string[];
+    /**
+     * must be one of ["mssql"]
+     */
     sourceType: string;
+    /**
+     * The encryption method which is used when communicating with the database.
+     */
     sslMethod?: outputs.SourceMssqlConfigurationSslMethod;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourceMssqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -10004,23 +15812,68 @@ export interface SourceMssqlConfigurationTunnelMethodSourceMssqlUpdateSshTunnelM
 }
 
 export interface SourceMyHoursConfiguration {
+    /**
+     * Your My Hours username
+     */
     email: string;
+    /**
+     * Pagination size used for retrieving logs in days
+     */
     logsBatchSize?: number;
+    /**
+     * The password associated to the username
+     */
     password: string;
+    /**
+     * must be one of ["my-hours"]
+     */
     sourceType: string;
+    /**
+     * Start date for collecting time logs
+     */
     startDate: string;
 }
 
 export interface SourceMysqlConfiguration {
+    /**
+     * The database name.
+     */
     database: string;
+    /**
+     * The host name of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: string;
+    /**
+     * The password associated with the username.
+     */
     password?: string;
+    /**
+     * The port to connect to.
+     */
     port: number;
+    /**
+     * Configures how data is extracted from the database.
+     */
     replicationMethod: outputs.SourceMysqlConfigurationReplicationMethod;
+    /**
+     * must be one of ["mysql"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes. Read more \n\n in the docs\n\n.
+     */
     sslMode?: outputs.SourceMysqlConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourceMysqlConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -10160,20 +16013,56 @@ export interface SourceMysqlConfigurationTunnelMethodSourceMysqlUpdateSshTunnelM
 }
 
 export interface SourceNetsuiteConfiguration {
+    /**
+     * Consumer key associated with your integration
+     */
     consumerKey: string;
+    /**
+     * Consumer secret associated with your integration
+     */
     consumerSecret: string;
+    /**
+     * The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+     */
     objectTypes?: string[];
+    /**
+     * Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+     */
     realm: string;
+    /**
+     * must be one of ["netsuite"]
+     */
     sourceType: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+     */
     startDatetime: string;
+    /**
+     * Access token key
+     */
     tokenKey: string;
+    /**
+     * Access token secret
+     */
     tokenSecret: string;
+    /**
+     * The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+     */
     windowInDays?: number;
 }
 
 export interface SourceNotionConfiguration {
+    /**
+     * Pick an authentication method.
+     */
     credentials?: outputs.SourceNotionConfigurationCredentials;
+    /**
+     * must be one of ["notion"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -10209,18 +16098,47 @@ export interface SourceNotionConfigurationCredentialsSourceNotionUpdateAuthentic
 }
 
 export interface SourceNytimesConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * End date to stop the article retrieval (format YYYY-MM)
+     */
     endDate?: string;
+    /**
+     * must be one of ["1", "7", "30"]
+     * Period of time (in days)
+     */
     period: number;
+    /**
+     * must be one of ["facebook"]
+     * Share Type
+     */
     shareType?: string;
+    /**
+     * must be one of ["nytimes"]
+     */
     sourceType: string;
+    /**
+     * Start date to begin the article retrieval (format YYYY-MM)
+     */
     startDate: string;
 }
 
 export interface SourceOktaConfiguration {
     credentials?: outputs.SourceOktaConfigurationCredentials;
+    /**
+     * The Okta domain. See the \n\ndocs\n\n for instructions on how to find it.
+     */
     domain?: string;
+    /**
+     * must be one of ["okta"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+     */
     startDate?: string;
 }
 
@@ -10256,15 +16174,36 @@ export interface SourceOktaConfigurationCredentialsSourceOktaUpdateAuthorization
 }
 
 export interface SourceOmnisendConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["omnisend"]
+     */
     sourceType: string;
 }
 
 export interface SourceOnesignalConfiguration {
+    /**
+     * Applications keys, see the \n\ndocs\n\n for more information on how to obtain this data
+     */
     applications: outputs.SourceOnesignalConfigurationApplication[];
+    /**
+     * Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \n\ndocs\n\n for more details
+     */
     outcomeNames: string;
+    /**
+     * must be one of ["onesignal"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * OneSignal User Auth Key, see the \n\ndocs\n\n for more information on how to obtain this key.
+     */
     userAuthKey: string;
 }
 
@@ -10275,24 +16214,77 @@ export interface SourceOnesignalConfigurationApplication {
 }
 
 export interface SourceOpenweatherConfiguration {
+    /**
+     * Your OpenWeather API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     appid: string;
+    /**
+     * must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zhTw", "zu"]
+     * You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \n\nhere\n\n for the list of supported languages.
+     */
     lang?: string;
+    /**
+     * Latitude for which you want to get weather condition from. (min -90, max 90)
+     */
     lat: string;
+    /**
+     * Longitude for which you want to get weather condition from. (min -180, max 180)
+     */
     lon: string;
+    /**
+     * must be one of ["openweather"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["standard", "metric", "imperial"]
+     * Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+     */
     units?: string;
 }
 
 export interface SourceOracleConfiguration {
+    /**
+     * Connect data that will be used for DB connection
+     */
     connectionData?: outputs.SourceOracleConfigurationConnectionData;
+    /**
+     * The encryption method with is used when communicating with the database.
+     */
     encryption: outputs.SourceOracleConfigurationEncryption;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * The password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     * Oracle Corporations recommends the following port numbers:
+     * 1521 - Default listening port for client connections to the listener.
+     * 2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+     */
     port: number;
+    /**
+     * The list of schemas to sync from. Defaults to user. Case sensitive.
+     */
     schemas?: string[];
+    /**
+     * must be one of ["oracle"]
+     */
     sourceType: string;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourceOracleConfigurationTunnelMethod;
+    /**
+     * The username which is used to access the database.
+     */
     username: string;
 }
 
@@ -10400,29 +16392,85 @@ export interface SourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunne
 }
 
 export interface SourceOrbConfiguration {
+    /**
+     * Orb API Key, issued from the Orb admin console.
+     */
     apiKey: string;
+    /**
+     * When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+     */
     lookbackWindowDays?: number;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     numericEventPropertiesKeys?: string[];
+    /**
+     * Orb Plan ID to filter subscriptions that should have usage fetched.
+     */
     planId?: string;
+    /**
+     * must be one of ["orb"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2022-03-01T00:00:00Z. Any data with createdAt before this data will not be synced. For Subscription Usage, this becomes the `timeframeStart` API parameter.
+     */
     startDate: string;
+    /**
+     * Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+     */
     stringEventPropertiesKeys?: string[];
+    /**
+     * Property key name to group subscription usage by.
+     */
     subscriptionUsageGroupingKey?: string;
 }
 
 export interface SourceOrbitConfiguration {
+    /**
+     * Authorizes you to work with Orbit workspaces associated with the token.
+     */
     apiToken: string;
+    /**
+     * must be one of ["orbit"]
+     */
     sourceType: string;
+    /**
+     * Date in the format 2022-06-26. Only load members whose last activities are after this date.
+     */
     startDate?: string;
+    /**
+     * The unique name of the workspace that your API token is associated with.
+     */
     workspace: string;
 }
 
 export interface SourceOutbrainAmplifyConfiguration {
+    /**
+     * Credentials for making authenticated requests requires either username/password or access_token.
+     */
     credentials: outputs.SourceOutbrainAmplifyConfigurationCredentials;
+    /**
+     * Date in the format YYYY-MM-DD.
+     */
     endDate?: string;
+    /**
+     * must be one of ["country", "region", "subregion"]
+     * The granularity used for geo location data in reports.
+     */
     geoLocationBreakdown?: string;
+    /**
+     * must be one of ["daily", "weekly", "monthly"]
+     * The granularity used for periodic data in reports. See \n\nthe docs\n\n.
+     */
     reportGranularity?: string;
+    /**
+     * must be one of ["outbrain-amplify"]
+     */
     sourceType: string;
+    /**
+     * Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -10456,54 +16504,141 @@ export interface SourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmpl
 }
 
 export interface SourceOutreachConfiguration {
+    /**
+     * The Client ID of your Outreach developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Outreach developer application.
+     */
     clientSecret: string;
+    /**
+     * A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+     */
     redirectUri: string;
+    /**
+     * The token for obtaining the new access token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["outreach"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface SourcePaypalTransactionConfiguration {
+    /**
+     * The Client ID of your Paypal developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Paypal developer application.
+     */
     clientSecret: string;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: boolean;
+    /**
+     * The key to refresh the expired access token.
+     */
     refreshToken?: string;
+    /**
+     * must be one of ["paypal-transaction"]
+     */
     sourceType: string;
+    /**
+     * Start Date for data extraction in \n\nISO format\n\n. Date must be in range from 3 years till 12 hrs before present time.
+     */
     startDate: string;
 }
 
 export interface SourcePaystackConfiguration {
+    /**
+     * When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+     */
     lookbackWindowDays?: number;
+    /**
+     * The Paystack API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     secretKey: string;
+    /**
+     * must be one of ["paystack"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourcePendoConfiguration {
     apiKey: string;
+    /**
+     * must be one of ["pendo"]
+     */
     sourceType: string;
 }
 
 export interface SourcePersistiqConfiguration {
+    /**
+     * PersistIq API Key. See the \n\ndocs\n\n for more information on where to find that key.
+     */
     apiKey: string;
+    /**
+     * must be one of ["persistiq"]
+     */
     sourceType: string;
 }
 
 export interface SourcePexelsApiConfiguration {
+    /**
+     * API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+     */
     apiKey: string;
+    /**
+     * Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+     */
     color?: string;
+    /**
+     * Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+     */
     locale?: string;
+    /**
+     * Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+     */
     orientation?: string;
+    /**
+     * Optional, the search query, Example Ocean, Tigers, Pears, etc.
+     */
     query: string;
+    /**
+     * Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+     */
     size?: string;
+    /**
+     * must be one of ["pexels-api"]
+     */
     sourceType: string;
 }
 
 export interface SourcePinterestConfiguration {
     credentials?: outputs.SourcePinterestConfigurationCredentials;
+    /**
+     * must be one of ["pinterest"]
+     */
     sourceType: string;
+    /**
+     * A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+     */
     startDate: string;
+    /**
+     * Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+     */
     statuses?: string[];
 }
 
@@ -10540,7 +16675,13 @@ export interface SourcePinterestConfigurationCredentialsSourcePinterestUpdateAut
 
 export interface SourcePipedriveConfiguration {
     authorization?: outputs.SourcePipedriveConfigurationAuthorization;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+     */
     replicationStartDate: string;
+    /**
+     * must be one of ["pipedrive"]
+     */
     sourceType: string;
 }
 
@@ -10550,49 +16691,159 @@ export interface SourcePipedriveConfigurationAuthorization {
 }
 
 export interface SourcePocketConfiguration {
+    /**
+     * The user's Pocket access token.
+     */
     accessToken: string;
+    /**
+     * Your application's Consumer Key.
+     */
     consumerKey: string;
+    /**
+     * must be one of ["article", "video", "image"]
+     * Select the content type of the items to retrieve.
+     */
     contentType?: string;
+    /**
+     * must be one of ["simple", "complete"]
+     * Select the granularity of the information about each item.
+     */
     detailType?: string;
+    /**
+     * Only return items from a particular `domain`.
+     */
     domain?: string;
+    /**
+     * Retrieve only favorited items.
+     */
     favorite?: boolean;
+    /**
+     * Only return items whose title or url contain the `search` string.
+     */
     search?: string;
+    /**
+     * Only return items modified since the given timestamp.
+     */
     since?: string;
+    /**
+     * must be one of ["newest", "oldest", "title", "site"]
+     * Sort retrieved items by the given criteria.
+     */
     sort?: string;
+    /**
+     * must be one of ["pocket"]
+     */
     sourceType: string;
+    /**
+     * must be one of ["unread", "archive", "all"]
+     * Select the state of the items to retrieve.
+     */
     state?: string;
+    /**
+     * Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+     */
     tag?: string;
 }
 
 export interface SourcePokeapiConfiguration {
+    /**
+     * Pokemon requested from the API.
+     */
     pokemonName: string;
+    /**
+     * must be one of ["pokeapi"]
+     */
     sourceType: string;
 }
 
 export interface SourcePolygonStockApiConfiguration {
+    /**
+     * Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+     */
     adjusted?: string;
+    /**
+     * Your API ACCESS Key
+     */
     apiKey: string;
+    /**
+     * The target date for the aggregate window.
+     */
     endDate: string;
+    /**
+     * The target date for the aggregate window.
+     */
     limit?: number;
+    /**
+     * The size of the timespan multiplier.
+     */
     multiplier: number;
+    /**
+     * Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+     */
     sort?: string;
+    /**
+     * must be one of ["polygon-stock-api"]
+     */
     sourceType: string;
+    /**
+     * The beginning date for the aggregate window.
+     */
     startDate: string;
+    /**
+     * The exchange symbol that this item is traded under.
+     */
     stocksTicker: string;
+    /**
+     * The size of the time window.
+     */
     timespan: string;
 }
 
 export interface SourcePostgresConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Hostname of the database.
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password?: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * Replication method for extracting data from the database.
+     */
     replicationMethod?: outputs.SourcePostgresConfigurationReplicationMethod;
+    /**
+     * The list of schemas (case sensitive) to sync from. Defaults to public.
+     */
     schemas?: string[];
+    /**
+     * must be one of ["postgres"]
+     */
     sourceType: string;
+    /**
+     * SSL connection modes.
+     * Read more \n\n in the docs\n\n.
+     */
     sslMode?: outputs.SourcePostgresConfigurationSslMode;
+    /**
+     * Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+     */
     tunnelMethod?: outputs.SourcePostgresConfigurationTunnelMethod;
+    /**
+     * Username to access the database.
+     */
     username: string;
 }
 
@@ -10784,54 +17035,135 @@ export interface SourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshT
 }
 
 export interface SourcePosthogConfiguration {
+    /**
+     * API Key. See the \n\ndocs\n\n for information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+     */
     baseUrl?: string;
+    /**
+     * must be one of ["posthog"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourcePostmarkappConfiguration {
+    /**
+     * must be one of ["postmarkapp"]
+     */
     sourceType: string;
+    /**
+     * API Key for account
+     */
     xPostmarkAccountToken: string;
+    /**
+     * API Key for server
+     */
     xPostmarkServerToken: string;
 }
 
 export interface SourcePrestashopConfiguration {
+    /**
+     * Your PrestaShop access key. See \n\n the docs \n\n for info on how to obtain this.
+     */
     accessKey: string;
+    /**
+     * must be one of ["prestashop"]
+     */
     sourceType: string;
+    /**
+     * The Start date in the format YYYY-MM-DD.
+     */
     startDate: string;
+    /**
+     * Shop URL without trailing slash.
+     */
     url: string;
 }
 
 export interface SourcePublicApisConfiguration {
+    /**
+     * must be one of ["public-apis"]
+     */
     sourceType: string;
 }
 
 export interface SourcePunkApiConfiguration {
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedAfter: string;
+    /**
+     * To extract specific data with Unique ID
+     */
     brewedBefore: string;
+    /**
+     * To extract specific data with Unique ID
+     */
     id?: string;
+    /**
+     * must be one of ["punk-api"]
+     */
     sourceType: string;
 }
 
 export interface SourcePypiConfiguration {
+    /**
+     * Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+     */
     projectName: string;
+    /**
+     * must be one of ["pypi"]
+     */
     sourceType: string;
+    /**
+     * Version of the project/package.  Use it to find a particular release instead of all releases.
+     */
     version?: string;
 }
 
 export interface SourceQualarooConfiguration {
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: string;
+    /**
+     * must be one of ["qualaroo"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+     */
     surveyIds?: string[];
+    /**
+     * A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: string;
 }
 
 export interface SourceQuickbooksConfiguration {
     credentials: outputs.SourceQuickbooksConfigurationCredentials;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     sandbox: boolean;
+    /**
+     * must be one of ["quickbooks"]
+     */
     sourceType: string;
+    /**
+     * The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -10861,50 +17193,128 @@ export interface SourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateA
 }
 
 export interface SourceRailzConfiguration {
+    /**
+     * Client ID (client_id)
+     */
     clientId: string;
+    /**
+     * Secret key (secret_key)
+     */
     secretKey: string;
+    /**
+     * must be one of ["railz"]
+     */
     sourceType: string;
+    /**
+     * Start date
+     */
     startDate: string;
 }
 
 export interface SourceRechargeConfiguration {
+    /**
+     * The value of the Access Token generated. See the \n\ndocs\n\n for more information.
+     */
     accessToken: string;
+    /**
+     * must be one of ["recharge"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceRecreationConfiguration {
+    /**
+     * API Key
+     */
     apikey: string;
     queryCampsites?: string;
+    /**
+     * must be one of ["recreation"]
+     */
     sourceType: string;
 }
 
 export interface SourceRecruiteeConfiguration {
+    /**
+     * Recruitee API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * Recruitee Company ID. You can also find this ID on the \n\nRecruitee API tokens page\n\n.
+     */
     companyId: number;
+    /**
+     * must be one of ["recruitee"]
+     */
     sourceType: string;
 }
 
 export interface SourceRecurlyConfiguration {
+    /**
+     * Recurly API Key. See the  \n\ndocs\n\n for more information on how to generate this key.
+     */
     apiKey: string;
+    /**
+     * ISO8601 timestamp from which the replication from Recurly API will start from.
+     */
     beginTime?: string;
+    /**
+     * ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+     */
     endTime?: string;
+    /**
+     * must be one of ["recurly"]
+     */
     sourceType: string;
 }
 
 export interface SourceRedshiftConfiguration {
+    /**
+     * Name of the database.
+     */
     database: string;
+    /**
+     * Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * Password associated with the username.
+     */
     password: string;
+    /**
+     * Port of the database.
+     */
     port: number;
+    /**
+     * The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+     */
     schemas?: string[];
+    /**
+     * must be one of ["redshift"]
+     */
     sourceType: string;
+    /**
+     * Username to use to access the database.
+     */
     username: string;
 }
 
 export interface SourceRetentlyConfiguration {
+    /**
+     * Choose how to authenticate to Retently
+     */
     credentials?: outputs.SourceRetentlyConfigurationCredentials;
+    /**
+     * must be one of ["retently"]
+     */
     sourceType?: string;
 }
 
@@ -10944,21 +17354,51 @@ export interface SourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthe
 }
 
 export interface SourceRkiCovidConfiguration {
+    /**
+     * must be one of ["rki-covid"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceRssConfiguration {
+    /**
+     * must be one of ["rss"]
+     */
     sourceType: string;
+    /**
+     * RSS Feed URL
+     */
     url: string;
 }
 
 export interface SourceS3Configuration {
+    /**
+     * The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+     */
     dataset: string;
+    /**
+     * The format of the files you'd like to replicate
+     */
     format?: outputs.SourceS3ConfigurationFormat;
+    /**
+     * A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \n\nthis page\n\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \n\n**\n\n to pick up all files.
+     */
     pathPattern: string;
+    /**
+     * Use this to load files from S3 or S3-compatible services
+     */
     provider: outputs.SourceS3ConfigurationProvider;
+    /**
+     * Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \n\n{ "column" : "type" }\n\n, where types are valid \n\nJSON Schema datatypes\n\n. Leave as {} to auto-infer the schema.
+     */
     schema?: string;
+    /**
+     * must be one of ["s3"]
+     */
     sourceType: string;
 }
 
@@ -11047,14 +17487,41 @@ export interface SourceS3ConfigurationProvider {
 }
 
 export interface SourceSalesforceConfiguration {
+    /**
+     * must be one of ["Client"]
+     */
     authType?: string;
+    /**
+     * Enter your Salesforce developer application's \n\nClient ID\n\n
+     */
     clientId: string;
+    /**
+     * Enter your Salesforce developer application's \n\nClient secret\n\n
+     */
     clientSecret: string;
+    /**
+     * Toggle to use Bulk API (this might cause empty fields for some streams)
+     */
     forceUseBulkApi?: boolean;
+    /**
+     * Toggle if you're using a \n\nSalesforce Sandbox\n\n
+     */
     isSandbox?: boolean;
+    /**
+     * Enter your application's \n\nSalesforce Refresh Token\n\n used for Airbyte to access your Salesforce account.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["salesforce"]
+     */
     sourceType: string;
+    /**
+     * Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+     */
     startDate?: string;
+    /**
+     * Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+     */
     streamsCriterias?: outputs.SourceSalesforceConfigurationStreamsCriteria[];
 }
 
@@ -11065,7 +17532,13 @@ export interface SourceSalesforceConfigurationStreamsCriteria {
 
 export interface SourceSalesloftConfiguration {
     credentials: outputs.SourceSalesloftConfigurationCredentials;
+    /**
+     * must be one of ["salesloft"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
@@ -11105,68 +17578,195 @@ export interface SourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCre
 }
 
 export interface SourceSapFieldglassConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["sap-fieldglass"]
+     */
     sourceType: string;
 }
 
 export interface SourceSecodaConfiguration {
+    /**
+     * Your API Access Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * must be one of ["secoda"]
+     */
     sourceType: string;
 }
 
 export interface SourceSendgridConfiguration {
+    /**
+     * API Key, use \n\nadmin\n\n to generate this key.
+     */
     apikey: string;
+    /**
+     * must be one of ["sendgrid"]
+     */
     sourceType: string;
+    /**
+     * Start time in ISO8601 format. Any data before this time point will not be replicated.
+     */
     startTime?: string;
 }
 
 export interface SourceSendinblueConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * must be one of ["sendinblue"]
+     */
     sourceType: string;
 }
 
 export interface SourceSenseforceConfiguration {
+    /**
+     * Your API access token. See \n\nhere\n\n. The toke is case sensitive.
+     */
     accessToken: string;
+    /**
+     * Your Senseforce API backend URL. This is the URL shown during the Login screen. See \n\nhere\n\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+     */
     backendUrl: string;
+    /**
+     * The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \n\nhere\n\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+     */
     datasetId: string;
+    /**
+     * The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+     */
     sliceRange?: number;
+    /**
+     * must be one of ["senseforce"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the startDate to 2020-10-10 or later
+     */
     startDate: string;
 }
 
 export interface SourceSentryConfiguration {
+    /**
+     * Log into Sentry and then \n\ncreate authentication tokens\n\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+     */
     authToken: string;
+    /**
+     * Fields to retrieve when fetching discover events
+     */
     discoverFields?: string[];
+    /**
+     * Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+     */
     hostname?: string;
+    /**
+     * The slug of the organization the groups belong to.
+     */
     organization: string;
+    /**
+     * The name (slug) of the Project you want to sync.
+     */
     project: string;
+    /**
+     * must be one of ["sentry"]
+     */
     sourceType: string;
 }
 
 export interface SourceSftpBulkConfiguration {
+    /**
+     * Sync only the most recent file for the configured folder path and file pattern
+     */
     fileMostRecent?: boolean;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern?: string;
+    /**
+     * must be one of ["csv", "json"]
+     * The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+     */
     fileType?: string;
+    /**
+     * The directory to search files for sync
+     */
     folderPath: string;
+    /**
+     * The server host address
+     */
     host: string;
+    /**
+     * OS-level password for logging into the jump server host
+     */
     password?: string;
+    /**
+     * The server port
+     */
     port: number;
+    /**
+     * The private key
+     */
     privateKey?: string;
+    /**
+     * The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+     */
     separator?: string;
+    /**
+     * must be one of ["sftp-bulk"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * The name of the stream or table you want to create
+     */
     streamName: string;
+    /**
+     * The server user
+     */
     username: string;
 }
 
 export interface SourceSftpConfiguration {
+    /**
+     * The server authentication method
+     */
     credentials?: outputs.SourceSftpConfigurationCredentials;
+    /**
+     * The regular expression to specify files for sync in a chosen Folder Path
+     */
     filePattern?: string;
+    /**
+     * Coma separated file types. Currently only 'csv' and 'json' types are supported.
+     */
     fileTypes?: string;
+    /**
+     * The directory to search files for sync
+     */
     folderPath?: string;
+    /**
+     * The server host address
+     */
     host: string;
+    /**
+     * The server port
+     */
     port: number;
+    /**
+     * must be one of ["sftp"]
+     */
     sourceType: string;
+    /**
+     * The server user
+     */
     user: string;
 }
 
@@ -11198,9 +17798,21 @@ export interface SourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticatio
 }
 
 export interface SourceShopifyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from Shopify
+     */
     credentials?: outputs.SourceShopifyConfigurationCredentials;
+    /**
+     * The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+     */
     shop: string;
+    /**
+     * must be one of ["shopify"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -11237,17 +17849,44 @@ export interface SourceShopifyConfigurationCredentialsSourceShopifyUpdateShopify
 
 export interface SourceShortioConfiguration {
     domainId: string;
+    /**
+     * Short.io Secret Key
+     */
     secretKey: string;
+    /**
+     * must be one of ["shortio"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceSlackConfiguration {
+    /**
+     * A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+     */
     channelFilters?: string[];
+    /**
+     * Choose how to authenticate into Slack
+     */
     credentials?: outputs.SourceSlackConfigurationCredentials;
+    /**
+     * Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+     */
     joinChannels: boolean;
+    /**
+     * How far into the past to look for messages in threads, default is 0 days
+     */
     lookbackWindow: number;
+    /**
+     * must be one of ["slack"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
@@ -11283,22 +17922,52 @@ export interface SourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticat
 }
 
 export interface SourceSmailyConfiguration {
+    /**
+     * API user password. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiPassword: string;
+    /**
+     * API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiSubdomain: string;
+    /**
+     * API user username. See https://smaily.com/help/api/general/create-api-user/
+     */
     apiUsername: string;
+    /**
+     * must be one of ["smaily"]
+     */
     sourceType: string;
 }
 
 export interface SourceSmartengageConfiguration {
+    /**
+     * API Key
+     */
     apiKey: string;
+    /**
+     * must be one of ["smartengage"]
+     */
     sourceType: string;
 }
 
 export interface SourceSmartsheetsConfiguration {
     credentials: outputs.SourceSmartsheetsConfigurationCredentials;
+    /**
+     * A List of available columns which metadata can be pulled from.
+     */
     metadataFields?: string[];
+    /**
+     * must be one of ["smartsheets"]
+     */
     sourceType: string;
+    /**
+     * The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+     */
     spreadsheetId: string;
+    /**
+     * Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+     */
     startDatetime?: string;
 }
 
@@ -11338,22 +18007,61 @@ export interface SourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdat
 }
 
 export interface SourceSnapchatMarketingConfiguration {
+    /**
+     * The Client ID of your Snapchat developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Snapchat developer application.
+     */
     clientSecret: string;
+    /**
+     * Date in the format 2017-01-25. Any data after this date will not be replicated.
+     */
     endDate?: string;
+    /**
+     * Refresh Token to renew the expired Access Token.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["snapchat-marketing"]
+     */
     sourceType: string;
+    /**
+     * Date in the format 2022-01-01. Any data before this date will not be replicated.
+     */
     startDate?: string;
 }
 
 export interface SourceSnowflakeConfiguration {
     credentials?: outputs.SourceSnowflakeConfigurationCredentials;
+    /**
+     * The database you created for Airbyte to access data.
+     */
     database: string;
+    /**
+     * The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+     */
     host: string;
+    /**
+     * Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+     */
     jdbcUrlParams?: string;
+    /**
+     * The role you created for Airbyte to access Snowflake.
+     */
     role: string;
+    /**
+     * The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+     */
     schema?: string;
+    /**
+     * must be one of ["snowflake"]
+     */
     sourceType: string;
+    /**
+     * The warehouse you created for Airbyte to access data.
+     */
     warehouse: string;
 }
 
@@ -11393,25 +18101,61 @@ export interface SourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAut
 }
 
 export interface SourceSonarCloudConfiguration {
+    /**
+     * Comma-separated list of component keys.
+     */
     componentKeys: string[];
+    /**
+     * To retrieve issues created before the given date (inclusive).
+     */
     endDate?: string;
+    /**
+     * Organization key. See \n\nhere\n\n.
+     */
     organization: string;
+    /**
+     * must be one of ["sonar-cloud"]
+     */
     sourceType: string;
+    /**
+     * To retrieve issues created after the given date (inclusive).
+     */
     startDate?: string;
+    /**
+     * Your User Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     userToken: string;
 }
 
 export interface SourceSpaceXApiConfiguration {
     id?: string;
     options?: string;
+    /**
+     * must be one of ["spacex-api"]
+     */
     sourceType?: string;
 }
 
 export interface SourceSquareConfiguration {
+    /**
+     * Choose how to authenticate to Square.
+     */
     credentials?: outputs.SourceSquareConfigurationCredentials;
+    /**
+     * In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+     */
     includeDeletedObjects?: boolean;
+    /**
+     * Determines whether to use the sandbox or production environment.
+     */
     isSandbox: boolean;
+    /**
+     * must be one of ["square"]
+     */
     sourceType: string;
+    /**
+     * UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+     */
     startDate?: string;
 }
 
@@ -11447,28 +18191,79 @@ export interface SourceSquareConfigurationCredentialsSourceSquareUpdateAuthentic
 }
 
 export interface SourceStravaConfiguration {
+    /**
+     * The Athlete ID of your Strava developer application.
+     */
     athleteId: number;
+    /**
+     * must be one of ["Client"]
+     */
     authType?: string;
+    /**
+     * The Client ID of your Strava developer application.
+     */
     clientId: string;
+    /**
+     * The Client Secret of your Strava developer application.
+     */
     clientSecret: string;
+    /**
+     * The Refresh Token with the activity: readAll permissions.
+     */
     refreshToken: string;
+    /**
+     * must be one of ["strava"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceStripeConfiguration {
+    /**
+     * Your Stripe account ID (starts with 'acct_', find yours \n\nhere\n\n).
+     */
     accountId: string;
+    /**
+     * Stripe API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+     */
     clientSecret: string;
+    /**
+     * When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \n\nhere\n\n
+     */
     lookbackWindowDays?: number;
+    /**
+     * The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+     */
     sliceRange?: number;
+    /**
+     * must be one of ["stripe"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceSurveySparrowConfiguration {
+    /**
+     * Your access token. See \n\nhere\n\n. The key is case sensitive.
+     */
     accessToken: string;
+    /**
+     * Is your account location is EU based? If yes, the base url to retrieve data will be different.
+     */
     region?: outputs.SourceSurveySparrowConfigurationRegion;
+    /**
+     * must be one of ["survey-sparrow"]
+     */
     sourceType: string;
+    /**
+     * A List of your survey ids for survey-specific stream
+     */
     surveyIds?: string[];
 }
 
@@ -11496,10 +18291,26 @@ export interface SourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdate
 }
 
 export interface SourceSurveymonkeyConfiguration {
+    /**
+     * The authorization method to use to retrieve data from SurveyMonkey
+     */
     credentials?: outputs.SourceSurveymonkeyConfigurationCredentials;
+    /**
+     * must be one of ["USA", "Europe", "Canada"]
+     * Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+     */
     origin?: string;
+    /**
+     * must be one of ["surveymonkey"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+     */
     surveyIds?: string[];
 }
 
@@ -11511,26 +18322,71 @@ export interface SourceSurveymonkeyConfigurationCredentials {
 }
 
 export interface SourceTempoConfiguration {
+    /**
+     * Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+     */
     apiToken: string;
+    /**
+     * must be one of ["tempo"]
+     */
     sourceType: string;
 }
 
 export interface SourceTheGuardianApiConfiguration {
+    /**
+     * Your API Key. See \n\nhere\n\n. The key is case sensitive.
+     */
     apiKey: string;
+    /**
+     * (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the endDate will not be shown. Default is set to the current date (today) for incremental syncs.
+     */
     endDate?: string;
+    /**
+     * (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+     */
     query?: string;
+    /**
+     * (Optional) Use this to filter the results by a particular section. See \n\nhere\n\n for a list of all sections, and \n\nhere\n\n for the sections endpoint documentation.
+     */
     section?: string;
+    /**
+     * must be one of ["the-guardian-api"]
+     */
     sourceType: string;
+    /**
+     * Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the startDate will not be shown.
+     */
     startDate: string;
+    /**
+     * (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \n\nhere\n\n for a list of all tags, and \n\nhere\n\n for the tags endpoint documentation.
+     */
     tag?: string;
 }
 
 export interface SourceTiktokMarketingConfiguration {
+    /**
+     * The attribution window in days.
+     */
     attributionWindow?: number;
+    /**
+     * Authentication method
+     */
     credentials?: outputs.SourceTiktokMarketingConfigurationCredentials;
+    /**
+     * The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between startDate and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+     */
     endDate?: string;
+    /**
+     * Set to active if you want to include deleted data in reports.
+     */
     includeDeleted?: boolean;
+    /**
+     * must be one of ["tiktok-marketing"]
+     */
     sourceType?: string;
+    /**
+     * The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+     */
     startDate?: string;
 }
 
@@ -11570,22 +18426,52 @@ export interface SourceTiktokMarketingConfigurationCredentialsSourceTiktokMarket
 }
 
 export interface SourceTodoistConfiguration {
+    /**
+     * must be one of ["todoist"]
+     */
     sourceType: string;
+    /**
+     * Your API Token. See \n\nhere\n\n. The token is case sensitive.
+     */
     token: string;
 }
 
 export interface SourceTrelloConfiguration {
+    /**
+     * IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+     */
     boardIds?: string[];
+    /**
+     * Trello API key. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     key: string;
+    /**
+     * must be one of ["trello"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
+    /**
+     * Trello API token. See the \n\ndocs\n\n for instructions on how to generate it.
+     */
     token: string;
 }
 
 export interface SourceTrustpilotConfiguration {
+    /**
+     * The names of business units which shall be synchronized. Some streams e.g. configured*business*units or privateReviews use this configuration.
+     */
     businessUnits: string[];
     credentials: outputs.SourceTrustpilotConfigurationCredentials;
+    /**
+     * must be one of ["trustpilot"]
+     */
     sourceType: string;
+    /**
+     * For streams with sync. method incremental the start date time to be used
+     */
     startDate: string;
 }
 
@@ -11625,39 +18511,104 @@ export interface SourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateA
 }
 
 export interface SourceTvmazeScheduleConfiguration {
+    /**
+     * Country code for domestic TV schedule retrieval.
+     */
     domesticScheduleCountryCode: string;
+    /**
+     * End date for TV schedule retrieval. May be in the future. Optional.
+     */
     endDate?: string;
+    /**
+     * must be one of ["tvmaze-schedule"]
+     */
     sourceType: string;
+    /**
+     * Start date for TV schedule retrieval. May be in the future.
+     */
     startDate: string;
+    /**
+     * ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+     * all countries plus global web channels (e.g. Netflix). Alternatively,
+     * set to 'global' for just global web channels.
+     */
     webScheduleCountryCode?: string;
 }
 
 export interface SourceTwilioConfiguration {
+    /**
+     * Twilio account SID
+     */
     accountSid: string;
+    /**
+     * Twilio Auth Token.
+     */
     authToken: string;
+    /**
+     * How far into the past to look for records. (in minutes)
+     */
     lookbackWindow?: number;
+    /**
+     * must be one of ["twilio"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+     */
     startDate: string;
 }
 
 export interface SourceTwilioTaskrouterConfiguration {
+    /**
+     * Twilio Account ID
+     */
     accountSid: string;
+    /**
+     * Twilio Auth Token
+     */
     authToken: string;
+    /**
+     * must be one of ["twilio-taskrouter"]
+     */
     sourceType: string;
 }
 
 export interface SourceTwitterConfiguration {
+    /**
+     * App only Bearer Token. See the \n\ndocs\n\n for more information on how to obtain this token.
+     */
     apiKey: string;
+    /**
+     * The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+     */
     endDate?: string;
+    /**
+     * Query for matching Tweets. You can learn how to build this query by reading \n\n build a query guide \n\n.
+     */
     query: string;
+    /**
+     * must be one of ["twitter"]
+     */
     sourceType: string;
+    /**
+     * The start date for retrieving tweets cannot be more than 7 days in the past.
+     */
     startDate?: string;
 }
 
 export interface SourceTypeformConfiguration {
     credentials: outputs.SourceTypeformConfigurationCredentials;
+    /**
+     * When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the formId is u6nXL7. You can find form URLs on Share panel
+     */
     formIds?: string[];
+    /**
+     * must be one of ["typeform"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate?: string;
 }
 
@@ -11697,50 +18648,128 @@ export interface SourceTypeformConfigurationCredentialsSourceTypeformUpdateAutho
 }
 
 export interface SourceUsCensusConfiguration {
+    /**
+     * Your API Key. Get your key \n\nhere\n\n.
+     */
     apiKey: string;
+    /**
+     * The query parameters portion of the GET request, without the api key
+     */
     queryParams?: string;
+    /**
+     * The path portion of the GET request
+     */
     queryPath: string;
+    /**
+     * must be one of ["us-census"]
+     */
     sourceType: string;
 }
 
 export interface SourceVantageConfiguration {
+    /**
+     * Your API Access token. See \n\nhere\n\n.
+     */
     accessToken: string;
+    /**
+     * must be one of ["vantage"]
+     */
     sourceType: string;
 }
 
 export interface SourceWebflowConfiguration {
+    /**
+     * The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+     */
     apiKey: string;
+    /**
+     * The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+     */
     siteId: string;
+    /**
+     * must be one of ["webflow"]
+     */
     sourceType: string;
 }
 
 export interface SourceWhiskyHunterConfiguration {
+    /**
+     * must be one of ["whisky-hunter"]
+     */
     sourceType?: string;
 }
 
 export interface SourceWikipediaPageviewsConfiguration {
+    /**
+     * If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+     */
     access: string;
+    /**
+     * If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+     */
     agent: string;
+    /**
+     * The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+     */
     article: string;
+    /**
+     * The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+     */
     country: string;
+    /**
+     * The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     end: string;
+    /**
+     * If you want to filter by project, use the domain of any Wikimedia project.
+     */
     project: string;
+    /**
+     * must be one of ["wikipedia-pageviews"]
+     */
     sourceType: string;
+    /**
+     * The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+     */
     start: string;
 }
 
 export interface SourceWoocommerceConfiguration {
+    /**
+     * Customer Key for API in WooCommerce shop
+     */
     apiKey: string;
+    /**
+     * Customer Secret for API in WooCommerce shop
+     */
     apiSecret: string;
+    /**
+     * The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+     */
     shop: string;
+    /**
+     * must be one of ["woocommerce"]
+     */
     sourceType: string;
+    /**
+     * The date you would like to replicate data from. Format: YYYY-MM-DD
+     */
     startDate: string;
 }
 
 export interface SourceXeroConfiguration {
     authentication: outputs.SourceXeroConfigurationAuthentication;
+    /**
+     * must be one of ["xero"]
+     */
     sourceType: string;
+    /**
+     * UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with createdAt before this data will not be synced.
+     */
     startDate: string;
+    /**
+     * Enter your Xero organization's Tenant ID
+     */
     tenantId: string;
 }
 
@@ -11753,35 +18782,86 @@ export interface SourceXeroConfigurationAuthentication {
 }
 
 export interface SourceXkcdConfiguration {
+    /**
+     * must be one of ["xkcd"]
+     */
     sourceType?: string;
 }
 
 export interface SourceYandexMetricaConfiguration {
+    /**
+     * Your Yandex Metrica API access token
+     */
     authToken: string;
+    /**
+     * Counter ID
+     */
     counterId: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+     */
     endDate?: string;
+    /**
+     * must be one of ["yandex-metrica"]
+     */
     sourceType: string;
+    /**
+     * Starting point for your data replication, in format of "YYYY-MM-DD".
+     */
     startDate: string;
 }
 
 export interface SourceYotpoConfiguration {
+    /**
+     * Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+     */
     accessToken: string;
+    /**
+     * App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+     */
     appKey: string;
+    /**
+     * Email address registered with yotpo.
+     */
     email: string;
+    /**
+     * must be one of ["yotpo"]
+     */
     sourceType: string;
+    /**
+     * Date time filter for incremental filter, Specify which date to extract from.
+     */
     startDate: string;
 }
 
 export interface SourceYouniumConfiguration {
+    /**
+     * Legal Entity that data should be pulled from
+     */
     legalEntity: string;
+    /**
+     * Account password for younium account API key
+     */
     password: string;
+    /**
+     * Property defining if connector is used against playground or production environment
+     */
     playground?: boolean;
+    /**
+     * must be one of ["younium"]
+     */
     sourceType: string;
+    /**
+     * Username for Younium account
+     */
     username: string;
 }
 
 export interface SourceYoutubeAnalyticsConfiguration {
     credentials: outputs.SourceYoutubeAnalyticsConfigurationCredentials;
+    /**
+     * must be one of ["youtube-analytics"]
+     */
     sourceType: string;
 }
 
@@ -11794,8 +18874,17 @@ export interface SourceYoutubeAnalyticsConfigurationCredentials {
 
 export interface SourceZendeskChatConfiguration {
     credentials?: outputs.SourceZendeskChatConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-chat"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: string;
+    /**
+     * Required if you access Zendesk Chat from a Zendesk Support subdomain.
+     */
     subdomain?: string;
 }
 
@@ -11834,8 +18923,17 @@ export interface SourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdat
 
 export interface SourceZendeskSunshineConfiguration {
     credentials?: outputs.SourceZendeskSunshineConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-sunshine"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+     */
     startDate: string;
+    /**
+     * The subdomain for your Zendesk Account.
+     */
     subdomain: string;
 }
 
@@ -11877,10 +18975,25 @@ export interface SourceZendeskSunshineConfigurationCredentialsSourceZendeskSunsh
 }
 
 export interface SourceZendeskSupportConfiguration {
+    /**
+     * Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+     */
     credentials?: outputs.SourceZendeskSupportConfigurationCredentials;
+    /**
+     * Makes each stream read a single page of data.
+     */
     ignorePagination?: boolean;
+    /**
+     * must be one of ["zendesk-support"]
+     */
     sourceType: string;
+    /**
+     * The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: string;
 }
 
@@ -11922,9 +19035,21 @@ export interface SourceZendeskSupportConfigurationCredentialsSourceZendeskSuppor
 }
 
 export interface SourceZendeskTalkConfiguration {
+    /**
+     * Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+     */
     credentials?: outputs.SourceZendeskTalkConfigurationCredentials;
+    /**
+     * must be one of ["zendesk-talk"]
+     */
     sourceType: string;
+    /**
+     * The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+     */
     startDate: string;
+    /**
+     * This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+     */
     subdomain: string;
 }
 
@@ -11966,36 +19091,107 @@ export interface SourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdat
 }
 
 export interface SourceZenloopConfiguration {
+    /**
+     * Zenloop API Token. You can get the API token in settings page \n\nhere\n\n
+     */
     apiToken: string;
+    /**
+     * Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+     */
     dateFrom?: string;
+    /**
+     * must be one of ["zenloop"]
+     */
     sourceType: string;
+    /**
+     * Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+     */
     surveyGroupId?: string;
+    /**
+     * Zenloop Survey ID. Can be found \n\nhere\n\n. Leave empty to pull answers from all surveys
+     */
     surveyId?: string;
 }
 
 export interface SourceZohoCrmConfiguration {
+    /**
+     * OAuth2.0 Client ID
+     */
     clientId: string;
+    /**
+     * OAuth2.0 Client Secret
+     */
     clientSecret: string;
+    /**
+     * must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+     * Please choose the region of your Data Center location. More info by this \n\nLink\n\n
+     */
     dcRegion: string;
+    /**
+     * must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+     * Choose your Edition of Zoho CRM to determine API Concurrency Limits
+     */
     edition: string;
+    /**
+     * must be one of ["Production", "Developer", "Sandbox"]
+     * Please choose the environment
+     */
     environment: string;
+    /**
+     * OAuth2.0 Refresh Token
+     */
     refreshToken: string;
+    /**
+     * must be one of ["zoho-crm"]
+     */
     sourceType: string;
+    /**
+     * ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+     */
     startDatetime?: string;
 }
 
 export interface SourceZoomConfiguration {
+    /**
+     * JWT Token
+     */
     jwtToken: string;
+    /**
+     * must be one of ["zoom"]
+     */
     sourceType: string;
 }
 
 export interface SourceZuoraConfiguration {
+    /**
+     * Your OAuth user Client ID
+     */
     clientId: string;
+    /**
+     * Your OAuth user Client Secret
+     */
     clientSecret: string;
+    /**
+     * must be one of ["Live", "Unlimited"]
+     * Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \n\nLink\n\n
+     */
     dataQuery: string;
+    /**
+     * must be one of ["zuora"]
+     */
     sourceType: string;
+    /**
+     * Start Date in format: YYYY-MM-DD
+     */
     startDate: string;
+    /**
+     * must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+     * Please choose the right endpoint where your Tenant is located. More info by this \n\nLink\n\n
+     */
     tenantEndpoint: string;
+    /**
+     * The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+     */
     windowInDays?: string;
 }
 

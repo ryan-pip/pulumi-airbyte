@@ -22,12 +22,20 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] server_url: Server URL (defaults to https://api.airbyte.com/v1)
         """
+        if bearer_auth is None:
+            bearer_auth = _utilities.get_env('AIRBYTE_BEARER_AUTH')
         if bearer_auth is not None:
             pulumi.set(__self__, "bearer_auth", bearer_auth)
+        if password is None:
+            password = _utilities.get_env('AIRBYTE_PASSWORD')
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if server_url is None:
+            server_url = (_utilities.get_env('AIRBYTE_SERVER_URL') or 'https://api.airbyte.com/v1')
         if server_url is not None:
             pulumi.set(__self__, "server_url", server_url)
+        if username is None:
+            username = _utilities.get_env('AIRBYTE_USERNAME')
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -131,9 +139,17 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            if bearer_auth is None:
+                bearer_auth = _utilities.get_env('AIRBYTE_BEARER_AUTH')
             __props__.__dict__["bearer_auth"] = None if bearer_auth is None else pulumi.Output.secret(bearer_auth)
+            if password is None:
+                password = _utilities.get_env('AIRBYTE_PASSWORD')
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            if server_url is None:
+                server_url = (_utilities.get_env('AIRBYTE_SERVER_URL') or 'https://api.airbyte.com/v1')
             __props__.__dict__["server_url"] = server_url
+            if username is None:
+                username = _utilities.get_env('AIRBYTE_USERNAME')
             __props__.__dict__["username"] = None if username is None else pulumi.Output.secret(username)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bearerAuth", "password", "username"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceRetently DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRetently = airbyte.getSourceRetently({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRetently(args: GetSourceRetentlyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceRetentlyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceRetently(args: GetSourceRetentlyArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceRetently.
  */
 export interface GetSourceRetentlyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceRetentlyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceRetently DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRetently = airbyte.getSourceRetently({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRetentlyOutput(args: GetSourceRetentlyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceRetentlyResult> {
     return pulumi.output(args).apply((a: any) => getSourceRetently(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceRetentlyOutput(args: GetSourceRetentlyOutputArgs, opts?
  * A collection of arguments for invoking getSourceRetently.
  */
 export interface GetSourceRetentlyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

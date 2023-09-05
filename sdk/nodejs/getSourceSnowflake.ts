@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSnowflake DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSnowflake = airbyte.getSourceSnowflake({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSnowflake(args: GetSourceSnowflakeArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSnowflakeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSnowflake(args: GetSourceSnowflakeArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceSnowflake.
  */
 export interface GetSourceSnowflakeArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSnowflakeResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSnowflake DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSnowflake = airbyte.getSourceSnowflake({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSnowflakeOutput(args: GetSourceSnowflakeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSnowflakeResult> {
     return pulumi.output(args).apply((a: any) => getSourceSnowflake(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSnowflakeOutput(args: GetSourceSnowflakeOutputArgs, opt
  * A collection of arguments for invoking getSourceSnowflake.
  */
 export interface GetSourceSnowflakeOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

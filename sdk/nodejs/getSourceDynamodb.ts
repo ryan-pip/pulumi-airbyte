@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDynamodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDynamodb = airbyte.getSourceDynamodb({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDynamodb(args: GetSourceDynamodbArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDynamodbResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDynamodb(args: GetSourceDynamodbArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceDynamodb.
  */
 export interface GetSourceDynamodbArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDynamodbResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDynamodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDynamodb = airbyte.getSourceDynamodb({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDynamodbOutput(args: GetSourceDynamodbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDynamodbResult> {
     return pulumi.output(args).apply((a: any) => getSourceDynamodb(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDynamodbOutput(args: GetSourceDynamodbOutputArgs, opts?
  * A collection of arguments for invoking getSourceDynamodb.
  */
 export interface GetSourceDynamodbOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSlack DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSlack = airbyte.getSourceSlack({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSlack(args: GetSourceSlackArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSlackResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSlack(args: GetSourceSlackArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSourceSlack.
  */
 export interface GetSourceSlackArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSlackResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSlack DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSlack = airbyte.getSourceSlack({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSlackOutput(args: GetSourceSlackOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSlackResult> {
     return pulumi.output(args).apply((a: any) => getSourceSlack(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSlackOutput(args: GetSourceSlackOutputArgs, opts?: pulu
  * A collection of arguments for invoking getSourceSlack.
  */
 export interface GetSourceSlackOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

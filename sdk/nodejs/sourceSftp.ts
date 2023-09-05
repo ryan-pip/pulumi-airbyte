@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSftp Resource
+ */
 export class SourceSftp extends pulumi.CustomResource {
     /**
      * Get an existing SourceSftp resource's state with the given name, ID, and optional extra

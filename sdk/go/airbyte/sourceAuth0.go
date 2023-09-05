@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAuth0 Resource
 type SourceAuth0 struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceAuth0(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceAuth0
 	err := ctx.RegisterResource("airbyte:index/sourceAuth0:SourceAuth0", name, args, &resource, opts...)
 	if err != nil {

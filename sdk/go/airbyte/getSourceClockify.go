@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceClockify DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceClockify(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceClockify(ctx *pulumi.Context, args *LookupSourceClockifyArgs, opts ...pulumi.InvokeOption) (*LookupSourceClockifyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceClockifyResult
 	err := ctx.Invoke("airbyte:index/getSourceClockify:getSourceClockify", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceClockify(ctx *pulumi.Context, args *LookupSourceClockifyArgs, o
 
 // A collection of arguments for invoking getSourceClockify.
 type LookupSourceClockifyArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceClockifyArgs struct {
 type LookupSourceClockifyResult struct {
 	Configuration GetSourceClockifyConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceClockifyOutput(ctx *pulumi.Context, args LookupSourceClockifyOu
 
 // A collection of arguments for invoking getSourceClockify.
 type LookupSourceClockifyOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceClockifyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceClockifyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceClockifyResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceClockifyResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

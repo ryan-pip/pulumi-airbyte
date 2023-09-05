@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSenseforce DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSenseforce = airbyte.getSourceSenseforce({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSenseforce(args: GetSourceSenseforceArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSenseforceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSenseforce(args: GetSourceSenseforceArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceSenseforce.
  */
 export interface GetSourceSenseforceArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSenseforceResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSenseforce DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSenseforce = airbyte.getSourceSenseforce({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSenseforceOutput(args: GetSourceSenseforceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSenseforceResult> {
     return pulumi.output(args).apply((a: any) => getSourceSenseforce(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSenseforceOutput(args: GetSourceSenseforceOutputArgs, o
  * A collection of arguments for invoking getSourceSenseforce.
  */
 export interface GetSourceSenseforceOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

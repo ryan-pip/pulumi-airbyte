@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTwilioTaskrouter DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTwiliotaskrouter = airbyte.getSourceTwilioTaskrouter({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTwilioTaskrouter(args: GetSourceTwilioTaskrouterArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTwilioTaskrouterResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTwilioTaskrouter(args: GetSourceTwilioTaskrouterArgs, o
  * A collection of arguments for invoking getSourceTwilioTaskrouter.
  */
 export interface GetSourceTwilioTaskrouterArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTwilioTaskrouterResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTwilioTaskrouter DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTwiliotaskrouter = airbyte.getSourceTwilioTaskrouter({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTwilioTaskrouterOutput(args: GetSourceTwilioTaskrouterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTwilioTaskrouterResult> {
     return pulumi.output(args).apply((a: any) => getSourceTwilioTaskrouter(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTwilioTaskrouterOutput(args: GetSourceTwilioTaskrouterO
  * A collection of arguments for invoking getSourceTwilioTaskrouter.
  */
 export interface GetSourceTwilioTaskrouterOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

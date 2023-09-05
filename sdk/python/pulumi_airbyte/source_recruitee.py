@@ -165,7 +165,8 @@ class SourceRecruitee(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceRecruitee resource with the given unique name, props, and options.
+        SourceRecruitee Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceRecruitee(pulumi.CustomResource):
                  args: SourceRecruiteeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceRecruitee resource with the given unique name, props, and options.
+        SourceRecruitee Resource
+
         :param str resource_name: The name of the resource.
         :param SourceRecruiteeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

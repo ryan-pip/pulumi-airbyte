@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceInstatus DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInstatus = airbyte.getSourceInstatus({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInstatus(args: GetSourceInstatusArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceInstatusResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceInstatus(args: GetSourceInstatusArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceInstatus.
  */
 export interface GetSourceInstatusArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceInstatusResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceInstatus DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInstatus = airbyte.getSourceInstatus({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInstatusOutput(args: GetSourceInstatusOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceInstatusResult> {
     return pulumi.output(args).apply((a: any) => getSourceInstatus(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceInstatusOutput(args: GetSourceInstatusOutputArgs, opts?
  * A collection of arguments for invoking getSourceInstatus.
  */
 export interface GetSourceInstatusOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

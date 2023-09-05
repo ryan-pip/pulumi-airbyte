@@ -165,7 +165,8 @@ class SourceSftpBulk(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceSftpBulk resource with the given unique name, props, and options.
+        SourceSftpBulk Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceSftpBulk(pulumi.CustomResource):
                  args: SourceSftpBulkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceSftpBulk resource with the given unique name, props, and options.
+        SourceSftpBulk Resource
+
         :param str resource_name: The name of the resource.
         :param SourceSftpBulkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePaypalTransaction DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePaypaltransaction = airbyte.getSourcePaypalTransaction({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePaypalTransaction(args: GetSourcePaypalTransactionArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePaypalTransactionResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePaypalTransaction(args: GetSourcePaypalTransactionArgs,
  * A collection of arguments for invoking getSourcePaypalTransaction.
  */
 export interface GetSourcePaypalTransactionArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePaypalTransactionResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePaypalTransaction DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePaypaltransaction = airbyte.getSourcePaypalTransaction({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePaypalTransactionOutput(args: GetSourcePaypalTransactionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePaypalTransactionResult> {
     return pulumi.output(args).apply((a: any) => getSourcePaypalTransaction(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePaypalTransactionOutput(args: GetSourcePaypalTransactio
  * A collection of arguments for invoking getSourcePaypalTransaction.
  */
 export interface GetSourcePaypalTransactionOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

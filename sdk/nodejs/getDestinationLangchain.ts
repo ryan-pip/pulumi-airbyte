@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationLangchain DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationLangchain = airbyte.getDestinationLangchain({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationLangchain(args: GetDestinationLangchainArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationLangchainResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationLangchainResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationLangchain DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationLangchain = airbyte.getDestinationLangchain({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationLangchainOutput(args: GetDestinationLangchainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationLangchainResult> {
     return pulumi.output(args).apply((a: any) => getDestinationLangchain(a, opts))
 }

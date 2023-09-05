@@ -165,7 +165,8 @@ class SourceOutreach(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceOutreach resource with the given unique name, props, and options.
+        SourceOutreach Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceOutreach(pulumi.CustomResource):
                  args: SourceOutreachArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceOutreach resource with the given unique name, props, and options.
+        SourceOutreach Resource
+
         :param str resource_name: The name of the resource.
         :param SourceOutreachArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

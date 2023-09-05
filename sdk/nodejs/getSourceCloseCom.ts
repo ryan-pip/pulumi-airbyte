@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceCloseCom DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClosecom = airbyte.getSourceCloseCom({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceCloseCom(args: GetSourceCloseComArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceCloseComResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceCloseCom(args: GetSourceCloseComArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceCloseCom.
  */
 export interface GetSourceCloseComArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceCloseComResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceCloseCom DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClosecom = airbyte.getSourceCloseCom({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceCloseComOutput(args: GetSourceCloseComOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceCloseComResult> {
     return pulumi.output(args).apply((a: any) => getSourceCloseCom(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceCloseComOutput(args: GetSourceCloseComOutputArgs, opts?
  * A collection of arguments for invoking getSourceCloseCom.
  */
 export interface GetSourceCloseComOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

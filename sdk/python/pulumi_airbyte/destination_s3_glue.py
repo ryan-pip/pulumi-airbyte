@@ -132,7 +132,8 @@ class DestinationS3Glue(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DestinationS3Glue resource with the given unique name, props, and options.
+        DestinationS3Glue Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -143,7 +144,8 @@ class DestinationS3Glue(pulumi.CustomResource):
                  args: DestinationS3GlueArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DestinationS3Glue resource with the given unique name, props, and options.
+        DestinationS3Glue Resource
+
         :param str resource_name: The name of the resource.
         :param DestinationS3GlueArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

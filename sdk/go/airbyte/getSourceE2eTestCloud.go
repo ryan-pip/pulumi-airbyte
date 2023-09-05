@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceE2eTestCloud DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceE2eTestCloud(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceE2eTestCloud(ctx *pulumi.Context, args *LookupSourceE2eTestCloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceE2eTestCloudResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceE2eTestCloudResult
 	err := ctx.Invoke("airbyte:index/getSourceE2eTestCloud:getSourceE2eTestCloud", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceE2eTestCloud(ctx *pulumi.Context, args *LookupSourceE2eTestClou
 
 // A collection of arguments for invoking getSourceE2eTestCloud.
 type LookupSourceE2eTestCloudArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceE2eTestCloudArgs struct {
 type LookupSourceE2eTestCloudResult struct {
 	Configuration GetSourceE2eTestCloudConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceE2eTestCloudOutput(ctx *pulumi.Context, args LookupSourceE2eTes
 
 // A collection of arguments for invoking getSourceE2eTestCloud.
 type LookupSourceE2eTestCloudOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceE2eTestCloudResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceE2eTestCloudResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceE2eTestCloudResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceE2eTestCloudResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

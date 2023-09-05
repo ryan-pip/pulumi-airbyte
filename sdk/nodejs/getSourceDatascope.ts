@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDatascope DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDatascope = airbyte.getSourceDatascope({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDatascope(args: GetSourceDatascopeArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDatascopeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDatascope(args: GetSourceDatascopeArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceDatascope.
  */
 export interface GetSourceDatascopeArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDatascopeResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDatascope DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDatascope = airbyte.getSourceDatascope({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDatascopeOutput(args: GetSourceDatascopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDatascopeResult> {
     return pulumi.output(args).apply((a: any) => getSourceDatascope(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDatascopeOutput(args: GetSourceDatascopeOutputArgs, opt
  * A collection of arguments for invoking getSourceDatascope.
  */
 export interface GetSourceDatascopeOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAppfollow DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAppfollow = airbyte.getSourceAppfollow({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAppfollow(args: GetSourceAppfollowArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAppfollowResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAppfollow(args: GetSourceAppfollowArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceAppfollow.
  */
 export interface GetSourceAppfollowArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAppfollowResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAppfollow DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAppfollow = airbyte.getSourceAppfollow({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAppfollowOutput(args: GetSourceAppfollowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAppfollowResult> {
     return pulumi.output(args).apply((a: any) => getSourceAppfollow(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAppfollowOutput(args: GetSourceAppfollowOutputArgs, opt
  * A collection of arguments for invoking getSourceAppfollow.
  */
 export interface GetSourceAppfollowOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

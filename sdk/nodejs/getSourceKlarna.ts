@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceKlarna DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceKlarna = airbyte.getSourceKlarna({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceKlarna(args: GetSourceKlarnaArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceKlarnaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceKlarna(args: GetSourceKlarnaArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceKlarna.
  */
 export interface GetSourceKlarnaArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceKlarnaResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceKlarna DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceKlarna = airbyte.getSourceKlarna({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceKlarnaOutput(args: GetSourceKlarnaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceKlarnaResult> {
     return pulumi.output(args).apply((a: any) => getSourceKlarna(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceKlarnaOutput(args: GetSourceKlarnaOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceKlarna.
  */
 export interface GetSourceKlarnaOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

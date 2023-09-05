@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDynamodb Resource
+ */
 export class SourceDynamodb extends pulumi.CustomResource {
     /**
      * Get an existing SourceDynamodb resource's state with the given name, ID, and optional extra

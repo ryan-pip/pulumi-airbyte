@@ -84,7 +84,16 @@ class AwaitableGetDestinationS3GlueResult(GetDestinationS3GlueResult):
 def get_destination_s3_glue(destination_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationS3GlueResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationS3Glue DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_s3glue = airbyte.get_destination_s3_glue(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_s3_glue(destination_id: Optional[str] = None,
 def get_destination_s3_glue_output(destination_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationS3GlueResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationS3Glue DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_s3glue = airbyte.get_destination_s3_glue(destination_id="...my_destination_id...")
+    ```
     """
     ...

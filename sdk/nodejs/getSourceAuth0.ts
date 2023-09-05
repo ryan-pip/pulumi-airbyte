@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAuth0 DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAuth0 = airbyte.getSourceAuth0({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAuth0(args: GetSourceAuth0Args, opts?: pulumi.InvokeOptions): Promise<GetSourceAuth0Result> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAuth0(args: GetSourceAuth0Args, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSourceAuth0.
  */
 export interface GetSourceAuth0Args {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAuth0Result {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAuth0 DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAuth0 = airbyte.getSourceAuth0({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAuth0Output(args: GetSourceAuth0OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAuth0Result> {
     return pulumi.output(args).apply((a: any) => getSourceAuth0(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAuth0Output(args: GetSourceAuth0OutputArgs, opts?: pulu
  * A collection of arguments for invoking getSourceAuth0.
  */
 export interface GetSourceAuth0OutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

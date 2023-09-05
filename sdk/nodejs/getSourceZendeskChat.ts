@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZendeskChat DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendeskchat = airbyte.getSourceZendeskChat({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskChat(args: GetSourceZendeskChatArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceZendeskChatResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceZendeskChat(args: GetSourceZendeskChatArgs, opts?: pulu
  * A collection of arguments for invoking getSourceZendeskChat.
  */
 export interface GetSourceZendeskChatArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceZendeskChatResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceZendeskChat DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZendeskchat = airbyte.getSourceZendeskChat({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZendeskChatOutput(args: GetSourceZendeskChatOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceZendeskChatResult> {
     return pulumi.output(args).apply((a: any) => getSourceZendeskChat(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceZendeskChatOutput(args: GetSourceZendeskChatOutputArgs,
  * A collection of arguments for invoking getSourceZendeskChat.
  */
 export interface GetSourceZendeskChatOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

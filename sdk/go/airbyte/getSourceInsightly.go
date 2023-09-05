@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceInsightly DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceInsightly(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceInsightly(ctx *pulumi.Context, args *LookupSourceInsightlyArgs, opts ...pulumi.InvokeOption) (*LookupSourceInsightlyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceInsightlyResult
 	err := ctx.Invoke("airbyte:index/getSourceInsightly:getSourceInsightly", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceInsightly(ctx *pulumi.Context, args *LookupSourceInsightlyArgs,
 
 // A collection of arguments for invoking getSourceInsightly.
 type LookupSourceInsightlyArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceInsightlyArgs struct {
 type LookupSourceInsightlyResult struct {
 	Configuration GetSourceInsightlyConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceInsightlyOutput(ctx *pulumi.Context, args LookupSourceInsightly
 
 // A collection of arguments for invoking getSourceInsightly.
 type LookupSourceInsightlyOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceInsightlyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceInsightlyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceInsightlyResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceInsightlyResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

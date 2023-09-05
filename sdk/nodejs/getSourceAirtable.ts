@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAirtable DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAirtable = airbyte.getSourceAirtable({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAirtable(args: GetSourceAirtableArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAirtableResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAirtable(args: GetSourceAirtableArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceAirtable.
  */
 export interface GetSourceAirtableArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAirtableResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAirtable DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAirtable = airbyte.getSourceAirtable({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAirtableOutput(args: GetSourceAirtableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAirtableResult> {
     return pulumi.output(args).apply((a: any) => getSourceAirtable(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAirtableOutput(args: GetSourceAirtableOutputArgs, opts?
  * A collection of arguments for invoking getSourceAirtable.
  */
 export interface GetSourceAirtableOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

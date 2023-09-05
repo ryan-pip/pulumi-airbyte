@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationS3 Resource
+ */
 export class DestinationS3 extends pulumi.CustomResource {
     /**
      * Get an existing DestinationS3 resource's state with the given name, ID, and optional extra

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTvmazeSchedule DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTvmazeschedule = airbyte.getSourceTvmazeSchedule({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTvmazeSchedule(args: GetSourceTvmazeScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTvmazeScheduleResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTvmazeSchedule(args: GetSourceTvmazeScheduleArgs, opts?
  * A collection of arguments for invoking getSourceTvmazeSchedule.
  */
 export interface GetSourceTvmazeScheduleArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTvmazeScheduleResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTvmazeSchedule DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTvmazeschedule = airbyte.getSourceTvmazeSchedule({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTvmazeScheduleOutput(args: GetSourceTvmazeScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTvmazeScheduleResult> {
     return pulumi.output(args).apply((a: any) => getSourceTvmazeSchedule(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTvmazeScheduleOutput(args: GetSourceTvmazeScheduleOutpu
  * A collection of arguments for invoking getSourceTvmazeSchedule.
  */
 export interface GetSourceTvmazeScheduleOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

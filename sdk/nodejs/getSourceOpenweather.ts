@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOpenweather DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOpenweather = airbyte.getSourceOpenweather({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOpenweather(args: GetSourceOpenweatherArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOpenweatherResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOpenweather(args: GetSourceOpenweatherArgs, opts?: pulu
  * A collection of arguments for invoking getSourceOpenweather.
  */
 export interface GetSourceOpenweatherArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOpenweatherResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOpenweather DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOpenweather = airbyte.getSourceOpenweather({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOpenweatherOutput(args: GetSourceOpenweatherOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOpenweatherResult> {
     return pulumi.output(args).apply((a: any) => getSourceOpenweather(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOpenweatherOutput(args: GetSourceOpenweatherOutputArgs,
  * A collection of arguments for invoking getSourceOpenweather.
  */
 export interface GetSourceOpenweatherOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

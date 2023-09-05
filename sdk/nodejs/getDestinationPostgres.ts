@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationPostgres DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationPostgres = airbyte.getDestinationPostgres({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationPostgres(args: GetDestinationPostgresArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationPostgresResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationPostgresResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationPostgres DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationPostgres = airbyte.getDestinationPostgres({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationPostgresOutput(args: GetDestinationPostgresOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationPostgresResult> {
     return pulumi.output(args).apply((a: any) => getDestinationPostgres(a, opts))
 }

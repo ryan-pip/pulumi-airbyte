@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceYounium DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceYounium = airbyte.getSourceYounium({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceYounium(args: GetSourceYouniumArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceYouniumResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceYounium(args: GetSourceYouniumArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceYounium.
  */
 export interface GetSourceYouniumArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceYouniumResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceYounium DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceYounium = airbyte.getSourceYounium({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceYouniumOutput(args: GetSourceYouniumOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceYouniumResult> {
     return pulumi.output(args).apply((a: any) => getSourceYounium(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceYouniumOutput(args: GetSourceYouniumOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceYounium.
  */
 export interface GetSourceYouniumOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

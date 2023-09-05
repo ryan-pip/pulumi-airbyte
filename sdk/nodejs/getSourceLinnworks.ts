@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceLinnworks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceLinnworks = airbyte.getSourceLinnworks({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceLinnworks(args: GetSourceLinnworksArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceLinnworksResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceLinnworks(args: GetSourceLinnworksArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceLinnworks.
  */
 export interface GetSourceLinnworksArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceLinnworksResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceLinnworks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceLinnworks = airbyte.getSourceLinnworks({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceLinnworksOutput(args: GetSourceLinnworksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceLinnworksResult> {
     return pulumi.output(args).apply((a: any) => getSourceLinnworks(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceLinnworksOutput(args: GetSourceLinnworksOutputArgs, opt
  * A collection of arguments for invoking getSourceLinnworks.
  */
 export interface GetSourceLinnworksOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

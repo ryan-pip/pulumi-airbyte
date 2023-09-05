@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZuora Resource
+ */
 export class SourceZuora extends pulumi.CustomResource {
     /**
      * Get an existing SourceZuora resource's state with the given name, ID, and optional extra

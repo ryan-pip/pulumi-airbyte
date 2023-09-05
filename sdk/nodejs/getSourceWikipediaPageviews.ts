@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceWikipediaPageviews DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWikipediapageviews = airbyte.getSourceWikipediaPageviews({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWikipediaPageviews(args: GetSourceWikipediaPageviewsArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceWikipediaPageviewsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceWikipediaPageviews(args: GetSourceWikipediaPageviewsArg
  * A collection of arguments for invoking getSourceWikipediaPageviews.
  */
 export interface GetSourceWikipediaPageviewsArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceWikipediaPageviewsResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceWikipediaPageviews DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWikipediapageviews = airbyte.getSourceWikipediaPageviews({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWikipediaPageviewsOutput(args: GetSourceWikipediaPageviewsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceWikipediaPageviewsResult> {
     return pulumi.output(args).apply((a: any) => getSourceWikipediaPageviews(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceWikipediaPageviewsOutput(args: GetSourceWikipediaPagevi
  * A collection of arguments for invoking getSourceWikipediaPageviews.
  */
 export interface GetSourceWikipediaPageviewsOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

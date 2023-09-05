@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceBambooHr DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBamboohr = airbyte.getSourceBambooHr({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBambooHr(args: GetSourceBambooHrArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceBambooHrResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceBambooHr(args: GetSourceBambooHrArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceBambooHr.
  */
 export interface GetSourceBambooHrArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceBambooHrResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceBambooHr DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBamboohr = airbyte.getSourceBambooHr({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBambooHrOutput(args: GetSourceBambooHrOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceBambooHrResult> {
     return pulumi.output(args).apply((a: any) => getSourceBambooHr(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceBambooHrOutput(args: GetSourceBambooHrOutputArgs, opts?
  * A collection of arguments for invoking getSourceBambooHr.
  */
 export interface GetSourceBambooHrOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

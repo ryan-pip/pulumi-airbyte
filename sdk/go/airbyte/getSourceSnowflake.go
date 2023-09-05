@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceSnowflake DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceSnowflake(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceSnowflake(ctx *pulumi.Context, args *LookupSourceSnowflakeArgs, opts ...pulumi.InvokeOption) (*LookupSourceSnowflakeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceSnowflakeResult
 	err := ctx.Invoke("airbyte:index/getSourceSnowflake:getSourceSnowflake", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceSnowflake(ctx *pulumi.Context, args *LookupSourceSnowflakeArgs,
 
 // A collection of arguments for invoking getSourceSnowflake.
 type LookupSourceSnowflakeArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceSnowflakeArgs struct {
 type LookupSourceSnowflakeResult struct {
 	Configuration GetSourceSnowflakeConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceSnowflakeOutput(ctx *pulumi.Context, args LookupSourceSnowflake
 
 // A collection of arguments for invoking getSourceSnowflake.
 type LookupSourceSnowflakeOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceSnowflakeResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceSnowflakeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceSnowflakeResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceSnowflakeResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

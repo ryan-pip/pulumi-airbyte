@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceDatascope DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceDatascope(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceDatascope(ctx *pulumi.Context, args *LookupSourceDatascopeArgs, opts ...pulumi.InvokeOption) (*LookupSourceDatascopeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceDatascopeResult
 	err := ctx.Invoke("airbyte:index/getSourceDatascope:getSourceDatascope", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceDatascope(ctx *pulumi.Context, args *LookupSourceDatascopeArgs,
 
 // A collection of arguments for invoking getSourceDatascope.
 type LookupSourceDatascopeArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceDatascopeArgs struct {
 type LookupSourceDatascopeResult struct {
 	Configuration GetSourceDatascopeConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceDatascopeOutput(ctx *pulumi.Context, args LookupSourceDatascope
 
 // A collection of arguments for invoking getSourceDatascope.
 type LookupSourceDatascopeOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceDatascopeResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceDatascopeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceDatascopeResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceDatascopeResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

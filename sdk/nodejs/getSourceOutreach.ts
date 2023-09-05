@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceOutreach DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOutreach = airbyte.getSourceOutreach({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOutreach(args: GetSourceOutreachArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceOutreachResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceOutreach(args: GetSourceOutreachArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceOutreach.
  */
 export interface GetSourceOutreachArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceOutreachResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceOutreach DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceOutreach = airbyte.getSourceOutreach({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceOutreachOutput(args: GetSourceOutreachOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceOutreachResult> {
     return pulumi.output(args).apply((a: any) => getSourceOutreach(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceOutreachOutput(args: GetSourceOutreachOutputArgs, opts?
  * A collection of arguments for invoking getSourceOutreach.
  */
 export interface GetSourceOutreachOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

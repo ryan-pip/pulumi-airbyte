@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationSftpJSON DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationSftpjson = airbyte.getDestinationSftpJson({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationSftpJson(args: GetDestinationSftpJsonArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationSftpJsonResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationSftpJsonResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationSftpJSON DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationSftpjson = airbyte.getDestinationSftpJson({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationSftpJsonOutput(args: GetDestinationSftpJsonOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationSftpJsonResult> {
     return pulumi.output(args).apply((a: any) => getDestinationSftpJson(a, opts))
 }

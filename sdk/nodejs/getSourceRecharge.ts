@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceRecharge DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecharge = airbyte.getSourceRecharge({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRecharge(args: GetSourceRechargeArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceRechargeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceRecharge(args: GetSourceRechargeArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceRecharge.
  */
 export interface GetSourceRechargeArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceRechargeResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceRecharge DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecharge = airbyte.getSourceRecharge({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRechargeOutput(args: GetSourceRechargeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceRechargeResult> {
     return pulumi.output(args).apply((a: any) => getSourceRecharge(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceRechargeOutput(args: GetSourceRechargeOutputArgs, opts?
  * A collection of arguments for invoking getSourceRecharge.
  */
 export interface GetSourceRechargeOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

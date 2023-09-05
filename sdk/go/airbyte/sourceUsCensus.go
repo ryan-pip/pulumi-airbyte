@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceUsCensus Resource
 type SourceUsCensus struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceUsCensus(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceUsCensus
 	err := ctx.RegisterResource("airbyte:index/sourceUsCensus:SourceUsCensus", name, args, &resource, opts...)
 	if err != nil {

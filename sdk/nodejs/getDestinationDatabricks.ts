@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationDatabricks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDatabricks = airbyte.getDestinationDatabricks({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDatabricks(args: GetDestinationDatabricksArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationDatabricksResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationDatabricksResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationDatabricks DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDatabricks = airbyte.getDestinationDatabricks({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDatabricksOutput(args: GetDestinationDatabricksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationDatabricksResult> {
     return pulumi.output(args).apply((a: any) => getDestinationDatabricks(a, opts))
 }

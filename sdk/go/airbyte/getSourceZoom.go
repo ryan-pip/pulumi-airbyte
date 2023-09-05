@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceZoom DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceZoom(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceZoom(ctx *pulumi.Context, args *LookupSourceZoomArgs, opts ...pulumi.InvokeOption) (*LookupSourceZoomResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZoomResult
 	err := ctx.Invoke("airbyte:index/getSourceZoom:getSourceZoom", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceZoom(ctx *pulumi.Context, args *LookupSourceZoomArgs, opts ...p
 
 // A collection of arguments for invoking getSourceZoom.
 type LookupSourceZoomArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceZoomArgs struct {
 type LookupSourceZoomResult struct {
 	Configuration GetSourceZoomConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceZoomOutput(ctx *pulumi.Context, args LookupSourceZoomOutputArgs
 
 // A collection of arguments for invoking getSourceZoom.
 type LookupSourceZoomOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceZoomResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceZoomResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceZoomResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceZoomResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

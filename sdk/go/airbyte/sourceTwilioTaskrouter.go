@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceTwilioTaskrouter Resource
 type SourceTwilioTaskrouter struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceTwilioTaskrouter(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceTwilioTaskrouter
 	err := ctx.RegisterResource("airbyte:index/sourceTwilioTaskrouter:SourceTwilioTaskrouter", name, args, &resource, opts...)
 	if err != nil {

@@ -84,7 +84,16 @@ class AwaitableGetDestinationMysqlResult(GetDestinationMysqlResult):
 def get_destination_mysql(destination_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationMysqlResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationMysql DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_mysql = airbyte.get_destination_mysql(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_mysql(destination_id: Optional[str] = None,
 def get_destination_mysql_output(destination_id: Optional[pulumi.Input[str]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationMysqlResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationMysql DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_mysql = airbyte.get_destination_mysql(destination_id="...my_destination_id...")
+    ```
     """
     ...

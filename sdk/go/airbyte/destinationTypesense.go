@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// DestinationTypesense Resource
 type DestinationTypesense struct {
 	pulumi.CustomResourceState
 
@@ -37,7 +39,7 @@ func NewDestinationTypesense(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DestinationTypesense
 	err := ctx.RegisterResource("airbyte:index/destinationTypesense:DestinationTypesense", name, args, &resource, opts...)
 	if err != nil {

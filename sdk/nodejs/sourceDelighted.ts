@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDelighted Resource
+ */
 export class SourceDelighted extends pulumi.CustomResource {
     /**
      * Get an existing SourceDelighted resource's state with the given name, ID, and optional extra

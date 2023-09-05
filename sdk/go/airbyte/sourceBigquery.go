@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceBigquery Resource
 type SourceBigquery struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceBigquery(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceBigquery
 	err := ctx.RegisterResource("airbyte:index/sourceBigquery:SourceBigquery", name, args, &resource, opts...)
 	if err != nil {

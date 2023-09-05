@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationXata DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationXata = airbyte.getDestinationXata({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationXata(args: GetDestinationXataArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationXataResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationXataResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationXata DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationXata = airbyte.getDestinationXata({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationXataOutput(args: GetDestinationXataOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationXataResult> {
     return pulumi.output(args).apply((a: any) => getDestinationXata(a, opts))
 }

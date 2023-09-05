@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace Resource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myWorkspace = new airbyte.Workspace("myWorkspace", {name: "Crystal Weissnat"});
+ * ```
+ */
 export class Workspace extends pulumi.CustomResource {
     /**
      * Get an existing Workspace resource's state with the given name, ID, and optional extra

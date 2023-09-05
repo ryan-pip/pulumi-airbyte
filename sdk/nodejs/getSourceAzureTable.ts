@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAzureTable DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAzuretable = airbyte.getSourceAzureTable({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAzureTable(args: GetSourceAzureTableArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAzureTableResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAzureTable(args: GetSourceAzureTableArgs, opts?: pulumi
  * A collection of arguments for invoking getSourceAzureTable.
  */
 export interface GetSourceAzureTableArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAzureTableResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAzureTable DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAzuretable = airbyte.getSourceAzureTable({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAzureTableOutput(args: GetSourceAzureTableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAzureTableResult> {
     return pulumi.output(args).apply((a: any) => getSourceAzureTable(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAzureTableOutput(args: GetSourceAzureTableOutputArgs, o
  * A collection of arguments for invoking getSourceAzureTable.
  */
 export interface GetSourceAzureTableOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

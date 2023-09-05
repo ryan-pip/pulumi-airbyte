@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceRecharge Resource
+ */
 export class SourceRecharge extends pulumi.CustomResource {
     /**
      * Get an existing SourceRecharge resource's state with the given name, ID, and optional extra

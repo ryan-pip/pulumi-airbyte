@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePinterest DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePinterest = airbyte.getSourcePinterest({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePinterest(args: GetSourcePinterestArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePinterestResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePinterest(args: GetSourcePinterestArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourcePinterest.
  */
 export interface GetSourcePinterestArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePinterestResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePinterest DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePinterest = airbyte.getSourcePinterest({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePinterestOutput(args: GetSourcePinterestOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePinterestResult> {
     return pulumi.output(args).apply((a: any) => getSourcePinterest(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePinterestOutput(args: GetSourcePinterestOutputArgs, opt
  * A collection of arguments for invoking getSourcePinterest.
  */
 export interface GetSourcePinterestOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

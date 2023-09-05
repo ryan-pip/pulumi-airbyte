@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceUsCensus Resource
+ */
 export class SourceUsCensus extends pulumi.CustomResource {
     /**
      * Get an existing SourceUsCensus resource's state with the given name, ID, and optional extra

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceK6Cloud DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceK6cloud = airbyte.getSourceK6Cloud({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceK6Cloud(args: GetSourceK6CloudArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceK6CloudResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceK6Cloud(args: GetSourceK6CloudArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceK6Cloud.
  */
 export interface GetSourceK6CloudArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceK6CloudResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceK6Cloud DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceK6cloud = airbyte.getSourceK6Cloud({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceK6CloudOutput(args: GetSourceK6CloudOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceK6CloudResult> {
     return pulumi.output(args).apply((a: any) => getSourceK6Cloud(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceK6CloudOutput(args: GetSourceK6CloudOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceK6Cloud.
  */
 export interface GetSourceK6CloudOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

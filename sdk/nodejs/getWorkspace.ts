@@ -4,6 +4,20 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Workspace DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myWorkspace = airbyte.getWorkspace({
+ *     workspaceId: "...my_workspace_id...",
+ * });
+ * ```
+ */
 export function getWorkspace(args: GetWorkspaceArgs, opts?: pulumi.InvokeOptions): Promise<GetWorkspaceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -23,14 +37,34 @@ export interface GetWorkspaceArgs {
  * A collection of values returned by getWorkspace.
  */
 export interface GetWorkspaceResult {
+    /**
+     * must be one of ["auto", "us", "eu"]
+     */
     readonly dataResidency: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Name of the workspace
+     */
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * Workspace DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myWorkspace = airbyte.getWorkspace({
+ *     workspaceId: "...my_workspace_id...",
+ * });
+ * ```
+ */
 export function getWorkspaceOutput(args: GetWorkspaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWorkspaceResult> {
     return pulumi.output(args).apply((a: any) => getWorkspace(a, opts))
 }

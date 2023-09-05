@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceGcs DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceGcs(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceGcs(ctx *pulumi.Context, args *LookupSourceGcsArgs, opts ...pulumi.InvokeOption) (*LookupSourceGcsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceGcsResult
 	err := ctx.Invoke("airbyte:index/getSourceGcs:getSourceGcs", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceGcs(ctx *pulumi.Context, args *LookupSourceGcsArgs, opts ...pul
 
 // A collection of arguments for invoking getSourceGcs.
 type LookupSourceGcsArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceGcsArgs struct {
 type LookupSourceGcsResult struct {
 	Configuration GetSourceGcsConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceGcsOutput(ctx *pulumi.Context, args LookupSourceGcsOutputArgs, 
 
 // A collection of arguments for invoking getSourceGcs.
 type LookupSourceGcsOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceGcsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceGcsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceGcsResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceGcsResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

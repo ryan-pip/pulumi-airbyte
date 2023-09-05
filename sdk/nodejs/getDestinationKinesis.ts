@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationKinesis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationKinesis = airbyte.getDestinationKinesis({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationKinesis(args: GetDestinationKinesisArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationKinesisResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationKinesisResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationKinesis DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationKinesis = airbyte.getDestinationKinesis({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationKinesisOutput(args: GetDestinationKinesisOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationKinesisResult> {
     return pulumi.output(args).apply((a: any) => getDestinationKinesis(a, opts))
 }

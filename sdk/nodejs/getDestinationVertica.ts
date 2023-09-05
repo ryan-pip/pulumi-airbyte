@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationVertica DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationVertica = airbyte.getDestinationVertica({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationVertica(args: GetDestinationVerticaArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationVerticaResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationVerticaResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationVertica DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationVertica = airbyte.getDestinationVertica({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationVerticaOutput(args: GetDestinationVerticaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationVerticaResult> {
     return pulumi.output(args).apply((a: any) => getDestinationVertica(a, opts))
 }

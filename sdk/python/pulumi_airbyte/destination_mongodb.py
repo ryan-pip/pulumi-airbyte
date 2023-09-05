@@ -132,7 +132,8 @@ class DestinationMongodb(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DestinationMongodb resource with the given unique name, props, and options.
+        DestinationMongodb Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -143,7 +144,8 @@ class DestinationMongodb(pulumi.CustomResource):
                  args: DestinationMongodbArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DestinationMongodb resource with the given unique name, props, and options.
+        DestinationMongodb Resource
+
         :param str resource_name: The name of the resource.
         :param DestinationMongodbArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

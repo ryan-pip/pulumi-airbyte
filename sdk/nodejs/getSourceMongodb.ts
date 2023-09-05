@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMongodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMongodb = airbyte.getSourceMongodb({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMongodb(args: GetSourceMongodbArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMongodbResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMongodb(args: GetSourceMongodbArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceMongodb.
  */
 export interface GetSourceMongodbArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMongodbResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMongodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMongodb = airbyte.getSourceMongodb({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMongodbOutput(args: GetSourceMongodbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMongodbResult> {
     return pulumi.output(args).apply((a: any) => getSourceMongodb(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMongodbOutput(args: GetSourceMongodbOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceMongodb.
  */
 export interface GetSourceMongodbOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

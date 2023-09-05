@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSquare DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSquare = airbyte.getSourceSquare({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSquare(args: GetSourceSquareArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSquareResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSquare(args: GetSourceSquareArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceSquare.
  */
 export interface GetSourceSquareArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSquareResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSquare DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSquare = airbyte.getSourceSquare({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSquareOutput(args: GetSourceSquareOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSquareResult> {
     return pulumi.output(args).apply((a: any) => getSourceSquare(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSquareOutput(args: GetSourceSquareOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceSquare.
  */
 export interface GetSourceSquareOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

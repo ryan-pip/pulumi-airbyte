@@ -17,20 +17,20 @@ __config__ = pulumi.Config('airbyte')
 class _ExportableConfig(types.ModuleType):
     @property
     def bearer_auth(self) -> Optional[str]:
-        return __config__.get('bearerAuth')
+        return __config__.get('bearerAuth') or _utilities.get_env('AIRBYTE_BEARER_AUTH')
 
     @property
     def password(self) -> Optional[str]:
-        return __config__.get('password')
+        return __config__.get('password') or _utilities.get_env('AIRBYTE_PASSWORD')
 
     @property
-    def server_url(self) -> Optional[str]:
+    def server_url(self) -> str:
         """
         Server URL (defaults to https://api.airbyte.com/v1)
         """
-        return __config__.get('serverUrl')
+        return __config__.get('serverUrl') or (_utilities.get_env('AIRBYTE_SERVER_URL') or 'https://api.airbyte.com/v1')
 
     @property
     def username(self) -> Optional[str]:
-        return __config__.get('username')
+        return __config__.get('username') or _utilities.get_env('AIRBYTE_USERNAME')
 

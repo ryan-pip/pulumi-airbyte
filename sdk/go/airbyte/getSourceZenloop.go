@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceZenloop DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceZenloop(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceZenloop(ctx *pulumi.Context, args *LookupSourceZenloopArgs, opts ...pulumi.InvokeOption) (*LookupSourceZenloopResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceZenloopResult
 	err := ctx.Invoke("airbyte:index/getSourceZenloop:getSourceZenloop", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceZenloop(ctx *pulumi.Context, args *LookupSourceZenloopArgs, opt
 
 // A collection of arguments for invoking getSourceZenloop.
 type LookupSourceZenloopArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceZenloopArgs struct {
 type LookupSourceZenloopResult struct {
 	Configuration GetSourceZenloopConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceZenloopOutput(ctx *pulumi.Context, args LookupSourceZenloopOutp
 
 // A collection of arguments for invoking getSourceZenloop.
 type LookupSourceZenloopOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceZenloopResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceZenloopResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceZenloopResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceZenloopResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

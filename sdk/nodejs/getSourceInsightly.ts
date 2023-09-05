@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceInsightly DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInsightly = airbyte.getSourceInsightly({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInsightly(args: GetSourceInsightlyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceInsightlyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceInsightly(args: GetSourceInsightlyArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceInsightly.
  */
 export interface GetSourceInsightlyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceInsightlyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceInsightly DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceInsightly = airbyte.getSourceInsightly({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceInsightlyOutput(args: GetSourceInsightlyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceInsightlyResult> {
     return pulumi.output(args).apply((a: any) => getSourceInsightly(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceInsightlyOutput(args: GetSourceInsightlyOutputArgs, opt
  * A collection of arguments for invoking getSourceInsightly.
  */
 export interface GetSourceInsightlyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

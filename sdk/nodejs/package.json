@@ -1,6 +1,7 @@
 {
     "name": "@pulumi/airbyte",
     "version": "${VERSION}",
+    "description": "A Pulumi package for creating and managing xyz cloud resources.",
     "keywords": [
         "pulumi",
         "airbyte",

@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceIp2whois DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceIp2whois(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceIp2whois(ctx *pulumi.Context, args *LookupSourceIp2whoisArgs, opts ...pulumi.InvokeOption) (*LookupSourceIp2whoisResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceIp2whoisResult
 	err := ctx.Invoke("airbyte:index/getSourceIp2whois:getSourceIp2whois", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceIp2whois(ctx *pulumi.Context, args *LookupSourceIp2whoisArgs, o
 
 // A collection of arguments for invoking getSourceIp2whois.
 type LookupSourceIp2whoisArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceIp2whoisArgs struct {
 type LookupSourceIp2whoisResult struct {
 	Configuration GetSourceIp2whoisConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceIp2whoisOutput(ctx *pulumi.Context, args LookupSourceIp2whoisOu
 
 // A collection of arguments for invoking getSourceIp2whois.
 type LookupSourceIp2whoisOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceIp2whoisResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceIp2whoisResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceIp2whoisResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceIp2whoisResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTheGuardianAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTheguardianapi = airbyte.getSourceTheGuardianApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTheGuardianApi(args: GetSourceTheGuardianApiArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTheGuardianApiResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTheGuardianApi(args: GetSourceTheGuardianApiArgs, opts?
  * A collection of arguments for invoking getSourceTheGuardianApi.
  */
 export interface GetSourceTheGuardianApiArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTheGuardianApiResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTheGuardianAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTheguardianapi = airbyte.getSourceTheGuardianApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTheGuardianApiOutput(args: GetSourceTheGuardianApiOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTheGuardianApiResult> {
     return pulumi.output(args).apply((a: any) => getSourceTheGuardianApi(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTheGuardianApiOutput(args: GetSourceTheGuardianApiOutpu
  * A collection of arguments for invoking getSourceTheGuardianApi.
  */
 export interface GetSourceTheGuardianApiOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

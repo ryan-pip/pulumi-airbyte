@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourcePolygonStockAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePolygonstockapi = airbyte.getSourcePolygonStockApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePolygonStockApi(args: GetSourcePolygonStockApiArgs, opts?: pulumi.InvokeOptions): Promise<GetSourcePolygonStockApiResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourcePolygonStockApi(args: GetSourcePolygonStockApiArgs, opt
  * A collection of arguments for invoking getSourcePolygonStockApi.
  */
 export interface GetSourcePolygonStockApiArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourcePolygonStockApiResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourcePolygonStockAPI DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourcePolygonstockapi = airbyte.getSourcePolygonStockApi({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourcePolygonStockApiOutput(args: GetSourcePolygonStockApiOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourcePolygonStockApiResult> {
     return pulumi.output(args).apply((a: any) => getSourcePolygonStockApi(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourcePolygonStockApiOutput(args: GetSourcePolygonStockApiOut
  * A collection of arguments for invoking getSourcePolygonStockApi.
  */
 export interface GetSourcePolygonStockApiOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationElasticsearch DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationElasticsearch = airbyte.getDestinationElasticsearch({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationElasticsearch(args: GetDestinationElasticsearchArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationElasticsearchResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationElasticsearchResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationElasticsearch DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationElasticsearch = airbyte.getDestinationElasticsearch({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationElasticsearchOutput(args: GetDestinationElasticsearchOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationElasticsearchResult> {
     return pulumi.output(args).apply((a: any) => getDestinationElasticsearch(a, opts))
 }

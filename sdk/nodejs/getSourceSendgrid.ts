@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceSendgrid DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSendgrid = airbyte.getSourceSendgrid({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSendgrid(args: GetSourceSendgridArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceSendgridResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceSendgrid(args: GetSourceSendgridArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceSendgrid.
  */
 export interface GetSourceSendgridArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceSendgridResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceSendgrid DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceSendgrid = airbyte.getSourceSendgrid({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceSendgridOutput(args: GetSourceSendgridOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceSendgridResult> {
     return pulumi.output(args).apply((a: any) => getSourceSendgrid(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceSendgridOutput(args: GetSourceSendgridOutputArgs, opts?
  * A collection of arguments for invoking getSourceSendgrid.
  */
 export interface GetSourceSendgridOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationRedshift DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationRedshift = airbyte.getDestinationRedshift({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationRedshift(args: GetDestinationRedshiftArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationRedshiftResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationRedshiftResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationRedshift DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationRedshift = airbyte.getDestinationRedshift({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationRedshiftOutput(args: GetDestinationRedshiftOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationRedshiftResult> {
     return pulumi.output(args).apply((a: any) => getDestinationRedshift(a, opts))
 }

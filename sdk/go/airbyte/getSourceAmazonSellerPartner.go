@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAmazonSellerPartner DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceAmazonSellerPartner(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceAmazonSellerPartner(ctx *pulumi.Context, args *LookupSourceAmazonSellerPartnerArgs, opts ...pulumi.InvokeOption) (*LookupSourceAmazonSellerPartnerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceAmazonSellerPartnerResult
 	err := ctx.Invoke("airbyte:index/getSourceAmazonSellerPartner:getSourceAmazonSellerPartner", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceAmazonSellerPartner(ctx *pulumi.Context, args *LookupSourceAmaz
 
 // A collection of arguments for invoking getSourceAmazonSellerPartner.
 type LookupSourceAmazonSellerPartnerArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceAmazonSellerPartnerArgs struct {
 type LookupSourceAmazonSellerPartnerResult struct {
 	Configuration GetSourceAmazonSellerPartnerConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceAmazonSellerPartnerOutput(ctx *pulumi.Context, args LookupSourc
 
 // A collection of arguments for invoking getSourceAmazonSellerPartner.
 type LookupSourceAmazonSellerPartnerOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceAmazonSellerPartnerResultOutput) Name() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupSourceAmazonSellerPartnerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceAmazonSellerPartnerResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceAmazonSellerPartnerResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationDynamodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDynamodb = airbyte.getDestinationDynamodb({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDynamodb(args: GetDestinationDynamodbArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationDynamodbResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationDynamodbResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationDynamodb DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationDynamodb = airbyte.getDestinationDynamodb({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationDynamodbOutput(args: GetDestinationDynamodbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationDynamodbResult> {
     return pulumi.output(args).apply((a: any) => getDestinationDynamodb(a, opts))
 }

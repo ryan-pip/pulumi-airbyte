@@ -165,7 +165,8 @@ class SourceBraze(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceBraze resource with the given unique name, props, and options.
+        SourceBraze Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceBraze(pulumi.CustomResource):
                  args: SourceBrazeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceBraze resource with the given unique name, props, and options.
+        SourceBraze Resource
+
         :param str resource_name: The name of the resource.
         :param SourceBrazeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

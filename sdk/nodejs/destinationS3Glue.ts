@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationS3Glue Resource
+ */
 export class DestinationS3Glue extends pulumi.CustomResource {
     /**
      * Get an existing DestinationS3Glue resource's state with the given name, ID, and optional extra

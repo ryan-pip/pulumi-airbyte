@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceShopify DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceShopify(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceShopify(ctx *pulumi.Context, args *LookupSourceShopifyArgs, opts ...pulumi.InvokeOption) (*LookupSourceShopifyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceShopifyResult
 	err := ctx.Invoke("airbyte:index/getSourceShopify:getSourceShopify", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceShopify(ctx *pulumi.Context, args *LookupSourceShopifyArgs, opt
 
 // A collection of arguments for invoking getSourceShopify.
 type LookupSourceShopifyArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceShopifyArgs struct {
 type LookupSourceShopifyResult struct {
 	Configuration GetSourceShopifyConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceShopifyOutput(ctx *pulumi.Context, args LookupSourceShopifyOutp
 
 // A collection of arguments for invoking getSourceShopify.
 type LookupSourceShopifyOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceShopifyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceShopifyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceShopifyResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceShopifyResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

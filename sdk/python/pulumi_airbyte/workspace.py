@@ -94,7 +94,17 @@ class Workspace(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Workspace resource with the given unique name, props, and options.
+        Workspace Resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_airbyte as airbyte
+
+        my_workspace = airbyte.Workspace("myWorkspace", name="Crystal Weissnat")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Name of the workspace
@@ -106,7 +116,17 @@ class Workspace(pulumi.CustomResource):
                  args: WorkspaceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Workspace resource with the given unique name, props, and options.
+        Workspace Resource
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_airbyte as airbyte
+
+        my_workspace = airbyte.Workspace("myWorkspace", name="Crystal Weissnat")
+        ```
+
         :param str resource_name: The name of the resource.
         :param WorkspaceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

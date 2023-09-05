@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceMailchimp DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMailchimp = airbyte.getSourceMailchimp({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMailchimp(args: GetSourceMailchimpArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceMailchimpResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceMailchimp(args: GetSourceMailchimpArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceMailchimp.
  */
 export interface GetSourceMailchimpArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceMailchimpResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceMailchimp DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceMailchimp = airbyte.getSourceMailchimp({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceMailchimpOutput(args: GetSourceMailchimpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceMailchimpResult> {
     return pulumi.output(args).apply((a: any) => getSourceMailchimp(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceMailchimpOutput(args: GetSourceMailchimpOutputArgs, opt
  * A collection of arguments for invoking getSourceMailchimp.
  */
 export interface GetSourceMailchimpOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

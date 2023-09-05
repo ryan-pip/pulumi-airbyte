@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceBraintree DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBraintree = airbyte.getSourceBraintree({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBraintree(args: GetSourceBraintreeArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceBraintreeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceBraintree(args: GetSourceBraintreeArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceBraintree.
  */
 export interface GetSourceBraintreeArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceBraintreeResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceBraintree DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceBraintree = airbyte.getSourceBraintree({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceBraintreeOutput(args: GetSourceBraintreeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceBraintreeResult> {
     return pulumi.output(args).apply((a: any) => getSourceBraintree(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceBraintreeOutput(args: GetSourceBraintreeOutputArgs, opt
  * A collection of arguments for invoking getSourceBraintree.
  */
 export interface GetSourceBraintreeOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

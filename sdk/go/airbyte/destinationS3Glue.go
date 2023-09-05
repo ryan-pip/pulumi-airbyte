@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// DestinationS3Glue Resource
 type DestinationS3Glue struct {
 	pulumi.CustomResourceState
 
@@ -37,7 +39,7 @@ func NewDestinationS3Glue(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DestinationS3Glue
 	err := ctx.RegisterResource("airbyte:index/destinationS3Glue:DestinationS3Glue", name, args, &resource, opts...)
 	if err != nil {

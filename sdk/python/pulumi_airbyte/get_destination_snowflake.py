@@ -84,7 +84,16 @@ class AwaitableGetDestinationSnowflakeResult(GetDestinationSnowflakeResult):
 def get_destination_snowflake(destination_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationSnowflakeResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationSnowflake DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_snowflake = airbyte.get_destination_snowflake(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_snowflake(destination_id: Optional[str] = None,
 def get_destination_snowflake_output(destination_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationSnowflakeResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationSnowflake DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_snowflake = airbyte.get_destination_snowflake(destination_id="...my_destination_id...")
+    ```
     """
     ...

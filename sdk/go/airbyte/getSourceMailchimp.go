@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceMailchimp DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceMailchimp(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceMailchimp(ctx *pulumi.Context, args *LookupSourceMailchimpArgs, opts ...pulumi.InvokeOption) (*LookupSourceMailchimpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceMailchimpResult
 	err := ctx.Invoke("airbyte:index/getSourceMailchimp:getSourceMailchimp", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceMailchimp(ctx *pulumi.Context, args *LookupSourceMailchimpArgs,
 
 // A collection of arguments for invoking getSourceMailchimp.
 type LookupSourceMailchimpArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceMailchimpArgs struct {
 type LookupSourceMailchimpResult struct {
 	Configuration GetSourceMailchimpConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceMailchimpOutput(ctx *pulumi.Context, args LookupSourceMailchimp
 
 // A collection of arguments for invoking getSourceMailchimp.
 type LookupSourceMailchimpOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceMailchimpResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceMailchimpResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceMailchimpResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceMailchimpResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

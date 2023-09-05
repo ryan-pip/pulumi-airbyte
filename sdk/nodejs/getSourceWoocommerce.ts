@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceWoocommerce DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWoocommerce = airbyte.getSourceWoocommerce({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWoocommerce(args: GetSourceWoocommerceArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceWoocommerceResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceWoocommerce(args: GetSourceWoocommerceArgs, opts?: pulu
  * A collection of arguments for invoking getSourceWoocommerce.
  */
 export interface GetSourceWoocommerceArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceWoocommerceResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceWoocommerce DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceWoocommerce = airbyte.getSourceWoocommerce({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceWoocommerceOutput(args: GetSourceWoocommerceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceWoocommerceResult> {
     return pulumi.output(args).apply((a: any) => getSourceWoocommerce(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceWoocommerceOutput(args: GetSourceWoocommerceOutputArgs,
  * A collection of arguments for invoking getSourceWoocommerce.
  */
 export interface GetSourceWoocommerceOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

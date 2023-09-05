@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceRecurly DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecurly = airbyte.getSourceRecurly({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRecurly(args: GetSourceRecurlyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceRecurlyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceRecurly(args: GetSourceRecurlyArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceRecurly.
  */
 export interface GetSourceRecurlyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceRecurlyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceRecurly DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceRecurly = airbyte.getSourceRecurly({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceRecurlyOutput(args: GetSourceRecurlyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceRecurlyResult> {
     return pulumi.output(args).apply((a: any) => getSourceRecurly(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceRecurlyOutput(args: GetSourceRecurlyOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceRecurly.
  */
 export interface GetSourceRecurlyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

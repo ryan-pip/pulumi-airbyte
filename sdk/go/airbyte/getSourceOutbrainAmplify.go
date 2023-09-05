@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceOutbrainAmplify DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceOutbrainAmplify(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceOutbrainAmplify(ctx *pulumi.Context, args *LookupSourceOutbrainAmplifyArgs, opts ...pulumi.InvokeOption) (*LookupSourceOutbrainAmplifyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceOutbrainAmplifyResult
 	err := ctx.Invoke("airbyte:index/getSourceOutbrainAmplify:getSourceOutbrainAmplify", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceOutbrainAmplify(ctx *pulumi.Context, args *LookupSourceOutbrain
 
 // A collection of arguments for invoking getSourceOutbrainAmplify.
 type LookupSourceOutbrainAmplifyArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceOutbrainAmplifyArgs struct {
 type LookupSourceOutbrainAmplifyResult struct {
 	Configuration GetSourceOutbrainAmplifyConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceOutbrainAmplifyOutput(ctx *pulumi.Context, args LookupSourceOut
 
 // A collection of arguments for invoking getSourceOutbrainAmplify.
 type LookupSourceOutbrainAmplifyOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -90,6 +117,7 @@ func (o LookupSourceOutbrainAmplifyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceOutbrainAmplifyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceOutbrainAmplifyResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceOutbrainAmplifyResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

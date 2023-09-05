@@ -69,6 +69,9 @@ class GetConnectionResult:
     @property
     @pulumi.getter
     def configurations(self) -> 'outputs.GetConnectionConfigurationsResult':
+        """
+        A list of configured stream options for a connection.
+        """
         return pulumi.get(self, "configurations")
 
     @property
@@ -79,6 +82,9 @@ class GetConnectionResult:
     @property
     @pulumi.getter(name="dataResidency")
     def data_residency(self) -> str:
+        """
+        must be one of ["auto", "us", "eu"]
+        """
         return pulumi.get(self, "data_residency")
 
     @property
@@ -97,31 +103,51 @@ class GetConnectionResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Optional name of the connection
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="namespaceDefinition")
     def namespace_definition(self) -> str:
+        """
+        must be one of ["source", "destination", "custom_format"]
+        Define the location where the data will be stored in the destination
+        """
         return pulumi.get(self, "namespace_definition")
 
     @property
     @pulumi.getter(name="namespaceFormat")
     def namespace_format(self) -> str:
+        """
+        Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+        """
         return pulumi.get(self, "namespace_format")
 
     @property
     @pulumi.getter(name="nonBreakingSchemaUpdatesBehavior")
     def non_breaking_schema_updates_behavior(self) -> str:
+        """
+        must be one of ["ignore", "disable*connection", "propagate*columns", "propagate_fully"]
+        Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+        """
         return pulumi.get(self, "non_breaking_schema_updates_behavior")
 
     @property
     @pulumi.getter
     def prefix(self) -> str:
+        """
+        Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
+        """
         return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter
     def schedule(self) -> 'outputs.GetConnectionScheduleResult':
+        """
+        schedule for when the the connection should run, per the schedule type
+        """
         return pulumi.get(self, "schedule")
 
     @property
@@ -132,6 +158,9 @@ class GetConnectionResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        must be one of ["active", "inactive", "deprecated"]
+        """
         return pulumi.get(self, "status")
 
     @property
@@ -165,7 +194,16 @@ class AwaitableGetConnectionResult(GetConnectionResult):
 def get_connection(connection_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConnectionResult:
     """
-    Use this data source to access information about an existing resource.
+    Connection DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_connection = airbyte.get_connection(connection_id="...my_connection_id...")
+    ```
     """
     __args__ = dict()
     __args__['connectionId'] = connection_id
@@ -193,6 +231,15 @@ def get_connection(connection_id: Optional[str] = None,
 def get_connection_output(connection_id: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConnectionResult]:
     """
-    Use this data source to access information about an existing resource.
+    Connection DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_connection = airbyte.get_connection(connection_id="...my_connection_id...")
+    ```
     """
     ...

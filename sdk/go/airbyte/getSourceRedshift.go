@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceRedshift DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceRedshift(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceRedshift(ctx *pulumi.Context, args *LookupSourceRedshiftArgs, opts ...pulumi.InvokeOption) (*LookupSourceRedshiftResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceRedshiftResult
 	err := ctx.Invoke("airbyte:index/getSourceRedshift:getSourceRedshift", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceRedshift(ctx *pulumi.Context, args *LookupSourceRedshiftArgs, o
 
 // A collection of arguments for invoking getSourceRedshift.
 type LookupSourceRedshiftArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceRedshiftArgs struct {
 type LookupSourceRedshiftResult struct {
 	Configuration GetSourceRedshiftConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceRedshiftOutput(ctx *pulumi.Context, args LookupSourceRedshiftOu
 
 // A collection of arguments for invoking getSourceRedshift.
 type LookupSourceRedshiftOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceRedshiftResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceRedshiftResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceRedshiftResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceRedshiftResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

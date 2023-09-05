@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDockerhub DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDockerhub = airbyte.getSourceDockerhub({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDockerhub(args: GetSourceDockerhubArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDockerhubResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDockerhub(args: GetSourceDockerhubArgs, opts?: pulumi.I
  * A collection of arguments for invoking getSourceDockerhub.
  */
 export interface GetSourceDockerhubArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDockerhubResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDockerhub DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDockerhub = airbyte.getSourceDockerhub({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDockerhubOutput(args: GetSourceDockerhubOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDockerhubResult> {
     return pulumi.output(args).apply((a: any) => getSourceDockerhub(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDockerhubOutput(args: GetSourceDockerhubOutputArgs, opt
  * A collection of arguments for invoking getSourceDockerhub.
  */
 export interface GetSourceDockerhubOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

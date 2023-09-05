@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceFreshcaller DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceFreshcaller(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceFreshcaller(ctx *pulumi.Context, args *LookupSourceFreshcallerArgs, opts ...pulumi.InvokeOption) (*LookupSourceFreshcallerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceFreshcallerResult
 	err := ctx.Invoke("airbyte:index/getSourceFreshcaller:getSourceFreshcaller", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceFreshcaller(ctx *pulumi.Context, args *LookupSourceFreshcallerA
 
 // A collection of arguments for invoking getSourceFreshcaller.
 type LookupSourceFreshcallerArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceFreshcallerArgs struct {
 type LookupSourceFreshcallerResult struct {
 	Configuration GetSourceFreshcallerConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceFreshcallerOutput(ctx *pulumi.Context, args LookupSourceFreshca
 
 // A collection of arguments for invoking getSourceFreshcaller.
 type LookupSourceFreshcallerOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceFreshcallerResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceFreshcallerResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceFreshcallerResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceFreshcallerResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

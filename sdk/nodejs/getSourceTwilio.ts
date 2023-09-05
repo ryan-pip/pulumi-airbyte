@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTwilio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTwilio = airbyte.getSourceTwilio({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTwilio(args: GetSourceTwilioArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTwilioResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTwilio(args: GetSourceTwilioArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceTwilio.
  */
 export interface GetSourceTwilioArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTwilioResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTwilio DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTwilio = airbyte.getSourceTwilio({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTwilioOutput(args: GetSourceTwilioOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTwilioResult> {
     return pulumi.output(args).apply((a: any) => getSourceTwilio(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTwilioOutput(args: GetSourceTwilioOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceTwilio.
  */
 export interface GetSourceTwilioOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

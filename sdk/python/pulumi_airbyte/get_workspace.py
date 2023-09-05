@@ -38,6 +38,9 @@ class GetWorkspaceResult:
     @property
     @pulumi.getter(name="dataResidency")
     def data_residency(self) -> str:
+        """
+        must be one of ["auto", "us", "eu"]
+        """
         return pulumi.get(self, "data_residency")
 
     @property
@@ -51,6 +54,9 @@ class GetWorkspaceResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the workspace
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -74,7 +80,16 @@ class AwaitableGetWorkspaceResult(GetWorkspaceResult):
 def get_workspace(workspace_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkspaceResult:
     """
-    Use this data source to access information about an existing resource.
+    Workspace DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_workspace = airbyte.get_workspace(workspace_id="...my_workspace_id...")
+    ```
     """
     __args__ = dict()
     __args__['workspaceId'] = workspace_id
@@ -92,6 +107,15 @@ def get_workspace(workspace_id: Optional[str] = None,
 def get_workspace_output(workspace_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWorkspaceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Workspace DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_workspace = airbyte.get_workspace(workspace_id="...my_workspace_id...")
+    ```
     """
     ...

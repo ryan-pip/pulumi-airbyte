@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// Connection DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupConnection(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupConnection(ctx *pulumi.Context, args *LookupConnectionArgs, opts ...pulumi.InvokeOption) (*LookupConnectionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupConnectionResult
 	err := ctx.Invoke("airbyte:index/getConnection:getConnection", args, &rv, opts...)
 	if err != nil {
@@ -27,21 +51,32 @@ type LookupConnectionArgs struct {
 
 // A collection of values returned by getConnection.
 type LookupConnectionResult struct {
+	// A list of configured stream options for a connection.
 	Configurations GetConnectionConfigurations `pulumi:"configurations"`
 	ConnectionId   string                      `pulumi:"connectionId"`
-	DataResidency  string                      `pulumi:"dataResidency"`
-	DestinationId  string                      `pulumi:"destinationId"`
+	// must be one of ["auto", "us", "eu"]
+	DataResidency string `pulumi:"dataResidency"`
+	DestinationId string `pulumi:"destinationId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                               string                `pulumi:"id"`
-	Name                             string                `pulumi:"name"`
-	NamespaceDefinition              string                `pulumi:"namespaceDefinition"`
-	NamespaceFormat                  string                `pulumi:"namespaceFormat"`
-	NonBreakingSchemaUpdatesBehavior string                `pulumi:"nonBreakingSchemaUpdatesBehavior"`
-	Prefix                           string                `pulumi:"prefix"`
-	Schedule                         GetConnectionSchedule `pulumi:"schedule"`
-	SourceId                         string                `pulumi:"sourceId"`
-	Status                           string                `pulumi:"status"`
-	WorkspaceId                      string                `pulumi:"workspaceId"`
+	Id string `pulumi:"id"`
+	// Optional name of the connection
+	Name string `pulumi:"name"`
+	// must be one of ["source", "destination", "customFormat"]
+	// Define the location where the data will be stored in the destination
+	NamespaceDefinition string `pulumi:"namespaceDefinition"`
+	// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
+	NamespaceFormat string `pulumi:"namespaceFormat"`
+	// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+	// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
+	NonBreakingSchemaUpdatesBehavior string `pulumi:"nonBreakingSchemaUpdatesBehavior"`
+	// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
+	Prefix string `pulumi:"prefix"`
+	// schedule for when the the connection should run, per the schedule type
+	Schedule GetConnectionSchedule `pulumi:"schedule"`
+	SourceId string                `pulumi:"sourceId"`
+	// must be one of ["active", "inactive", "deprecated"]
+	Status      string `pulumi:"status"`
+	WorkspaceId string `pulumi:"workspaceId"`
 }
 
 func LookupConnectionOutput(ctx *pulumi.Context, args LookupConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupConnectionResultOutput {
@@ -81,6 +116,7 @@ func (o LookupConnectionResultOutput) ToLookupConnectionResultOutputWithContext(
 	return o
 }
 
+// A list of configured stream options for a connection.
 func (o LookupConnectionResultOutput) Configurations() GetConnectionConfigurationsOutput {
 	return o.ApplyT(func(v LookupConnectionResult) GetConnectionConfigurations { return v.Configurations }).(GetConnectionConfigurationsOutput)
 }
@@ -89,6 +125,7 @@ func (o LookupConnectionResultOutput) ConnectionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.ConnectionId }).(pulumi.StringOutput)
 }
 
+// must be one of ["auto", "us", "eu"]
 func (o LookupConnectionResultOutput) DataResidency() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.DataResidency }).(pulumi.StringOutput)
 }
@@ -102,26 +139,34 @@ func (o LookupConnectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Optional name of the connection
 func (o LookupConnectionResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// must be one of ["source", "destination", "customFormat"]
+// Define the location where the data will be stored in the destination
 func (o LookupConnectionResultOutput) NamespaceDefinition() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.NamespaceDefinition }).(pulumi.StringOutput)
 }
 
+// Used when namespaceDefinition is 'custom*format'. If blank then behaves like namespaceDefinition = 'destination'. If "${SOURCE*NAMESPACE}" then behaves like namespaceDefinition = 'source'.
 func (o LookupConnectionResultOutput) NamespaceFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.NamespaceFormat }).(pulumi.StringOutput)
 }
 
+// must be one of ["ignore", "disable*connection", "propagate*columns", "propagateFully"]
+// Set how Airbyte handles syncs when it detects a non-breaking schema change in the source
 func (o LookupConnectionResultOutput) NonBreakingSchemaUpdatesBehavior() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.NonBreakingSchemaUpdatesBehavior }).(pulumi.StringOutput)
 }
 
+// Prefix that will be prepended to the name of each stream when it is written to the destination (ex. “airbyte*” causes “projects” => “airbyte*projects”).
 func (o LookupConnectionResultOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
+// schedule for when the the connection should run, per the schedule type
 func (o LookupConnectionResultOutput) Schedule() GetConnectionScheduleOutput {
 	return o.ApplyT(func(v LookupConnectionResult) GetConnectionSchedule { return v.Schedule }).(GetConnectionScheduleOutput)
 }
@@ -130,6 +175,7 @@ func (o LookupConnectionResultOutput) SourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.SourceId }).(pulumi.StringOutput)
 }
 
+// must be one of ["active", "inactive", "deprecated"]
 func (o LookupConnectionResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConnectionResult) string { return v.Status }).(pulumi.StringOutput)
 }

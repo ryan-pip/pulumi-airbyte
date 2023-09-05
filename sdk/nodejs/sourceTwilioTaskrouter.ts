@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTwilioTaskrouter Resource
+ */
 export class SourceTwilioTaskrouter extends pulumi.CustomResource {
     /**
      * Get an existing SourceTwilioTaskrouter resource's state with the given name, ID, and optional extra

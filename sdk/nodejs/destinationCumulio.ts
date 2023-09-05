@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationCumulio Resource
+ */
 export class DestinationCumulio extends pulumi.CustomResource {
     /**
      * Get an existing DestinationCumulio resource's state with the given name, ID, and optional extra

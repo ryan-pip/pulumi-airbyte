@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceExchangeRates DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceExchangerates = airbyte.getSourceExchangeRates({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceExchangeRates(args: GetSourceExchangeRatesArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceExchangeRatesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceExchangeRates(args: GetSourceExchangeRatesArgs, opts?: 
  * A collection of arguments for invoking getSourceExchangeRates.
  */
 export interface GetSourceExchangeRatesArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceExchangeRatesResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceExchangeRates DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceExchangerates = airbyte.getSourceExchangeRates({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceExchangeRatesOutput(args: GetSourceExchangeRatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceExchangeRatesResult> {
     return pulumi.output(args).apply((a: any) => getSourceExchangeRates(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceExchangeRatesOutput(args: GetSourceExchangeRatesOutputA
  * A collection of arguments for invoking getSourceExchangeRates.
  */
 export interface GetSourceExchangeRatesOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

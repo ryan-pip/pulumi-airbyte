@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceNytimes DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceNytimes = airbyte.getSourceNytimes({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceNytimes(args: GetSourceNytimesArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceNytimesResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceNytimes(args: GetSourceNytimesArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceNytimes.
  */
 export interface GetSourceNytimesArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceNytimesResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceNytimes DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceNytimes = airbyte.getSourceNytimes({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceNytimesOutput(args: GetSourceNytimesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceNytimesResult> {
     return pulumi.output(args).apply((a: any) => getSourceNytimes(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceNytimesOutput(args: GetSourceNytimesOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceNytimes.
  */
 export interface GetSourceNytimesOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

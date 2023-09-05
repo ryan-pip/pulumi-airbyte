@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceDatadog DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDatadog = airbyte.getSourceDatadog({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDatadog(args: GetSourceDatadogArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceDatadogResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceDatadog(args: GetSourceDatadogArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceDatadog.
  */
 export interface GetSourceDatadogArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceDatadogResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceDatadog DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceDatadog = airbyte.getSourceDatadog({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceDatadogOutput(args: GetSourceDatadogOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceDatadogResult> {
     return pulumi.output(args).apply((a: any) => getSourceDatadog(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceDatadogOutput(args: GetSourceDatadogOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceDatadog.
  */
 export interface GetSourceDatadogOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationBigquery DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationBigquery = airbyte.getDestinationBigquery({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationBigquery(args: GetDestinationBigqueryArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationBigqueryResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationBigqueryResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationBigquery DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationBigquery = airbyte.getDestinationBigquery({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationBigqueryOutput(args: GetDestinationBigqueryOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationBigqueryResult> {
     return pulumi.output(args).apply((a: any) => getDestinationBigquery(a, opts))
 }

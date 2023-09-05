@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceClockify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClockify = airbyte.getSourceClockify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceClockify(args: GetSourceClockifyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceClockifyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceClockify(args: GetSourceClockifyArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getSourceClockify.
  */
 export interface GetSourceClockifyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceClockifyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceClockify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceClockify = airbyte.getSourceClockify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceClockifyOutput(args: GetSourceClockifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceClockifyResult> {
     return pulumi.output(args).apply((a: any) => getSourceClockify(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceClockifyOutput(args: GetSourceClockifyOutputArgs, opts?
  * A collection of arguments for invoking getSourceClockify.
  */
 export interface GetSourceClockifyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

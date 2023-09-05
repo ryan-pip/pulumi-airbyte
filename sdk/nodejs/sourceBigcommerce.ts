@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceBigcommerce Resource
+ */
 export class SourceBigcommerce extends pulumi.CustomResource {
     /**
      * Get an existing SourceBigcommerce resource's state with the given name, ID, and optional extra

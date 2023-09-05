@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceK6Cloud DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceK6Cloud(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceK6Cloud(ctx *pulumi.Context, args *LookupSourceK6CloudArgs, opts ...pulumi.InvokeOption) (*LookupSourceK6CloudResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceK6CloudResult
 	err := ctx.Invoke("airbyte:index/getSourceK6Cloud:getSourceK6Cloud", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceK6Cloud(ctx *pulumi.Context, args *LookupSourceK6CloudArgs, opt
 
 // A collection of arguments for invoking getSourceK6Cloud.
 type LookupSourceK6CloudArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceK6CloudArgs struct {
 type LookupSourceK6CloudResult struct {
 	Configuration GetSourceK6CloudConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceK6CloudOutput(ctx *pulumi.Context, args LookupSourceK6CloudOutp
 
 // A collection of arguments for invoking getSourceK6Cloud.
 type LookupSourceK6CloudOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceK6CloudResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceK6CloudResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceK6CloudResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceK6CloudResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

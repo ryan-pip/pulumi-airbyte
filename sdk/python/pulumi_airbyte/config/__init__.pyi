@@ -13,7 +13,7 @@ bearerAuth: Optional[str]
 
 password: Optional[str]
 
-serverUrl: Optional[str]
+serverUrl: str
 """
 Server URL (defaults to https://api.airbyte.com/v1)
 """

@@ -6,6 +6,20 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * DestinationAwsDatalake DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationAwsdatalake = airbyte.getDestinationAWSDatalake({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationAWSDatalake(args: GetDestinationAWSDatalakeArgs, opts?: pulumi.InvokeOptions): Promise<GetDestinationAWSDatalakeResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,6 +48,20 @@ export interface GetDestinationAWSDatalakeResult {
     readonly name: string;
     readonly workspaceId: string;
 }
+/**
+ * DestinationAwsDatalake DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const myDestinationAwsdatalake = airbyte.getDestinationAWSDatalake({
+ *     destinationId: "...my_destination_id...",
+ * });
+ * ```
+ */
 export function getDestinationAWSDatalakeOutput(args: GetDestinationAWSDatalakeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDestinationAWSDatalakeResult> {
     return pulumi.output(args).apply((a: any) => getDestinationAWSDatalake(a, opts))
 }

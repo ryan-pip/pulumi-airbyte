@@ -132,7 +132,8 @@ class DestinationOracle(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DestinationOracle resource with the given unique name, props, and options.
+        DestinationOracle Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -143,7 +144,8 @@ class DestinationOracle(pulumi.CustomResource):
                  args: DestinationOracleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DestinationOracle resource with the given unique name, props, and options.
+        DestinationOracle Resource
+
         :param str resource_name: The name of the resource.
         :param DestinationOracleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

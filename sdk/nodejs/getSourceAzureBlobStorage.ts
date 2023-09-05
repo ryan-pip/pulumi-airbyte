@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceAzureBlobStorage DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAzureblobstorage = airbyte.getSourceAzureBlobStorage({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAzureBlobStorage(args: GetSourceAzureBlobStorageArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceAzureBlobStorageResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceAzureBlobStorage(args: GetSourceAzureBlobStorageArgs, o
  * A collection of arguments for invoking getSourceAzureBlobStorage.
  */
 export interface GetSourceAzureBlobStorageArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceAzureBlobStorageResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceAzureBlobStorage DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceAzureblobstorage = airbyte.getSourceAzureBlobStorage({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceAzureBlobStorageOutput(args: GetSourceAzureBlobStorageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceAzureBlobStorageResult> {
     return pulumi.output(args).apply((a: any) => getSourceAzureBlobStorage(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceAzureBlobStorageOutput(args: GetSourceAzureBlobStorageO
  * A collection of arguments for invoking getSourceAzureBlobStorage.
  */
 export interface GetSourceAzureBlobStorageOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

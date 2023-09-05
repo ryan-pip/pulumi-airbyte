@@ -165,7 +165,8 @@ class SourceAha(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceAha resource with the given unique name, props, and options.
+        SourceAha Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceAha(pulumi.CustomResource):
                  args: SourceAhaArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceAha resource with the given unique name, props, and options.
+        SourceAha Resource
+
         :param str resource_name: The name of the resource.
         :param SourceAhaArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

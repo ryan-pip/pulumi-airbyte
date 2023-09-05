@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceFaker DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFaker = airbyte.getSourceFaker({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFaker(args: GetSourceFakerArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceFakerResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceFaker(args: GetSourceFakerArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getSourceFaker.
  */
 export interface GetSourceFakerArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceFakerResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceFaker DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceFaker = airbyte.getSourceFaker({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceFakerOutput(args: GetSourceFakerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceFakerResult> {
     return pulumi.output(args).apply((a: any) => getSourceFaker(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceFakerOutput(args: GetSourceFakerOutputArgs, opts?: pulu
  * A collection of arguments for invoking getSourceFaker.
  */
 export interface GetSourceFakerOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

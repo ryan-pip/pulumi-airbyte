@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceLaunchdarkly Resource
+ */
 export class SourceLaunchdarkly extends pulumi.CustomResource {
     /**
      * Get an existing SourceLaunchdarkly resource's state with the given name, ID, and optional extra

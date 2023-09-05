@@ -8,10 +8,34 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceTheGuardianAPI DataSource
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// _, err := airbyte.LookupSourceTheGuardianApi(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
 func LookupSourceTheGuardianApi(ctx *pulumi.Context, args *LookupSourceTheGuardianApiArgs, opts ...pulumi.InvokeOption) (*LookupSourceTheGuardianApiResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceTheGuardianApiResult
 	err := ctx.Invoke("airbyte:index/getSourceTheGuardianApi:getSourceTheGuardianApi", args, &rv, opts...)
 	if err != nil {
@@ -22,6 +46,7 @@ func LookupSourceTheGuardianApi(ctx *pulumi.Context, args *LookupSourceTheGuardi
 
 // A collection of arguments for invoking getSourceTheGuardianApi.
 type LookupSourceTheGuardianApiArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId *string `pulumi:"secretId"`
 	SourceId string  `pulumi:"sourceId"`
 }
@@ -30,8 +55,9 @@ type LookupSourceTheGuardianApiArgs struct {
 type LookupSourceTheGuardianApiResult struct {
 	Configuration GetSourceTheGuardianApiConfiguration `pulumi:"configuration"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string  `pulumi:"id"`
-	Name        string  `pulumi:"name"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId    *string `pulumi:"secretId"`
 	SourceId    string  `pulumi:"sourceId"`
 	WorkspaceId string  `pulumi:"workspaceId"`
@@ -52,6 +78,7 @@ func LookupSourceTheGuardianApiOutput(ctx *pulumi.Context, args LookupSourceTheG
 
 // A collection of arguments for invoking getSourceTheGuardianApi.
 type LookupSourceTheGuardianApiOutputArgs struct {
+	// Optional secretID obtained through the public API OAuth redirect flow.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 	SourceId pulumi.StringInput    `pulumi:"sourceId"`
 }
@@ -88,6 +115,7 @@ func (o LookupSourceTheGuardianApiResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSourceTheGuardianApiResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Optional secretID obtained through the public API OAuth redirect flow.
 func (o LookupSourceTheGuardianApiResultOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSourceTheGuardianApiResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }

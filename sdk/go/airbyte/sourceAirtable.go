@@ -9,8 +9,10 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"internal"
 )
 
+// SourceAirtable Resource
 type SourceAirtable struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ func NewSourceAirtable(ctx *pulumi.Context,
 	if args.WorkspaceId == nil {
 		return nil, errors.New("invalid value for required argument 'WorkspaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SourceAirtable
 	err := ctx.RegisterResource("airbyte:index/sourceAirtable:SourceAirtable", name, args, &resource, opts...)
 	if err != nil {

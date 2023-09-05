@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZenloop Resource
+ */
 export class SourceZenloop extends pulumi.CustomResource {
     /**
      * Get an existing SourceZenloop resource's state with the given name, ID, and optional extra

@@ -84,7 +84,16 @@ class AwaitableGetDestinationSftpJsonResult(GetDestinationSftpJsonResult):
 def get_destination_sftp_json(destination_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationSftpJsonResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationSftpJSON DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_sftpjson = airbyte.get_destination_sftp_json(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_sftp_json(destination_id: Optional[str] = None,
 def get_destination_sftp_json_output(destination_id: Optional[pulumi.Input[str]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationSftpJsonResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationSftpJSON DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_sftpjson = airbyte.get_destination_sftp_json(destination_id="...my_destination_id...")
+    ```
     """
     ...

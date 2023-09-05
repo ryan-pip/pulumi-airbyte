@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceShopify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceShopify = airbyte.getSourceShopify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceShopify(args: GetSourceShopifyArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceShopifyResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceShopify(args: GetSourceShopifyArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceShopify.
  */
 export interface GetSourceShopifyArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceShopifyResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceShopify DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceShopify = airbyte.getSourceShopify({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceShopifyOutput(args: GetSourceShopifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceShopifyResult> {
     return pulumi.output(args).apply((a: any) => getSourceShopify(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceShopifyOutput(args: GetSourceShopifyOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceShopify.
  */
 export interface GetSourceShopifyOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

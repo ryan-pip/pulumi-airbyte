@@ -165,7 +165,8 @@ class SourceAuth0(pulumi.CustomResource):
                  workspace_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a SourceAuth0 resource with the given unique name, props, and options.
+        SourceAuth0 Resource
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] secret_id: Optional secretID obtained through the public API OAuth redirect flow.
@@ -177,7 +178,8 @@ class SourceAuth0(pulumi.CustomResource):
                  args: SourceAuth0Args,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a SourceAuth0 resource with the given unique name, props, and options.
+        SourceAuth0 Resource
+
         :param str resource_name: The name of the resource.
         :param SourceAuth0Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

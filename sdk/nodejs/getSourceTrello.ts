@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTrello DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTrello = airbyte.getSourceTrello({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTrello(args: GetSourceTrelloArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTrelloResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTrello(args: GetSourceTrelloArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getSourceTrello.
  */
 export interface GetSourceTrelloArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTrelloResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTrello DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTrello = airbyte.getSourceTrello({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTrelloOutput(args: GetSourceTrelloOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTrelloResult> {
     return pulumi.output(args).apply((a: any) => getSourceTrello(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTrelloOutput(args: GetSourceTrelloOutputArgs, opts?: pu
  * A collection of arguments for invoking getSourceTrello.
  */
 export interface GetSourceTrelloOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

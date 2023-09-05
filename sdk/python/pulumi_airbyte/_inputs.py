@@ -912,6 +912,9 @@ class ConnectionConfigurationsStreamArgs:
                  cursor_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  primary_keys: Optional[pulumi.Input[Sequence[pulumi.Input[Sequence[pulumi.Input[str]]]]]] = None,
                  sync_mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Optional name of the connection
+        """
         pulumi.set(__self__, "name", name)
         if cursor_fields is not None:
             pulumi.set(__self__, "cursor_fields", cursor_fields)
@@ -923,6 +926,9 @@ class ConnectionConfigurationsStreamArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Optional name of the connection
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -963,6 +969,9 @@ class ConnectionScheduleArgs:
                  schedule_type: pulumi.Input[str],
                  basic_timing: Optional[pulumi.Input[str]] = None,
                  cron_expression: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] schedule_type: must be one of ["manual", "cron"]
+        """
         pulumi.set(__self__, "schedule_type", schedule_type)
         if basic_timing is not None:
             pulumi.set(__self__, "basic_timing", basic_timing)
@@ -972,6 +981,9 @@ class ConnectionScheduleArgs:
     @property
     @pulumi.getter(name="scheduleType")
     def schedule_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["manual", "cron"]
+        """
         return pulumi.get(self, "schedule_type")
 
     @schedule_type.setter
@@ -1013,6 +1025,23 @@ class DestinationAWSDatalakeConfigurationArgs:
                  lakeformation_database_default_tag_values: Optional[pulumi.Input[str]] = None,
                  lakeformation_governed_tables: Optional[pulumi.Input[bool]] = None,
                  partitioning: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] bucket_name: The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input['DestinationAWSDatalakeConfigurationCredentialsArgs'] credentials: Choose How to Authenticate to AWS.
+        :param pulumi.Input[str] destination_type: must be one of ["aws-datalake"]
+        :param pulumi.Input[str] lakeformation_database_name: The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace.
+        :param pulumi.Input[str] region: must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        :param pulumi.Input[str] aws_account_id: target aws account id
+        :param pulumi.Input[str] bucket_prefix: S3 prefix
+        :param pulumi.Input['DestinationAWSDatalakeConfigurationFormatArgs'] format: Format of the data output.
+        :param pulumi.Input[bool] glue_catalog_float_as_decimal: Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source.
+        :param pulumi.Input[str] lakeformation_database_default_tag_key: Add a default tag key to databases created by this destination
+        :param pulumi.Input[str] lakeformation_database_default_tag_values: Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values.
+        :param pulumi.Input[bool] lakeformation_governed_tables: Whether to create tables as LF governed tables.
+        :param pulumi.Input[str] partitioning: must be one of ["NO PARTITIONING", "DATE", "YEAR", "MONTH", "DAY", "YEAR/MONTH", "YEAR/MONTH/DAY"]
+               Partition data by cursor fields when a cursor field is a date
+        """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -1038,6 +1067,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Input[str]:
+        """
+        The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
@@ -1047,6 +1079,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input['DestinationAWSDatalakeConfigurationCredentialsArgs']:
+        """
+        Choose How to Authenticate to AWS.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -1056,6 +1091,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["aws-datalake"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -1065,6 +1103,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="lakeformationDatabaseName")
     def lakeformation_database_name(self) -> pulumi.Input[str]:
+        """
+        The default database this destination will use to create tables in per stream. Can be changed per connection by customizing the namespace.
+        """
         return pulumi.get(self, "lakeformation_database_name")
 
     @lakeformation_database_name.setter
@@ -1074,6 +1115,10 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -1083,6 +1128,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        target aws account id
+        """
         return pulumi.get(self, "aws_account_id")
 
     @aws_account_id.setter
@@ -1092,6 +1140,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        S3 prefix
+        """
         return pulumi.get(self, "bucket_prefix")
 
     @bucket_prefix.setter
@@ -1101,6 +1152,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input['DestinationAWSDatalakeConfigurationFormatArgs']]:
+        """
+        Format of the data output.
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -1110,6 +1164,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="glueCatalogFloatAsDecimal")
     def glue_catalog_float_as_decimal(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cast float/double as decimal(38,18). This can help achieve higher accuracy and represent numbers correctly as received from the source.
+        """
         return pulumi.get(self, "glue_catalog_float_as_decimal")
 
     @glue_catalog_float_as_decimal.setter
@@ -1119,6 +1176,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="lakeformationDatabaseDefaultTagKey")
     def lakeformation_database_default_tag_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Add a default tag key to databases created by this destination
+        """
         return pulumi.get(self, "lakeformation_database_default_tag_key")
 
     @lakeformation_database_default_tag_key.setter
@@ -1128,6 +1188,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="lakeformationDatabaseDefaultTagValues")
     def lakeformation_database_default_tag_values(self) -> Optional[pulumi.Input[str]]:
+        """
+        Add default values for the `Tag Key` to databases created by this destination. Comma separate for multiple values.
+        """
         return pulumi.get(self, "lakeformation_database_default_tag_values")
 
     @lakeformation_database_default_tag_values.setter
@@ -1137,6 +1200,9 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter(name="lakeformationGovernedTables")
     def lakeformation_governed_tables(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to create tables as LF governed tables.
+        """
         return pulumi.get(self, "lakeformation_governed_tables")
 
     @lakeformation_governed_tables.setter
@@ -1146,6 +1212,10 @@ class DestinationAWSDatalakeConfigurationArgs:
     @property
     @pulumi.getter
     def partitioning(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["NO PARTITIONING", "DATE", "YEAR", "MONTH", "DAY", "YEAR/MONTH", "YEAR/MONTH/DAY"]
+        Partition data by cursor fields when a cursor field is a date
+        """
         return pulumi.get(self, "partitioning")
 
     @partitioning.setter
@@ -1512,6 +1582,16 @@ class DestinationAzureBlobStorageConfigurationArgs:
                  azure_blob_storage_endpoint_domain_name: Optional[pulumi.Input[str]] = None,
                  azure_blob_storage_output_buffer_size: Optional[pulumi.Input[int]] = None,
                  azure_blob_storage_spill_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] azure_blob_storage_account_key: The Azure blob storage account key.
+        :param pulumi.Input[str] azure_blob_storage_account_name: The account's name of the Azure Blob Storage.
+        :param pulumi.Input[str] destination_type: must be one of ["azure-blob-storage"]
+        :param pulumi.Input['DestinationAzureBlobStorageConfigurationFormatArgs'] format: Output data format
+        :param pulumi.Input[str] azure_blob_storage_container_name: The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp
+        :param pulumi.Input[str] azure_blob_storage_endpoint_domain_name: This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+        :param pulumi.Input[int] azure_blob_storage_output_buffer_size: The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure.
+        :param pulumi.Input[int] azure_blob_storage_spill_size: The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable
+        """
         pulumi.set(__self__, "azure_blob_storage_account_key", azure_blob_storage_account_key)
         pulumi.set(__self__, "azure_blob_storage_account_name", azure_blob_storage_account_name)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -1528,6 +1608,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageAccountKey")
     def azure_blob_storage_account_key(self) -> pulumi.Input[str]:
+        """
+        The Azure blob storage account key.
+        """
         return pulumi.get(self, "azure_blob_storage_account_key")
 
     @azure_blob_storage_account_key.setter
@@ -1537,6 +1620,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageAccountName")
     def azure_blob_storage_account_name(self) -> pulumi.Input[str]:
+        """
+        The account's name of the Azure Blob Storage.
+        """
         return pulumi.get(self, "azure_blob_storage_account_name")
 
     @azure_blob_storage_account_name.setter
@@ -1546,6 +1632,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["azure-blob-storage"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -1555,6 +1644,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input['DestinationAzureBlobStorageConfigurationFormatArgs']:
+        """
+        Output data format
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -1564,6 +1656,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageContainerName")
     def azure_blob_storage_container_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Azure blob storage container. If not exists - will be created automatically. May be empty, then will be created automatically airbytecontainer+timestamp
+        """
         return pulumi.get(self, "azure_blob_storage_container_name")
 
     @azure_blob_storage_container_name.setter
@@ -1573,6 +1668,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageEndpointDomainName")
     def azure_blob_storage_endpoint_domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+        """
         return pulumi.get(self, "azure_blob_storage_endpoint_domain_name")
 
     @azure_blob_storage_endpoint_domain_name.setter
@@ -1582,6 +1680,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageOutputBufferSize")
     def azure_blob_storage_output_buffer_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of megabytes to buffer for the output stream to Azure. This will impact memory footprint on workers, but may need adjustment for performance and appropriate block size in Azure.
+        """
         return pulumi.get(self, "azure_blob_storage_output_buffer_size")
 
     @azure_blob_storage_output_buffer_size.setter
@@ -1591,6 +1692,9 @@ class DestinationAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageSpillSize")
     def azure_blob_storage_spill_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of megabytes after which the connector should spill the records in a new blob object. Make sure to configure size greater than individual records. Enter 0 if not applicable
+        """
         return pulumi.get(self, "azure_blob_storage_spill_size")
 
     @azure_blob_storage_spill_size.setter
@@ -1750,6 +1854,20 @@ class DestinationBigqueryConfigurationArgs:
                  raw_data_dataset: Optional[pulumi.Input[str]] = None,
                  transformation_priority: Optional[pulumi.Input[str]] = None,
                  use1s1t_format: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] dataset_id: The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] dataset_location: must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+               The location of the dataset. Warning: Changes made after creation will not be applied. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] destination_type: must be one of ["bigquery"]
+        :param pulumi.Input[str] project_id: The GCP project ID for the project containing the target BigQuery dataset. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[int] big_query_client_buffer_size_mb: Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] credentials_json: The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        :param pulumi.Input['DestinationBigqueryConfigurationLoadingMethodArgs'] loading_method: Loading method used to send select the way data will be uploaded to BigQuery. \\n\\n\\n\\nStandard Inserts\\n\\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \\n\\n\\n\\nGCS Staging\\n\\n - Writes large batches of records to a file, uploads the file to GCS, then uses \\n\\nCOPY INTO table\\n\\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] raw_data_dataset: (Early Access) The dataset to write raw tables into
+        :param pulumi.Input[str] transformation_priority: must be one of ["interactive", "batch"]
+               Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type \\n\\nhere\\n\\n. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries \\n\\nhere\\n\\n. The default "interactive" value is used if not set explicitly.
+        :param pulumi.Input[bool] use1s1t_format: (Early Access) Use \\n\\nDestinations V2\\n\\n.
+        """
         pulumi.set(__self__, "dataset_id", dataset_id)
         pulumi.set(__self__, "dataset_location", dataset_location)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -1770,6 +1888,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> pulumi.Input[str]:
+        """
+        The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "dataset_id")
 
     @dataset_id.setter
@@ -1779,6 +1900,10 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="datasetLocation")
     def dataset_location(self) -> pulumi.Input[str]:
+        """
+        must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+        The location of the dataset. Warning: Changes made after creation will not be applied. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "dataset_location")
 
     @dataset_location.setter
@@ -1788,6 +1913,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bigquery"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -1797,6 +1925,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The GCP project ID for the project containing the target BigQuery dataset. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -1806,6 +1937,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="bigQueryClientBufferSizeMb")
     def big_query_client_buffer_size_mb(self) -> Optional[pulumi.Input[int]]:
+        """
+        Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "big_query_client_buffer_size_mb")
 
     @big_query_client_buffer_size_mb.setter
@@ -1815,6 +1949,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -1824,6 +1961,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="loadingMethod")
     def loading_method(self) -> Optional[pulumi.Input['DestinationBigqueryConfigurationLoadingMethodArgs']]:
+        """
+        Loading method used to send select the way data will be uploaded to BigQuery. \\n\\n\\n\\nStandard Inserts\\n\\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \\n\\n\\n\\nGCS Staging\\n\\n - Writes large batches of records to a file, uploads the file to GCS, then uses \\n\\nCOPY INTO table\\n\\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "loading_method")
 
     @loading_method.setter
@@ -1833,6 +1973,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="rawDataDataset")
     def raw_data_dataset(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Early Access) The dataset to write raw tables into
+        """
         return pulumi.get(self, "raw_data_dataset")
 
     @raw_data_dataset.setter
@@ -1842,6 +1985,10 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="transformationPriority")
     def transformation_priority(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["interactive", "batch"]
+        Interactive run type means that the query is executed as soon as possible, and these queries count towards concurrent rate limit and daily limit. Read more about interactive run type \\n\\nhere\\n\\n. Batch queries are queued and started as soon as idle resources are available in the BigQuery shared resource pool, which usually occurs within a few minutes. Batch queries don’t count towards your concurrent rate limit. Read more about batch queries \\n\\nhere\\n\\n. The default "interactive" value is used if not set explicitly.
+        """
         return pulumi.get(self, "transformation_priority")
 
     @transformation_priority.setter
@@ -1851,6 +1998,9 @@ class DestinationBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="use1s1tFormat")
     def use1s1t_format(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Early Access) Use \\n\\nDestinations V2\\n\\n.
+        """
         return pulumi.get(self, "use1s1t_format")
 
     @use1s1t_format.setter
@@ -2209,6 +2359,16 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
                  credentials_json: Optional[pulumi.Input[str]] = None,
                  dataset_location: Optional[pulumi.Input[str]] = None,
                  loading_method: Optional[pulumi.Input['DestinationBigqueryDenormalizedConfigurationLoadingMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] dataset_id: The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] destination_type: must be one of ["bigquery-denormalized"]
+        :param pulumi.Input[str] project_id: The GCP project ID for the project containing the target BigQuery dataset. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[int] big_query_client_buffer_size_mb: Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] credentials_json: The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        :param pulumi.Input[str] dataset_location: must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+               The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input['DestinationBigqueryDenormalizedConfigurationLoadingMethodArgs'] loading_method: Loading method used to send select the way data will be uploaded to BigQuery. \\n\\n\\n\\nStandard Inserts\\n\\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \\n\\n\\n\\nGCS Staging\\n\\n - Writes large batches of records to a file, uploads the file to GCS, then uses \\n\\nCOPY INTO table\\n\\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \\n\\nhere\\n\\n.
+        """
         pulumi.set(__self__, "dataset_id", dataset_id)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "project_id", project_id)
@@ -2224,6 +2384,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> pulumi.Input[str]:
+        """
+        The default BigQuery Dataset ID that tables are replicated to if the source does not specify a namespace. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "dataset_id")
 
     @dataset_id.setter
@@ -2233,6 +2396,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bigquery-denormalized"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -2242,6 +2408,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The GCP project ID for the project containing the target BigQuery dataset. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -2251,6 +2420,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="bigQueryClientBufferSizeMb")
     def big_query_client_buffer_size_mb(self) -> Optional[pulumi.Input[int]]:
+        """
+        Google BigQuery client's chunk (buffer) size (MIN=1, MAX = 15) for each table. The size that will be written by a single RPC. Written data will be buffered and only flushed upon reaching this size or closing the channel. The default 15MB value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "big_query_client_buffer_size_mb")
 
     @big_query_client_buffer_size_mb.setter
@@ -2260,6 +2432,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -2269,6 +2444,10 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="datasetLocation")
     def dataset_location(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["US", "EU", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "europe-central1", "europe-central2", "europe-north1", "europe-southwest1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "europe-west7", "europe-west8", "europe-west9", "me-west1", "northamerica-northeast1", "northamerica-northeast2", "southamerica-east1", "southamerica-west1", "us-central1", "us-east1", "us-east2", "us-east3", "us-east4", "us-east5", "us-west1", "us-west2", "us-west3", "us-west4"]
+        The location of the dataset. Warning: Changes made after creation will not be applied. The default "US" value is used if not set explicitly. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "dataset_location")
 
     @dataset_location.setter
@@ -2278,6 +2457,9 @@ class DestinationBigqueryDenormalizedConfigurationArgs:
     @property
     @pulumi.getter(name="loadingMethod")
     def loading_method(self) -> Optional[pulumi.Input['DestinationBigqueryDenormalizedConfigurationLoadingMethodArgs']]:
+        """
+        Loading method used to send select the way data will be uploaded to BigQuery. \\n\\n\\n\\nStandard Inserts\\n\\n - Direct uploading using SQL INSERT statements. This method is extremely inefficient and provided only for quick testing. In almost all cases, you should use staging. \\n\\n\\n\\nGCS Staging\\n\\n - Writes large batches of records to a file, uploads the file to GCS, then uses \\n\\nCOPY INTO table\\n\\n to upload the file. Recommended for most workloads for better speed and scalability. Read more about GCS Staging \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "loading_method")
 
     @loading_method.setter
@@ -2637,6 +2819,16 @@ class DestinationClickhouseConfigurationArgs:
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationClickhouseConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["clickhouse"]
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: HTTP port of the database.
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['DestinationClickhouseConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -2652,6 +2844,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -2661,6 +2856,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["clickhouse"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -2670,6 +2868,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -2679,6 +2880,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        HTTP port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -2688,6 +2892,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -2697,6 +2904,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -2706,6 +2916,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -2715,6 +2928,9 @@ class DestinationClickhouseConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationClickhouseConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -3077,6 +3293,11 @@ class DestinationConvexConfigurationArgs:
                  access_key: pulumi.Input[str],
                  deployment_url: pulumi.Input[str],
                  destination_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_key: API access key used to send data to a Convex deployment.
+        :param pulumi.Input[str] deployment_url: URL of the Convex deployment that is the destination
+        :param pulumi.Input[str] destination_type: must be one of ["convex"]
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "deployment_url", deployment_url)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -3084,6 +3305,9 @@ class DestinationConvexConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        API access key used to send data to a Convex deployment.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -3093,6 +3317,9 @@ class DestinationConvexConfigurationArgs:
     @property
     @pulumi.getter(name="deploymentUrl")
     def deployment_url(self) -> pulumi.Input[str]:
+        """
+        URL of the Convex deployment that is the destination
+        """
         return pulumi.get(self, "deployment_url")
 
     @deployment_url.setter
@@ -3102,6 +3329,9 @@ class DestinationConvexConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["convex"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3116,6 +3346,12 @@ class DestinationCumulioConfigurationArgs:
                  api_key: pulumi.Input[str],
                  api_token: pulumi.Input[str],
                  destination_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_host: URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'.
+        :param pulumi.Input[str] api_key: An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+        :param pulumi.Input[str] api_token: The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+        :param pulumi.Input[str] destination_type: must be one of ["cumulio"]
+        """
         pulumi.set(__self__, "api_host", api_host)
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "api_token", api_token)
@@ -3124,6 +3360,9 @@ class DestinationCumulioConfigurationArgs:
     @property
     @pulumi.getter(name="apiHost")
     def api_host(self) -> pulumi.Input[str]:
+        """
+        URL of the Cumul.io API (e.g. 'https://api.cumul.io', 'https://api.us.cumul.io', or VPC-specific API url). Defaults to 'https://api.cumul.io'.
+        """
         return pulumi.get(self, "api_host")
 
     @api_host.setter
@@ -3133,6 +3372,9 @@ class DestinationCumulioConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        An API key generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -3142,6 +3384,9 @@ class DestinationCumulioConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        The corresponding API token generated in Cumul.io's platform (can be generated here: https://app.cumul.io/start/profile/integration).
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -3151,6 +3396,9 @@ class DestinationCumulioConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["cumulio"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3168,6 +3416,15 @@ class DestinationDatabendConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  table: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["databend"]
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] table: The default  table was written to.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -3182,6 +3439,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -3191,6 +3451,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["databend"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3200,6 +3463,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -3209,6 +3475,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -3218,6 +3487,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -3227,6 +3499,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -3236,6 +3511,9 @@ class DestinationDatabendConfigurationArgs:
     @property
     @pulumi.getter
     def table(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default  table was written to.
+        """
         return pulumi.get(self, "table")
 
     @table.setter
@@ -3257,6 +3535,19 @@ class DestinationDatabricksConfigurationArgs:
                  enable_schema_evolution: Optional[pulumi.Input[bool]] = None,
                  purge_staging_data: Optional[pulumi.Input[bool]] = None,
                  schema: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] accept_terms: You must agree to the Databricks JDBC Driver \\n\\nTerms & Conditions\\n\\n to use this connector.
+        :param pulumi.Input['DestinationDatabricksConfigurationDataSourceArgs'] data_source: Storage on which the delta lake is built.
+        :param pulumi.Input[str] databricks_http_path: Databricks Cluster HTTP Path.
+        :param pulumi.Input[str] databricks_personal_access_token: Databricks Personal Access Token for making authenticated requests.
+        :param pulumi.Input[str] databricks_server_hostname: Databricks Cluster Server Hostname.
+        :param pulumi.Input[str] destination_type: must be one of ["databricks"]
+        :param pulumi.Input[str] database: The name of the catalog. If not specified otherwise, the "hive_metastore" will be used.
+        :param pulumi.Input[str] databricks_port: Databricks Cluster Port.
+        :param pulumi.Input[bool] enable_schema_evolution: Support schema evolution for all streams. If "false", the connector might fail when a stream's schema changes.
+        :param pulumi.Input[bool] purge_staging_data: Default to 'true'. Switch it to 'false' for debugging purpose.
+        :param pulumi.Input[str] schema: The default schema tables are written. If not specified otherwise, the "default" will be used.
+        """
         pulumi.set(__self__, "accept_terms", accept_terms)
         pulumi.set(__self__, "data_source", data_source)
         pulumi.set(__self__, "databricks_http_path", databricks_http_path)
@@ -3277,6 +3568,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="acceptTerms")
     def accept_terms(self) -> pulumi.Input[bool]:
+        """
+        You must agree to the Databricks JDBC Driver \\n\\nTerms & Conditions\\n\\n to use this connector.
+        """
         return pulumi.get(self, "accept_terms")
 
     @accept_terms.setter
@@ -3286,6 +3580,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="dataSource")
     def data_source(self) -> pulumi.Input['DestinationDatabricksConfigurationDataSourceArgs']:
+        """
+        Storage on which the delta lake is built.
+        """
         return pulumi.get(self, "data_source")
 
     @data_source.setter
@@ -3295,6 +3592,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="databricksHttpPath")
     def databricks_http_path(self) -> pulumi.Input[str]:
+        """
+        Databricks Cluster HTTP Path.
+        """
         return pulumi.get(self, "databricks_http_path")
 
     @databricks_http_path.setter
@@ -3304,6 +3604,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="databricksPersonalAccessToken")
     def databricks_personal_access_token(self) -> pulumi.Input[str]:
+        """
+        Databricks Personal Access Token for making authenticated requests.
+        """
         return pulumi.get(self, "databricks_personal_access_token")
 
     @databricks_personal_access_token.setter
@@ -3313,6 +3616,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="databricksServerHostname")
     def databricks_server_hostname(self) -> pulumi.Input[str]:
+        """
+        Databricks Cluster Server Hostname.
+        """
         return pulumi.get(self, "databricks_server_hostname")
 
     @databricks_server_hostname.setter
@@ -3322,6 +3628,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["databricks"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3331,6 +3640,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the catalog. If not specified otherwise, the "hive_metastore" will be used.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -3340,6 +3652,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="databricksPort")
     def databricks_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Databricks Cluster Port.
+        """
         return pulumi.get(self, "databricks_port")
 
     @databricks_port.setter
@@ -3349,6 +3664,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="enableSchemaEvolution")
     def enable_schema_evolution(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Support schema evolution for all streams. If "false", the connector might fail when a stream's schema changes.
+        """
         return pulumi.get(self, "enable_schema_evolution")
 
     @enable_schema_evolution.setter
@@ -3358,6 +3676,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter(name="purgeStagingData")
     def purge_staging_data(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Default to 'true'. Switch it to 'false' for debugging purpose.
+        """
         return pulumi.get(self, "purge_staging_data")
 
     @purge_staging_data.setter
@@ -3367,6 +3688,9 @@ class DestinationDatabricksConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default schema tables are written. If not specified otherwise, the "default" will be used.
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -3776,12 +4100,19 @@ class DestinationDevNullConfigurationArgs:
     def __init__(__self__, *,
                  destination_type: pulumi.Input[str],
                  test_destination: pulumi.Input['DestinationDevNullConfigurationTestDestinationArgs']):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["dev-null"]
+        :param pulumi.Input['DestinationDevNullConfigurationTestDestinationArgs'] test_destination: The type of destination to be used
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "test_destination", test_destination)
 
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dev-null"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3791,6 +4122,9 @@ class DestinationDevNullConfigurationArgs:
     @property
     @pulumi.getter(name="testDestination")
     def test_destination(self) -> pulumi.Input['DestinationDevNullConfigurationTestDestinationArgs']:
+        """
+        The type of destination to be used
+        """
         return pulumi.get(self, "test_destination")
 
     @test_destination.setter
@@ -3868,6 +4202,15 @@ class DestinationDynamodbConfigurationArgs:
                  dynamodb_table_name_prefix: pulumi.Input[str],
                  secret_access_key: pulumi.Input[str],
                  dynamodb_endpoint: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_key_id: The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB.
+        :param pulumi.Input[str] destination_type: must be one of ["dynamodb"]
+        :param pulumi.Input[str] dynamodb_region: must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               The region of the DynamoDB.
+        :param pulumi.Input[str] dynamodb_table_name_prefix: The prefix to use when naming DynamoDB tables.
+        :param pulumi.Input[str] secret_access_key: The corresponding secret to the access key id.
+        :param pulumi.Input[str] dynamodb_endpoint: This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty).
+        """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "dynamodb_region", dynamodb_region)
@@ -3879,6 +4222,9 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Input[str]:
+        """
+        The access key id to access the DynamoDB. Airbyte requires Read and Write permissions to the DynamoDB.
+        """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
@@ -3888,6 +4234,9 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dynamodb"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3897,6 +4246,10 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="dynamodbRegion")
     def dynamodb_region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        The region of the DynamoDB.
+        """
         return pulumi.get(self, "dynamodb_region")
 
     @dynamodb_region.setter
@@ -3906,6 +4259,9 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="dynamodbTableNamePrefix")
     def dynamodb_table_name_prefix(self) -> pulumi.Input[str]:
+        """
+        The prefix to use when naming DynamoDB tables.
+        """
         return pulumi.get(self, "dynamodb_table_name_prefix")
 
     @dynamodb_table_name_prefix.setter
@@ -3915,6 +4271,9 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> pulumi.Input[str]:
+        """
+        The corresponding secret to the access key id.
+        """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
@@ -3924,6 +4283,9 @@ class DestinationDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="dynamodbEndpoint")
     def dynamodb_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        This is your DynamoDB endpoint url.(if you are working with AWS DynamoDB, just leave empty).
+        """
         return pulumi.get(self, "dynamodb_endpoint")
 
     @dynamodb_endpoint.setter
@@ -3939,6 +4301,13 @@ class DestinationElasticsearchConfigurationArgs:
                  authentication_method: Optional[pulumi.Input['DestinationElasticsearchConfigurationAuthenticationMethodArgs']] = None,
                  ca_certificate: Optional[pulumi.Input[str]] = None,
                  upsert: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["elasticsearch"]
+        :param pulumi.Input[str] endpoint: The full url of the Elasticsearch server
+        :param pulumi.Input['DestinationElasticsearchConfigurationAuthenticationMethodArgs'] authentication_method: The type of authentication to be used
+        :param pulumi.Input[str] ca_certificate: CA certificate
+        :param pulumi.Input[bool] upsert: If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys.
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "endpoint", endpoint)
         if authentication_method is not None:
@@ -3951,6 +4320,9 @@ class DestinationElasticsearchConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["elasticsearch"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -3960,6 +4332,9 @@ class DestinationElasticsearchConfigurationArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[str]:
+        """
+        The full url of the Elasticsearch server
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -3969,6 +4344,9 @@ class DestinationElasticsearchConfigurationArgs:
     @property
     @pulumi.getter(name="authenticationMethod")
     def authentication_method(self) -> Optional[pulumi.Input['DestinationElasticsearchConfigurationAuthenticationMethodArgs']]:
+        """
+        The type of authentication to be used
+        """
         return pulumi.get(self, "authentication_method")
 
     @authentication_method.setter
@@ -3978,6 +4356,9 @@ class DestinationElasticsearchConfigurationArgs:
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA certificate
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -3987,6 +4368,9 @@ class DestinationElasticsearchConfigurationArgs:
     @property
     @pulumi.getter
     def upsert(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If a primary key identifier is defined in the source, an upsert will be performed using the primary key value as the elasticsearch doc id. Does not support composite primary keys.
+        """
         return pulumi.get(self, "upsert")
 
     @upsert.setter
@@ -4210,6 +4594,16 @@ class DestinationFireboltConfigurationArgs:
                  engine: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  loading_method: Optional[pulumi.Input['DestinationFireboltConfigurationLoadingMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: The database to connect to.
+        :param pulumi.Input[str] destination_type: must be one of ["firebolt"]
+        :param pulumi.Input[str] password: Firebolt password.
+        :param pulumi.Input[str] username: Firebolt email address you use to login.
+        :param pulumi.Input[str] account: Firebolt account to login.
+        :param pulumi.Input[str] engine: Engine name or url to connect to.
+        :param pulumi.Input[str] host: The host name of your Firebolt database.
+        :param pulumi.Input['DestinationFireboltConfigurationLoadingMethodArgs'] loading_method: Loading method used to select the way data will be uploaded to Firebolt
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "password", password)
@@ -4226,6 +4620,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The database to connect to.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -4235,6 +4632,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["firebolt"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -4244,6 +4644,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Firebolt password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -4253,6 +4656,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Firebolt email address you use to login.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -4262,6 +4668,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def account(self) -> Optional[pulumi.Input[str]]:
+        """
+        Firebolt account to login.
+        """
         return pulumi.get(self, "account")
 
     @account.setter
@@ -4271,6 +4680,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[str]]:
+        """
+        Engine name or url to connect to.
+        """
         return pulumi.get(self, "engine")
 
     @engine.setter
@@ -4280,6 +4692,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The host name of your Firebolt database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -4289,6 +4704,9 @@ class DestinationFireboltConfigurationArgs:
     @property
     @pulumi.getter(name="loadingMethod")
     def loading_method(self) -> Optional[pulumi.Input['DestinationFireboltConfigurationLoadingMethodArgs']]:
+        """
+        Loading method used to select the way data will be uploaded to Firebolt
+        """
         return pulumi.get(self, "loading_method")
 
     @loading_method.setter
@@ -4507,6 +4925,11 @@ class DestinationFirestoreConfigurationArgs:
                  destination_type: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  credentials_json: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["firestore"]
+        :param pulumi.Input[str] project_id: The GCP project ID for the project containing the target BigQuery dataset.
+        :param pulumi.Input[str] credentials_json: The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "project_id", project_id)
         if credentials_json is not None:
@@ -4515,6 +4938,9 @@ class DestinationFirestoreConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["firestore"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -4524,6 +4950,9 @@ class DestinationFirestoreConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The GCP project ID for the project containing the target BigQuery dataset.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -4533,6 +4962,9 @@ class DestinationFirestoreConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key. Default credentials will be used if this field is left empty.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -4549,6 +4981,15 @@ class DestinationGcsConfigurationArgs:
                  gcs_bucket_name: pulumi.Input[str],
                  gcs_bucket_path: pulumi.Input[str],
                  gcs_bucket_region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DestinationGcsConfigurationCredentialArgs'] credential: An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] destination_type: must be one of ["gcs"]
+        :param pulumi.Input['DestinationGcsConfigurationFormatArgs'] format: Output data format. One of the following formats must be selected - \\n\\nAVRO\\n\\n format, \\n\\nPARQUET\\n\\n format, \\n\\nCSV\\n\\n format, or \\n\\nJSONL\\n\\n format.
+        :param pulumi.Input[str] gcs_bucket_name: You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] gcs_bucket_path: GCS Bucket Path string Subdirectory under the above bucket to sync the data into.
+        :param pulumi.Input[str] gcs_bucket_region: must be one of ["northamerica-northeast1", "northamerica-northeast2", "us-central1", "us-east1", "us-east4", "us-west1", "us-west2", "us-west3", "us-west4", "southamerica-east1", "southamerica-west1", "europe-central2", "europe-north1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "asia", "eu", "us", "asia1", "eur4", "nam4"]
+               Select a Region of the GCS Bucket. Read more \\n\\nhere\\n\\n.
+        """
         pulumi.set(__self__, "credential", credential)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "format", format)
@@ -4560,6 +5001,9 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter
     def credential(self) -> pulumi.Input['DestinationGcsConfigurationCredentialArgs']:
+        """
+        An HMAC key is a type of credential and can be associated with a service account or a user account in Cloud Storage. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "credential")
 
     @credential.setter
@@ -4569,6 +5013,9 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["gcs"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -4578,6 +5025,9 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input['DestinationGcsConfigurationFormatArgs']:
+        """
+        Output data format. One of the following formats must be selected - \\n\\nAVRO\\n\\n format, \\n\\nPARQUET\\n\\n format, \\n\\nCSV\\n\\n format, or \\n\\nJSONL\\n\\n format.
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -4587,6 +5037,9 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter(name="gcsBucketName")
     def gcs_bucket_name(self) -> pulumi.Input[str]:
+        """
+        You can find the bucket name in the App Engine Admin console Application Settings page, under the label Google Cloud Storage Bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "gcs_bucket_name")
 
     @gcs_bucket_name.setter
@@ -4596,6 +5049,9 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter(name="gcsBucketPath")
     def gcs_bucket_path(self) -> pulumi.Input[str]:
+        """
+        GCS Bucket Path string Subdirectory under the above bucket to sync the data into.
+        """
         return pulumi.get(self, "gcs_bucket_path")
 
     @gcs_bucket_path.setter
@@ -4605,6 +5061,10 @@ class DestinationGcsConfigurationArgs:
     @property
     @pulumi.getter(name="gcsBucketRegion")
     def gcs_bucket_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["northamerica-northeast1", "northamerica-northeast2", "us-central1", "us-east1", "us-east4", "us-west1", "us-west2", "us-west3", "us-west4", "southamerica-east1", "southamerica-west1", "europe-central2", "europe-north1", "europe-west1", "europe-west2", "europe-west3", "europe-west4", "europe-west6", "asia-east1", "asia-east2", "asia-northeast1", "asia-northeast2", "asia-northeast3", "asia-south1", "asia-south2", "asia-southeast1", "asia-southeast2", "australia-southeast1", "australia-southeast2", "asia", "eu", "us", "asia1", "eur4", "nam4"]
+        Select a Region of the GCS Bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "gcs_bucket_region")
 
     @gcs_bucket_region.setter
@@ -5884,6 +6344,11 @@ class DestinationGoogleSheetsConfigurationArgs:
                  credentials: pulumi.Input['DestinationGoogleSheetsConfigurationCredentialsArgs'],
                  destination_type: pulumi.Input[str],
                  spreadsheet_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input['DestinationGoogleSheetsConfigurationCredentialsArgs'] credentials: Google API Credentials for connecting to Google Sheets and Google Drive APIs
+        :param pulumi.Input[str] destination_type: must be one of ["google-sheets"]
+        :param pulumi.Input[str] spreadsheet_id: The link to your spreadsheet. See \\n\\nthis guide\\n\\n for more details.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "spreadsheet_id", spreadsheet_id)
@@ -5891,6 +6356,9 @@ class DestinationGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input['DestinationGoogleSheetsConfigurationCredentialsArgs']:
+        """
+        Google API Credentials for connecting to Google Sheets and Google Drive APIs
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -5900,6 +6368,9 @@ class DestinationGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-sheets"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -5909,6 +6380,9 @@ class DestinationGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="spreadsheetId")
     def spreadsheet_id(self) -> pulumi.Input[str]:
+        """
+        The link to your spreadsheet. See \\n\\nthis guide\\n\\n for more details.
+        """
         return pulumi.get(self, "spreadsheet_id")
 
     @spreadsheet_id.setter
@@ -5961,6 +6435,12 @@ class DestinationKeenConfigurationArgs:
                  destination_type: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  infer_timestamp: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] api_key: To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+        :param pulumi.Input[str] destination_type: must be one of ["keen"]
+        :param pulumi.Input[str] project_id: To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+        :param pulumi.Input[bool] infer_timestamp: Allow connector to guess keen.timestamp value based on the streamed data.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "project_id", project_id)
@@ -5970,6 +6450,9 @@ class DestinationKeenConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        To get Keen Master API Key, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -5979,6 +6462,9 @@ class DestinationKeenConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["keen"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -5988,6 +6474,9 @@ class DestinationKeenConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        To get Keen Project ID, navigate to the Access tab from the left-hand, side panel and check the Project Details section.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -5997,6 +6486,9 @@ class DestinationKeenConfigurationArgs:
     @property
     @pulumi.getter(name="inferTimestamp")
     def infer_timestamp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow connector to guess keen.timestamp value based on the streamed data.
+        """
         return pulumi.get(self, "infer_timestamp")
 
     @infer_timestamp.setter
@@ -6014,6 +6506,15 @@ class DestinationKinesisConfigurationArgs:
                  private_key: pulumi.Input[str],
                  region: pulumi.Input[str],
                  shard_count: pulumi.Input[int]):
+        """
+        :param pulumi.Input[str] access_key: Generate the AWS Access Key for current user.
+        :param pulumi.Input[int] buffer_size: Buffer size for storing kinesis records before being batch streamed.
+        :param pulumi.Input[str] destination_type: must be one of ["kinesis"]
+        :param pulumi.Input[str] endpoint: AWS Kinesis endpoint.
+        :param pulumi.Input[str] private_key: The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a "recovery phrase".
+        :param pulumi.Input[str] region: AWS region. Your account determines the Regions that are available to you.
+        :param pulumi.Input[int] shard_count: Number of shards to which the data should be streamed.
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "buffer_size", buffer_size)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -6025,6 +6526,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        Generate the AWS Access Key for current user.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -6034,6 +6538,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter(name="bufferSize")
     def buffer_size(self) -> pulumi.Input[int]:
+        """
+        Buffer size for storing kinesis records before being batch streamed.
+        """
         return pulumi.get(self, "buffer_size")
 
     @buffer_size.setter
@@ -6043,6 +6550,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["kinesis"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -6052,6 +6562,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[str]:
+        """
+        AWS Kinesis endpoint.
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -6061,6 +6574,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
+        """
+        The AWS Private Key - a string of numbers and letters that are unique for each account, also known as a "recovery phrase".
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -6070,6 +6586,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        AWS region. Your account determines the Regions that are available to you.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -6079,6 +6598,9 @@ class DestinationKinesisConfigurationArgs:
     @property
     @pulumi.getter(name="shardCount")
     def shard_count(self) -> pulumi.Input[int]:
+        """
+        Number of shards to which the data should be streamed.
+        """
         return pulumi.get(self, "shard_count")
 
     @shard_count.setter
@@ -6093,6 +6615,11 @@ class DestinationLangchainConfigurationArgs:
                  embedding: pulumi.Input['DestinationLangchainConfigurationEmbeddingArgs'],
                  indexing: pulumi.Input['DestinationLangchainConfigurationIndexingArgs'],
                  processing: pulumi.Input['DestinationLangchainConfigurationProcessingArgs']):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["langchain"]
+        :param pulumi.Input['DestinationLangchainConfigurationEmbeddingArgs'] embedding: Embedding configuration
+        :param pulumi.Input['DestinationLangchainConfigurationIndexingArgs'] indexing: Indexing configuration
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "embedding", embedding)
         pulumi.set(__self__, "indexing", indexing)
@@ -6101,6 +6628,9 @@ class DestinationLangchainConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["langchain"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -6110,6 +6640,9 @@ class DestinationLangchainConfigurationArgs:
     @property
     @pulumi.getter
     def embedding(self) -> pulumi.Input['DestinationLangchainConfigurationEmbeddingArgs']:
+        """
+        Embedding configuration
+        """
         return pulumi.get(self, "embedding")
 
     @embedding.setter
@@ -6119,6 +6652,9 @@ class DestinationLangchainConfigurationArgs:
     @property
     @pulumi.getter
     def indexing(self) -> pulumi.Input['DestinationLangchainConfigurationIndexingArgs']:
+        """
+        Indexing configuration
+        """
         return pulumi.get(self, "indexing")
 
     @indexing.setter
@@ -6643,6 +7179,18 @@ class DestinationMSsqlConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  ssl_method: Optional[pulumi.Input['DestinationMSsqlConfigurationSslMethodArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationMSsqlConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: The name of the MSSQL database.
+        :param pulumi.Input[str] destination_type: must be one of ["mssql"]
+        :param pulumi.Input[str] host: The host name of the MSSQL database.
+        :param pulumi.Input[int] port: The port of the MSSQL database.
+        :param pulumi.Input[str] schema: The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+        :param pulumi.Input[str] username: The username which is used to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: The password associated with this username.
+        :param pulumi.Input['DestinationMSsqlConfigurationSslMethodArgs'] ssl_method: The encryption method which is used to communicate with the database.
+        :param pulumi.Input['DestinationMSsqlConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -6661,6 +7209,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The name of the MSSQL database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -6670,6 +7221,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mssql"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -6679,6 +7233,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The host name of the MSSQL database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -6688,6 +7245,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port of the MSSQL database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -6697,6 +7257,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> pulumi.Input[str]:
+        """
+        The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -6706,6 +7269,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -6715,6 +7281,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -6724,6 +7293,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with this username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -6733,6 +7305,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter(name="sslMethod")
     def ssl_method(self) -> Optional[pulumi.Input['DestinationMSsqlConfigurationSslMethodArgs']]:
+        """
+        The encryption method which is used to communicate with the database.
+        """
         return pulumi.get(self, "ssl_method")
 
     @ssl_method.setter
@@ -6742,6 +7317,9 @@ class DestinationMSsqlConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationMSsqlConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -7247,6 +7825,13 @@ class DestinationMongodbConfigurationArgs:
                  destination_type: pulumi.Input[str],
                  instance_type: Optional[pulumi.Input['DestinationMongodbConfigurationInstanceTypeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationMongodbConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input['DestinationMongodbConfigurationAuthTypeArgs'] auth_type: Authorization type.
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["mongodb"]
+        :param pulumi.Input['DestinationMongodbConfigurationInstanceTypeArgs'] instance_type: MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+        :param pulumi.Input['DestinationMongodbConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -7258,6 +7843,9 @@ class DestinationMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Input['DestinationMongodbConfigurationAuthTypeArgs']:
+        """
+        Authorization type.
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -7267,6 +7855,9 @@ class DestinationMongodbConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -7276,6 +7867,9 @@ class DestinationMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mongodb"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -7285,6 +7879,9 @@ class DestinationMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input['DestinationMongodbConfigurationInstanceTypeArgs']]:
+        """
+        MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+        """
         return pulumi.get(self, "instance_type")
 
     @instance_type.setter
@@ -7294,6 +7891,9 @@ class DestinationMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationMongodbConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -8107,6 +8707,16 @@ class DestinationMysqlConfigurationArgs:
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationMysqlConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["mysql"]
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['DestinationMysqlConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -8122,6 +8732,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -8131,6 +8744,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mysql"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -8140,6 +8756,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -8149,6 +8768,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8158,6 +8780,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -8167,6 +8792,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -8176,6 +8804,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8185,6 +8816,9 @@ class DestinationMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationMysqlConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -8553,6 +9187,17 @@ class DestinationOracleConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationOracleConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["oracle"]
+        :param pulumi.Input[str] host: The hostname of the database.
+        :param pulumi.Input[int] port: The port of the database.
+        :param pulumi.Input[str] sid: The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+        :param pulumi.Input[str] username: The username to access the database. This user must have CREATE USER privileges in the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: The password associated with the username.
+        :param pulumi.Input[str] schema: The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+        :param pulumi.Input['DestinationOracleConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -8570,6 +9215,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["oracle"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -8579,6 +9227,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -8588,6 +9239,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8597,6 +9251,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def sid(self) -> pulumi.Input[str]:
+        """
+        The System Identifier uniquely distinguishes the instance from any other instance on the same computer.
+        """
         return pulumi.get(self, "sid")
 
     @sid.setter
@@ -8606,6 +9263,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username to access the database. This user must have CREATE USER privileges in the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -8615,6 +9275,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -8624,6 +9287,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8633,6 +9299,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        The default schema is used as the target schema for all statements issued from the connection that do not explicitly specify a schema name. The usual value for this field is "airbyte".  In Oracle, schemas and users are the same thing, so the "user" parameter is used as the login credentials and this is used for the default Airbyte message schema.
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -8642,6 +9311,9 @@ class DestinationOracleConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationOracleConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -9011,6 +9683,25 @@ class DestinationPostgresConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  ssl_mode: Optional[pulumi.Input['DestinationPostgresConfigurationSslModeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationPostgresConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["postgres"]
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] schema: The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['DestinationPostgresConfigurationSslModeArgs'] ssl_mode: SSL connection modes.
+               \\n\\ndisable\\n\\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+               \\n\\nallow\\n\\n - Chose this mode to enable encryption only when required by the source database
+               \\n\\nprefer\\n\\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+               \\n\\nrequire\\n\\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+               \\n\\nverify-ca\\n\\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+               \\n\\nverify-full\\n\\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+               See more information - \\n\\n in the docs\\n\\n.
+        :param pulumi.Input['DestinationPostgresConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -9029,6 +9720,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -9038,6 +9732,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["postgres"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -9047,6 +9744,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -9056,6 +9756,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -9065,6 +9768,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> pulumi.Input[str]:
+        """
+        The default schema tables are written to if the source does not specify a namespace. The usual value for this field is "public".
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -9074,6 +9780,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -9083,6 +9792,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -9092,6 +9804,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -9101,6 +9816,16 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter(name="sslMode")
     def ssl_mode(self) -> Optional[pulumi.Input['DestinationPostgresConfigurationSslModeArgs']]:
+        """
+        SSL connection modes.
+        \\n\\ndisable\\n\\n - Chose this mode to disable encryption of communication between Airbyte and destination database
+        \\n\\nallow\\n\\n - Chose this mode to enable encryption only when required by the source database
+        \\n\\nprefer\\n\\n - Chose this mode to allow unencrypted connection only if the source database does not support encryption
+        \\n\\nrequire\\n\\n - Chose this mode to always require encryption. If the source database server does not support encryption, connection will fail
+        \\n\\nverify-ca\\n\\n - Chose this mode to always require encryption and to verify that the source database server has a valid SSL certificate
+        \\n\\nverify-full\\n\\n - This is the most secure mode. Chose this mode to always require encryption and to verify the identity of the source database server
+        See more information - \\n\\n in the docs\\n\\n.
+        """
         return pulumi.get(self, "ssl_mode")
 
     @ssl_mode.setter
@@ -9110,6 +9835,9 @@ class DestinationPostgresConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationPostgresConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -9955,6 +10683,17 @@ class DestinationPubsubConfigurationArgs:
                  batching_delay_threshold: Optional[pulumi.Input[int]] = None,
                  batching_element_count_threshold: Optional[pulumi.Input[int]] = None,
                  batching_request_bytes_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] batching_enabled: If TRUE messages will be buffered instead of sending them one by one
+        :param pulumi.Input[str] credentials_json: The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key.
+        :param pulumi.Input[str] destination_type: must be one of ["pubsub"]
+        :param pulumi.Input[bool] ordering_enabled: If TRUE PubSub publisher will have \\n\\nmessage ordering\\n\\n enabled. Every message will have an ordering key of stream
+        :param pulumi.Input[str] project_id: The GCP project ID for the project containing the target PubSub.
+        :param pulumi.Input[str] topic_id: The PubSub topic ID in the given GCP project ID.
+        :param pulumi.Input[int] batching_delay_threshold: Number of ms before the buffer is flushed
+        :param pulumi.Input[int] batching_element_count_threshold: Number of messages before the buffer is flushed
+        :param pulumi.Input[int] batching_request_bytes_threshold: Number of bytes before the buffer is flushed
+        """
         pulumi.set(__self__, "batching_enabled", batching_enabled)
         pulumi.set(__self__, "credentials_json", credentials_json)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -9971,6 +10710,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="batchingEnabled")
     def batching_enabled(self) -> pulumi.Input[bool]:
+        """
+        If TRUE messages will be buffered instead of sending them one by one
+        """
         return pulumi.get(self, "batching_enabled")
 
     @batching_enabled.setter
@@ -9980,6 +10722,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> pulumi.Input[str]:
+        """
+        The contents of the JSON service account key. Check out the \\n\\ndocs\\n\\n if you need help generating this key.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -9989,6 +10734,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pubsub"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -9998,6 +10746,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="orderingEnabled")
     def ordering_enabled(self) -> pulumi.Input[bool]:
+        """
+        If TRUE PubSub publisher will have \\n\\nmessage ordering\\n\\n enabled. Every message will have an ordering key of stream
+        """
         return pulumi.get(self, "ordering_enabled")
 
     @ordering_enabled.setter
@@ -10007,6 +10758,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The GCP project ID for the project containing the target PubSub.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -10016,6 +10770,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="topicId")
     def topic_id(self) -> pulumi.Input[str]:
+        """
+        The PubSub topic ID in the given GCP project ID.
+        """
         return pulumi.get(self, "topic_id")
 
     @topic_id.setter
@@ -10025,6 +10782,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="batchingDelayThreshold")
     def batching_delay_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of ms before the buffer is flushed
+        """
         return pulumi.get(self, "batching_delay_threshold")
 
     @batching_delay_threshold.setter
@@ -10034,6 +10794,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="batchingElementCountThreshold")
     def batching_element_count_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of messages before the buffer is flushed
+        """
         return pulumi.get(self, "batching_element_count_threshold")
 
     @batching_element_count_threshold.setter
@@ -10043,6 +10806,9 @@ class DestinationPubsubConfigurationArgs:
     @property
     @pulumi.getter(name="batchingRequestBytesThreshold")
     def batching_request_bytes_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of bytes before the buffer is flushed
+        """
         return pulumi.get(self, "batching_request_bytes_threshold")
 
     @batching_request_bytes_threshold.setter
@@ -10062,6 +10828,19 @@ class DestinationRedisConfigurationArgs:
                  ssl: Optional[pulumi.Input[bool]] = None,
                  ssl_mode: Optional[pulumi.Input['DestinationRedisConfigurationSslModeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationRedisConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] cache_type: must be one of ["hash"]
+               Redis cache type to store data in.
+        :param pulumi.Input[str] destination_type: must be one of ["redis"]
+        :param pulumi.Input[str] host: Redis host to connect to.
+        :param pulumi.Input[int] port: Port of Redis.
+        :param pulumi.Input[str] username: Username associated with Redis.
+        :param pulumi.Input[str] password: Password associated with Redis.
+        :param pulumi.Input[bool] ssl: Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+        :param pulumi.Input['DestinationRedisConfigurationSslModeArgs'] ssl_mode: SSL connection modes.
+               \\n\\n\\n\\nverify-full\\n\\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+        :param pulumi.Input['DestinationRedisConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "cache_type", cache_type)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -10079,6 +10858,10 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter(name="cacheType")
     def cache_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["hash"]
+        Redis cache type to store data in.
+        """
         return pulumi.get(self, "cache_type")
 
     @cache_type.setter
@@ -10088,6 +10871,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["redis"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -10097,6 +10883,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Redis host to connect to.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -10106,6 +10895,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of Redis.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -10115,6 +10907,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username associated with Redis.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -10124,6 +10919,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with Redis.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -10133,6 +10931,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter
     def ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether SSL encryption protocol will be used to connect to Redis. It is recommended to use SSL connection if possible.
+        """
         return pulumi.get(self, "ssl")
 
     @ssl.setter
@@ -10142,6 +10943,10 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter(name="sslMode")
     def ssl_mode(self) -> Optional[pulumi.Input['DestinationRedisConfigurationSslModeArgs']]:
+        """
+        SSL connection modes.
+        \\n\\n\\n\\nverify-full\\n\\n - This is the most secure mode. Always require encryption and verifies the identity of the source database server
+        """
         return pulumi.get(self, "ssl_mode")
 
     @ssl_mode.setter
@@ -10151,6 +10956,9 @@ class DestinationRedisConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationRedisConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -10727,6 +11535,18 @@ class DestinationRedshiftConfigurationArgs:
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationRedshiftConfigurationTunnelMethodArgs']] = None,
                  uploading_method: Optional[pulumi.Input['DestinationRedshiftConfigurationUploadingMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["redshift"]
+        :param pulumi.Input[str] host: Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] schema: The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input['DestinationRedshiftConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        :param pulumi.Input['DestinationRedshiftConfigurationUploadingMethodArgs'] uploading_method: The method how the data will be uploaded to the database.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -10744,6 +11564,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -10753,6 +11576,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["redshift"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -10762,6 +11588,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com)
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -10771,6 +11600,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -10780,6 +11612,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -10789,6 +11624,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> pulumi.Input[str]:
+        """
+        The default schema tables are written to if the source does not specify a namespace. Unless specifically configured, the usual value for this field is "public".
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -10798,6 +11636,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -10807,6 +11648,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -10816,6 +11660,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationRedshiftConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -10825,6 +11672,9 @@ class DestinationRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="uploadingMethod")
     def uploading_method(self) -> Optional[pulumi.Input['DestinationRedshiftConfigurationUploadingMethodArgs']]:
+        """
+        The method how the data will be uploaded to the database.
+        """
         return pulumi.get(self, "uploading_method")
 
     @uploading_method.setter
@@ -11665,6 +12515,19 @@ class DestinationS3ConfigurationArgs:
                  s3_endpoint: Optional[pulumi.Input[str]] = None,
                  s3_path_format: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["s3"]
+        :param pulumi.Input['DestinationS3ConfigurationFormatArgs'] format: Format of the data output. See \\n\\nhere\\n\\n for more details
+        :param pulumi.Input[str] s3_bucket_name: The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] s3_bucket_path: Directory under the S3 bucket where data will be written. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] s3_bucket_region: must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        :param pulumi.Input[str] access_key_id: The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] file_name_pattern: The pattern allows you to set the file-name format for the S3 staging file(s)
+        :param pulumi.Input[str] s3_endpoint: Your S3 endpoint url. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] s3_path_format: Format string on how data will be organized inside the S3 bucket directory. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] secret_access_key: The corresponding secret to the access key ID. Read more \\n\\nhere\\n\\n
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "format", format)
         pulumi.set(__self__, "s3_bucket_name", s3_bucket_name)
@@ -11684,6 +12547,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["s3"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -11693,6 +12559,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input['DestinationS3ConfigurationFormatArgs']:
+        """
+        Format of the data output. See \\n\\nhere\\n\\n for more details
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -11702,6 +12571,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> pulumi.Input[str]:
+        """
+        The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "s3_bucket_name")
 
     @s3_bucket_name.setter
@@ -11711,6 +12583,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketPath")
     def s3_bucket_path(self) -> pulumi.Input[str]:
+        """
+        Directory under the S3 bucket where data will be written. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_bucket_path")
 
     @s3_bucket_path.setter
@@ -11720,6 +12595,10 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketRegion")
     def s3_bucket_region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        """
         return pulumi.get(self, "s3_bucket_region")
 
     @s3_bucket_region.setter
@@ -11729,6 +12608,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
@@ -11738,6 +12620,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="fileNamePattern")
     def file_name_pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        The pattern allows you to set the file-name format for the S3 staging file(s)
+        """
         return pulumi.get(self, "file_name_pattern")
 
     @file_name_pattern.setter
@@ -11747,6 +12632,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="s3Endpoint")
     def s3_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your S3 endpoint url. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_endpoint")
 
     @s3_endpoint.setter
@@ -11756,6 +12644,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="s3PathFormat")
     def s3_path_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Format string on how data will be organized inside the S3 bucket directory. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_path_format")
 
     @s3_path_format.setter
@@ -11765,6 +12656,9 @@ class DestinationS3ConfigurationArgs:
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The corresponding secret to the access key ID. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
@@ -12964,6 +13858,22 @@ class DestinationS3GlueConfigurationArgs:
                  s3_endpoint: Optional[pulumi.Input[str]] = None,
                  s3_path_format: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] destination_type: must be one of ["s3-glue"]
+        :param pulumi.Input['DestinationS3GlueConfigurationFormatArgs'] format: Format of the data output. See \\n\\nhere\\n\\n for more details
+        :param pulumi.Input[str] glue_database: Name of the glue database for creating the tables, leave blank if no integration
+        :param pulumi.Input[str] glue_serialization_library: must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+               The library that your query engine will use for reading and writing data in your lake.
+        :param pulumi.Input[str] s3_bucket_name: The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] s3_bucket_path: Directory under the S3 bucket where data will be written. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] s3_bucket_region: must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        :param pulumi.Input[str] access_key_id: The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] file_name_pattern: The pattern allows you to set the file-name format for the S3 staging file(s)
+        :param pulumi.Input[str] s3_endpoint: Your S3 endpoint url. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] s3_path_format: Format string on how data will be organized inside the S3 bucket directory. Read more \\n\\nhere\\n\\n
+        :param pulumi.Input[str] secret_access_key: The corresponding secret to the access key ID. Read more \\n\\nhere\\n\\n
+        """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "format", format)
         pulumi.set(__self__, "glue_database", glue_database)
@@ -12985,6 +13895,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["s3-glue"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -12994,6 +13907,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input['DestinationS3GlueConfigurationFormatArgs']:
+        """
+        Format of the data output. See \\n\\nhere\\n\\n for more details
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -13003,6 +13919,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="glueDatabase")
     def glue_database(self) -> pulumi.Input[str]:
+        """
+        Name of the glue database for creating the tables, leave blank if no integration
+        """
         return pulumi.get(self, "glue_database")
 
     @glue_database.setter
@@ -13012,6 +13931,10 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="glueSerializationLibrary")
     def glue_serialization_library(self) -> pulumi.Input[str]:
+        """
+        must be one of ["org.openx.data.jsonserde.JsonSerDe", "org.apache.hive.hcatalog.data.JsonSerDe"]
+        The library that your query engine will use for reading and writing data in your lake.
+        """
         return pulumi.get(self, "glue_serialization_library")
 
     @glue_serialization_library.setter
@@ -13021,6 +13944,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketName")
     def s3_bucket_name(self) -> pulumi.Input[str]:
+        """
+        The name of the S3 bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "s3_bucket_name")
 
     @s3_bucket_name.setter
@@ -13030,6 +13956,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketPath")
     def s3_bucket_path(self) -> pulumi.Input[str]:
+        """
+        Directory under the S3 bucket where data will be written. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_bucket_path")
 
     @s3_bucket_path.setter
@@ -13039,6 +13968,10 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="s3BucketRegion")
     def s3_bucket_region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        The region of the S3 bucket. See \\n\\nhere\\n\\n for all region codes.
+        """
         return pulumi.get(self, "s3_bucket_region")
 
     @s3_bucket_region.setter
@@ -13048,6 +13981,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key ID to access the S3 bucket. Airbyte requires Read and Write permissions to the given bucket. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
@@ -13057,6 +13993,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="fileNamePattern")
     def file_name_pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        The pattern allows you to set the file-name format for the S3 staging file(s)
+        """
         return pulumi.get(self, "file_name_pattern")
 
     @file_name_pattern.setter
@@ -13066,6 +14005,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="s3Endpoint")
     def s3_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your S3 endpoint url. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_endpoint")
 
     @s3_endpoint.setter
@@ -13075,6 +14017,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="s3PathFormat")
     def s3_path_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Format string on how data will be organized inside the S3 bucket directory. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "s3_path_format")
 
     @s3_path_format.setter
@@ -13084,6 +14029,9 @@ class DestinationS3GlueConfigurationArgs:
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The corresponding secret to the access key ID. Read more \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
@@ -13335,6 +14283,14 @@ class DestinationSftpJsonConfigurationArgs:
                  password: pulumi.Input[str],
                  username: pulumi.Input[str],
                  port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] destination_path: Path to the directory where json files will be written.
+        :param pulumi.Input[str] destination_type: must be one of ["sftp-json"]
+        :param pulumi.Input[str] host: Hostname of the SFTP server.
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input[str] username: Username to use to access the SFTP server.
+        :param pulumi.Input[int] port: Port of the SFTP server.
+        """
         pulumi.set(__self__, "destination_path", destination_path)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -13346,6 +14302,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter(name="destinationPath")
     def destination_path(self) -> pulumi.Input[str]:
+        """
+        Path to the directory where json files will be written.
+        """
         return pulumi.get(self, "destination_path")
 
     @destination_path.setter
@@ -13355,6 +14314,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sftp-json"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -13364,6 +14326,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the SFTP server.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -13373,6 +14338,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -13382,6 +14350,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the SFTP server.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -13391,6 +14362,9 @@ class DestinationSftpJsonConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of the SFTP server.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -13412,6 +14386,18 @@ class DestinationSnowflakeConfigurationArgs:
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  raw_data_schema: Optional[pulumi.Input[str]] = None,
                  use1s1t_format: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] database: Enter the name of the \\n\\ndatabase\\n\\n you want to sync data into
+        :param pulumi.Input[str] destination_type: must be one of ["snowflake"]
+        :param pulumi.Input[str] host: Enter your Snowflake account's \\n\\nlocator\\n\\n (in the format \\n\\n.\\n\\n.\\n\\n.snowflakecomputing.com)
+        :param pulumi.Input[str] role: Enter the \\n\\nrole\\n\\n that you want to use to access Snowflake
+        :param pulumi.Input[str] schema: Enter the name of the default \\n\\nschema\\n\\n
+        :param pulumi.Input[str] username: Enter the name of the user you want to use to access the database
+        :param pulumi.Input[str] warehouse: Enter the name of the \\n\\nwarehouse\\n\\n that you want to sync data into
+        :param pulumi.Input[str] jdbc_url_params: Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+        :param pulumi.Input[str] raw_data_schema: (Beta) The schema to write raw tables into
+        :param pulumi.Input[bool] use1s1t_format: (Beta) Use \\n\\nDestinations V2\\n\\n. Contact Airbyte Support to participate in the beta program.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -13431,6 +14417,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Enter the name of the \\n\\ndatabase\\n\\n you want to sync data into
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -13440,6 +14429,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["snowflake"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -13449,6 +14441,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Enter your Snowflake account's \\n\\nlocator\\n\\n (in the format \\n\\n.\\n\\n.\\n\\n.snowflakecomputing.com)
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -13458,6 +14453,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Enter the \\n\\nrole\\n\\n that you want to use to access Snowflake
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -13467,6 +14465,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> pulumi.Input[str]:
+        """
+        Enter the name of the default \\n\\nschema\\n\\n
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -13476,6 +14477,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Enter the name of the user you want to use to access the database
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -13485,6 +14489,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def warehouse(self) -> pulumi.Input[str]:
+        """
+        Enter the name of the \\n\\nwarehouse\\n\\n that you want to sync data into
+        """
         return pulumi.get(self, "warehouse")
 
     @warehouse.setter
@@ -13503,6 +14510,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enter the additional properties to pass to the JDBC URL string when connecting to the database (formatted as key=value pairs separated by the symbol &). Example: key1=value1&key2=value2&key3=value3
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -13512,6 +14522,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="rawDataSchema")
     def raw_data_schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Beta) The schema to write raw tables into
+        """
         return pulumi.get(self, "raw_data_schema")
 
     @raw_data_schema.setter
@@ -13521,6 +14534,9 @@ class DestinationSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="use1s1tFormat")
     def use1s1t_format(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Beta) Use \\n\\nDestinations V2\\n\\n. Contact Airbyte Support to participate in the beta program.
+        """
         return pulumi.get(self, "use1s1t_format")
 
     @use1s1t_format.setter
@@ -13873,6 +14889,11 @@ class DestinationTimeplusConfigurationArgs:
                  apikey: pulumi.Input[str],
                  destination_type: pulumi.Input[str],
                  endpoint: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] apikey: Personal API key
+        :param pulumi.Input[str] destination_type: must be one of ["timeplus"]
+        :param pulumi.Input[str] endpoint: Timeplus workspace endpoint
+        """
         pulumi.set(__self__, "apikey", apikey)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "endpoint", endpoint)
@@ -13880,6 +14901,9 @@ class DestinationTimeplusConfigurationArgs:
     @property
     @pulumi.getter
     def apikey(self) -> pulumi.Input[str]:
+        """
+        Personal API key
+        """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
@@ -13889,6 +14913,9 @@ class DestinationTimeplusConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["timeplus"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -13898,6 +14925,9 @@ class DestinationTimeplusConfigurationArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> pulumi.Input[str]:
+        """
+        Timeplus workspace endpoint
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -13914,6 +14944,14 @@ class DestinationTypesenseConfigurationArgs:
                  batch_size: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Typesense API Key
+        :param pulumi.Input[str] destination_type: must be one of ["typesense"]
+        :param pulumi.Input[str] host: Hostname of the Typesense instance without protocol.
+        :param pulumi.Input[str] batch_size: How many documents should be imported together. Default 1000
+        :param pulumi.Input[str] port: Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+        :param pulumi.Input[str] protocol: Protocol of the Typesense instance. Ex: http or https. Default is https
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -13927,6 +14965,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Typesense API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -13936,6 +14977,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["typesense"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -13945,6 +14989,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the Typesense instance without protocol.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -13954,6 +15001,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter(name="batchSize")
     def batch_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        How many documents should be imported together. Default 1000
+        """
         return pulumi.get(self, "batch_size")
 
     @batch_size.setter
@@ -13963,6 +15013,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Port of the Typesense instance. Ex: 8108, 80, 443. Default is 443
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -13972,6 +15025,9 @@ class DestinationTypesenseConfigurationArgs:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Protocol of the Typesense instance. Ex: http or https. Default is https
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -13991,6 +15047,17 @@ class DestinationVerticaConfigurationArgs:
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['DestinationVerticaConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] destination_type: must be one of ["vertica"]
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] schema: Schema for vertica destination
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['DestinationVerticaConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "host", host)
@@ -14007,6 +15074,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -14016,6 +15086,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["vertica"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -14025,6 +15098,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -14034,6 +15110,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -14043,6 +15122,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> pulumi.Input[str]:
+        """
+        Schema for vertica destination
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -14052,6 +15134,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -14061,6 +15146,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -14070,6 +15158,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -14079,6 +15170,9 @@ class DestinationVerticaConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['DestinationVerticaConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -14441,6 +15535,11 @@ class DestinationXataConfigurationArgs:
                  api_key: pulumi.Input[str],
                  db_url: pulumi.Input[str],
                  destination_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key to connect.
+        :param pulumi.Input[str] db_url: URL pointing to your workspace.
+        :param pulumi.Input[str] destination_type: must be one of ["xata"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "db_url", db_url)
         pulumi.set(__self__, "destination_type", destination_type)
@@ -14448,6 +15547,9 @@ class DestinationXataConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key to connect.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -14457,6 +15559,9 @@ class DestinationXataConfigurationArgs:
     @property
     @pulumi.getter(name="dbUrl")
     def db_url(self) -> pulumi.Input[str]:
+        """
+        URL pointing to your workspace.
+        """
         return pulumi.get(self, "db_url")
 
     @db_url.setter
@@ -14466,6 +15571,9 @@ class DestinationXataConfigurationArgs:
     @property
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["xata"]
+        """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
@@ -14479,6 +15587,11 @@ class SourceAhaConfigurationArgs:
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  url: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] source_type: must be one of ["aha"]
+        :param pulumi.Input[str] url: URL
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "url", url)
@@ -14486,6 +15599,9 @@ class SourceAhaConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -14495,6 +15611,9 @@ class SourceAhaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["aha"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -14504,6 +15623,9 @@ class SourceAhaConfigurationArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        URL
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -14518,6 +15640,12 @@ class SourceAircallConfigurationArgs:
                  api_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_id: App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+        :param pulumi.Input[str] api_token: App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+        :param pulumi.Input[str] source_type: must be one of ["aircall"]
+        :param pulumi.Input[str] start_date: Date time filter for incremental filter, Specify which date to extract from.
+        """
         pulumi.set(__self__, "api_id", api_id)
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
@@ -14526,6 +15654,9 @@ class SourceAircallConfigurationArgs:
     @property
     @pulumi.getter(name="apiId")
     def api_id(self) -> pulumi.Input[str]:
+        """
+        App ID found at settings https://dashboard.aircall.io/integrations/api-keys
+        """
         return pulumi.get(self, "api_id")
 
     @api_id.setter
@@ -14535,6 +15666,9 @@ class SourceAircallConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        App token found at settings (Ref- https://dashboard.aircall.io/integrations/api-keys)
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -14544,6 +15678,9 @@ class SourceAircallConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["aircall"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -14553,6 +15690,9 @@ class SourceAircallConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Date time filter for incremental filter, Specify which date to extract from.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -14565,6 +15705,9 @@ class SourceAirtableConfigurationArgs:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input['SourceAirtableConfigurationCredentialsArgs']] = None,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["airtable"]
+        """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if source_type is not None:
@@ -14582,6 +15725,9 @@ class SourceAirtableConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["airtable"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -14860,6 +16006,20 @@ class SourceAlloydbConfigurationArgs:
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_mode: Optional[pulumi.Input['SourceAlloydbConfigurationSslModeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['SourceAlloydbConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] source_type: must be one of ["alloydb"]
+        :param pulumi.Input[str] username: Username to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['SourceAlloydbConfigurationReplicationMethodArgs'] replication_method: Replication method for extracting data from the database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schemas: The list of schemas (case sensitive) to sync from. Defaults to public.
+        :param pulumi.Input['SourceAlloydbConfigurationSslModeArgs'] ssl_mode: SSL connection modes.
+               Read more \\n\\n in the docs\\n\\n.
+        :param pulumi.Input['SourceAlloydbConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -14881,6 +16041,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -14890,6 +16053,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -14899,6 +16065,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -14908,6 +16077,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["alloydb"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -14917,6 +16089,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -14926,6 +16101,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -14935,6 +16113,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -14944,6 +16125,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter(name="replicationMethod")
     def replication_method(self) -> Optional[pulumi.Input['SourceAlloydbConfigurationReplicationMethodArgs']]:
+        """
+        Replication method for extracting data from the database.
+        """
         return pulumi.get(self, "replication_method")
 
     @replication_method.setter
@@ -14953,6 +16137,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter
     def schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of schemas (case sensitive) to sync from. Defaults to public.
+        """
         return pulumi.get(self, "schemas")
 
     @schemas.setter
@@ -14962,6 +16149,10 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter(name="sslMode")
     def ssl_mode(self) -> Optional[pulumi.Input['SourceAlloydbConfigurationSslModeArgs']]:
+        """
+        SSL connection modes.
+        Read more \\n\\n in the docs\\n\\n.
+        """
         return pulumi.get(self, "ssl_mode")
 
     @ssl_mode.setter
@@ -14971,6 +16162,9 @@ class SourceAlloydbConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourceAlloydbConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -16351,6 +17545,20 @@ class SourceAmazonAdsConfigurationArgs:
                  report_record_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  start_date: Optional[pulumi.Input[str]] = None,
                  state_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] client_id: The client ID of your Amazon Ads developer application. See the \\n\\ndocs\\n\\n for more information.
+        :param pulumi.Input[str] client_secret: The client secret of your Amazon Ads developer application. See the \\n\\ndocs\\n\\n for more information.
+        :param pulumi.Input[str] refresh_token: Amazon Ads refresh token. See the \\n\\ndocs\\n\\n for more information on how to obtain this token.
+        :param pulumi.Input[str] source_type: must be one of ["amazon-ads"]
+        :param pulumi.Input[str] auth_type: must be one of ["oauth2.0"]
+        :param pulumi.Input[int] look_back_window: The amount of days to go back in time to get the updated data from Amazon Ads
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] profiles: Profile IDs you want to fetch data for. See \\n\\ndocs\\n\\n for more details.
+        :param pulumi.Input[str] region: must be one of ["NA", "EU", "FE"]
+               Region to pull data from (EU/NA/FE). See \\n\\ndocs\\n\\n for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] report_record_types: Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \\n\\ndocs\\n\\n for more details
+        :param pulumi.Input[str] start_date: The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] state_filters: Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "refresh_token", refresh_token)
@@ -16373,6 +17581,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The client ID of your Amazon Ads developer application. See the \\n\\ndocs\\n\\n for more information.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -16382,6 +17593,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The client secret of your Amazon Ads developer application. See the \\n\\ndocs\\n\\n for more information.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -16391,6 +17605,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        Amazon Ads refresh token. See the \\n\\ndocs\\n\\n for more information on how to obtain this token.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -16400,6 +17617,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["amazon-ads"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16409,6 +17629,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["oauth2.0"]
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -16418,6 +17641,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="lookBackWindow")
     def look_back_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of days to go back in time to get the updated data from Amazon Ads
+        """
         return pulumi.get(self, "look_back_window")
 
     @look_back_window.setter
@@ -16427,6 +17653,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter
     def profiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Profile IDs you want to fetch data for. See \\n\\ndocs\\n\\n for more details.
+        """
         return pulumi.get(self, "profiles")
 
     @profiles.setter
@@ -16436,6 +17665,10 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["NA", "EU", "FE"]
+        Region to pull data from (EU/NA/FE). See \\n\\ndocs\\n\\n for more details.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -16445,6 +17678,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="reportRecordTypes")
     def report_record_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Optional configuration which accepts an array of string of record types. Leave blank for default behaviour to pull all report types. Use this config option only if you want to pull specific report type(s). See \\n\\ndocs\\n\\n for more details
+        """
         return pulumi.get(self, "report_record_types")
 
     @report_record_types.setter
@@ -16454,6 +17690,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Start date for collecting reports, should not be more than 60 days in the past. In YYYY-MM-DD format
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -16463,6 +17702,9 @@ class SourceAmazonAdsConfigurationArgs:
     @property
     @pulumi.getter(name="stateFilters")
     def state_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Reflects the state of the Display, Product, and Brand Campaign streams as enabled, paused, or archived. If you do not populate this field, it will be ignored completely.
+        """
         return pulumi.get(self, "state_filters")
 
     @state_filters.setter
@@ -16489,6 +17731,26 @@ class SourceAmazonSellerPartnerConfigurationArgs:
                  replication_end_date: Optional[pulumi.Input[str]] = None,
                  report_options: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] aws_environment: must be one of ["PRODUCTION", "SANDBOX"]
+               Select the AWS Environment.
+        :param pulumi.Input[str] lwa_app_id: Your Login with Amazon Client ID.
+        :param pulumi.Input[str] lwa_client_secret: Your Login with Amazon Client Secret.
+        :param pulumi.Input[str] refresh_token: The Refresh Token obtained via OAuth flow authorization.
+        :param pulumi.Input[str] region: must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+               Select the AWS Region.
+        :param pulumi.Input[str] replication_start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[str] source_type: must be one of ["amazon-seller-partner"]
+        :param pulumi.Input[str] advanced_stream_options: Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
+        :param pulumi.Input[str] auth_type: must be one of ["oauth2.0"]
+        :param pulumi.Input[str] aws_access_key: Specifies the AWS access key used as part of the credentials to authenticate the user.
+        :param pulumi.Input[str] aws_secret_key: Specifies the AWS secret key used as part of the credentials to authenticate the user.
+        :param pulumi.Input[int] max_wait_seconds: Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+        :param pulumi.Input[int] period_in_days: Will be used for stream slicing for initial full_refresh sync when no updated state is present for reports that support sliced incremental sync.
+        :param pulumi.Input[str] replication_end_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+        :param pulumi.Input[str] report_options: Additional information passed to reports. This varies by report type. Must be a valid json string.
+        :param pulumi.Input[str] role_arn: Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+        """
         pulumi.set(__self__, "aws_environment", aws_environment)
         pulumi.set(__self__, "lwa_app_id", lwa_app_id)
         pulumi.set(__self__, "lwa_client_secret", lwa_client_secret)
@@ -16518,6 +17780,10 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="awsEnvironment")
     def aws_environment(self) -> pulumi.Input[str]:
+        """
+        must be one of ["PRODUCTION", "SANDBOX"]
+        Select the AWS Environment.
+        """
         return pulumi.get(self, "aws_environment")
 
     @aws_environment.setter
@@ -16527,6 +17793,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="lwaAppId")
     def lwa_app_id(self) -> pulumi.Input[str]:
+        """
+        Your Login with Amazon Client ID.
+        """
         return pulumi.get(self, "lwa_app_id")
 
     @lwa_app_id.setter
@@ -16536,6 +17805,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="lwaClientSecret")
     def lwa_client_secret(self) -> pulumi.Input[str]:
+        """
+        Your Login with Amazon Client Secret.
+        """
         return pulumi.get(self, "lwa_client_secret")
 
     @lwa_client_secret.setter
@@ -16545,6 +17817,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        The Refresh Token obtained via OAuth flow authorization.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -16554,6 +17829,10 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["AE", "AU", "BE", "BR", "CA", "DE", "EG", "ES", "FR", "GB", "IN", "IT", "JP", "MX", "NL", "PL", "SA", "SE", "SG", "TR", "UK", "US"]
+        Select the AWS Region.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -16563,6 +17842,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="replicationStartDate")
     def replication_start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "replication_start_date")
 
     @replication_start_date.setter
@@ -16572,6 +17854,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["amazon-seller-partner"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16581,6 +17866,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="advancedStreamOptions")
     def advanced_stream_options(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional information to configure report options. This varies by report type, not every report implement this kind of feature. Must be a valid json string.
+        """
         return pulumi.get(self, "advanced_stream_options")
 
     @advanced_stream_options.setter
@@ -16590,6 +17878,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["oauth2.0"]
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -16599,6 +17890,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="awsAccessKey")
     def aws_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the AWS access key used as part of the credentials to authenticate the user.
+        """
         return pulumi.get(self, "aws_access_key")
 
     @aws_access_key.setter
@@ -16608,6 +17902,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="awsSecretKey")
     def aws_secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the AWS secret key used as part of the credentials to authenticate the user.
+        """
         return pulumi.get(self, "aws_secret_key")
 
     @aws_secret_key.setter
@@ -16617,6 +17914,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="maxWaitSeconds")
     def max_wait_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sometimes report can take up to 30 minutes to generate. This will set the limit for how long to wait for a successful report.
+        """
         return pulumi.get(self, "max_wait_seconds")
 
     @max_wait_seconds.setter
@@ -16626,6 +17926,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="periodInDays")
     def period_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Will be used for stream slicing for initial full_refresh sync when no updated state is present for reports that support sliced incremental sync.
+        """
         return pulumi.get(self, "period_in_days")
 
     @period_in_days.setter
@@ -16635,6 +17938,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="replicationEndDate")
     def replication_end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+        """
         return pulumi.get(self, "replication_end_date")
 
     @replication_end_date.setter
@@ -16644,6 +17950,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="reportOptions")
     def report_options(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional information passed to reports. This varies by report type. Must be a valid json string.
+        """
         return pulumi.get(self, "report_options")
 
     @report_options.setter
@@ -16653,6 +17962,9 @@ class SourceAmazonSellerPartnerConfigurationArgs:
     @property
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the Amazon Resource Name (ARN) of an IAM role that you want to use to perform operations requested using this profile. (Needs permission to 'Assume Role' STS).
+        """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
@@ -16673,6 +17985,19 @@ class SourceAmazonSqsConfigurationArgs:
                  max_wait_time: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  visibility_timeout: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] delete_messages: If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+        :param pulumi.Input[str] queue_url: URL of the SQS Queue
+        :param pulumi.Input[str] region: must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               AWS Region of the SQS Queue
+        :param pulumi.Input[str] source_type: must be one of ["amazon-sqs"]
+        :param pulumi.Input[str] access_key: The Access Key ID of the AWS IAM Role to use for pulling messages
+        :param pulumi.Input[str] attributes_to_return: Comma separated list of Mesage Attribute names to return
+        :param pulumi.Input[int] max_batch_size: Max amount of messages to get in one batch (10 max)
+        :param pulumi.Input[int] max_wait_time: Max amount of time in seconds to wait for messages in a single poll (20 max)
+        :param pulumi.Input[str] secret_key: The Secret Key of the AWS IAM Role to use for pulling messages
+        :param pulumi.Input[int] visibility_timeout: Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+        """
         pulumi.set(__self__, "delete_messages", delete_messages)
         pulumi.set(__self__, "queue_url", queue_url)
         pulumi.set(__self__, "region", region)
@@ -16693,6 +18018,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="deleteMessages")
     def delete_messages(self) -> pulumi.Input[bool]:
+        """
+        If Enabled, messages will be deleted from the SQS Queue after being read. If Disabled, messages are left in the queue and can be read more than once. WARNING: Enabling this option can result in data loss in cases of failure, use with caution, see documentation for more detail.
+        """
         return pulumi.get(self, "delete_messages")
 
     @delete_messages.setter
@@ -16702,6 +18030,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="queueUrl")
     def queue_url(self) -> pulumi.Input[str]:
+        """
+        URL of the SQS Queue
+        """
         return pulumi.get(self, "queue_url")
 
     @queue_url.setter
@@ -16711,6 +18042,10 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        AWS Region of the SQS Queue
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -16720,6 +18055,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["amazon-sqs"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16729,6 +18067,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Access Key ID of the AWS IAM Role to use for pulling messages
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -16738,6 +18079,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="attributesToReturn")
     def attributes_to_return(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated list of Mesage Attribute names to return
+        """
         return pulumi.get(self, "attributes_to_return")
 
     @attributes_to_return.setter
@@ -16747,6 +18091,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="maxBatchSize")
     def max_batch_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max amount of messages to get in one batch (10 max)
+        """
         return pulumi.get(self, "max_batch_size")
 
     @max_batch_size.setter
@@ -16756,6 +18103,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="maxWaitTime")
     def max_wait_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max amount of time in seconds to wait for messages in a single poll (20 max)
+        """
         return pulumi.get(self, "max_wait_time")
 
     @max_wait_time.setter
@@ -16765,6 +18115,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Secret Key of the AWS IAM Role to use for pulling messages
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -16774,6 +18127,9 @@ class SourceAmazonSqsConfigurationArgs:
     @property
     @pulumi.getter(name="visibilityTimeout")
     def visibility_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Modify the Visibility Timeout of the individual message from the Queue's default (seconds).
+        """
         return pulumi.get(self, "visibility_timeout")
 
     @visibility_timeout.setter
@@ -16790,6 +18146,15 @@ class SourceAmplitudeConfigurationArgs:
                  start_date: pulumi.Input[str],
                  data_region: Optional[pulumi.Input[str]] = None,
                  request_time_range: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] api_key: Amplitude API Key. See the \\n\\nsetup guide\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] secret_key: Amplitude Secret Key. See the \\n\\nsetup guide\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] source_type: must be one of ["amplitude"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[str] data_region: must be one of ["Standard Server", "EU Residency Server"]
+               Amplitude data region server
+        :param pulumi.Input[int] request_time_range: According to \\n\\nConsiderations\\n\\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -16802,6 +18167,9 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Amplitude API Key. See the \\n\\nsetup guide\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -16811,6 +18179,9 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
+        """
+        Amplitude Secret Key. See the \\n\\nsetup guide\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -16820,6 +18191,9 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["amplitude"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16829,6 +18203,9 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -16838,6 +18215,10 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="dataRegion")
     def data_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["Standard Server", "EU Residency Server"]
+        Amplitude data region server
+        """
         return pulumi.get(self, "data_region")
 
     @data_region.setter
@@ -16847,6 +18228,9 @@ class SourceAmplitudeConfigurationArgs:
     @property
     @pulumi.getter(name="requestTimeRange")
     def request_time_range(self) -> Optional[pulumi.Input[int]]:
+        """
+        According to \\n\\nConsiderations\\n\\n too big time range in request can cause a timeout error. In this case, set shorter time interval in hours.
+        """
         return pulumi.get(self, "request_time_range")
 
     @request_time_range.setter
@@ -16860,6 +18244,11 @@ class SourceApifyDatasetConfigurationArgs:
                  dataset_id: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  clean: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] dataset_id: ID of the dataset you would like to load to Airbyte.
+        :param pulumi.Input[str] source_type: must be one of ["apify-dataset"]
+        :param pulumi.Input[bool] clean: If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \\n\\nApify API docs\\n\\n. If not sure, set clean to false.
+        """
         pulumi.set(__self__, "dataset_id", dataset_id)
         pulumi.set(__self__, "source_type", source_type)
         if clean is not None:
@@ -16868,6 +18257,9 @@ class SourceApifyDatasetConfigurationArgs:
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> pulumi.Input[str]:
+        """
+        ID of the dataset you would like to load to Airbyte.
+        """
         return pulumi.get(self, "dataset_id")
 
     @dataset_id.setter
@@ -16877,6 +18269,9 @@ class SourceApifyDatasetConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["apify-dataset"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16886,6 +18281,9 @@ class SourceApifyDatasetConfigurationArgs:
     @property
     @pulumi.getter
     def clean(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, only clean items will be downloaded from the dataset. See description of what clean means in \\n\\nApify API docs\\n\\n. If not sure, set clean to false.
+        """
         return pulumi.get(self, "clean")
 
     @clean.setter
@@ -16898,6 +18296,10 @@ class SourceAppfollowConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  api_secret: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["appfollow"]
+        :param pulumi.Input[str] api_secret: API Key provided by Appfollow
+        """
         pulumi.set(__self__, "source_type", source_type)
         if api_secret is not None:
             pulumi.set(__self__, "api_secret", api_secret)
@@ -16905,6 +18307,9 @@ class SourceAppfollowConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["appfollow"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -16914,6 +18319,9 @@ class SourceAppfollowConfigurationArgs:
     @property
     @pulumi.getter(name="apiSecret")
     def api_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        API Key provided by Appfollow
+        """
         return pulumi.get(self, "api_secret")
 
     @api_secret.setter
@@ -16926,6 +18334,10 @@ class SourceAsanaConfigurationArgs:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input['SourceAsanaConfigurationCredentialsArgs']] = None,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['SourceAsanaConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Github
+        :param pulumi.Input[str] source_type: must be one of ["asana"]
+        """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if source_type is not None:
@@ -16934,6 +18346,9 @@ class SourceAsanaConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceAsanaConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Github
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -16943,6 +18358,9 @@ class SourceAsanaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["asana"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17165,6 +18583,10 @@ class SourceAuth0ConfigurationArgs:
                  base_url: pulumi.Input[str],
                  credentials: pulumi.Input['SourceAuth0ConfigurationCredentialsArgs'],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] base_url: The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
+        :param pulumi.Input[str] source_type: must be one of ["auth0"]
+        """
         pulumi.set(__self__, "base_url", base_url)
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
@@ -17172,6 +18594,9 @@ class SourceAuth0ConfigurationArgs:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[str]:
+        """
+        The Authentication API is served over HTTPS. All URLs referenced in the documentation have the following base `https://YOUR_DOMAIN`
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -17190,6 +18615,9 @@ class SourceAuth0ConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["auth0"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17410,6 +18838,13 @@ class SourceAwsCloudtrailConfigurationArgs:
                  aws_secret_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] aws_key_id: AWS CloudTrail Access Key ID. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] aws_region_name: The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
+        :param pulumi.Input[str] aws_secret_key: AWS CloudTrail Access Key ID. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] source_type: must be one of ["aws-cloudtrail"]
+        :param pulumi.Input[str] start_date: The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+        """
         pulumi.set(__self__, "aws_key_id", aws_key_id)
         pulumi.set(__self__, "aws_region_name", aws_region_name)
         pulumi.set(__self__, "aws_secret_key", aws_secret_key)
@@ -17419,6 +18854,9 @@ class SourceAwsCloudtrailConfigurationArgs:
     @property
     @pulumi.getter(name="awsKeyId")
     def aws_key_id(self) -> pulumi.Input[str]:
+        """
+        AWS CloudTrail Access Key ID. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "aws_key_id")
 
     @aws_key_id.setter
@@ -17428,6 +18866,9 @@ class SourceAwsCloudtrailConfigurationArgs:
     @property
     @pulumi.getter(name="awsRegionName")
     def aws_region_name(self) -> pulumi.Input[str]:
+        """
+        The default AWS Region to use, for example, us-west-1 or us-west-2. When specifying a Region inline during client initialization, this property is named region_name.
+        """
         return pulumi.get(self, "aws_region_name")
 
     @aws_region_name.setter
@@ -17437,6 +18878,9 @@ class SourceAwsCloudtrailConfigurationArgs:
     @property
     @pulumi.getter(name="awsSecretKey")
     def aws_secret_key(self) -> pulumi.Input[str]:
+        """
+        AWS CloudTrail Access Key ID. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "aws_secret_key")
 
     @aws_secret_key.setter
@@ -17446,6 +18890,9 @@ class SourceAwsCloudtrailConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["aws-cloudtrail"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17455,6 +18902,9 @@ class SourceAwsCloudtrailConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date you would like to replicate data. Data in AWS CloudTrail is available for last 90 days only. Format: YYYY-MM-DD.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -17473,6 +18923,16 @@ class SourceAzureBlobStorageConfigurationArgs:
                  azure_blob_storage_blobs_prefix: Optional[pulumi.Input[str]] = None,
                  azure_blob_storage_endpoint: Optional[pulumi.Input[str]] = None,
                  azure_blob_storage_schema_inference_limit: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] azure_blob_storage_account_key: The Azure blob storage account key.
+        :param pulumi.Input[str] azure_blob_storage_account_name: The account's name of the Azure Blob Storage.
+        :param pulumi.Input[str] azure_blob_storage_container_name: The name of the Azure blob storage container.
+        :param pulumi.Input['SourceAzureBlobStorageConfigurationFormatArgs'] format: Input data format
+        :param pulumi.Input[str] source_type: must be one of ["azure-blob-storage"]
+        :param pulumi.Input[str] azure_blob_storage_blobs_prefix: The Azure blob storage prefix to be applied
+        :param pulumi.Input[str] azure_blob_storage_endpoint: This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+        :param pulumi.Input[int] azure_blob_storage_schema_inference_limit: The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+        """
         pulumi.set(__self__, "azure_blob_storage_account_key", azure_blob_storage_account_key)
         pulumi.set(__self__, "azure_blob_storage_account_name", azure_blob_storage_account_name)
         pulumi.set(__self__, "azure_blob_storage_container_name", azure_blob_storage_container_name)
@@ -17488,6 +18948,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageAccountKey")
     def azure_blob_storage_account_key(self) -> pulumi.Input[str]:
+        """
+        The Azure blob storage account key.
+        """
         return pulumi.get(self, "azure_blob_storage_account_key")
 
     @azure_blob_storage_account_key.setter
@@ -17497,6 +18960,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageAccountName")
     def azure_blob_storage_account_name(self) -> pulumi.Input[str]:
+        """
+        The account's name of the Azure Blob Storage.
+        """
         return pulumi.get(self, "azure_blob_storage_account_name")
 
     @azure_blob_storage_account_name.setter
@@ -17506,6 +18972,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageContainerName")
     def azure_blob_storage_container_name(self) -> pulumi.Input[str]:
+        """
+        The name of the Azure blob storage container.
+        """
         return pulumi.get(self, "azure_blob_storage_container_name")
 
     @azure_blob_storage_container_name.setter
@@ -17515,6 +18984,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input['SourceAzureBlobStorageConfigurationFormatArgs']:
+        """
+        Input data format
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -17524,6 +18996,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["azure-blob-storage"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17533,6 +19008,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageBlobsPrefix")
     def azure_blob_storage_blobs_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Azure blob storage prefix to be applied
+        """
         return pulumi.get(self, "azure_blob_storage_blobs_prefix")
 
     @azure_blob_storage_blobs_prefix.setter
@@ -17542,6 +19020,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageEndpoint")
     def azure_blob_storage_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        This is Azure Blob Storage endpoint domain name. Leave default value (or leave it empty if run container from command line) to use Microsoft native from example.
+        """
         return pulumi.get(self, "azure_blob_storage_endpoint")
 
     @azure_blob_storage_endpoint.setter
@@ -17551,6 +19032,9 @@ class SourceAzureBlobStorageConfigurationArgs:
     @property
     @pulumi.getter(name="azureBlobStorageSchemaInferenceLimit")
     def azure_blob_storage_schema_inference_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The Azure blob storage blobs to scan for inferring the schema, useful on large amounts of data with consistent structure
+        """
         return pulumi.get(self, "azure_blob_storage_schema_inference_limit")
 
     @azure_blob_storage_schema_inference_limit.setter
@@ -17626,6 +19110,12 @@ class SourceAzureTableConfigurationArgs:
                  storage_access_key: pulumi.Input[str],
                  storage_account_name: pulumi.Input[str],
                  storage_endpoint_suffix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["azure-table"]
+        :param pulumi.Input[str] storage_access_key: Azure Table Storage Access Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] storage_account_name: The name of your storage account.
+        :param pulumi.Input[str] storage_endpoint_suffix: Azure Table Storage service account URL suffix. See the \\n\\ndocs\\n\\n for more information on how to obtain endpoint suffix
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "storage_access_key", storage_access_key)
         pulumi.set(__self__, "storage_account_name", storage_account_name)
@@ -17635,6 +19125,9 @@ class SourceAzureTableConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["azure-table"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17644,6 +19137,9 @@ class SourceAzureTableConfigurationArgs:
     @property
     @pulumi.getter(name="storageAccessKey")
     def storage_access_key(self) -> pulumi.Input[str]:
+        """
+        Azure Table Storage Access Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "storage_access_key")
 
     @storage_access_key.setter
@@ -17653,6 +19149,9 @@ class SourceAzureTableConfigurationArgs:
     @property
     @pulumi.getter(name="storageAccountName")
     def storage_account_name(self) -> pulumi.Input[str]:
+        """
+        The name of your storage account.
+        """
         return pulumi.get(self, "storage_account_name")
 
     @storage_account_name.setter
@@ -17662,6 +19161,9 @@ class SourceAzureTableConfigurationArgs:
     @property
     @pulumi.getter(name="storageEndpointSuffix")
     def storage_endpoint_suffix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Azure Table Storage service account URL suffix. See the \\n\\ndocs\\n\\n for more information on how to obtain endpoint suffix
+        """
         return pulumi.get(self, "storage_endpoint_suffix")
 
     @storage_endpoint_suffix.setter
@@ -17677,6 +19179,13 @@ class SourceBambooHrConfigurationArgs:
                  subdomain: pulumi.Input[str],
                  custom_reports_fields: Optional[pulumi.Input[str]] = None,
                  custom_reports_include_default_fields: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] api_key: Api key of bamboo hr
+        :param pulumi.Input[str] source_type: must be one of ["bamboo-hr"]
+        :param pulumi.Input[str] subdomain: Sub Domain of bamboo hr
+        :param pulumi.Input[str] custom_reports_fields: Comma-separated list of fields to include in custom reports.
+        :param pulumi.Input[bool] custom_reports_include_default_fields: If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "subdomain", subdomain)
@@ -17688,6 +19197,9 @@ class SourceBambooHrConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Api key of bamboo hr
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -17697,6 +19209,9 @@ class SourceBambooHrConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bamboo-hr"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17706,6 +19221,9 @@ class SourceBambooHrConfigurationArgs:
     @property
     @pulumi.getter
     def subdomain(self) -> pulumi.Input[str]:
+        """
+        Sub Domain of bamboo hr
+        """
         return pulumi.get(self, "subdomain")
 
     @subdomain.setter
@@ -17715,6 +19233,9 @@ class SourceBambooHrConfigurationArgs:
     @property
     @pulumi.getter(name="customReportsFields")
     def custom_reports_fields(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma-separated list of fields to include in custom reports.
+        """
         return pulumi.get(self, "custom_reports_fields")
 
     @custom_reports_fields.setter
@@ -17724,6 +19245,9 @@ class SourceBambooHrConfigurationArgs:
     @property
     @pulumi.getter(name="customReportsIncludeDefaultFields")
     def custom_reports_include_default_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the custom reports endpoint will include the default fields defined here: https://documentation.bamboohr.com/docs/list-of-field-names.
+        """
         return pulumi.get(self, "custom_reports_include_default_fields")
 
     @custom_reports_include_default_fields.setter
@@ -17738,6 +19262,12 @@ class SourceBigcommerceConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  store_hash: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Access Token for making authenticated requests.
+        :param pulumi.Input[str] source_type: must be one of ["bigcommerce"]
+        :param pulumi.Input[str] start_date: The date you would like to replicate data. Format: YYYY-MM-DD.
+        :param pulumi.Input[str] store_hash: The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -17746,6 +19276,9 @@ class SourceBigcommerceConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Access Token for making authenticated requests.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -17755,6 +19288,9 @@ class SourceBigcommerceConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bigcommerce"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17764,6 +19300,9 @@ class SourceBigcommerceConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date you would like to replicate data. Format: YYYY-MM-DD.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -17773,6 +19312,9 @@ class SourceBigcommerceConfigurationArgs:
     @property
     @pulumi.getter(name="storeHash")
     def store_hash(self) -> pulumi.Input[str]:
+        """
+        The hash code of the store. For https://api.bigcommerce.com/stores/HASH*CODE/v3/, The store's hash code is 'HASH*CODE'.
+        """
         return pulumi.get(self, "store_hash")
 
     @store_hash.setter
@@ -17787,6 +19329,12 @@ class SourceBigqueryConfigurationArgs:
                  project_id: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  dataset_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] credentials_json: The contents of your Service Account Key JSON file. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] project_id: The GCP project ID for the project containing the target BigQuery dataset.
+        :param pulumi.Input[str] source_type: must be one of ["bigquery"]
+        :param pulumi.Input[str] dataset_id: The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+        """
         pulumi.set(__self__, "credentials_json", credentials_json)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -17796,6 +19344,9 @@ class SourceBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> pulumi.Input[str]:
+        """
+        The contents of your Service Account Key JSON file. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -17805,6 +19356,9 @@ class SourceBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The GCP project ID for the project containing the target BigQuery dataset.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -17814,6 +19368,9 @@ class SourceBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bigquery"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17823,6 +19380,9 @@ class SourceBigqueryConfigurationArgs:
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The dataset ID to search for tables and views. If you are only loading data from one dataset, setting this option could result in much faster schema discovery.
+        """
         return pulumi.get(self, "dataset_id")
 
     @dataset_id.setter
@@ -17842,6 +19402,17 @@ class SourceBingAdsConfigurationArgs:
                  client_secret: Optional[pulumi.Input[str]] = None,
                  lookback_window: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_id: The Client ID of your Microsoft Advertising developer application.
+        :param pulumi.Input[str] developer_token: Developer token associated with user. See more info \\n\\n in the docs\\n\\n.
+        :param pulumi.Input[str] refresh_token: Refresh Token to renew the expired Access Token.
+        :param pulumi.Input[str] reports_start_date: The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
+        :param pulumi.Input[str] source_type: must be one of ["bing-ads"]
+        :param pulumi.Input[str] auth_method: must be one of ["oauth2.0"]
+        :param pulumi.Input[str] client_secret: The Client Secret of your Microsoft Advertising developer application.
+        :param pulumi.Input[int] lookback_window: Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+        :param pulumi.Input[str] tenant_id: The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "developer_token", developer_token)
         pulumi.set(__self__, "refresh_token", refresh_token)
@@ -17859,6 +19430,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Microsoft Advertising developer application.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -17868,6 +19442,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="developerToken")
     def developer_token(self) -> pulumi.Input[str]:
+        """
+        Developer token associated with user. See more info \\n\\n in the docs\\n\\n.
+        """
         return pulumi.get(self, "developer_token")
 
     @developer_token.setter
@@ -17877,6 +19454,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        Refresh Token to renew the expired Access Token.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -17886,6 +19466,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="reportsStartDate")
     def reports_start_date(self) -> pulumi.Input[str]:
+        """
+        The start date from which to begin replicating report data. Any data generated before this date will not be replicated in reports. This is a UTC date in YYYY-MM-DD format.
+        """
         return pulumi.get(self, "reports_start_date")
 
     @reports_start_date.setter
@@ -17895,6 +19478,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["bing-ads"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -17904,6 +19490,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="authMethod")
     def auth_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["oauth2.0"]
+        """
         return pulumi.get(self, "auth_method")
 
     @auth_method.setter
@@ -17913,6 +19502,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client Secret of your Microsoft Advertising developer application.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -17922,6 +19514,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindow")
     def lookback_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        Also known as attribution or conversion window. How far into the past to look for records (in days). If your conversion window has an hours/minutes granularity, round it up to the number of days exceeding. Used only for performance report streams in incremental mode.
+        """
         return pulumi.get(self, "lookback_window")
 
     @lookback_window.setter
@@ -17931,6 +19526,9 @@ class SourceBingAdsConfigurationArgs:
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Tenant ID of your Microsoft Advertising developer application. Set this to "common" unless you know you need a different value.
+        """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
@@ -17947,6 +19545,15 @@ class SourceBraintreeConfigurationArgs:
                  public_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] environment: must be one of ["Development", "Sandbox", "Qa", "Production"]
+               Environment specifies where the data will come from.
+        :param pulumi.Input[str] merchant_id: The unique identifier for your entire gateway account. See the \\n\\ndocs\\n\\n for more information on how to obtain this ID.
+        :param pulumi.Input[str] private_key: Braintree Private Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] public_key: Braintree Public Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] source_type: must be one of ["braintree"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "merchant_id", merchant_id)
         pulumi.set(__self__, "private_key", private_key)
@@ -17958,6 +19565,10 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        must be one of ["Development", "Sandbox", "Qa", "Production"]
+        Environment specifies where the data will come from.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -17967,6 +19578,9 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter(name="merchantId")
     def merchant_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier for your entire gateway account. See the \\n\\ndocs\\n\\n for more information on how to obtain this ID.
+        """
         return pulumi.get(self, "merchant_id")
 
     @merchant_id.setter
@@ -17976,6 +19590,9 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
+        """
+        Braintree Private Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -17985,6 +19602,9 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Input[str]:
+        """
+        Braintree Public Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
@@ -17994,6 +19614,9 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["braintree"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18003,6 +19626,9 @@ class SourceBraintreeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18017,6 +19643,12 @@ class SourceBrazeConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  url: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Braze REST API key
+        :param pulumi.Input[str] source_type: must be one of ["braze"]
+        :param pulumi.Input[str] start_date: Rows after this date will be synced
+        :param pulumi.Input[str] url: Braze REST API endpoint
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -18025,6 +19657,9 @@ class SourceBrazeConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Braze REST API key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18034,6 +19669,9 @@ class SourceBrazeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["braze"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18043,6 +19681,9 @@ class SourceBrazeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Rows after this date will be synced
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18052,6 +19693,9 @@ class SourceBrazeConfigurationArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        Braze REST API endpoint
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -18067,6 +19711,14 @@ class SourceChargebeeConfigurationArgs:
                  site_api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] product_catalog: must be one of ["1.0", "2.0"]
+               Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \\n\\nhere\\n\\n under `API Version` section.
+        :param pulumi.Input[str] site: The site prefix for your Chargebee instance.
+        :param pulumi.Input[str] site_api_key: Chargebee API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] source_type: must be one of ["chargebee"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "product_catalog", product_catalog)
         pulumi.set(__self__, "site", site)
         pulumi.set(__self__, "site_api_key", site_api_key)
@@ -18076,6 +19728,10 @@ class SourceChargebeeConfigurationArgs:
     @property
     @pulumi.getter(name="productCatalog")
     def product_catalog(self) -> pulumi.Input[str]:
+        """
+        must be one of ["1.0", "2.0"]
+        Product Catalog version of your Chargebee site. Instructions on how to find your version you may find \\n\\nhere\\n\\n under `API Version` section.
+        """
         return pulumi.get(self, "product_catalog")
 
     @product_catalog.setter
@@ -18085,6 +19741,9 @@ class SourceChargebeeConfigurationArgs:
     @property
     @pulumi.getter
     def site(self) -> pulumi.Input[str]:
+        """
+        The site prefix for your Chargebee instance.
+        """
         return pulumi.get(self, "site")
 
     @site.setter
@@ -18094,6 +19753,9 @@ class SourceChargebeeConfigurationArgs:
     @property
     @pulumi.getter(name="siteApiKey")
     def site_api_key(self) -> pulumi.Input[str]:
+        """
+        Chargebee API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "site_api_key")
 
     @site_api_key.setter
@@ -18103,6 +19765,9 @@ class SourceChargebeeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["chargebee"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18112,6 +19777,9 @@ class SourceChargebeeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2021-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18126,6 +19794,13 @@ class SourceChartmogulConfigurationArgs:
                  interval: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Your Chartmogul API key. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        :param pulumi.Input[str] interval: must be one of ["day", "week", "month", "quarter"]
+               Some APIs such as \\n\\nMetrics\\n\\n require intervals to cluster data.
+        :param pulumi.Input[str] source_type: must be one of ["chartmogul"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "source_type", source_type)
@@ -18134,6 +19809,9 @@ class SourceChartmogulConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your Chartmogul API key. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18143,6 +19821,10 @@ class SourceChartmogulConfigurationArgs:
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Input[str]:
+        """
+        must be one of ["day", "week", "month", "quarter"]
+        Some APIs such as \\n\\nMetrics\\n\\n require intervals to cluster data.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -18152,6 +19834,9 @@ class SourceChartmogulConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["chartmogul"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18161,6 +19846,9 @@ class SourceChartmogulConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. When feasible, any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18178,6 +19866,15 @@ class SourceClickhouseConfigurationArgs:
                  username: pulumi.Input[str],
                  password: Optional[pulumi.Input[str]] = None,
                  tunnel_method: Optional[pulumi.Input['SourceClickhouseConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: The name of the database.
+        :param pulumi.Input[str] host: The host endpoint of the Clickhouse cluster.
+        :param pulumi.Input[int] port: The port of the database.
+        :param pulumi.Input[str] source_type: must be one of ["clickhouse"]
+        :param pulumi.Input[str] username: The username which is used to access the database.
+        :param pulumi.Input[str] password: The password associated with this username.
+        :param pulumi.Input['SourceClickhouseConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -18191,6 +19888,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -18200,6 +19900,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The host endpoint of the Clickhouse cluster.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -18209,6 +19912,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -18218,6 +19924,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["clickhouse"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18227,6 +19936,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -18236,6 +19948,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with this username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -18245,6 +19960,9 @@ class SourceClickhouseConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourceClickhouseConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -18611,6 +20329,15 @@ class SourceClickupApiConfigurationArgs:
                  list_id: Optional[pulumi.Input[str]] = None,
                  space_id: Optional[pulumi.Input[str]] = None,
                  team_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_token: Every ClickUp API call required authentication. This field is your personal API token. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["clickup-api"]
+        :param pulumi.Input[str] folder_id: The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[bool] include_closed_tasks: Include or exclude closed tasks. By default, they are excluded. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] list_id: The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] space_id: The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] team_id: The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \\n\\nhere\\n\\n.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
         if folder_id is not None:
@@ -18627,6 +20354,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Every ClickUp API call required authentication. This field is your personal API token. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -18636,6 +20366,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["clickup-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18645,6 +20378,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of your folder in your space. Retrieve it from the `/space/{space_id}/folder` of the ClickUp API. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -18654,6 +20390,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="includeClosedTasks")
     def include_closed_tasks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Include or exclude closed tasks. By default, they are excluded. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "include_closed_tasks")
 
     @include_closed_tasks.setter
@@ -18663,6 +20402,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="listId")
     def list_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of your list in your folder. Retrieve it from the `/folder/{folder_id}/list` of the ClickUp API. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "list_id")
 
     @list_id.setter
@@ -18672,6 +20414,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="spaceId")
     def space_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of your space in your workspace. Retrieve it from the `/team/{team_id}/space` of the ClickUp API. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "space_id")
 
     @space_id.setter
@@ -18681,6 +20426,9 @@ class SourceClickupApiConfigurationArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of your team in ClickUp. Retrieve it from the `/team` of the ClickUp API. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -18695,6 +20443,12 @@ class SourceClockifyConfigurationArgs:
                  source_type: pulumi.Input[str],
                  workspace_id: pulumi.Input[str],
                  api_url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: You can get your api access_key \\n\\nhere\\n\\n This API is Case Sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["clockify"]
+        :param pulumi.Input[str] workspace_id: WorkSpace Id
+        :param pulumi.Input[str] api_url: The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "workspace_id", workspace_id)
@@ -18704,6 +20458,9 @@ class SourceClockifyConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        You can get your api access_key \\n\\nhere\\n\\n This API is Case Sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18713,6 +20470,9 @@ class SourceClockifyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["clockify"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18722,6 +20482,9 @@ class SourceClockifyConfigurationArgs:
     @property
     @pulumi.getter(name="workspaceId")
     def workspace_id(self) -> pulumi.Input[str]:
+        """
+        WorkSpace Id
+        """
         return pulumi.get(self, "workspace_id")
 
     @workspace_id.setter
@@ -18731,6 +20494,9 @@ class SourceClockifyConfigurationArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL for the Clockify API. This should only need to be modified if connecting to an enterprise version of Clockify.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -18744,6 +20510,11 @@ class SourceCloseComConfigurationArgs:
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Close.com API key (usually starts with 'api_'; find yours \\n\\nhere\\n\\n).
+        :param pulumi.Input[str] source_type: must be one of ["close-com"]
+        :param pulumi.Input[str] start_date: The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         if start_date is not None:
@@ -18752,6 +20523,9 @@ class SourceCloseComConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Close.com API key (usually starts with 'api_'; find yours \\n\\nhere\\n\\n).
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18761,6 +20535,9 @@ class SourceCloseComConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["close-com"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18770,6 +20547,9 @@ class SourceCloseComConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The start date to sync data; all data after this date will be replicated. Leave blank to retrieve all the data available in the account. Format: YYYY-MM-DD.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18782,12 +20562,19 @@ class SourceCodaConfigurationArgs:
     def __init__(__self__, *,
                  auth_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] auth_token: Bearer token
+        :param pulumi.Input[str] source_type: must be one of ["coda"]
+        """
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="authToken")
     def auth_token(self) -> pulumi.Input[str]:
+        """
+        Bearer token
+        """
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
@@ -18797,6 +20584,9 @@ class SourceCodaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["coda"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18815,6 +20605,22 @@ class SourceCoinApiConfigurationArgs:
                  symbol_id: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  limit: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] environment: must be one of ["sandbox", "production"]
+               The environment to use. Either sandbox or production.
+        :param pulumi.Input[str] period: The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+        :param pulumi.Input[str] source_type: must be one of ["coin-api"]
+        :param pulumi.Input[str] start_date: The start date in ISO 8601 format.
+        :param pulumi.Input[str] symbol_id: The symbol ID to use. See the documentation for a list.
+               https://docs.coinapi.io/#list-all-symbols-get
+        :param pulumi.Input[str] end_date: The end date in ISO 8601 format. If not supplied, data will be returned
+               from the start date to the current time, or when the count of result
+               elements reaches its limit.
+        :param pulumi.Input[int] limit: The maximum number of elements to return. If not supplied, the default
+               is 100. For numbers larger than 100, each 100 items is counted as one
+               request for pricing purposes. Maximum value is 100000.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "period", period)
@@ -18829,6 +20635,9 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18838,6 +20647,10 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sandbox", "production"]
+        The environment to use. Either sandbox or production.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -18847,6 +20660,9 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter
     def period(self) -> pulumi.Input[str]:
+        """
+        The period to use. See the documentation for a list. https://docs.coinapi.io/#list-all-periods-get
+        """
         return pulumi.get(self, "period")
 
     @period.setter
@@ -18856,6 +20672,9 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["coin-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18865,6 +20684,9 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The start date in ISO 8601 format.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -18874,6 +20696,10 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter(name="symbolId")
     def symbol_id(self) -> pulumi.Input[str]:
+        """
+        The symbol ID to use. See the documentation for a list.
+        https://docs.coinapi.io/#list-all-symbols-get
+        """
         return pulumi.get(self, "symbol_id")
 
     @symbol_id.setter
@@ -18883,6 +20709,11 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end date in ISO 8601 format. If not supplied, data will be returned
+        from the start date to the current time, or when the count of result
+        elements reaches its limit.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -18892,6 +20723,11 @@ class SourceCoinApiConfigurationArgs:
     @property
     @pulumi.getter
     def limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of elements to return. If not supplied, the default
+        is 100. For numbers larger than 100, each 100 items is counted as one
+        request for pricing purposes. Maximum value is 100000.
+        """
         return pulumi.get(self, "limit")
 
     @limit.setter
@@ -18906,6 +20742,13 @@ class SourceCoinmarketcapConfigurationArgs:
                  data_type: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  symbols: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. See \\n\\nhere\\n\\n. The token is case sensitive.
+        :param pulumi.Input[str] data_type: must be one of ["latest", "historical"]
+               /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["coinmarketcap"]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] symbols: Cryptocurrency symbols. (only used for quotes stream)
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "data_type", data_type)
         pulumi.set(__self__, "source_type", source_type)
@@ -18915,6 +20758,9 @@ class SourceCoinmarketcapConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n. The token is case sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -18924,6 +20770,10 @@ class SourceCoinmarketcapConfigurationArgs:
     @property
     @pulumi.getter(name="dataType")
     def data_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["latest", "historical"]
+        /latest: Latest market ticker quotes and averages for cryptocurrencies and exchanges. /historical: Intervals of historic market data like OHLCV data or data for use in charting libraries. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "data_type")
 
     @data_type.setter
@@ -18933,6 +20783,9 @@ class SourceCoinmarketcapConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["coinmarketcap"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18942,6 +20795,9 @@ class SourceCoinmarketcapConfigurationArgs:
     @property
     @pulumi.getter
     def symbols(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Cryptocurrency symbols. (only used for quotes stream)
+        """
         return pulumi.get(self, "symbols")
 
     @symbols.setter
@@ -18955,6 +20811,11 @@ class SourceConfigcatConfigurationArgs:
                  password: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  username: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] password: Basic auth password. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["configcat"]
+        :param pulumi.Input[str] username: Basic auth user name. See \\n\\nhere\\n\\n.
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "username", username)
@@ -18962,6 +20823,9 @@ class SourceConfigcatConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Basic auth password. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -18971,6 +20835,9 @@ class SourceConfigcatConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["configcat"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -18980,6 +20847,9 @@ class SourceConfigcatConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Basic auth user name. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -18994,6 +20864,12 @@ class SourceConfluenceConfigurationArgs:
                  domain_name: pulumi.Input[str],
                  email: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_token: Please follow the Jira confluence for generating an API token: \\n\\ngenerating an API token\\n\\n.
+        :param pulumi.Input[str] domain_name: Your Confluence domain name
+        :param pulumi.Input[str] email: Your Confluence login email
+        :param pulumi.Input[str] source_type: must be one of ["confluence"]
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "domain_name", domain_name)
         pulumi.set(__self__, "email", email)
@@ -19002,6 +20878,9 @@ class SourceConfluenceConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Please follow the Jira confluence for generating an API token: \\n\\ngenerating an API token\\n\\n.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -19011,6 +20890,9 @@ class SourceConfluenceConfigurationArgs:
     @property
     @pulumi.getter(name="domainName")
     def domain_name(self) -> pulumi.Input[str]:
+        """
+        Your Confluence domain name
+        """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
@@ -19020,6 +20902,9 @@ class SourceConfluenceConfigurationArgs:
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
+        """
+        Your Confluence login email
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -19029,6 +20914,9 @@ class SourceConfluenceConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["confluence"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19042,6 +20930,10 @@ class SourceConvexConfigurationArgs:
                  access_key: pulumi.Input[str],
                  deployment_url: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_key: API access key used to retrieve data from Convex.
+        :param pulumi.Input[str] source_type: must be one of ["convex"]
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "deployment_url", deployment_url)
         pulumi.set(__self__, "source_type", source_type)
@@ -19049,6 +20941,9 @@ class SourceConvexConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        API access key used to retrieve data from Convex.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -19067,6 +20962,9 @@ class SourceConvexConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["convex"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19086,6 +20984,18 @@ class SourceDatadogConfigurationArgs:
                  query: Optional[pulumi.Input[str]] = None,
                  site: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Datadog API key
+        :param pulumi.Input[str] application_key: Datadog application key
+        :param pulumi.Input[str] source_type: must be one of ["datadog"]
+        :param pulumi.Input[str] end_date: UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+        :param pulumi.Input[int] max_records_per_request: Maximum number of records to collect per request.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceDatadogConfigurationQueryArgs']]] queries: List of queries to be run and used as inputs.
+        :param pulumi.Input[str] query: The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+        :param pulumi.Input[str] site: must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+               The site where Datadog data resides in.
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "application_key", application_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -19105,6 +21015,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Datadog API key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -19114,6 +21027,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="applicationKey")
     def application_key(self) -> pulumi.Input[str]:
+        """
+        Datadog application key
+        """
         return pulumi.get(self, "application_key")
 
     @application_key.setter
@@ -19123,6 +21039,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["datadog"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19132,6 +21051,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Data after this date will  not be replicated. An empty value will represent the current datetime for each  execution. This just applies to Incremental syncs.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -19141,6 +21063,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="maxRecordsPerRequest")
     def max_records_per_request(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of records to collect per request.
+        """
         return pulumi.get(self, "max_records_per_request")
 
     @max_records_per_request.setter
@@ -19150,6 +21075,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter
     def queries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceDatadogConfigurationQueryArgs']]]]:
+        """
+        List of queries to be run and used as inputs.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -19159,6 +21087,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        The search query. This just applies to Incremental syncs. If empty, it'll collect all logs.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -19168,6 +21099,10 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter
     def site(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["datadoghq.com", "us3.datadoghq.com", "us5.datadoghq.com", "datadoghq.eu", "ddog-gov.com"]
+        The site where Datadog data resides in.
+        """
         return pulumi.get(self, "site")
 
     @site.setter
@@ -19177,6 +21112,9 @@ class SourceDatadogConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. This just applies to Incremental syncs.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -19228,6 +21166,11 @@ class SourceDatascopeConfigurationArgs:
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] source_type: must be one of ["datascope"]
+        :param pulumi.Input[str] start_date: Start date for the data to be replicated
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -19235,6 +21178,9 @@ class SourceDatascopeConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -19244,6 +21190,9 @@ class SourceDatascopeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["datascope"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19253,6 +21202,9 @@ class SourceDatascopeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start date for the data to be replicated
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -19266,6 +21218,11 @@ class SourceDelightedConfigurationArgs:
                  api_key: pulumi.Input[str],
                  since: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: A Delighted API key.
+        :param pulumi.Input[str] since: The date from which you'd like to replicate the data
+        :param pulumi.Input[str] source_type: must be one of ["delighted"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "since", since)
         pulumi.set(__self__, "source_type", source_type)
@@ -19273,6 +21230,9 @@ class SourceDelightedConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        A Delighted API key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -19282,6 +21242,9 @@ class SourceDelightedConfigurationArgs:
     @property
     @pulumi.getter
     def since(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate the data
+        """
         return pulumi.get(self, "since")
 
     @since.setter
@@ -19291,6 +21254,9 @@ class SourceDelightedConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["delighted"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19305,6 +21271,12 @@ class SourceDixaConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  batch_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] api_token: Dixa API token
+        :param pulumi.Input[str] source_type: must be one of ["dixa"]
+        :param pulumi.Input[str] start_date: The connector pulls records updated from this date onwards.
+        :param pulumi.Input[int] batch_size: Number of days to batch into one request. Max 31.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -19314,6 +21286,9 @@ class SourceDixaConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Dixa API token
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -19323,6 +21298,9 @@ class SourceDixaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dixa"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19332,6 +21310,9 @@ class SourceDixaConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The connector pulls records updated from this date onwards.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -19341,6 +21322,9 @@ class SourceDixaConfigurationArgs:
     @property
     @pulumi.getter(name="batchSize")
     def batch_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days to batch into one request. Max 31.
+        """
         return pulumi.get(self, "batch_size")
 
     @batch_size.setter
@@ -19353,12 +21337,19 @@ class SourceDockerhubConfigurationArgs:
     def __init__(__self__, *,
                  docker_username: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] docker_username: Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
+        :param pulumi.Input[str] source_type: must be one of ["dockerhub"]
+        """
         pulumi.set(__self__, "docker_username", docker_username)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="dockerUsername")
     def docker_username(self) -> pulumi.Input[str]:
+        """
+        Username of DockerHub person or organization (for https://hub.docker.com/v2/repositories/USERNAME/ API call)
+        """
         return pulumi.get(self, "docker_username")
 
     @docker_username.setter
@@ -19368,6 +21359,9 @@ class SourceDockerhubConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dockerhub"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19381,6 +21375,11 @@ class SourceDremioConfigurationArgs:
                  api_key: pulumi.Input[str],
                  base_url: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key that is generated when you authenticate to Dremio API
+        :param pulumi.Input[str] base_url: URL of your Dremio instance
+        :param pulumi.Input[str] source_type: must be one of ["dremio"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "base_url", base_url)
         pulumi.set(__self__, "source_type", source_type)
@@ -19388,6 +21387,9 @@ class SourceDremioConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key that is generated when you authenticate to Dremio API
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -19397,6 +21399,9 @@ class SourceDremioConfigurationArgs:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[str]:
+        """
+        URL of your Dremio instance
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -19406,6 +21411,9 @@ class SourceDremioConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dremio"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19422,6 +21430,15 @@ class SourceDynamodbConfigurationArgs:
                  endpoint: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reserved_attribute_names: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_key_id: The access key id to access Dynamodb. Airbyte requires read permissions to the database
+        :param pulumi.Input[str] secret_access_key: The corresponding secret to the access key id.
+        :param pulumi.Input[str] source_type: must be one of ["dynamodb"]
+        :param pulumi.Input[str] endpoint: the URL of the Dynamodb database
+        :param pulumi.Input[str] region: must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+               The region of the Dynamodb database
+        :param pulumi.Input[str] reserved_attribute_names: Comma separated reserved attribute names present in your tables
+        """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "secret_access_key", secret_access_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -19435,6 +21452,9 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Input[str]:
+        """
+        The access key id to access Dynamodb. Airbyte requires read permissions to the database
+        """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
@@ -19444,6 +21464,9 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> pulumi.Input[str]:
+        """
+        The corresponding secret to the access key id.
+        """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
@@ -19453,6 +21476,9 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["dynamodb"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19462,6 +21488,9 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        the URL of the Dynamodb database
+        """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
@@ -19471,6 +21500,10 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["", "us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-1", "ap-northeast-1", "ap-northeast-2", "ap-northeast-3", "ap-southeast-1", "ap-southeast-2", "ca-central-1", "cn-north-1", "cn-northwest-1", "eu-central-1", "eu-north-1", "eu-south-1", "eu-west-1", "eu-west-2", "eu-west-3", "sa-east-1", "me-south-1", "us-gov-east-1", "us-gov-west-1"]
+        The region of the Dynamodb database
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -19480,6 +21513,9 @@ class SourceDynamodbConfigurationArgs:
     @property
     @pulumi.getter(name="reservedAttributeNames")
     def reserved_attribute_names(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comma separated reserved attribute names present in your tables
+        """
         return pulumi.get(self, "reserved_attribute_names")
 
     @reserved_attribute_names.setter
@@ -19496,6 +21532,13 @@ class SourceE2eTestCloudConfigurationArgs:
                  message_interval_ms: Optional[pulumi.Input[int]] = None,
                  seed: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] max_messages: Number of records to emit per stream. Min 1. Max 100 billion.
+        :param pulumi.Input[str] source_type: must be one of ["e2e-test-cloud"]
+        :param pulumi.Input[int] message_interval_ms: Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
+        :param pulumi.Input[int] seed: When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+        :param pulumi.Input[str] type: must be one of ["CONTINUOUS_FEED"]
+        """
         pulumi.set(__self__, "max_messages", max_messages)
         pulumi.set(__self__, "mock_catalog", mock_catalog)
         pulumi.set(__self__, "source_type", source_type)
@@ -19509,6 +21552,9 @@ class SourceE2eTestCloudConfigurationArgs:
     @property
     @pulumi.getter(name="maxMessages")
     def max_messages(self) -> pulumi.Input[int]:
+        """
+        Number of records to emit per stream. Min 1. Max 100 billion.
+        """
         return pulumi.get(self, "max_messages")
 
     @max_messages.setter
@@ -19527,6 +21573,9 @@ class SourceE2eTestCloudConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["e2e-test-cloud"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19536,6 +21585,9 @@ class SourceE2eTestCloudConfigurationArgs:
     @property
     @pulumi.getter(name="messageIntervalMs")
     def message_interval_ms(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval between messages in ms. Min 0 ms. Max 60000 ms (1 minute).
+        """
         return pulumi.get(self, "message_interval_ms")
 
     @message_interval_ms.setter
@@ -19545,6 +21597,9 @@ class SourceE2eTestCloudConfigurationArgs:
     @property
     @pulumi.getter
     def seed(self) -> Optional[pulumi.Input[int]]:
+        """
+        When the seed is unspecified, the current time millis will be used as the seed. Range: [0, 1000000].
+        """
         return pulumi.get(self, "seed")
 
     @seed.setter
@@ -19554,6 +21609,9 @@ class SourceE2eTestCloudConfigurationArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["CONTINUOUS_FEED"]
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -19773,12 +21831,19 @@ class SourceEmailoctopusConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: EmailOctopus API Key. See the \\n\\ndocs\\n\\n for information on how to generate this key.
+        :param pulumi.Input[str] source_type: must be one of ["emailoctopus"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        EmailOctopus API Key. See the \\n\\ndocs\\n\\n for information on how to generate this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -19788,6 +21853,9 @@ class SourceEmailoctopusConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["emailoctopus"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19803,6 +21871,13 @@ class SourceExchangeRatesConfigurationArgs:
                  start_date: pulumi.Input[str],
                  base: Optional[pulumi.Input[str]] = None,
                  ignore_weekends: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] access_key: Your API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["exchange-rates"]
+        :param pulumi.Input[str] start_date: Start getting data from that date.
+        :param pulumi.Input[str] base: ISO reference currency. See \\n\\nhere\\n\\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+        :param pulumi.Input[bool] ignore_weekends: Ignore weekends? (Exchanges don't run on weekends)
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -19814,6 +21889,9 @@ class SourceExchangeRatesConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -19823,6 +21901,9 @@ class SourceExchangeRatesConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["exchange-rates"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19832,6 +21913,9 @@ class SourceExchangeRatesConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start getting data from that date.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -19841,6 +21925,9 @@ class SourceExchangeRatesConfigurationArgs:
     @property
     @pulumi.getter
     def base(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISO reference currency. See \\n\\nhere\\n\\n. Free plan doesn't support Source Currency Switching, default base currency is EUR
+        """
         return pulumi.get(self, "base")
 
     @base.setter
@@ -19850,6 +21937,9 @@ class SourceExchangeRatesConfigurationArgs:
     @property
     @pulumi.getter(name="ignoreWeekends")
     def ignore_weekends(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Ignore weekends? (Exchanges don't run on weekends)
+        """
         return pulumi.get(self, "ignore_weekends")
 
     @ignore_weekends.setter
@@ -19874,6 +21964,22 @@ class SourceFacebookMarketingConfigurationArgs:
                  insights_lookback_window: Optional[pulumi.Input[int]] = None,
                  max_batch_size: Optional[pulumi.Input[int]] = None,
                  page_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] access_token: The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \\n\\nads*management, ads*read, read*insights, business*management\\n\\n. Then click on "Get token". See the \\n\\ndocs\\n\\n for more information.
+        :param pulumi.Input[str] account_id: The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \\n\\ndocs\\n\\n for more information.
+        :param pulumi.Input[str] source_type: must be one of ["facebook-marketing"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[bool] action_breakdowns_allow_empty: Allows action_breakdowns to be an empty list
+        :param pulumi.Input[str] client_id: The Client Id for your OAuth app
+        :param pulumi.Input[str] client_secret: The Client Secret for your OAuth app
+        :param pulumi.Input[Sequence[pulumi.Input['SourceFacebookMarketingConfigurationCustomInsightArgs']]] custom_insights: A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+        :param pulumi.Input[str] end_date: The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+        :param pulumi.Input[bool] fetch_thumbnail_images: Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+        :param pulumi.Input[bool] include_deleted: Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+        :param pulumi.Input[int] insights_lookback_window: The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+        :param pulumi.Input[int] max_batch_size: Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+        :param pulumi.Input[int] page_size: Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -19902,6 +22008,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        The value of the generated access token. From your App’s Dashboard, click on "Marketing API" then "Tools". Select permissions \\n\\nads*management, ads*read, read*insights, business*management\\n\\n. Then click on "Get token". See the \\n\\ndocs\\n\\n for more information.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -19911,6 +22020,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[str]:
+        """
+        The Facebook Ad account ID to use when pulling data from the Facebook Marketing API. Open your Meta Ads Manager. The Ad account ID number is in the account dropdown menu or in your browser's address bar. See the \\n\\ndocs\\n\\n for more information.
+        """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
@@ -19920,6 +22032,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["facebook-marketing"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -19929,6 +22044,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -19938,6 +22056,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="actionBreakdownsAllowEmpty")
     def action_breakdowns_allow_empty(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows action_breakdowns to be an empty list
+        """
         return pulumi.get(self, "action_breakdowns_allow_empty")
 
     @action_breakdowns_allow_empty.setter
@@ -19947,6 +22068,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client Id for your OAuth app
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -19956,6 +22080,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client Secret for your OAuth app
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -19965,6 +22092,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="customInsights")
     def custom_insights(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceFacebookMarketingConfigurationCustomInsightArgs']]]]:
+        """
+        A list which contains ad statistics entries, each entry must have a name and can contains fields, breakdowns or action*breakdowns. Click on "add" to fill this field.
+        """
         return pulumi.get(self, "custom_insights")
 
     @custom_insights.setter
@@ -19974,6 +22104,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated between the start date and this end date will be replicated. Not setting this option will result in always syncing the latest data.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -19983,6 +22116,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="fetchThumbnailImages")
     def fetch_thumbnail_images(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to active if you want to fetch the thumbnail*url and store the result in thumbnail*data_url for each Ad Creative.
+        """
         return pulumi.get(self, "fetch_thumbnail_images")
 
     @fetch_thumbnail_images.setter
@@ -19992,6 +22128,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="includeDeleted")
     def include_deleted(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to active if you want to include data from deleted Campaigns, Ads, and AdSets.
+        """
         return pulumi.get(self, "include_deleted")
 
     @include_deleted.setter
@@ -20001,6 +22140,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="insightsLookbackWindow")
     def insights_lookback_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The attribution window. Facebook freezes insight data 28 days after it was generated, which means that all data from the past 28 days may have changed since we last emitted it, so you can retrieve refreshed insights from the past by setting this parameter. If you set a custom lookback window value in Facebook account, please provide the same value here.
+        """
         return pulumi.get(self, "insights_lookback_window")
 
     @insights_lookback_window.setter
@@ -20010,6 +22152,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="maxBatchSize")
     def max_batch_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum batch size used when sending batch requests to Facebook API. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+        """
         return pulumi.get(self, "max_batch_size")
 
     @max_batch_size.setter
@@ -20019,6 +22164,9 @@ class SourceFacebookMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="pageSize")
     def page_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Page size used when sending requests to Facebook API to specify number of records per page when response has pagination. Most users do not need to set this field unless they specifically need to tune the connector to address specific issues or use cases.
+        """
         return pulumi.get(self, "page_size")
 
     @page_size.setter
@@ -20156,6 +22304,11 @@ class SourceFacebookPagesConfigurationArgs:
                  access_token: pulumi.Input[str],
                  page_id: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Facebook Page Access Token
+        :param pulumi.Input[str] page_id: Page ID
+        :param pulumi.Input[str] source_type: must be one of ["facebook-pages"]
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "page_id", page_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -20163,6 +22316,9 @@ class SourceFacebookPagesConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Facebook Page Access Token
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -20172,6 +22328,9 @@ class SourceFacebookPagesConfigurationArgs:
     @property
     @pulumi.getter(name="pageId")
     def page_id(self) -> pulumi.Input[str]:
+        """
+        Page ID
+        """
         return pulumi.get(self, "page_id")
 
     @page_id.setter
@@ -20181,6 +22340,9 @@ class SourceFacebookPagesConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["facebook-pages"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -20197,6 +22359,14 @@ class SourceFakerConfigurationArgs:
                  parallelism: Optional[pulumi.Input[int]] = None,
                  records_per_slice: Optional[pulumi.Input[int]] = None,
                  seed: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] count: How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+        :param pulumi.Input[str] source_type: must be one of ["faker"]
+        :param pulumi.Input[bool] always_updated: Should the updated_at values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+        :param pulumi.Input[int] parallelism: How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+        :param pulumi.Input[int] records_per_slice: How many fake records will be in each page (stream slice), before a state message is emitted?
+        :param pulumi.Input[int] seed: Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+        """
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "source_type", source_type)
         if always_updated is not None:
@@ -20211,6 +22381,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter
     def count(self) -> pulumi.Input[int]:
+        """
+        How many users should be generated in total.  This setting does not apply to the purchases or products stream.
+        """
         return pulumi.get(self, "count")
 
     @count.setter
@@ -20220,6 +22393,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["faker"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -20229,6 +22405,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter(name="alwaysUpdated")
     def always_updated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Should the updated_at values for every record be new each sync?  Setting this to false will case the source to stop emitting records after COUNT records have been emitted.
+        """
         return pulumi.get(self, "always_updated")
 
     @always_updated.setter
@@ -20238,6 +22417,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter
     def parallelism(self) -> Optional[pulumi.Input[int]]:
+        """
+        How many parallel workers should we use to generate fake data?  Choose a value equal to the number of CPUs you will allocate to this source.
+        """
         return pulumi.get(self, "parallelism")
 
     @parallelism.setter
@@ -20247,6 +22429,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter(name="recordsPerSlice")
     def records_per_slice(self) -> Optional[pulumi.Input[int]]:
+        """
+        How many fake records will be in each page (stream slice), before a state message is emitted?
+        """
         return pulumi.get(self, "records_per_slice")
 
     @records_per_slice.setter
@@ -20256,6 +22441,9 @@ class SourceFakerConfigurationArgs:
     @property
     @pulumi.getter
     def seed(self) -> Optional[pulumi.Input[int]]:
+        """
+        Manually control the faker random seed to return the same values on subsequent runs (leave -1 for random)
+        """
         return pulumi.get(self, "seed")
 
     @seed.setter
@@ -20272,6 +22460,14 @@ class SourceFaunaConfigurationArgs:
                  secret: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  collection: Optional[pulumi.Input['SourceFaunaConfigurationCollectionArgs']] = None):
+        """
+        :param pulumi.Input[str] domain: Domain of Fauna to query. Defaults db.fauna.com. See \\n\\nthe docs\\n\\n.
+        :param pulumi.Input[int] port: Endpoint port.
+        :param pulumi.Input[str] scheme: URL scheme.
+        :param pulumi.Input[str] secret: Fauna secret, used when authenticating with the database.
+        :param pulumi.Input[str] source_type: must be one of ["fauna"]
+        :param pulumi.Input['SourceFaunaConfigurationCollectionArgs'] collection: Settings for the Fauna Collection.
+        """
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "scheme", scheme)
@@ -20283,6 +22479,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
+        """
+        Domain of Fauna to query. Defaults db.fauna.com. See \\n\\nthe docs\\n\\n.
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -20292,6 +22491,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Endpoint port.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -20301,6 +22503,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter
     def scheme(self) -> pulumi.Input[str]:
+        """
+        URL scheme.
+        """
         return pulumi.get(self, "scheme")
 
     @scheme.setter
@@ -20310,6 +22515,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter
     def secret(self) -> pulumi.Input[str]:
+        """
+        Fauna secret, used when authenticating with the database.
+        """
         return pulumi.get(self, "secret")
 
     @secret.setter
@@ -20319,6 +22527,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["fauna"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -20328,6 +22539,9 @@ class SourceFaunaConfigurationArgs:
     @property
     @pulumi.getter
     def collection(self) -> Optional[pulumi.Input['SourceFaunaConfigurationCollectionArgs']]:
+        """
+        Settings for the Fauna Collection.
+        """
         return pulumi.get(self, "collection")
 
     @collection.setter
@@ -20510,6 +22724,15 @@ class SourceFileSecureConfigurationArgs:
                  source_type: pulumi.Input[str],
                  url: pulumi.Input[str],
                  reader_options: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] dataset_name: The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+        :param pulumi.Input[str] format: must be one of ["csv", "json", "jsonl", "excel", "excel_binary", "feather", "parquet", "yaml"]
+               The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+        :param pulumi.Input['SourceFileSecureConfigurationProviderArgs'] provider: The storage Provider or Location of the file(s) which should be replicated.
+        :param pulumi.Input[str] source_type: must be one of ["file-secure"]
+        :param pulumi.Input[str] url: The URL path to access the file which should be replicated.
+        :param pulumi.Input[str] reader_options: This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+        """
         pulumi.set(__self__, "dataset_name", dataset_name)
         pulumi.set(__self__, "format", format)
         pulumi.set(__self__, "provider", provider)
@@ -20521,6 +22744,9 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter(name="datasetName")
     def dataset_name(self) -> pulumi.Input[str]:
+        """
+        The Name of the final table to replicate this file into (should include letters, numbers dash and underscores only).
+        """
         return pulumi.get(self, "dataset_name")
 
     @dataset_name.setter
@@ -20530,6 +22756,10 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> pulumi.Input[str]:
+        """
+        must be one of ["csv", "json", "jsonl", "excel", "excel_binary", "feather", "parquet", "yaml"]
+        The Format of the file which should be replicated (Warning: some formats may be experimental, please refer to the docs).
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -20539,6 +22769,9 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter
     def provider(self) -> pulumi.Input['SourceFileSecureConfigurationProviderArgs']:
+        """
+        The storage Provider or Location of the file(s) which should be replicated.
+        """
         return pulumi.get(self, "provider")
 
     @provider.setter
@@ -20548,6 +22781,9 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["file-secure"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -20557,6 +22793,9 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        The URL path to access the file which should be replicated.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -20566,6 +22805,9 @@ class SourceFileSecureConfigurationArgs:
     @property
     @pulumi.getter(name="readerOptions")
     def reader_options(self) -> Optional[pulumi.Input[str]]:
+        """
+        This should be a string in JSON format. It depends on the chosen file format to provide additional options and tune its behavior.
+        """
         return pulumi.get(self, "reader_options")
 
     @reader_options.setter
@@ -21422,6 +23664,15 @@ class SourceFireboltConfigurationArgs:
                  account: Optional[pulumi.Input[str]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: The database to connect to.
+        :param pulumi.Input[str] password: Firebolt password.
+        :param pulumi.Input[str] source_type: must be one of ["firebolt"]
+        :param pulumi.Input[str] username: Firebolt email address you use to login.
+        :param pulumi.Input[str] account: Firebolt account to login.
+        :param pulumi.Input[str] engine: Engine name or url to connect to.
+        :param pulumi.Input[str] host: The host name of your Firebolt database.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "source_type", source_type)
@@ -21436,6 +23687,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The database to connect to.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -21445,6 +23699,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Firebolt password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -21454,6 +23711,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["firebolt"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21463,6 +23723,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Firebolt email address you use to login.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -21472,6 +23735,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def account(self) -> Optional[pulumi.Input[str]]:
+        """
+        Firebolt account to login.
+        """
         return pulumi.get(self, "account")
 
     @account.setter
@@ -21481,6 +23747,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[str]]:
+        """
+        Engine name or url to connect to.
+        """
         return pulumi.get(self, "engine")
 
     @engine.setter
@@ -21490,6 +23759,9 @@ class SourceFireboltConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        The host name of your Firebolt database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -21506,6 +23778,14 @@ class SourceFreshcallerConfigurationArgs:
                  start_date: pulumi.Input[str],
                  requests_per_minute: Optional[pulumi.Input[int]] = None,
                  sync_lag_minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] api_key: Freshcaller API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] domain: Used to construct Base URL for the Freshcaller APIs
+        :param pulumi.Input[str] source_type: must be one of ["freshcaller"]
+        :param pulumi.Input[str] start_date: UTC date and time. Any data created after this date will be replicated.
+        :param pulumi.Input[int] requests_per_minute: The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+        :param pulumi.Input[int] sync_lag_minutes: Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "source_type", source_type)
@@ -21518,6 +23798,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Freshcaller API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -21527,6 +23810,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
+        """
+        Used to construct Base URL for the Freshcaller APIs
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -21536,6 +23822,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["freshcaller"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21545,6 +23834,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time. Any data created after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -21554,6 +23846,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter(name="requestsPerMinute")
     def requests_per_minute(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+        """
         return pulumi.get(self, "requests_per_minute")
 
     @requests_per_minute.setter
@@ -21563,6 +23858,9 @@ class SourceFreshcallerConfigurationArgs:
     @property
     @pulumi.getter(name="syncLagMinutes")
     def sync_lag_minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Lag in minutes for each sync, i.e., at time T, data for the time range [prev*sync*time, T-30] will be fetched
+        """
         return pulumi.get(self, "sync_lag_minutes")
 
     @sync_lag_minutes.setter
@@ -21578,6 +23876,13 @@ class SourceFreshdeskConfigurationArgs:
                  source_type: pulumi.Input[str],
                  requests_per_minute: Optional[pulumi.Input[int]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Freshdesk API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] domain: Freshdesk domain
+        :param pulumi.Input[str] source_type: must be one of ["freshdesk"]
+        :param pulumi.Input[int] requests_per_minute: The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+        :param pulumi.Input[str] start_date: UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "source_type", source_type)
@@ -21589,6 +23894,9 @@ class SourceFreshdeskConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Freshdesk API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -21598,6 +23906,9 @@ class SourceFreshdeskConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
+        """
+        Freshdesk domain
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -21607,6 +23918,9 @@ class SourceFreshdeskConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["freshdesk"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21616,6 +23930,9 @@ class SourceFreshdeskConfigurationArgs:
     @property
     @pulumi.getter(name="requestsPerMinute")
     def requests_per_minute(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of requests per minute that this source allowed to use. There is a rate limit of 50 requests per minute per app per account.
+        """
         return pulumi.get(self, "requests_per_minute")
 
     @requests_per_minute.setter
@@ -21625,6 +23942,9 @@ class SourceFreshdeskConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time. Any data created after this date will be replicated. If this parameter is not set, all data will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -21638,6 +23958,11 @@ class SourceFreshsalesConfigurationArgs:
                  api_key: pulumi.Input[str],
                  domain_name: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Freshsales API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] domain_name: The Name of your Freshsales domain
+        :param pulumi.Input[str] source_type: must be one of ["freshsales"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "domain_name", domain_name)
         pulumi.set(__self__, "source_type", source_type)
@@ -21645,6 +23970,9 @@ class SourceFreshsalesConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Freshsales API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -21654,6 +23982,9 @@ class SourceFreshsalesConfigurationArgs:
     @property
     @pulumi.getter(name="domainName")
     def domain_name(self) -> pulumi.Input[str]:
+        """
+        The Name of your Freshsales domain
+        """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
@@ -21663,6 +23994,9 @@ class SourceFreshsalesConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["freshsales"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21675,12 +24009,19 @@ class SourceGainsightPxConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+        :param pulumi.Input[str] source_type: must be one of ["gainsight-px"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        The Aptrinsic API Key which is recieved from the dashboard settings (ref - https://app.aptrinsic.com/settings/api-keys)
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -21690,6 +24031,9 @@ class SourceGainsightPxConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["gainsight-px"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21704,6 +24048,12 @@ class SourceGcsConfigurationArgs:
                  gcs_path: pulumi.Input[str],
                  service_account: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] gcs_bucket: GCS bucket name
+        :param pulumi.Input[str] gcs_path: GCS path to data
+        :param pulumi.Input[str] service_account: Enter your Google Cloud \\n\\nservice account key\\n\\n in JSON format
+        :param pulumi.Input[str] source_type: must be one of ["gcs"]
+        """
         pulumi.set(__self__, "gcs_bucket", gcs_bucket)
         pulumi.set(__self__, "gcs_path", gcs_path)
         pulumi.set(__self__, "service_account", service_account)
@@ -21712,6 +24062,9 @@ class SourceGcsConfigurationArgs:
     @property
     @pulumi.getter(name="gcsBucket")
     def gcs_bucket(self) -> pulumi.Input[str]:
+        """
+        GCS bucket name
+        """
         return pulumi.get(self, "gcs_bucket")
 
     @gcs_bucket.setter
@@ -21721,6 +24074,9 @@ class SourceGcsConfigurationArgs:
     @property
     @pulumi.getter(name="gcsPath")
     def gcs_path(self) -> pulumi.Input[str]:
+        """
+        GCS path to data
+        """
         return pulumi.get(self, "gcs_path")
 
     @gcs_path.setter
@@ -21730,6 +24086,9 @@ class SourceGcsConfigurationArgs:
     @property
     @pulumi.getter(name="serviceAccount")
     def service_account(self) -> pulumi.Input[str]:
+        """
+        Enter your Google Cloud \\n\\nservice account key\\n\\n in JSON format
+        """
         return pulumi.get(self, "service_account")
 
     @service_account.setter
@@ -21739,6 +24098,9 @@ class SourceGcsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["gcs"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21751,12 +24113,19 @@ class SourceGetlagoConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["getlago"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -21766,6 +24135,9 @@ class SourceGetlagoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["getlago"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21782,6 +24154,14 @@ class SourceGithubConfigurationArgs:
                  branch: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input['SourceGithubConfigurationCredentialsArgs']] = None,
                  requests_per_hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] repository: Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+        :param pulumi.Input[str] source_type: must be one of ["github"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \\n\\ndocs\\n\\n for more info
+        :param pulumi.Input[str] branch: Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+        :param pulumi.Input['SourceGithubConfigurationCredentialsArgs'] credentials: Choose how to authenticate to GitHub
+        :param pulumi.Input[int] requests_per_hour: The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+        """
         pulumi.set(__self__, "repository", repository)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -21795,6 +24175,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter
     def repository(self) -> pulumi.Input[str]:
+        """
+        Space-delimited list of GitHub organizations/repositories, e.g. `airbytehq/airbyte` for single repository, `airbytehq/*` for get all repositories from organization and `airbytehq/airbyte airbytehq/another-repo` for multiple repositories.
+        """
         return pulumi.get(self, "repository")
 
     @repository.setter
@@ -21804,6 +24187,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["github"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -21813,6 +24199,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data from GitHub in the format YYYY-MM-DDT00:00:00Z. For the streams which support this configuration, only data generated on or after the start date will be replicated. This field doesn't apply to all streams, see the \\n\\ndocs\\n\\n for more info
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -21822,6 +24211,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter
     def branch(self) -> Optional[pulumi.Input[str]]:
+        """
+        Space-delimited list of GitHub repository branches to pull commits for, e.g. `airbytehq/airbyte/master`. If no branches are specified for a repository, the default branch will be pulled.
+        """
         return pulumi.get(self, "branch")
 
     @branch.setter
@@ -21831,6 +24223,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceGithubConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to GitHub
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -21840,6 +24235,9 @@ class SourceGithubConfigurationArgs:
     @property
     @pulumi.getter(name="requestsPerHour")
     def requests_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        The GitHub API allows for a maximum of 5000 requests per hour (15000 for Github Enterprise). You can specify a lower value to limit your use of the API quota.
+        """
         return pulumi.get(self, "requests_per_hour")
 
     @requests_per_hour.setter
@@ -22069,6 +24467,13 @@ class SourceGitlabConfigurationArgs:
                  api_url: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[str]] = None,
                  projects: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["gitlab"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] api_url: Please enter your basic URL from GitLab instance.
+        :param pulumi.Input[str] groups: Space-delimited list of groups. e.g. airbyte.io.
+        :param pulumi.Input[str] projects: Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -22091,6 +24496,9 @@ class SourceGitlabConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["gitlab"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -22100,6 +24508,9 @@ class SourceGitlabConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for GitLab API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -22109,6 +24520,9 @@ class SourceGitlabConfigurationArgs:
     @property
     @pulumi.getter(name="apiUrl")
     def api_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Please enter your basic URL from GitLab instance.
+        """
         return pulumi.get(self, "api_url")
 
     @api_url.setter
@@ -22118,6 +24532,9 @@ class SourceGitlabConfigurationArgs:
     @property
     @pulumi.getter
     def groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Space-delimited list of groups. e.g. airbyte.io.
+        """
         return pulumi.get(self, "groups")
 
     @groups.setter
@@ -22127,6 +24544,9 @@ class SourceGitlabConfigurationArgs:
     @property
     @pulumi.getter
     def projects(self) -> Optional[pulumi.Input[str]]:
+        """
+        Space-delimited list of projects. e.g. airbyte.io/documentation meltano/tap-gitlab.
+        """
         return pulumi.get(self, "projects")
 
     @projects.setter
@@ -22392,12 +24812,19 @@ class SourceGlassfrogConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API key provided by Glassfrog
+        :param pulumi.Input[str] source_type: must be one of ["glassfrog"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API key provided by Glassfrog
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -22407,6 +24834,9 @@ class SourceGlassfrogConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["glassfrog"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -22571,6 +25001,14 @@ class SourceGoogleAdsConfigurationArgs:
                  custom_queries: Optional[pulumi.Input[Sequence[pulumi.Input['SourceGoogleAdsConfigurationCustomQueryArgs']]]] = None,
                  end_date: Optional[pulumi.Input[str]] = None,
                  login_customer_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] customer_id: Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \\n\\ndocumentation\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["google-ads"]
+        :param pulumi.Input[str] start_date: UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+        :param pulumi.Input[int] conversion_window_days: A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \\n\\nGoogle's documentation\\n\\n.
+        :param pulumi.Input[str] end_date: UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+        :param pulumi.Input[str] login_customer_id: If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \\n\\nGoogle's documentation\\n\\n.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "customer_id", customer_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -22596,6 +25034,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="customerId")
     def customer_id(self) -> pulumi.Input[str]:
+        """
+        Comma-separated list of (client) customer IDs. Each customer ID must be specified as a 10-digit number without dashes. For detailed instructions on finding this value, refer to our \\n\\ndocumentation\\n\\n.
+        """
         return pulumi.get(self, "customer_id")
 
     @customer_id.setter
@@ -22605,6 +25046,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-ads"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -22614,6 +25058,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -22623,6 +25070,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="conversionWindowDays")
     def conversion_window_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        A conversion window is the number of days after an ad interaction (such as an ad click or video view) during which a conversion, such as a purchase, is recorded in Google Ads. For more information, see \\n\\nGoogle's documentation\\n\\n.
+        """
         return pulumi.get(self, "conversion_window_days")
 
     @conversion_window_days.setter
@@ -22641,6 +25091,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date in the format YYYY-MM-DD. Any data after this date will not be replicated.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -22650,6 +25103,9 @@ class SourceGoogleAdsConfigurationArgs:
     @property
     @pulumi.getter(name="loginCustomerId")
     def login_customer_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        If your access to the customer account is through a manager account, this field is required, and must be set to the 10-digit customer ID of the manager account. For more information about this field, refer to \\n\\nGoogle's documentation\\n\\n.
+        """
         return pulumi.get(self, "login_customer_id")
 
     @login_customer_id.setter
@@ -22754,6 +25210,14 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceGoogleAnalyticsDataApiConfigurationCredentialsArgs']] = None,
                  custom_reports: Optional[pulumi.Input[str]] = None,
                  window_in_days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] date_ranges_start_date: The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+        :param pulumi.Input[str] property_id: The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \\n\\nGoogle Analytics documentation\\n\\n to locate your property ID.
+        :param pulumi.Input[str] source_type: must be one of ["google-analytics-data-api"]
+        :param pulumi.Input['SourceGoogleAnalyticsDataApiConfigurationCredentialsArgs'] credentials: Credentials for the service
+        :param pulumi.Input[str] custom_reports: A JSON array describing the custom reports you want to sync from Google Analytics. See \\n\\nthe documentation\\n\\n for more information about the exact format you can use to fill out this field.
+        :param pulumi.Input[int] window_in_days: The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \\n\\nthe documentation\\n\\n.
+        """
         pulumi.set(__self__, "date_ranges_start_date", date_ranges_start_date)
         pulumi.set(__self__, "property_id", property_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -22767,6 +25231,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter(name="dateRangesStartDate")
     def date_ranges_start_date(self) -> pulumi.Input[str]:
+        """
+        The start date from which to replicate report data in the format YYYY-MM-DD. Data generated before this date will not be included in the report. Not applied to custom Cohort reports.
+        """
         return pulumi.get(self, "date_ranges_start_date")
 
     @date_ranges_start_date.setter
@@ -22776,6 +25243,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter(name="propertyId")
     def property_id(self) -> pulumi.Input[str]:
+        """
+        The Property ID is a unique number assigned to each property in Google Analytics, found in your GA4 property URL. This ID allows the connector to track the specific events associated with your property. Refer to the \\n\\nGoogle Analytics documentation\\n\\n to locate your property ID.
+        """
         return pulumi.get(self, "property_id")
 
     @property_id.setter
@@ -22785,6 +25255,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-analytics-data-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -22794,6 +25267,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceGoogleAnalyticsDataApiConfigurationCredentialsArgs']]:
+        """
+        Credentials for the service
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -22803,6 +25279,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter(name="customReports")
     def custom_reports(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON array describing the custom reports you want to sync from Google Analytics. See \\n\\nthe documentation\\n\\n for more information about the exact format you can use to fill out this field.
+        """
         return pulumi.get(self, "custom_reports")
 
     @custom_reports.setter
@@ -22812,6 +25291,9 @@ class SourceGoogleAnalyticsDataApiConfigurationArgs:
     @property
     @pulumi.getter(name="windowInDays")
     def window_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The interval in days for each data request made to the Google Analytics API. A larger value speeds up data sync, but increases the chance of data sampling, which may result in inaccuracies. We recommend a value of 1 to minimize sampling, unless speed is an absolute priority over accuracy. Acceptable values range from 1 to 364. Does not apply to custom Cohort reports. More information is available in \\n\\nthe documentation\\n\\n.
+        """
         return pulumi.get(self, "window_in_days")
 
     @window_in_days.setter
@@ -23061,6 +25543,14 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceGoogleAnalyticsV4ConfigurationCredentialsArgs']] = None,
                  custom_reports: Optional[pulumi.Input[str]] = None,
                  window_in_days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["google-analytics-v4"]
+        :param pulumi.Input[str] start_date: The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+        :param pulumi.Input[str] view_id: The ID for the Google Analytics View you want to fetch data from. This can be found from the \\n\\nGoogle Analytics Account Explorer\\n\\n.
+        :param pulumi.Input['SourceGoogleAnalyticsV4ConfigurationCredentialsArgs'] credentials: Credentials for the service
+        :param pulumi.Input[str] custom_reports: A JSON array describing the custom reports you want to sync from Google Analytics. See \\n\\nthe docs\\n\\n for more information about the exact format you can use to fill out this field.
+        :param pulumi.Input[int] window_in_days: The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \\n\\nthe docs\\n\\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         pulumi.set(__self__, "view_id", view_id)
@@ -23074,6 +25564,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-analytics-v4"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -23083,6 +25576,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date in the format YYYY-MM-DD. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -23092,6 +25588,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter(name="viewId")
     def view_id(self) -> pulumi.Input[str]:
+        """
+        The ID for the Google Analytics View you want to fetch data from. This can be found from the \\n\\nGoogle Analytics Account Explorer\\n\\n.
+        """
         return pulumi.get(self, "view_id")
 
     @view_id.setter
@@ -23101,6 +25600,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceGoogleAnalyticsV4ConfigurationCredentialsArgs']]:
+        """
+        Credentials for the service
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -23110,6 +25612,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter(name="customReports")
     def custom_reports(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON array describing the custom reports you want to sync from Google Analytics. See \\n\\nthe docs\\n\\n for more information about the exact format you can use to fill out this field.
+        """
         return pulumi.get(self, "custom_reports")
 
     @custom_reports.setter
@@ -23119,6 +25624,9 @@ class SourceGoogleAnalyticsV4ConfigurationArgs:
     @property
     @pulumi.getter(name="windowInDays")
     def window_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The time increment used by the connector when requesting data from the Google Analytics API. More information is available in the \\n\\nthe docs\\n\\n. The bigger this value is, the faster the sync will be, but the more likely that sampling will be applied to your data, potentially causing inaccuracies in the returned results. We recommend setting this to 1 unless you have a hard requirement to make the sync faster at the expense of accuracy. The minimum allowed value for this field is 1, and the maximum is 364.
+        """
         return pulumi.get(self, "window_in_days")
 
     @window_in_days.setter
@@ -23364,6 +25872,10 @@ class SourceGoogleDirectoryConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceGoogleDirectoryConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["google-directory"]
+        :param pulumi.Input['SourceGoogleDirectoryConfigurationCredentialsArgs'] credentials: Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \\n\\nWeb server application\\n\\n and \\n\\nService accounts\\n\\n scenarios.
+        """
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -23371,6 +25883,9 @@ class SourceGoogleDirectoryConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-directory"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -23380,6 +25895,9 @@ class SourceGoogleDirectoryConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceGoogleDirectoryConfigurationCredentialsArgs']]:
+        """
+        Google APIs use the OAuth 2.0 protocol for authentication and authorization. The Source supports \\n\\nWeb server application\\n\\n and \\n\\nService accounts\\n\\n scenarios.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -23626,6 +26144,13 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
                  strategies: pulumi.Input[Sequence[pulumi.Input[str]]],
                  urls: pulumi.Input[Sequence[pulumi.Input[str]]],
                  api_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] categories: Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
+        :param pulumi.Input[str] source_type: must be one of ["google-pagespeed-insights"]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] strategies: The analyses strategy to use. Either "desktop" or "mobile".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] urls: The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+        :param pulumi.Input[str] api_key: Google PageSpeed API Key. See \\n\\nhere\\n\\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+        """
         pulumi.set(__self__, "categories", categories)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "strategies", strategies)
@@ -23636,6 +26161,9 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
     @property
     @pulumi.getter
     def categories(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Defines which Lighthouse category to run. One or many of: "accessibility", "best-practices", "performance", "pwa", "seo".
+        """
         return pulumi.get(self, "categories")
 
     @categories.setter
@@ -23645,6 +26173,9 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-pagespeed-insights"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -23654,6 +26185,9 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
     @property
     @pulumi.getter
     def strategies(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The analyses strategy to use. Either "desktop" or "mobile".
+        """
         return pulumi.get(self, "strategies")
 
     @strategies.setter
@@ -23663,6 +26197,9 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
     @property
     @pulumi.getter
     def urls(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The URLs to retrieve pagespeed information from. The connector will attempt to sync PageSpeed reports for all the defined URLs. Format: https://(www.)url.domain
+        """
         return pulumi.get(self, "urls")
 
     @urls.setter
@@ -23672,6 +26209,9 @@ class SourceGooglePagespeedInsightsConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Google PageSpeed API Key. See \\n\\nhere\\n\\n. The key is optional - however the API is heavily rate limited when using without API Key. Creating and using the API key therefore is recommended. The key is case sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -23689,6 +26229,15 @@ class SourceGoogleSearchConsoleConfigurationArgs:
                  custom_reports: Optional[pulumi.Input[str]] = None,
                  data_state: Optional[pulumi.Input[str]] = None,
                  end_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] site_urls: The URLs of the website property attached to your GSC account. Read more \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["google-search-console"]
+        :param pulumi.Input[str] start_date: UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+        :param pulumi.Input[str] custom_reports: A JSON array describing the custom reports you want to sync from Google Search Console. See \\n\\nthe docs\\n\\n for more information about the exact format you can use to fill out this field.
+        :param pulumi.Input[str] data_state: must be one of ["final", "all"]
+               If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+        :param pulumi.Input[str] end_date: UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+        """
         pulumi.set(__self__, "authorization", authorization)
         pulumi.set(__self__, "site_urls", site_urls)
         pulumi.set(__self__, "source_type", source_type)
@@ -23712,6 +26261,9 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="siteUrls")
     def site_urls(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The URLs of the website property attached to your GSC account. Read more \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "site_urls")
 
     @site_urls.setter
@@ -23721,6 +26273,9 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-search-console"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -23730,6 +26285,9 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -23739,6 +26297,9 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="customReports")
     def custom_reports(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON array describing the custom reports you want to sync from Google Search Console. See \\n\\nthe docs\\n\\n for more information about the exact format you can use to fill out this field.
+        """
         return pulumi.get(self, "custom_reports")
 
     @custom_reports.setter
@@ -23748,6 +26309,10 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="dataState")
     def data_state(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["final", "all"]
+        If "final" or if this parameter is omitted, the returned data will include only finalized data. Setting this parameter to "all" should not be used with Incremental Sync mode as it may cause data loss. If "all", data will include fresh data.
+        """
         return pulumi.get(self, "data_state")
 
     @data_state.setter
@@ -23757,6 +26322,9 @@ class SourceGoogleSearchConsoleConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date in the format 2017-01-25. Any data after this date will not be replicated. Must be greater or equal to the start date field.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -24023,6 +26591,13 @@ class SourceGoogleSheetsConfigurationArgs:
                  spreadsheet_id: pulumi.Input[str],
                  names_conversion: Optional[pulumi.Input[bool]] = None,
                  row_batch_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input['SourceGoogleSheetsConfigurationCredentialsArgs'] credentials: Credentials for connecting to the Google Sheets API
+        :param pulumi.Input[str] source_type: must be one of ["google-sheets"]
+        :param pulumi.Input[str] spreadsheet_id: Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+        :param pulumi.Input[bool] names_conversion: Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+        :param pulumi.Input[int] row_batch_size: The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "spreadsheet_id", spreadsheet_id)
@@ -24034,6 +26609,9 @@ class SourceGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input['SourceGoogleSheetsConfigurationCredentialsArgs']:
+        """
+        Credentials for connecting to the Google Sheets API
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -24043,6 +26621,9 @@ class SourceGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-sheets"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24052,6 +26633,9 @@ class SourceGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="spreadsheetId")
     def spreadsheet_id(self) -> pulumi.Input[str]:
+        """
+        Enter the link to the Google spreadsheet you want to sync. To copy the link, click the 'Share' button in the top-right corner of the spreadsheet, then click 'Copy link'.
+        """
         return pulumi.get(self, "spreadsheet_id")
 
     @spreadsheet_id.setter
@@ -24061,6 +26645,9 @@ class SourceGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="namesConversion")
     def names_conversion(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables the conversion of column names to a standardized, SQL-compliant format. For example, 'My Name' > 'my_name'. Enable this option if your destination is SQL-based.
+        """
         return pulumi.get(self, "names_conversion")
 
     @names_conversion.setter
@@ -24070,6 +26657,9 @@ class SourceGoogleSheetsConfigurationArgs:
     @property
     @pulumi.getter(name="rowBatchSize")
     def row_batch_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of rows fetched when making a Google Sheet API call. Defaults to 200.
+        """
         return pulumi.get(self, "row_batch_size")
 
     @row_batch_size.setter
@@ -24290,6 +26880,13 @@ class SourceGoogleWebfontsConfigurationArgs:
                  alt: Optional[pulumi.Input[str]] = None,
                  pretty_print: Optional[pulumi.Input[str]] = None,
                  sort: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+        :param pulumi.Input[str] source_type: must be one of ["google-webfonts"]
+        :param pulumi.Input[str] alt: Optional, Available params- json, media, proto
+        :param pulumi.Input[str] pretty_print: Optional, boolean type
+        :param pulumi.Input[str] sort: Optional, to find how to sort
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         if alt is not None:
@@ -24302,6 +26899,9 @@ class SourceGoogleWebfontsConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API key is required to access google apis, For getting your's goto google console and generate api key for Webfonts
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -24311,6 +26911,9 @@ class SourceGoogleWebfontsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-webfonts"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24320,6 +26923,9 @@ class SourceGoogleWebfontsConfigurationArgs:
     @property
     @pulumi.getter
     def alt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, Available params- json, media, proto
+        """
         return pulumi.get(self, "alt")
 
     @alt.setter
@@ -24329,6 +26935,9 @@ class SourceGoogleWebfontsConfigurationArgs:
     @property
     @pulumi.getter(name="prettyPrint")
     def pretty_print(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, boolean type
+        """
         return pulumi.get(self, "pretty_print")
 
     @pretty_print.setter
@@ -24338,6 +26947,9 @@ class SourceGoogleWebfontsConfigurationArgs:
     @property
     @pulumi.getter
     def sort(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, to find how to sort
+        """
         return pulumi.get(self, "sort")
 
     @sort.setter
@@ -24352,6 +26964,12 @@ class SourceGoogleWorkspaceAdminReportsConfigurationArgs:
                  email: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  lookback: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] credentials_json: The contents of the JSON service account key. See the \\n\\ndocs\\n\\n for more information on how to generate this key.
+        :param pulumi.Input[str] email: The email of the user, which has permissions to access the Google Workspace Admin APIs.
+        :param pulumi.Input[str] source_type: must be one of ["google-workspace-admin-reports"]
+        :param pulumi.Input[int] lookback: Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+        """
         pulumi.set(__self__, "credentials_json", credentials_json)
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "source_type", source_type)
@@ -24361,6 +26979,9 @@ class SourceGoogleWorkspaceAdminReportsConfigurationArgs:
     @property
     @pulumi.getter(name="credentialsJson")
     def credentials_json(self) -> pulumi.Input[str]:
+        """
+        The contents of the JSON service account key. See the \\n\\ndocs\\n\\n for more information on how to generate this key.
+        """
         return pulumi.get(self, "credentials_json")
 
     @credentials_json.setter
@@ -24370,6 +26991,9 @@ class SourceGoogleWorkspaceAdminReportsConfigurationArgs:
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
+        """
+        The email of the user, which has permissions to access the Google Workspace Admin APIs.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -24379,6 +27003,9 @@ class SourceGoogleWorkspaceAdminReportsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["google-workspace-admin-reports"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24388,6 +27015,9 @@ class SourceGoogleWorkspaceAdminReportsConfigurationArgs:
     @property
     @pulumi.getter
     def lookback(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the range of time shown in the report. Reports API allows from up to 180 days ago.
+        """
         return pulumi.get(self, "lookback")
 
     @lookback.setter
@@ -24400,12 +27030,19 @@ class SourceGreenhouseConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Greenhouse API Key. See the \\n\\ndocs\\n\\n for more information on how to generate this key.
+        :param pulumi.Input[str] source_type: must be one of ["greenhouse"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Greenhouse API Key. See the \\n\\ndocs\\n\\n for more information on how to generate this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -24415,6 +27052,9 @@ class SourceGreenhouseConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["greenhouse"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24428,6 +27068,10 @@ class SourceGridlyConfigurationArgs:
                  api_key: pulumi.Input[str],
                  grid_id: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] grid_id: ID of a grid, or can be ID of a branch
+        :param pulumi.Input[str] source_type: must be one of ["gridly"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "grid_id", grid_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -24444,6 +27088,9 @@ class SourceGridlyConfigurationArgs:
     @property
     @pulumi.getter(name="gridId")
     def grid_id(self) -> pulumi.Input[str]:
+        """
+        ID of a grid, or can be ID of a branch
+        """
         return pulumi.get(self, "grid_id")
 
     @grid_id.setter
@@ -24453,6 +27100,9 @@ class SourceGridlyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["gridly"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24468,6 +27118,13 @@ class SourceHarvestConfigurationArgs:
                  source_type: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceHarvestConfigurationCredentialsArgs']] = None,
                  replication_end_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] account_id: Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+        :param pulumi.Input[str] replication_start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[str] source_type: must be one of ["harvest"]
+        :param pulumi.Input['SourceHarvestConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Harvest.
+        :param pulumi.Input[str] replication_end_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+        """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "replication_start_date", replication_start_date)
         pulumi.set(__self__, "source_type", source_type)
@@ -24479,6 +27136,9 @@ class SourceHarvestConfigurationArgs:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[str]:
+        """
+        Harvest account ID. Required for all Harvest requests in pair with Personal Access Token
+        """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
@@ -24488,6 +27148,9 @@ class SourceHarvestConfigurationArgs:
     @property
     @pulumi.getter(name="replicationStartDate")
     def replication_start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "replication_start_date")
 
     @replication_start_date.setter
@@ -24497,6 +27160,9 @@ class SourceHarvestConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["harvest"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24506,6 +27172,9 @@ class SourceHarvestConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceHarvestConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Harvest.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -24515,6 +27184,9 @@ class SourceHarvestConfigurationArgs:
     @property
     @pulumi.getter(name="replicationEndDate")
     def replication_end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data after this date will not be replicated.
+        """
         return pulumi.get(self, "replication_end_date")
 
     @replication_end_date.setter
@@ -24784,12 +27456,19 @@ class SourceHubplannerConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+        :param pulumi.Input[str] source_type: must be one of ["hubplanner"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Hubplanner API key. See https://github.com/hubplanner/API#authentication for more details.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -24799,6 +27478,9 @@ class SourceHubplannerConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["hubplanner"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24812,6 +27494,11 @@ class SourceHubspotConfigurationArgs:
                  credentials: pulumi.Input['SourceHubspotConfigurationCredentialsArgs'],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input['SourceHubspotConfigurationCredentialsArgs'] credentials: Choose how to authenticate to HubSpot.
+        :param pulumi.Input[str] source_type: must be one of ["hubspot"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -24819,6 +27506,9 @@ class SourceHubspotConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input['SourceHubspotConfigurationCredentialsArgs']:
+        """
+        Choose how to authenticate to HubSpot.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -24828,6 +27518,9 @@ class SourceHubspotConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["hubspot"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -24837,6 +27530,9 @@ class SourceHubspotConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25055,6 +27751,11 @@ class SourceInsightlyConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  token: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["insightly"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+        :param pulumi.Input[str] token: Your Insightly API token.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         pulumi.set(__self__, "token", token)
@@ -25062,6 +27763,9 @@ class SourceInsightlyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["insightly"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25071,6 +27775,9 @@ class SourceInsightlyConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Insightly in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated. Note that it will be used only for incremental streams.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25080,6 +27787,9 @@ class SourceInsightlyConfigurationArgs:
     @property
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
+        """
+        Your Insightly API token.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -25095,6 +27805,13 @@ class SourceInstagramConfigurationArgs:
                  start_date: pulumi.Input[str],
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_token: The value of the access token generated with \\n\\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\\n\\n permissions. See the \\n\\ndocs\\n\\n for more information
+        :param pulumi.Input[str] source_type: must be one of ["instagram"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] client_id: The Client ID for your Oauth application
+        :param pulumi.Input[str] client_secret: The Client Secret for your Oauth application
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -25106,6 +27823,9 @@ class SourceInstagramConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        The value of the access token generated with \\n\\ninstagram*basic, instagram*manage*insights, pages*show*list, pages*read_engagement, Instagram Public Content Access\\n\\n permissions. See the \\n\\ndocs\\n\\n for more information
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -25115,6 +27835,9 @@ class SourceInstagramConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["instagram"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25124,6 +27847,9 @@ class SourceInstagramConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for User Insights, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25133,6 +27859,9 @@ class SourceInstagramConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client ID for your Oauth application
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -25142,6 +27871,9 @@ class SourceInstagramConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Client Secret for your Oauth application
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -25154,12 +27886,19 @@ class SourceInstatusConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Instatus REST API key
+        :param pulumi.Input[str] source_type: must be one of ["instatus"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Instatus REST API key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -25169,6 +27908,9 @@ class SourceInstatusConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["instatus"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25182,6 +27924,11 @@ class SourceIntercomConfigurationArgs:
                  access_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Access token for making authenticated requests. See the \\n\\nIntercom docs\\n\\n for more information.
+        :param pulumi.Input[str] source_type: must be one of ["intercom"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -25189,6 +27936,9 @@ class SourceIntercomConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Access token for making authenticated requests. See the \\n\\nIntercom docs\\n\\n for more information.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -25198,6 +27948,9 @@ class SourceIntercomConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["intercom"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25207,6 +27960,9 @@ class SourceIntercomConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25220,6 +27976,11 @@ class SourceIp2whoisConfigurationArgs:
                  api_key: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] domain: Domain name. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["ip2whois"]
+        """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if domain is not None:
@@ -25230,6 +27991,9 @@ class SourceIp2whoisConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -25239,6 +28003,9 @@ class SourceIp2whoisConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain name. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -25248,6 +28015,9 @@ class SourceIp2whoisConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["ip2whois"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25261,6 +28031,11 @@ class SourceIterableConfigurationArgs:
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Iterable API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        :param pulumi.Input[str] source_type: must be one of ["iterable"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -25268,6 +28043,9 @@ class SourceIterableConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Iterable API Key. See the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -25277,6 +28055,9 @@ class SourceIterableConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["iterable"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25286,6 +28067,9 @@ class SourceIterableConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Iterable, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25305,6 +28089,17 @@ class SourceJiraConfigurationArgs:
                  projects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  render_fields: Optional[pulumi.Input[bool]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_token: Jira API Token. See the \\n\\ndocs\\n\\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+        :param pulumi.Input[str] domain: The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+        :param pulumi.Input[str] email: The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+        :param pulumi.Input[str] source_type: must be one of ["jira"]
+        :param pulumi.Input[bool] enable_experimental_streams: Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+        :param pulumi.Input[bool] expand_issue_changelog: Expand the changelog when replicating issues.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] projects: List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+        :param pulumi.Input[bool] render_fields: Render issue fields in HTML format in addition to Jira JSON-like format.
+        :param pulumi.Input[str] start_date: The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \\n\\ndocumentation\\n\\n.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "email", email)
@@ -25323,6 +28118,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Jira API Token. See the \\n\\ndocs\\n\\n for more information on how to generate this key. API Token is used for Authorization to your account by BasicAuth.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -25332,6 +28130,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
+        """
+        The Domain for your Jira account, e.g. airbyteio.atlassian.net, airbyteio.jira.com, jira.your-domain.com
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -25341,6 +28142,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
+        """
+        The user email for your Jira account which you used to generate the API token. This field is used for Authorization to your account by BasicAuth.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -25350,6 +28154,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["jira"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25359,6 +28166,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="enableExperimentalStreams")
     def enable_experimental_streams(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow the use of experimental streams which rely on undocumented Jira API endpoints. See https://docs.airbyte.com/integrations/sources/jira#experimental-tables for more info.
+        """
         return pulumi.get(self, "enable_experimental_streams")
 
     @enable_experimental_streams.setter
@@ -25368,6 +28178,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="expandIssueChangelog")
     def expand_issue_changelog(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Expand the changelog when replicating issues.
+        """
         return pulumi.get(self, "expand_issue_changelog")
 
     @expand_issue_changelog.setter
@@ -25377,6 +28190,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter
     def projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Jira project keys to replicate data for, or leave it empty if you want to replicate data for all projects.
+        """
         return pulumi.get(self, "projects")
 
     @projects.setter
@@ -25386,6 +28202,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="renderFields")
     def render_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Render issue fields in HTML format in addition to Jira JSON-like format.
+        """
         return pulumi.get(self, "render_fields")
 
     @render_fields.setter
@@ -25395,6 +28214,9 @@ class SourceJiraConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date from which you want to replicate data from Jira, use the format YYYY-MM-DDT00:00:00Z. Note that this field only applies to certain streams, and only data generated on or after the start date will be replicated. Or leave it empty if you want to replicate all data. For more information, refer to the \\n\\ndocumentation\\n\\n.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25407,12 +28229,19 @@ class SourceK6CloudConfigurationArgs:
     def __init__(__self__, *,
                  api_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_token: Your API Token. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["k6-cloud"]
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Your API Token. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -25422,6 +28251,9 @@ class SourceK6CloudConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["k6-cloud"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25437,6 +28269,14 @@ class SourceKlarnaConfigurationArgs:
                  region: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  username: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] password: A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+        :param pulumi.Input[bool] playground: Propertie defining if connector is used against playground or production environment
+        :param pulumi.Input[str] region: must be one of ["eu", "us", "oc"]
+               Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+        :param pulumi.Input[str] source_type: must be one of ["klarna"]
+        :param pulumi.Input[str] username: Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "playground", playground)
         pulumi.set(__self__, "region", region)
@@ -25446,6 +28286,9 @@ class SourceKlarnaConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        A string which is associated with your Merchant ID and is used to authorize use of Klarna's APIs (https://developers.klarna.com/api/#authentication)
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -25455,6 +28298,9 @@ class SourceKlarnaConfigurationArgs:
     @property
     @pulumi.getter
     def playground(self) -> pulumi.Input[bool]:
+        """
+        Propertie defining if connector is used against playground or production environment
+        """
         return pulumi.get(self, "playground")
 
     @playground.setter
@@ -25464,6 +28310,10 @@ class SourceKlarnaConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["eu", "us", "oc"]
+        Base url region (For playground eu https://docs.klarna.com/klarna-payments/api/payments-api/#tag/API-URLs). Supported 'eu', 'us', 'oc'
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -25473,6 +28323,9 @@ class SourceKlarnaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["klarna"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25482,6 +28335,9 @@ class SourceKlarnaConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Consists of your Merchant ID (eid) - a unique number that identifies your e-store, combined with a random string (https://developers.klarna.com/api/#authentication)
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -25495,6 +28351,11 @@ class SourceKlaviyoConfigurationArgs:
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Klaviyo API Key. See our \\n\\ndocs\\n\\n if you need help finding this key.
+        :param pulumi.Input[str] source_type: must be one of ["klaviyo"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -25502,6 +28363,9 @@ class SourceKlaviyoConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Klaviyo API Key. See our \\n\\ndocs\\n\\n if you need help finding this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -25511,6 +28375,9 @@ class SourceKlaviyoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["klaviyo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25520,6 +28387,9 @@ class SourceKlaviyoConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25533,6 +28403,11 @@ class SourceKustomerSingerConfigurationArgs:
                  api_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_token: Kustomer API Token. See the \\n\\ndocs\\n\\n on how to obtain this
+        :param pulumi.Input[str] source_type: must be one of ["kustomer-singer"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate the data
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -25540,6 +28415,9 @@ class SourceKustomerSingerConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Kustomer API Token. See the \\n\\ndocs\\n\\n on how to obtain this
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -25549,6 +28427,9 @@ class SourceKustomerSingerConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["kustomer-singer"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25558,6 +28439,9 @@ class SourceKustomerSingerConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate the data
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25574,6 +28458,14 @@ class SourceKyveConfigurationArgs:
                  max_pages: Optional[pulumi.Input[int]] = None,
                  page_size: Optional[pulumi.Input[int]] = None,
                  url_base: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] pool_ids: The IDs of the KYVE storage pool you want to archive. (Comma separated)
+        :param pulumi.Input[str] source_type: must be one of ["kyve"]
+        :param pulumi.Input[str] start_ids: The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+        :param pulumi.Input[int] max_pages: The maximum amount of pages to go trough. Set to 'null' for all pages.
+        :param pulumi.Input[int] page_size: The pagesize for pagination, smaller numbers are used in integration tests.
+        :param pulumi.Input[str] url_base: URL to the KYVE Chain API.
+        """
         pulumi.set(__self__, "pool_ids", pool_ids)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_ids", start_ids)
@@ -25587,6 +28479,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="poolIds")
     def pool_ids(self) -> pulumi.Input[str]:
+        """
+        The IDs of the KYVE storage pool you want to archive. (Comma separated)
+        """
         return pulumi.get(self, "pool_ids")
 
     @pool_ids.setter
@@ -25596,6 +28491,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["kyve"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25605,6 +28503,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="startIds")
     def start_ids(self) -> pulumi.Input[str]:
+        """
+        The start-id defines, from which bundle id the pipeline should start to extract the data (Comma separated)
+        """
         return pulumi.get(self, "start_ids")
 
     @start_ids.setter
@@ -25614,6 +28515,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="maxPages")
     def max_pages(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of pages to go trough. Set to 'null' for all pages.
+        """
         return pulumi.get(self, "max_pages")
 
     @max_pages.setter
@@ -25623,6 +28527,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="pageSize")
     def page_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The pagesize for pagination, smaller numbers are used in integration tests.
+        """
         return pulumi.get(self, "page_size")
 
     @page_size.setter
@@ -25632,6 +28539,9 @@ class SourceKyveConfigurationArgs:
     @property
     @pulumi.getter(name="urlBase")
     def url_base(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL to the KYVE Chain API.
+        """
         return pulumi.get(self, "url_base")
 
     @url_base.setter
@@ -25644,12 +28554,19 @@ class SourceLaunchdarklyConfigurationArgs:
     def __init__(__self__, *,
                  access_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Your Access token. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["launchdarkly"]
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Your Access token. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -25659,6 +28576,9 @@ class SourceLaunchdarklyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["launchdarkly"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25671,12 +28591,19 @@ class SourceLemlistConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Lemlist API key.
+        :param pulumi.Input[str] source_type: must be one of ["lemlist"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Lemlist API key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -25686,6 +28613,9 @@ class SourceLemlistConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["lemlist"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25700,6 +28630,13 @@ class SourceLeverHiringConfigurationArgs:
                  start_date: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceLeverHiringConfigurationCredentialsArgs']] = None,
                  environment: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["lever-hiring"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+        :param pulumi.Input['SourceLeverHiringConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Lever Hiring.
+        :param pulumi.Input[str] environment: must be one of ["Production", "Sandbox"]
+               The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if credentials is not None:
@@ -25710,6 +28647,9 @@ class SourceLeverHiringConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["lever-hiring"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25719,6 +28659,9 @@ class SourceLeverHiringConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. Note that it will be used only in the following incremental streams: comments, commits, and issues.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25728,6 +28671,9 @@ class SourceLeverHiringConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceLeverHiringConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Lever Hiring.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -25737,6 +28683,10 @@ class SourceLeverHiringConfigurationArgs:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["Production", "Sandbox"]
+        The environment in which you'd like to replicate data for Lever. This is used to determine which Lever API endpoint to use.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -25965,6 +28915,11 @@ class SourceLinkedinAdsConfigurationArgs:
                  account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
                  ad_analytics_reports: Optional[pulumi.Input[Sequence[pulumi.Input['SourceLinkedinAdsConfigurationAdAnalyticsReportArgs']]]] = None,
                  credentials: Optional[pulumi.Input['SourceLinkedinAdsConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["linkedin-ads"]
+        :param pulumi.Input[str] start_date: UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] account_ids: Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \\n\\nLinkedIn Ads docs\\n\\n for more info.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if account_ids is not None:
@@ -25977,6 +28932,9 @@ class SourceLinkedinAdsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["linkedin-ads"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -25986,6 +28944,9 @@ class SourceLinkedinAdsConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date in the format 2020-09-17. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -25995,6 +28956,9 @@ class SourceLinkedinAdsConfigurationArgs:
     @property
     @pulumi.getter(name="accountIds")
     def account_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        Specify the account IDs separated by a space, to pull the data from. Leave empty, if you want to pull the data from all associated accounts. See the \\n\\nLinkedIn Ads docs\\n\\n for more info.
+        """
         return pulumi.get(self, "account_ids")
 
     @account_ids.setter
@@ -26273,6 +29237,10 @@ class SourceLinkedinPagesConfigurationArgs:
                  org_id: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceLinkedinPagesConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] org_id: Specify the Organization ID
+        :param pulumi.Input[str] source_type: must be one of ["linkedin-pages"]
+        """
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
@@ -26281,6 +29249,9 @@ class SourceLinkedinPagesConfigurationArgs:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[str]:
+        """
+        Specify the Organization ID
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -26290,6 +29261,9 @@ class SourceLinkedinPagesConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["linkedin-pages"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26523,6 +29497,12 @@ class SourceLinnworksConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  token: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] application_id: Linnworks Application ID
+        :param pulumi.Input[str] application_secret: Linnworks Application Secret
+        :param pulumi.Input[str] source_type: must be one of ["linnworks"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "application_id", application_id)
         pulumi.set(__self__, "application_secret", application_secret)
         pulumi.set(__self__, "source_type", source_type)
@@ -26532,6 +29512,9 @@ class SourceLinnworksConfigurationArgs:
     @property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> pulumi.Input[str]:
+        """
+        Linnworks Application ID
+        """
         return pulumi.get(self, "application_id")
 
     @application_id.setter
@@ -26541,6 +29524,9 @@ class SourceLinnworksConfigurationArgs:
     @property
     @pulumi.getter(name="applicationSecret")
     def application_secret(self) -> pulumi.Input[str]:
+        """
+        Linnworks Application Secret
+        """
         return pulumi.get(self, "application_secret")
 
     @application_secret.setter
@@ -26550,6 +29536,9 @@ class SourceLinnworksConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["linnworks"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26559,6 +29548,9 @@ class SourceLinnworksConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -26581,6 +29573,11 @@ class SourceLokaliseConfigurationArgs:
                  api_key: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Lokalise API Key with read-access. Available at Profile settings > API tokens. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] project_id: Lokalise project ID. Available at Project Settings > General.
+        :param pulumi.Input[str] source_type: must be one of ["lokalise"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -26588,6 +29585,9 @@ class SourceLokaliseConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Lokalise API Key with read-access. Available at Profile settings > API tokens. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -26597,6 +29597,9 @@ class SourceLokaliseConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        Lokalise project ID. Available at Project Settings > General.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -26606,6 +29609,9 @@ class SourceLokaliseConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["lokalise"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26619,6 +29625,9 @@ class SourceMailchimpConfigurationArgs:
                  source_type: pulumi.Input[str],
                  campaign_id: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input['SourceMailchimpConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["mailchimp"]
+        """
         pulumi.set(__self__, "source_type", source_type)
         if campaign_id is not None:
             pulumi.set(__self__, "campaign_id", campaign_id)
@@ -26628,6 +29637,9 @@ class SourceMailchimpConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mailchimp"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26869,6 +29881,12 @@ class SourceMailgunConfigurationArgs:
                  source_type: pulumi.Input[str],
                  domain_region: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private_key: Primary account API key to access your Mailgun data.
+        :param pulumi.Input[str] source_type: must be one of ["mailgun"]
+        :param pulumi.Input[str] domain_region: Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+        """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "source_type", source_type)
         if domain_region is not None:
@@ -26879,6 +29897,9 @@ class SourceMailgunConfigurationArgs:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
+        """
+        Primary account API key to access your Mailgun data.
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -26888,6 +29909,9 @@ class SourceMailgunConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mailgun"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26897,6 +29921,9 @@ class SourceMailgunConfigurationArgs:
     @property
     @pulumi.getter(name="domainRegion")
     def domain_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain region code. 'EU' or 'US' are possible values. The default is 'US'.
+        """
         return pulumi.get(self, "domain_region")
 
     @domain_region.setter
@@ -26906,6 +29933,9 @@ class SourceMailgunConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format 2020-10-01 00:00:00. Any data before this date will not be replicated. If omitted, defaults to 3 days ago.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -26920,6 +29950,12 @@ class SourceMailjetSmsConfigurationArgs:
                  token: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[int]] = None,
                  start_date: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["mailjet-sms"]
+        :param pulumi.Input[str] token: Your access token. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[int] end_date: Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+        :param pulumi.Input[int] start_date: Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "token", token)
         if end_date is not None:
@@ -26930,6 +29966,9 @@ class SourceMailjetSmsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mailjet-sms"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -26939,6 +29978,9 @@ class SourceMailjetSmsConfigurationArgs:
     @property
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
+        """
+        Your access token. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -26948,6 +29990,9 @@ class SourceMailjetSmsConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[int]]:
+        """
+        Retrieve SMS messages created before the specified timestamp. Required format - Unix timestamp.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -26957,6 +30002,9 @@ class SourceMailjetSmsConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[int]]:
+        """
+        Retrieve SMS messages created after the specified timestamp. Required format - Unix timestamp.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -26972,6 +30020,13 @@ class SourceMarketoConfigurationArgs:
                  domain_url: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] client_id: The Client ID of your Marketo developer application. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        :param pulumi.Input[str] client_secret: The Client Secret of your Marketo developer application. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        :param pulumi.Input[str] domain_url: Your Marketo Base URL. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        :param pulumi.Input[str] source_type: must be one of ["marketo"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "domain_url", domain_url)
@@ -26981,6 +30036,9 @@ class SourceMarketoConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Marketo developer application. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -26990,6 +30048,9 @@ class SourceMarketoConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The Client Secret of your Marketo developer application. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -26999,6 +30060,9 @@ class SourceMarketoConfigurationArgs:
     @property
     @pulumi.getter(name="domainUrl")
     def domain_url(self) -> pulumi.Input[str]:
+        """
+        Your Marketo Base URL. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        """
         return pulumi.get(self, "domain_url")
 
     @domain_url.setter
@@ -27008,6 +30072,9 @@ class SourceMarketoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["marketo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -27017,6 +30084,9 @@ class SourceMarketoConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -27032,6 +30102,16 @@ class SourceMetabaseConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  session_token: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] instance_api_url: URL to your metabase instance API
+        :param pulumi.Input[str] source_type: must be one of ["metabase"]
+        :param pulumi.Input[str] session_token: To generate your session token, you need to run the following command: `curl -X POST \\
+               -H "Content-Type: application/json" \\
+               -d '{"username": "person@metabase.com", "password": "fakepassword"}' \\
+               http://localhost:3000/api/session
+               ` Then copy the value of the `id` field returned by a successful call to that API.
+               Note that by default, sessions are good for 14 days and needs to be regenerated.
+        """
         pulumi.set(__self__, "instance_api_url", instance_api_url)
         pulumi.set(__self__, "source_type", source_type)
         if password is not None:
@@ -27044,6 +30124,9 @@ class SourceMetabaseConfigurationArgs:
     @property
     @pulumi.getter(name="instanceApiUrl")
     def instance_api_url(self) -> pulumi.Input[str]:
+        """
+        URL to your metabase instance API
+        """
         return pulumi.get(self, "instance_api_url")
 
     @instance_api_url.setter
@@ -27053,6 +30136,9 @@ class SourceMetabaseConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["metabase"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -27071,6 +30157,14 @@ class SourceMetabaseConfigurationArgs:
     @property
     @pulumi.getter(name="sessionToken")
     def session_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        To generate your session token, you need to run the following command: `curl -X POST \\
+        -H "Content-Type: application/json" \\
+        -d '{"username": "person@metabase.com", "password": "fakepassword"}' \\
+        http://localhost:3000/api/session
+        ` Then copy the value of the `id` field returned by a successful call to that API.
+        Note that by default, sessions are good for 14 days and needs to be regenerated.
+        """
         return pulumi.get(self, "session_token")
 
     @session_token.setter
@@ -27093,6 +30187,11 @@ class SourceMicrosoftTeamsConfigurationArgs:
                  period: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceMicrosoftTeamsConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] period: Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+        :param pulumi.Input[str] source_type: must be one of ["microsoft-teams"]
+        :param pulumi.Input['SourceMicrosoftTeamsConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Microsoft
+        """
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
@@ -27101,6 +30200,9 @@ class SourceMicrosoftTeamsConfigurationArgs:
     @property
     @pulumi.getter
     def period(self) -> pulumi.Input[str]:
+        """
+        Specifies the length of time over which the Team Device Report stream is aggregated. The supported values are: D7, D30, D90, and D180.
+        """
         return pulumi.get(self, "period")
 
     @period.setter
@@ -27110,6 +30212,9 @@ class SourceMicrosoftTeamsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["microsoft-teams"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -27119,6 +30224,9 @@ class SourceMicrosoftTeamsConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceMicrosoftTeamsConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Microsoft
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -27414,6 +30522,19 @@ class SourceMixpanelConfigurationArgs:
                  select_properties_by_default: Optional[pulumi.Input[bool]] = None,
                  source_type: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] attribution_window: A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+        :param pulumi.Input['SourceMixpanelConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Mixpanel
+        :param pulumi.Input[int] date_window_size: Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+        :param pulumi.Input[str] end_date: The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+        :param pulumi.Input[int] project_id: Your project ID number. See the \\n\\ndocs\\n\\n for more information on how to obtain this.
+        :param pulumi.Input[str] project_timezone: Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \\n\\nMixpanel console\\n\\n.
+        :param pulumi.Input[str] region: must be one of ["US", "EU"]
+               The region of mixpanel domain instance either US or EU.
+        :param pulumi.Input[bool] select_properties_by_default: Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+        :param pulumi.Input[str] source_type: must be one of ["mixpanel"]
+        :param pulumi.Input[str] start_date: The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+        """
         if attribution_window is not None:
             pulumi.set(__self__, "attribution_window", attribution_window)
         if credentials is not None:
@@ -27438,6 +30559,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="attributionWindow")
     def attribution_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        A period of time for attributing results to ads and the lookback period after those actions occur during which ad results are counted. Default attribution window is 5 days.
+        """
         return pulumi.get(self, "attribution_window")
 
     @attribution_window.setter
@@ -27447,6 +30571,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceMixpanelConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Mixpanel
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -27456,6 +30583,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="dateWindowSize")
     def date_window_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Defines window size in days, that used to slice through data. You can reduce it, if amount of data in each window is too big for your environment.
+        """
         return pulumi.get(self, "date_window_size")
 
     @date_window_size.setter
@@ -27465,6 +30595,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date in the format YYYY-MM-DD. Any data after this date will not be replicated. Left empty to always sync to most recent date
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -27474,6 +30607,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Your project ID number. See the \\n\\ndocs\\n\\n for more information on how to obtain this.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -27483,6 +30619,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="projectTimezone")
     def project_timezone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time zone in which integer date times are stored. The project timezone may be found in the project settings in the \\n\\nMixpanel console\\n\\n.
+        """
         return pulumi.get(self, "project_timezone")
 
     @project_timezone.setter
@@ -27492,6 +30631,10 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["US", "EU"]
+        The region of mixpanel domain instance either US or EU.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -27501,6 +30644,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="selectPropertiesByDefault")
     def select_properties_by_default(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Setting this config parameter to TRUE ensures that new properties on events and engage records are captured. Otherwise new properties will be ignored.
+        """
         return pulumi.get(self, "select_properties_by_default")
 
     @select_properties_by_default.setter
@@ -27510,6 +30656,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["mixpanel"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -27519,6 +30668,9 @@ class SourceMixpanelConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date in the format YYYY-MM-DD. Any data before this date will not be replicated. If this option is not set, the connector will replicate data from up to one year ago by default.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -27718,6 +30870,9 @@ class SourceMondayConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceMondayConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["monday"]
+        """
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -27725,6 +30880,9 @@ class SourceMondayConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["monday"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -27979,6 +31137,14 @@ class SourceMongodbConfigurationArgs:
                  instance_type: Optional[pulumi.Input['SourceMongodbConfigurationInstanceTypeArgs']] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: The database you want to replicate.
+        :param pulumi.Input[str] source_type: must be one of ["mongodb"]
+        :param pulumi.Input[str] auth_source: The authentication source where the user information is stored.
+        :param pulumi.Input['SourceMongodbConfigurationInstanceTypeArgs'] instance_type: The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+        :param pulumi.Input[str] password: The password associated with this username.
+        :param pulumi.Input[str] user: The username which is used to access the database.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "source_type", source_type)
         if auth_source is not None:
@@ -27993,6 +31159,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The database you want to replicate.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -28002,6 +31171,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mongodb"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -28011,6 +31183,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="authSource")
     def auth_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication source where the user information is stored.
+        """
         return pulumi.get(self, "auth_source")
 
     @auth_source.setter
@@ -28020,6 +31195,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input['SourceMongodbConfigurationInstanceTypeArgs']]:
+        """
+        The MongoDb instance to connect to. For MongoDB Atlas and Replica Set TLS connection is used by default.
+        """
         return pulumi.get(self, "instance_type")
 
     @instance_type.setter
@@ -28029,6 +31207,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with this username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -28038,6 +31219,9 @@ class SourceMongodbConfigurationArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -28363,6 +31547,14 @@ class SourceMongodbInternalPocConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  replica_set: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["mongodb-internal-poc"]
+        :param pulumi.Input[str] auth_source: The authentication source where the user information is stored.
+        :param pulumi.Input[str] connection_string: The connection string of the database that you want to replicate..
+        :param pulumi.Input[str] password: The password associated with this username.
+        :param pulumi.Input[str] replica_set: The name of the replica set to be replicated.
+        :param pulumi.Input[str] user: The username which is used to access the database.
+        """
         pulumi.set(__self__, "source_type", source_type)
         if auth_source is not None:
             pulumi.set(__self__, "auth_source", auth_source)
@@ -28378,6 +31570,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mongodb-internal-poc"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -28387,6 +31582,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter(name="authSource")
     def auth_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication source where the user information is stored.
+        """
         return pulumi.get(self, "auth_source")
 
     @auth_source.setter
@@ -28396,6 +31594,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> Optional[pulumi.Input[str]]:
+        """
+        The connection string of the database that you want to replicate..
+        """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
@@ -28405,6 +31606,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with this username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -28414,6 +31618,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter(name="replicaSet")
     def replica_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the replica set to be replicated.
+        """
         return pulumi.get(self, "replica_set")
 
     @replica_set.setter
@@ -28423,6 +31630,9 @@ class SourceMongodbInternalPocConfigurationArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -28444,6 +31654,19 @@ class SourceMssqlConfigurationArgs:
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_method: Optional[pulumi.Input['SourceMssqlConfigurationSslMethodArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['SourceMssqlConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: The name of the database.
+        :param pulumi.Input[str] host: The hostname of the database.
+        :param pulumi.Input[int] port: The port of the database.
+        :param pulumi.Input[str] source_type: must be one of ["mssql"]
+        :param pulumi.Input[str] username: The username which is used to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: The password associated with the username.
+        :param pulumi.Input['SourceMssqlConfigurationReplicationMethodArgs'] replication_method: The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schemas: The list of schemas to sync from. Defaults to user. Case sensitive.
+        :param pulumi.Input['SourceMssqlConfigurationSslMethodArgs'] ssl_method: The encryption method which is used when communicating with the database.
+        :param pulumi.Input['SourceMssqlConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -28465,6 +31688,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -28474,6 +31700,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -28483,6 +31712,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -28492,6 +31724,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mssql"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -28501,6 +31736,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -28510,6 +31748,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -28519,6 +31760,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -28528,6 +31772,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter(name="replicationMethod")
     def replication_method(self) -> Optional[pulumi.Input['SourceMssqlConfigurationReplicationMethodArgs']]:
+        """
+        The replication method used for extracting data from the database. STANDARD replication requires no setup on the DB side but will not be able to represent deletions incrementally. CDC uses {TBC} to detect inserts, updates, and deletes. This needs to be configured on the source database itself.
+        """
         return pulumi.get(self, "replication_method")
 
     @replication_method.setter
@@ -28537,6 +31784,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter
     def schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of schemas to sync from. Defaults to user. Case sensitive.
+        """
         return pulumi.get(self, "schemas")
 
     @schemas.setter
@@ -28546,6 +31796,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter(name="sslMethod")
     def ssl_method(self) -> Optional[pulumi.Input['SourceMssqlConfigurationSslMethodArgs']]:
+        """
+        The encryption method which is used when communicating with the database.
+        """
         return pulumi.get(self, "ssl_method")
 
     @ssl_method.setter
@@ -28555,6 +31808,9 @@ class SourceMssqlConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourceMssqlConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -29249,6 +32505,13 @@ class SourceMyHoursConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  logs_batch_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] email: Your My Hours username
+        :param pulumi.Input[str] password: The password associated to the username
+        :param pulumi.Input[str] source_type: must be one of ["my-hours"]
+        :param pulumi.Input[str] start_date: Start date for collecting time logs
+        :param pulumi.Input[int] logs_batch_size: Pagination size used for retrieving logs in days
+        """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "source_type", source_type)
@@ -29259,6 +32522,9 @@ class SourceMyHoursConfigurationArgs:
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
+        """
+        Your My Hours username
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -29268,6 +32534,9 @@ class SourceMyHoursConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The password associated to the username
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -29277,6 +32546,9 @@ class SourceMyHoursConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["my-hours"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -29286,6 +32558,9 @@ class SourceMyHoursConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start date for collecting time logs
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -29295,6 +32570,9 @@ class SourceMyHoursConfigurationArgs:
     @property
     @pulumi.getter(name="logsBatchSize")
     def logs_batch_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Pagination size used for retrieving logs in days
+        """
         return pulumi.get(self, "logs_batch_size")
 
     @logs_batch_size.setter
@@ -29315,6 +32593,18 @@ class SourceMysqlConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  ssl_mode: Optional[pulumi.Input['SourceMysqlConfigurationSslModeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['SourceMysqlConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: The database name.
+        :param pulumi.Input[str] host: The host name of the database.
+        :param pulumi.Input[int] port: The port to connect to.
+        :param pulumi.Input['SourceMysqlConfigurationReplicationMethodArgs'] replication_method: Configures how data is extracted from the database.
+        :param pulumi.Input[str] source_type: must be one of ["mysql"]
+        :param pulumi.Input[str] username: The username which is used to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        :param pulumi.Input[str] password: The password associated with the username.
+        :param pulumi.Input['SourceMysqlConfigurationSslModeArgs'] ssl_mode: SSL connection modes. Read more \\n\\n in the docs\\n\\n.
+        :param pulumi.Input['SourceMysqlConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -29333,6 +32623,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The database name.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -29342,6 +32635,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The host name of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -29351,6 +32647,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port to connect to.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -29360,6 +32659,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="replicationMethod")
     def replication_method(self) -> pulumi.Input['SourceMysqlConfigurationReplicationMethodArgs']:
+        """
+        Configures how data is extracted from the database.
+        """
         return pulumi.get(self, "replication_method")
 
     @replication_method.setter
@@ -29369,6 +32671,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["mysql"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -29378,6 +32683,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -29387,6 +32695,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -29396,6 +32707,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -29405,6 +32719,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="sslMode")
     def ssl_mode(self) -> Optional[pulumi.Input['SourceMysqlConfigurationSslModeArgs']]:
+        """
+        SSL connection modes. Read more \\n\\n in the docs\\n\\n.
+        """
         return pulumi.get(self, "ssl_mode")
 
     @ssl_mode.setter
@@ -29414,6 +32731,9 @@ class SourceMysqlConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourceMysqlConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -30364,6 +33684,17 @@ class SourceNetsuiteConfigurationArgs:
                  token_secret: pulumi.Input[str],
                  object_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  window_in_days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] consumer_key: Consumer key associated with your integration
+        :param pulumi.Input[str] consumer_secret: Consumer secret associated with your integration
+        :param pulumi.Input[str] realm: Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+        :param pulumi.Input[str] source_type: must be one of ["netsuite"]
+        :param pulumi.Input[str] start_datetime: Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+        :param pulumi.Input[str] token_key: Access token key
+        :param pulumi.Input[str] token_secret: Access token secret
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] object_types: The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+        :param pulumi.Input[int] window_in_days: The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+        """
         pulumi.set(__self__, "consumer_key", consumer_key)
         pulumi.set(__self__, "consumer_secret", consumer_secret)
         pulumi.set(__self__, "realm", realm)
@@ -30379,6 +33710,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="consumerKey")
     def consumer_key(self) -> pulumi.Input[str]:
+        """
+        Consumer key associated with your integration
+        """
         return pulumi.get(self, "consumer_key")
 
     @consumer_key.setter
@@ -30388,6 +33722,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="consumerSecret")
     def consumer_secret(self) -> pulumi.Input[str]:
+        """
+        Consumer secret associated with your integration
+        """
         return pulumi.get(self, "consumer_secret")
 
     @consumer_secret.setter
@@ -30397,6 +33734,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
+        """
+        Netsuite realm e.g. 2344535, as for `production` or 2344535_SB1, as for the `sandbox`
+        """
         return pulumi.get(self, "realm")
 
     @realm.setter
@@ -30406,6 +33746,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["netsuite"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -30415,6 +33758,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="startDatetime")
     def start_datetime(self) -> pulumi.Input[str]:
+        """
+        Starting point for your data replication, in format of "YYYY-MM-DDTHH:mm:ssZ"
+        """
         return pulumi.get(self, "start_datetime")
 
     @start_datetime.setter
@@ -30424,6 +33770,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="tokenKey")
     def token_key(self) -> pulumi.Input[str]:
+        """
+        Access token key
+        """
         return pulumi.get(self, "token_key")
 
     @token_key.setter
@@ -30433,6 +33782,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="tokenSecret")
     def token_secret(self) -> pulumi.Input[str]:
+        """
+        Access token secret
+        """
         return pulumi.get(self, "token_secret")
 
     @token_secret.setter
@@ -30442,6 +33794,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="objectTypes")
     def object_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The API names of the Netsuite objects you want to sync. Setting this speeds up the connection setup process by limiting the number of schemas that need to be retrieved from Netsuite.
+        """
         return pulumi.get(self, "object_types")
 
     @object_types.setter
@@ -30451,6 +33806,9 @@ class SourceNetsuiteConfigurationArgs:
     @property
     @pulumi.getter(name="windowInDays")
     def window_in_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of days used to query the data with date chunks. Set smaller value, if you have lots of data.
+        """
         return pulumi.get(self, "window_in_days")
 
     @window_in_days.setter
@@ -30464,6 +33822,11 @@ class SourceNotionConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceNotionConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["notion"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+        :param pulumi.Input['SourceNotionConfigurationCredentialsArgs'] credentials: Pick an authentication method.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if credentials is not None:
@@ -30472,6 +33835,9 @@ class SourceNotionConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["notion"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -30481,6 +33847,9 @@ class SourceNotionConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00.000Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -30490,6 +33859,9 @@ class SourceNotionConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceNotionConfigurationCredentialsArgs']]:
+        """
+        Pick an authentication method.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -30711,6 +34083,16 @@ class SourceNytimesConfigurationArgs:
                  start_date: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  share_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[int] period: must be one of ["1", "7", "30"]
+               Period of time (in days)
+        :param pulumi.Input[str] source_type: must be one of ["nytimes"]
+        :param pulumi.Input[str] start_date: Start date to begin the article retrieval (format YYYY-MM)
+        :param pulumi.Input[str] end_date: End date to stop the article retrieval (format YYYY-MM)
+        :param pulumi.Input[str] share_type: must be one of ["facebook"]
+               Share Type
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "source_type", source_type)
@@ -30723,6 +34105,9 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -30732,6 +34117,10 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter
     def period(self) -> pulumi.Input[int]:
+        """
+        must be one of ["1", "7", "30"]
+        Period of time (in days)
+        """
         return pulumi.get(self, "period")
 
     @period.setter
@@ -30741,6 +34130,9 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["nytimes"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -30750,6 +34142,9 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start date to begin the article retrieval (format YYYY-MM)
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -30759,6 +34154,9 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        End date to stop the article retrieval (format YYYY-MM)
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -30768,6 +34166,10 @@ class SourceNytimesConfigurationArgs:
     @property
     @pulumi.getter(name="shareType")
     def share_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["facebook"]
+        Share Type
+        """
         return pulumi.get(self, "share_type")
 
     @share_type.setter
@@ -30782,6 +34184,11 @@ class SourceOktaConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceOktaConfigurationCredentialsArgs']] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["okta"]
+        :param pulumi.Input[str] domain: The Okta domain. See the \\n\\ndocs\\n\\n for instructions on how to find it.
+        :param pulumi.Input[str] start_date: UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -30793,6 +34200,9 @@ class SourceOktaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["okta"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -30811,6 +34221,9 @@ class SourceOktaConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Okta domain. See the \\n\\ndocs\\n\\n for instructions on how to find it.
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -30820,6 +34233,9 @@ class SourceOktaConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -31037,12 +34453,19 @@ class SourceOmnisendConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] source_type: must be one of ["omnisend"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -31052,6 +34475,9 @@ class SourceOmnisendConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["omnisend"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -31067,6 +34493,13 @@ class SourceOnesignalConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  user_auth_key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['SourceOnesignalConfigurationApplicationArgs']]] applications: Applications keys, see the \\n\\ndocs\\n\\n for more information on how to obtain this data
+        :param pulumi.Input[str] outcome_names: Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \\n\\ndocs\\n\\n for more details
+        :param pulumi.Input[str] source_type: must be one of ["onesignal"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] user_auth_key: OneSignal User Auth Key, see the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         pulumi.set(__self__, "applications", applications)
         pulumi.set(__self__, "outcome_names", outcome_names)
         pulumi.set(__self__, "source_type", source_type)
@@ -31076,6 +34509,9 @@ class SourceOnesignalConfigurationArgs:
     @property
     @pulumi.getter
     def applications(self) -> pulumi.Input[Sequence[pulumi.Input['SourceOnesignalConfigurationApplicationArgs']]]:
+        """
+        Applications keys, see the \\n\\ndocs\\n\\n for more information on how to obtain this data
+        """
         return pulumi.get(self, "applications")
 
     @applications.setter
@@ -31085,6 +34521,9 @@ class SourceOnesignalConfigurationArgs:
     @property
     @pulumi.getter(name="outcomeNames")
     def outcome_names(self) -> pulumi.Input[str]:
+        """
+        Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \\n\\ndocs\\n\\n for more details
+        """
         return pulumi.get(self, "outcome_names")
 
     @outcome_names.setter
@@ -31094,6 +34533,9 @@ class SourceOnesignalConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["onesignal"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -31103,6 +34545,9 @@ class SourceOnesignalConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -31112,6 +34557,9 @@ class SourceOnesignalConfigurationArgs:
     @property
     @pulumi.getter(name="userAuthKey")
     def user_auth_key(self) -> pulumi.Input[str]:
+        """
+        OneSignal User Auth Key, see the \\n\\ndocs\\n\\n for more information on how to obtain this key.
+        """
         return pulumi.get(self, "user_auth_key")
 
     @user_auth_key.setter
@@ -31167,6 +34615,16 @@ class SourceOpenweatherConfigurationArgs:
                  source_type: pulumi.Input[str],
                  lang: Optional[pulumi.Input[str]] = None,
                  units: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] appid: Your OpenWeather API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] lat: Latitude for which you want to get weather condition from. (min -90, max 90)
+        :param pulumi.Input[str] lon: Longitude for which you want to get weather condition from. (min -180, max 180)
+        :param pulumi.Input[str] source_type: must be one of ["openweather"]
+        :param pulumi.Input[str] lang: must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zh_tw", "zu"]
+               You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \\n\\nhere\\n\\n for the list of supported languages.
+        :param pulumi.Input[str] units: must be one of ["standard", "metric", "imperial"]
+               Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+        """
         pulumi.set(__self__, "appid", appid)
         pulumi.set(__self__, "lat", lat)
         pulumi.set(__self__, "lon", lon)
@@ -31179,6 +34637,9 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter
     def appid(self) -> pulumi.Input[str]:
+        """
+        Your OpenWeather API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "appid")
 
     @appid.setter
@@ -31188,6 +34649,9 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter
     def lat(self) -> pulumi.Input[str]:
+        """
+        Latitude for which you want to get weather condition from. (min -90, max 90)
+        """
         return pulumi.get(self, "lat")
 
     @lat.setter
@@ -31197,6 +34661,9 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter
     def lon(self) -> pulumi.Input[str]:
+        """
+        Longitude for which you want to get weather condition from. (min -180, max 180)
+        """
         return pulumi.get(self, "lon")
 
     @lon.setter
@@ -31206,6 +34673,9 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["openweather"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -31215,6 +34685,10 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter
     def lang(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zh_tw", "zu"]
+        You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \\n\\nhere\\n\\n for the list of supported languages.
+        """
         return pulumi.get(self, "lang")
 
     @lang.setter
@@ -31224,6 +34698,10 @@ class SourceOpenweatherConfigurationArgs:
     @property
     @pulumi.getter
     def units(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["standard", "metric", "imperial"]
+        Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+        """
         return pulumi.get(self, "units")
 
     @units.setter
@@ -31244,6 +34722,21 @@ class SourceOracleConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tunnel_method: Optional[pulumi.Input['SourceOracleConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input['SourceOracleConfigurationEncryptionArgs'] encryption: The encryption method with is used when communicating with the database.
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+               Oracle Corporations recommends the following port numbers:
+               1521 - Default listening port for client connections to the listener.
+               2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+        :param pulumi.Input[str] source_type: must be one of ["oracle"]
+        :param pulumi.Input[str] username: The username which is used to access the database.
+        :param pulumi.Input['SourceOracleConfigurationConnectionDataArgs'] connection_data: Connect data that will be used for DB connection
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] password: The password associated with the username.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schemas: The list of schemas to sync from. Defaults to user. Case sensitive.
+        :param pulumi.Input['SourceOracleConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "encryption", encryption)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -31263,6 +34756,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def encryption(self) -> pulumi.Input['SourceOracleConfigurationEncryptionArgs']:
+        """
+        The encryption method with is used when communicating with the database.
+        """
         return pulumi.get(self, "encryption")
 
     @encryption.setter
@@ -31272,6 +34768,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -31281,6 +34780,12 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        Oracle Corporations recommends the following port numbers:
+        1521 - Default listening port for client connections to the listener.
+        2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -31290,6 +34795,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["oracle"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -31299,6 +34807,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The username which is used to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -31308,6 +34819,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter(name="connectionData")
     def connection_data(self) -> Optional[pulumi.Input['SourceOracleConfigurationConnectionDataArgs']]:
+        """
+        Connect data that will be used for DB connection
+        """
         return pulumi.get(self, "connection_data")
 
     @connection_data.setter
@@ -31317,6 +34831,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -31326,6 +34843,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -31335,6 +34855,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter
     def schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of schemas to sync from. Defaults to user. Case sensitive.
+        """
         return pulumi.get(self, "schemas")
 
     @schemas.setter
@@ -31344,6 +34867,9 @@ class SourceOracleConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourceOracleConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -32039,6 +35565,16 @@ class SourceOrbConfigurationArgs:
                  plan_id: Optional[pulumi.Input[str]] = None,
                  string_event_properties_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subscription_usage_grouping_key: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Orb API Key, issued from the Orb admin console.
+        :param pulumi.Input[str] source_type: must be one of ["orb"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2022-03-01T00:00:00Z. Any data with created_at before this data will not be synced. For Subscription Usage, this becomes the `timeframe_start` API parameter.
+        :param pulumi.Input[int] lookback_window_days: When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] numeric_event_properties_keys: Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+        :param pulumi.Input[str] plan_id: Orb Plan ID to filter subscriptions that should have usage fetched.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] string_event_properties_keys: Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+        :param pulumi.Input[str] subscription_usage_grouping_key: Property key name to group subscription usage by.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -32056,6 +35592,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Orb API Key, issued from the Orb admin console.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -32065,6 +35604,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["orb"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32074,6 +35616,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2022-03-01T00:00:00Z. Any data with created_at before this data will not be synced. For Subscription Usage, this becomes the `timeframe_start` API parameter.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32083,6 +35628,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindowDays")
     def lookback_window_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+        """
         return pulumi.get(self, "lookback_window_days")
 
     @lookback_window_days.setter
@@ -32092,6 +35640,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="numericEventPropertiesKeys")
     def numeric_event_properties_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+        """
         return pulumi.get(self, "numeric_event_properties_keys")
 
     @numeric_event_properties_keys.setter
@@ -32101,6 +35652,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="planId")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Orb Plan ID to filter subscriptions that should have usage fetched.
+        """
         return pulumi.get(self, "plan_id")
 
     @plan_id.setter
@@ -32110,6 +35664,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="stringEventPropertiesKeys")
     def string_event_properties_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+        """
         return pulumi.get(self, "string_event_properties_keys")
 
     @string_event_properties_keys.setter
@@ -32119,6 +35676,9 @@ class SourceOrbConfigurationArgs:
     @property
     @pulumi.getter(name="subscriptionUsageGroupingKey")
     def subscription_usage_grouping_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Property key name to group subscription usage by.
+        """
         return pulumi.get(self, "subscription_usage_grouping_key")
 
     @subscription_usage_grouping_key.setter
@@ -32133,6 +35693,12 @@ class SourceOrbitConfigurationArgs:
                  source_type: pulumi.Input[str],
                  workspace: pulumi.Input[str],
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_token: Authorizes you to work with Orbit workspaces associated with the token.
+        :param pulumi.Input[str] source_type: must be one of ["orbit"]
+        :param pulumi.Input[str] workspace: The unique name of the workspace that your API token is associated with.
+        :param pulumi.Input[str] start_date: Date in the format 2022-06-26. Only load members whose last activities are after this date.
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "workspace", workspace)
@@ -32142,6 +35708,9 @@ class SourceOrbitConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Authorizes you to work with Orbit workspaces associated with the token.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -32151,6 +35720,9 @@ class SourceOrbitConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["orbit"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32160,6 +35732,9 @@ class SourceOrbitConfigurationArgs:
     @property
     @pulumi.getter
     def workspace(self) -> pulumi.Input[str]:
+        """
+        The unique name of the workspace that your API token is associated with.
+        """
         return pulumi.get(self, "workspace")
 
     @workspace.setter
@@ -32169,6 +35744,9 @@ class SourceOrbitConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date in the format 2022-06-26. Only load members whose last activities are after this date.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32185,6 +35763,16 @@ class SourceOutbrainAmplifyConfigurationArgs:
                  end_date: Optional[pulumi.Input[str]] = None,
                  geo_location_breakdown: Optional[pulumi.Input[str]] = None,
                  report_granularity: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['SourceOutbrainAmplifyConfigurationCredentialsArgs'] credentials: Credentials for making authenticated requests requires either username/password or access_token.
+        :param pulumi.Input[str] source_type: must be one of ["outbrain-amplify"]
+        :param pulumi.Input[str] start_date: Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+        :param pulumi.Input[str] end_date: Date in the format YYYY-MM-DD.
+        :param pulumi.Input[str] geo_location_breakdown: must be one of ["country", "region", "subregion"]
+               The granularity used for geo location data in reports.
+        :param pulumi.Input[str] report_granularity: must be one of ["daily", "weekly", "monthly"]
+               The granularity used for periodic data in reports. See \\n\\nthe docs\\n\\n.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -32198,6 +35786,9 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> pulumi.Input['SourceOutbrainAmplifyConfigurationCredentialsArgs']:
+        """
+        Credentials for making authenticated requests requires either username/password or access_token.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -32207,6 +35798,9 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["outbrain-amplify"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32216,6 +35810,9 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32225,6 +35822,9 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date in the format YYYY-MM-DD.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -32234,6 +35834,10 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter(name="geoLocationBreakdown")
     def geo_location_breakdown(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["country", "region", "subregion"]
+        The granularity used for geo location data in reports.
+        """
         return pulumi.get(self, "geo_location_breakdown")
 
     @geo_location_breakdown.setter
@@ -32243,6 +35847,10 @@ class SourceOutbrainAmplifyConfigurationArgs:
     @property
     @pulumi.getter(name="reportGranularity")
     def report_granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["daily", "weekly", "monthly"]
+        The granularity used for periodic data in reports. See \\n\\nthe docs\\n\\n.
+        """
         return pulumi.get(self, "report_granularity")
 
     @report_granularity.setter
@@ -32442,6 +36050,14 @@ class SourceOutreachConfigurationArgs:
                  refresh_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] client_id: The Client ID of your Outreach developer application.
+        :param pulumi.Input[str] client_secret: The Client Secret of your Outreach developer application.
+        :param pulumi.Input[str] redirect_uri: A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+        :param pulumi.Input[str] refresh_token: The token for obtaining the new access token.
+        :param pulumi.Input[str] source_type: must be one of ["outreach"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "redirect_uri", redirect_uri)
@@ -32452,6 +36068,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Outreach developer application.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -32461,6 +36080,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The Client Secret of your Outreach developer application.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -32470,6 +36092,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="redirectUri")
     def redirect_uri(self) -> pulumi.Input[str]:
+        """
+        A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+        """
         return pulumi.get(self, "redirect_uri")
 
     @redirect_uri.setter
@@ -32479,6 +36104,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        The token for obtaining the new access token.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -32488,6 +36116,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["outreach"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32497,6 +36128,9 @@ class SourceOutreachConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32513,6 +36147,14 @@ class SourcePaypalTransactionConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  refresh_token: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_id: The Client ID of your Paypal developer application.
+        :param pulumi.Input[str] client_secret: The Client Secret of your Paypal developer application.
+        :param pulumi.Input[bool] is_sandbox: Determines whether to use the sandbox or production environment.
+        :param pulumi.Input[str] source_type: must be one of ["paypal-transaction"]
+        :param pulumi.Input[str] start_date: Start Date for data extraction in \\n\\nISO format\\n\\n. Date must be in range from 3 years till 12 hrs before present time.
+        :param pulumi.Input[str] refresh_token: The key to refresh the expired access token.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "is_sandbox", is_sandbox)
@@ -32524,6 +36166,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Paypal developer application.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -32533,6 +36178,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The Client Secret of your Paypal developer application.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -32542,6 +36190,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="isSandbox")
     def is_sandbox(self) -> pulumi.Input[bool]:
+        """
+        Determines whether to use the sandbox or production environment.
+        """
         return pulumi.get(self, "is_sandbox")
 
     @is_sandbox.setter
@@ -32551,6 +36202,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["paypal-transaction"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32560,6 +36214,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start Date for data extraction in \\n\\nISO format\\n\\n. Date must be in range from 3 years till 12 hrs before present time.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32569,6 +36226,9 @@ class SourcePaypalTransactionConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to refresh the expired access token.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -32583,6 +36243,12 @@ class SourcePaystackConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  lookback_window_days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] secret_key: The Paystack API key (usually starts with 'sk*live*'; find yours \\n\\nhere\\n\\n).
+        :param pulumi.Input[str] source_type: must be one of ["paystack"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[int] lookback_window_days: When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+        """
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -32592,6 +36258,9 @@ class SourcePaystackConfigurationArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
+        """
+        The Paystack API key (usually starts with 'sk*live*'; find yours \\n\\nhere\\n\\n).
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -32601,6 +36270,9 @@ class SourcePaystackConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["paystack"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32610,6 +36282,9 @@ class SourcePaystackConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32619,6 +36294,9 @@ class SourcePaystackConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindowDays")
     def lookback_window_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+        """
         return pulumi.get(self, "lookback_window_days")
 
     @lookback_window_days.setter
@@ -32631,6 +36309,9 @@ class SourcePendoConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["pendo"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
@@ -32646,6 +36327,9 @@ class SourcePendoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pendo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32658,12 +36342,19 @@ class SourcePersistiqConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: PersistIq API Key. See the \\n\\ndocs\\n\\n for more information on where to find that key.
+        :param pulumi.Input[str] source_type: must be one of ["persistiq"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        PersistIq API Key. See the \\n\\ndocs\\n\\n for more information on where to find that key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -32673,6 +36364,9 @@ class SourcePersistiqConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["persistiq"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32690,6 +36384,15 @@ class SourcePexelsApiConfigurationArgs:
                  locale: Optional[pulumi.Input[str]] = None,
                  orientation: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+        :param pulumi.Input[str] query: Optional, the search query, Example Ocean, Tigers, Pears, etc.
+        :param pulumi.Input[str] source_type: must be one of ["pexels-api"]
+        :param pulumi.Input[str] color: Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+        :param pulumi.Input[str] locale: Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+        :param pulumi.Input[str] orientation: Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+        :param pulumi.Input[str] size: Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "source_type", source_type)
@@ -32705,6 +36408,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -32714,6 +36420,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
+        """
+        Optional, the search query, Example Ocean, Tigers, Pears, etc.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -32723,6 +36432,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pexels-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32732,6 +36444,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter
     def color(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+        """
         return pulumi.get(self, "color")
 
     @color.setter
@@ -32741,6 +36456,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter
     def locale(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+        """
         return pulumi.get(self, "locale")
 
     @locale.setter
@@ -32750,6 +36468,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter
     def orientation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+        """
         return pulumi.get(self, "orientation")
 
     @orientation.setter
@@ -32759,6 +36480,9 @@ class SourcePexelsApiConfigurationArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -32773,6 +36497,11 @@ class SourcePinterestConfigurationArgs:
                  start_date: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourcePinterestConfigurationCredentialsArgs']] = None,
                  statuses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["pinterest"]
+        :param pulumi.Input[str] start_date: A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] statuses: Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if credentials is not None:
@@ -32783,6 +36512,9 @@ class SourcePinterestConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pinterest"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -32792,6 +36524,9 @@ class SourcePinterestConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -32810,6 +36545,9 @@ class SourcePinterestConfigurationArgs:
     @property
     @pulumi.getter
     def statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+        """
         return pulumi.get(self, "statuses")
 
     @statuses.setter
@@ -33032,6 +36770,10 @@ class SourcePipedriveConfigurationArgs:
                  replication_start_date: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  authorization: Optional[pulumi.Input['SourcePipedriveConfigurationAuthorizationArgs']] = None):
+        """
+        :param pulumi.Input[str] replication_start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+        :param pulumi.Input[str] source_type: must be one of ["pipedrive"]
+        """
         pulumi.set(__self__, "replication_start_date", replication_start_date)
         pulumi.set(__self__, "source_type", source_type)
         if authorization is not None:
@@ -33040,6 +36782,9 @@ class SourcePipedriveConfigurationArgs:
     @property
     @pulumi.getter(name="replicationStartDate")
     def replication_start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+        """
         return pulumi.get(self, "replication_start_date")
 
     @replication_start_date.setter
@@ -33049,6 +36794,9 @@ class SourcePipedriveConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pipedrive"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -33107,6 +36855,24 @@ class SourcePocketConfigurationArgs:
                  sort: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  tag: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] access_token: The user's Pocket access token.
+        :param pulumi.Input[str] consumer_key: Your application's Consumer Key.
+        :param pulumi.Input[str] source_type: must be one of ["pocket"]
+        :param pulumi.Input[str] content_type: must be one of ["article", "video", "image"]
+               Select the content type of the items to retrieve.
+        :param pulumi.Input[str] detail_type: must be one of ["simple", "complete"]
+               Select the granularity of the information about each item.
+        :param pulumi.Input[str] domain: Only return items from a particular `domain`.
+        :param pulumi.Input[bool] favorite: Retrieve only favorited items.
+        :param pulumi.Input[str] search: Only return items whose title or url contain the `search` string.
+        :param pulumi.Input[str] since: Only return items modified since the given timestamp.
+        :param pulumi.Input[str] sort: must be one of ["newest", "oldest", "title", "site"]
+               Sort retrieved items by the given criteria.
+        :param pulumi.Input[str] state: must be one of ["unread", "archive", "all"]
+               Select the state of the items to retrieve.
+        :param pulumi.Input[str] tag: Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "consumer_key", consumer_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -33132,6 +36898,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        The user's Pocket access token.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -33141,6 +36910,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter(name="consumerKey")
     def consumer_key(self) -> pulumi.Input[str]:
+        """
+        Your application's Consumer Key.
+        """
         return pulumi.get(self, "consumer_key")
 
     @consumer_key.setter
@@ -33150,6 +36922,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pocket"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -33159,6 +36934,10 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["article", "video", "image"]
+        Select the content type of the items to retrieve.
+        """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
@@ -33168,6 +36947,10 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter(name="detailType")
     def detail_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["simple", "complete"]
+        Select the granularity of the information about each item.
+        """
         return pulumi.get(self, "detail_type")
 
     @detail_type.setter
@@ -33177,6 +36960,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only return items from a particular `domain`.
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -33186,6 +36972,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def favorite(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Retrieve only favorited items.
+        """
         return pulumi.get(self, "favorite")
 
     @favorite.setter
@@ -33195,6 +36984,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def search(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only return items whose title or url contain the `search` string.
+        """
         return pulumi.get(self, "search")
 
     @search.setter
@@ -33204,6 +36996,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def since(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only return items modified since the given timestamp.
+        """
         return pulumi.get(self, "since")
 
     @since.setter
@@ -33213,6 +37008,10 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def sort(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["newest", "oldest", "title", "site"]
+        Sort retrieved items by the given criteria.
+        """
         return pulumi.get(self, "sort")
 
     @sort.setter
@@ -33222,6 +37021,10 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["unread", "archive", "all"]
+        Select the state of the items to retrieve.
+        """
         return pulumi.get(self, "state")
 
     @state.setter
@@ -33231,6 +37034,9 @@ class SourcePocketConfigurationArgs:
     @property
     @pulumi.getter
     def tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+        """
         return pulumi.get(self, "tag")
 
     @tag.setter
@@ -33243,12 +37049,19 @@ class SourcePokeapiConfigurationArgs:
     def __init__(__self__, *,
                  pokemon_name: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] pokemon_name: Pokemon requested from the API.
+        :param pulumi.Input[str] source_type: must be one of ["pokeapi"]
+        """
         pulumi.set(__self__, "pokemon_name", pokemon_name)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="pokemonName")
     def pokemon_name(self) -> pulumi.Input[str]:
+        """
+        Pokemon requested from the API.
+        """
         return pulumi.get(self, "pokemon_name")
 
     @pokemon_name.setter
@@ -33258,6 +37071,9 @@ class SourcePokeapiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pokeapi"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -33278,6 +37094,18 @@ class SourcePolygonStockApiConfigurationArgs:
                  adjusted: Optional[pulumi.Input[str]] = None,
                  limit: Optional[pulumi.Input[int]] = None,
                  sort: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Your API ACCESS Key
+        :param pulumi.Input[str] end_date: The target date for the aggregate window.
+        :param pulumi.Input[int] multiplier: The size of the timespan multiplier.
+        :param pulumi.Input[str] source_type: must be one of ["polygon-stock-api"]
+        :param pulumi.Input[str] start_date: The beginning date for the aggregate window.
+        :param pulumi.Input[str] stocks_ticker: The exchange symbol that this item is traded under.
+        :param pulumi.Input[str] timespan: The size of the time window.
+        :param pulumi.Input[str] adjusted: Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+        :param pulumi.Input[int] limit: The target date for the aggregate window.
+        :param pulumi.Input[str] sort: Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "end_date", end_date)
         pulumi.set(__self__, "multiplier", multiplier)
@@ -33295,6 +37123,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API ACCESS Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -33304,6 +37135,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> pulumi.Input[str]:
+        """
+        The target date for the aggregate window.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -33313,6 +37147,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter
     def multiplier(self) -> pulumi.Input[int]:
+        """
+        The size of the timespan multiplier.
+        """
         return pulumi.get(self, "multiplier")
 
     @multiplier.setter
@@ -33322,6 +37159,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["polygon-stock-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -33331,6 +37171,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The beginning date for the aggregate window.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -33340,6 +37183,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter(name="stocksTicker")
     def stocks_ticker(self) -> pulumi.Input[str]:
+        """
+        The exchange symbol that this item is traded under.
+        """
         return pulumi.get(self, "stocks_ticker")
 
     @stocks_ticker.setter
@@ -33349,6 +37195,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter
     def timespan(self) -> pulumi.Input[str]:
+        """
+        The size of the time window.
+        """
         return pulumi.get(self, "timespan")
 
     @timespan.setter
@@ -33358,6 +37207,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter
     def adjusted(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+        """
         return pulumi.get(self, "adjusted")
 
     @adjusted.setter
@@ -33367,6 +37219,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter
     def limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The target date for the aggregate window.
+        """
         return pulumi.get(self, "limit")
 
     @limit.setter
@@ -33376,6 +37231,9 @@ class SourcePolygonStockApiConfigurationArgs:
     @property
     @pulumi.getter
     def sort(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+        """
         return pulumi.get(self, "sort")
 
     @sort.setter
@@ -33397,6 +37255,20 @@ class SourcePostgresConfigurationArgs:
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_mode: Optional[pulumi.Input['SourcePostgresConfigurationSslModeArgs']] = None,
                  tunnel_method: Optional[pulumi.Input['SourcePostgresConfigurationTunnelMethodArgs']] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] host: Hostname of the database.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] source_type: must be one of ["postgres"]
+        :param pulumi.Input[str] username: Username to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input['SourcePostgresConfigurationReplicationMethodArgs'] replication_method: Replication method for extracting data from the database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schemas: The list of schemas (case sensitive) to sync from. Defaults to public.
+        :param pulumi.Input['SourcePostgresConfigurationSslModeArgs'] ssl_mode: SSL connection modes.
+               Read more \\n\\n in the docs\\n\\n.
+        :param pulumi.Input['SourcePostgresConfigurationTunnelMethodArgs'] tunnel_method: Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -33418,6 +37290,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -33427,6 +37302,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Hostname of the database.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -33436,6 +37314,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -33445,6 +37326,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["postgres"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -33454,6 +37338,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -33463,6 +37350,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \\n\\nJDBC URL parameters\\n\\n.
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -33472,6 +37362,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -33481,6 +37374,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter(name="replicationMethod")
     def replication_method(self) -> Optional[pulumi.Input['SourcePostgresConfigurationReplicationMethodArgs']]:
+        """
+        Replication method for extracting data from the database.
+        """
         return pulumi.get(self, "replication_method")
 
     @replication_method.setter
@@ -33490,6 +37386,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter
     def schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of schemas (case sensitive) to sync from. Defaults to public.
+        """
         return pulumi.get(self, "schemas")
 
     @schemas.setter
@@ -33499,6 +37398,10 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter(name="sslMode")
     def ssl_mode(self) -> Optional[pulumi.Input['SourcePostgresConfigurationSslModeArgs']]:
+        """
+        SSL connection modes.
+        Read more \\n\\n in the docs\\n\\n.
+        """
         return pulumi.get(self, "ssl_mode")
 
     @ssl_mode.setter
@@ -33508,6 +37411,9 @@ class SourcePostgresConfigurationArgs:
     @property
     @pulumi.getter(name="tunnelMethod")
     def tunnel_method(self) -> Optional[pulumi.Input['SourcePostgresConfigurationTunnelMethodArgs']]:
+        """
+        Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+        """
         return pulumi.get(self, "tunnel_method")
 
     @tunnel_method.setter
@@ -34881,6 +38787,12 @@ class SourcePosthogConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: API Key. See the \\n\\ndocs\\n\\n for information on how to generate this key.
+        :param pulumi.Input[str] source_type: must be one of ["posthog"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+        :param pulumi.Input[str] base_url: Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -34890,6 +38802,9 @@ class SourcePosthogConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key. See the \\n\\ndocs\\n\\n for information on how to generate this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -34899,6 +38814,9 @@ class SourcePosthogConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["posthog"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -34908,6 +38826,9 @@ class SourcePosthogConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -34917,6 +38838,9 @@ class SourcePosthogConfigurationArgs:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -34930,6 +38854,11 @@ class SourcePostmarkappConfigurationArgs:
                  source_type: pulumi.Input[str],
                  x_postmark_account_token: pulumi.Input[str],
                  x_postmark_server_token: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["postmarkapp"]
+        :param pulumi.Input[str] x_postmark_account_token: API Key for account
+        :param pulumi.Input[str] x_postmark_server_token: API Key for server
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "x_postmark_account_token", x_postmark_account_token)
         pulumi.set(__self__, "x_postmark_server_token", x_postmark_server_token)
@@ -34937,6 +38866,9 @@ class SourcePostmarkappConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["postmarkapp"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -34946,6 +38878,9 @@ class SourcePostmarkappConfigurationArgs:
     @property
     @pulumi.getter(name="xPostmarkAccountToken")
     def x_postmark_account_token(self) -> pulumi.Input[str]:
+        """
+        API Key for account
+        """
         return pulumi.get(self, "x_postmark_account_token")
 
     @x_postmark_account_token.setter
@@ -34955,6 +38890,9 @@ class SourcePostmarkappConfigurationArgs:
     @property
     @pulumi.getter(name="xPostmarkServerToken")
     def x_postmark_server_token(self) -> pulumi.Input[str]:
+        """
+        API Key for server
+        """
         return pulumi.get(self, "x_postmark_server_token")
 
     @x_postmark_server_token.setter
@@ -34969,6 +38907,12 @@ class SourcePrestashopConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  url: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_key: Your PrestaShop access key. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        :param pulumi.Input[str] source_type: must be one of ["prestashop"]
+        :param pulumi.Input[str] start_date: The Start date in the format YYYY-MM-DD.
+        :param pulumi.Input[str] url: Shop URL without trailing slash.
+        """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -34977,6 +38921,9 @@ class SourcePrestashopConfigurationArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Input[str]:
+        """
+        Your PrestaShop access key. See \\n\\n the docs \\n\\n for info on how to obtain this.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -34986,6 +38933,9 @@ class SourcePrestashopConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["prestashop"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -34995,6 +38945,9 @@ class SourcePrestashopConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The Start date in the format YYYY-MM-DD.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -35004,6 +38957,9 @@ class SourcePrestashopConfigurationArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        Shop URL without trailing slash.
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -35015,11 +38971,17 @@ class SourcePrestashopConfigurationArgs:
 class SourcePublicApisConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["public-apis"]
+        """
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["public-apis"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35034,6 +38996,12 @@ class SourcePunkApiConfigurationArgs:
                  brewed_before: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] brewed_after: To extract specific data with Unique ID
+        :param pulumi.Input[str] brewed_before: To extract specific data with Unique ID
+        :param pulumi.Input[str] source_type: must be one of ["punk-api"]
+        :param pulumi.Input[str] id: To extract specific data with Unique ID
+        """
         pulumi.set(__self__, "brewed_after", brewed_after)
         pulumi.set(__self__, "brewed_before", brewed_before)
         pulumi.set(__self__, "source_type", source_type)
@@ -35043,6 +39011,9 @@ class SourcePunkApiConfigurationArgs:
     @property
     @pulumi.getter(name="brewedAfter")
     def brewed_after(self) -> pulumi.Input[str]:
+        """
+        To extract specific data with Unique ID
+        """
         return pulumi.get(self, "brewed_after")
 
     @brewed_after.setter
@@ -35052,6 +39023,9 @@ class SourcePunkApiConfigurationArgs:
     @property
     @pulumi.getter(name="brewedBefore")
     def brewed_before(self) -> pulumi.Input[str]:
+        """
+        To extract specific data with Unique ID
+        """
         return pulumi.get(self, "brewed_before")
 
     @brewed_before.setter
@@ -35061,6 +39035,9 @@ class SourcePunkApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["punk-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35070,6 +39047,9 @@ class SourcePunkApiConfigurationArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        To extract specific data with Unique ID
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -35083,6 +39063,11 @@ class SourcePypiConfigurationArgs:
                  project_name: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] project_name: Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+        :param pulumi.Input[str] source_type: must be one of ["pypi"]
+        :param pulumi.Input[str] version: Version of the project/package.  Use it to find a particular release instead of all releases.
+        """
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "source_type", source_type)
         if version is not None:
@@ -35091,6 +39076,9 @@ class SourcePypiConfigurationArgs:
     @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Input[str]:
+        """
+        Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+        """
         return pulumi.get(self, "project_name")
 
     @project_name.setter
@@ -35100,6 +39088,9 @@ class SourcePypiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["pypi"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35109,6 +39100,9 @@ class SourcePypiConfigurationArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the project/package.  Use it to find a particular release instead of all releases.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -35124,6 +39118,13 @@ class SourceQualarooConfigurationArgs:
                  start_date: pulumi.Input[str],
                  token: pulumi.Input[str],
                  survey_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] key: A Qualaroo token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        :param pulumi.Input[str] source_type: must be one of ["qualaroo"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[str] token: A Qualaroo token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] survey_ids: IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -35134,6 +39135,9 @@ class SourceQualarooConfigurationArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        A Qualaroo token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -35143,6 +39147,9 @@ class SourceQualarooConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["qualaroo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35152,6 +39159,9 @@ class SourceQualarooConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -35161,6 +39171,9 @@ class SourceQualarooConfigurationArgs:
     @property
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
+        """
+        A Qualaroo token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -35170,6 +39183,9 @@ class SourceQualarooConfigurationArgs:
     @property
     @pulumi.getter(name="surveyIds")
     def survey_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+        """
         return pulumi.get(self, "survey_ids")
 
     @survey_ids.setter
@@ -35184,6 +39200,11 @@ class SourceQuickbooksConfigurationArgs:
                  sandbox: pulumi.Input[bool],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[bool] sandbox: Determines whether to use the sandbox or production environment.
+        :param pulumi.Input[str] source_type: must be one of ["quickbooks"]
+        :param pulumi.Input[str] start_date: The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "sandbox", sandbox)
         pulumi.set(__self__, "source_type", source_type)
@@ -35201,6 +39222,9 @@ class SourceQuickbooksConfigurationArgs:
     @property
     @pulumi.getter
     def sandbox(self) -> pulumi.Input[bool]:
+        """
+        Determines whether to use the sandbox or production environment.
+        """
         return pulumi.get(self, "sandbox")
 
     @sandbox.setter
@@ -35210,6 +39234,9 @@ class SourceQuickbooksConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["quickbooks"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35219,6 +39246,9 @@ class SourceQuickbooksConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -35428,6 +39458,12 @@ class SourceRailzConfigurationArgs:
                  secret_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] client_id: Client ID (client_id)
+        :param pulumi.Input[str] secret_key: Secret key (secret_key)
+        :param pulumi.Input[str] source_type: must be one of ["railz"]
+        :param pulumi.Input[str] start_date: Start date
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -35436,6 +39472,9 @@ class SourceRailzConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        Client ID (client_id)
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -35445,6 +39484,9 @@ class SourceRailzConfigurationArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
+        """
+        Secret key (secret_key)
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -35454,6 +39496,9 @@ class SourceRailzConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["railz"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35463,6 +39508,9 @@ class SourceRailzConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start date
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -35476,6 +39524,11 @@ class SourceRechargeConfigurationArgs:
                  access_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: The value of the Access Token generated. See the \\n\\ndocs\\n\\n for more information.
+        :param pulumi.Input[str] source_type: must be one of ["recharge"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -35483,6 +39536,9 @@ class SourceRechargeConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        The value of the Access Token generated. See the \\n\\ndocs\\n\\n for more information.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -35492,6 +39548,9 @@ class SourceRechargeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["recharge"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35501,6 +39560,9 @@ class SourceRechargeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -35514,6 +39576,10 @@ class SourceRecreationConfigurationArgs:
                  apikey: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  query_campsites: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] apikey: API Key
+        :param pulumi.Input[str] source_type: must be one of ["recreation"]
+        """
         pulumi.set(__self__, "apikey", apikey)
         pulumi.set(__self__, "source_type", source_type)
         if query_campsites is not None:
@@ -35522,6 +39588,9 @@ class SourceRecreationConfigurationArgs:
     @property
     @pulumi.getter
     def apikey(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
@@ -35531,6 +39600,9 @@ class SourceRecreationConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["recreation"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35553,6 +39625,11 @@ class SourceRecruiteeConfigurationArgs:
                  api_key: pulumi.Input[str],
                  company_id: pulumi.Input[int],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Recruitee API Key. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[int] company_id: Recruitee Company ID. You can also find this ID on the \\n\\nRecruitee API tokens page\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["recruitee"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "company_id", company_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -35560,6 +39637,9 @@ class SourceRecruiteeConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Recruitee API Key. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -35569,6 +39649,9 @@ class SourceRecruiteeConfigurationArgs:
     @property
     @pulumi.getter(name="companyId")
     def company_id(self) -> pulumi.Input[int]:
+        """
+        Recruitee Company ID. You can also find this ID on the \\n\\nRecruitee API tokens page\\n\\n.
+        """
         return pulumi.get(self, "company_id")
 
     @company_id.setter
@@ -35578,6 +39661,9 @@ class SourceRecruiteeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["recruitee"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35592,6 +39678,12 @@ class SourceRecurlyConfigurationArgs:
                  source_type: pulumi.Input[str],
                  begin_time: Optional[pulumi.Input[str]] = None,
                  end_time: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Recurly API Key. See the  \\n\\ndocs\\n\\n for more information on how to generate this key.
+        :param pulumi.Input[str] source_type: must be one of ["recurly"]
+        :param pulumi.Input[str] begin_time: ISO8601 timestamp from which the replication from Recurly API will start from.
+        :param pulumi.Input[str] end_time: ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         if begin_time is not None:
@@ -35602,6 +39694,9 @@ class SourceRecurlyConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Recurly API Key. See the  \\n\\ndocs\\n\\n for more information on how to generate this key.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -35611,6 +39706,9 @@ class SourceRecurlyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["recurly"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35620,6 +39718,9 @@ class SourceRecurlyConfigurationArgs:
     @property
     @pulumi.getter(name="beginTime")
     def begin_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISO8601 timestamp from which the replication from Recurly API will start from.
+        """
         return pulumi.get(self, "begin_time")
 
     @begin_time.setter
@@ -35629,6 +39730,9 @@ class SourceRecurlyConfigurationArgs:
     @property
     @pulumi.getter(name="endTime")
     def end_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+        """
         return pulumi.get(self, "end_time")
 
     @end_time.setter
@@ -35647,6 +39751,16 @@ class SourceRedshiftConfigurationArgs:
                  username: pulumi.Input[str],
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  schemas: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database.
+        :param pulumi.Input[str] host: Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+        :param pulumi.Input[str] password: Password associated with the username.
+        :param pulumi.Input[int] port: Port of the database.
+        :param pulumi.Input[str] source_type: must be one of ["redshift"]
+        :param pulumi.Input[str] username: Username to use to access the database.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] schemas: The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "password", password)
@@ -35661,6 +39775,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        Name of the database.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -35670,6 +39787,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -35679,6 +39799,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Password associated with the username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -35688,6 +39811,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port of the database.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -35697,6 +39823,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["redshift"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -35706,6 +39835,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username to use to access the database.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -35715,6 +39847,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -35724,6 +39859,9 @@ class SourceRedshiftConfigurationArgs:
     @property
     @pulumi.getter
     def schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+        """
         return pulumi.get(self, "schemas")
 
     @schemas.setter
@@ -35736,6 +39874,10 @@ class SourceRetentlyConfigurationArgs:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input['SourceRetentlyConfigurationCredentialsArgs']] = None,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['SourceRetentlyConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Retently
+        :param pulumi.Input[str] source_type: must be one of ["retently"]
+        """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if source_type is not None:
@@ -35744,6 +39886,9 @@ class SourceRetentlyConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceRetentlyConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Retently
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -35753,6 +39898,9 @@ class SourceRetentlyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["retently"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -36022,12 +40170,19 @@ class SourceRkiCovidConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["rki-covid"]
+        :param pulumi.Input[str] start_date: UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["rki-covid"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -36037,6 +40192,9 @@ class SourceRkiCovidConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -36049,12 +40207,19 @@ class SourceRssConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  url: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["rss"]
+        :param pulumi.Input[str] url: RSS Feed URL
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["rss"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -36064,6 +40229,9 @@ class SourceRssConfigurationArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        RSS Feed URL
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -36080,6 +40248,14 @@ class SourceS3ConfigurationArgs:
                  source_type: pulumi.Input[str],
                  format: Optional[pulumi.Input['SourceS3ConfigurationFormatArgs']] = None,
                  schema: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] dataset: The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+        :param pulumi.Input[str] path_pattern: A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \\n\\nthis page\\n\\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \\n\\n**\\n\\n to pick up all files.
+        :param pulumi.Input['SourceS3ConfigurationProviderArgs'] provider: Use this to load files from S3 or S3-compatible services
+        :param pulumi.Input[str] source_type: must be one of ["s3"]
+        :param pulumi.Input['SourceS3ConfigurationFormatArgs'] format: The format of the files you'd like to replicate
+        :param pulumi.Input[str] schema: Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \\n\\n{ "column" : "type" }\\n\\n, where types are valid \\n\\nJSON Schema datatypes\\n\\n. Leave as {} to auto-infer the schema.
+        """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "path_pattern", path_pattern)
         pulumi.set(__self__, "provider", provider)
@@ -36092,6 +40268,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter
     def dataset(self) -> pulumi.Input[str]:
+        """
+        The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+        """
         return pulumi.get(self, "dataset")
 
     @dataset.setter
@@ -36101,6 +40280,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter(name="pathPattern")
     def path_pattern(self) -> pulumi.Input[str]:
+        """
+        A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \\n\\nthis page\\n\\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \\n\\n**\\n\\n to pick up all files.
+        """
         return pulumi.get(self, "path_pattern")
 
     @path_pattern.setter
@@ -36110,6 +40292,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter
     def provider(self) -> pulumi.Input['SourceS3ConfigurationProviderArgs']:
+        """
+        Use this to load files from S3 or S3-compatible services
+        """
         return pulumi.get(self, "provider")
 
     @provider.setter
@@ -36119,6 +40304,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["s3"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -36128,6 +40316,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input['SourceS3ConfigurationFormatArgs']]:
+        """
+        The format of the files you'd like to replicate
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -36137,6 +40328,9 @@ class SourceS3ConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \\n\\n{ "column" : "type" }\\n\\n, where types are valid \\n\\nJSON Schema datatypes\\n\\n. Leave as {} to auto-infer the schema.
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -36853,6 +41047,17 @@ class SourceSalesforceConfigurationArgs:
                  is_sandbox: Optional[pulumi.Input[bool]] = None,
                  start_date: Optional[pulumi.Input[str]] = None,
                  streams_criterias: Optional[pulumi.Input[Sequence[pulumi.Input['SourceSalesforceConfigurationStreamsCriteriaArgs']]]] = None):
+        """
+        :param pulumi.Input[str] client_id: Enter your Salesforce developer application's \\n\\nClient ID\\n\\n
+        :param pulumi.Input[str] client_secret: Enter your Salesforce developer application's \\n\\nClient secret\\n\\n
+        :param pulumi.Input[str] refresh_token: Enter your application's \\n\\nSalesforce Refresh Token\\n\\n used for Airbyte to access your Salesforce account.
+        :param pulumi.Input[str] source_type: must be one of ["salesforce"]
+        :param pulumi.Input[str] auth_type: must be one of ["Client"]
+        :param pulumi.Input[bool] force_use_bulk_api: Toggle to use Bulk API (this might cause empty fields for some streams)
+        :param pulumi.Input[bool] is_sandbox: Toggle if you're using a \\n\\nSalesforce Sandbox\\n\\n
+        :param pulumi.Input[str] start_date: Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+        :param pulumi.Input[Sequence[pulumi.Input['SourceSalesforceConfigurationStreamsCriteriaArgs']]] streams_criterias: Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "refresh_token", refresh_token)
@@ -36871,6 +41076,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        Enter your Salesforce developer application's \\n\\nClient ID\\n\\n
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -36880,6 +41088,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        Enter your Salesforce developer application's \\n\\nClient secret\\n\\n
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -36889,6 +41100,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        Enter your application's \\n\\nSalesforce Refresh Token\\n\\n used for Airbyte to access your Salesforce account.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -36898,6 +41112,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["salesforce"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -36907,6 +41124,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["Client"]
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -36916,6 +41136,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="forceUseBulkApi")
     def force_use_bulk_api(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Toggle to use Bulk API (this might cause empty fields for some streams)
+        """
         return pulumi.get(self, "force_use_bulk_api")
 
     @force_use_bulk_api.setter
@@ -36925,6 +41148,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="isSandbox")
     def is_sandbox(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Toggle if you're using a \\n\\nSalesforce Sandbox\\n\\n
+        """
         return pulumi.get(self, "is_sandbox")
 
     @is_sandbox.setter
@@ -36934,6 +41160,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -36943,6 +41172,9 @@ class SourceSalesforceConfigurationArgs:
     @property
     @pulumi.getter(name="streamsCriterias")
     def streams_criterias(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SourceSalesforceConfigurationStreamsCriteriaArgs']]]]:
+        """
+        Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+        """
         return pulumi.get(self, "streams_criterias")
 
     @streams_criterias.setter
@@ -36983,6 +41215,10 @@ class SourceSalesloftConfigurationArgs:
                  credentials: pulumi.Input['SourceSalesloftConfigurationCredentialsArgs'],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["salesloft"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -36999,6 +41235,9 @@ class SourceSalesloftConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["salesloft"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37008,6 +41247,9 @@ class SourceSalesloftConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -37269,12 +41511,19 @@ class SourceSapFieldglassConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] source_type: must be one of ["sap-fieldglass"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -37284,6 +41533,9 @@ class SourceSapFieldglassConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sap-fieldglass"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37296,12 +41548,19 @@ class SourceSecodaConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Your API Access Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["secoda"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Access Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -37311,6 +41570,9 @@ class SourceSecodaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["secoda"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37324,6 +41586,11 @@ class SourceSendgridConfigurationArgs:
                  apikey: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_time: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] apikey: API Key, use \\n\\nadmin\\n\\n to generate this key.
+        :param pulumi.Input[str] source_type: must be one of ["sendgrid"]
+        :param pulumi.Input[str] start_time: Start time in ISO8601 format. Any data before this time point will not be replicated.
+        """
         pulumi.set(__self__, "apikey", apikey)
         pulumi.set(__self__, "source_type", source_type)
         if start_time is not None:
@@ -37332,6 +41599,9 @@ class SourceSendgridConfigurationArgs:
     @property
     @pulumi.getter
     def apikey(self) -> pulumi.Input[str]:
+        """
+        API Key, use \\n\\nadmin\\n\\n to generate this key.
+        """
         return pulumi.get(self, "apikey")
 
     @apikey.setter
@@ -37341,6 +41611,9 @@ class SourceSendgridConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sendgrid"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37350,6 +41623,9 @@ class SourceSendgridConfigurationArgs:
     @property
     @pulumi.getter(name="startTime")
     def start_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Start time in ISO8601 format. Any data before this time point will not be replicated.
+        """
         return pulumi.get(self, "start_time")
 
     @start_time.setter
@@ -37362,12 +41638,19 @@ class SourceSendinblueConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["sendinblue"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -37377,6 +41660,9 @@ class SourceSendinblueConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sendinblue"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37393,6 +41679,14 @@ class SourceSenseforceConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  slice_range: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] access_token: Your API access token. See \\n\\nhere\\n\\n. The toke is case sensitive.
+        :param pulumi.Input[str] backend_url: Your Senseforce API backend URL. This is the URL shown during the Login screen. See \\n\\nhere\\n\\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+        :param pulumi.Input[str] dataset_id: The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \\n\\nhere\\n\\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+        :param pulumi.Input[str] source_type: must be one of ["senseforce"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the start_date to 2020-10-10 or later
+        :param pulumi.Input[int] slice_range: The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "backend_url", backend_url)
         pulumi.set(__self__, "dataset_id", dataset_id)
@@ -37404,6 +41698,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Your API access token. See \\n\\nhere\\n\\n. The toke is case sensitive.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -37413,6 +41710,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="backendUrl")
     def backend_url(self) -> pulumi.Input[str]:
+        """
+        Your Senseforce API backend URL. This is the URL shown during the Login screen. See \\n\\nhere\\n\\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+        """
         return pulumi.get(self, "backend_url")
 
     @backend_url.setter
@@ -37422,6 +41722,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="datasetId")
     def dataset_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \\n\\nhere\\n\\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+        """
         return pulumi.get(self, "dataset_id")
 
     @dataset_id.setter
@@ -37431,6 +41734,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["senseforce"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37440,6 +41746,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the start_date to 2020-10-10 or later
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -37449,6 +41758,9 @@ class SourceSenseforceConfigurationArgs:
     @property
     @pulumi.getter(name="sliceRange")
     def slice_range(self) -> Optional[pulumi.Input[int]]:
+        """
+        The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+        """
         return pulumi.get(self, "slice_range")
 
     @slice_range.setter
@@ -37465,6 +41777,14 @@ class SourceSentryConfigurationArgs:
                  source_type: pulumi.Input[str],
                  discover_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  hostname: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] auth_token: Log into Sentry and then \\n\\ncreate authentication tokens\\n\\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+        :param pulumi.Input[str] organization: The slug of the organization the groups belong to.
+        :param pulumi.Input[str] project: The name (slug) of the Project you want to sync.
+        :param pulumi.Input[str] source_type: must be one of ["sentry"]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] discover_fields: Fields to retrieve when fetching discover events
+        :param pulumi.Input[str] hostname: Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+        """
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "organization", organization)
         pulumi.set(__self__, "project", project)
@@ -37477,6 +41797,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter(name="authToken")
     def auth_token(self) -> pulumi.Input[str]:
+        """
+        Log into Sentry and then \\n\\ncreate authentication tokens\\n\\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+        """
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
@@ -37486,6 +41809,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter
     def organization(self) -> pulumi.Input[str]:
+        """
+        The slug of the organization the groups belong to.
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -37495,6 +41821,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter
     def project(self) -> pulumi.Input[str]:
+        """
+        The name (slug) of the Project you want to sync.
+        """
         return pulumi.get(self, "project")
 
     @project.setter
@@ -37504,6 +41833,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sentry"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37513,6 +41845,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter(name="discoverFields")
     def discover_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Fields to retrieve when fetching discover events
+        """
         return pulumi.get(self, "discover_fields")
 
     @discover_fields.setter
@@ -37522,6 +41857,9 @@ class SourceSentryConfigurationArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -37545,6 +41883,22 @@ class SourceSftpBulkConfigurationArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  separator: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] folder_path: The directory to search files for sync
+        :param pulumi.Input[str] host: The server host address
+        :param pulumi.Input[int] port: The server port
+        :param pulumi.Input[str] source_type: must be one of ["sftp-bulk"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] stream_name: The name of the stream or table you want to create
+        :param pulumi.Input[str] username: The server user
+        :param pulumi.Input[bool] file_most_recent: Sync only the most recent file for the configured folder path and file pattern
+        :param pulumi.Input[str] file_pattern: The regular expression to specify files for sync in a chosen Folder Path
+        :param pulumi.Input[str] file_type: must be one of ["csv", "json"]
+               The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+        :param pulumi.Input[str] password: OS-level password for logging into the jump server host
+        :param pulumi.Input[str] private_key: The private key
+        :param pulumi.Input[str] separator: The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+        """
         pulumi.set(__self__, "folder_path", folder_path)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
@@ -37568,6 +41922,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="folderPath")
     def folder_path(self) -> pulumi.Input[str]:
+        """
+        The directory to search files for sync
+        """
         return pulumi.get(self, "folder_path")
 
     @folder_path.setter
@@ -37577,6 +41934,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The server host address
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -37586,6 +41946,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The server port
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -37595,6 +41958,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sftp-bulk"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37604,6 +41970,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -37613,6 +41982,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="streamName")
     def stream_name(self) -> pulumi.Input[str]:
+        """
+        The name of the stream or table you want to create
+        """
         return pulumi.get(self, "stream_name")
 
     @stream_name.setter
@@ -37622,6 +41994,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The server user
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -37631,6 +42006,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="fileMostRecent")
     def file_most_recent(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sync only the most recent file for the configured folder path and file pattern
+        """
         return pulumi.get(self, "file_most_recent")
 
     @file_most_recent.setter
@@ -37640,6 +42018,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="filePattern")
     def file_pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        The regular expression to specify files for sync in a chosen Folder Path
+        """
         return pulumi.get(self, "file_pattern")
 
     @file_pattern.setter
@@ -37649,6 +42030,10 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="fileType")
     def file_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["csv", "json"]
+        The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+        """
         return pulumi.get(self, "file_type")
 
     @file_type.setter
@@ -37658,6 +42043,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        OS-level password for logging into the jump server host
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -37667,6 +42055,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -37676,6 +42067,9 @@ class SourceSftpBulkConfigurationArgs:
     @property
     @pulumi.getter
     def separator(self) -> Optional[pulumi.Input[str]]:
+        """
+        The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+        """
         return pulumi.get(self, "separator")
 
     @separator.setter
@@ -37694,6 +42088,16 @@ class SourceSftpConfigurationArgs:
                  file_pattern: Optional[pulumi.Input[str]] = None,
                  file_types: Optional[pulumi.Input[str]] = None,
                  folder_path: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] host: The server host address
+        :param pulumi.Input[int] port: The server port
+        :param pulumi.Input[str] source_type: must be one of ["sftp"]
+        :param pulumi.Input[str] user: The server user
+        :param pulumi.Input['SourceSftpConfigurationCredentialsArgs'] credentials: The server authentication method
+        :param pulumi.Input[str] file_pattern: The regular expression to specify files for sync in a chosen Folder Path
+        :param pulumi.Input[str] file_types: Coma separated file types. Currently only 'csv' and 'json' types are supported.
+        :param pulumi.Input[str] folder_path: The directory to search files for sync
+        """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "source_type", source_type)
@@ -37710,6 +42114,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The server host address
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -37719,6 +42126,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The server port
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -37728,6 +42138,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sftp"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37737,6 +42150,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter
     def user(self) -> pulumi.Input[str]:
+        """
+        The server user
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -37746,6 +42162,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceSftpConfigurationCredentialsArgs']]:
+        """
+        The server authentication method
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -37755,6 +42174,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter(name="filePattern")
     def file_pattern(self) -> Optional[pulumi.Input[str]]:
+        """
+        The regular expression to specify files for sync in a chosen Folder Path
+        """
         return pulumi.get(self, "file_pattern")
 
     @file_pattern.setter
@@ -37764,6 +42186,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter(name="fileTypes")
     def file_types(self) -> Optional[pulumi.Input[str]]:
+        """
+        Coma separated file types. Currently only 'csv' and 'json' types are supported.
+        """
         return pulumi.get(self, "file_types")
 
     @file_types.setter
@@ -37773,6 +42198,9 @@ class SourceSftpConfigurationArgs:
     @property
     @pulumi.getter(name="folderPath")
     def folder_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The directory to search files for sync
+        """
         return pulumi.get(self, "folder_path")
 
     @folder_path.setter
@@ -37948,6 +42376,12 @@ class SourceShopifyConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceShopifyConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] shop: The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+        :param pulumi.Input[str] source_type: must be one of ["shopify"]
+        :param pulumi.Input[str] start_date: The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+        :param pulumi.Input['SourceShopifyConfigurationCredentialsArgs'] credentials: The authorization method to use to retrieve data from Shopify
+        """
         pulumi.set(__self__, "shop", shop)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -37957,6 +42391,9 @@ class SourceShopifyConfigurationArgs:
     @property
     @pulumi.getter
     def shop(self) -> pulumi.Input[str]:
+        """
+        The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+        """
         return pulumi.get(self, "shop")
 
     @shop.setter
@@ -37966,6 +42403,9 @@ class SourceShopifyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["shopify"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -37975,6 +42415,9 @@ class SourceShopifyConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -37984,6 +42427,9 @@ class SourceShopifyConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceShopifyConfigurationCredentialsArgs']]:
+        """
+        The authorization method to use to retrieve data from Shopify
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -38209,6 +42655,11 @@ class SourceShortioConfigurationArgs:
                  secret_key: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] secret_key: Short.io Secret Key
+        :param pulumi.Input[str] source_type: must be one of ["shortio"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "domain_id", domain_id)
         pulumi.set(__self__, "secret_key", secret_key)
         pulumi.set(__self__, "source_type", source_type)
@@ -38226,6 +42677,9 @@ class SourceShortioConfigurationArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[str]:
+        """
+        Short.io Secret Key
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -38235,6 +42689,9 @@ class SourceShortioConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["shortio"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38244,6 +42701,9 @@ class SourceShortioConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -38260,6 +42720,14 @@ class SourceSlackConfigurationArgs:
                  start_date: pulumi.Input[str],
                  channel_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  credentials: Optional[pulumi.Input['SourceSlackConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[bool] join_channels: Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+        :param pulumi.Input[int] lookback_window: How far into the past to look for messages in threads, default is 0 days
+        :param pulumi.Input[str] source_type: must be one of ["slack"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] channel_filters: A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+        :param pulumi.Input['SourceSlackConfigurationCredentialsArgs'] credentials: Choose how to authenticate into Slack
+        """
         pulumi.set(__self__, "join_channels", join_channels)
         pulumi.set(__self__, "lookback_window", lookback_window)
         pulumi.set(__self__, "source_type", source_type)
@@ -38272,6 +42740,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter(name="joinChannels")
     def join_channels(self) -> pulumi.Input[bool]:
+        """
+        Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+        """
         return pulumi.get(self, "join_channels")
 
     @join_channels.setter
@@ -38281,6 +42752,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindow")
     def lookback_window(self) -> pulumi.Input[int]:
+        """
+        How far into the past to look for messages in threads, default is 0 days
+        """
         return pulumi.get(self, "lookback_window")
 
     @lookback_window.setter
@@ -38290,6 +42764,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["slack"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38299,6 +42776,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -38308,6 +42788,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter(name="channelFilters")
     def channel_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+        """
         return pulumi.get(self, "channel_filters")
 
     @channel_filters.setter
@@ -38317,6 +42800,9 @@ class SourceSlackConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceSlackConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate into Slack
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -38536,6 +43022,12 @@ class SourceSmailyConfigurationArgs:
                  api_subdomain: pulumi.Input[str],
                  api_username: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_password: API user password. See https://smaily.com/help/api/general/create-api-user/
+        :param pulumi.Input[str] api_subdomain: API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+        :param pulumi.Input[str] api_username: API user username. See https://smaily.com/help/api/general/create-api-user/
+        :param pulumi.Input[str] source_type: must be one of ["smaily"]
+        """
         pulumi.set(__self__, "api_password", api_password)
         pulumi.set(__self__, "api_subdomain", api_subdomain)
         pulumi.set(__self__, "api_username", api_username)
@@ -38544,6 +43036,9 @@ class SourceSmailyConfigurationArgs:
     @property
     @pulumi.getter(name="apiPassword")
     def api_password(self) -> pulumi.Input[str]:
+        """
+        API user password. See https://smaily.com/help/api/general/create-api-user/
+        """
         return pulumi.get(self, "api_password")
 
     @api_password.setter
@@ -38553,6 +43048,9 @@ class SourceSmailyConfigurationArgs:
     @property
     @pulumi.getter(name="apiSubdomain")
     def api_subdomain(self) -> pulumi.Input[str]:
+        """
+        API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+        """
         return pulumi.get(self, "api_subdomain")
 
     @api_subdomain.setter
@@ -38562,6 +43060,9 @@ class SourceSmailyConfigurationArgs:
     @property
     @pulumi.getter(name="apiUsername")
     def api_username(self) -> pulumi.Input[str]:
+        """
+        API user username. See https://smaily.com/help/api/general/create-api-user/
+        """
         return pulumi.get(self, "api_username")
 
     @api_username.setter
@@ -38571,6 +43072,9 @@ class SourceSmailyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["smaily"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38583,12 +43087,19 @@ class SourceSmartengageConfigurationArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: API Key
+        :param pulumi.Input[str] source_type: must be one of ["smartengage"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        API Key
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -38598,6 +43109,9 @@ class SourceSmartengageConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["smartengage"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38613,6 +43127,12 @@ class SourceSmartsheetsConfigurationArgs:
                  spreadsheet_id: pulumi.Input[str],
                  metadata_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  start_datetime: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["smartsheets"]
+        :param pulumi.Input[str] spreadsheet_id: The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] metadata_fields: A List of available columns which metadata can be pulled from.
+        :param pulumi.Input[str] start_datetime: Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "spreadsheet_id", spreadsheet_id)
@@ -38633,6 +43153,9 @@ class SourceSmartsheetsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["smartsheets"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38642,6 +43165,9 @@ class SourceSmartsheetsConfigurationArgs:
     @property
     @pulumi.getter(name="spreadsheetId")
     def spreadsheet_id(self) -> pulumi.Input[str]:
+        """
+        The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+        """
         return pulumi.get(self, "spreadsheet_id")
 
     @spreadsheet_id.setter
@@ -38651,6 +43177,9 @@ class SourceSmartsheetsConfigurationArgs:
     @property
     @pulumi.getter(name="metadataFields")
     def metadata_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A List of available columns which metadata can be pulled from.
+        """
         return pulumi.get(self, "metadata_fields")
 
     @metadata_fields.setter
@@ -38660,6 +43189,9 @@ class SourceSmartsheetsConfigurationArgs:
     @property
     @pulumi.getter(name="startDatetime")
     def start_datetime(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+        """
         return pulumi.get(self, "start_datetime")
 
     @start_datetime.setter
@@ -38929,6 +43461,14 @@ class SourceSnapchatMarketingConfigurationArgs:
                  source_type: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_id: The Client ID of your Snapchat developer application.
+        :param pulumi.Input[str] client_secret: The Client Secret of your Snapchat developer application.
+        :param pulumi.Input[str] refresh_token: Refresh Token to renew the expired Access Token.
+        :param pulumi.Input[str] source_type: must be one of ["snapchat-marketing"]
+        :param pulumi.Input[str] end_date: Date in the format 2017-01-25. Any data after this date will not be replicated.
+        :param pulumi.Input[str] start_date: Date in the format 2022-01-01. Any data before this date will not be replicated.
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "refresh_token", refresh_token)
@@ -38941,6 +43481,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Snapchat developer application.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -38950,6 +43493,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The Client Secret of your Snapchat developer application.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -38959,6 +43505,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        Refresh Token to renew the expired Access Token.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -38968,6 +43517,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["snapchat-marketing"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -38977,6 +43529,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date in the format 2017-01-25. Any data after this date will not be replicated.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -38986,6 +43541,9 @@ class SourceSnapchatMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date in the format 2022-01-01. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -39004,6 +43562,15 @@ class SourceSnowflakeConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceSnowflakeConfigurationCredentialsArgs']] = None,
                  jdbc_url_params: Optional[pulumi.Input[str]] = None,
                  schema: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: The database you created for Airbyte to access data.
+        :param pulumi.Input[str] host: The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+        :param pulumi.Input[str] role: The role you created for Airbyte to access Snowflake.
+        :param pulumi.Input[str] source_type: must be one of ["snowflake"]
+        :param pulumi.Input[str] warehouse: The warehouse you created for Airbyte to access data.
+        :param pulumi.Input[str] jdbc_url_params: Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        :param pulumi.Input[str] schema: The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+        """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "role", role)
@@ -39019,6 +43586,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def database(self) -> pulumi.Input[str]:
+        """
+        The database you created for Airbyte to access data.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -39028,6 +43598,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -39037,6 +43610,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role you created for Airbyte to access Snowflake.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -39046,6 +43622,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["snowflake"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39055,6 +43634,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def warehouse(self) -> pulumi.Input[str]:
+        """
+        The warehouse you created for Airbyte to access data.
+        """
         return pulumi.get(self, "warehouse")
 
     @warehouse.setter
@@ -39073,6 +43655,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter(name="jdbcUrlParams")
     def jdbc_url_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+        """
         return pulumi.get(self, "jdbc_url_params")
 
     @jdbc_url_params.setter
@@ -39082,6 +43667,9 @@ class SourceSnowflakeConfigurationArgs:
     @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+        """
         return pulumi.get(self, "schema")
 
     @schema.setter
@@ -39351,6 +43939,14 @@ class SourceSonarCloudConfigurationArgs:
                  user_token: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] component_keys: Comma-separated list of component keys.
+        :param pulumi.Input[str] organization: Organization key. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["sonar-cloud"]
+        :param pulumi.Input[str] user_token: Your User Token. See \\n\\nhere\\n\\n. The token is case sensitive.
+        :param pulumi.Input[str] end_date: To retrieve issues created before the given date (inclusive).
+        :param pulumi.Input[str] start_date: To retrieve issues created after the given date (inclusive).
+        """
         pulumi.set(__self__, "component_keys", component_keys)
         pulumi.set(__self__, "organization", organization)
         pulumi.set(__self__, "source_type", source_type)
@@ -39363,6 +43959,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter(name="componentKeys")
     def component_keys(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Comma-separated list of component keys.
+        """
         return pulumi.get(self, "component_keys")
 
     @component_keys.setter
@@ -39372,6 +43971,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter
     def organization(self) -> pulumi.Input[str]:
+        """
+        Organization key. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -39381,6 +43983,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["sonar-cloud"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39390,6 +43995,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter(name="userToken")
     def user_token(self) -> pulumi.Input[str]:
+        """
+        Your User Token. See \\n\\nhere\\n\\n. The token is case sensitive.
+        """
         return pulumi.get(self, "user_token")
 
     @user_token.setter
@@ -39399,6 +44007,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        To retrieve issues created before the given date (inclusive).
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -39408,6 +44019,9 @@ class SourceSonarCloudConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        To retrieve issues created after the given date (inclusive).
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -39421,6 +44035,9 @@ class SourceSpaceXApiConfigurationArgs:
                  id: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["spacex-api"]
+        """
         if id is not None:
             pulumi.set(__self__, "id", id)
         if options is not None:
@@ -39449,6 +44066,9 @@ class SourceSpaceXApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["spacex-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39464,6 +44084,13 @@ class SourceSquareConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceSquareConfigurationCredentialsArgs']] = None,
                  include_deleted_objects: Optional[pulumi.Input[bool]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] is_sandbox: Determines whether to use the sandbox or production environment.
+        :param pulumi.Input[str] source_type: must be one of ["square"]
+        :param pulumi.Input['SourceSquareConfigurationCredentialsArgs'] credentials: Choose how to authenticate to Square.
+        :param pulumi.Input[bool] include_deleted_objects: In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+        :param pulumi.Input[str] start_date: UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+        """
         pulumi.set(__self__, "is_sandbox", is_sandbox)
         pulumi.set(__self__, "source_type", source_type)
         if credentials is not None:
@@ -39476,6 +44103,9 @@ class SourceSquareConfigurationArgs:
     @property
     @pulumi.getter(name="isSandbox")
     def is_sandbox(self) -> pulumi.Input[bool]:
+        """
+        Determines whether to use the sandbox or production environment.
+        """
         return pulumi.get(self, "is_sandbox")
 
     @is_sandbox.setter
@@ -39485,6 +44115,9 @@ class SourceSquareConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["square"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39494,6 +44127,9 @@ class SourceSquareConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceSquareConfigurationCredentialsArgs']]:
+        """
+        Choose how to authenticate to Square.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -39503,6 +44139,9 @@ class SourceSquareConfigurationArgs:
     @property
     @pulumi.getter(name="includeDeletedObjects")
     def include_deleted_objects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+        """
         return pulumi.get(self, "include_deleted_objects")
 
     @include_deleted_objects.setter
@@ -39512,6 +44151,9 @@ class SourceSquareConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -39734,6 +44376,15 @@ class SourceStravaConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  auth_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] athlete_id: The Athlete ID of your Strava developer application.
+        :param pulumi.Input[str] client_id: The Client ID of your Strava developer application.
+        :param pulumi.Input[str] client_secret: The Client Secret of your Strava developer application.
+        :param pulumi.Input[str] refresh_token: The Refresh Token with the activity: read_all permissions.
+        :param pulumi.Input[str] source_type: must be one of ["strava"]
+        :param pulumi.Input[str] start_date: UTC date and time. Any data before this date will not be replicated.
+        :param pulumi.Input[str] auth_type: must be one of ["Client"]
+        """
         pulumi.set(__self__, "athlete_id", athlete_id)
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -39746,6 +44397,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="athleteId")
     def athlete_id(self) -> pulumi.Input[int]:
+        """
+        The Athlete ID of your Strava developer application.
+        """
         return pulumi.get(self, "athlete_id")
 
     @athlete_id.setter
@@ -39755,6 +44409,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The Client ID of your Strava developer application.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -39764,6 +44421,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        The Client Secret of your Strava developer application.
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -39773,6 +44433,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        The Refresh Token with the activity: read_all permissions.
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -39782,6 +44445,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["strava"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39791,6 +44457,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -39800,6 +44469,9 @@ class SourceStravaConfigurationArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["Client"]
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -39816,6 +44488,14 @@ class SourceStripeConfigurationArgs:
                  start_date: pulumi.Input[str],
                  lookback_window_days: Optional[pulumi.Input[int]] = None,
                  slice_range: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] account_id: Your Stripe account ID (starts with 'acct_', find yours \\n\\nhere\\n\\n).
+        :param pulumi.Input[str] client_secret: Stripe API key (usually starts with 'sk*live*'; find yours \\n\\nhere\\n\\n).
+        :param pulumi.Input[str] source_type: must be one of ["stripe"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+        :param pulumi.Input[int] lookback_window_days: When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \\n\\nhere\\n\\n
+        :param pulumi.Input[int] slice_range: The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+        """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "source_type", source_type)
@@ -39828,6 +44508,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Input[str]:
+        """
+        Your Stripe account ID (starts with 'acct_', find yours \\n\\nhere\\n\\n).
+        """
         return pulumi.get(self, "account_id")
 
     @account_id.setter
@@ -39837,6 +44520,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        Stripe API key (usually starts with 'sk*live*'; find yours \\n\\nhere\\n\\n).
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -39846,6 +44532,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["stripe"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39855,6 +44544,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -39864,6 +44556,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindowDays")
     def lookback_window_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "lookback_window_days")
 
     @lookback_window_days.setter
@@ -39873,6 +44568,9 @@ class SourceStripeConfigurationArgs:
     @property
     @pulumi.getter(name="sliceRange")
     def slice_range(self) -> Optional[pulumi.Input[int]]:
+        """
+        The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+        """
         return pulumi.get(self, "slice_range")
 
     @slice_range.setter
@@ -39887,6 +44585,12 @@ class SourceSurveySparrowConfigurationArgs:
                  source_type: pulumi.Input[str],
                  region: Optional[pulumi.Input['SourceSurveySparrowConfigurationRegionArgs']] = None,
                  survey_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] access_token: Your access token. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["survey-sparrow"]
+        :param pulumi.Input['SourceSurveySparrowConfigurationRegionArgs'] region: Is your account location is EU based? If yes, the base url to retrieve data will be different.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] survey_ids: A List of your survey ids for survey-specific stream
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
         if region is not None:
@@ -39897,6 +44601,9 @@ class SourceSurveySparrowConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Your access token. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -39906,6 +44613,9 @@ class SourceSurveySparrowConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["survey-sparrow"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -39915,6 +44625,9 @@ class SourceSurveySparrowConfigurationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input['SourceSurveySparrowConfigurationRegionArgs']]:
+        """
+        Is your account location is EU based? If yes, the base url to retrieve data will be different.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -39924,6 +44637,9 @@ class SourceSurveySparrowConfigurationArgs:
     @property
     @pulumi.getter(name="surveyIds")
     def survey_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A List of your survey ids for survey-specific stream
+        """
         return pulumi.get(self, "survey_ids")
 
     @survey_ids.setter
@@ -40060,6 +44776,14 @@ class SourceSurveymonkeyConfigurationArgs:
                  credentials: Optional[pulumi.Input['SourceSurveymonkeyConfigurationCredentialsArgs']] = None,
                  origin: Optional[pulumi.Input[str]] = None,
                  survey_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["surveymonkey"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input['SourceSurveymonkeyConfigurationCredentialsArgs'] credentials: The authorization method to use to retrieve data from SurveyMonkey
+        :param pulumi.Input[str] origin: must be one of ["USA", "Europe", "Canada"]
+               Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] survey_ids: IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if credentials is not None:
@@ -40072,6 +44796,9 @@ class SourceSurveymonkeyConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["surveymonkey"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40081,6 +44808,9 @@ class SourceSurveymonkeyConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -40090,6 +44820,9 @@ class SourceSurveymonkeyConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceSurveymonkeyConfigurationCredentialsArgs']]:
+        """
+        The authorization method to use to retrieve data from SurveyMonkey
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -40099,6 +44832,10 @@ class SourceSurveymonkeyConfigurationArgs:
     @property
     @pulumi.getter
     def origin(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["USA", "Europe", "Canada"]
+        Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+        """
         return pulumi.get(self, "origin")
 
     @origin.setter
@@ -40108,6 +44845,9 @@ class SourceSurveymonkeyConfigurationArgs:
     @property
     @pulumi.getter(name="surveyIds")
     def survey_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+        """
         return pulumi.get(self, "survey_ids")
 
     @survey_ids.setter
@@ -40171,12 +44911,19 @@ class SourceTempoConfigurationArgs:
     def __init__(__self__, *,
                  api_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_token: Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+        :param pulumi.Input[str] source_type: must be one of ["tempo"]
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -40186,6 +44933,9 @@ class SourceTempoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["tempo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40203,6 +44953,15 @@ class SourceTheGuardianApiConfigurationArgs:
                  query: Optional[pulumi.Input[str]] = None,
                  section: Optional[pulumi.Input[str]] = None,
                  tag: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        :param pulumi.Input[str] source_type: must be one of ["the-guardian-api"]
+        :param pulumi.Input[str] start_date: Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the start_date will not be shown.
+        :param pulumi.Input[str] end_date: (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the end_date will not be shown. Default is set to the current date (today) for incremental syncs.
+        :param pulumi.Input[str] query: (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+        :param pulumi.Input[str] section: (Optional) Use this to filter the results by a particular section. See \\n\\nhere\\n\\n for a list of all sections, and \\n\\nhere\\n\\n for the sections endpoint documentation.
+        :param pulumi.Input[str] tag: (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \\n\\nhere\\n\\n for a list of all tags, and \\n\\nhere\\n\\n for the tags endpoint documentation.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -40218,6 +44977,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. See \\n\\nhere\\n\\n. The key is case sensitive.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -40227,6 +44989,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["the-guardian-api"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40236,6 +45001,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the start_date will not be shown.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -40245,6 +45013,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the end_date will not be shown. Default is set to the current date (today) for incremental syncs.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -40254,6 +45025,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter
     def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -40263,6 +45037,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter
     def section(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) Use this to filter the results by a particular section. See \\n\\nhere\\n\\n for a list of all sections, and \\n\\nhere\\n\\n for the sections endpoint documentation.
+        """
         return pulumi.get(self, "section")
 
     @section.setter
@@ -40272,6 +45049,9 @@ class SourceTheGuardianApiConfigurationArgs:
     @property
     @pulumi.getter
     def tag(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \\n\\nhere\\n\\n for a list of all tags, and \\n\\nhere\\n\\n for the tags endpoint documentation.
+        """
         return pulumi.get(self, "tag")
 
     @tag.setter
@@ -40288,6 +45068,14 @@ class SourceTiktokMarketingConfigurationArgs:
                  include_deleted: Optional[pulumi.Input[bool]] = None,
                  source_type: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] attribution_window: The attribution window in days.
+        :param pulumi.Input['SourceTiktokMarketingConfigurationCredentialsArgs'] credentials: Authentication method
+        :param pulumi.Input[str] end_date: The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+        :param pulumi.Input[bool] include_deleted: Set to active if you want to include deleted data in reports.
+        :param pulumi.Input[str] source_type: must be one of ["tiktok-marketing"]
+        :param pulumi.Input[str] start_date: The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+        """
         if attribution_window is not None:
             pulumi.set(__self__, "attribution_window", attribution_window)
         if credentials is not None:
@@ -40304,6 +45092,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="attributionWindow")
     def attribution_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The attribution window in days.
+        """
         return pulumi.get(self, "attribution_window")
 
     @attribution_window.setter
@@ -40313,6 +45104,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceTiktokMarketingConfigurationCredentialsArgs']]:
+        """
+        Authentication method
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -40322,6 +45116,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between start_date and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -40331,6 +45128,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="includeDeleted")
     def include_deleted(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to active if you want to include deleted data in reports.
+        """
         return pulumi.get(self, "include_deleted")
 
     @include_deleted.setter
@@ -40340,6 +45140,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["tiktok-marketing"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40349,6 +45152,9 @@ class SourceTiktokMarketingConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -40616,12 +45422,19 @@ class SourceTodoistConfigurationArgs:
     def __init__(__self__, *,
                  source_type: pulumi.Input[str],
                  token: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["todoist"]
+        :param pulumi.Input[str] token: Your API Token. See \\n\\nhere\\n\\n. The token is case sensitive.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "token", token)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["todoist"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40631,6 +45444,9 @@ class SourceTodoistConfigurationArgs:
     @property
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
+        """
+        Your API Token. See \\n\\nhere\\n\\n. The token is case sensitive.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -40646,6 +45462,13 @@ class SourceTrelloConfigurationArgs:
                  start_date: pulumi.Input[str],
                  token: pulumi.Input[str],
                  board_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] key: Trello API key. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        :param pulumi.Input[str] source_type: must be one of ["trello"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[str] token: Trello API token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] board_ids: IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -40656,6 +45479,9 @@ class SourceTrelloConfigurationArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Trello API key. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -40665,6 +45491,9 @@ class SourceTrelloConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["trello"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40674,6 +45503,9 @@ class SourceTrelloConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -40683,6 +45515,9 @@ class SourceTrelloConfigurationArgs:
     @property
     @pulumi.getter
     def token(self) -> pulumi.Input[str]:
+        """
+        Trello API token. See the \\n\\ndocs\\n\\n for instructions on how to generate it.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -40692,6 +45527,9 @@ class SourceTrelloConfigurationArgs:
     @property
     @pulumi.getter(name="boardIds")
     def board_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+        """
         return pulumi.get(self, "board_ids")
 
     @board_ids.setter
@@ -40706,6 +45544,11 @@ class SourceTrustpilotConfigurationArgs:
                  credentials: pulumi.Input['SourceTrustpilotConfigurationCredentialsArgs'],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] business_units: The names of business units which shall be synchronized. Some streams e.g. configured*business*units or private_reviews use this configuration.
+        :param pulumi.Input[str] source_type: must be one of ["trustpilot"]
+        :param pulumi.Input[str] start_date: For streams with sync. method incremental the start date time to be used
+        """
         pulumi.set(__self__, "business_units", business_units)
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
@@ -40714,6 +45557,9 @@ class SourceTrustpilotConfigurationArgs:
     @property
     @pulumi.getter(name="businessUnits")
     def business_units(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The names of business units which shall be synchronized. Some streams e.g. configured*business*units or private_reviews use this configuration.
+        """
         return pulumi.get(self, "business_units")
 
     @business_units.setter
@@ -40732,6 +45578,9 @@ class SourceTrustpilotConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["trustpilot"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -40741,6 +45590,9 @@ class SourceTrustpilotConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        For streams with sync. method incremental the start date time to be used
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41009,6 +45861,15 @@ class SourceTvmazeScheduleConfigurationArgs:
                  start_date: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  web_schedule_country_code: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] domestic_schedule_country_code: Country code for domestic TV schedule retrieval.
+        :param pulumi.Input[str] source_type: must be one of ["tvmaze-schedule"]
+        :param pulumi.Input[str] start_date: Start date for TV schedule retrieval. May be in the future.
+        :param pulumi.Input[str] end_date: End date for TV schedule retrieval. May be in the future. Optional.
+        :param pulumi.Input[str] web_schedule_country_code: ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+               all countries plus global web channels (e.g. Netflix). Alternatively,
+               set to 'global' for just global web channels.
+        """
         pulumi.set(__self__, "domestic_schedule_country_code", domestic_schedule_country_code)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -41020,6 +45881,9 @@ class SourceTvmazeScheduleConfigurationArgs:
     @property
     @pulumi.getter(name="domesticScheduleCountryCode")
     def domestic_schedule_country_code(self) -> pulumi.Input[str]:
+        """
+        Country code for domestic TV schedule retrieval.
+        """
         return pulumi.get(self, "domestic_schedule_country_code")
 
     @domestic_schedule_country_code.setter
@@ -41029,6 +45893,9 @@ class SourceTvmazeScheduleConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["tvmaze-schedule"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41038,6 +45905,9 @@ class SourceTvmazeScheduleConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start date for TV schedule retrieval. May be in the future.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41047,6 +45917,9 @@ class SourceTvmazeScheduleConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        End date for TV schedule retrieval. May be in the future. Optional.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -41056,6 +45929,11 @@ class SourceTvmazeScheduleConfigurationArgs:
     @property
     @pulumi.getter(name="webScheduleCountryCode")
     def web_schedule_country_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+        all countries plus global web channels (e.g. Netflix). Alternatively,
+        set to 'global' for just global web channels.
+        """
         return pulumi.get(self, "web_schedule_country_code")
 
     @web_schedule_country_code.setter
@@ -41071,6 +45949,13 @@ class SourceTwilioConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  lookback_window: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] account_sid: Twilio account SID
+        :param pulumi.Input[str] auth_token: Twilio Auth Token.
+        :param pulumi.Input[str] source_type: must be one of ["twilio"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+        :param pulumi.Input[int] lookback_window: How far into the past to look for records. (in minutes)
+        """
         pulumi.set(__self__, "account_sid", account_sid)
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "source_type", source_type)
@@ -41081,6 +45966,9 @@ class SourceTwilioConfigurationArgs:
     @property
     @pulumi.getter(name="accountSid")
     def account_sid(self) -> pulumi.Input[str]:
+        """
+        Twilio account SID
+        """
         return pulumi.get(self, "account_sid")
 
     @account_sid.setter
@@ -41090,6 +45978,9 @@ class SourceTwilioConfigurationArgs:
     @property
     @pulumi.getter(name="authToken")
     def auth_token(self) -> pulumi.Input[str]:
+        """
+        Twilio Auth Token.
+        """
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
@@ -41099,6 +45990,9 @@ class SourceTwilioConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["twilio"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41108,6 +46002,9 @@ class SourceTwilioConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41117,6 +46014,9 @@ class SourceTwilioConfigurationArgs:
     @property
     @pulumi.getter(name="lookbackWindow")
     def lookback_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        How far into the past to look for records. (in minutes)
+        """
         return pulumi.get(self, "lookback_window")
 
     @lookback_window.setter
@@ -41130,6 +46030,11 @@ class SourceTwilioTaskrouterConfigurationArgs:
                  account_sid: pulumi.Input[str],
                  auth_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] account_sid: Twilio Account ID
+        :param pulumi.Input[str] auth_token: Twilio Auth Token
+        :param pulumi.Input[str] source_type: must be one of ["twilio-taskrouter"]
+        """
         pulumi.set(__self__, "account_sid", account_sid)
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "source_type", source_type)
@@ -41137,6 +46042,9 @@ class SourceTwilioTaskrouterConfigurationArgs:
     @property
     @pulumi.getter(name="accountSid")
     def account_sid(self) -> pulumi.Input[str]:
+        """
+        Twilio Account ID
+        """
         return pulumi.get(self, "account_sid")
 
     @account_sid.setter
@@ -41146,6 +46054,9 @@ class SourceTwilioTaskrouterConfigurationArgs:
     @property
     @pulumi.getter(name="authToken")
     def auth_token(self) -> pulumi.Input[str]:
+        """
+        Twilio Auth Token
+        """
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
@@ -41155,6 +46066,9 @@ class SourceTwilioTaskrouterConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["twilio-taskrouter"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41170,6 +46084,13 @@ class SourceTwitterConfigurationArgs:
                  source_type: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: App only Bearer Token. See the \\n\\ndocs\\n\\n for more information on how to obtain this token.
+        :param pulumi.Input[str] query: Query for matching Tweets. You can learn how to build this query by reading \\n\\n build a query guide \\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["twitter"]
+        :param pulumi.Input[str] end_date: The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+        :param pulumi.Input[str] start_date: The start date for retrieving tweets cannot be more than 7 days in the past.
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "query", query)
         pulumi.set(__self__, "source_type", source_type)
@@ -41181,6 +46102,9 @@ class SourceTwitterConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        App only Bearer Token. See the \\n\\ndocs\\n\\n for more information on how to obtain this token.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -41190,6 +46114,9 @@ class SourceTwitterConfigurationArgs:
     @property
     @pulumi.getter
     def query(self) -> pulumi.Input[str]:
+        """
+        Query for matching Tweets. You can learn how to build this query by reading \\n\\n build a query guide \\n\\n.
+        """
         return pulumi.get(self, "query")
 
     @query.setter
@@ -41199,6 +46126,9 @@ class SourceTwitterConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["twitter"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41208,6 +46138,9 @@ class SourceTwitterConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -41217,6 +46150,9 @@ class SourceTwitterConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The start date for retrieving tweets cannot be more than 7 days in the past.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41231,6 +46167,11 @@ class SourceTypeformConfigurationArgs:
                  source_type: pulumi.Input[str],
                  form_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  start_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["typeform"]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] form_ids: When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the form_id is u6nXL7. You can find form URLs on Share panel
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
         if form_ids is not None:
@@ -41250,6 +46191,9 @@ class SourceTypeformConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["typeform"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41259,6 +46203,9 @@ class SourceTypeformConfigurationArgs:
     @property
     @pulumi.getter(name="formIds")
     def form_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the form_id is u6nXL7. You can find form URLs on Share panel
+        """
         return pulumi.get(self, "form_ids")
 
     @form_ids.setter
@@ -41268,6 +46215,9 @@ class SourceTypeformConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41535,6 +46485,12 @@ class SourceUsCensusConfigurationArgs:
                  query_path: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  query_params: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_key: Your API Key. Get your key \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] query_path: The path portion of the GET request
+        :param pulumi.Input[str] source_type: must be one of ["us-census"]
+        :param pulumi.Input[str] query_params: The query parameters portion of the GET request, without the api key
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "query_path", query_path)
         pulumi.set(__self__, "source_type", source_type)
@@ -41544,6 +46500,9 @@ class SourceUsCensusConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Your API Key. Get your key \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -41553,6 +46512,9 @@ class SourceUsCensusConfigurationArgs:
     @property
     @pulumi.getter(name="queryPath")
     def query_path(self) -> pulumi.Input[str]:
+        """
+        The path portion of the GET request
+        """
         return pulumi.get(self, "query_path")
 
     @query_path.setter
@@ -41562,6 +46524,9 @@ class SourceUsCensusConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["us-census"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41571,6 +46536,9 @@ class SourceUsCensusConfigurationArgs:
     @property
     @pulumi.getter(name="queryParams")
     def query_params(self) -> Optional[pulumi.Input[str]]:
+        """
+        The query parameters portion of the GET request, without the api key
+        """
         return pulumi.get(self, "query_params")
 
     @query_params.setter
@@ -41583,12 +46551,19 @@ class SourceVantageConfigurationArgs:
     def __init__(__self__, *,
                  access_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Your API Access token. See \\n\\nhere\\n\\n.
+        :param pulumi.Input[str] source_type: must be one of ["vantage"]
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Your API Access token. See \\n\\nhere\\n\\n.
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -41598,6 +46573,9 @@ class SourceVantageConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["vantage"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41611,6 +46589,11 @@ class SourceWebflowConfigurationArgs:
                  api_key: pulumi.Input[str],
                  site_id: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+        :param pulumi.Input[str] site_id: The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+        :param pulumi.Input[str] source_type: must be one of ["webflow"]
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "site_id", site_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -41618,6 +46601,9 @@ class SourceWebflowConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -41627,6 +46613,9 @@ class SourceWebflowConfigurationArgs:
     @property
     @pulumi.getter(name="siteId")
     def site_id(self) -> pulumi.Input[str]:
+        """
+        The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+        """
         return pulumi.get(self, "site_id")
 
     @site_id.setter
@@ -41636,6 +46625,9 @@ class SourceWebflowConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["webflow"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41647,12 +46639,18 @@ class SourceWebflowConfigurationArgs:
 class SourceWhiskyHunterConfigurationArgs:
     def __init__(__self__, *,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["whisky-hunter"]
+        """
         if source_type is not None:
             pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["whisky-hunter"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41671,6 +46669,16 @@ class SourceWikipediaPageviewsConfigurationArgs:
                  project: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access: If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+        :param pulumi.Input[str] agent: If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+        :param pulumi.Input[str] article: The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+        :param pulumi.Input[str] country: The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+        :param pulumi.Input[str] end: The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+        :param pulumi.Input[str] project: If you want to filter by project, use the domain of any Wikimedia project.
+        :param pulumi.Input[str] source_type: must be one of ["wikipedia-pageviews"]
+        :param pulumi.Input[str] start: The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+        """
         pulumi.set(__self__, "access", access)
         pulumi.set(__self__, "agent", agent)
         pulumi.set(__self__, "article", article)
@@ -41683,6 +46691,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def access(self) -> pulumi.Input[str]:
+        """
+        If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -41692,6 +46703,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def agent(self) -> pulumi.Input[str]:
+        """
+        If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+        """
         return pulumi.get(self, "agent")
 
     @agent.setter
@@ -41701,6 +46715,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def article(self) -> pulumi.Input[str]:
+        """
+        The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+        """
         return pulumi.get(self, "article")
 
     @article.setter
@@ -41710,6 +46727,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def country(self) -> pulumi.Input[str]:
+        """
+        The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+        """
         return pulumi.get(self, "country")
 
     @country.setter
@@ -41719,6 +46739,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def end(self) -> pulumi.Input[str]:
+        """
+        The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+        """
         return pulumi.get(self, "end")
 
     @end.setter
@@ -41728,6 +46751,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def project(self) -> pulumi.Input[str]:
+        """
+        If you want to filter by project, use the domain of any Wikimedia project.
+        """
         return pulumi.get(self, "project")
 
     @project.setter
@@ -41737,6 +46763,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["wikipedia-pageviews"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41746,6 +46775,9 @@ class SourceWikipediaPageviewsConfigurationArgs:
     @property
     @pulumi.getter
     def start(self) -> pulumi.Input[str]:
+        """
+        The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+        """
         return pulumi.get(self, "start")
 
     @start.setter
@@ -41761,6 +46793,13 @@ class SourceWoocommerceConfigurationArgs:
                  shop: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] api_key: Customer Key for API in WooCommerce shop
+        :param pulumi.Input[str] api_secret: Customer Secret for API in WooCommerce shop
+        :param pulumi.Input[str] shop: The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+        :param pulumi.Input[str] source_type: must be one of ["woocommerce"]
+        :param pulumi.Input[str] start_date: The date you would like to replicate data from. Format: YYYY-MM-DD
+        """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "api_secret", api_secret)
         pulumi.set(__self__, "shop", shop)
@@ -41770,6 +46809,9 @@ class SourceWoocommerceConfigurationArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        Customer Key for API in WooCommerce shop
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -41779,6 +46821,9 @@ class SourceWoocommerceConfigurationArgs:
     @property
     @pulumi.getter(name="apiSecret")
     def api_secret(self) -> pulumi.Input[str]:
+        """
+        Customer Secret for API in WooCommerce shop
+        """
         return pulumi.get(self, "api_secret")
 
     @api_secret.setter
@@ -41788,6 +46833,9 @@ class SourceWoocommerceConfigurationArgs:
     @property
     @pulumi.getter
     def shop(self) -> pulumi.Input[str]:
+        """
+        The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+        """
         return pulumi.get(self, "shop")
 
     @shop.setter
@@ -41797,6 +46845,9 @@ class SourceWoocommerceConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["woocommerce"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41806,6 +46857,9 @@ class SourceWoocommerceConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date you would like to replicate data from. Format: YYYY-MM-DD
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41820,6 +46874,11 @@ class SourceXeroConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  tenant_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["xero"]
+        :param pulumi.Input[str] start_date: UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced.
+        :param pulumi.Input[str] tenant_id: Enter your Xero organization's Tenant ID
+        """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
@@ -41837,6 +46896,9 @@ class SourceXeroConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["xero"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41846,6 +46908,9 @@ class SourceXeroConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with created_at before this data will not be synced.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41855,6 +46920,9 @@ class SourceXeroConfigurationArgs:
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Input[str]:
+        """
+        Enter your Xero organization's Tenant ID
+        """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
@@ -41926,12 +46994,18 @@ class SourceXeroConfigurationAuthenticationArgs:
 class SourceXkcdConfigurationArgs:
     def __init__(__self__, *,
                  source_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["xkcd"]
+        """
         if source_type is not None:
             pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        must be one of ["xkcd"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41947,6 +47021,13 @@ class SourceYandexMetricaConfigurationArgs:
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str],
                  end_date: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] auth_token: Your Yandex Metrica API access token
+        :param pulumi.Input[str] counter_id: Counter ID
+        :param pulumi.Input[str] source_type: must be one of ["yandex-metrica"]
+        :param pulumi.Input[str] start_date: Starting point for your data replication, in format of "YYYY-MM-DD".
+        :param pulumi.Input[str] end_date: Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+        """
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "counter_id", counter_id)
         pulumi.set(__self__, "source_type", source_type)
@@ -41957,6 +47038,9 @@ class SourceYandexMetricaConfigurationArgs:
     @property
     @pulumi.getter(name="authToken")
     def auth_token(self) -> pulumi.Input[str]:
+        """
+        Your Yandex Metrica API access token
+        """
         return pulumi.get(self, "auth_token")
 
     @auth_token.setter
@@ -41966,6 +47050,9 @@ class SourceYandexMetricaConfigurationArgs:
     @property
     @pulumi.getter(name="counterId")
     def counter_id(self) -> pulumi.Input[str]:
+        """
+        Counter ID
+        """
         return pulumi.get(self, "counter_id")
 
     @counter_id.setter
@@ -41975,6 +47062,9 @@ class SourceYandexMetricaConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["yandex-metrica"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -41984,6 +47074,9 @@ class SourceYandexMetricaConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Starting point for your data replication, in format of "YYYY-MM-DD".
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -41993,6 +47086,9 @@ class SourceYandexMetricaConfigurationArgs:
     @property
     @pulumi.getter(name="endDate")
     def end_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+        """
         return pulumi.get(self, "end_date")
 
     @end_date.setter
@@ -42008,6 +47104,13 @@ class SourceYotpoConfigurationArgs:
                  email: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_date: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_token: Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+        :param pulumi.Input[str] app_key: App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+        :param pulumi.Input[str] email: Email address registered with yotpo.
+        :param pulumi.Input[str] source_type: must be one of ["yotpo"]
+        :param pulumi.Input[str] start_date: Date time filter for incremental filter, Specify which date to extract from.
+        """
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "app_key", app_key)
         pulumi.set(__self__, "email", email)
@@ -42017,6 +47120,9 @@ class SourceYotpoConfigurationArgs:
     @property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Input[str]:
+        """
+        Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+        """
         return pulumi.get(self, "access_token")
 
     @access_token.setter
@@ -42026,6 +47132,9 @@ class SourceYotpoConfigurationArgs:
     @property
     @pulumi.getter(name="appKey")
     def app_key(self) -> pulumi.Input[str]:
+        """
+        App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+        """
         return pulumi.get(self, "app_key")
 
     @app_key.setter
@@ -42035,6 +47144,9 @@ class SourceYotpoConfigurationArgs:
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
+        """
+        Email address registered with yotpo.
+        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -42044,6 +47156,9 @@ class SourceYotpoConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["yotpo"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42053,6 +47168,9 @@ class SourceYotpoConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Date time filter for incremental filter, Specify which date to extract from.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -42068,6 +47186,13 @@ class SourceYouniumConfigurationArgs:
                  source_type: pulumi.Input[str],
                  username: pulumi.Input[str],
                  playground: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] legal_entity: Legal Entity that data should be pulled from
+        :param pulumi.Input[str] password: Account password for younium account API key
+        :param pulumi.Input[str] source_type: must be one of ["younium"]
+        :param pulumi.Input[str] username: Username for Younium account
+        :param pulumi.Input[bool] playground: Property defining if connector is used against playground or production environment
+        """
         pulumi.set(__self__, "legal_entity", legal_entity)
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "source_type", source_type)
@@ -42078,6 +47203,9 @@ class SourceYouniumConfigurationArgs:
     @property
     @pulumi.getter(name="legalEntity")
     def legal_entity(self) -> pulumi.Input[str]:
+        """
+        Legal Entity that data should be pulled from
+        """
         return pulumi.get(self, "legal_entity")
 
     @legal_entity.setter
@@ -42087,6 +47215,9 @@ class SourceYouniumConfigurationArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Account password for younium account API key
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -42096,6 +47227,9 @@ class SourceYouniumConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["younium"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42105,6 +47239,9 @@ class SourceYouniumConfigurationArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Username for Younium account
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -42114,6 +47251,9 @@ class SourceYouniumConfigurationArgs:
     @property
     @pulumi.getter
     def playground(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Property defining if connector is used against playground or production environment
+        """
         return pulumi.get(self, "playground")
 
     @playground.setter
@@ -42126,6 +47266,9 @@ class SourceYoutubeAnalyticsConfigurationArgs:
     def __init__(__self__, *,
                  credentials: pulumi.Input['SourceYoutubeAnalyticsConfigurationCredentialsArgs'],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["youtube-analytics"]
+        """
         pulumi.set(__self__, "credentials", credentials)
         pulumi.set(__self__, "source_type", source_type)
 
@@ -42141,6 +47284,9 @@ class SourceYoutubeAnalyticsConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["youtube-analytics"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42205,6 +47351,11 @@ class SourceZendeskChatConfigurationArgs:
                  start_date: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceZendeskChatConfigurationCredentialsArgs']] = None,
                  subdomain: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["zendesk-chat"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+        :param pulumi.Input[str] subdomain: Required if you access Zendesk Chat from a Zendesk Support subdomain.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         if credentials is not None:
@@ -42215,6 +47366,9 @@ class SourceZendeskChatConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zendesk-chat"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42224,6 +47378,9 @@ class SourceZendeskChatConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -42242,6 +47399,9 @@ class SourceZendeskChatConfigurationArgs:
     @property
     @pulumi.getter
     def subdomain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Required if you access Zendesk Chat from a Zendesk Support subdomain.
+        """
         return pulumi.get(self, "subdomain")
 
     @subdomain.setter
@@ -42491,6 +47651,11 @@ class SourceZendeskSunshineConfigurationArgs:
                  start_date: pulumi.Input[str],
                  subdomain: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceZendeskSunshineConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["zendesk-sunshine"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+        :param pulumi.Input[str] subdomain: The subdomain for your Zendesk Account.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         pulumi.set(__self__, "subdomain", subdomain)
@@ -42500,6 +47665,9 @@ class SourceZendeskSunshineConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zendesk-sunshine"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42509,6 +47677,9 @@ class SourceZendeskSunshineConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -42518,6 +47689,9 @@ class SourceZendeskSunshineConfigurationArgs:
     @property
     @pulumi.getter
     def subdomain(self) -> pulumi.Input[str]:
+        """
+        The subdomain for your Zendesk Account.
+        """
         return pulumi.get(self, "subdomain")
 
     @subdomain.setter
@@ -42817,6 +47991,13 @@ class SourceZendeskSupportConfigurationArgs:
                  subdomain: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceZendeskSupportConfigurationCredentialsArgs']] = None,
                  ignore_pagination: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["zendesk-support"]
+        :param pulumi.Input[str] start_date: The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] subdomain: This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+        :param pulumi.Input['SourceZendeskSupportConfigurationCredentialsArgs'] credentials: Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+        :param pulumi.Input[bool] ignore_pagination: Makes each stream read a single page of data.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         pulumi.set(__self__, "subdomain", subdomain)
@@ -42828,6 +48009,9 @@ class SourceZendeskSupportConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zendesk-support"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -42837,6 +48021,9 @@ class SourceZendeskSupportConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -42846,6 +48033,9 @@ class SourceZendeskSupportConfigurationArgs:
     @property
     @pulumi.getter
     def subdomain(self) -> pulumi.Input[str]:
+        """
+        This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+        """
         return pulumi.get(self, "subdomain")
 
     @subdomain.setter
@@ -42855,6 +48045,9 @@ class SourceZendeskSupportConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceZendeskSupportConfigurationCredentialsArgs']]:
+        """
+        Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -42864,6 +48057,9 @@ class SourceZendeskSupportConfigurationArgs:
     @property
     @pulumi.getter(name="ignorePagination")
     def ignore_pagination(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Makes each stream read a single page of data.
+        """
         return pulumi.get(self, "ignore_pagination")
 
     @ignore_pagination.setter
@@ -43161,6 +48357,12 @@ class SourceZendeskTalkConfigurationArgs:
                  start_date: pulumi.Input[str],
                  subdomain: pulumi.Input[str],
                  credentials: Optional[pulumi.Input['SourceZendeskTalkConfigurationCredentialsArgs']] = None):
+        """
+        :param pulumi.Input[str] source_type: must be one of ["zendesk-talk"]
+        :param pulumi.Input[str] start_date: The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        :param pulumi.Input[str] subdomain: This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+        :param pulumi.Input['SourceZendeskTalkConfigurationCredentialsArgs'] credentials: Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+        """
         pulumi.set(__self__, "source_type", source_type)
         pulumi.set(__self__, "start_date", start_date)
         pulumi.set(__self__, "subdomain", subdomain)
@@ -43170,6 +48372,9 @@ class SourceZendeskTalkConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zendesk-talk"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -43179,6 +48384,9 @@ class SourceZendeskTalkConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -43188,6 +48396,9 @@ class SourceZendeskTalkConfigurationArgs:
     @property
     @pulumi.getter
     def subdomain(self) -> pulumi.Input[str]:
+        """
+        This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+        """
         return pulumi.get(self, "subdomain")
 
     @subdomain.setter
@@ -43197,6 +48408,9 @@ class SourceZendeskTalkConfigurationArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['SourceZendeskTalkConfigurationCredentialsArgs']]:
+        """
+        Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -43495,6 +48709,13 @@ class SourceZenloopConfigurationArgs:
                  date_from: Optional[pulumi.Input[str]] = None,
                  survey_group_id: Optional[pulumi.Input[str]] = None,
                  survey_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] api_token: Zenloop API Token. You can get the API token in settings page \\n\\nhere\\n\\n
+        :param pulumi.Input[str] source_type: must be one of ["zenloop"]
+        :param pulumi.Input[str] date_from: Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+        :param pulumi.Input[str] survey_group_id: Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+        :param pulumi.Input[str] survey_id: Zenloop Survey ID. Can be found \\n\\nhere\\n\\n. Leave empty to pull answers from all surveys
+        """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "source_type", source_type)
         if date_from is not None:
@@ -43507,6 +48728,9 @@ class SourceZenloopConfigurationArgs:
     @property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Input[str]:
+        """
+        Zenloop API Token. You can get the API token in settings page \\n\\nhere\\n\\n
+        """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
@@ -43516,6 +48740,9 @@ class SourceZenloopConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zenloop"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -43525,6 +48752,9 @@ class SourceZenloopConfigurationArgs:
     @property
     @pulumi.getter(name="dateFrom")
     def date_from(self) -> Optional[pulumi.Input[str]]:
+        """
+        Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+        """
         return pulumi.get(self, "date_from")
 
     @date_from.setter
@@ -43534,6 +48764,9 @@ class SourceZenloopConfigurationArgs:
     @property
     @pulumi.getter(name="surveyGroupId")
     def survey_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+        """
         return pulumi.get(self, "survey_group_id")
 
     @survey_group_id.setter
@@ -43543,6 +48776,9 @@ class SourceZenloopConfigurationArgs:
     @property
     @pulumi.getter(name="surveyId")
     def survey_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Zenloop Survey ID. Can be found \\n\\nhere\\n\\n. Leave empty to pull answers from all surveys
+        """
         return pulumi.get(self, "survey_id")
 
     @survey_id.setter
@@ -43561,6 +48797,19 @@ class SourceZohoCrmConfigurationArgs:
                  refresh_token: pulumi.Input[str],
                  source_type: pulumi.Input[str],
                  start_datetime: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_id: OAuth2.0 Client ID
+        :param pulumi.Input[str] client_secret: OAuth2.0 Client Secret
+        :param pulumi.Input[str] dc_region: must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+               Please choose the region of your Data Center location. More info by this \\n\\nLink\\n\\n
+        :param pulumi.Input[str] edition: must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+               Choose your Edition of Zoho CRM to determine API Concurrency Limits
+        :param pulumi.Input[str] environment: must be one of ["Production", "Developer", "Sandbox"]
+               Please choose the environment
+        :param pulumi.Input[str] refresh_token: OAuth2.0 Refresh Token
+        :param pulumi.Input[str] source_type: must be one of ["zoho-crm"]
+        :param pulumi.Input[str] start_datetime: ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "dc_region", dc_region)
@@ -43574,6 +48823,9 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        OAuth2.0 Client ID
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -43583,6 +48835,9 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        OAuth2.0 Client Secret
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -43592,6 +48847,10 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="dcRegion")
     def dc_region(self) -> pulumi.Input[str]:
+        """
+        must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+        Please choose the region of your Data Center location. More info by this \\n\\nLink\\n\\n
+        """
         return pulumi.get(self, "dc_region")
 
     @dc_region.setter
@@ -43601,6 +48860,10 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter
     def edition(self) -> pulumi.Input[str]:
+        """
+        must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+        Choose your Edition of Zoho CRM to determine API Concurrency Limits
+        """
         return pulumi.get(self, "edition")
 
     @edition.setter
@@ -43610,6 +48873,10 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        must be one of ["Production", "Developer", "Sandbox"]
+        Please choose the environment
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -43619,6 +48886,9 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="refreshToken")
     def refresh_token(self) -> pulumi.Input[str]:
+        """
+        OAuth2.0 Refresh Token
+        """
         return pulumi.get(self, "refresh_token")
 
     @refresh_token.setter
@@ -43628,6 +48898,9 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zoho-crm"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -43637,6 +48910,9 @@ class SourceZohoCrmConfigurationArgs:
     @property
     @pulumi.getter(name="startDatetime")
     def start_datetime(self) -> Optional[pulumi.Input[str]]:
+        """
+        ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+        """
         return pulumi.get(self, "start_datetime")
 
     @start_datetime.setter
@@ -43649,12 +48925,19 @@ class SourceZoomConfigurationArgs:
     def __init__(__self__, *,
                  jwt_token: pulumi.Input[str],
                  source_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] jwt_token: JWT Token
+        :param pulumi.Input[str] source_type: must be one of ["zoom"]
+        """
         pulumi.set(__self__, "jwt_token", jwt_token)
         pulumi.set(__self__, "source_type", source_type)
 
     @property
     @pulumi.getter(name="jwtToken")
     def jwt_token(self) -> pulumi.Input[str]:
+        """
+        JWT Token
+        """
         return pulumi.get(self, "jwt_token")
 
     @jwt_token.setter
@@ -43664,6 +48947,9 @@ class SourceZoomConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zoom"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -43681,6 +48967,17 @@ class SourceZuoraConfigurationArgs:
                  start_date: pulumi.Input[str],
                  tenant_endpoint: pulumi.Input[str],
                  window_in_days: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_id: Your OAuth user Client ID
+        :param pulumi.Input[str] client_secret: Your OAuth user Client Secret
+        :param pulumi.Input[str] data_query: must be one of ["Live", "Unlimited"]
+               Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \\n\\nLink\\n\\n
+        :param pulumi.Input[str] source_type: must be one of ["zuora"]
+        :param pulumi.Input[str] start_date: Start Date in format: YYYY-MM-DD
+        :param pulumi.Input[str] tenant_endpoint: must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+               Please choose the right endpoint where your Tenant is located. More info by this \\n\\nLink\\n\\n
+        :param pulumi.Input[str] window_in_days: The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+        """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "data_query", data_query)
@@ -43693,6 +48990,9 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        Your OAuth user Client ID
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -43702,6 +49002,9 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Input[str]:
+        """
+        Your OAuth user Client Secret
+        """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
@@ -43711,6 +49014,10 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="dataQuery")
     def data_query(self) -> pulumi.Input[str]:
+        """
+        must be one of ["Live", "Unlimited"]
+        Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \\n\\nLink\\n\\n
+        """
         return pulumi.get(self, "data_query")
 
     @data_query.setter
@@ -43720,6 +49027,9 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="sourceType")
     def source_type(self) -> pulumi.Input[str]:
+        """
+        must be one of ["zuora"]
+        """
         return pulumi.get(self, "source_type")
 
     @source_type.setter
@@ -43729,6 +49039,9 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> pulumi.Input[str]:
+        """
+        Start Date in format: YYYY-MM-DD
+        """
         return pulumi.get(self, "start_date")
 
     @start_date.setter
@@ -43738,6 +49051,10 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="tenantEndpoint")
     def tenant_endpoint(self) -> pulumi.Input[str]:
+        """
+        must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+        Please choose the right endpoint where your Tenant is located. More info by this \\n\\nLink\\n\\n
+        """
         return pulumi.get(self, "tenant_endpoint")
 
     @tenant_endpoint.setter
@@ -43747,6 +49064,9 @@ class SourceZuoraConfigurationArgs:
     @property
     @pulumi.getter(name="windowInDays")
     def window_in_days(self) -> Optional[pulumi.Input[str]]:
+        """
+        The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+        """
         return pulumi.get(self, "window_in_days")
 
     @window_in_days.setter

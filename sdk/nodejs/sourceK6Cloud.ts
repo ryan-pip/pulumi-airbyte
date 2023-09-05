@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceK6Cloud Resource
+ */
 export class SourceK6Cloud extends pulumi.CustomResource {
     /**
      * Get an existing SourceK6Cloud resource's state with the given name, ID, and optional extra

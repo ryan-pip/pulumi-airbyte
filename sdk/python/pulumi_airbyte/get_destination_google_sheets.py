@@ -84,7 +84,16 @@ class AwaitableGetDestinationGoogleSheetsResult(GetDestinationGoogleSheetsResult
 def get_destination_google_sheets(destination_id: Optional[str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDestinationGoogleSheetsResult:
     """
-    Use this data source to access information about an existing resource.
+    DestinationGoogleSheets DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_googlesheets = airbyte.get_destination_google_sheets(destination_id="...my_destination_id...")
+    ```
     """
     __args__ = dict()
     __args__['destinationId'] = destination_id
@@ -103,6 +112,15 @@ def get_destination_google_sheets(destination_id: Optional[str] = None,
 def get_destination_google_sheets_output(destination_id: Optional[pulumi.Input[str]] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDestinationGoogleSheetsResult]:
     """
-    Use this data source to access information about an existing resource.
+    DestinationGoogleSheets DataSource
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_airbyte as airbyte
+
+    my_destination_googlesheets = airbyte.get_destination_google_sheets(destination_id="...my_destination_id...")
+    ```
     """
     ...

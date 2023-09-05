@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceTodoist DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTodoist = airbyte.getSourceTodoist({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTodoist(args: GetSourceTodoistArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceTodoistResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceTodoist(args: GetSourceTodoistArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceTodoist.
  */
 export interface GetSourceTodoistArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceTodoistResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceTodoist DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceTodoist = airbyte.getSourceTodoist({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceTodoistOutput(args: GetSourceTodoistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceTodoistResult> {
     return pulumi.output(args).apply((a: any) => getSourceTodoist(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceTodoistOutput(args: GetSourceTodoistOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceTodoist.
  */
 export interface GetSourceTodoistOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }

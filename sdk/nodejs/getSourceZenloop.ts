@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * SourceZenloop DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZenloop = airbyte.getSourceZenloop({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZenloop(args: GetSourceZenloopArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceZenloopResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,6 +34,9 @@ export function getSourceZenloop(args: GetSourceZenloopArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getSourceZenloop.
  */
 export interface GetSourceZenloopArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: string;
     sourceId: string;
 }
@@ -33,10 +51,28 @@ export interface GetSourceZenloopResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     readonly secretId?: string;
     readonly sourceId: string;
     readonly workspaceId: string;
 }
+/**
+ * SourceZenloop DataSource
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as airbyte from "@pulumi/airbyte";
+ *
+ * const mySourceZenloop = airbyte.getSourceZenloop({
+ *     secretId: "...my_secret_id...",
+ *     sourceId: "...my_source_id...",
+ * });
+ * ```
+ */
 export function getSourceZenloopOutput(args: GetSourceZenloopOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSourceZenloopResult> {
     return pulumi.output(args).apply((a: any) => getSourceZenloop(a, opts))
 }
@@ -45,6 +81,9 @@ export function getSourceZenloopOutput(args: GetSourceZenloopOutputArgs, opts?: 
  * A collection of arguments for invoking getSourceZenloop.
  */
 export interface GetSourceZenloopOutputArgs {
+    /**
+     * Optional secretID obtained through the public API OAuth redirect flow.
+     */
     secretId?: pulumi.Input<string>;
     sourceId: pulumi.Input<string>;
 }
