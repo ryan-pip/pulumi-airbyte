@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSnowflake Resource
@@ -127,6 +127,56 @@ func (i *SourceSnowflake) ToSourceSnowflakeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSnowflakeOutput)
 }
 
+// SourceSnowflakeArrayInput is an input type that accepts SourceSnowflakeArray and SourceSnowflakeArrayOutput values.
+// You can construct a concrete instance of `SourceSnowflakeArrayInput` via:
+//
+//	SourceSnowflakeArray{ SourceSnowflakeArgs{...} }
+type SourceSnowflakeArrayInput interface {
+	pulumi.Input
+
+	ToSourceSnowflakeArrayOutput() SourceSnowflakeArrayOutput
+	ToSourceSnowflakeArrayOutputWithContext(context.Context) SourceSnowflakeArrayOutput
+}
+
+type SourceSnowflakeArray []SourceSnowflakeInput
+
+func (SourceSnowflakeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSnowflake)(nil)).Elem()
+}
+
+func (i SourceSnowflakeArray) ToSourceSnowflakeArrayOutput() SourceSnowflakeArrayOutput {
+	return i.ToSourceSnowflakeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSnowflakeArray) ToSourceSnowflakeArrayOutputWithContext(ctx context.Context) SourceSnowflakeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSnowflakeArrayOutput)
+}
+
+// SourceSnowflakeMapInput is an input type that accepts SourceSnowflakeMap and SourceSnowflakeMapOutput values.
+// You can construct a concrete instance of `SourceSnowflakeMapInput` via:
+//
+//	SourceSnowflakeMap{ "key": SourceSnowflakeArgs{...} }
+type SourceSnowflakeMapInput interface {
+	pulumi.Input
+
+	ToSourceSnowflakeMapOutput() SourceSnowflakeMapOutput
+	ToSourceSnowflakeMapOutputWithContext(context.Context) SourceSnowflakeMapOutput
+}
+
+type SourceSnowflakeMap map[string]SourceSnowflakeInput
+
+func (SourceSnowflakeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSnowflake)(nil)).Elem()
+}
+
+func (i SourceSnowflakeMap) ToSourceSnowflakeMapOutput() SourceSnowflakeMapOutput {
+	return i.ToSourceSnowflakeMapOutputWithContext(context.Background())
+}
+
+func (i SourceSnowflakeMap) ToSourceSnowflakeMapOutputWithContext(ctx context.Context) SourceSnowflakeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSnowflakeMapOutput)
+}
+
 type SourceSnowflakeOutput struct{ *pulumi.OutputState }
 
 func (SourceSnowflakeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSnowflakeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSnowflake) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSnowflakeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSnowflakeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSnowflake)(nil)).Elem()
+}
+
+func (o SourceSnowflakeArrayOutput) ToSourceSnowflakeArrayOutput() SourceSnowflakeArrayOutput {
+	return o
+}
+
+func (o SourceSnowflakeArrayOutput) ToSourceSnowflakeArrayOutputWithContext(ctx context.Context) SourceSnowflakeArrayOutput {
+	return o
+}
+
+func (o SourceSnowflakeArrayOutput) Index(i pulumi.IntInput) SourceSnowflakeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSnowflake {
+		return vs[0].([]*SourceSnowflake)[vs[1].(int)]
+	}).(SourceSnowflakeOutput)
+}
+
+type SourceSnowflakeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSnowflakeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSnowflake)(nil)).Elem()
+}
+
+func (o SourceSnowflakeMapOutput) ToSourceSnowflakeMapOutput() SourceSnowflakeMapOutput {
+	return o
+}
+
+func (o SourceSnowflakeMapOutput) ToSourceSnowflakeMapOutputWithContext(ctx context.Context) SourceSnowflakeMapOutput {
+	return o
+}
+
+func (o SourceSnowflakeMapOutput) MapIndex(k pulumi.StringInput) SourceSnowflakeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSnowflake {
+		return vs[0].(map[string]*SourceSnowflake)[vs[1].(string)]
+	}).(SourceSnowflakeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnowflakeInput)(nil)).Elem(), &SourceSnowflake{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnowflakeArrayInput)(nil)).Elem(), SourceSnowflakeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnowflakeMapInput)(nil)).Elem(), SourceSnowflakeMap{})
 	pulumi.RegisterOutputType(SourceSnowflakeOutput{})
+	pulumi.RegisterOutputType(SourceSnowflakeArrayOutput{})
+	pulumi.RegisterOutputType(SourceSnowflakeMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceYotpo Resource
@@ -127,6 +127,56 @@ func (i *SourceYotpo) ToSourceYotpoOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceYotpoOutput)
 }
 
+// SourceYotpoArrayInput is an input type that accepts SourceYotpoArray and SourceYotpoArrayOutput values.
+// You can construct a concrete instance of `SourceYotpoArrayInput` via:
+//
+//	SourceYotpoArray{ SourceYotpoArgs{...} }
+type SourceYotpoArrayInput interface {
+	pulumi.Input
+
+	ToSourceYotpoArrayOutput() SourceYotpoArrayOutput
+	ToSourceYotpoArrayOutputWithContext(context.Context) SourceYotpoArrayOutput
+}
+
+type SourceYotpoArray []SourceYotpoInput
+
+func (SourceYotpoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYotpo)(nil)).Elem()
+}
+
+func (i SourceYotpoArray) ToSourceYotpoArrayOutput() SourceYotpoArrayOutput {
+	return i.ToSourceYotpoArrayOutputWithContext(context.Background())
+}
+
+func (i SourceYotpoArray) ToSourceYotpoArrayOutputWithContext(ctx context.Context) SourceYotpoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYotpoArrayOutput)
+}
+
+// SourceYotpoMapInput is an input type that accepts SourceYotpoMap and SourceYotpoMapOutput values.
+// You can construct a concrete instance of `SourceYotpoMapInput` via:
+//
+//	SourceYotpoMap{ "key": SourceYotpoArgs{...} }
+type SourceYotpoMapInput interface {
+	pulumi.Input
+
+	ToSourceYotpoMapOutput() SourceYotpoMapOutput
+	ToSourceYotpoMapOutputWithContext(context.Context) SourceYotpoMapOutput
+}
+
+type SourceYotpoMap map[string]SourceYotpoInput
+
+func (SourceYotpoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYotpo)(nil)).Elem()
+}
+
+func (i SourceYotpoMap) ToSourceYotpoMapOutput() SourceYotpoMapOutput {
+	return i.ToSourceYotpoMapOutputWithContext(context.Background())
+}
+
+func (i SourceYotpoMap) ToSourceYotpoMapOutputWithContext(ctx context.Context) SourceYotpoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYotpoMapOutput)
+}
+
 type SourceYotpoOutput struct{ *pulumi.OutputState }
 
 func (SourceYotpoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceYotpoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceYotpo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceYotpoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceYotpoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYotpo)(nil)).Elem()
+}
+
+func (o SourceYotpoArrayOutput) ToSourceYotpoArrayOutput() SourceYotpoArrayOutput {
+	return o
+}
+
+func (o SourceYotpoArrayOutput) ToSourceYotpoArrayOutputWithContext(ctx context.Context) SourceYotpoArrayOutput {
+	return o
+}
+
+func (o SourceYotpoArrayOutput) Index(i pulumi.IntInput) SourceYotpoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceYotpo {
+		return vs[0].([]*SourceYotpo)[vs[1].(int)]
+	}).(SourceYotpoOutput)
+}
+
+type SourceYotpoMapOutput struct{ *pulumi.OutputState }
+
+func (SourceYotpoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYotpo)(nil)).Elem()
+}
+
+func (o SourceYotpoMapOutput) ToSourceYotpoMapOutput() SourceYotpoMapOutput {
+	return o
+}
+
+func (o SourceYotpoMapOutput) ToSourceYotpoMapOutputWithContext(ctx context.Context) SourceYotpoMapOutput {
+	return o
+}
+
+func (o SourceYotpoMapOutput) MapIndex(k pulumi.StringInput) SourceYotpoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceYotpo {
+		return vs[0].(map[string]*SourceYotpo)[vs[1].(string)]
+	}).(SourceYotpoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceYotpoInput)(nil)).Elem(), &SourceYotpo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYotpoArrayInput)(nil)).Elem(), SourceYotpoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYotpoMapInput)(nil)).Elem(), SourceYotpoMap{})
 	pulumi.RegisterOutputType(SourceYotpoOutput{})
+	pulumi.RegisterOutputType(SourceYotpoArrayOutput{})
+	pulumi.RegisterOutputType(SourceYotpoMapOutput{})
 }

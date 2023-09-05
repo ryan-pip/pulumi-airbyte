@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationElasticsearch Resource
@@ -117,6 +117,56 @@ func (i *DestinationElasticsearch) ToDestinationElasticsearchOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationElasticsearchOutput)
 }
 
+// DestinationElasticsearchArrayInput is an input type that accepts DestinationElasticsearchArray and DestinationElasticsearchArrayOutput values.
+// You can construct a concrete instance of `DestinationElasticsearchArrayInput` via:
+//
+//	DestinationElasticsearchArray{ DestinationElasticsearchArgs{...} }
+type DestinationElasticsearchArrayInput interface {
+	pulumi.Input
+
+	ToDestinationElasticsearchArrayOutput() DestinationElasticsearchArrayOutput
+	ToDestinationElasticsearchArrayOutputWithContext(context.Context) DestinationElasticsearchArrayOutput
+}
+
+type DestinationElasticsearchArray []DestinationElasticsearchInput
+
+func (DestinationElasticsearchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationElasticsearch)(nil)).Elem()
+}
+
+func (i DestinationElasticsearchArray) ToDestinationElasticsearchArrayOutput() DestinationElasticsearchArrayOutput {
+	return i.ToDestinationElasticsearchArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationElasticsearchArray) ToDestinationElasticsearchArrayOutputWithContext(ctx context.Context) DestinationElasticsearchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationElasticsearchArrayOutput)
+}
+
+// DestinationElasticsearchMapInput is an input type that accepts DestinationElasticsearchMap and DestinationElasticsearchMapOutput values.
+// You can construct a concrete instance of `DestinationElasticsearchMapInput` via:
+//
+//	DestinationElasticsearchMap{ "key": DestinationElasticsearchArgs{...} }
+type DestinationElasticsearchMapInput interface {
+	pulumi.Input
+
+	ToDestinationElasticsearchMapOutput() DestinationElasticsearchMapOutput
+	ToDestinationElasticsearchMapOutputWithContext(context.Context) DestinationElasticsearchMapOutput
+}
+
+type DestinationElasticsearchMap map[string]DestinationElasticsearchInput
+
+func (DestinationElasticsearchMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationElasticsearch)(nil)).Elem()
+}
+
+func (i DestinationElasticsearchMap) ToDestinationElasticsearchMapOutput() DestinationElasticsearchMapOutput {
+	return i.ToDestinationElasticsearchMapOutputWithContext(context.Background())
+}
+
+func (i DestinationElasticsearchMap) ToDestinationElasticsearchMapOutputWithContext(ctx context.Context) DestinationElasticsearchMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationElasticsearchMapOutput)
+}
+
 type DestinationElasticsearchOutput struct{ *pulumi.OutputState }
 
 func (DestinationElasticsearchOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationElasticsearchOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationElasticsearch) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationElasticsearchArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationElasticsearchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationElasticsearch)(nil)).Elem()
+}
+
+func (o DestinationElasticsearchArrayOutput) ToDestinationElasticsearchArrayOutput() DestinationElasticsearchArrayOutput {
+	return o
+}
+
+func (o DestinationElasticsearchArrayOutput) ToDestinationElasticsearchArrayOutputWithContext(ctx context.Context) DestinationElasticsearchArrayOutput {
+	return o
+}
+
+func (o DestinationElasticsearchArrayOutput) Index(i pulumi.IntInput) DestinationElasticsearchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationElasticsearch {
+		return vs[0].([]*DestinationElasticsearch)[vs[1].(int)]
+	}).(DestinationElasticsearchOutput)
+}
+
+type DestinationElasticsearchMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationElasticsearchMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationElasticsearch)(nil)).Elem()
+}
+
+func (o DestinationElasticsearchMapOutput) ToDestinationElasticsearchMapOutput() DestinationElasticsearchMapOutput {
+	return o
+}
+
+func (o DestinationElasticsearchMapOutput) ToDestinationElasticsearchMapOutputWithContext(ctx context.Context) DestinationElasticsearchMapOutput {
+	return o
+}
+
+func (o DestinationElasticsearchMapOutput) MapIndex(k pulumi.StringInput) DestinationElasticsearchOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationElasticsearch {
+		return vs[0].(map[string]*DestinationElasticsearch)[vs[1].(string)]
+	}).(DestinationElasticsearchOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationElasticsearchInput)(nil)).Elem(), &DestinationElasticsearch{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationElasticsearchArrayInput)(nil)).Elem(), DestinationElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationElasticsearchMapInput)(nil)).Elem(), DestinationElasticsearchMap{})
 	pulumi.RegisterOutputType(DestinationElasticsearchOutput{})
+	pulumi.RegisterOutputType(DestinationElasticsearchArrayOutput{})
+	pulumi.RegisterOutputType(DestinationElasticsearchMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBraze Resource
@@ -127,6 +127,56 @@ func (i *SourceBraze) ToSourceBrazeOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBrazeOutput)
 }
 
+// SourceBrazeArrayInput is an input type that accepts SourceBrazeArray and SourceBrazeArrayOutput values.
+// You can construct a concrete instance of `SourceBrazeArrayInput` via:
+//
+//	SourceBrazeArray{ SourceBrazeArgs{...} }
+type SourceBrazeArrayInput interface {
+	pulumi.Input
+
+	ToSourceBrazeArrayOutput() SourceBrazeArrayOutput
+	ToSourceBrazeArrayOutputWithContext(context.Context) SourceBrazeArrayOutput
+}
+
+type SourceBrazeArray []SourceBrazeInput
+
+func (SourceBrazeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBraze)(nil)).Elem()
+}
+
+func (i SourceBrazeArray) ToSourceBrazeArrayOutput() SourceBrazeArrayOutput {
+	return i.ToSourceBrazeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBrazeArray) ToSourceBrazeArrayOutputWithContext(ctx context.Context) SourceBrazeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBrazeArrayOutput)
+}
+
+// SourceBrazeMapInput is an input type that accepts SourceBrazeMap and SourceBrazeMapOutput values.
+// You can construct a concrete instance of `SourceBrazeMapInput` via:
+//
+//	SourceBrazeMap{ "key": SourceBrazeArgs{...} }
+type SourceBrazeMapInput interface {
+	pulumi.Input
+
+	ToSourceBrazeMapOutput() SourceBrazeMapOutput
+	ToSourceBrazeMapOutputWithContext(context.Context) SourceBrazeMapOutput
+}
+
+type SourceBrazeMap map[string]SourceBrazeInput
+
+func (SourceBrazeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBraze)(nil)).Elem()
+}
+
+func (i SourceBrazeMap) ToSourceBrazeMapOutput() SourceBrazeMapOutput {
+	return i.ToSourceBrazeMapOutputWithContext(context.Background())
+}
+
+func (i SourceBrazeMap) ToSourceBrazeMapOutputWithContext(ctx context.Context) SourceBrazeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBrazeMapOutput)
+}
+
 type SourceBrazeOutput struct{ *pulumi.OutputState }
 
 func (SourceBrazeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBrazeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBraze) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBrazeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBrazeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBraze)(nil)).Elem()
+}
+
+func (o SourceBrazeArrayOutput) ToSourceBrazeArrayOutput() SourceBrazeArrayOutput {
+	return o
+}
+
+func (o SourceBrazeArrayOutput) ToSourceBrazeArrayOutputWithContext(ctx context.Context) SourceBrazeArrayOutput {
+	return o
+}
+
+func (o SourceBrazeArrayOutput) Index(i pulumi.IntInput) SourceBrazeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBraze {
+		return vs[0].([]*SourceBraze)[vs[1].(int)]
+	}).(SourceBrazeOutput)
+}
+
+type SourceBrazeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBrazeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBraze)(nil)).Elem()
+}
+
+func (o SourceBrazeMapOutput) ToSourceBrazeMapOutput() SourceBrazeMapOutput {
+	return o
+}
+
+func (o SourceBrazeMapOutput) ToSourceBrazeMapOutputWithContext(ctx context.Context) SourceBrazeMapOutput {
+	return o
+}
+
+func (o SourceBrazeMapOutput) MapIndex(k pulumi.StringInput) SourceBrazeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBraze {
+		return vs[0].(map[string]*SourceBraze)[vs[1].(string)]
+	}).(SourceBrazeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBrazeInput)(nil)).Elem(), &SourceBraze{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBrazeArrayInput)(nil)).Elem(), SourceBrazeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBrazeMapInput)(nil)).Elem(), SourceBrazeMap{})
 	pulumi.RegisterOutputType(SourceBrazeOutput{})
+	pulumi.RegisterOutputType(SourceBrazeArrayOutput{})
+	pulumi.RegisterOutputType(SourceBrazeMapOutput{})
 }

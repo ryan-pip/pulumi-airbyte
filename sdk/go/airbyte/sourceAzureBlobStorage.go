@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAzureBlobStorage Resource
@@ -127,6 +127,56 @@ func (i *SourceAzureBlobStorage) ToSourceAzureBlobStorageOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureBlobStorageOutput)
 }
 
+// SourceAzureBlobStorageArrayInput is an input type that accepts SourceAzureBlobStorageArray and SourceAzureBlobStorageArrayOutput values.
+// You can construct a concrete instance of `SourceAzureBlobStorageArrayInput` via:
+//
+//	SourceAzureBlobStorageArray{ SourceAzureBlobStorageArgs{...} }
+type SourceAzureBlobStorageArrayInput interface {
+	pulumi.Input
+
+	ToSourceAzureBlobStorageArrayOutput() SourceAzureBlobStorageArrayOutput
+	ToSourceAzureBlobStorageArrayOutputWithContext(context.Context) SourceAzureBlobStorageArrayOutput
+}
+
+type SourceAzureBlobStorageArray []SourceAzureBlobStorageInput
+
+func (SourceAzureBlobStorageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAzureBlobStorage)(nil)).Elem()
+}
+
+func (i SourceAzureBlobStorageArray) ToSourceAzureBlobStorageArrayOutput() SourceAzureBlobStorageArrayOutput {
+	return i.ToSourceAzureBlobStorageArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAzureBlobStorageArray) ToSourceAzureBlobStorageArrayOutputWithContext(ctx context.Context) SourceAzureBlobStorageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureBlobStorageArrayOutput)
+}
+
+// SourceAzureBlobStorageMapInput is an input type that accepts SourceAzureBlobStorageMap and SourceAzureBlobStorageMapOutput values.
+// You can construct a concrete instance of `SourceAzureBlobStorageMapInput` via:
+//
+//	SourceAzureBlobStorageMap{ "key": SourceAzureBlobStorageArgs{...} }
+type SourceAzureBlobStorageMapInput interface {
+	pulumi.Input
+
+	ToSourceAzureBlobStorageMapOutput() SourceAzureBlobStorageMapOutput
+	ToSourceAzureBlobStorageMapOutputWithContext(context.Context) SourceAzureBlobStorageMapOutput
+}
+
+type SourceAzureBlobStorageMap map[string]SourceAzureBlobStorageInput
+
+func (SourceAzureBlobStorageMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAzureBlobStorage)(nil)).Elem()
+}
+
+func (i SourceAzureBlobStorageMap) ToSourceAzureBlobStorageMapOutput() SourceAzureBlobStorageMapOutput {
+	return i.ToSourceAzureBlobStorageMapOutputWithContext(context.Background())
+}
+
+func (i SourceAzureBlobStorageMap) ToSourceAzureBlobStorageMapOutputWithContext(ctx context.Context) SourceAzureBlobStorageMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureBlobStorageMapOutput)
+}
+
 type SourceAzureBlobStorageOutput struct{ *pulumi.OutputState }
 
 func (SourceAzureBlobStorageOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAzureBlobStorageOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAzureBlobStorage) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAzureBlobStorageArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAzureBlobStorageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAzureBlobStorage)(nil)).Elem()
+}
+
+func (o SourceAzureBlobStorageArrayOutput) ToSourceAzureBlobStorageArrayOutput() SourceAzureBlobStorageArrayOutput {
+	return o
+}
+
+func (o SourceAzureBlobStorageArrayOutput) ToSourceAzureBlobStorageArrayOutputWithContext(ctx context.Context) SourceAzureBlobStorageArrayOutput {
+	return o
+}
+
+func (o SourceAzureBlobStorageArrayOutput) Index(i pulumi.IntInput) SourceAzureBlobStorageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAzureBlobStorage {
+		return vs[0].([]*SourceAzureBlobStorage)[vs[1].(int)]
+	}).(SourceAzureBlobStorageOutput)
+}
+
+type SourceAzureBlobStorageMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAzureBlobStorageMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAzureBlobStorage)(nil)).Elem()
+}
+
+func (o SourceAzureBlobStorageMapOutput) ToSourceAzureBlobStorageMapOutput() SourceAzureBlobStorageMapOutput {
+	return o
+}
+
+func (o SourceAzureBlobStorageMapOutput) ToSourceAzureBlobStorageMapOutputWithContext(ctx context.Context) SourceAzureBlobStorageMapOutput {
+	return o
+}
+
+func (o SourceAzureBlobStorageMapOutput) MapIndex(k pulumi.StringInput) SourceAzureBlobStorageOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAzureBlobStorage {
+		return vs[0].(map[string]*SourceAzureBlobStorage)[vs[1].(string)]
+	}).(SourceAzureBlobStorageOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureBlobStorageInput)(nil)).Elem(), &SourceAzureBlobStorage{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureBlobStorageArrayInput)(nil)).Elem(), SourceAzureBlobStorageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureBlobStorageMapInput)(nil)).Elem(), SourceAzureBlobStorageMap{})
 	pulumi.RegisterOutputType(SourceAzureBlobStorageOutput{})
+	pulumi.RegisterOutputType(SourceAzureBlobStorageArrayOutput{})
+	pulumi.RegisterOutputType(SourceAzureBlobStorageMapOutput{})
 }

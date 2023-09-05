@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSurveymonkey Resource
@@ -127,6 +127,56 @@ func (i *SourceSurveymonkey) ToSourceSurveymonkeyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveymonkeyOutput)
 }
 
+// SourceSurveymonkeyArrayInput is an input type that accepts SourceSurveymonkeyArray and SourceSurveymonkeyArrayOutput values.
+// You can construct a concrete instance of `SourceSurveymonkeyArrayInput` via:
+//
+//	SourceSurveymonkeyArray{ SourceSurveymonkeyArgs{...} }
+type SourceSurveymonkeyArrayInput interface {
+	pulumi.Input
+
+	ToSourceSurveymonkeyArrayOutput() SourceSurveymonkeyArrayOutput
+	ToSourceSurveymonkeyArrayOutputWithContext(context.Context) SourceSurveymonkeyArrayOutput
+}
+
+type SourceSurveymonkeyArray []SourceSurveymonkeyInput
+
+func (SourceSurveymonkeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSurveymonkey)(nil)).Elem()
+}
+
+func (i SourceSurveymonkeyArray) ToSourceSurveymonkeyArrayOutput() SourceSurveymonkeyArrayOutput {
+	return i.ToSourceSurveymonkeyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSurveymonkeyArray) ToSourceSurveymonkeyArrayOutputWithContext(ctx context.Context) SourceSurveymonkeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveymonkeyArrayOutput)
+}
+
+// SourceSurveymonkeyMapInput is an input type that accepts SourceSurveymonkeyMap and SourceSurveymonkeyMapOutput values.
+// You can construct a concrete instance of `SourceSurveymonkeyMapInput` via:
+//
+//	SourceSurveymonkeyMap{ "key": SourceSurveymonkeyArgs{...} }
+type SourceSurveymonkeyMapInput interface {
+	pulumi.Input
+
+	ToSourceSurveymonkeyMapOutput() SourceSurveymonkeyMapOutput
+	ToSourceSurveymonkeyMapOutputWithContext(context.Context) SourceSurveymonkeyMapOutput
+}
+
+type SourceSurveymonkeyMap map[string]SourceSurveymonkeyInput
+
+func (SourceSurveymonkeyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSurveymonkey)(nil)).Elem()
+}
+
+func (i SourceSurveymonkeyMap) ToSourceSurveymonkeyMapOutput() SourceSurveymonkeyMapOutput {
+	return i.ToSourceSurveymonkeyMapOutputWithContext(context.Background())
+}
+
+func (i SourceSurveymonkeyMap) ToSourceSurveymonkeyMapOutputWithContext(ctx context.Context) SourceSurveymonkeyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveymonkeyMapOutput)
+}
+
 type SourceSurveymonkeyOutput struct{ *pulumi.OutputState }
 
 func (SourceSurveymonkeyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSurveymonkeyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSurveymonkey) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSurveymonkeyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSurveymonkeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSurveymonkey)(nil)).Elem()
+}
+
+func (o SourceSurveymonkeyArrayOutput) ToSourceSurveymonkeyArrayOutput() SourceSurveymonkeyArrayOutput {
+	return o
+}
+
+func (o SourceSurveymonkeyArrayOutput) ToSourceSurveymonkeyArrayOutputWithContext(ctx context.Context) SourceSurveymonkeyArrayOutput {
+	return o
+}
+
+func (o SourceSurveymonkeyArrayOutput) Index(i pulumi.IntInput) SourceSurveymonkeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSurveymonkey {
+		return vs[0].([]*SourceSurveymonkey)[vs[1].(int)]
+	}).(SourceSurveymonkeyOutput)
+}
+
+type SourceSurveymonkeyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSurveymonkeyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSurveymonkey)(nil)).Elem()
+}
+
+func (o SourceSurveymonkeyMapOutput) ToSourceSurveymonkeyMapOutput() SourceSurveymonkeyMapOutput {
+	return o
+}
+
+func (o SourceSurveymonkeyMapOutput) ToSourceSurveymonkeyMapOutputWithContext(ctx context.Context) SourceSurveymonkeyMapOutput {
+	return o
+}
+
+func (o SourceSurveymonkeyMapOutput) MapIndex(k pulumi.StringInput) SourceSurveymonkeyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSurveymonkey {
+		return vs[0].(map[string]*SourceSurveymonkey)[vs[1].(string)]
+	}).(SourceSurveymonkeyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveymonkeyInput)(nil)).Elem(), &SourceSurveymonkey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveymonkeyArrayInput)(nil)).Elem(), SourceSurveymonkeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveymonkeyMapInput)(nil)).Elem(), SourceSurveymonkeyMap{})
 	pulumi.RegisterOutputType(SourceSurveymonkeyOutput{})
+	pulumi.RegisterOutputType(SourceSurveymonkeyArrayOutput{})
+	pulumi.RegisterOutputType(SourceSurveymonkeyMapOutput{})
 }

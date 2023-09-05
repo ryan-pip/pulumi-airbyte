@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationBigqueryDenormalized DataSource
@@ -24,15 +24,19 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := airbyte.LookupDestinationBigqueryDenormalized(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := airbyte.LookupDestinationBigqueryDenormalized(ctx, &airbyte.LookupDestinationBigqueryDenormalizedArgs{
+//				DestinationId: "...my_destination_id...",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupDestinationBigqueryDenormalized(ctx *pulumi.Context, args *LookupDestinationBigqueryDenormalizedArgs, opts ...pulumi.InvokeOption) (*LookupDestinationBigqueryDenormalizedResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

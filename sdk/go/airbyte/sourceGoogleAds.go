@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleAds Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleAds) ToSourceGoogleAdsOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAdsOutput)
 }
 
+// SourceGoogleAdsArrayInput is an input type that accepts SourceGoogleAdsArray and SourceGoogleAdsArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleAdsArrayInput` via:
+//
+//	SourceGoogleAdsArray{ SourceGoogleAdsArgs{...} }
+type SourceGoogleAdsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleAdsArrayOutput() SourceGoogleAdsArrayOutput
+	ToSourceGoogleAdsArrayOutputWithContext(context.Context) SourceGoogleAdsArrayOutput
+}
+
+type SourceGoogleAdsArray []SourceGoogleAdsInput
+
+func (SourceGoogleAdsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleAds)(nil)).Elem()
+}
+
+func (i SourceGoogleAdsArray) ToSourceGoogleAdsArrayOutput() SourceGoogleAdsArrayOutput {
+	return i.ToSourceGoogleAdsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleAdsArray) ToSourceGoogleAdsArrayOutputWithContext(ctx context.Context) SourceGoogleAdsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAdsArrayOutput)
+}
+
+// SourceGoogleAdsMapInput is an input type that accepts SourceGoogleAdsMap and SourceGoogleAdsMapOutput values.
+// You can construct a concrete instance of `SourceGoogleAdsMapInput` via:
+//
+//	SourceGoogleAdsMap{ "key": SourceGoogleAdsArgs{...} }
+type SourceGoogleAdsMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleAdsMapOutput() SourceGoogleAdsMapOutput
+	ToSourceGoogleAdsMapOutputWithContext(context.Context) SourceGoogleAdsMapOutput
+}
+
+type SourceGoogleAdsMap map[string]SourceGoogleAdsInput
+
+func (SourceGoogleAdsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleAds)(nil)).Elem()
+}
+
+func (i SourceGoogleAdsMap) ToSourceGoogleAdsMapOutput() SourceGoogleAdsMapOutput {
+	return i.ToSourceGoogleAdsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleAdsMap) ToSourceGoogleAdsMapOutputWithContext(ctx context.Context) SourceGoogleAdsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAdsMapOutput)
+}
+
 type SourceGoogleAdsOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleAdsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGoogleAdsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleAds) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleAdsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleAdsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleAds)(nil)).Elem()
+}
+
+func (o SourceGoogleAdsArrayOutput) ToSourceGoogleAdsArrayOutput() SourceGoogleAdsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleAdsArrayOutput) ToSourceGoogleAdsArrayOutputWithContext(ctx context.Context) SourceGoogleAdsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleAdsArrayOutput) Index(i pulumi.IntInput) SourceGoogleAdsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleAds {
+		return vs[0].([]*SourceGoogleAds)[vs[1].(int)]
+	}).(SourceGoogleAdsOutput)
+}
+
+type SourceGoogleAdsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleAdsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleAds)(nil)).Elem()
+}
+
+func (o SourceGoogleAdsMapOutput) ToSourceGoogleAdsMapOutput() SourceGoogleAdsMapOutput {
+	return o
+}
+
+func (o SourceGoogleAdsMapOutput) ToSourceGoogleAdsMapOutputWithContext(ctx context.Context) SourceGoogleAdsMapOutput {
+	return o
+}
+
+func (o SourceGoogleAdsMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleAdsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleAds {
+		return vs[0].(map[string]*SourceGoogleAds)[vs[1].(string)]
+	}).(SourceGoogleAdsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAdsInput)(nil)).Elem(), &SourceGoogleAds{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAdsArrayInput)(nil)).Elem(), SourceGoogleAdsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAdsMapInput)(nil)).Elem(), SourceGoogleAdsMap{})
 	pulumi.RegisterOutputType(SourceGoogleAdsOutput{})
+	pulumi.RegisterOutputType(SourceGoogleAdsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleAdsMapOutput{})
 }

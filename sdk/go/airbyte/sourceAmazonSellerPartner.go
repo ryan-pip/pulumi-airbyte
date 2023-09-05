@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAmazonSellerPartner Resource
@@ -127,6 +127,56 @@ func (i *SourceAmazonSellerPartner) ToSourceAmazonSellerPartnerOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSellerPartnerOutput)
 }
 
+// SourceAmazonSellerPartnerArrayInput is an input type that accepts SourceAmazonSellerPartnerArray and SourceAmazonSellerPartnerArrayOutput values.
+// You can construct a concrete instance of `SourceAmazonSellerPartnerArrayInput` via:
+//
+//	SourceAmazonSellerPartnerArray{ SourceAmazonSellerPartnerArgs{...} }
+type SourceAmazonSellerPartnerArrayInput interface {
+	pulumi.Input
+
+	ToSourceAmazonSellerPartnerArrayOutput() SourceAmazonSellerPartnerArrayOutput
+	ToSourceAmazonSellerPartnerArrayOutputWithContext(context.Context) SourceAmazonSellerPartnerArrayOutput
+}
+
+type SourceAmazonSellerPartnerArray []SourceAmazonSellerPartnerInput
+
+func (SourceAmazonSellerPartnerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonSellerPartner)(nil)).Elem()
+}
+
+func (i SourceAmazonSellerPartnerArray) ToSourceAmazonSellerPartnerArrayOutput() SourceAmazonSellerPartnerArrayOutput {
+	return i.ToSourceAmazonSellerPartnerArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonSellerPartnerArray) ToSourceAmazonSellerPartnerArrayOutputWithContext(ctx context.Context) SourceAmazonSellerPartnerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSellerPartnerArrayOutput)
+}
+
+// SourceAmazonSellerPartnerMapInput is an input type that accepts SourceAmazonSellerPartnerMap and SourceAmazonSellerPartnerMapOutput values.
+// You can construct a concrete instance of `SourceAmazonSellerPartnerMapInput` via:
+//
+//	SourceAmazonSellerPartnerMap{ "key": SourceAmazonSellerPartnerArgs{...} }
+type SourceAmazonSellerPartnerMapInput interface {
+	pulumi.Input
+
+	ToSourceAmazonSellerPartnerMapOutput() SourceAmazonSellerPartnerMapOutput
+	ToSourceAmazonSellerPartnerMapOutputWithContext(context.Context) SourceAmazonSellerPartnerMapOutput
+}
+
+type SourceAmazonSellerPartnerMap map[string]SourceAmazonSellerPartnerInput
+
+func (SourceAmazonSellerPartnerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonSellerPartner)(nil)).Elem()
+}
+
+func (i SourceAmazonSellerPartnerMap) ToSourceAmazonSellerPartnerMapOutput() SourceAmazonSellerPartnerMapOutput {
+	return i.ToSourceAmazonSellerPartnerMapOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonSellerPartnerMap) ToSourceAmazonSellerPartnerMapOutputWithContext(ctx context.Context) SourceAmazonSellerPartnerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSellerPartnerMapOutput)
+}
+
 type SourceAmazonSellerPartnerOutput struct{ *pulumi.OutputState }
 
 func (SourceAmazonSellerPartnerOutput) ElementType() reflect.Type {
@@ -168,7 +218,51 @@ func (o SourceAmazonSellerPartnerOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAmazonSellerPartner) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAmazonSellerPartnerArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonSellerPartnerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonSellerPartner)(nil)).Elem()
+}
+
+func (o SourceAmazonSellerPartnerArrayOutput) ToSourceAmazonSellerPartnerArrayOutput() SourceAmazonSellerPartnerArrayOutput {
+	return o
+}
+
+func (o SourceAmazonSellerPartnerArrayOutput) ToSourceAmazonSellerPartnerArrayOutputWithContext(ctx context.Context) SourceAmazonSellerPartnerArrayOutput {
+	return o
+}
+
+func (o SourceAmazonSellerPartnerArrayOutput) Index(i pulumi.IntInput) SourceAmazonSellerPartnerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAmazonSellerPartner {
+		return vs[0].([]*SourceAmazonSellerPartner)[vs[1].(int)]
+	}).(SourceAmazonSellerPartnerOutput)
+}
+
+type SourceAmazonSellerPartnerMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonSellerPartnerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonSellerPartner)(nil)).Elem()
+}
+
+func (o SourceAmazonSellerPartnerMapOutput) ToSourceAmazonSellerPartnerMapOutput() SourceAmazonSellerPartnerMapOutput {
+	return o
+}
+
+func (o SourceAmazonSellerPartnerMapOutput) ToSourceAmazonSellerPartnerMapOutputWithContext(ctx context.Context) SourceAmazonSellerPartnerMapOutput {
+	return o
+}
+
+func (o SourceAmazonSellerPartnerMapOutput) MapIndex(k pulumi.StringInput) SourceAmazonSellerPartnerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAmazonSellerPartner {
+		return vs[0].(map[string]*SourceAmazonSellerPartner)[vs[1].(string)]
+	}).(SourceAmazonSellerPartnerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSellerPartnerInput)(nil)).Elem(), &SourceAmazonSellerPartner{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSellerPartnerArrayInput)(nil)).Elem(), SourceAmazonSellerPartnerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSellerPartnerMapInput)(nil)).Elem(), SourceAmazonSellerPartnerMap{})
 	pulumi.RegisterOutputType(SourceAmazonSellerPartnerOutput{})
+	pulumi.RegisterOutputType(SourceAmazonSellerPartnerArrayOutput{})
+	pulumi.RegisterOutputType(SourceAmazonSellerPartnerMapOutput{})
 }

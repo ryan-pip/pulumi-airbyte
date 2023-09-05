@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationMysql Resource
@@ -117,6 +117,56 @@ func (i *DestinationMysql) ToDestinationMysqlOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationMysqlOutput)
 }
 
+// DestinationMysqlArrayInput is an input type that accepts DestinationMysqlArray and DestinationMysqlArrayOutput values.
+// You can construct a concrete instance of `DestinationMysqlArrayInput` via:
+//
+//	DestinationMysqlArray{ DestinationMysqlArgs{...} }
+type DestinationMysqlArrayInput interface {
+	pulumi.Input
+
+	ToDestinationMysqlArrayOutput() DestinationMysqlArrayOutput
+	ToDestinationMysqlArrayOutputWithContext(context.Context) DestinationMysqlArrayOutput
+}
+
+type DestinationMysqlArray []DestinationMysqlInput
+
+func (DestinationMysqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMysql)(nil)).Elem()
+}
+
+func (i DestinationMysqlArray) ToDestinationMysqlArrayOutput() DestinationMysqlArrayOutput {
+	return i.ToDestinationMysqlArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationMysqlArray) ToDestinationMysqlArrayOutputWithContext(ctx context.Context) DestinationMysqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMysqlArrayOutput)
+}
+
+// DestinationMysqlMapInput is an input type that accepts DestinationMysqlMap and DestinationMysqlMapOutput values.
+// You can construct a concrete instance of `DestinationMysqlMapInput` via:
+//
+//	DestinationMysqlMap{ "key": DestinationMysqlArgs{...} }
+type DestinationMysqlMapInput interface {
+	pulumi.Input
+
+	ToDestinationMysqlMapOutput() DestinationMysqlMapOutput
+	ToDestinationMysqlMapOutputWithContext(context.Context) DestinationMysqlMapOutput
+}
+
+type DestinationMysqlMap map[string]DestinationMysqlInput
+
+func (DestinationMysqlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMysql)(nil)).Elem()
+}
+
+func (i DestinationMysqlMap) ToDestinationMysqlMapOutput() DestinationMysqlMapOutput {
+	return i.ToDestinationMysqlMapOutputWithContext(context.Background())
+}
+
+func (i DestinationMysqlMap) ToDestinationMysqlMapOutputWithContext(ctx context.Context) DestinationMysqlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMysqlMapOutput)
+}
+
 type DestinationMysqlOutput struct{ *pulumi.OutputState }
 
 func (DestinationMysqlOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationMysqlOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationMysql) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationMysqlArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationMysqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMysql)(nil)).Elem()
+}
+
+func (o DestinationMysqlArrayOutput) ToDestinationMysqlArrayOutput() DestinationMysqlArrayOutput {
+	return o
+}
+
+func (o DestinationMysqlArrayOutput) ToDestinationMysqlArrayOutputWithContext(ctx context.Context) DestinationMysqlArrayOutput {
+	return o
+}
+
+func (o DestinationMysqlArrayOutput) Index(i pulumi.IntInput) DestinationMysqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationMysql {
+		return vs[0].([]*DestinationMysql)[vs[1].(int)]
+	}).(DestinationMysqlOutput)
+}
+
+type DestinationMysqlMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationMysqlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMysql)(nil)).Elem()
+}
+
+func (o DestinationMysqlMapOutput) ToDestinationMysqlMapOutput() DestinationMysqlMapOutput {
+	return o
+}
+
+func (o DestinationMysqlMapOutput) ToDestinationMysqlMapOutputWithContext(ctx context.Context) DestinationMysqlMapOutput {
+	return o
+}
+
+func (o DestinationMysqlMapOutput) MapIndex(k pulumi.StringInput) DestinationMysqlOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationMysql {
+		return vs[0].(map[string]*DestinationMysql)[vs[1].(string)]
+	}).(DestinationMysqlOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMysqlInput)(nil)).Elem(), &DestinationMysql{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMysqlArrayInput)(nil)).Elem(), DestinationMysqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMysqlMapInput)(nil)).Elem(), DestinationMysqlMap{})
 	pulumi.RegisterOutputType(DestinationMysqlOutput{})
+	pulumi.RegisterOutputType(DestinationMysqlArrayOutput{})
+	pulumi.RegisterOutputType(DestinationMysqlMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSapFieldglass Resource
@@ -127,6 +127,56 @@ func (i *SourceSapFieldglass) ToSourceSapFieldglassOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSapFieldglassOutput)
 }
 
+// SourceSapFieldglassArrayInput is an input type that accepts SourceSapFieldglassArray and SourceSapFieldglassArrayOutput values.
+// You can construct a concrete instance of `SourceSapFieldglassArrayInput` via:
+//
+//	SourceSapFieldglassArray{ SourceSapFieldglassArgs{...} }
+type SourceSapFieldglassArrayInput interface {
+	pulumi.Input
+
+	ToSourceSapFieldglassArrayOutput() SourceSapFieldglassArrayOutput
+	ToSourceSapFieldglassArrayOutputWithContext(context.Context) SourceSapFieldglassArrayOutput
+}
+
+type SourceSapFieldglassArray []SourceSapFieldglassInput
+
+func (SourceSapFieldglassArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSapFieldglass)(nil)).Elem()
+}
+
+func (i SourceSapFieldglassArray) ToSourceSapFieldglassArrayOutput() SourceSapFieldglassArrayOutput {
+	return i.ToSourceSapFieldglassArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSapFieldglassArray) ToSourceSapFieldglassArrayOutputWithContext(ctx context.Context) SourceSapFieldglassArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSapFieldglassArrayOutput)
+}
+
+// SourceSapFieldglassMapInput is an input type that accepts SourceSapFieldglassMap and SourceSapFieldglassMapOutput values.
+// You can construct a concrete instance of `SourceSapFieldglassMapInput` via:
+//
+//	SourceSapFieldglassMap{ "key": SourceSapFieldglassArgs{...} }
+type SourceSapFieldglassMapInput interface {
+	pulumi.Input
+
+	ToSourceSapFieldglassMapOutput() SourceSapFieldglassMapOutput
+	ToSourceSapFieldglassMapOutputWithContext(context.Context) SourceSapFieldglassMapOutput
+}
+
+type SourceSapFieldglassMap map[string]SourceSapFieldglassInput
+
+func (SourceSapFieldglassMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSapFieldglass)(nil)).Elem()
+}
+
+func (i SourceSapFieldglassMap) ToSourceSapFieldglassMapOutput() SourceSapFieldglassMapOutput {
+	return i.ToSourceSapFieldglassMapOutputWithContext(context.Background())
+}
+
+func (i SourceSapFieldglassMap) ToSourceSapFieldglassMapOutputWithContext(ctx context.Context) SourceSapFieldglassMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSapFieldglassMapOutput)
+}
+
 type SourceSapFieldglassOutput struct{ *pulumi.OutputState }
 
 func (SourceSapFieldglassOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSapFieldglassOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSapFieldglass) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSapFieldglassArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSapFieldglassArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSapFieldglass)(nil)).Elem()
+}
+
+func (o SourceSapFieldglassArrayOutput) ToSourceSapFieldglassArrayOutput() SourceSapFieldglassArrayOutput {
+	return o
+}
+
+func (o SourceSapFieldglassArrayOutput) ToSourceSapFieldglassArrayOutputWithContext(ctx context.Context) SourceSapFieldglassArrayOutput {
+	return o
+}
+
+func (o SourceSapFieldglassArrayOutput) Index(i pulumi.IntInput) SourceSapFieldglassOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSapFieldglass {
+		return vs[0].([]*SourceSapFieldglass)[vs[1].(int)]
+	}).(SourceSapFieldglassOutput)
+}
+
+type SourceSapFieldglassMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSapFieldglassMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSapFieldglass)(nil)).Elem()
+}
+
+func (o SourceSapFieldglassMapOutput) ToSourceSapFieldglassMapOutput() SourceSapFieldglassMapOutput {
+	return o
+}
+
+func (o SourceSapFieldglassMapOutput) ToSourceSapFieldglassMapOutputWithContext(ctx context.Context) SourceSapFieldglassMapOutput {
+	return o
+}
+
+func (o SourceSapFieldglassMapOutput) MapIndex(k pulumi.StringInput) SourceSapFieldglassOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSapFieldglass {
+		return vs[0].(map[string]*SourceSapFieldglass)[vs[1].(string)]
+	}).(SourceSapFieldglassOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSapFieldglassInput)(nil)).Elem(), &SourceSapFieldglass{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSapFieldglassArrayInput)(nil)).Elem(), SourceSapFieldglassArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSapFieldglassMapInput)(nil)).Elem(), SourceSapFieldglassMap{})
 	pulumi.RegisterOutputType(SourceSapFieldglassOutput{})
+	pulumi.RegisterOutputType(SourceSapFieldglassArrayOutput{})
+	pulumi.RegisterOutputType(SourceSapFieldglassMapOutput{})
 }

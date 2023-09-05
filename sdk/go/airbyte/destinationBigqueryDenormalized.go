@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationBigqueryDenormalized Resource
@@ -117,6 +117,56 @@ func (i *DestinationBigqueryDenormalized) ToDestinationBigqueryDenormalizedOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryDenormalizedOutput)
 }
 
+// DestinationBigqueryDenormalizedArrayInput is an input type that accepts DestinationBigqueryDenormalizedArray and DestinationBigqueryDenormalizedArrayOutput values.
+// You can construct a concrete instance of `DestinationBigqueryDenormalizedArrayInput` via:
+//
+//	DestinationBigqueryDenormalizedArray{ DestinationBigqueryDenormalizedArgs{...} }
+type DestinationBigqueryDenormalizedArrayInput interface {
+	pulumi.Input
+
+	ToDestinationBigqueryDenormalizedArrayOutput() DestinationBigqueryDenormalizedArrayOutput
+	ToDestinationBigqueryDenormalizedArrayOutputWithContext(context.Context) DestinationBigqueryDenormalizedArrayOutput
+}
+
+type DestinationBigqueryDenormalizedArray []DestinationBigqueryDenormalizedInput
+
+func (DestinationBigqueryDenormalizedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationBigqueryDenormalized)(nil)).Elem()
+}
+
+func (i DestinationBigqueryDenormalizedArray) ToDestinationBigqueryDenormalizedArrayOutput() DestinationBigqueryDenormalizedArrayOutput {
+	return i.ToDestinationBigqueryDenormalizedArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationBigqueryDenormalizedArray) ToDestinationBigqueryDenormalizedArrayOutputWithContext(ctx context.Context) DestinationBigqueryDenormalizedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryDenormalizedArrayOutput)
+}
+
+// DestinationBigqueryDenormalizedMapInput is an input type that accepts DestinationBigqueryDenormalizedMap and DestinationBigqueryDenormalizedMapOutput values.
+// You can construct a concrete instance of `DestinationBigqueryDenormalizedMapInput` via:
+//
+//	DestinationBigqueryDenormalizedMap{ "key": DestinationBigqueryDenormalizedArgs{...} }
+type DestinationBigqueryDenormalizedMapInput interface {
+	pulumi.Input
+
+	ToDestinationBigqueryDenormalizedMapOutput() DestinationBigqueryDenormalizedMapOutput
+	ToDestinationBigqueryDenormalizedMapOutputWithContext(context.Context) DestinationBigqueryDenormalizedMapOutput
+}
+
+type DestinationBigqueryDenormalizedMap map[string]DestinationBigqueryDenormalizedInput
+
+func (DestinationBigqueryDenormalizedMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationBigqueryDenormalized)(nil)).Elem()
+}
+
+func (i DestinationBigqueryDenormalizedMap) ToDestinationBigqueryDenormalizedMapOutput() DestinationBigqueryDenormalizedMapOutput {
+	return i.ToDestinationBigqueryDenormalizedMapOutputWithContext(context.Background())
+}
+
+func (i DestinationBigqueryDenormalizedMap) ToDestinationBigqueryDenormalizedMapOutputWithContext(ctx context.Context) DestinationBigqueryDenormalizedMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryDenormalizedMapOutput)
+}
+
 type DestinationBigqueryDenormalizedOutput struct{ *pulumi.OutputState }
 
 func (DestinationBigqueryDenormalizedOutput) ElementType() reflect.Type {
@@ -153,7 +203,51 @@ func (o DestinationBigqueryDenormalizedOutput) WorkspaceId() pulumi.StringOutput
 	return o.ApplyT(func(v *DestinationBigqueryDenormalized) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationBigqueryDenormalizedArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationBigqueryDenormalizedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationBigqueryDenormalized)(nil)).Elem()
+}
+
+func (o DestinationBigqueryDenormalizedArrayOutput) ToDestinationBigqueryDenormalizedArrayOutput() DestinationBigqueryDenormalizedArrayOutput {
+	return o
+}
+
+func (o DestinationBigqueryDenormalizedArrayOutput) ToDestinationBigqueryDenormalizedArrayOutputWithContext(ctx context.Context) DestinationBigqueryDenormalizedArrayOutput {
+	return o
+}
+
+func (o DestinationBigqueryDenormalizedArrayOutput) Index(i pulumi.IntInput) DestinationBigqueryDenormalizedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationBigqueryDenormalized {
+		return vs[0].([]*DestinationBigqueryDenormalized)[vs[1].(int)]
+	}).(DestinationBigqueryDenormalizedOutput)
+}
+
+type DestinationBigqueryDenormalizedMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationBigqueryDenormalizedMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationBigqueryDenormalized)(nil)).Elem()
+}
+
+func (o DestinationBigqueryDenormalizedMapOutput) ToDestinationBigqueryDenormalizedMapOutput() DestinationBigqueryDenormalizedMapOutput {
+	return o
+}
+
+func (o DestinationBigqueryDenormalizedMapOutput) ToDestinationBigqueryDenormalizedMapOutputWithContext(ctx context.Context) DestinationBigqueryDenormalizedMapOutput {
+	return o
+}
+
+func (o DestinationBigqueryDenormalizedMapOutput) MapIndex(k pulumi.StringInput) DestinationBigqueryDenormalizedOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationBigqueryDenormalized {
+		return vs[0].(map[string]*DestinationBigqueryDenormalized)[vs[1].(string)]
+	}).(DestinationBigqueryDenormalizedOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryDenormalizedInput)(nil)).Elem(), &DestinationBigqueryDenormalized{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryDenormalizedArrayInput)(nil)).Elem(), DestinationBigqueryDenormalizedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryDenormalizedMapInput)(nil)).Elem(), DestinationBigqueryDenormalizedMap{})
 	pulumi.RegisterOutputType(DestinationBigqueryDenormalizedOutput{})
+	pulumi.RegisterOutputType(DestinationBigqueryDenormalizedArrayOutput{})
+	pulumi.RegisterOutputType(DestinationBigqueryDenormalizedMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceCoinAPI Resource
@@ -127,6 +127,56 @@ func (i *SourceCoinApi) ToSourceCoinApiOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinApiOutput)
 }
 
+// SourceCoinApiArrayInput is an input type that accepts SourceCoinApiArray and SourceCoinApiArrayOutput values.
+// You can construct a concrete instance of `SourceCoinApiArrayInput` via:
+//
+//	SourceCoinApiArray{ SourceCoinApiArgs{...} }
+type SourceCoinApiArrayInput interface {
+	pulumi.Input
+
+	ToSourceCoinApiArrayOutput() SourceCoinApiArrayOutput
+	ToSourceCoinApiArrayOutputWithContext(context.Context) SourceCoinApiArrayOutput
+}
+
+type SourceCoinApiArray []SourceCoinApiInput
+
+func (SourceCoinApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoinApi)(nil)).Elem()
+}
+
+func (i SourceCoinApiArray) ToSourceCoinApiArrayOutput() SourceCoinApiArrayOutput {
+	return i.ToSourceCoinApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourceCoinApiArray) ToSourceCoinApiArrayOutputWithContext(ctx context.Context) SourceCoinApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinApiArrayOutput)
+}
+
+// SourceCoinApiMapInput is an input type that accepts SourceCoinApiMap and SourceCoinApiMapOutput values.
+// You can construct a concrete instance of `SourceCoinApiMapInput` via:
+//
+//	SourceCoinApiMap{ "key": SourceCoinApiArgs{...} }
+type SourceCoinApiMapInput interface {
+	pulumi.Input
+
+	ToSourceCoinApiMapOutput() SourceCoinApiMapOutput
+	ToSourceCoinApiMapOutputWithContext(context.Context) SourceCoinApiMapOutput
+}
+
+type SourceCoinApiMap map[string]SourceCoinApiInput
+
+func (SourceCoinApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoinApi)(nil)).Elem()
+}
+
+func (i SourceCoinApiMap) ToSourceCoinApiMapOutput() SourceCoinApiMapOutput {
+	return i.ToSourceCoinApiMapOutputWithContext(context.Background())
+}
+
+func (i SourceCoinApiMap) ToSourceCoinApiMapOutputWithContext(ctx context.Context) SourceCoinApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinApiMapOutput)
+}
+
 type SourceCoinApiOutput struct{ *pulumi.OutputState }
 
 func (SourceCoinApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceCoinApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceCoinApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceCoinApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceCoinApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoinApi)(nil)).Elem()
+}
+
+func (o SourceCoinApiArrayOutput) ToSourceCoinApiArrayOutput() SourceCoinApiArrayOutput {
+	return o
+}
+
+func (o SourceCoinApiArrayOutput) ToSourceCoinApiArrayOutputWithContext(ctx context.Context) SourceCoinApiArrayOutput {
+	return o
+}
+
+func (o SourceCoinApiArrayOutput) Index(i pulumi.IntInput) SourceCoinApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceCoinApi {
+		return vs[0].([]*SourceCoinApi)[vs[1].(int)]
+	}).(SourceCoinApiOutput)
+}
+
+type SourceCoinApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourceCoinApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoinApi)(nil)).Elem()
+}
+
+func (o SourceCoinApiMapOutput) ToSourceCoinApiMapOutput() SourceCoinApiMapOutput {
+	return o
+}
+
+func (o SourceCoinApiMapOutput) ToSourceCoinApiMapOutputWithContext(ctx context.Context) SourceCoinApiMapOutput {
+	return o
+}
+
+func (o SourceCoinApiMapOutput) MapIndex(k pulumi.StringInput) SourceCoinApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceCoinApi {
+		return vs[0].(map[string]*SourceCoinApi)[vs[1].(string)]
+	}).(SourceCoinApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinApiInput)(nil)).Elem(), &SourceCoinApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinApiArrayInput)(nil)).Elem(), SourceCoinApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinApiMapInput)(nil)).Elem(), SourceCoinApiMap{})
 	pulumi.RegisterOutputType(SourceCoinApiOutput{})
+	pulumi.RegisterOutputType(SourceCoinApiArrayOutput{})
+	pulumi.RegisterOutputType(SourceCoinApiMapOutput{})
 }

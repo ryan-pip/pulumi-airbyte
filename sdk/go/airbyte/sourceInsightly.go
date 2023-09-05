@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceInsightly Resource
@@ -127,6 +127,56 @@ func (i *SourceInsightly) ToSourceInsightlyOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceInsightlyOutput)
 }
 
+// SourceInsightlyArrayInput is an input type that accepts SourceInsightlyArray and SourceInsightlyArrayOutput values.
+// You can construct a concrete instance of `SourceInsightlyArrayInput` via:
+//
+//	SourceInsightlyArray{ SourceInsightlyArgs{...} }
+type SourceInsightlyArrayInput interface {
+	pulumi.Input
+
+	ToSourceInsightlyArrayOutput() SourceInsightlyArrayOutput
+	ToSourceInsightlyArrayOutputWithContext(context.Context) SourceInsightlyArrayOutput
+}
+
+type SourceInsightlyArray []SourceInsightlyInput
+
+func (SourceInsightlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInsightly)(nil)).Elem()
+}
+
+func (i SourceInsightlyArray) ToSourceInsightlyArrayOutput() SourceInsightlyArrayOutput {
+	return i.ToSourceInsightlyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceInsightlyArray) ToSourceInsightlyArrayOutputWithContext(ctx context.Context) SourceInsightlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInsightlyArrayOutput)
+}
+
+// SourceInsightlyMapInput is an input type that accepts SourceInsightlyMap and SourceInsightlyMapOutput values.
+// You can construct a concrete instance of `SourceInsightlyMapInput` via:
+//
+//	SourceInsightlyMap{ "key": SourceInsightlyArgs{...} }
+type SourceInsightlyMapInput interface {
+	pulumi.Input
+
+	ToSourceInsightlyMapOutput() SourceInsightlyMapOutput
+	ToSourceInsightlyMapOutputWithContext(context.Context) SourceInsightlyMapOutput
+}
+
+type SourceInsightlyMap map[string]SourceInsightlyInput
+
+func (SourceInsightlyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInsightly)(nil)).Elem()
+}
+
+func (i SourceInsightlyMap) ToSourceInsightlyMapOutput() SourceInsightlyMapOutput {
+	return i.ToSourceInsightlyMapOutputWithContext(context.Background())
+}
+
+func (i SourceInsightlyMap) ToSourceInsightlyMapOutputWithContext(ctx context.Context) SourceInsightlyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInsightlyMapOutput)
+}
+
 type SourceInsightlyOutput struct{ *pulumi.OutputState }
 
 func (SourceInsightlyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceInsightlyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceInsightly) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceInsightlyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceInsightlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInsightly)(nil)).Elem()
+}
+
+func (o SourceInsightlyArrayOutput) ToSourceInsightlyArrayOutput() SourceInsightlyArrayOutput {
+	return o
+}
+
+func (o SourceInsightlyArrayOutput) ToSourceInsightlyArrayOutputWithContext(ctx context.Context) SourceInsightlyArrayOutput {
+	return o
+}
+
+func (o SourceInsightlyArrayOutput) Index(i pulumi.IntInput) SourceInsightlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceInsightly {
+		return vs[0].([]*SourceInsightly)[vs[1].(int)]
+	}).(SourceInsightlyOutput)
+}
+
+type SourceInsightlyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceInsightlyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInsightly)(nil)).Elem()
+}
+
+func (o SourceInsightlyMapOutput) ToSourceInsightlyMapOutput() SourceInsightlyMapOutput {
+	return o
+}
+
+func (o SourceInsightlyMapOutput) ToSourceInsightlyMapOutputWithContext(ctx context.Context) SourceInsightlyMapOutput {
+	return o
+}
+
+func (o SourceInsightlyMapOutput) MapIndex(k pulumi.StringInput) SourceInsightlyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceInsightly {
+		return vs[0].(map[string]*SourceInsightly)[vs[1].(string)]
+	}).(SourceInsightlyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceInsightlyInput)(nil)).Elem(), &SourceInsightly{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInsightlyArrayInput)(nil)).Elem(), SourceInsightlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInsightlyMapInput)(nil)).Elem(), SourceInsightlyMap{})
 	pulumi.RegisterOutputType(SourceInsightlyOutput{})
+	pulumi.RegisterOutputType(SourceInsightlyArrayOutput{})
+	pulumi.RegisterOutputType(SourceInsightlyMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRecreation Resource
@@ -127,6 +127,56 @@ func (i *SourceRecreation) ToSourceRecreationOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRecreationOutput)
 }
 
+// SourceRecreationArrayInput is an input type that accepts SourceRecreationArray and SourceRecreationArrayOutput values.
+// You can construct a concrete instance of `SourceRecreationArrayInput` via:
+//
+//	SourceRecreationArray{ SourceRecreationArgs{...} }
+type SourceRecreationArrayInput interface {
+	pulumi.Input
+
+	ToSourceRecreationArrayOutput() SourceRecreationArrayOutput
+	ToSourceRecreationArrayOutputWithContext(context.Context) SourceRecreationArrayOutput
+}
+
+type SourceRecreationArray []SourceRecreationInput
+
+func (SourceRecreationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecreation)(nil)).Elem()
+}
+
+func (i SourceRecreationArray) ToSourceRecreationArrayOutput() SourceRecreationArrayOutput {
+	return i.ToSourceRecreationArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRecreationArray) ToSourceRecreationArrayOutputWithContext(ctx context.Context) SourceRecreationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecreationArrayOutput)
+}
+
+// SourceRecreationMapInput is an input type that accepts SourceRecreationMap and SourceRecreationMapOutput values.
+// You can construct a concrete instance of `SourceRecreationMapInput` via:
+//
+//	SourceRecreationMap{ "key": SourceRecreationArgs{...} }
+type SourceRecreationMapInput interface {
+	pulumi.Input
+
+	ToSourceRecreationMapOutput() SourceRecreationMapOutput
+	ToSourceRecreationMapOutputWithContext(context.Context) SourceRecreationMapOutput
+}
+
+type SourceRecreationMap map[string]SourceRecreationInput
+
+func (SourceRecreationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecreation)(nil)).Elem()
+}
+
+func (i SourceRecreationMap) ToSourceRecreationMapOutput() SourceRecreationMapOutput {
+	return i.ToSourceRecreationMapOutputWithContext(context.Background())
+}
+
+func (i SourceRecreationMap) ToSourceRecreationMapOutputWithContext(ctx context.Context) SourceRecreationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecreationMapOutput)
+}
+
 type SourceRecreationOutput struct{ *pulumi.OutputState }
 
 func (SourceRecreationOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRecreationOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRecreation) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRecreationArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRecreationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecreation)(nil)).Elem()
+}
+
+func (o SourceRecreationArrayOutput) ToSourceRecreationArrayOutput() SourceRecreationArrayOutput {
+	return o
+}
+
+func (o SourceRecreationArrayOutput) ToSourceRecreationArrayOutputWithContext(ctx context.Context) SourceRecreationArrayOutput {
+	return o
+}
+
+func (o SourceRecreationArrayOutput) Index(i pulumi.IntInput) SourceRecreationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRecreation {
+		return vs[0].([]*SourceRecreation)[vs[1].(int)]
+	}).(SourceRecreationOutput)
+}
+
+type SourceRecreationMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRecreationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecreation)(nil)).Elem()
+}
+
+func (o SourceRecreationMapOutput) ToSourceRecreationMapOutput() SourceRecreationMapOutput {
+	return o
+}
+
+func (o SourceRecreationMapOutput) ToSourceRecreationMapOutputWithContext(ctx context.Context) SourceRecreationMapOutput {
+	return o
+}
+
+func (o SourceRecreationMapOutput) MapIndex(k pulumi.StringInput) SourceRecreationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRecreation {
+		return vs[0].(map[string]*SourceRecreation)[vs[1].(string)]
+	}).(SourceRecreationOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecreationInput)(nil)).Elem(), &SourceRecreation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecreationArrayInput)(nil)).Elem(), SourceRecreationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecreationMapInput)(nil)).Elem(), SourceRecreationMap{})
 	pulumi.RegisterOutputType(SourceRecreationOutput{})
+	pulumi.RegisterOutputType(SourceRecreationArrayOutput{})
+	pulumi.RegisterOutputType(SourceRecreationMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAsana Resource
@@ -127,6 +127,56 @@ func (i *SourceAsana) ToSourceAsanaOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAsanaOutput)
 }
 
+// SourceAsanaArrayInput is an input type that accepts SourceAsanaArray and SourceAsanaArrayOutput values.
+// You can construct a concrete instance of `SourceAsanaArrayInput` via:
+//
+//	SourceAsanaArray{ SourceAsanaArgs{...} }
+type SourceAsanaArrayInput interface {
+	pulumi.Input
+
+	ToSourceAsanaArrayOutput() SourceAsanaArrayOutput
+	ToSourceAsanaArrayOutputWithContext(context.Context) SourceAsanaArrayOutput
+}
+
+type SourceAsanaArray []SourceAsanaInput
+
+func (SourceAsanaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAsana)(nil)).Elem()
+}
+
+func (i SourceAsanaArray) ToSourceAsanaArrayOutput() SourceAsanaArrayOutput {
+	return i.ToSourceAsanaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAsanaArray) ToSourceAsanaArrayOutputWithContext(ctx context.Context) SourceAsanaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAsanaArrayOutput)
+}
+
+// SourceAsanaMapInput is an input type that accepts SourceAsanaMap and SourceAsanaMapOutput values.
+// You can construct a concrete instance of `SourceAsanaMapInput` via:
+//
+//	SourceAsanaMap{ "key": SourceAsanaArgs{...} }
+type SourceAsanaMapInput interface {
+	pulumi.Input
+
+	ToSourceAsanaMapOutput() SourceAsanaMapOutput
+	ToSourceAsanaMapOutputWithContext(context.Context) SourceAsanaMapOutput
+}
+
+type SourceAsanaMap map[string]SourceAsanaInput
+
+func (SourceAsanaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAsana)(nil)).Elem()
+}
+
+func (i SourceAsanaMap) ToSourceAsanaMapOutput() SourceAsanaMapOutput {
+	return i.ToSourceAsanaMapOutputWithContext(context.Background())
+}
+
+func (i SourceAsanaMap) ToSourceAsanaMapOutputWithContext(ctx context.Context) SourceAsanaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAsanaMapOutput)
+}
+
 type SourceAsanaOutput struct{ *pulumi.OutputState }
 
 func (SourceAsanaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAsanaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAsana) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAsanaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAsanaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAsana)(nil)).Elem()
+}
+
+func (o SourceAsanaArrayOutput) ToSourceAsanaArrayOutput() SourceAsanaArrayOutput {
+	return o
+}
+
+func (o SourceAsanaArrayOutput) ToSourceAsanaArrayOutputWithContext(ctx context.Context) SourceAsanaArrayOutput {
+	return o
+}
+
+func (o SourceAsanaArrayOutput) Index(i pulumi.IntInput) SourceAsanaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAsana {
+		return vs[0].([]*SourceAsana)[vs[1].(int)]
+	}).(SourceAsanaOutput)
+}
+
+type SourceAsanaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAsanaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAsana)(nil)).Elem()
+}
+
+func (o SourceAsanaMapOutput) ToSourceAsanaMapOutput() SourceAsanaMapOutput {
+	return o
+}
+
+func (o SourceAsanaMapOutput) ToSourceAsanaMapOutputWithContext(ctx context.Context) SourceAsanaMapOutput {
+	return o
+}
+
+func (o SourceAsanaMapOutput) MapIndex(k pulumi.StringInput) SourceAsanaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAsana {
+		return vs[0].(map[string]*SourceAsana)[vs[1].(string)]
+	}).(SourceAsanaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAsanaInput)(nil)).Elem(), &SourceAsana{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAsanaArrayInput)(nil)).Elem(), SourceAsanaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAsanaMapInput)(nil)).Elem(), SourceAsanaMap{})
 	pulumi.RegisterOutputType(SourceAsanaOutput{})
+	pulumi.RegisterOutputType(SourceAsanaArrayOutput{})
+	pulumi.RegisterOutputType(SourceAsanaMapOutput{})
 }

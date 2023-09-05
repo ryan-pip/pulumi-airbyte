@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationS3Glue Resource
@@ -117,6 +117,56 @@ func (i *DestinationS3Glue) ToDestinationS3GlueOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3GlueOutput)
 }
 
+// DestinationS3GlueArrayInput is an input type that accepts DestinationS3GlueArray and DestinationS3GlueArrayOutput values.
+// You can construct a concrete instance of `DestinationS3GlueArrayInput` via:
+//
+//	DestinationS3GlueArray{ DestinationS3GlueArgs{...} }
+type DestinationS3GlueArrayInput interface {
+	pulumi.Input
+
+	ToDestinationS3GlueArrayOutput() DestinationS3GlueArrayOutput
+	ToDestinationS3GlueArrayOutputWithContext(context.Context) DestinationS3GlueArrayOutput
+}
+
+type DestinationS3GlueArray []DestinationS3GlueInput
+
+func (DestinationS3GlueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationS3Glue)(nil)).Elem()
+}
+
+func (i DestinationS3GlueArray) ToDestinationS3GlueArrayOutput() DestinationS3GlueArrayOutput {
+	return i.ToDestinationS3GlueArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationS3GlueArray) ToDestinationS3GlueArrayOutputWithContext(ctx context.Context) DestinationS3GlueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3GlueArrayOutput)
+}
+
+// DestinationS3GlueMapInput is an input type that accepts DestinationS3GlueMap and DestinationS3GlueMapOutput values.
+// You can construct a concrete instance of `DestinationS3GlueMapInput` via:
+//
+//	DestinationS3GlueMap{ "key": DestinationS3GlueArgs{...} }
+type DestinationS3GlueMapInput interface {
+	pulumi.Input
+
+	ToDestinationS3GlueMapOutput() DestinationS3GlueMapOutput
+	ToDestinationS3GlueMapOutputWithContext(context.Context) DestinationS3GlueMapOutput
+}
+
+type DestinationS3GlueMap map[string]DestinationS3GlueInput
+
+func (DestinationS3GlueMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationS3Glue)(nil)).Elem()
+}
+
+func (i DestinationS3GlueMap) ToDestinationS3GlueMapOutput() DestinationS3GlueMapOutput {
+	return i.ToDestinationS3GlueMapOutputWithContext(context.Background())
+}
+
+func (i DestinationS3GlueMap) ToDestinationS3GlueMapOutputWithContext(ctx context.Context) DestinationS3GlueMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3GlueMapOutput)
+}
+
 type DestinationS3GlueOutput struct{ *pulumi.OutputState }
 
 func (DestinationS3GlueOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationS3GlueOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationS3Glue) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationS3GlueArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationS3GlueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationS3Glue)(nil)).Elem()
+}
+
+func (o DestinationS3GlueArrayOutput) ToDestinationS3GlueArrayOutput() DestinationS3GlueArrayOutput {
+	return o
+}
+
+func (o DestinationS3GlueArrayOutput) ToDestinationS3GlueArrayOutputWithContext(ctx context.Context) DestinationS3GlueArrayOutput {
+	return o
+}
+
+func (o DestinationS3GlueArrayOutput) Index(i pulumi.IntInput) DestinationS3GlueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationS3Glue {
+		return vs[0].([]*DestinationS3Glue)[vs[1].(int)]
+	}).(DestinationS3GlueOutput)
+}
+
+type DestinationS3GlueMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationS3GlueMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationS3Glue)(nil)).Elem()
+}
+
+func (o DestinationS3GlueMapOutput) ToDestinationS3GlueMapOutput() DestinationS3GlueMapOutput {
+	return o
+}
+
+func (o DestinationS3GlueMapOutput) ToDestinationS3GlueMapOutputWithContext(ctx context.Context) DestinationS3GlueMapOutput {
+	return o
+}
+
+func (o DestinationS3GlueMapOutput) MapIndex(k pulumi.StringInput) DestinationS3GlueOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationS3Glue {
+		return vs[0].(map[string]*DestinationS3Glue)[vs[1].(string)]
+	}).(DestinationS3GlueOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3GlueInput)(nil)).Elem(), &DestinationS3Glue{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3GlueArrayInput)(nil)).Elem(), DestinationS3GlueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3GlueMapInput)(nil)).Elem(), DestinationS3GlueMap{})
 	pulumi.RegisterOutputType(DestinationS3GlueOutput{})
+	pulumi.RegisterOutputType(DestinationS3GlueArrayOutput{})
+	pulumi.RegisterOutputType(DestinationS3GlueMapOutput{})
 }

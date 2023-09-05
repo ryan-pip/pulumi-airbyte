@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRkiCovid DataSource
@@ -24,15 +24,20 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := airbyte.LookupSourceRkiCovid(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := airbyte.LookupSourceRkiCovid(ctx, &airbyte.LookupSourceRkiCovidArgs{
+//				SecretId: pulumi.StringRef("...my_secret_id..."),
+//				SourceId: "...my_source_id...",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupSourceRkiCovid(ctx *pulumi.Context, args *LookupSourceRkiCovidArgs, opts ...pulumi.InvokeOption) (*LookupSourceRkiCovidResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

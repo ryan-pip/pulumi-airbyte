@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOkta Resource
@@ -127,6 +127,56 @@ func (i *SourceOkta) ToSourceOktaOutputWithContext(ctx context.Context) SourceOk
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOktaOutput)
 }
 
+// SourceOktaArrayInput is an input type that accepts SourceOktaArray and SourceOktaArrayOutput values.
+// You can construct a concrete instance of `SourceOktaArrayInput` via:
+//
+//	SourceOktaArray{ SourceOktaArgs{...} }
+type SourceOktaArrayInput interface {
+	pulumi.Input
+
+	ToSourceOktaArrayOutput() SourceOktaArrayOutput
+	ToSourceOktaArrayOutputWithContext(context.Context) SourceOktaArrayOutput
+}
+
+type SourceOktaArray []SourceOktaInput
+
+func (SourceOktaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOkta)(nil)).Elem()
+}
+
+func (i SourceOktaArray) ToSourceOktaArrayOutput() SourceOktaArrayOutput {
+	return i.ToSourceOktaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOktaArray) ToSourceOktaArrayOutputWithContext(ctx context.Context) SourceOktaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOktaArrayOutput)
+}
+
+// SourceOktaMapInput is an input type that accepts SourceOktaMap and SourceOktaMapOutput values.
+// You can construct a concrete instance of `SourceOktaMapInput` via:
+//
+//	SourceOktaMap{ "key": SourceOktaArgs{...} }
+type SourceOktaMapInput interface {
+	pulumi.Input
+
+	ToSourceOktaMapOutput() SourceOktaMapOutput
+	ToSourceOktaMapOutputWithContext(context.Context) SourceOktaMapOutput
+}
+
+type SourceOktaMap map[string]SourceOktaInput
+
+func (SourceOktaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOkta)(nil)).Elem()
+}
+
+func (i SourceOktaMap) ToSourceOktaMapOutput() SourceOktaMapOutput {
+	return i.ToSourceOktaMapOutputWithContext(context.Background())
+}
+
+func (i SourceOktaMap) ToSourceOktaMapOutputWithContext(ctx context.Context) SourceOktaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOktaMapOutput)
+}
+
 type SourceOktaOutput struct{ *pulumi.OutputState }
 
 func (SourceOktaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOktaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOkta) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOktaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOktaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOkta)(nil)).Elem()
+}
+
+func (o SourceOktaArrayOutput) ToSourceOktaArrayOutput() SourceOktaArrayOutput {
+	return o
+}
+
+func (o SourceOktaArrayOutput) ToSourceOktaArrayOutputWithContext(ctx context.Context) SourceOktaArrayOutput {
+	return o
+}
+
+func (o SourceOktaArrayOutput) Index(i pulumi.IntInput) SourceOktaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOkta {
+		return vs[0].([]*SourceOkta)[vs[1].(int)]
+	}).(SourceOktaOutput)
+}
+
+type SourceOktaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOktaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOkta)(nil)).Elem()
+}
+
+func (o SourceOktaMapOutput) ToSourceOktaMapOutput() SourceOktaMapOutput {
+	return o
+}
+
+func (o SourceOktaMapOutput) ToSourceOktaMapOutputWithContext(ctx context.Context) SourceOktaMapOutput {
+	return o
+}
+
+func (o SourceOktaMapOutput) MapIndex(k pulumi.StringInput) SourceOktaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOkta {
+		return vs[0].(map[string]*SourceOkta)[vs[1].(string)]
+	}).(SourceOktaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOktaInput)(nil)).Elem(), &SourceOkta{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOktaArrayInput)(nil)).Elem(), SourceOktaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOktaMapInput)(nil)).Elem(), SourceOktaMap{})
 	pulumi.RegisterOutputType(SourceOktaOutput{})
+	pulumi.RegisterOutputType(SourceOktaArrayOutput{})
+	pulumi.RegisterOutputType(SourceOktaMapOutput{})
 }

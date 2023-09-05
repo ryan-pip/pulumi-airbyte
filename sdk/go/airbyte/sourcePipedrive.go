@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePipedrive Resource
@@ -127,6 +127,56 @@ func (i *SourcePipedrive) ToSourcePipedriveOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePipedriveOutput)
 }
 
+// SourcePipedriveArrayInput is an input type that accepts SourcePipedriveArray and SourcePipedriveArrayOutput values.
+// You can construct a concrete instance of `SourcePipedriveArrayInput` via:
+//
+//	SourcePipedriveArray{ SourcePipedriveArgs{...} }
+type SourcePipedriveArrayInput interface {
+	pulumi.Input
+
+	ToSourcePipedriveArrayOutput() SourcePipedriveArrayOutput
+	ToSourcePipedriveArrayOutputWithContext(context.Context) SourcePipedriveArrayOutput
+}
+
+type SourcePipedriveArray []SourcePipedriveInput
+
+func (SourcePipedriveArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePipedrive)(nil)).Elem()
+}
+
+func (i SourcePipedriveArray) ToSourcePipedriveArrayOutput() SourcePipedriveArrayOutput {
+	return i.ToSourcePipedriveArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePipedriveArray) ToSourcePipedriveArrayOutputWithContext(ctx context.Context) SourcePipedriveArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePipedriveArrayOutput)
+}
+
+// SourcePipedriveMapInput is an input type that accepts SourcePipedriveMap and SourcePipedriveMapOutput values.
+// You can construct a concrete instance of `SourcePipedriveMapInput` via:
+//
+//	SourcePipedriveMap{ "key": SourcePipedriveArgs{...} }
+type SourcePipedriveMapInput interface {
+	pulumi.Input
+
+	ToSourcePipedriveMapOutput() SourcePipedriveMapOutput
+	ToSourcePipedriveMapOutputWithContext(context.Context) SourcePipedriveMapOutput
+}
+
+type SourcePipedriveMap map[string]SourcePipedriveInput
+
+func (SourcePipedriveMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePipedrive)(nil)).Elem()
+}
+
+func (i SourcePipedriveMap) ToSourcePipedriveMapOutput() SourcePipedriveMapOutput {
+	return i.ToSourcePipedriveMapOutputWithContext(context.Background())
+}
+
+func (i SourcePipedriveMap) ToSourcePipedriveMapOutputWithContext(ctx context.Context) SourcePipedriveMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePipedriveMapOutput)
+}
+
 type SourcePipedriveOutput struct{ *pulumi.OutputState }
 
 func (SourcePipedriveOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePipedriveOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePipedrive) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePipedriveArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePipedriveArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePipedrive)(nil)).Elem()
+}
+
+func (o SourcePipedriveArrayOutput) ToSourcePipedriveArrayOutput() SourcePipedriveArrayOutput {
+	return o
+}
+
+func (o SourcePipedriveArrayOutput) ToSourcePipedriveArrayOutputWithContext(ctx context.Context) SourcePipedriveArrayOutput {
+	return o
+}
+
+func (o SourcePipedriveArrayOutput) Index(i pulumi.IntInput) SourcePipedriveOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePipedrive {
+		return vs[0].([]*SourcePipedrive)[vs[1].(int)]
+	}).(SourcePipedriveOutput)
+}
+
+type SourcePipedriveMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePipedriveMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePipedrive)(nil)).Elem()
+}
+
+func (o SourcePipedriveMapOutput) ToSourcePipedriveMapOutput() SourcePipedriveMapOutput {
+	return o
+}
+
+func (o SourcePipedriveMapOutput) ToSourcePipedriveMapOutputWithContext(ctx context.Context) SourcePipedriveMapOutput {
+	return o
+}
+
+func (o SourcePipedriveMapOutput) MapIndex(k pulumi.StringInput) SourcePipedriveOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePipedrive {
+		return vs[0].(map[string]*SourcePipedrive)[vs[1].(string)]
+	}).(SourcePipedriveOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePipedriveInput)(nil)).Elem(), &SourcePipedrive{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePipedriveArrayInput)(nil)).Elem(), SourcePipedriveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePipedriveMapInput)(nil)).Elem(), SourcePipedriveMap{})
 	pulumi.RegisterOutputType(SourcePipedriveOutput{})
+	pulumi.RegisterOutputType(SourcePipedriveArrayOutput{})
+	pulumi.RegisterOutputType(SourcePipedriveMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceKustomerSinger Resource
@@ -127,6 +127,56 @@ func (i *SourceKustomerSinger) ToSourceKustomerSingerOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceKustomerSingerOutput)
 }
 
+// SourceKustomerSingerArrayInput is an input type that accepts SourceKustomerSingerArray and SourceKustomerSingerArrayOutput values.
+// You can construct a concrete instance of `SourceKustomerSingerArrayInput` via:
+//
+//	SourceKustomerSingerArray{ SourceKustomerSingerArgs{...} }
+type SourceKustomerSingerArrayInput interface {
+	pulumi.Input
+
+	ToSourceKustomerSingerArrayOutput() SourceKustomerSingerArrayOutput
+	ToSourceKustomerSingerArrayOutputWithContext(context.Context) SourceKustomerSingerArrayOutput
+}
+
+type SourceKustomerSingerArray []SourceKustomerSingerInput
+
+func (SourceKustomerSingerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKustomerSinger)(nil)).Elem()
+}
+
+func (i SourceKustomerSingerArray) ToSourceKustomerSingerArrayOutput() SourceKustomerSingerArrayOutput {
+	return i.ToSourceKustomerSingerArrayOutputWithContext(context.Background())
+}
+
+func (i SourceKustomerSingerArray) ToSourceKustomerSingerArrayOutputWithContext(ctx context.Context) SourceKustomerSingerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKustomerSingerArrayOutput)
+}
+
+// SourceKustomerSingerMapInput is an input type that accepts SourceKustomerSingerMap and SourceKustomerSingerMapOutput values.
+// You can construct a concrete instance of `SourceKustomerSingerMapInput` via:
+//
+//	SourceKustomerSingerMap{ "key": SourceKustomerSingerArgs{...} }
+type SourceKustomerSingerMapInput interface {
+	pulumi.Input
+
+	ToSourceKustomerSingerMapOutput() SourceKustomerSingerMapOutput
+	ToSourceKustomerSingerMapOutputWithContext(context.Context) SourceKustomerSingerMapOutput
+}
+
+type SourceKustomerSingerMap map[string]SourceKustomerSingerInput
+
+func (SourceKustomerSingerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKustomerSinger)(nil)).Elem()
+}
+
+func (i SourceKustomerSingerMap) ToSourceKustomerSingerMapOutput() SourceKustomerSingerMapOutput {
+	return i.ToSourceKustomerSingerMapOutputWithContext(context.Background())
+}
+
+func (i SourceKustomerSingerMap) ToSourceKustomerSingerMapOutputWithContext(ctx context.Context) SourceKustomerSingerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKustomerSingerMapOutput)
+}
+
 type SourceKustomerSingerOutput struct{ *pulumi.OutputState }
 
 func (SourceKustomerSingerOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceKustomerSingerOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceKustomerSinger) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceKustomerSingerArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceKustomerSingerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKustomerSinger)(nil)).Elem()
+}
+
+func (o SourceKustomerSingerArrayOutput) ToSourceKustomerSingerArrayOutput() SourceKustomerSingerArrayOutput {
+	return o
+}
+
+func (o SourceKustomerSingerArrayOutput) ToSourceKustomerSingerArrayOutputWithContext(ctx context.Context) SourceKustomerSingerArrayOutput {
+	return o
+}
+
+func (o SourceKustomerSingerArrayOutput) Index(i pulumi.IntInput) SourceKustomerSingerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceKustomerSinger {
+		return vs[0].([]*SourceKustomerSinger)[vs[1].(int)]
+	}).(SourceKustomerSingerOutput)
+}
+
+type SourceKustomerSingerMapOutput struct{ *pulumi.OutputState }
+
+func (SourceKustomerSingerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKustomerSinger)(nil)).Elem()
+}
+
+func (o SourceKustomerSingerMapOutput) ToSourceKustomerSingerMapOutput() SourceKustomerSingerMapOutput {
+	return o
+}
+
+func (o SourceKustomerSingerMapOutput) ToSourceKustomerSingerMapOutputWithContext(ctx context.Context) SourceKustomerSingerMapOutput {
+	return o
+}
+
+func (o SourceKustomerSingerMapOutput) MapIndex(k pulumi.StringInput) SourceKustomerSingerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceKustomerSinger {
+		return vs[0].(map[string]*SourceKustomerSinger)[vs[1].(string)]
+	}).(SourceKustomerSingerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceKustomerSingerInput)(nil)).Elem(), &SourceKustomerSinger{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKustomerSingerArrayInput)(nil)).Elem(), SourceKustomerSingerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKustomerSingerMapInput)(nil)).Elem(), SourceKustomerSingerMap{})
 	pulumi.RegisterOutputType(SourceKustomerSingerOutput{})
+	pulumi.RegisterOutputType(SourceKustomerSingerArrayOutput{})
+	pulumi.RegisterOutputType(SourceKustomerSingerMapOutput{})
 }

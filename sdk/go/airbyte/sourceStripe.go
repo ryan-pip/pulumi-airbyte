@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceStripe Resource
@@ -127,6 +127,56 @@ func (i *SourceStripe) ToSourceStripeOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceStripeOutput)
 }
 
+// SourceStripeArrayInput is an input type that accepts SourceStripeArray and SourceStripeArrayOutput values.
+// You can construct a concrete instance of `SourceStripeArrayInput` via:
+//
+//	SourceStripeArray{ SourceStripeArgs{...} }
+type SourceStripeArrayInput interface {
+	pulumi.Input
+
+	ToSourceStripeArrayOutput() SourceStripeArrayOutput
+	ToSourceStripeArrayOutputWithContext(context.Context) SourceStripeArrayOutput
+}
+
+type SourceStripeArray []SourceStripeInput
+
+func (SourceStripeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceStripe)(nil)).Elem()
+}
+
+func (i SourceStripeArray) ToSourceStripeArrayOutput() SourceStripeArrayOutput {
+	return i.ToSourceStripeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceStripeArray) ToSourceStripeArrayOutputWithContext(ctx context.Context) SourceStripeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceStripeArrayOutput)
+}
+
+// SourceStripeMapInput is an input type that accepts SourceStripeMap and SourceStripeMapOutput values.
+// You can construct a concrete instance of `SourceStripeMapInput` via:
+//
+//	SourceStripeMap{ "key": SourceStripeArgs{...} }
+type SourceStripeMapInput interface {
+	pulumi.Input
+
+	ToSourceStripeMapOutput() SourceStripeMapOutput
+	ToSourceStripeMapOutputWithContext(context.Context) SourceStripeMapOutput
+}
+
+type SourceStripeMap map[string]SourceStripeInput
+
+func (SourceStripeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceStripe)(nil)).Elem()
+}
+
+func (i SourceStripeMap) ToSourceStripeMapOutput() SourceStripeMapOutput {
+	return i.ToSourceStripeMapOutputWithContext(context.Background())
+}
+
+func (i SourceStripeMap) ToSourceStripeMapOutputWithContext(ctx context.Context) SourceStripeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceStripeMapOutput)
+}
+
 type SourceStripeOutput struct{ *pulumi.OutputState }
 
 func (SourceStripeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceStripeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceStripe) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceStripeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceStripeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceStripe)(nil)).Elem()
+}
+
+func (o SourceStripeArrayOutput) ToSourceStripeArrayOutput() SourceStripeArrayOutput {
+	return o
+}
+
+func (o SourceStripeArrayOutput) ToSourceStripeArrayOutputWithContext(ctx context.Context) SourceStripeArrayOutput {
+	return o
+}
+
+func (o SourceStripeArrayOutput) Index(i pulumi.IntInput) SourceStripeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceStripe {
+		return vs[0].([]*SourceStripe)[vs[1].(int)]
+	}).(SourceStripeOutput)
+}
+
+type SourceStripeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceStripeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceStripe)(nil)).Elem()
+}
+
+func (o SourceStripeMapOutput) ToSourceStripeMapOutput() SourceStripeMapOutput {
+	return o
+}
+
+func (o SourceStripeMapOutput) ToSourceStripeMapOutputWithContext(ctx context.Context) SourceStripeMapOutput {
+	return o
+}
+
+func (o SourceStripeMapOutput) MapIndex(k pulumi.StringInput) SourceStripeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceStripe {
+		return vs[0].(map[string]*SourceStripe)[vs[1].(string)]
+	}).(SourceStripeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceStripeInput)(nil)).Elem(), &SourceStripe{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceStripeArrayInput)(nil)).Elem(), SourceStripeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceStripeMapInput)(nil)).Elem(), SourceStripeMap{})
 	pulumi.RegisterOutputType(SourceStripeOutput{})
+	pulumi.RegisterOutputType(SourceStripeArrayOutput{})
+	pulumi.RegisterOutputType(SourceStripeMapOutput{})
 }

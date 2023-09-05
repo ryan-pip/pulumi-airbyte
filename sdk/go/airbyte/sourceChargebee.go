@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceChargebee Resource
@@ -127,6 +127,56 @@ func (i *SourceChargebee) ToSourceChargebeeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceChargebeeOutput)
 }
 
+// SourceChargebeeArrayInput is an input type that accepts SourceChargebeeArray and SourceChargebeeArrayOutput values.
+// You can construct a concrete instance of `SourceChargebeeArrayInput` via:
+//
+//	SourceChargebeeArray{ SourceChargebeeArgs{...} }
+type SourceChargebeeArrayInput interface {
+	pulumi.Input
+
+	ToSourceChargebeeArrayOutput() SourceChargebeeArrayOutput
+	ToSourceChargebeeArrayOutputWithContext(context.Context) SourceChargebeeArrayOutput
+}
+
+type SourceChargebeeArray []SourceChargebeeInput
+
+func (SourceChargebeeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceChargebee)(nil)).Elem()
+}
+
+func (i SourceChargebeeArray) ToSourceChargebeeArrayOutput() SourceChargebeeArrayOutput {
+	return i.ToSourceChargebeeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceChargebeeArray) ToSourceChargebeeArrayOutputWithContext(ctx context.Context) SourceChargebeeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceChargebeeArrayOutput)
+}
+
+// SourceChargebeeMapInput is an input type that accepts SourceChargebeeMap and SourceChargebeeMapOutput values.
+// You can construct a concrete instance of `SourceChargebeeMapInput` via:
+//
+//	SourceChargebeeMap{ "key": SourceChargebeeArgs{...} }
+type SourceChargebeeMapInput interface {
+	pulumi.Input
+
+	ToSourceChargebeeMapOutput() SourceChargebeeMapOutput
+	ToSourceChargebeeMapOutputWithContext(context.Context) SourceChargebeeMapOutput
+}
+
+type SourceChargebeeMap map[string]SourceChargebeeInput
+
+func (SourceChargebeeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceChargebee)(nil)).Elem()
+}
+
+func (i SourceChargebeeMap) ToSourceChargebeeMapOutput() SourceChargebeeMapOutput {
+	return i.ToSourceChargebeeMapOutputWithContext(context.Background())
+}
+
+func (i SourceChargebeeMap) ToSourceChargebeeMapOutputWithContext(ctx context.Context) SourceChargebeeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceChargebeeMapOutput)
+}
+
 type SourceChargebeeOutput struct{ *pulumi.OutputState }
 
 func (SourceChargebeeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceChargebeeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceChargebee) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceChargebeeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceChargebeeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceChargebee)(nil)).Elem()
+}
+
+func (o SourceChargebeeArrayOutput) ToSourceChargebeeArrayOutput() SourceChargebeeArrayOutput {
+	return o
+}
+
+func (o SourceChargebeeArrayOutput) ToSourceChargebeeArrayOutputWithContext(ctx context.Context) SourceChargebeeArrayOutput {
+	return o
+}
+
+func (o SourceChargebeeArrayOutput) Index(i pulumi.IntInput) SourceChargebeeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceChargebee {
+		return vs[0].([]*SourceChargebee)[vs[1].(int)]
+	}).(SourceChargebeeOutput)
+}
+
+type SourceChargebeeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceChargebeeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceChargebee)(nil)).Elem()
+}
+
+func (o SourceChargebeeMapOutput) ToSourceChargebeeMapOutput() SourceChargebeeMapOutput {
+	return o
+}
+
+func (o SourceChargebeeMapOutput) ToSourceChargebeeMapOutputWithContext(ctx context.Context) SourceChargebeeMapOutput {
+	return o
+}
+
+func (o SourceChargebeeMapOutput) MapIndex(k pulumi.StringInput) SourceChargebeeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceChargebee {
+		return vs[0].(map[string]*SourceChargebee)[vs[1].(string)]
+	}).(SourceChargebeeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceChargebeeInput)(nil)).Elem(), &SourceChargebee{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceChargebeeArrayInput)(nil)).Elem(), SourceChargebeeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceChargebeeMapInput)(nil)).Elem(), SourceChargebeeMap{})
 	pulumi.RegisterOutputType(SourceChargebeeOutput{})
+	pulumi.RegisterOutputType(SourceChargebeeArrayOutput{})
+	pulumi.RegisterOutputType(SourceChargebeeMapOutput{})
 }

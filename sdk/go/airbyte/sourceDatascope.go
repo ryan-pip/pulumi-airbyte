@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDatascope Resource
@@ -127,6 +127,56 @@ func (i *SourceDatascope) ToSourceDatascopeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDatascopeOutput)
 }
 
+// SourceDatascopeArrayInput is an input type that accepts SourceDatascopeArray and SourceDatascopeArrayOutput values.
+// You can construct a concrete instance of `SourceDatascopeArrayInput` via:
+//
+//	SourceDatascopeArray{ SourceDatascopeArgs{...} }
+type SourceDatascopeArrayInput interface {
+	pulumi.Input
+
+	ToSourceDatascopeArrayOutput() SourceDatascopeArrayOutput
+	ToSourceDatascopeArrayOutputWithContext(context.Context) SourceDatascopeArrayOutput
+}
+
+type SourceDatascopeArray []SourceDatascopeInput
+
+func (SourceDatascopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDatascope)(nil)).Elem()
+}
+
+func (i SourceDatascopeArray) ToSourceDatascopeArrayOutput() SourceDatascopeArrayOutput {
+	return i.ToSourceDatascopeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDatascopeArray) ToSourceDatascopeArrayOutputWithContext(ctx context.Context) SourceDatascopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDatascopeArrayOutput)
+}
+
+// SourceDatascopeMapInput is an input type that accepts SourceDatascopeMap and SourceDatascopeMapOutput values.
+// You can construct a concrete instance of `SourceDatascopeMapInput` via:
+//
+//	SourceDatascopeMap{ "key": SourceDatascopeArgs{...} }
+type SourceDatascopeMapInput interface {
+	pulumi.Input
+
+	ToSourceDatascopeMapOutput() SourceDatascopeMapOutput
+	ToSourceDatascopeMapOutputWithContext(context.Context) SourceDatascopeMapOutput
+}
+
+type SourceDatascopeMap map[string]SourceDatascopeInput
+
+func (SourceDatascopeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDatascope)(nil)).Elem()
+}
+
+func (i SourceDatascopeMap) ToSourceDatascopeMapOutput() SourceDatascopeMapOutput {
+	return i.ToSourceDatascopeMapOutputWithContext(context.Background())
+}
+
+func (i SourceDatascopeMap) ToSourceDatascopeMapOutputWithContext(ctx context.Context) SourceDatascopeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDatascopeMapOutput)
+}
+
 type SourceDatascopeOutput struct{ *pulumi.OutputState }
 
 func (SourceDatascopeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDatascopeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDatascope) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDatascopeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDatascopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDatascope)(nil)).Elem()
+}
+
+func (o SourceDatascopeArrayOutput) ToSourceDatascopeArrayOutput() SourceDatascopeArrayOutput {
+	return o
+}
+
+func (o SourceDatascopeArrayOutput) ToSourceDatascopeArrayOutputWithContext(ctx context.Context) SourceDatascopeArrayOutput {
+	return o
+}
+
+func (o SourceDatascopeArrayOutput) Index(i pulumi.IntInput) SourceDatascopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDatascope {
+		return vs[0].([]*SourceDatascope)[vs[1].(int)]
+	}).(SourceDatascopeOutput)
+}
+
+type SourceDatascopeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDatascopeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDatascope)(nil)).Elem()
+}
+
+func (o SourceDatascopeMapOutput) ToSourceDatascopeMapOutput() SourceDatascopeMapOutput {
+	return o
+}
+
+func (o SourceDatascopeMapOutput) ToSourceDatascopeMapOutputWithContext(ctx context.Context) SourceDatascopeMapOutput {
+	return o
+}
+
+func (o SourceDatascopeMapOutput) MapIndex(k pulumi.StringInput) SourceDatascopeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDatascope {
+		return vs[0].(map[string]*SourceDatascope)[vs[1].(string)]
+	}).(SourceDatascopeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatascopeInput)(nil)).Elem(), &SourceDatascope{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatascopeArrayInput)(nil)).Elem(), SourceDatascopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatascopeMapInput)(nil)).Elem(), SourceDatascopeMap{})
 	pulumi.RegisterOutputType(SourceDatascopeOutput{})
+	pulumi.RegisterOutputType(SourceDatascopeArrayOutput{})
+	pulumi.RegisterOutputType(SourceDatascopeMapOutput{})
 }

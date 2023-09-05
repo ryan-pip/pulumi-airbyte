@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOnesignal Resource
@@ -127,6 +127,56 @@ func (i *SourceOnesignal) ToSourceOnesignalOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOnesignalOutput)
 }
 
+// SourceOnesignalArrayInput is an input type that accepts SourceOnesignalArray and SourceOnesignalArrayOutput values.
+// You can construct a concrete instance of `SourceOnesignalArrayInput` via:
+//
+//	SourceOnesignalArray{ SourceOnesignalArgs{...} }
+type SourceOnesignalArrayInput interface {
+	pulumi.Input
+
+	ToSourceOnesignalArrayOutput() SourceOnesignalArrayOutput
+	ToSourceOnesignalArrayOutputWithContext(context.Context) SourceOnesignalArrayOutput
+}
+
+type SourceOnesignalArray []SourceOnesignalInput
+
+func (SourceOnesignalArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOnesignal)(nil)).Elem()
+}
+
+func (i SourceOnesignalArray) ToSourceOnesignalArrayOutput() SourceOnesignalArrayOutput {
+	return i.ToSourceOnesignalArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOnesignalArray) ToSourceOnesignalArrayOutputWithContext(ctx context.Context) SourceOnesignalArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOnesignalArrayOutput)
+}
+
+// SourceOnesignalMapInput is an input type that accepts SourceOnesignalMap and SourceOnesignalMapOutput values.
+// You can construct a concrete instance of `SourceOnesignalMapInput` via:
+//
+//	SourceOnesignalMap{ "key": SourceOnesignalArgs{...} }
+type SourceOnesignalMapInput interface {
+	pulumi.Input
+
+	ToSourceOnesignalMapOutput() SourceOnesignalMapOutput
+	ToSourceOnesignalMapOutputWithContext(context.Context) SourceOnesignalMapOutput
+}
+
+type SourceOnesignalMap map[string]SourceOnesignalInput
+
+func (SourceOnesignalMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOnesignal)(nil)).Elem()
+}
+
+func (i SourceOnesignalMap) ToSourceOnesignalMapOutput() SourceOnesignalMapOutput {
+	return i.ToSourceOnesignalMapOutputWithContext(context.Background())
+}
+
+func (i SourceOnesignalMap) ToSourceOnesignalMapOutputWithContext(ctx context.Context) SourceOnesignalMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOnesignalMapOutput)
+}
+
 type SourceOnesignalOutput struct{ *pulumi.OutputState }
 
 func (SourceOnesignalOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOnesignalOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOnesignal) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOnesignalArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOnesignalArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOnesignal)(nil)).Elem()
+}
+
+func (o SourceOnesignalArrayOutput) ToSourceOnesignalArrayOutput() SourceOnesignalArrayOutput {
+	return o
+}
+
+func (o SourceOnesignalArrayOutput) ToSourceOnesignalArrayOutputWithContext(ctx context.Context) SourceOnesignalArrayOutput {
+	return o
+}
+
+func (o SourceOnesignalArrayOutput) Index(i pulumi.IntInput) SourceOnesignalOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOnesignal {
+		return vs[0].([]*SourceOnesignal)[vs[1].(int)]
+	}).(SourceOnesignalOutput)
+}
+
+type SourceOnesignalMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOnesignalMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOnesignal)(nil)).Elem()
+}
+
+func (o SourceOnesignalMapOutput) ToSourceOnesignalMapOutput() SourceOnesignalMapOutput {
+	return o
+}
+
+func (o SourceOnesignalMapOutput) ToSourceOnesignalMapOutputWithContext(ctx context.Context) SourceOnesignalMapOutput {
+	return o
+}
+
+func (o SourceOnesignalMapOutput) MapIndex(k pulumi.StringInput) SourceOnesignalOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOnesignal {
+		return vs[0].(map[string]*SourceOnesignal)[vs[1].(string)]
+	}).(SourceOnesignalOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOnesignalInput)(nil)).Elem(), &SourceOnesignal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOnesignalArrayInput)(nil)).Elem(), SourceOnesignalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOnesignalMapInput)(nil)).Elem(), SourceOnesignalMap{})
 	pulumi.RegisterOutputType(SourceOnesignalOutput{})
+	pulumi.RegisterOutputType(SourceOnesignalArrayOutput{})
+	pulumi.RegisterOutputType(SourceOnesignalMapOutput{})
 }

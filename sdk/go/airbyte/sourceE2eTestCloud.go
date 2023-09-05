@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceE2eTestCloud Resource
@@ -127,6 +127,56 @@ func (i *SourceE2eTestCloud) ToSourceE2eTestCloudOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceE2eTestCloudOutput)
 }
 
+// SourceE2eTestCloudArrayInput is an input type that accepts SourceE2eTestCloudArray and SourceE2eTestCloudArrayOutput values.
+// You can construct a concrete instance of `SourceE2eTestCloudArrayInput` via:
+//
+//	SourceE2eTestCloudArray{ SourceE2eTestCloudArgs{...} }
+type SourceE2eTestCloudArrayInput interface {
+	pulumi.Input
+
+	ToSourceE2eTestCloudArrayOutput() SourceE2eTestCloudArrayOutput
+	ToSourceE2eTestCloudArrayOutputWithContext(context.Context) SourceE2eTestCloudArrayOutput
+}
+
+type SourceE2eTestCloudArray []SourceE2eTestCloudInput
+
+func (SourceE2eTestCloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceE2eTestCloud)(nil)).Elem()
+}
+
+func (i SourceE2eTestCloudArray) ToSourceE2eTestCloudArrayOutput() SourceE2eTestCloudArrayOutput {
+	return i.ToSourceE2eTestCloudArrayOutputWithContext(context.Background())
+}
+
+func (i SourceE2eTestCloudArray) ToSourceE2eTestCloudArrayOutputWithContext(ctx context.Context) SourceE2eTestCloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceE2eTestCloudArrayOutput)
+}
+
+// SourceE2eTestCloudMapInput is an input type that accepts SourceE2eTestCloudMap and SourceE2eTestCloudMapOutput values.
+// You can construct a concrete instance of `SourceE2eTestCloudMapInput` via:
+//
+//	SourceE2eTestCloudMap{ "key": SourceE2eTestCloudArgs{...} }
+type SourceE2eTestCloudMapInput interface {
+	pulumi.Input
+
+	ToSourceE2eTestCloudMapOutput() SourceE2eTestCloudMapOutput
+	ToSourceE2eTestCloudMapOutputWithContext(context.Context) SourceE2eTestCloudMapOutput
+}
+
+type SourceE2eTestCloudMap map[string]SourceE2eTestCloudInput
+
+func (SourceE2eTestCloudMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceE2eTestCloud)(nil)).Elem()
+}
+
+func (i SourceE2eTestCloudMap) ToSourceE2eTestCloudMapOutput() SourceE2eTestCloudMapOutput {
+	return i.ToSourceE2eTestCloudMapOutputWithContext(context.Background())
+}
+
+func (i SourceE2eTestCloudMap) ToSourceE2eTestCloudMapOutputWithContext(ctx context.Context) SourceE2eTestCloudMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceE2eTestCloudMapOutput)
+}
+
 type SourceE2eTestCloudOutput struct{ *pulumi.OutputState }
 
 func (SourceE2eTestCloudOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceE2eTestCloudOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceE2eTestCloud) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceE2eTestCloudArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceE2eTestCloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceE2eTestCloud)(nil)).Elem()
+}
+
+func (o SourceE2eTestCloudArrayOutput) ToSourceE2eTestCloudArrayOutput() SourceE2eTestCloudArrayOutput {
+	return o
+}
+
+func (o SourceE2eTestCloudArrayOutput) ToSourceE2eTestCloudArrayOutputWithContext(ctx context.Context) SourceE2eTestCloudArrayOutput {
+	return o
+}
+
+func (o SourceE2eTestCloudArrayOutput) Index(i pulumi.IntInput) SourceE2eTestCloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceE2eTestCloud {
+		return vs[0].([]*SourceE2eTestCloud)[vs[1].(int)]
+	}).(SourceE2eTestCloudOutput)
+}
+
+type SourceE2eTestCloudMapOutput struct{ *pulumi.OutputState }
+
+func (SourceE2eTestCloudMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceE2eTestCloud)(nil)).Elem()
+}
+
+func (o SourceE2eTestCloudMapOutput) ToSourceE2eTestCloudMapOutput() SourceE2eTestCloudMapOutput {
+	return o
+}
+
+func (o SourceE2eTestCloudMapOutput) ToSourceE2eTestCloudMapOutputWithContext(ctx context.Context) SourceE2eTestCloudMapOutput {
+	return o
+}
+
+func (o SourceE2eTestCloudMapOutput) MapIndex(k pulumi.StringInput) SourceE2eTestCloudOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceE2eTestCloud {
+		return vs[0].(map[string]*SourceE2eTestCloud)[vs[1].(string)]
+	}).(SourceE2eTestCloudOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceE2eTestCloudInput)(nil)).Elem(), &SourceE2eTestCloud{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceE2eTestCloudArrayInput)(nil)).Elem(), SourceE2eTestCloudArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceE2eTestCloudMapInput)(nil)).Elem(), SourceE2eTestCloudMap{})
 	pulumi.RegisterOutputType(SourceE2eTestCloudOutput{})
+	pulumi.RegisterOutputType(SourceE2eTestCloudArrayOutput{})
+	pulumi.RegisterOutputType(SourceE2eTestCloudMapOutput{})
 }

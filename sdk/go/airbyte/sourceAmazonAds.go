@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAmazonAds Resource
@@ -127,6 +127,56 @@ func (i *SourceAmazonAds) ToSourceAmazonAdsOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonAdsOutput)
 }
 
+// SourceAmazonAdsArrayInput is an input type that accepts SourceAmazonAdsArray and SourceAmazonAdsArrayOutput values.
+// You can construct a concrete instance of `SourceAmazonAdsArrayInput` via:
+//
+//	SourceAmazonAdsArray{ SourceAmazonAdsArgs{...} }
+type SourceAmazonAdsArrayInput interface {
+	pulumi.Input
+
+	ToSourceAmazonAdsArrayOutput() SourceAmazonAdsArrayOutput
+	ToSourceAmazonAdsArrayOutputWithContext(context.Context) SourceAmazonAdsArrayOutput
+}
+
+type SourceAmazonAdsArray []SourceAmazonAdsInput
+
+func (SourceAmazonAdsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonAds)(nil)).Elem()
+}
+
+func (i SourceAmazonAdsArray) ToSourceAmazonAdsArrayOutput() SourceAmazonAdsArrayOutput {
+	return i.ToSourceAmazonAdsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonAdsArray) ToSourceAmazonAdsArrayOutputWithContext(ctx context.Context) SourceAmazonAdsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonAdsArrayOutput)
+}
+
+// SourceAmazonAdsMapInput is an input type that accepts SourceAmazonAdsMap and SourceAmazonAdsMapOutput values.
+// You can construct a concrete instance of `SourceAmazonAdsMapInput` via:
+//
+//	SourceAmazonAdsMap{ "key": SourceAmazonAdsArgs{...} }
+type SourceAmazonAdsMapInput interface {
+	pulumi.Input
+
+	ToSourceAmazonAdsMapOutput() SourceAmazonAdsMapOutput
+	ToSourceAmazonAdsMapOutputWithContext(context.Context) SourceAmazonAdsMapOutput
+}
+
+type SourceAmazonAdsMap map[string]SourceAmazonAdsInput
+
+func (SourceAmazonAdsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonAds)(nil)).Elem()
+}
+
+func (i SourceAmazonAdsMap) ToSourceAmazonAdsMapOutput() SourceAmazonAdsMapOutput {
+	return i.ToSourceAmazonAdsMapOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonAdsMap) ToSourceAmazonAdsMapOutputWithContext(ctx context.Context) SourceAmazonAdsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonAdsMapOutput)
+}
+
 type SourceAmazonAdsOutput struct{ *pulumi.OutputState }
 
 func (SourceAmazonAdsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAmazonAdsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAmazonAds) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAmazonAdsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonAdsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonAds)(nil)).Elem()
+}
+
+func (o SourceAmazonAdsArrayOutput) ToSourceAmazonAdsArrayOutput() SourceAmazonAdsArrayOutput {
+	return o
+}
+
+func (o SourceAmazonAdsArrayOutput) ToSourceAmazonAdsArrayOutputWithContext(ctx context.Context) SourceAmazonAdsArrayOutput {
+	return o
+}
+
+func (o SourceAmazonAdsArrayOutput) Index(i pulumi.IntInput) SourceAmazonAdsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAmazonAds {
+		return vs[0].([]*SourceAmazonAds)[vs[1].(int)]
+	}).(SourceAmazonAdsOutput)
+}
+
+type SourceAmazonAdsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonAdsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonAds)(nil)).Elem()
+}
+
+func (o SourceAmazonAdsMapOutput) ToSourceAmazonAdsMapOutput() SourceAmazonAdsMapOutput {
+	return o
+}
+
+func (o SourceAmazonAdsMapOutput) ToSourceAmazonAdsMapOutputWithContext(ctx context.Context) SourceAmazonAdsMapOutput {
+	return o
+}
+
+func (o SourceAmazonAdsMapOutput) MapIndex(k pulumi.StringInput) SourceAmazonAdsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAmazonAds {
+		return vs[0].(map[string]*SourceAmazonAds)[vs[1].(string)]
+	}).(SourceAmazonAdsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonAdsInput)(nil)).Elem(), &SourceAmazonAds{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonAdsArrayInput)(nil)).Elem(), SourceAmazonAdsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonAdsMapInput)(nil)).Elem(), SourceAmazonAdsMap{})
 	pulumi.RegisterOutputType(SourceAmazonAdsOutput{})
+	pulumi.RegisterOutputType(SourceAmazonAdsArrayOutput{})
+	pulumi.RegisterOutputType(SourceAmazonAdsMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLinkedinPages Resource
@@ -127,6 +127,56 @@ func (i *SourceLinkedinPages) ToSourceLinkedinPagesOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinPagesOutput)
 }
 
+// SourceLinkedinPagesArrayInput is an input type that accepts SourceLinkedinPagesArray and SourceLinkedinPagesArrayOutput values.
+// You can construct a concrete instance of `SourceLinkedinPagesArrayInput` via:
+//
+//	SourceLinkedinPagesArray{ SourceLinkedinPagesArgs{...} }
+type SourceLinkedinPagesArrayInput interface {
+	pulumi.Input
+
+	ToSourceLinkedinPagesArrayOutput() SourceLinkedinPagesArrayOutput
+	ToSourceLinkedinPagesArrayOutputWithContext(context.Context) SourceLinkedinPagesArrayOutput
+}
+
+type SourceLinkedinPagesArray []SourceLinkedinPagesInput
+
+func (SourceLinkedinPagesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinkedinPages)(nil)).Elem()
+}
+
+func (i SourceLinkedinPagesArray) ToSourceLinkedinPagesArrayOutput() SourceLinkedinPagesArrayOutput {
+	return i.ToSourceLinkedinPagesArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLinkedinPagesArray) ToSourceLinkedinPagesArrayOutputWithContext(ctx context.Context) SourceLinkedinPagesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinPagesArrayOutput)
+}
+
+// SourceLinkedinPagesMapInput is an input type that accepts SourceLinkedinPagesMap and SourceLinkedinPagesMapOutput values.
+// You can construct a concrete instance of `SourceLinkedinPagesMapInput` via:
+//
+//	SourceLinkedinPagesMap{ "key": SourceLinkedinPagesArgs{...} }
+type SourceLinkedinPagesMapInput interface {
+	pulumi.Input
+
+	ToSourceLinkedinPagesMapOutput() SourceLinkedinPagesMapOutput
+	ToSourceLinkedinPagesMapOutputWithContext(context.Context) SourceLinkedinPagesMapOutput
+}
+
+type SourceLinkedinPagesMap map[string]SourceLinkedinPagesInput
+
+func (SourceLinkedinPagesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinkedinPages)(nil)).Elem()
+}
+
+func (i SourceLinkedinPagesMap) ToSourceLinkedinPagesMapOutput() SourceLinkedinPagesMapOutput {
+	return i.ToSourceLinkedinPagesMapOutputWithContext(context.Background())
+}
+
+func (i SourceLinkedinPagesMap) ToSourceLinkedinPagesMapOutputWithContext(ctx context.Context) SourceLinkedinPagesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinPagesMapOutput)
+}
+
 type SourceLinkedinPagesOutput struct{ *pulumi.OutputState }
 
 func (SourceLinkedinPagesOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLinkedinPagesOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLinkedinPages) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLinkedinPagesArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLinkedinPagesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinkedinPages)(nil)).Elem()
+}
+
+func (o SourceLinkedinPagesArrayOutput) ToSourceLinkedinPagesArrayOutput() SourceLinkedinPagesArrayOutput {
+	return o
+}
+
+func (o SourceLinkedinPagesArrayOutput) ToSourceLinkedinPagesArrayOutputWithContext(ctx context.Context) SourceLinkedinPagesArrayOutput {
+	return o
+}
+
+func (o SourceLinkedinPagesArrayOutput) Index(i pulumi.IntInput) SourceLinkedinPagesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLinkedinPages {
+		return vs[0].([]*SourceLinkedinPages)[vs[1].(int)]
+	}).(SourceLinkedinPagesOutput)
+}
+
+type SourceLinkedinPagesMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLinkedinPagesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinkedinPages)(nil)).Elem()
+}
+
+func (o SourceLinkedinPagesMapOutput) ToSourceLinkedinPagesMapOutput() SourceLinkedinPagesMapOutput {
+	return o
+}
+
+func (o SourceLinkedinPagesMapOutput) ToSourceLinkedinPagesMapOutputWithContext(ctx context.Context) SourceLinkedinPagesMapOutput {
+	return o
+}
+
+func (o SourceLinkedinPagesMapOutput) MapIndex(k pulumi.StringInput) SourceLinkedinPagesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLinkedinPages {
+		return vs[0].(map[string]*SourceLinkedinPages)[vs[1].(string)]
+	}).(SourceLinkedinPagesOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinPagesInput)(nil)).Elem(), &SourceLinkedinPages{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinPagesArrayInput)(nil)).Elem(), SourceLinkedinPagesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinPagesMapInput)(nil)).Elem(), SourceLinkedinPagesMap{})
 	pulumi.RegisterOutputType(SourceLinkedinPagesOutput{})
+	pulumi.RegisterOutputType(SourceLinkedinPagesArrayOutput{})
+	pulumi.RegisterOutputType(SourceLinkedinPagesMapOutput{})
 }

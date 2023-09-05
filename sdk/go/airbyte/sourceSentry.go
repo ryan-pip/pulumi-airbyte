@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSentry Resource
@@ -127,6 +127,56 @@ func (i *SourceSentry) ToSourceSentryOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSentryOutput)
 }
 
+// SourceSentryArrayInput is an input type that accepts SourceSentryArray and SourceSentryArrayOutput values.
+// You can construct a concrete instance of `SourceSentryArrayInput` via:
+//
+//	SourceSentryArray{ SourceSentryArgs{...} }
+type SourceSentryArrayInput interface {
+	pulumi.Input
+
+	ToSourceSentryArrayOutput() SourceSentryArrayOutput
+	ToSourceSentryArrayOutputWithContext(context.Context) SourceSentryArrayOutput
+}
+
+type SourceSentryArray []SourceSentryInput
+
+func (SourceSentryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSentry)(nil)).Elem()
+}
+
+func (i SourceSentryArray) ToSourceSentryArrayOutput() SourceSentryArrayOutput {
+	return i.ToSourceSentryArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSentryArray) ToSourceSentryArrayOutputWithContext(ctx context.Context) SourceSentryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSentryArrayOutput)
+}
+
+// SourceSentryMapInput is an input type that accepts SourceSentryMap and SourceSentryMapOutput values.
+// You can construct a concrete instance of `SourceSentryMapInput` via:
+//
+//	SourceSentryMap{ "key": SourceSentryArgs{...} }
+type SourceSentryMapInput interface {
+	pulumi.Input
+
+	ToSourceSentryMapOutput() SourceSentryMapOutput
+	ToSourceSentryMapOutputWithContext(context.Context) SourceSentryMapOutput
+}
+
+type SourceSentryMap map[string]SourceSentryInput
+
+func (SourceSentryMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSentry)(nil)).Elem()
+}
+
+func (i SourceSentryMap) ToSourceSentryMapOutput() SourceSentryMapOutput {
+	return i.ToSourceSentryMapOutputWithContext(context.Background())
+}
+
+func (i SourceSentryMap) ToSourceSentryMapOutputWithContext(ctx context.Context) SourceSentryMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSentryMapOutput)
+}
+
 type SourceSentryOutput struct{ *pulumi.OutputState }
 
 func (SourceSentryOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSentryOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSentry) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSentryArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSentryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSentry)(nil)).Elem()
+}
+
+func (o SourceSentryArrayOutput) ToSourceSentryArrayOutput() SourceSentryArrayOutput {
+	return o
+}
+
+func (o SourceSentryArrayOutput) ToSourceSentryArrayOutputWithContext(ctx context.Context) SourceSentryArrayOutput {
+	return o
+}
+
+func (o SourceSentryArrayOutput) Index(i pulumi.IntInput) SourceSentryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSentry {
+		return vs[0].([]*SourceSentry)[vs[1].(int)]
+	}).(SourceSentryOutput)
+}
+
+type SourceSentryMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSentryMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSentry)(nil)).Elem()
+}
+
+func (o SourceSentryMapOutput) ToSourceSentryMapOutput() SourceSentryMapOutput {
+	return o
+}
+
+func (o SourceSentryMapOutput) ToSourceSentryMapOutputWithContext(ctx context.Context) SourceSentryMapOutput {
+	return o
+}
+
+func (o SourceSentryMapOutput) MapIndex(k pulumi.StringInput) SourceSentryOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSentry {
+		return vs[0].(map[string]*SourceSentry)[vs[1].(string)]
+	}).(SourceSentryOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSentryInput)(nil)).Elem(), &SourceSentry{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSentryArrayInput)(nil)).Elem(), SourceSentryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSentryMapInput)(nil)).Elem(), SourceSentryMap{})
 	pulumi.RegisterOutputType(SourceSentryOutput{})
+	pulumi.RegisterOutputType(SourceSentryArrayOutput{})
+	pulumi.RegisterOutputType(SourceSentryMapOutput{})
 }

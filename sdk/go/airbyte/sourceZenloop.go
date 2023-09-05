@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZenloop Resource
@@ -127,6 +127,56 @@ func (i *SourceZenloop) ToSourceZenloopOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZenloopOutput)
 }
 
+// SourceZenloopArrayInput is an input type that accepts SourceZenloopArray and SourceZenloopArrayOutput values.
+// You can construct a concrete instance of `SourceZenloopArrayInput` via:
+//
+//	SourceZenloopArray{ SourceZenloopArgs{...} }
+type SourceZenloopArrayInput interface {
+	pulumi.Input
+
+	ToSourceZenloopArrayOutput() SourceZenloopArrayOutput
+	ToSourceZenloopArrayOutputWithContext(context.Context) SourceZenloopArrayOutput
+}
+
+type SourceZenloopArray []SourceZenloopInput
+
+func (SourceZenloopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZenloop)(nil)).Elem()
+}
+
+func (i SourceZenloopArray) ToSourceZenloopArrayOutput() SourceZenloopArrayOutput {
+	return i.ToSourceZenloopArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZenloopArray) ToSourceZenloopArrayOutputWithContext(ctx context.Context) SourceZenloopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZenloopArrayOutput)
+}
+
+// SourceZenloopMapInput is an input type that accepts SourceZenloopMap and SourceZenloopMapOutput values.
+// You can construct a concrete instance of `SourceZenloopMapInput` via:
+//
+//	SourceZenloopMap{ "key": SourceZenloopArgs{...} }
+type SourceZenloopMapInput interface {
+	pulumi.Input
+
+	ToSourceZenloopMapOutput() SourceZenloopMapOutput
+	ToSourceZenloopMapOutputWithContext(context.Context) SourceZenloopMapOutput
+}
+
+type SourceZenloopMap map[string]SourceZenloopInput
+
+func (SourceZenloopMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZenloop)(nil)).Elem()
+}
+
+func (i SourceZenloopMap) ToSourceZenloopMapOutput() SourceZenloopMapOutput {
+	return i.ToSourceZenloopMapOutputWithContext(context.Background())
+}
+
+func (i SourceZenloopMap) ToSourceZenloopMapOutputWithContext(ctx context.Context) SourceZenloopMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZenloopMapOutput)
+}
+
 type SourceZenloopOutput struct{ *pulumi.OutputState }
 
 func (SourceZenloopOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZenloopOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZenloop) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZenloopArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZenloopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZenloop)(nil)).Elem()
+}
+
+func (o SourceZenloopArrayOutput) ToSourceZenloopArrayOutput() SourceZenloopArrayOutput {
+	return o
+}
+
+func (o SourceZenloopArrayOutput) ToSourceZenloopArrayOutputWithContext(ctx context.Context) SourceZenloopArrayOutput {
+	return o
+}
+
+func (o SourceZenloopArrayOutput) Index(i pulumi.IntInput) SourceZenloopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZenloop {
+		return vs[0].([]*SourceZenloop)[vs[1].(int)]
+	}).(SourceZenloopOutput)
+}
+
+type SourceZenloopMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZenloopMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZenloop)(nil)).Elem()
+}
+
+func (o SourceZenloopMapOutput) ToSourceZenloopMapOutput() SourceZenloopMapOutput {
+	return o
+}
+
+func (o SourceZenloopMapOutput) ToSourceZenloopMapOutputWithContext(ctx context.Context) SourceZenloopMapOutput {
+	return o
+}
+
+func (o SourceZenloopMapOutput) MapIndex(k pulumi.StringInput) SourceZenloopOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZenloop {
+		return vs[0].(map[string]*SourceZenloop)[vs[1].(string)]
+	}).(SourceZenloopOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZenloopInput)(nil)).Elem(), &SourceZenloop{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZenloopArrayInput)(nil)).Elem(), SourceZenloopArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZenloopMapInput)(nil)).Elem(), SourceZenloopMap{})
 	pulumi.RegisterOutputType(SourceZenloopOutput{})
+	pulumi.RegisterOutputType(SourceZenloopArrayOutput{})
+	pulumi.RegisterOutputType(SourceZenloopMapOutput{})
 }

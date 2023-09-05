@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAmazonSqs Resource
@@ -127,6 +127,56 @@ func (i *SourceAmazonSqs) ToSourceAmazonSqsOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSqsOutput)
 }
 
+// SourceAmazonSqsArrayInput is an input type that accepts SourceAmazonSqsArray and SourceAmazonSqsArrayOutput values.
+// You can construct a concrete instance of `SourceAmazonSqsArrayInput` via:
+//
+//	SourceAmazonSqsArray{ SourceAmazonSqsArgs{...} }
+type SourceAmazonSqsArrayInput interface {
+	pulumi.Input
+
+	ToSourceAmazonSqsArrayOutput() SourceAmazonSqsArrayOutput
+	ToSourceAmazonSqsArrayOutputWithContext(context.Context) SourceAmazonSqsArrayOutput
+}
+
+type SourceAmazonSqsArray []SourceAmazonSqsInput
+
+func (SourceAmazonSqsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonSqs)(nil)).Elem()
+}
+
+func (i SourceAmazonSqsArray) ToSourceAmazonSqsArrayOutput() SourceAmazonSqsArrayOutput {
+	return i.ToSourceAmazonSqsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonSqsArray) ToSourceAmazonSqsArrayOutputWithContext(ctx context.Context) SourceAmazonSqsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSqsArrayOutput)
+}
+
+// SourceAmazonSqsMapInput is an input type that accepts SourceAmazonSqsMap and SourceAmazonSqsMapOutput values.
+// You can construct a concrete instance of `SourceAmazonSqsMapInput` via:
+//
+//	SourceAmazonSqsMap{ "key": SourceAmazonSqsArgs{...} }
+type SourceAmazonSqsMapInput interface {
+	pulumi.Input
+
+	ToSourceAmazonSqsMapOutput() SourceAmazonSqsMapOutput
+	ToSourceAmazonSqsMapOutputWithContext(context.Context) SourceAmazonSqsMapOutput
+}
+
+type SourceAmazonSqsMap map[string]SourceAmazonSqsInput
+
+func (SourceAmazonSqsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonSqs)(nil)).Elem()
+}
+
+func (i SourceAmazonSqsMap) ToSourceAmazonSqsMapOutput() SourceAmazonSqsMapOutput {
+	return i.ToSourceAmazonSqsMapOutputWithContext(context.Background())
+}
+
+func (i SourceAmazonSqsMap) ToSourceAmazonSqsMapOutputWithContext(ctx context.Context) SourceAmazonSqsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmazonSqsMapOutput)
+}
+
 type SourceAmazonSqsOutput struct{ *pulumi.OutputState }
 
 func (SourceAmazonSqsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAmazonSqsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAmazonSqs) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAmazonSqsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonSqsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmazonSqs)(nil)).Elem()
+}
+
+func (o SourceAmazonSqsArrayOutput) ToSourceAmazonSqsArrayOutput() SourceAmazonSqsArrayOutput {
+	return o
+}
+
+func (o SourceAmazonSqsArrayOutput) ToSourceAmazonSqsArrayOutputWithContext(ctx context.Context) SourceAmazonSqsArrayOutput {
+	return o
+}
+
+func (o SourceAmazonSqsArrayOutput) Index(i pulumi.IntInput) SourceAmazonSqsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAmazonSqs {
+		return vs[0].([]*SourceAmazonSqs)[vs[1].(int)]
+	}).(SourceAmazonSqsOutput)
+}
+
+type SourceAmazonSqsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAmazonSqsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmazonSqs)(nil)).Elem()
+}
+
+func (o SourceAmazonSqsMapOutput) ToSourceAmazonSqsMapOutput() SourceAmazonSqsMapOutput {
+	return o
+}
+
+func (o SourceAmazonSqsMapOutput) ToSourceAmazonSqsMapOutputWithContext(ctx context.Context) SourceAmazonSqsMapOutput {
+	return o
+}
+
+func (o SourceAmazonSqsMapOutput) MapIndex(k pulumi.StringInput) SourceAmazonSqsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAmazonSqs {
+		return vs[0].(map[string]*SourceAmazonSqs)[vs[1].(string)]
+	}).(SourceAmazonSqsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSqsInput)(nil)).Elem(), &SourceAmazonSqs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSqsArrayInput)(nil)).Elem(), SourceAmazonSqsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmazonSqsMapInput)(nil)).Elem(), SourceAmazonSqsMap{})
 	pulumi.RegisterOutputType(SourceAmazonSqsOutput{})
+	pulumi.RegisterOutputType(SourceAmazonSqsArrayOutput{})
+	pulumi.RegisterOutputType(SourceAmazonSqsMapOutput{})
 }

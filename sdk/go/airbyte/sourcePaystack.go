@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePaystack Resource
@@ -127,6 +127,56 @@ func (i *SourcePaystack) ToSourcePaystackOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePaystackOutput)
 }
 
+// SourcePaystackArrayInput is an input type that accepts SourcePaystackArray and SourcePaystackArrayOutput values.
+// You can construct a concrete instance of `SourcePaystackArrayInput` via:
+//
+//	SourcePaystackArray{ SourcePaystackArgs{...} }
+type SourcePaystackArrayInput interface {
+	pulumi.Input
+
+	ToSourcePaystackArrayOutput() SourcePaystackArrayOutput
+	ToSourcePaystackArrayOutputWithContext(context.Context) SourcePaystackArrayOutput
+}
+
+type SourcePaystackArray []SourcePaystackInput
+
+func (SourcePaystackArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePaystack)(nil)).Elem()
+}
+
+func (i SourcePaystackArray) ToSourcePaystackArrayOutput() SourcePaystackArrayOutput {
+	return i.ToSourcePaystackArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePaystackArray) ToSourcePaystackArrayOutputWithContext(ctx context.Context) SourcePaystackArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePaystackArrayOutput)
+}
+
+// SourcePaystackMapInput is an input type that accepts SourcePaystackMap and SourcePaystackMapOutput values.
+// You can construct a concrete instance of `SourcePaystackMapInput` via:
+//
+//	SourcePaystackMap{ "key": SourcePaystackArgs{...} }
+type SourcePaystackMapInput interface {
+	pulumi.Input
+
+	ToSourcePaystackMapOutput() SourcePaystackMapOutput
+	ToSourcePaystackMapOutputWithContext(context.Context) SourcePaystackMapOutput
+}
+
+type SourcePaystackMap map[string]SourcePaystackInput
+
+func (SourcePaystackMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePaystack)(nil)).Elem()
+}
+
+func (i SourcePaystackMap) ToSourcePaystackMapOutput() SourcePaystackMapOutput {
+	return i.ToSourcePaystackMapOutputWithContext(context.Background())
+}
+
+func (i SourcePaystackMap) ToSourcePaystackMapOutputWithContext(ctx context.Context) SourcePaystackMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePaystackMapOutput)
+}
+
 type SourcePaystackOutput struct{ *pulumi.OutputState }
 
 func (SourcePaystackOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePaystackOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePaystack) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePaystackArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePaystackArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePaystack)(nil)).Elem()
+}
+
+func (o SourcePaystackArrayOutput) ToSourcePaystackArrayOutput() SourcePaystackArrayOutput {
+	return o
+}
+
+func (o SourcePaystackArrayOutput) ToSourcePaystackArrayOutputWithContext(ctx context.Context) SourcePaystackArrayOutput {
+	return o
+}
+
+func (o SourcePaystackArrayOutput) Index(i pulumi.IntInput) SourcePaystackOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePaystack {
+		return vs[0].([]*SourcePaystack)[vs[1].(int)]
+	}).(SourcePaystackOutput)
+}
+
+type SourcePaystackMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePaystackMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePaystack)(nil)).Elem()
+}
+
+func (o SourcePaystackMapOutput) ToSourcePaystackMapOutput() SourcePaystackMapOutput {
+	return o
+}
+
+func (o SourcePaystackMapOutput) ToSourcePaystackMapOutputWithContext(ctx context.Context) SourcePaystackMapOutput {
+	return o
+}
+
+func (o SourcePaystackMapOutput) MapIndex(k pulumi.StringInput) SourcePaystackOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePaystack {
+		return vs[0].(map[string]*SourcePaystack)[vs[1].(string)]
+	}).(SourcePaystackOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePaystackInput)(nil)).Elem(), &SourcePaystack{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePaystackArrayInput)(nil)).Elem(), SourcePaystackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePaystackMapInput)(nil)).Elem(), SourcePaystackMap{})
 	pulumi.RegisterOutputType(SourcePaystackOutput{})
+	pulumi.RegisterOutputType(SourcePaystackArrayOutput{})
+	pulumi.RegisterOutputType(SourcePaystackMapOutput{})
 }

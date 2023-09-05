@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationKeen Resource
@@ -117,6 +117,56 @@ func (i *DestinationKeen) ToDestinationKeenOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationKeenOutput)
 }
 
+// DestinationKeenArrayInput is an input type that accepts DestinationKeenArray and DestinationKeenArrayOutput values.
+// You can construct a concrete instance of `DestinationKeenArrayInput` via:
+//
+//	DestinationKeenArray{ DestinationKeenArgs{...} }
+type DestinationKeenArrayInput interface {
+	pulumi.Input
+
+	ToDestinationKeenArrayOutput() DestinationKeenArrayOutput
+	ToDestinationKeenArrayOutputWithContext(context.Context) DestinationKeenArrayOutput
+}
+
+type DestinationKeenArray []DestinationKeenInput
+
+func (DestinationKeenArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationKeen)(nil)).Elem()
+}
+
+func (i DestinationKeenArray) ToDestinationKeenArrayOutput() DestinationKeenArrayOutput {
+	return i.ToDestinationKeenArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationKeenArray) ToDestinationKeenArrayOutputWithContext(ctx context.Context) DestinationKeenArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationKeenArrayOutput)
+}
+
+// DestinationKeenMapInput is an input type that accepts DestinationKeenMap and DestinationKeenMapOutput values.
+// You can construct a concrete instance of `DestinationKeenMapInput` via:
+//
+//	DestinationKeenMap{ "key": DestinationKeenArgs{...} }
+type DestinationKeenMapInput interface {
+	pulumi.Input
+
+	ToDestinationKeenMapOutput() DestinationKeenMapOutput
+	ToDestinationKeenMapOutputWithContext(context.Context) DestinationKeenMapOutput
+}
+
+type DestinationKeenMap map[string]DestinationKeenInput
+
+func (DestinationKeenMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationKeen)(nil)).Elem()
+}
+
+func (i DestinationKeenMap) ToDestinationKeenMapOutput() DestinationKeenMapOutput {
+	return i.ToDestinationKeenMapOutputWithContext(context.Background())
+}
+
+func (i DestinationKeenMap) ToDestinationKeenMapOutputWithContext(ctx context.Context) DestinationKeenMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationKeenMapOutput)
+}
+
 type DestinationKeenOutput struct{ *pulumi.OutputState }
 
 func (DestinationKeenOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationKeenOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationKeen) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationKeenArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationKeenArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationKeen)(nil)).Elem()
+}
+
+func (o DestinationKeenArrayOutput) ToDestinationKeenArrayOutput() DestinationKeenArrayOutput {
+	return o
+}
+
+func (o DestinationKeenArrayOutput) ToDestinationKeenArrayOutputWithContext(ctx context.Context) DestinationKeenArrayOutput {
+	return o
+}
+
+func (o DestinationKeenArrayOutput) Index(i pulumi.IntInput) DestinationKeenOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationKeen {
+		return vs[0].([]*DestinationKeen)[vs[1].(int)]
+	}).(DestinationKeenOutput)
+}
+
+type DestinationKeenMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationKeenMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationKeen)(nil)).Elem()
+}
+
+func (o DestinationKeenMapOutput) ToDestinationKeenMapOutput() DestinationKeenMapOutput {
+	return o
+}
+
+func (o DestinationKeenMapOutput) ToDestinationKeenMapOutputWithContext(ctx context.Context) DestinationKeenMapOutput {
+	return o
+}
+
+func (o DestinationKeenMapOutput) MapIndex(k pulumi.StringInput) DestinationKeenOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationKeen {
+		return vs[0].(map[string]*DestinationKeen)[vs[1].(string)]
+	}).(DestinationKeenOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKeenInput)(nil)).Elem(), &DestinationKeen{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKeenArrayInput)(nil)).Elem(), DestinationKeenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKeenMapInput)(nil)).Elem(), DestinationKeenMap{})
 	pulumi.RegisterOutputType(DestinationKeenOutput{})
+	pulumi.RegisterOutputType(DestinationKeenArrayOutput{})
+	pulumi.RegisterOutputType(DestinationKeenMapOutput{})
 }

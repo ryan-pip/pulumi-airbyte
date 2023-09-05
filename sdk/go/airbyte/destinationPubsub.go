@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationPubsub Resource
@@ -117,6 +117,56 @@ func (i *DestinationPubsub) ToDestinationPubsubOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationPubsubOutput)
 }
 
+// DestinationPubsubArrayInput is an input type that accepts DestinationPubsubArray and DestinationPubsubArrayOutput values.
+// You can construct a concrete instance of `DestinationPubsubArrayInput` via:
+//
+//	DestinationPubsubArray{ DestinationPubsubArgs{...} }
+type DestinationPubsubArrayInput interface {
+	pulumi.Input
+
+	ToDestinationPubsubArrayOutput() DestinationPubsubArrayOutput
+	ToDestinationPubsubArrayOutputWithContext(context.Context) DestinationPubsubArrayOutput
+}
+
+type DestinationPubsubArray []DestinationPubsubInput
+
+func (DestinationPubsubArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationPubsub)(nil)).Elem()
+}
+
+func (i DestinationPubsubArray) ToDestinationPubsubArrayOutput() DestinationPubsubArrayOutput {
+	return i.ToDestinationPubsubArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationPubsubArray) ToDestinationPubsubArrayOutputWithContext(ctx context.Context) DestinationPubsubArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationPubsubArrayOutput)
+}
+
+// DestinationPubsubMapInput is an input type that accepts DestinationPubsubMap and DestinationPubsubMapOutput values.
+// You can construct a concrete instance of `DestinationPubsubMapInput` via:
+//
+//	DestinationPubsubMap{ "key": DestinationPubsubArgs{...} }
+type DestinationPubsubMapInput interface {
+	pulumi.Input
+
+	ToDestinationPubsubMapOutput() DestinationPubsubMapOutput
+	ToDestinationPubsubMapOutputWithContext(context.Context) DestinationPubsubMapOutput
+}
+
+type DestinationPubsubMap map[string]DestinationPubsubInput
+
+func (DestinationPubsubMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationPubsub)(nil)).Elem()
+}
+
+func (i DestinationPubsubMap) ToDestinationPubsubMapOutput() DestinationPubsubMapOutput {
+	return i.ToDestinationPubsubMapOutputWithContext(context.Background())
+}
+
+func (i DestinationPubsubMap) ToDestinationPubsubMapOutputWithContext(ctx context.Context) DestinationPubsubMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationPubsubMapOutput)
+}
+
 type DestinationPubsubOutput struct{ *pulumi.OutputState }
 
 func (DestinationPubsubOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationPubsubOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationPubsub) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationPubsubArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationPubsubArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationPubsub)(nil)).Elem()
+}
+
+func (o DestinationPubsubArrayOutput) ToDestinationPubsubArrayOutput() DestinationPubsubArrayOutput {
+	return o
+}
+
+func (o DestinationPubsubArrayOutput) ToDestinationPubsubArrayOutputWithContext(ctx context.Context) DestinationPubsubArrayOutput {
+	return o
+}
+
+func (o DestinationPubsubArrayOutput) Index(i pulumi.IntInput) DestinationPubsubOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationPubsub {
+		return vs[0].([]*DestinationPubsub)[vs[1].(int)]
+	}).(DestinationPubsubOutput)
+}
+
+type DestinationPubsubMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationPubsubMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationPubsub)(nil)).Elem()
+}
+
+func (o DestinationPubsubMapOutput) ToDestinationPubsubMapOutput() DestinationPubsubMapOutput {
+	return o
+}
+
+func (o DestinationPubsubMapOutput) ToDestinationPubsubMapOutputWithContext(ctx context.Context) DestinationPubsubMapOutput {
+	return o
+}
+
+func (o DestinationPubsubMapOutput) MapIndex(k pulumi.StringInput) DestinationPubsubOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationPubsub {
+		return vs[0].(map[string]*DestinationPubsub)[vs[1].(string)]
+	}).(DestinationPubsubOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPubsubInput)(nil)).Elem(), &DestinationPubsub{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPubsubArrayInput)(nil)).Elem(), DestinationPubsubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPubsubMapInput)(nil)).Elem(), DestinationPubsubMap{})
 	pulumi.RegisterOutputType(DestinationPubsubOutput{})
+	pulumi.RegisterOutputType(DestinationPubsubArrayOutput{})
+	pulumi.RegisterOutputType(DestinationPubsubMapOutput{})
 }

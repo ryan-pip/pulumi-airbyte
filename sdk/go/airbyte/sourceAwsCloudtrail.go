@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAwsCloudtrail Resource
@@ -127,6 +127,56 @@ func (i *SourceAwsCloudtrail) ToSourceAwsCloudtrailOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAwsCloudtrailOutput)
 }
 
+// SourceAwsCloudtrailArrayInput is an input type that accepts SourceAwsCloudtrailArray and SourceAwsCloudtrailArrayOutput values.
+// You can construct a concrete instance of `SourceAwsCloudtrailArrayInput` via:
+//
+//	SourceAwsCloudtrailArray{ SourceAwsCloudtrailArgs{...} }
+type SourceAwsCloudtrailArrayInput interface {
+	pulumi.Input
+
+	ToSourceAwsCloudtrailArrayOutput() SourceAwsCloudtrailArrayOutput
+	ToSourceAwsCloudtrailArrayOutputWithContext(context.Context) SourceAwsCloudtrailArrayOutput
+}
+
+type SourceAwsCloudtrailArray []SourceAwsCloudtrailInput
+
+func (SourceAwsCloudtrailArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAwsCloudtrail)(nil)).Elem()
+}
+
+func (i SourceAwsCloudtrailArray) ToSourceAwsCloudtrailArrayOutput() SourceAwsCloudtrailArrayOutput {
+	return i.ToSourceAwsCloudtrailArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAwsCloudtrailArray) ToSourceAwsCloudtrailArrayOutputWithContext(ctx context.Context) SourceAwsCloudtrailArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAwsCloudtrailArrayOutput)
+}
+
+// SourceAwsCloudtrailMapInput is an input type that accepts SourceAwsCloudtrailMap and SourceAwsCloudtrailMapOutput values.
+// You can construct a concrete instance of `SourceAwsCloudtrailMapInput` via:
+//
+//	SourceAwsCloudtrailMap{ "key": SourceAwsCloudtrailArgs{...} }
+type SourceAwsCloudtrailMapInput interface {
+	pulumi.Input
+
+	ToSourceAwsCloudtrailMapOutput() SourceAwsCloudtrailMapOutput
+	ToSourceAwsCloudtrailMapOutputWithContext(context.Context) SourceAwsCloudtrailMapOutput
+}
+
+type SourceAwsCloudtrailMap map[string]SourceAwsCloudtrailInput
+
+func (SourceAwsCloudtrailMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAwsCloudtrail)(nil)).Elem()
+}
+
+func (i SourceAwsCloudtrailMap) ToSourceAwsCloudtrailMapOutput() SourceAwsCloudtrailMapOutput {
+	return i.ToSourceAwsCloudtrailMapOutputWithContext(context.Background())
+}
+
+func (i SourceAwsCloudtrailMap) ToSourceAwsCloudtrailMapOutputWithContext(ctx context.Context) SourceAwsCloudtrailMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAwsCloudtrailMapOutput)
+}
+
 type SourceAwsCloudtrailOutput struct{ *pulumi.OutputState }
 
 func (SourceAwsCloudtrailOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAwsCloudtrailOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAwsCloudtrail) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAwsCloudtrailArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAwsCloudtrailArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAwsCloudtrail)(nil)).Elem()
+}
+
+func (o SourceAwsCloudtrailArrayOutput) ToSourceAwsCloudtrailArrayOutput() SourceAwsCloudtrailArrayOutput {
+	return o
+}
+
+func (o SourceAwsCloudtrailArrayOutput) ToSourceAwsCloudtrailArrayOutputWithContext(ctx context.Context) SourceAwsCloudtrailArrayOutput {
+	return o
+}
+
+func (o SourceAwsCloudtrailArrayOutput) Index(i pulumi.IntInput) SourceAwsCloudtrailOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAwsCloudtrail {
+		return vs[0].([]*SourceAwsCloudtrail)[vs[1].(int)]
+	}).(SourceAwsCloudtrailOutput)
+}
+
+type SourceAwsCloudtrailMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAwsCloudtrailMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAwsCloudtrail)(nil)).Elem()
+}
+
+func (o SourceAwsCloudtrailMapOutput) ToSourceAwsCloudtrailMapOutput() SourceAwsCloudtrailMapOutput {
+	return o
+}
+
+func (o SourceAwsCloudtrailMapOutput) ToSourceAwsCloudtrailMapOutputWithContext(ctx context.Context) SourceAwsCloudtrailMapOutput {
+	return o
+}
+
+func (o SourceAwsCloudtrailMapOutput) MapIndex(k pulumi.StringInput) SourceAwsCloudtrailOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAwsCloudtrail {
+		return vs[0].(map[string]*SourceAwsCloudtrail)[vs[1].(string)]
+	}).(SourceAwsCloudtrailOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAwsCloudtrailInput)(nil)).Elem(), &SourceAwsCloudtrail{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAwsCloudtrailArrayInput)(nil)).Elem(), SourceAwsCloudtrailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAwsCloudtrailMapInput)(nil)).Elem(), SourceAwsCloudtrailMap{})
 	pulumi.RegisterOutputType(SourceAwsCloudtrailOutput{})
+	pulumi.RegisterOutputType(SourceAwsCloudtrailArrayOutput{})
+	pulumi.RegisterOutputType(SourceAwsCloudtrailMapOutput{})
 }

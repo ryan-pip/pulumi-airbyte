@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTheGuardianAPI Resource
@@ -127,6 +127,56 @@ func (i *SourceTheGuardianApi) ToSourceTheGuardianApiOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTheGuardianApiOutput)
 }
 
+// SourceTheGuardianApiArrayInput is an input type that accepts SourceTheGuardianApiArray and SourceTheGuardianApiArrayOutput values.
+// You can construct a concrete instance of `SourceTheGuardianApiArrayInput` via:
+//
+//	SourceTheGuardianApiArray{ SourceTheGuardianApiArgs{...} }
+type SourceTheGuardianApiArrayInput interface {
+	pulumi.Input
+
+	ToSourceTheGuardianApiArrayOutput() SourceTheGuardianApiArrayOutput
+	ToSourceTheGuardianApiArrayOutputWithContext(context.Context) SourceTheGuardianApiArrayOutput
+}
+
+type SourceTheGuardianApiArray []SourceTheGuardianApiInput
+
+func (SourceTheGuardianApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTheGuardianApi)(nil)).Elem()
+}
+
+func (i SourceTheGuardianApiArray) ToSourceTheGuardianApiArrayOutput() SourceTheGuardianApiArrayOutput {
+	return i.ToSourceTheGuardianApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTheGuardianApiArray) ToSourceTheGuardianApiArrayOutputWithContext(ctx context.Context) SourceTheGuardianApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTheGuardianApiArrayOutput)
+}
+
+// SourceTheGuardianApiMapInput is an input type that accepts SourceTheGuardianApiMap and SourceTheGuardianApiMapOutput values.
+// You can construct a concrete instance of `SourceTheGuardianApiMapInput` via:
+//
+//	SourceTheGuardianApiMap{ "key": SourceTheGuardianApiArgs{...} }
+type SourceTheGuardianApiMapInput interface {
+	pulumi.Input
+
+	ToSourceTheGuardianApiMapOutput() SourceTheGuardianApiMapOutput
+	ToSourceTheGuardianApiMapOutputWithContext(context.Context) SourceTheGuardianApiMapOutput
+}
+
+type SourceTheGuardianApiMap map[string]SourceTheGuardianApiInput
+
+func (SourceTheGuardianApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTheGuardianApi)(nil)).Elem()
+}
+
+func (i SourceTheGuardianApiMap) ToSourceTheGuardianApiMapOutput() SourceTheGuardianApiMapOutput {
+	return i.ToSourceTheGuardianApiMapOutputWithContext(context.Background())
+}
+
+func (i SourceTheGuardianApiMap) ToSourceTheGuardianApiMapOutputWithContext(ctx context.Context) SourceTheGuardianApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTheGuardianApiMapOutput)
+}
+
 type SourceTheGuardianApiOutput struct{ *pulumi.OutputState }
 
 func (SourceTheGuardianApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTheGuardianApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTheGuardianApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTheGuardianApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTheGuardianApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTheGuardianApi)(nil)).Elem()
+}
+
+func (o SourceTheGuardianApiArrayOutput) ToSourceTheGuardianApiArrayOutput() SourceTheGuardianApiArrayOutput {
+	return o
+}
+
+func (o SourceTheGuardianApiArrayOutput) ToSourceTheGuardianApiArrayOutputWithContext(ctx context.Context) SourceTheGuardianApiArrayOutput {
+	return o
+}
+
+func (o SourceTheGuardianApiArrayOutput) Index(i pulumi.IntInput) SourceTheGuardianApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTheGuardianApi {
+		return vs[0].([]*SourceTheGuardianApi)[vs[1].(int)]
+	}).(SourceTheGuardianApiOutput)
+}
+
+type SourceTheGuardianApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTheGuardianApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTheGuardianApi)(nil)).Elem()
+}
+
+func (o SourceTheGuardianApiMapOutput) ToSourceTheGuardianApiMapOutput() SourceTheGuardianApiMapOutput {
+	return o
+}
+
+func (o SourceTheGuardianApiMapOutput) ToSourceTheGuardianApiMapOutputWithContext(ctx context.Context) SourceTheGuardianApiMapOutput {
+	return o
+}
+
+func (o SourceTheGuardianApiMapOutput) MapIndex(k pulumi.StringInput) SourceTheGuardianApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTheGuardianApi {
+		return vs[0].(map[string]*SourceTheGuardianApi)[vs[1].(string)]
+	}).(SourceTheGuardianApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTheGuardianApiInput)(nil)).Elem(), &SourceTheGuardianApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTheGuardianApiArrayInput)(nil)).Elem(), SourceTheGuardianApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTheGuardianApiMapInput)(nil)).Elem(), SourceTheGuardianApiMap{})
 	pulumi.RegisterOutputType(SourceTheGuardianApiOutput{})
+	pulumi.RegisterOutputType(SourceTheGuardianApiArrayOutput{})
+	pulumi.RegisterOutputType(SourceTheGuardianApiMapOutput{})
 }

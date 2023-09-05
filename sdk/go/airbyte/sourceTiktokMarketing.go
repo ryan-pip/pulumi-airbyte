@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTiktokMarketing Resource
@@ -127,6 +127,56 @@ func (i *SourceTiktokMarketing) ToSourceTiktokMarketingOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTiktokMarketingOutput)
 }
 
+// SourceTiktokMarketingArrayInput is an input type that accepts SourceTiktokMarketingArray and SourceTiktokMarketingArrayOutput values.
+// You can construct a concrete instance of `SourceTiktokMarketingArrayInput` via:
+//
+//	SourceTiktokMarketingArray{ SourceTiktokMarketingArgs{...} }
+type SourceTiktokMarketingArrayInput interface {
+	pulumi.Input
+
+	ToSourceTiktokMarketingArrayOutput() SourceTiktokMarketingArrayOutput
+	ToSourceTiktokMarketingArrayOutputWithContext(context.Context) SourceTiktokMarketingArrayOutput
+}
+
+type SourceTiktokMarketingArray []SourceTiktokMarketingInput
+
+func (SourceTiktokMarketingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTiktokMarketing)(nil)).Elem()
+}
+
+func (i SourceTiktokMarketingArray) ToSourceTiktokMarketingArrayOutput() SourceTiktokMarketingArrayOutput {
+	return i.ToSourceTiktokMarketingArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTiktokMarketingArray) ToSourceTiktokMarketingArrayOutputWithContext(ctx context.Context) SourceTiktokMarketingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTiktokMarketingArrayOutput)
+}
+
+// SourceTiktokMarketingMapInput is an input type that accepts SourceTiktokMarketingMap and SourceTiktokMarketingMapOutput values.
+// You can construct a concrete instance of `SourceTiktokMarketingMapInput` via:
+//
+//	SourceTiktokMarketingMap{ "key": SourceTiktokMarketingArgs{...} }
+type SourceTiktokMarketingMapInput interface {
+	pulumi.Input
+
+	ToSourceTiktokMarketingMapOutput() SourceTiktokMarketingMapOutput
+	ToSourceTiktokMarketingMapOutputWithContext(context.Context) SourceTiktokMarketingMapOutput
+}
+
+type SourceTiktokMarketingMap map[string]SourceTiktokMarketingInput
+
+func (SourceTiktokMarketingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTiktokMarketing)(nil)).Elem()
+}
+
+func (i SourceTiktokMarketingMap) ToSourceTiktokMarketingMapOutput() SourceTiktokMarketingMapOutput {
+	return i.ToSourceTiktokMarketingMapOutputWithContext(context.Background())
+}
+
+func (i SourceTiktokMarketingMap) ToSourceTiktokMarketingMapOutputWithContext(ctx context.Context) SourceTiktokMarketingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTiktokMarketingMapOutput)
+}
+
 type SourceTiktokMarketingOutput struct{ *pulumi.OutputState }
 
 func (SourceTiktokMarketingOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTiktokMarketingOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTiktokMarketing) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTiktokMarketingArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTiktokMarketingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTiktokMarketing)(nil)).Elem()
+}
+
+func (o SourceTiktokMarketingArrayOutput) ToSourceTiktokMarketingArrayOutput() SourceTiktokMarketingArrayOutput {
+	return o
+}
+
+func (o SourceTiktokMarketingArrayOutput) ToSourceTiktokMarketingArrayOutputWithContext(ctx context.Context) SourceTiktokMarketingArrayOutput {
+	return o
+}
+
+func (o SourceTiktokMarketingArrayOutput) Index(i pulumi.IntInput) SourceTiktokMarketingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTiktokMarketing {
+		return vs[0].([]*SourceTiktokMarketing)[vs[1].(int)]
+	}).(SourceTiktokMarketingOutput)
+}
+
+type SourceTiktokMarketingMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTiktokMarketingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTiktokMarketing)(nil)).Elem()
+}
+
+func (o SourceTiktokMarketingMapOutput) ToSourceTiktokMarketingMapOutput() SourceTiktokMarketingMapOutput {
+	return o
+}
+
+func (o SourceTiktokMarketingMapOutput) ToSourceTiktokMarketingMapOutputWithContext(ctx context.Context) SourceTiktokMarketingMapOutput {
+	return o
+}
+
+func (o SourceTiktokMarketingMapOutput) MapIndex(k pulumi.StringInput) SourceTiktokMarketingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTiktokMarketing {
+		return vs[0].(map[string]*SourceTiktokMarketing)[vs[1].(string)]
+	}).(SourceTiktokMarketingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTiktokMarketingInput)(nil)).Elem(), &SourceTiktokMarketing{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTiktokMarketingArrayInput)(nil)).Elem(), SourceTiktokMarketingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTiktokMarketingMapInput)(nil)).Elem(), SourceTiktokMarketingMap{})
 	pulumi.RegisterOutputType(SourceTiktokMarketingOutput{})
+	pulumi.RegisterOutputType(SourceTiktokMarketingArrayOutput{})
+	pulumi.RegisterOutputType(SourceTiktokMarketingMapOutput{})
 }

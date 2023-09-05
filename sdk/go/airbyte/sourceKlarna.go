@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceKlarna Resource
@@ -127,6 +127,56 @@ func (i *SourceKlarna) ToSourceKlarnaOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceKlarnaOutput)
 }
 
+// SourceKlarnaArrayInput is an input type that accepts SourceKlarnaArray and SourceKlarnaArrayOutput values.
+// You can construct a concrete instance of `SourceKlarnaArrayInput` via:
+//
+//	SourceKlarnaArray{ SourceKlarnaArgs{...} }
+type SourceKlarnaArrayInput interface {
+	pulumi.Input
+
+	ToSourceKlarnaArrayOutput() SourceKlarnaArrayOutput
+	ToSourceKlarnaArrayOutputWithContext(context.Context) SourceKlarnaArrayOutput
+}
+
+type SourceKlarnaArray []SourceKlarnaInput
+
+func (SourceKlarnaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKlarna)(nil)).Elem()
+}
+
+func (i SourceKlarnaArray) ToSourceKlarnaArrayOutput() SourceKlarnaArrayOutput {
+	return i.ToSourceKlarnaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceKlarnaArray) ToSourceKlarnaArrayOutputWithContext(ctx context.Context) SourceKlarnaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKlarnaArrayOutput)
+}
+
+// SourceKlarnaMapInput is an input type that accepts SourceKlarnaMap and SourceKlarnaMapOutput values.
+// You can construct a concrete instance of `SourceKlarnaMapInput` via:
+//
+//	SourceKlarnaMap{ "key": SourceKlarnaArgs{...} }
+type SourceKlarnaMapInput interface {
+	pulumi.Input
+
+	ToSourceKlarnaMapOutput() SourceKlarnaMapOutput
+	ToSourceKlarnaMapOutputWithContext(context.Context) SourceKlarnaMapOutput
+}
+
+type SourceKlarnaMap map[string]SourceKlarnaInput
+
+func (SourceKlarnaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKlarna)(nil)).Elem()
+}
+
+func (i SourceKlarnaMap) ToSourceKlarnaMapOutput() SourceKlarnaMapOutput {
+	return i.ToSourceKlarnaMapOutputWithContext(context.Background())
+}
+
+func (i SourceKlarnaMap) ToSourceKlarnaMapOutputWithContext(ctx context.Context) SourceKlarnaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKlarnaMapOutput)
+}
+
 type SourceKlarnaOutput struct{ *pulumi.OutputState }
 
 func (SourceKlarnaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceKlarnaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceKlarna) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceKlarnaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceKlarnaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKlarna)(nil)).Elem()
+}
+
+func (o SourceKlarnaArrayOutput) ToSourceKlarnaArrayOutput() SourceKlarnaArrayOutput {
+	return o
+}
+
+func (o SourceKlarnaArrayOutput) ToSourceKlarnaArrayOutputWithContext(ctx context.Context) SourceKlarnaArrayOutput {
+	return o
+}
+
+func (o SourceKlarnaArrayOutput) Index(i pulumi.IntInput) SourceKlarnaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceKlarna {
+		return vs[0].([]*SourceKlarna)[vs[1].(int)]
+	}).(SourceKlarnaOutput)
+}
+
+type SourceKlarnaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceKlarnaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKlarna)(nil)).Elem()
+}
+
+func (o SourceKlarnaMapOutput) ToSourceKlarnaMapOutput() SourceKlarnaMapOutput {
+	return o
+}
+
+func (o SourceKlarnaMapOutput) ToSourceKlarnaMapOutputWithContext(ctx context.Context) SourceKlarnaMapOutput {
+	return o
+}
+
+func (o SourceKlarnaMapOutput) MapIndex(k pulumi.StringInput) SourceKlarnaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceKlarna {
+		return vs[0].(map[string]*SourceKlarna)[vs[1].(string)]
+	}).(SourceKlarnaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlarnaInput)(nil)).Elem(), &SourceKlarna{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlarnaArrayInput)(nil)).Elem(), SourceKlarnaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlarnaMapInput)(nil)).Elem(), SourceKlarnaMap{})
 	pulumi.RegisterOutputType(SourceKlarnaOutput{})
+	pulumi.RegisterOutputType(SourceKlarnaArrayOutput{})
+	pulumi.RegisterOutputType(SourceKlarnaMapOutput{})
 }

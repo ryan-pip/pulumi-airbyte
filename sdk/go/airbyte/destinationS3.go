@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationS3 Resource
@@ -117,6 +117,56 @@ func (i *DestinationS3) ToDestinationS3OutputWithContext(ctx context.Context) De
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3Output)
 }
 
+// DestinationS3ArrayInput is an input type that accepts DestinationS3Array and DestinationS3ArrayOutput values.
+// You can construct a concrete instance of `DestinationS3ArrayInput` via:
+//
+//	DestinationS3Array{ DestinationS3Args{...} }
+type DestinationS3ArrayInput interface {
+	pulumi.Input
+
+	ToDestinationS3ArrayOutput() DestinationS3ArrayOutput
+	ToDestinationS3ArrayOutputWithContext(context.Context) DestinationS3ArrayOutput
+}
+
+type DestinationS3Array []DestinationS3Input
+
+func (DestinationS3Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationS3)(nil)).Elem()
+}
+
+func (i DestinationS3Array) ToDestinationS3ArrayOutput() DestinationS3ArrayOutput {
+	return i.ToDestinationS3ArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationS3Array) ToDestinationS3ArrayOutputWithContext(ctx context.Context) DestinationS3ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3ArrayOutput)
+}
+
+// DestinationS3MapInput is an input type that accepts DestinationS3Map and DestinationS3MapOutput values.
+// You can construct a concrete instance of `DestinationS3MapInput` via:
+//
+//	DestinationS3Map{ "key": DestinationS3Args{...} }
+type DestinationS3MapInput interface {
+	pulumi.Input
+
+	ToDestinationS3MapOutput() DestinationS3MapOutput
+	ToDestinationS3MapOutputWithContext(context.Context) DestinationS3MapOutput
+}
+
+type DestinationS3Map map[string]DestinationS3Input
+
+func (DestinationS3Map) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationS3)(nil)).Elem()
+}
+
+func (i DestinationS3Map) ToDestinationS3MapOutput() DestinationS3MapOutput {
+	return i.ToDestinationS3MapOutputWithContext(context.Background())
+}
+
+func (i DestinationS3Map) ToDestinationS3MapOutputWithContext(ctx context.Context) DestinationS3MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationS3MapOutput)
+}
+
 type DestinationS3Output struct{ *pulumi.OutputState }
 
 func (DestinationS3Output) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationS3Output) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationS3) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationS3ArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationS3ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationS3)(nil)).Elem()
+}
+
+func (o DestinationS3ArrayOutput) ToDestinationS3ArrayOutput() DestinationS3ArrayOutput {
+	return o
+}
+
+func (o DestinationS3ArrayOutput) ToDestinationS3ArrayOutputWithContext(ctx context.Context) DestinationS3ArrayOutput {
+	return o
+}
+
+func (o DestinationS3ArrayOutput) Index(i pulumi.IntInput) DestinationS3Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationS3 {
+		return vs[0].([]*DestinationS3)[vs[1].(int)]
+	}).(DestinationS3Output)
+}
+
+type DestinationS3MapOutput struct{ *pulumi.OutputState }
+
+func (DestinationS3MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationS3)(nil)).Elem()
+}
+
+func (o DestinationS3MapOutput) ToDestinationS3MapOutput() DestinationS3MapOutput {
+	return o
+}
+
+func (o DestinationS3MapOutput) ToDestinationS3MapOutputWithContext(ctx context.Context) DestinationS3MapOutput {
+	return o
+}
+
+func (o DestinationS3MapOutput) MapIndex(k pulumi.StringInput) DestinationS3Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationS3 {
+		return vs[0].(map[string]*DestinationS3)[vs[1].(string)]
+	}).(DestinationS3Output)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3Input)(nil)).Elem(), &DestinationS3{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3ArrayInput)(nil)).Elem(), DestinationS3Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationS3MapInput)(nil)).Elem(), DestinationS3Map{})
 	pulumi.RegisterOutputType(DestinationS3Output{})
+	pulumi.RegisterOutputType(DestinationS3ArrayOutput{})
+	pulumi.RegisterOutputType(DestinationS3MapOutput{})
 }

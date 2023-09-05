@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLinkedinAds Resource
@@ -127,6 +127,56 @@ func (i *SourceLinkedinAds) ToSourceLinkedinAdsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinAdsOutput)
 }
 
+// SourceLinkedinAdsArrayInput is an input type that accepts SourceLinkedinAdsArray and SourceLinkedinAdsArrayOutput values.
+// You can construct a concrete instance of `SourceLinkedinAdsArrayInput` via:
+//
+//	SourceLinkedinAdsArray{ SourceLinkedinAdsArgs{...} }
+type SourceLinkedinAdsArrayInput interface {
+	pulumi.Input
+
+	ToSourceLinkedinAdsArrayOutput() SourceLinkedinAdsArrayOutput
+	ToSourceLinkedinAdsArrayOutputWithContext(context.Context) SourceLinkedinAdsArrayOutput
+}
+
+type SourceLinkedinAdsArray []SourceLinkedinAdsInput
+
+func (SourceLinkedinAdsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinkedinAds)(nil)).Elem()
+}
+
+func (i SourceLinkedinAdsArray) ToSourceLinkedinAdsArrayOutput() SourceLinkedinAdsArrayOutput {
+	return i.ToSourceLinkedinAdsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLinkedinAdsArray) ToSourceLinkedinAdsArrayOutputWithContext(ctx context.Context) SourceLinkedinAdsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinAdsArrayOutput)
+}
+
+// SourceLinkedinAdsMapInput is an input type that accepts SourceLinkedinAdsMap and SourceLinkedinAdsMapOutput values.
+// You can construct a concrete instance of `SourceLinkedinAdsMapInput` via:
+//
+//	SourceLinkedinAdsMap{ "key": SourceLinkedinAdsArgs{...} }
+type SourceLinkedinAdsMapInput interface {
+	pulumi.Input
+
+	ToSourceLinkedinAdsMapOutput() SourceLinkedinAdsMapOutput
+	ToSourceLinkedinAdsMapOutputWithContext(context.Context) SourceLinkedinAdsMapOutput
+}
+
+type SourceLinkedinAdsMap map[string]SourceLinkedinAdsInput
+
+func (SourceLinkedinAdsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinkedinAds)(nil)).Elem()
+}
+
+func (i SourceLinkedinAdsMap) ToSourceLinkedinAdsMapOutput() SourceLinkedinAdsMapOutput {
+	return i.ToSourceLinkedinAdsMapOutputWithContext(context.Background())
+}
+
+func (i SourceLinkedinAdsMap) ToSourceLinkedinAdsMapOutputWithContext(ctx context.Context) SourceLinkedinAdsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinkedinAdsMapOutput)
+}
+
 type SourceLinkedinAdsOutput struct{ *pulumi.OutputState }
 
 func (SourceLinkedinAdsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLinkedinAdsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLinkedinAds) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLinkedinAdsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLinkedinAdsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinkedinAds)(nil)).Elem()
+}
+
+func (o SourceLinkedinAdsArrayOutput) ToSourceLinkedinAdsArrayOutput() SourceLinkedinAdsArrayOutput {
+	return o
+}
+
+func (o SourceLinkedinAdsArrayOutput) ToSourceLinkedinAdsArrayOutputWithContext(ctx context.Context) SourceLinkedinAdsArrayOutput {
+	return o
+}
+
+func (o SourceLinkedinAdsArrayOutput) Index(i pulumi.IntInput) SourceLinkedinAdsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLinkedinAds {
+		return vs[0].([]*SourceLinkedinAds)[vs[1].(int)]
+	}).(SourceLinkedinAdsOutput)
+}
+
+type SourceLinkedinAdsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLinkedinAdsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinkedinAds)(nil)).Elem()
+}
+
+func (o SourceLinkedinAdsMapOutput) ToSourceLinkedinAdsMapOutput() SourceLinkedinAdsMapOutput {
+	return o
+}
+
+func (o SourceLinkedinAdsMapOutput) ToSourceLinkedinAdsMapOutputWithContext(ctx context.Context) SourceLinkedinAdsMapOutput {
+	return o
+}
+
+func (o SourceLinkedinAdsMapOutput) MapIndex(k pulumi.StringInput) SourceLinkedinAdsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLinkedinAds {
+		return vs[0].(map[string]*SourceLinkedinAds)[vs[1].(string)]
+	}).(SourceLinkedinAdsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinAdsInput)(nil)).Elem(), &SourceLinkedinAds{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinAdsArrayInput)(nil)).Elem(), SourceLinkedinAdsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinkedinAdsMapInput)(nil)).Elem(), SourceLinkedinAdsMap{})
 	pulumi.RegisterOutputType(SourceLinkedinAdsOutput{})
+	pulumi.RegisterOutputType(SourceLinkedinAdsArrayOutput{})
+	pulumi.RegisterOutputType(SourceLinkedinAdsMapOutput{})
 }

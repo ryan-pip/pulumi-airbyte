@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFreshdesk Resource
@@ -127,6 +127,56 @@ func (i *SourceFreshdesk) ToSourceFreshdeskOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshdeskOutput)
 }
 
+// SourceFreshdeskArrayInput is an input type that accepts SourceFreshdeskArray and SourceFreshdeskArrayOutput values.
+// You can construct a concrete instance of `SourceFreshdeskArrayInput` via:
+//
+//	SourceFreshdeskArray{ SourceFreshdeskArgs{...} }
+type SourceFreshdeskArrayInput interface {
+	pulumi.Input
+
+	ToSourceFreshdeskArrayOutput() SourceFreshdeskArrayOutput
+	ToSourceFreshdeskArrayOutputWithContext(context.Context) SourceFreshdeskArrayOutput
+}
+
+type SourceFreshdeskArray []SourceFreshdeskInput
+
+func (SourceFreshdeskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshdesk)(nil)).Elem()
+}
+
+func (i SourceFreshdeskArray) ToSourceFreshdeskArrayOutput() SourceFreshdeskArrayOutput {
+	return i.ToSourceFreshdeskArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFreshdeskArray) ToSourceFreshdeskArrayOutputWithContext(ctx context.Context) SourceFreshdeskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshdeskArrayOutput)
+}
+
+// SourceFreshdeskMapInput is an input type that accepts SourceFreshdeskMap and SourceFreshdeskMapOutput values.
+// You can construct a concrete instance of `SourceFreshdeskMapInput` via:
+//
+//	SourceFreshdeskMap{ "key": SourceFreshdeskArgs{...} }
+type SourceFreshdeskMapInput interface {
+	pulumi.Input
+
+	ToSourceFreshdeskMapOutput() SourceFreshdeskMapOutput
+	ToSourceFreshdeskMapOutputWithContext(context.Context) SourceFreshdeskMapOutput
+}
+
+type SourceFreshdeskMap map[string]SourceFreshdeskInput
+
+func (SourceFreshdeskMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshdesk)(nil)).Elem()
+}
+
+func (i SourceFreshdeskMap) ToSourceFreshdeskMapOutput() SourceFreshdeskMapOutput {
+	return i.ToSourceFreshdeskMapOutputWithContext(context.Background())
+}
+
+func (i SourceFreshdeskMap) ToSourceFreshdeskMapOutputWithContext(ctx context.Context) SourceFreshdeskMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshdeskMapOutput)
+}
+
 type SourceFreshdeskOutput struct{ *pulumi.OutputState }
 
 func (SourceFreshdeskOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFreshdeskOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFreshdesk) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFreshdeskArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshdeskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshdesk)(nil)).Elem()
+}
+
+func (o SourceFreshdeskArrayOutput) ToSourceFreshdeskArrayOutput() SourceFreshdeskArrayOutput {
+	return o
+}
+
+func (o SourceFreshdeskArrayOutput) ToSourceFreshdeskArrayOutputWithContext(ctx context.Context) SourceFreshdeskArrayOutput {
+	return o
+}
+
+func (o SourceFreshdeskArrayOutput) Index(i pulumi.IntInput) SourceFreshdeskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFreshdesk {
+		return vs[0].([]*SourceFreshdesk)[vs[1].(int)]
+	}).(SourceFreshdeskOutput)
+}
+
+type SourceFreshdeskMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshdeskMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshdesk)(nil)).Elem()
+}
+
+func (o SourceFreshdeskMapOutput) ToSourceFreshdeskMapOutput() SourceFreshdeskMapOutput {
+	return o
+}
+
+func (o SourceFreshdeskMapOutput) ToSourceFreshdeskMapOutputWithContext(ctx context.Context) SourceFreshdeskMapOutput {
+	return o
+}
+
+func (o SourceFreshdeskMapOutput) MapIndex(k pulumi.StringInput) SourceFreshdeskOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFreshdesk {
+		return vs[0].(map[string]*SourceFreshdesk)[vs[1].(string)]
+	}).(SourceFreshdeskOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshdeskInput)(nil)).Elem(), &SourceFreshdesk{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshdeskArrayInput)(nil)).Elem(), SourceFreshdeskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshdeskMapInput)(nil)).Elem(), SourceFreshdeskMap{})
 	pulumi.RegisterOutputType(SourceFreshdeskOutput{})
+	pulumi.RegisterOutputType(SourceFreshdeskArrayOutput{})
+	pulumi.RegisterOutputType(SourceFreshdeskMapOutput{})
 }

@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationConvex DataSource
@@ -24,15 +24,19 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := airbyte.LookupDestinationConvex(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := airbyte.LookupDestinationConvex(ctx, &airbyte.LookupDestinationConvexArgs{
+//				DestinationId: "...my_destination_id...",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupDestinationConvex(ctx *pulumi.Context, args *LookupDestinationConvexArgs, opts ...pulumi.InvokeOption) (*LookupDestinationConvexResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

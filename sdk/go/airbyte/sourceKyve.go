@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceKyve Resource
@@ -127,6 +127,56 @@ func (i *SourceKyve) ToSourceKyveOutputWithContext(ctx context.Context) SourceKy
 	return pulumi.ToOutputWithContext(ctx, i).(SourceKyveOutput)
 }
 
+// SourceKyveArrayInput is an input type that accepts SourceKyveArray and SourceKyveArrayOutput values.
+// You can construct a concrete instance of `SourceKyveArrayInput` via:
+//
+//	SourceKyveArray{ SourceKyveArgs{...} }
+type SourceKyveArrayInput interface {
+	pulumi.Input
+
+	ToSourceKyveArrayOutput() SourceKyveArrayOutput
+	ToSourceKyveArrayOutputWithContext(context.Context) SourceKyveArrayOutput
+}
+
+type SourceKyveArray []SourceKyveInput
+
+func (SourceKyveArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKyve)(nil)).Elem()
+}
+
+func (i SourceKyveArray) ToSourceKyveArrayOutput() SourceKyveArrayOutput {
+	return i.ToSourceKyveArrayOutputWithContext(context.Background())
+}
+
+func (i SourceKyveArray) ToSourceKyveArrayOutputWithContext(ctx context.Context) SourceKyveArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKyveArrayOutput)
+}
+
+// SourceKyveMapInput is an input type that accepts SourceKyveMap and SourceKyveMapOutput values.
+// You can construct a concrete instance of `SourceKyveMapInput` via:
+//
+//	SourceKyveMap{ "key": SourceKyveArgs{...} }
+type SourceKyveMapInput interface {
+	pulumi.Input
+
+	ToSourceKyveMapOutput() SourceKyveMapOutput
+	ToSourceKyveMapOutputWithContext(context.Context) SourceKyveMapOutput
+}
+
+type SourceKyveMap map[string]SourceKyveInput
+
+func (SourceKyveMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKyve)(nil)).Elem()
+}
+
+func (i SourceKyveMap) ToSourceKyveMapOutput() SourceKyveMapOutput {
+	return i.ToSourceKyveMapOutputWithContext(context.Background())
+}
+
+func (i SourceKyveMap) ToSourceKyveMapOutputWithContext(ctx context.Context) SourceKyveMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKyveMapOutput)
+}
+
 type SourceKyveOutput struct{ *pulumi.OutputState }
 
 func (SourceKyveOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceKyveOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceKyve) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceKyveArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceKyveArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKyve)(nil)).Elem()
+}
+
+func (o SourceKyveArrayOutput) ToSourceKyveArrayOutput() SourceKyveArrayOutput {
+	return o
+}
+
+func (o SourceKyveArrayOutput) ToSourceKyveArrayOutputWithContext(ctx context.Context) SourceKyveArrayOutput {
+	return o
+}
+
+func (o SourceKyveArrayOutput) Index(i pulumi.IntInput) SourceKyveOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceKyve {
+		return vs[0].([]*SourceKyve)[vs[1].(int)]
+	}).(SourceKyveOutput)
+}
+
+type SourceKyveMapOutput struct{ *pulumi.OutputState }
+
+func (SourceKyveMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKyve)(nil)).Elem()
+}
+
+func (o SourceKyveMapOutput) ToSourceKyveMapOutput() SourceKyveMapOutput {
+	return o
+}
+
+func (o SourceKyveMapOutput) ToSourceKyveMapOutputWithContext(ctx context.Context) SourceKyveMapOutput {
+	return o
+}
+
+func (o SourceKyveMapOutput) MapIndex(k pulumi.StringInput) SourceKyveOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceKyve {
+		return vs[0].(map[string]*SourceKyve)[vs[1].(string)]
+	}).(SourceKyveOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceKyveInput)(nil)).Elem(), &SourceKyve{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKyveArrayInput)(nil)).Elem(), SourceKyveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKyveMapInput)(nil)).Elem(), SourceKyveMap{})
 	pulumi.RegisterOutputType(SourceKyveOutput{})
+	pulumi.RegisterOutputType(SourceKyveArrayOutput{})
+	pulumi.RegisterOutputType(SourceKyveMapOutput{})
 }

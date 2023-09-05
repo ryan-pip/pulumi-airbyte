@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -21,6 +21,39 @@ type GetSourceOktaConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceOktaConfigurationInput is an input type that accepts GetSourceOktaConfigurationArgs and GetSourceOktaConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationInput` via:
+//
+//	GetSourceOktaConfigurationArgs{...}
+type GetSourceOktaConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationOutput() GetSourceOktaConfigurationOutput
+	ToGetSourceOktaConfigurationOutputWithContext(context.Context) GetSourceOktaConfigurationOutput
+}
+
+type GetSourceOktaConfigurationArgs struct {
+	Credentials GetSourceOktaConfigurationCredentialsInput `pulumi:"credentials"`
+	// The Okta domain. See the \n\ndocs\n\n for instructions on how to find it.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// must be one of ["okta"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format YYYY-MM-DDTHH:MM:SSZ. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceOktaConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationArgs) ToGetSourceOktaConfigurationOutput() GetSourceOktaConfigurationOutput {
+	return i.ToGetSourceOktaConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationArgs) ToGetSourceOktaConfigurationOutputWithContext(ctx context.Context) GetSourceOktaConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationOutput)
 }
 
 type GetSourceOktaConfigurationOutput struct{ *pulumi.OutputState }
@@ -61,6 +94,36 @@ type GetSourceOktaConfigurationCredentials struct {
 	SourceOktaAuthorizationMethodOAuth20        GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20        `pulumi:"sourceOktaAuthorizationMethodOAuth20"`
 	SourceOktaUpdateAuthorizationMethodApiToken GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken `pulumi:"sourceOktaUpdateAuthorizationMethodApiToken"`
 	SourceOktaUpdateAuthorizationMethodOAuth20  GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20  `pulumi:"sourceOktaUpdateAuthorizationMethodOAuth20"`
+}
+
+// GetSourceOktaConfigurationCredentialsInput is an input type that accepts GetSourceOktaConfigurationCredentialsArgs and GetSourceOktaConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationCredentialsInput` via:
+//
+//	GetSourceOktaConfigurationCredentialsArgs{...}
+type GetSourceOktaConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationCredentialsOutput() GetSourceOktaConfigurationCredentialsOutput
+	ToGetSourceOktaConfigurationCredentialsOutputWithContext(context.Context) GetSourceOktaConfigurationCredentialsOutput
+}
+
+type GetSourceOktaConfigurationCredentialsArgs struct {
+	SourceOktaAuthorizationMethodApiToken       GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenInput       `pulumi:"sourceOktaAuthorizationMethodApiToken"`
+	SourceOktaAuthorizationMethodOAuth20        GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Input        `pulumi:"sourceOktaAuthorizationMethodOAuth20"`
+	SourceOktaUpdateAuthorizationMethodApiToken GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenInput `pulumi:"sourceOktaUpdateAuthorizationMethodApiToken"`
+	SourceOktaUpdateAuthorizationMethodOAuth20  GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Input  `pulumi:"sourceOktaUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceOktaConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationCredentialsArgs) ToGetSourceOktaConfigurationCredentialsOutput() GetSourceOktaConfigurationCredentialsOutput {
+	return i.ToGetSourceOktaConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationCredentialsArgs) ToGetSourceOktaConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceOktaConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationCredentialsOutput)
 }
 
 type GetSourceOktaConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -106,6 +169,34 @@ type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken 
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenInput is an input type that accepts GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs and GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenInput` via:
+//
+//	GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs{...}
+type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput() GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput
+	ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutputWithContext(context.Context) GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput
+}
+
+type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs struct {
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiToken)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs) ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput() GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput {
+	return i.ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs) ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutputWithContext(ctx context.Context) GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput)
+}
+
 type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput) ElementType() reflect.Type {
@@ -137,6 +228,36 @@ type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20 s
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Input is an input type that accepts GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args and GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args{...}
+type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output() GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output
+	ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output
+}
+
+type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args struct {
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args) ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output() GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args) ToGetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -182,6 +303,34 @@ type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApi
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenInput is an input type that accepts GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs and GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenInput` via:
+//
+//	GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs{...}
+type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput() GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput
+	ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutputWithContext(context.Context) GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput
+}
+
+type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs struct {
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiToken)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs) ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput() GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput {
+	return i.ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs) ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutputWithContext(ctx context.Context) GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput)
+}
+
 type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenOutput) ElementType() reflect.Type {
@@ -213,6 +362,36 @@ type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAu
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args and GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output() GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args struct {
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args) ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output() GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args) ToGetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -260,6 +439,36 @@ type GetSourceOmnisendConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceOmnisendConfigurationInput is an input type that accepts GetSourceOmnisendConfigurationArgs and GetSourceOmnisendConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOmnisendConfigurationInput` via:
+//
+//	GetSourceOmnisendConfigurationArgs{...}
+type GetSourceOmnisendConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOmnisendConfigurationOutput() GetSourceOmnisendConfigurationOutput
+	ToGetSourceOmnisendConfigurationOutputWithContext(context.Context) GetSourceOmnisendConfigurationOutput
+}
+
+type GetSourceOmnisendConfigurationArgs struct {
+	// API Key
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["omnisend"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceOmnisendConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOmnisendConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOmnisendConfigurationArgs) ToGetSourceOmnisendConfigurationOutput() GetSourceOmnisendConfigurationOutput {
+	return i.ToGetSourceOmnisendConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOmnisendConfigurationArgs) ToGetSourceOmnisendConfigurationOutputWithContext(ctx context.Context) GetSourceOmnisendConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOmnisendConfigurationOutput)
+}
+
 type GetSourceOmnisendConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOmnisendConfigurationOutput) ElementType() reflect.Type {
@@ -295,6 +504,42 @@ type GetSourceOnesignalConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// OneSignal User Auth Key, see the \n\ndocs\n\n for more information on how to obtain this key.
 	UserAuthKey string `pulumi:"userAuthKey"`
+}
+
+// GetSourceOnesignalConfigurationInput is an input type that accepts GetSourceOnesignalConfigurationArgs and GetSourceOnesignalConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOnesignalConfigurationInput` via:
+//
+//	GetSourceOnesignalConfigurationArgs{...}
+type GetSourceOnesignalConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOnesignalConfigurationOutput() GetSourceOnesignalConfigurationOutput
+	ToGetSourceOnesignalConfigurationOutputWithContext(context.Context) GetSourceOnesignalConfigurationOutput
+}
+
+type GetSourceOnesignalConfigurationArgs struct {
+	// Applications keys, see the \n\ndocs\n\n for more information on how to obtain this data
+	Applications GetSourceOnesignalConfigurationApplicationArrayInput `pulumi:"applications"`
+	// Comma-separated list of names and the value (sum/count) for the returned outcome data. See the \n\ndocs\n\n for more details
+	OutcomeNames pulumi.StringInput `pulumi:"outcomeNames"`
+	// must be one of ["onesignal"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for OneSignal API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// OneSignal User Auth Key, see the \n\ndocs\n\n for more information on how to obtain this key.
+	UserAuthKey pulumi.StringInput `pulumi:"userAuthKey"`
+}
+
+func (GetSourceOnesignalConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOnesignalConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOnesignalConfigurationArgs) ToGetSourceOnesignalConfigurationOutput() GetSourceOnesignalConfigurationOutput {
+	return i.ToGetSourceOnesignalConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOnesignalConfigurationArgs) ToGetSourceOnesignalConfigurationOutputWithContext(ctx context.Context) GetSourceOnesignalConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOnesignalConfigurationOutput)
 }
 
 type GetSourceOnesignalConfigurationOutput struct{ *pulumi.OutputState }
@@ -342,6 +587,60 @@ type GetSourceOnesignalConfigurationApplication struct {
 	AppApiKey string `pulumi:"appApiKey"`
 	AppId     string `pulumi:"appId"`
 	AppName   string `pulumi:"appName"`
+}
+
+// GetSourceOnesignalConfigurationApplicationInput is an input type that accepts GetSourceOnesignalConfigurationApplicationArgs and GetSourceOnesignalConfigurationApplicationOutput values.
+// You can construct a concrete instance of `GetSourceOnesignalConfigurationApplicationInput` via:
+//
+//	GetSourceOnesignalConfigurationApplicationArgs{...}
+type GetSourceOnesignalConfigurationApplicationInput interface {
+	pulumi.Input
+
+	ToGetSourceOnesignalConfigurationApplicationOutput() GetSourceOnesignalConfigurationApplicationOutput
+	ToGetSourceOnesignalConfigurationApplicationOutputWithContext(context.Context) GetSourceOnesignalConfigurationApplicationOutput
+}
+
+type GetSourceOnesignalConfigurationApplicationArgs struct {
+	AppApiKey pulumi.StringInput `pulumi:"appApiKey"`
+	AppId     pulumi.StringInput `pulumi:"appId"`
+	AppName   pulumi.StringInput `pulumi:"appName"`
+}
+
+func (GetSourceOnesignalConfigurationApplicationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOnesignalConfigurationApplication)(nil)).Elem()
+}
+
+func (i GetSourceOnesignalConfigurationApplicationArgs) ToGetSourceOnesignalConfigurationApplicationOutput() GetSourceOnesignalConfigurationApplicationOutput {
+	return i.ToGetSourceOnesignalConfigurationApplicationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOnesignalConfigurationApplicationArgs) ToGetSourceOnesignalConfigurationApplicationOutputWithContext(ctx context.Context) GetSourceOnesignalConfigurationApplicationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOnesignalConfigurationApplicationOutput)
+}
+
+// GetSourceOnesignalConfigurationApplicationArrayInput is an input type that accepts GetSourceOnesignalConfigurationApplicationArray and GetSourceOnesignalConfigurationApplicationArrayOutput values.
+// You can construct a concrete instance of `GetSourceOnesignalConfigurationApplicationArrayInput` via:
+//
+//	GetSourceOnesignalConfigurationApplicationArray{ GetSourceOnesignalConfigurationApplicationArgs{...} }
+type GetSourceOnesignalConfigurationApplicationArrayInput interface {
+	pulumi.Input
+
+	ToGetSourceOnesignalConfigurationApplicationArrayOutput() GetSourceOnesignalConfigurationApplicationArrayOutput
+	ToGetSourceOnesignalConfigurationApplicationArrayOutputWithContext(context.Context) GetSourceOnesignalConfigurationApplicationArrayOutput
+}
+
+type GetSourceOnesignalConfigurationApplicationArray []GetSourceOnesignalConfigurationApplicationInput
+
+func (GetSourceOnesignalConfigurationApplicationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSourceOnesignalConfigurationApplication)(nil)).Elem()
+}
+
+func (i GetSourceOnesignalConfigurationApplicationArray) ToGetSourceOnesignalConfigurationApplicationArrayOutput() GetSourceOnesignalConfigurationApplicationArrayOutput {
+	return i.ToGetSourceOnesignalConfigurationApplicationArrayOutputWithContext(context.Background())
+}
+
+func (i GetSourceOnesignalConfigurationApplicationArray) ToGetSourceOnesignalConfigurationApplicationArrayOutputWithContext(ctx context.Context) GetSourceOnesignalConfigurationApplicationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOnesignalConfigurationApplicationArrayOutput)
 }
 
 type GetSourceOnesignalConfigurationApplicationOutput struct{ *pulumi.OutputState }
@@ -405,6 +704,46 @@ type GetSourceOpenweatherConfiguration struct {
 	// must be one of ["standard", "metric", "imperial"]
 	// Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
 	Units string `pulumi:"units"`
+}
+
+// GetSourceOpenweatherConfigurationInput is an input type that accepts GetSourceOpenweatherConfigurationArgs and GetSourceOpenweatherConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOpenweatherConfigurationInput` via:
+//
+//	GetSourceOpenweatherConfigurationArgs{...}
+type GetSourceOpenweatherConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOpenweatherConfigurationOutput() GetSourceOpenweatherConfigurationOutput
+	ToGetSourceOpenweatherConfigurationOutputWithContext(context.Context) GetSourceOpenweatherConfigurationOutput
+}
+
+type GetSourceOpenweatherConfigurationArgs struct {
+	// Your OpenWeather API Key. See \n\nhere\n\n. The key is case sensitive.
+	Appid pulumi.StringInput `pulumi:"appid"`
+	// must be one of ["af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en", "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it", "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt*br", "ro", "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua", "uk", "vi", "zh*cn", "zhTw", "zu"]
+	// You can use lang parameter to get the output in your language. The contents of the description field will be translated. See \n\nhere\n\n for the list of supported languages.
+	Lang pulumi.StringInput `pulumi:"lang"`
+	// Latitude for which you want to get weather condition from. (min -90, max 90)
+	Lat pulumi.StringInput `pulumi:"lat"`
+	// Longitude for which you want to get weather condition from. (min -180, max 180)
+	Lon pulumi.StringInput `pulumi:"lon"`
+	// must be one of ["openweather"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// must be one of ["standard", "metric", "imperial"]
+	// Units of measurement. standard, metric and imperial units are available. If you do not use the units parameter, standard units will be applied by default.
+	Units pulumi.StringInput `pulumi:"units"`
+}
+
+func (GetSourceOpenweatherConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOpenweatherConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOpenweatherConfigurationArgs) ToGetSourceOpenweatherConfigurationOutput() GetSourceOpenweatherConfigurationOutput {
+	return i.ToGetSourceOpenweatherConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOpenweatherConfigurationArgs) ToGetSourceOpenweatherConfigurationOutputWithContext(ctx context.Context) GetSourceOpenweatherConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOpenweatherConfigurationOutput)
 }
 
 type GetSourceOpenweatherConfigurationOutput struct{ *pulumi.OutputState }
@@ -477,6 +816,55 @@ type GetSourceOracleConfiguration struct {
 	TunnelMethod GetSourceOracleConfigurationTunnelMethod `pulumi:"tunnelMethod"`
 	// The username which is used to access the database.
 	Username string `pulumi:"username"`
+}
+
+// GetSourceOracleConfigurationInput is an input type that accepts GetSourceOracleConfigurationArgs and GetSourceOracleConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationInput` via:
+//
+//	GetSourceOracleConfigurationArgs{...}
+type GetSourceOracleConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationOutput() GetSourceOracleConfigurationOutput
+	ToGetSourceOracleConfigurationOutputWithContext(context.Context) GetSourceOracleConfigurationOutput
+}
+
+type GetSourceOracleConfigurationArgs struct {
+	// Connect data that will be used for DB connection
+	ConnectionData GetSourceOracleConfigurationConnectionDataInput `pulumi:"connectionData"`
+	// The encryption method with is used when communicating with the database.
+	Encryption GetSourceOracleConfigurationEncryptionInput `pulumi:"encryption"`
+	// Hostname of the database.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams pulumi.StringInput `pulumi:"jdbcUrlParams"`
+	// The password associated with the username.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Port of the database.
+	// Oracle Corporations recommends the following port numbers:
+	// 1521 - Default listening port for client connections to the listener.
+	// 2484 - Recommended and officially registered listening port for client connections to the listener using TCP/IP with SSL
+	Port pulumi.IntInput `pulumi:"port"`
+	// The list of schemas to sync from. Defaults to user. Case sensitive.
+	Schemas pulumi.StringArrayInput `pulumi:"schemas"`
+	// must be one of ["oracle"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetSourceOracleConfigurationTunnelMethodInput `pulumi:"tunnelMethod"`
+	// The username which is used to access the database.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceOracleConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationArgs) ToGetSourceOracleConfigurationOutput() GetSourceOracleConfigurationOutput {
+	return i.ToGetSourceOracleConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationArgs) ToGetSourceOracleConfigurationOutputWithContext(ctx context.Context) GetSourceOracleConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationOutput)
 }
 
 type GetSourceOracleConfigurationOutput struct{ *pulumi.OutputState }
@@ -555,6 +943,36 @@ type GetSourceOracleConfigurationConnectionData struct {
 	SourceOracleUpdateConnectBySystemIdSid GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid `pulumi:"sourceOracleUpdateConnectBySystemIdSid"`
 }
 
+// GetSourceOracleConfigurationConnectionDataInput is an input type that accepts GetSourceOracleConfigurationConnectionDataArgs and GetSourceOracleConfigurationConnectionDataOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationConnectionDataInput` via:
+//
+//	GetSourceOracleConfigurationConnectionDataArgs{...}
+type GetSourceOracleConfigurationConnectionDataInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationConnectionDataOutput() GetSourceOracleConfigurationConnectionDataOutput
+	ToGetSourceOracleConfigurationConnectionDataOutputWithContext(context.Context) GetSourceOracleConfigurationConnectionDataOutput
+}
+
+type GetSourceOracleConfigurationConnectionDataArgs struct {
+	SourceOracleConnectByServiceName       GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameInput       `pulumi:"sourceOracleConnectByServiceName"`
+	SourceOracleConnectBySystemIdSid       GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidInput       `pulumi:"sourceOracleConnectBySystemIdSid"`
+	SourceOracleUpdateConnectByServiceName GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameInput `pulumi:"sourceOracleUpdateConnectByServiceName"`
+	SourceOracleUpdateConnectBySystemIdSid GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidInput `pulumi:"sourceOracleUpdateConnectBySystemIdSid"`
+}
+
+func (GetSourceOracleConfigurationConnectionDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationConnectionData)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationConnectionDataArgs) ToGetSourceOracleConfigurationConnectionDataOutput() GetSourceOracleConfigurationConnectionDataOutput {
+	return i.ToGetSourceOracleConfigurationConnectionDataOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationConnectionDataArgs) ToGetSourceOracleConfigurationConnectionDataOutputWithContext(ctx context.Context) GetSourceOracleConfigurationConnectionDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationConnectionDataOutput)
+}
+
 type GetSourceOracleConfigurationConnectionDataOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationConnectionDataOutput) ElementType() reflect.Type {
@@ -598,6 +1016,34 @@ type GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName 
 	ServiceName    string `pulumi:"serviceName"`
 }
 
+// GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameInput is an input type that accepts GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs and GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameInput` via:
+//
+//	GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs{...}
+type GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput() GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutputWithContext(context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput
+}
+
+type GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs struct {
+	ConnectionType pulumi.StringInput `pulumi:"connectionType"`
+	ServiceName    pulumi.StringInput `pulumi:"serviceName"`
+}
+
+func (GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceName)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput() GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput {
+	return i.ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutputWithContext(ctx context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput)
+}
+
 type GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameOutput) ElementType() reflect.Type {
@@ -627,6 +1073,34 @@ func (o GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNa
 type GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid struct {
 	ConnectionType string `pulumi:"connectionType"`
 	Sid            string `pulumi:"sid"`
+}
+
+// GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidInput is an input type that accepts GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs and GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidInput` via:
+//
+//	GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs{...}
+type GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput() GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutputWithContext(context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput
+}
+
+type GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs struct {
+	ConnectionType pulumi.StringInput `pulumi:"connectionType"`
+	Sid            pulumi.StringInput `pulumi:"sid"`
+}
+
+func (GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSid)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput() GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput {
+	return i.ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutputWithContext(ctx context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput)
 }
 
 type GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidOutput struct{ *pulumi.OutputState }
@@ -660,6 +1134,34 @@ type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServic
 	ServiceName    string `pulumi:"serviceName"`
 }
 
+// GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameInput is an input type that accepts GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs and GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameInput` via:
+//
+//	GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs{...}
+type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput() GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutputWithContext(context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput
+}
+
+type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs struct {
+	ConnectionType pulumi.StringInput `pulumi:"connectionType"`
+	ServiceName    pulumi.StringInput `pulumi:"serviceName"`
+}
+
+func (GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceName)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput() GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput {
+	return i.ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutputWithContext(ctx context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput)
+}
+
 type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameOutput) ElementType() reflect.Type {
@@ -689,6 +1191,34 @@ func (o GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySer
 type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid struct {
 	ConnectionType string `pulumi:"connectionType"`
 	Sid            string `pulumi:"sid"`
+}
+
+// GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidInput is an input type that accepts GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs and GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidInput` via:
+//
+//	GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs{...}
+type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput() GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput
+	ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutputWithContext(context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput
+}
+
+type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs struct {
+	ConnectionType pulumi.StringInput `pulumi:"connectionType"`
+	Sid            pulumi.StringInput `pulumi:"sid"`
+}
+
+func (GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSid)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput() GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput {
+	return i.ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs) ToGetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutputWithContext(ctx context.Context) GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput)
 }
 
 type GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidOutput struct{ *pulumi.OutputState }
@@ -722,6 +1252,36 @@ type GetSourceOracleConfigurationEncryption struct {
 	SourceOracleEncryptionTlsEncryptedVerifyCertificate       GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate       `pulumi:"sourceOracleEncryptionTlsEncryptedVerifyCertificate"`
 	SourceOracleUpdateEncryptionNativeNetworkEncryptionNne    GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne    `pulumi:"sourceOracleUpdateEncryptionNativeNetworkEncryptionNne"`
 	SourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate `pulumi:"sourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate"`
+}
+
+// GetSourceOracleConfigurationEncryptionInput is an input type that accepts GetSourceOracleConfigurationEncryptionArgs and GetSourceOracleConfigurationEncryptionOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationEncryptionInput` via:
+//
+//	GetSourceOracleConfigurationEncryptionArgs{...}
+type GetSourceOracleConfigurationEncryptionInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationEncryptionOutput() GetSourceOracleConfigurationEncryptionOutput
+	ToGetSourceOracleConfigurationEncryptionOutputWithContext(context.Context) GetSourceOracleConfigurationEncryptionOutput
+}
+
+type GetSourceOracleConfigurationEncryptionArgs struct {
+	SourceOracleEncryptionNativeNetworkEncryptionNne          GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneInput          `pulumi:"sourceOracleEncryptionNativeNetworkEncryptionNne"`
+	SourceOracleEncryptionTlsEncryptedVerifyCertificate       GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateInput       `pulumi:"sourceOracleEncryptionTlsEncryptedVerifyCertificate"`
+	SourceOracleUpdateEncryptionNativeNetworkEncryptionNne    GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneInput    `pulumi:"sourceOracleUpdateEncryptionNativeNetworkEncryptionNne"`
+	SourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateInput `pulumi:"sourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate"`
+}
+
+func (GetSourceOracleConfigurationEncryptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationEncryption)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationEncryptionArgs) ToGetSourceOracleConfigurationEncryptionOutput() GetSourceOracleConfigurationEncryptionOutput {
+	return i.ToGetSourceOracleConfigurationEncryptionOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationEncryptionArgs) ToGetSourceOracleConfigurationEncryptionOutputWithContext(ctx context.Context) GetSourceOracleConfigurationEncryptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationEncryptionOutput)
 }
 
 type GetSourceOracleConfigurationEncryptionOutput struct{ *pulumi.OutputState }
@@ -767,6 +1327,34 @@ type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEn
 	EncryptionMethod    string `pulumi:"encryptionMethod"`
 }
 
+// GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneInput is an input type that accepts GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs and GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneInput` via:
+//
+//	GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs{...}
+type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput() GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput
+	ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutputWithContext(context.Context) GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput
+}
+
+type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs struct {
+	EncryptionAlgorithm pulumi.StringInput `pulumi:"encryptionAlgorithm"`
+	EncryptionMethod    pulumi.StringInput `pulumi:"encryptionMethod"`
+}
+
+func (GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNne)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput() GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput {
+	return i.ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutputWithContext(ctx context.Context) GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput)
+}
+
 type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneOutput) ElementType() reflect.Type {
@@ -796,6 +1384,34 @@ func (o GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetwor
 type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate struct {
 	EncryptionMethod string `pulumi:"encryptionMethod"`
 	SslCertificate   string `pulumi:"sslCertificate"`
+}
+
+// GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateInput is an input type that accepts GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs and GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateInput` via:
+//
+//	GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs{...}
+type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput() GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput
+	ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutputWithContext(context.Context) GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput
+}
+
+type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs struct {
+	EncryptionMethod pulumi.StringInput `pulumi:"encryptionMethod"`
+	SslCertificate   pulumi.StringInput `pulumi:"sslCertificate"`
+}
+
+func (GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificate)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput() GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput {
+	return i.ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutputWithContext(ctx context.Context) GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput)
 }
 
 type GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateOutput struct{ *pulumi.OutputState }
@@ -829,6 +1445,34 @@ type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNet
 	EncryptionMethod    string `pulumi:"encryptionMethod"`
 }
 
+// GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneInput is an input type that accepts GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs and GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneInput` via:
+//
+//	GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs{...}
+type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput() GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput
+	ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutputWithContext(context.Context) GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput
+}
+
+type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs struct {
+	EncryptionAlgorithm pulumi.StringInput `pulumi:"encryptionAlgorithm"`
+	EncryptionMethod    pulumi.StringInput `pulumi:"encryptionMethod"`
+}
+
+func (GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNne)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput() GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput {
+	return i.ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutputWithContext(ctx context.Context) GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput)
+}
+
 type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneOutput) ElementType() reflect.Type {
@@ -858,6 +1502,34 @@ func (o GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNative
 type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate struct {
 	EncryptionMethod string `pulumi:"encryptionMethod"`
 	SslCertificate   string `pulumi:"sslCertificate"`
+}
+
+// GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateInput is an input type that accepts GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs and GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateInput` via:
+//
+//	GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs{...}
+type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput() GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput
+	ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutputWithContext(context.Context) GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput
+}
+
+type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs struct {
+	EncryptionMethod pulumi.StringInput `pulumi:"encryptionMethod"`
+	SslCertificate   pulumi.StringInput `pulumi:"sslCertificate"`
+}
+
+func (GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificate)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput() GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput {
+	return i.ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs) ToGetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutputWithContext(ctx context.Context) GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput)
 }
 
 type GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateOutput struct{ *pulumi.OutputState }
@@ -893,6 +1565,38 @@ type GetSourceOracleConfigurationTunnelMethod struct {
 	SourceOracleUpdateSshTunnelMethodNoTunnel               GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel               `pulumi:"sourceOracleUpdateSshTunnelMethodNoTunnel"`
 	SourceOracleUpdateSshTunnelMethodPasswordAuthentication GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication `pulumi:"sourceOracleUpdateSshTunnelMethodPasswordAuthentication"`
 	SourceOracleUpdateSshTunnelMethodSshKeyAuthentication   GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication   `pulumi:"sourceOracleUpdateSshTunnelMethodSshKeyAuthentication"`
+}
+
+// GetSourceOracleConfigurationTunnelMethodInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodArgs and GetSourceOracleConfigurationTunnelMethodOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodArgs{...}
+type GetSourceOracleConfigurationTunnelMethodInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodOutput() GetSourceOracleConfigurationTunnelMethodOutput
+	ToGetSourceOracleConfigurationTunnelMethodOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodArgs struct {
+	SourceOracleSshTunnelMethodNoTunnel                     GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelInput                     `pulumi:"sourceOracleSshTunnelMethodNoTunnel"`
+	SourceOracleSshTunnelMethodPasswordAuthentication       GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationInput       `pulumi:"sourceOracleSshTunnelMethodPasswordAuthentication"`
+	SourceOracleSshTunnelMethodSshKeyAuthentication         GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationInput         `pulumi:"sourceOracleSshTunnelMethodSshKeyAuthentication"`
+	SourceOracleUpdateSshTunnelMethodNoTunnel               GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelInput               `pulumi:"sourceOracleUpdateSshTunnelMethodNoTunnel"`
+	SourceOracleUpdateSshTunnelMethodPasswordAuthentication GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationInput `pulumi:"sourceOracleUpdateSshTunnelMethodPasswordAuthentication"`
+	SourceOracleUpdateSshTunnelMethodSshKeyAuthentication   GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationInput   `pulumi:"sourceOracleUpdateSshTunnelMethodSshKeyAuthentication"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethod)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodArgs) ToGetSourceOracleConfigurationTunnelMethodOutput() GetSourceOracleConfigurationTunnelMethodOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodArgs) ToGetSourceOracleConfigurationTunnelMethodOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodOutput)
 }
 
 type GetSourceOracleConfigurationTunnelMethodOutput struct{ *pulumi.OutputState }
@@ -949,6 +1653,33 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel
 	TunnelMethod string `pulumi:"tunnelMethod"`
 }
 
+// GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs struct {
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnel)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput)
+}
+
 type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelOutput) ElementType() reflect.Type {
@@ -975,6 +1706,37 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPassword
 	TunnelPort         int    `pulumi:"tunnelPort"`
 	TunnelUser         string `pulumi:"tunnelUser"`
 	TunnelUserPassword string `pulumi:"tunnelUserPassword"`
+}
+
+// GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs struct {
+	TunnelHost         pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod       pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort         pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser         pulumi.StringInput `pulumi:"tunnelUser"`
+	TunnelUserPassword pulumi.StringInput `pulumi:"tunnelUserPassword"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput)
 }
 
 type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationOutput struct{ *pulumi.OutputState }
@@ -1029,6 +1791,37 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAu
 	TunnelUser   string `pulumi:"tunnelUser"`
 }
 
+// GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs struct {
+	SshKey       pulumi.StringInput `pulumi:"sshKey"`
+	TunnelHost   pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort   pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser   pulumi.StringInput `pulumi:"tunnelUser"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput)
+}
+
 type GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationOutput) ElementType() reflect.Type {
@@ -1077,6 +1870,33 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNo
 	TunnelMethod string `pulumi:"tunnelMethod"`
 }
 
+// GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs struct {
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnel)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput)
+}
+
 type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelOutput) ElementType() reflect.Type {
@@ -1103,6 +1923,37 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPa
 	TunnelPort         int    `pulumi:"tunnelPort"`
 	TunnelUser         string `pulumi:"tunnelUser"`
 	TunnelUserPassword string `pulumi:"tunnelUserPassword"`
+}
+
+// GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs struct {
+	TunnelHost         pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod       pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort         pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser         pulumi.StringInput `pulumi:"tunnelUser"`
+	TunnelUserPassword pulumi.StringInput `pulumi:"tunnelUserPassword"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput)
 }
 
 type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationOutput struct{ *pulumi.OutputState }
@@ -1155,6 +2006,37 @@ type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSs
 	TunnelMethod string `pulumi:"tunnelMethod"`
 	TunnelPort   int    `pulumi:"tunnelPort"`
 	TunnelUser   string `pulumi:"tunnelUser"`
+}
+
+// GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationInput is an input type that accepts GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs and GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationInput` via:
+//
+//	GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs{...}
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput
+	ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput
+}
+
+type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs struct {
+	SshKey       pulumi.StringInput `pulumi:"sshKey"`
+	TunnelHost   pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort   pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser   pulumi.StringInput `pulumi:"tunnelUser"`
+}
+
+func (GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput() GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput {
+	return i.ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput)
 }
 
 type GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
@@ -1218,6 +2100,48 @@ type GetSourceOrbConfiguration struct {
 	StringEventPropertiesKeys []string `pulumi:"stringEventPropertiesKeys"`
 	// Property key name to group subscription usage by.
 	SubscriptionUsageGroupingKey string `pulumi:"subscriptionUsageGroupingKey"`
+}
+
+// GetSourceOrbConfigurationInput is an input type that accepts GetSourceOrbConfigurationArgs and GetSourceOrbConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOrbConfigurationInput` via:
+//
+//	GetSourceOrbConfigurationArgs{...}
+type GetSourceOrbConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOrbConfigurationOutput() GetSourceOrbConfigurationOutput
+	ToGetSourceOrbConfigurationOutputWithContext(context.Context) GetSourceOrbConfigurationOutput
+}
+
+type GetSourceOrbConfigurationArgs struct {
+	// Orb API Key, issued from the Orb admin console.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// When set to N, the connector will always refresh resources created within the past N days. By default, updated objects that are not newly created are not incrementally synced.
+	LookbackWindowDays pulumi.IntInput `pulumi:"lookbackWindowDays"`
+	// Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+	NumericEventPropertiesKeys pulumi.StringArrayInput `pulumi:"numericEventPropertiesKeys"`
+	// Orb Plan ID to filter subscriptions that should have usage fetched.
+	PlanId pulumi.StringInput `pulumi:"planId"`
+	// must be one of ["orb"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2022-03-01T00:00:00Z. Any data with createdAt before this data will not be synced. For Subscription Usage, this becomes the `timeframeStart` API parameter.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Property key names to extract from all events, in order to enrich ledger entries corresponding to an event deduction.
+	StringEventPropertiesKeys pulumi.StringArrayInput `pulumi:"stringEventPropertiesKeys"`
+	// Property key name to group subscription usage by.
+	SubscriptionUsageGroupingKey pulumi.StringInput `pulumi:"subscriptionUsageGroupingKey"`
+}
+
+func (GetSourceOrbConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOrbConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOrbConfigurationArgs) ToGetSourceOrbConfigurationOutput() GetSourceOrbConfigurationOutput {
+	return i.ToGetSourceOrbConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOrbConfigurationArgs) ToGetSourceOrbConfigurationOutputWithContext(ctx context.Context) GetSourceOrbConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOrbConfigurationOutput)
 }
 
 type GetSourceOrbConfigurationOutput struct{ *pulumi.OutputState }
@@ -1285,6 +2209,40 @@ type GetSourceOrbitConfiguration struct {
 	Workspace string `pulumi:"workspace"`
 }
 
+// GetSourceOrbitConfigurationInput is an input type that accepts GetSourceOrbitConfigurationArgs and GetSourceOrbitConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOrbitConfigurationInput` via:
+//
+//	GetSourceOrbitConfigurationArgs{...}
+type GetSourceOrbitConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOrbitConfigurationOutput() GetSourceOrbitConfigurationOutput
+	ToGetSourceOrbitConfigurationOutputWithContext(context.Context) GetSourceOrbitConfigurationOutput
+}
+
+type GetSourceOrbitConfigurationArgs struct {
+	// Authorizes you to work with Orbit workspaces associated with the token.
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	// must be one of ["orbit"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Date in the format 2022-06-26. Only load members whose last activities are after this date.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The unique name of the workspace that your API token is associated with.
+	Workspace pulumi.StringInput `pulumi:"workspace"`
+}
+
+func (GetSourceOrbitConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOrbitConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOrbitConfigurationArgs) ToGetSourceOrbitConfigurationOutput() GetSourceOrbitConfigurationOutput {
+	return i.ToGetSourceOrbitConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOrbitConfigurationArgs) ToGetSourceOrbitConfigurationOutputWithContext(ctx context.Context) GetSourceOrbitConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOrbitConfigurationOutput)
+}
+
 type GetSourceOrbitConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOrbitConfigurationOutput) ElementType() reflect.Type {
@@ -1334,6 +2292,46 @@ type GetSourceOutbrainAmplifyConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceOutbrainAmplifyConfigurationInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationArgs and GetSourceOutbrainAmplifyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationArgs{...}
+type GetSourceOutbrainAmplifyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationOutput() GetSourceOutbrainAmplifyConfigurationOutput
+	ToGetSourceOutbrainAmplifyConfigurationOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationArgs struct {
+	// Credentials for making authenticated requests requires either username/password or access_token.
+	Credentials GetSourceOutbrainAmplifyConfigurationCredentialsInput `pulumi:"credentials"`
+	// Date in the format YYYY-MM-DD.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// must be one of ["country", "region", "subregion"]
+	// The granularity used for geo location data in reports.
+	GeoLocationBreakdown pulumi.StringInput `pulumi:"geoLocationBreakdown"`
+	// must be one of ["daily", "weekly", "monthly"]
+	// The granularity used for periodic data in reports. See \n\nthe docs\n\n.
+	ReportGranularity pulumi.StringInput `pulumi:"reportGranularity"`
+	// must be one of ["outbrain-amplify"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Date in the format YYYY-MM-DD eg. 2017-01-25. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationArgs) ToGetSourceOutbrainAmplifyConfigurationOutput() GetSourceOutbrainAmplifyConfigurationOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationArgs) ToGetSourceOutbrainAmplifyConfigurationOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationOutput)
 }
 
 type GetSourceOutbrainAmplifyConfigurationOutput struct{ *pulumi.OutputState }
@@ -1391,6 +2389,36 @@ type GetSourceOutbrainAmplifyConfigurationCredentials struct {
 	SourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword `pulumi:"sourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword"`
 }
 
+// GetSourceOutbrainAmplifyConfigurationCredentialsInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationCredentialsArgs and GetSourceOutbrainAmplifyConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationCredentialsInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationCredentialsArgs{...}
+type GetSourceOutbrainAmplifyConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsOutput() GetSourceOutbrainAmplifyConfigurationCredentialsOutput
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationCredentialsArgs struct {
+	SourceOutbrainAmplifyAuthenticationMethodAccessToken            GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenInput            `pulumi:"sourceOutbrainAmplifyAuthenticationMethodAccessToken"`
+	SourceOutbrainAmplifyAuthenticationMethodUsernamePassword       GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordInput       `pulumi:"sourceOutbrainAmplifyAuthenticationMethodUsernamePassword"`
+	SourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken      GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenInput      `pulumi:"sourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken"`
+	SourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordInput `pulumi:"sourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsOutput() GetSourceOutbrainAmplifyConfigurationCredentialsOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationCredentialsOutput)
+}
+
 type GetSourceOutbrainAmplifyConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOutbrainAmplifyConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -1434,6 +2462,34 @@ type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthen
 	Type        string `pulumi:"type"`
 }
 
+// GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs and GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs{...}
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	Type        pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput)
+}
+
 type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -1464,6 +2520,35 @@ type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthen
 	Password string `pulumi:"password"`
 	Type     string `pulumi:"type"`
 	Username string `pulumi:"username"`
+}
+
+// GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs and GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs{...}
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs struct {
+	Password pulumi.StringInput `pulumi:"password"`
+	Type     pulumi.StringInput `pulumi:"type"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePassword)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput)
 }
 
 type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordOutput struct{ *pulumi.OutputState }
@@ -1503,6 +2588,34 @@ type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdate
 	Type        string `pulumi:"type"`
 }
 
+// GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs and GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs{...}
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	Type        pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput)
+}
+
 type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -1533,6 +2646,35 @@ type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdate
 	Password string `pulumi:"password"`
 	Type     string `pulumi:"type"`
 	Username string `pulumi:"username"`
+}
+
+// GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordInput is an input type that accepts GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs and GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput values.
+// You can construct a concrete instance of `GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordInput` via:
+//
+//	GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs{...}
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput
+	ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutputWithContext(context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput
+}
+
+type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs struct {
+	Password pulumi.StringInput `pulumi:"password"`
+	Type     pulumi.StringInput `pulumi:"type"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePassword)(nil)).Elem()
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput() GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput {
+	return i.ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs) ToGetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutputWithContext(ctx context.Context) GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput)
 }
 
 type GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordOutput struct{ *pulumi.OutputState }
@@ -1580,6 +2722,44 @@ type GetSourceOutreachConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceOutreachConfigurationInput is an input type that accepts GetSourceOutreachConfigurationArgs and GetSourceOutreachConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceOutreachConfigurationInput` via:
+//
+//	GetSourceOutreachConfigurationArgs{...}
+type GetSourceOutreachConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceOutreachConfigurationOutput() GetSourceOutreachConfigurationOutput
+	ToGetSourceOutreachConfigurationOutputWithContext(context.Context) GetSourceOutreachConfigurationOutput
+}
+
+type GetSourceOutreachConfigurationArgs struct {
+	// The Client ID of your Outreach developer application.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The Client Secret of your Outreach developer application.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// A Redirect URI is the location where the authorization server sends the user once the app has been successfully authorized and granted an authorization code or access token.
+	RedirectUri pulumi.StringInput `pulumi:"redirectUri"`
+	// The token for obtaining the new access token.
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["outreach"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Outreach API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceOutreachConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceOutreachConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceOutreachConfigurationArgs) ToGetSourceOutreachConfigurationOutput() GetSourceOutreachConfigurationOutput {
+	return i.ToGetSourceOutreachConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceOutreachConfigurationArgs) ToGetSourceOutreachConfigurationOutputWithContext(ctx context.Context) GetSourceOutreachConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceOutreachConfigurationOutput)
 }
 
 type GetSourceOutreachConfigurationOutput struct{ *pulumi.OutputState }
@@ -1641,6 +2821,44 @@ type GetSourcePaypalTransactionConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourcePaypalTransactionConfigurationInput is an input type that accepts GetSourcePaypalTransactionConfigurationArgs and GetSourcePaypalTransactionConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePaypalTransactionConfigurationInput` via:
+//
+//	GetSourcePaypalTransactionConfigurationArgs{...}
+type GetSourcePaypalTransactionConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePaypalTransactionConfigurationOutput() GetSourcePaypalTransactionConfigurationOutput
+	ToGetSourcePaypalTransactionConfigurationOutputWithContext(context.Context) GetSourcePaypalTransactionConfigurationOutput
+}
+
+type GetSourcePaypalTransactionConfigurationArgs struct {
+	// The Client ID of your Paypal developer application.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The Client Secret of your Paypal developer application.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Determines whether to use the sandbox or production environment.
+	IsSandbox pulumi.BoolInput `pulumi:"isSandbox"`
+	// The key to refresh the expired access token.
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["paypal-transaction"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Start Date for data extraction in \n\nISO format\n\n. Date must be in range from 3 years till 12 hrs before present time.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourcePaypalTransactionConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePaypalTransactionConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePaypalTransactionConfigurationArgs) ToGetSourcePaypalTransactionConfigurationOutput() GetSourcePaypalTransactionConfigurationOutput {
+	return i.ToGetSourcePaypalTransactionConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePaypalTransactionConfigurationArgs) ToGetSourcePaypalTransactionConfigurationOutputWithContext(ctx context.Context) GetSourcePaypalTransactionConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePaypalTransactionConfigurationOutput)
+}
+
 type GetSourcePaypalTransactionConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePaypalTransactionConfigurationOutput) ElementType() reflect.Type {
@@ -1696,6 +2914,40 @@ type GetSourcePaystackConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourcePaystackConfigurationInput is an input type that accepts GetSourcePaystackConfigurationArgs and GetSourcePaystackConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePaystackConfigurationInput` via:
+//
+//	GetSourcePaystackConfigurationArgs{...}
+type GetSourcePaystackConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePaystackConfigurationOutput() GetSourcePaystackConfigurationOutput
+	ToGetSourcePaystackConfigurationOutputWithContext(context.Context) GetSourcePaystackConfigurationOutput
+}
+
+type GetSourcePaystackConfigurationArgs struct {
+	// When set, the connector will always reload data from the past N days, where N is the value set here. This is useful if your data is updated after creation.
+	LookbackWindowDays pulumi.IntInput `pulumi:"lookbackWindowDays"`
+	// The Paystack API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// must be one of ["paystack"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourcePaystackConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePaystackConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePaystackConfigurationArgs) ToGetSourcePaystackConfigurationOutput() GetSourcePaystackConfigurationOutput {
+	return i.ToGetSourcePaystackConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePaystackConfigurationArgs) ToGetSourcePaystackConfigurationOutputWithContext(ctx context.Context) GetSourcePaystackConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePaystackConfigurationOutput)
+}
+
 type GetSourcePaystackConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePaystackConfigurationOutput) ElementType() reflect.Type {
@@ -1736,6 +2988,35 @@ type GetSourcePendoConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourcePendoConfigurationInput is an input type that accepts GetSourcePendoConfigurationArgs and GetSourcePendoConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePendoConfigurationInput` via:
+//
+//	GetSourcePendoConfigurationArgs{...}
+type GetSourcePendoConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePendoConfigurationOutput() GetSourcePendoConfigurationOutput
+	ToGetSourcePendoConfigurationOutputWithContext(context.Context) GetSourcePendoConfigurationOutput
+}
+
+type GetSourcePendoConfigurationArgs struct {
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["pendo"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePendoConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePendoConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePendoConfigurationArgs) ToGetSourcePendoConfigurationOutput() GetSourcePendoConfigurationOutput {
+	return i.ToGetSourcePendoConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePendoConfigurationArgs) ToGetSourcePendoConfigurationOutputWithContext(ctx context.Context) GetSourcePendoConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePendoConfigurationOutput)
+}
+
 type GetSourcePendoConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePendoConfigurationOutput) ElementType() reflect.Type {
@@ -1764,6 +3045,36 @@ type GetSourcePersistiqConfiguration struct {
 	ApiKey string `pulumi:"apiKey"`
 	// must be one of ["persistiq"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourcePersistiqConfigurationInput is an input type that accepts GetSourcePersistiqConfigurationArgs and GetSourcePersistiqConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePersistiqConfigurationInput` via:
+//
+//	GetSourcePersistiqConfigurationArgs{...}
+type GetSourcePersistiqConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePersistiqConfigurationOutput() GetSourcePersistiqConfigurationOutput
+	ToGetSourcePersistiqConfigurationOutputWithContext(context.Context) GetSourcePersistiqConfigurationOutput
+}
+
+type GetSourcePersistiqConfigurationArgs struct {
+	// PersistIq API Key. See the \n\ndocs\n\n for more information on where to find that key.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["persistiq"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePersistiqConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePersistiqConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePersistiqConfigurationArgs) ToGetSourcePersistiqConfigurationOutput() GetSourcePersistiqConfigurationOutput {
+	return i.ToGetSourcePersistiqConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePersistiqConfigurationArgs) ToGetSourcePersistiqConfigurationOutputWithContext(ctx context.Context) GetSourcePersistiqConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePersistiqConfigurationOutput)
 }
 
 type GetSourcePersistiqConfigurationOutput struct{ *pulumi.OutputState }
@@ -1805,6 +3116,46 @@ type GetSourcePexelsApiConfiguration struct {
 	Size string `pulumi:"size"`
 	// must be one of ["pexels-api"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourcePexelsApiConfigurationInput is an input type that accepts GetSourcePexelsApiConfigurationArgs and GetSourcePexelsApiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePexelsApiConfigurationInput` via:
+//
+//	GetSourcePexelsApiConfigurationArgs{...}
+type GetSourcePexelsApiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePexelsApiConfigurationOutput() GetSourcePexelsApiConfigurationOutput
+	ToGetSourcePexelsApiConfigurationOutputWithContext(context.Context) GetSourcePexelsApiConfigurationOutput
+}
+
+type GetSourcePexelsApiConfigurationArgs struct {
+	// API key is required to access pexels api, For getting your's goto https://www.pexels.com/api/documentation and create account for free.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Optional, Desired photo color. Supported colors red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code.
+	Color pulumi.StringInput `pulumi:"color"`
+	// Optional, The locale of the search you are performing. The current supported locales are 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.
+	Locale pulumi.StringInput `pulumi:"locale"`
+	// Optional, Desired photo orientation. The current supported orientations are landscape, portrait or square
+	Orientation pulumi.StringInput `pulumi:"orientation"`
+	// Optional, the search query, Example Ocean, Tigers, Pears, etc.
+	Query pulumi.StringInput `pulumi:"query"`
+	// Optional, Minimum photo size. The current supported sizes are large(24MP), medium(12MP) or small(4MP).
+	Size pulumi.StringInput `pulumi:"size"`
+	// must be one of ["pexels-api"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePexelsApiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePexelsApiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePexelsApiConfigurationArgs) ToGetSourcePexelsApiConfigurationOutput() GetSourcePexelsApiConfigurationOutput {
+	return i.ToGetSourcePexelsApiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePexelsApiConfigurationArgs) ToGetSourcePexelsApiConfigurationOutputWithContext(ctx context.Context) GetSourcePexelsApiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePexelsApiConfigurationOutput)
 }
 
 type GetSourcePexelsApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -1866,6 +3217,39 @@ type GetSourcePinterestConfiguration struct {
 	Statuses []string `pulumi:"statuses"`
 }
 
+// GetSourcePinterestConfigurationInput is an input type that accepts GetSourcePinterestConfigurationArgs and GetSourcePinterestConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationInput` via:
+//
+//	GetSourcePinterestConfigurationArgs{...}
+type GetSourcePinterestConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationOutput() GetSourcePinterestConfigurationOutput
+	ToGetSourcePinterestConfigurationOutputWithContext(context.Context) GetSourcePinterestConfigurationOutput
+}
+
+type GetSourcePinterestConfigurationArgs struct {
+	Credentials GetSourcePinterestConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["pinterest"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// A date in the format YYYY-MM-DD. If you have not set a date, it would be defaulted to latest allowed date by api (89 days from today).
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Entity statuses based off of campaigns, ad_groups, and ads. If you do not have a status set, it will be ignored completely.
+	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
+}
+
+func (GetSourcePinterestConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationArgs) ToGetSourcePinterestConfigurationOutput() GetSourcePinterestConfigurationOutput {
+	return i.ToGetSourcePinterestConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationArgs) ToGetSourcePinterestConfigurationOutputWithContext(ctx context.Context) GetSourcePinterestConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationOutput)
+}
+
 type GetSourcePinterestConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePinterestConfigurationOutput) ElementType() reflect.Type {
@@ -1906,6 +3290,36 @@ type GetSourcePinterestConfigurationCredentials struct {
 	SourcePinterestAuthorizationMethodOAuth20           GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20           `pulumi:"sourcePinterestAuthorizationMethodOAuth20"`
 	SourcePinterestUpdateAuthorizationMethodAccessToken GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken `pulumi:"sourcePinterestUpdateAuthorizationMethodAccessToken"`
 	SourcePinterestUpdateAuthorizationMethodOAuth20     GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20     `pulumi:"sourcePinterestUpdateAuthorizationMethodOAuth20"`
+}
+
+// GetSourcePinterestConfigurationCredentialsInput is an input type that accepts GetSourcePinterestConfigurationCredentialsArgs and GetSourcePinterestConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationCredentialsInput` via:
+//
+//	GetSourcePinterestConfigurationCredentialsArgs{...}
+type GetSourcePinterestConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationCredentialsOutput() GetSourcePinterestConfigurationCredentialsOutput
+	ToGetSourcePinterestConfigurationCredentialsOutputWithContext(context.Context) GetSourcePinterestConfigurationCredentialsOutput
+}
+
+type GetSourcePinterestConfigurationCredentialsArgs struct {
+	SourcePinterestAuthorizationMethodAccessToken       GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenInput       `pulumi:"sourcePinterestAuthorizationMethodAccessToken"`
+	SourcePinterestAuthorizationMethodOAuth20           GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Input           `pulumi:"sourcePinterestAuthorizationMethodOAuth20"`
+	SourcePinterestUpdateAuthorizationMethodAccessToken GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenInput `pulumi:"sourcePinterestUpdateAuthorizationMethodAccessToken"`
+	SourcePinterestUpdateAuthorizationMethodOAuth20     GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Input     `pulumi:"sourcePinterestUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourcePinterestConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationCredentialsArgs) ToGetSourcePinterestConfigurationCredentialsOutput() GetSourcePinterestConfigurationCredentialsOutput {
+	return i.ToGetSourcePinterestConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationCredentialsArgs) ToGetSourcePinterestConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourcePinterestConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationCredentialsOutput)
 }
 
 type GetSourcePinterestConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -1951,6 +3365,34 @@ type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMetho
 	AuthMethod  string `pulumi:"authMethod"`
 }
 
+// GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenInput is an input type that accepts GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs and GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenInput` via:
+//
+//	GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs{...}
+type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput() GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutputWithContext(context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput
+}
+
+type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthMethod  pulumi.StringInput `pulumi:"authMethod"`
+}
+
+func (GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs) ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput() GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput {
+	return i.ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs) ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput)
+}
+
 type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -1982,6 +3424,36 @@ type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMetho
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Input is an input type that accepts GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args and GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args{...}
+type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output() GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output
+}
+
+type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args struct {
+	AuthMethod   pulumi.StringInput `pulumi:"authMethod"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args) ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output() GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output {
+	return i.ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args) ToGetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output)
 }
 
 type GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -2027,6 +3499,34 @@ type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizatio
 	AuthMethod  string `pulumi:"authMethod"`
 }
 
+// GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenInput is an input type that accepts GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs and GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenInput` via:
+//
+//	GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs{...}
+type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput() GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutputWithContext(context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput
+}
+
+type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthMethod  pulumi.StringInput `pulumi:"authMethod"`
+}
+
+func (GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs) ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput() GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput {
+	return i.ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs) ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput)
+}
+
 type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -2058,6 +3558,36 @@ type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizatio
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args and GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output() GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output
+	ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args struct {
+	AuthMethod   pulumi.StringInput `pulumi:"authMethod"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args) ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output() GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args) ToGetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -2106,6 +3636,37 @@ type GetSourcePipedriveConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourcePipedriveConfigurationInput is an input type that accepts GetSourcePipedriveConfigurationArgs and GetSourcePipedriveConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePipedriveConfigurationInput` via:
+//
+//	GetSourcePipedriveConfigurationArgs{...}
+type GetSourcePipedriveConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePipedriveConfigurationOutput() GetSourcePipedriveConfigurationOutput
+	ToGetSourcePipedriveConfigurationOutputWithContext(context.Context) GetSourcePipedriveConfigurationOutput
+}
+
+type GetSourcePipedriveConfigurationArgs struct {
+	Authorization GetSourcePipedriveConfigurationAuthorizationInput `pulumi:"authorization"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated. When specified and not None, then stream will behave as incremental
+	ReplicationStartDate pulumi.StringInput `pulumi:"replicationStartDate"`
+	// must be one of ["pipedrive"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePipedriveConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePipedriveConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePipedriveConfigurationArgs) ToGetSourcePipedriveConfigurationOutput() GetSourcePipedriveConfigurationOutput {
+	return i.ToGetSourcePipedriveConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePipedriveConfigurationArgs) ToGetSourcePipedriveConfigurationOutputWithContext(ctx context.Context) GetSourcePipedriveConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePipedriveConfigurationOutput)
+}
+
 type GetSourcePipedriveConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePipedriveConfigurationOutput) ElementType() reflect.Type {
@@ -2139,6 +3700,34 @@ func (o GetSourcePipedriveConfigurationOutput) SourceType() pulumi.StringOutput 
 type GetSourcePipedriveConfigurationAuthorization struct {
 	ApiToken string `pulumi:"apiToken"`
 	AuthType string `pulumi:"authType"`
+}
+
+// GetSourcePipedriveConfigurationAuthorizationInput is an input type that accepts GetSourcePipedriveConfigurationAuthorizationArgs and GetSourcePipedriveConfigurationAuthorizationOutput values.
+// You can construct a concrete instance of `GetSourcePipedriveConfigurationAuthorizationInput` via:
+//
+//	GetSourcePipedriveConfigurationAuthorizationArgs{...}
+type GetSourcePipedriveConfigurationAuthorizationInput interface {
+	pulumi.Input
+
+	ToGetSourcePipedriveConfigurationAuthorizationOutput() GetSourcePipedriveConfigurationAuthorizationOutput
+	ToGetSourcePipedriveConfigurationAuthorizationOutputWithContext(context.Context) GetSourcePipedriveConfigurationAuthorizationOutput
+}
+
+type GetSourcePipedriveConfigurationAuthorizationArgs struct {
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourcePipedriveConfigurationAuthorizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePipedriveConfigurationAuthorization)(nil)).Elem()
+}
+
+func (i GetSourcePipedriveConfigurationAuthorizationArgs) ToGetSourcePipedriveConfigurationAuthorizationOutput() GetSourcePipedriveConfigurationAuthorizationOutput {
+	return i.ToGetSourcePipedriveConfigurationAuthorizationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePipedriveConfigurationAuthorizationArgs) ToGetSourcePipedriveConfigurationAuthorizationOutputWithContext(ctx context.Context) GetSourcePipedriveConfigurationAuthorizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePipedriveConfigurationAuthorizationOutput)
 }
 
 type GetSourcePipedriveConfigurationAuthorizationOutput struct{ *pulumi.OutputState }
@@ -2192,6 +3781,60 @@ type GetSourcePocketConfiguration struct {
 	State string `pulumi:"state"`
 	// Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
 	Tag string `pulumi:"tag"`
+}
+
+// GetSourcePocketConfigurationInput is an input type that accepts GetSourcePocketConfigurationArgs and GetSourcePocketConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePocketConfigurationInput` via:
+//
+//	GetSourcePocketConfigurationArgs{...}
+type GetSourcePocketConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePocketConfigurationOutput() GetSourcePocketConfigurationOutput
+	ToGetSourcePocketConfigurationOutputWithContext(context.Context) GetSourcePocketConfigurationOutput
+}
+
+type GetSourcePocketConfigurationArgs struct {
+	// The user's Pocket access token.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// Your application's Consumer Key.
+	ConsumerKey pulumi.StringInput `pulumi:"consumerKey"`
+	// must be one of ["article", "video", "image"]
+	// Select the content type of the items to retrieve.
+	ContentType pulumi.StringInput `pulumi:"contentType"`
+	// must be one of ["simple", "complete"]
+	// Select the granularity of the information about each item.
+	DetailType pulumi.StringInput `pulumi:"detailType"`
+	// Only return items from a particular `domain`.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Retrieve only favorited items.
+	Favorite pulumi.BoolInput `pulumi:"favorite"`
+	// Only return items whose title or url contain the `search` string.
+	Search pulumi.StringInput `pulumi:"search"`
+	// Only return items modified since the given timestamp.
+	Since pulumi.StringInput `pulumi:"since"`
+	// must be one of ["newest", "oldest", "title", "site"]
+	// Sort retrieved items by the given criteria.
+	Sort pulumi.StringInput `pulumi:"sort"`
+	// must be one of ["pocket"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// must be one of ["unread", "archive", "all"]
+	// Select the state of the items to retrieve.
+	State pulumi.StringInput `pulumi:"state"`
+	// Return only items tagged with this tag name. Use *untagged* for retrieving only untagged items.
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetSourcePocketConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePocketConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePocketConfigurationArgs) ToGetSourcePocketConfigurationOutput() GetSourcePocketConfigurationOutput {
+	return i.ToGetSourcePocketConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePocketConfigurationArgs) ToGetSourcePocketConfigurationOutputWithContext(ctx context.Context) GetSourcePocketConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePocketConfigurationOutput)
 }
 
 type GetSourcePocketConfigurationOutput struct{ *pulumi.OutputState }
@@ -2279,6 +3922,36 @@ type GetSourcePokeapiConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourcePokeapiConfigurationInput is an input type that accepts GetSourcePokeapiConfigurationArgs and GetSourcePokeapiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePokeapiConfigurationInput` via:
+//
+//	GetSourcePokeapiConfigurationArgs{...}
+type GetSourcePokeapiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePokeapiConfigurationOutput() GetSourcePokeapiConfigurationOutput
+	ToGetSourcePokeapiConfigurationOutputWithContext(context.Context) GetSourcePokeapiConfigurationOutput
+}
+
+type GetSourcePokeapiConfigurationArgs struct {
+	// Pokemon requested from the API.
+	PokemonName pulumi.StringInput `pulumi:"pokemonName"`
+	// must be one of ["pokeapi"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePokeapiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePokeapiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePokeapiConfigurationArgs) ToGetSourcePokeapiConfigurationOutput() GetSourcePokeapiConfigurationOutput {
+	return i.ToGetSourcePokeapiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePokeapiConfigurationArgs) ToGetSourcePokeapiConfigurationOutputWithContext(ctx context.Context) GetSourcePokeapiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePokeapiConfigurationOutput)
+}
+
 type GetSourcePokeapiConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePokeapiConfigurationOutput) ElementType() reflect.Type {
@@ -2324,6 +3997,52 @@ type GetSourcePolygonStockApiConfiguration struct {
 	StocksTicker string `pulumi:"stocksTicker"`
 	// The size of the time window.
 	Timespan string `pulumi:"timespan"`
+}
+
+// GetSourcePolygonStockApiConfigurationInput is an input type that accepts GetSourcePolygonStockApiConfigurationArgs and GetSourcePolygonStockApiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePolygonStockApiConfigurationInput` via:
+//
+//	GetSourcePolygonStockApiConfigurationArgs{...}
+type GetSourcePolygonStockApiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePolygonStockApiConfigurationOutput() GetSourcePolygonStockApiConfigurationOutput
+	ToGetSourcePolygonStockApiConfigurationOutputWithContext(context.Context) GetSourcePolygonStockApiConfigurationOutput
+}
+
+type GetSourcePolygonStockApiConfigurationArgs struct {
+	// Determines whether or not the results are adjusted for splits. By default, results are adjusted and set to true. Set this to false to get results that are NOT adjusted for splits.
+	Adjusted pulumi.StringInput `pulumi:"adjusted"`
+	// Your API ACCESS Key
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The target date for the aggregate window.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// The target date for the aggregate window.
+	Limit pulumi.IntInput `pulumi:"limit"`
+	// The size of the timespan multiplier.
+	Multiplier pulumi.IntInput `pulumi:"multiplier"`
+	// Sort the results by timestamp. asc will return results in ascending order (oldest at the top), desc will return results in descending order (newest at the top).
+	Sort pulumi.StringInput `pulumi:"sort"`
+	// must be one of ["polygon-stock-api"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The beginning date for the aggregate window.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The exchange symbol that this item is traded under.
+	StocksTicker pulumi.StringInput `pulumi:"stocksTicker"`
+	// The size of the time window.
+	Timespan pulumi.StringInput `pulumi:"timespan"`
+}
+
+func (GetSourcePolygonStockApiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePolygonStockApiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePolygonStockApiConfigurationArgs) ToGetSourcePolygonStockApiConfigurationOutput() GetSourcePolygonStockApiConfigurationOutput {
+	return i.ToGetSourcePolygonStockApiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePolygonStockApiConfigurationArgs) ToGetSourcePolygonStockApiConfigurationOutputWithContext(ctx context.Context) GetSourcePolygonStockApiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePolygonStockApiConfigurationOutput)
 }
 
 type GetSourcePolygonStockApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -2416,6 +4135,55 @@ type GetSourcePostgresConfiguration struct {
 	Username string `pulumi:"username"`
 }
 
+// GetSourcePostgresConfigurationInput is an input type that accepts GetSourcePostgresConfigurationArgs and GetSourcePostgresConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationInput` via:
+//
+//	GetSourcePostgresConfigurationArgs{...}
+type GetSourcePostgresConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationOutput() GetSourcePostgresConfigurationOutput
+	ToGetSourcePostgresConfigurationOutputWithContext(context.Context) GetSourcePostgresConfigurationOutput
+}
+
+type GetSourcePostgresConfigurationArgs struct {
+	// Name of the database.
+	Database pulumi.StringInput `pulumi:"database"`
+	// Hostname of the database.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (Eg. key1=value1&key2=value2&key3=value3). For more information read about \n\nJDBC URL parameters\n\n.
+	JdbcUrlParams pulumi.StringInput `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Port of the database.
+	Port pulumi.IntInput `pulumi:"port"`
+	// Replication method for extracting data from the database.
+	ReplicationMethod GetSourcePostgresConfigurationReplicationMethodInput `pulumi:"replicationMethod"`
+	// The list of schemas (case sensitive) to sync from. Defaults to public.
+	Schemas pulumi.StringArrayInput `pulumi:"schemas"`
+	// must be one of ["postgres"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// SSL connection modes.
+	// Read more \n\n in the docs\n\n.
+	SslMode GetSourcePostgresConfigurationSslModeInput `pulumi:"sslMode"`
+	// Whether to initiate an SSH tunnel before connecting to the database, and if so, which kind of authentication to use.
+	TunnelMethod GetSourcePostgresConfigurationTunnelMethodInput `pulumi:"tunnelMethod"`
+	// Username to access the database.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourcePostgresConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationArgs) ToGetSourcePostgresConfigurationOutput() GetSourcePostgresConfigurationOutput {
+	return i.ToGetSourcePostgresConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationArgs) ToGetSourcePostgresConfigurationOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationOutput)
+}
+
 type GetSourcePostgresConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationOutput) ElementType() reflect.Type {
@@ -2499,6 +4267,38 @@ type GetSourcePostgresConfigurationReplicationMethod struct {
 	SourcePostgresUpdateReplicationMethodStandardXmin          GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin          `pulumi:"sourcePostgresUpdateReplicationMethodStandardXmin"`
 }
 
+// GetSourcePostgresConfigurationReplicationMethodInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodArgs and GetSourcePostgresConfigurationReplicationMethodOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodOutput() GetSourcePostgresConfigurationReplicationMethodOutput
+	ToGetSourcePostgresConfigurationReplicationMethodOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodArgs struct {
+	SourcePostgresReplicationMethodLogicalReplicationCdc       GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcInput       `pulumi:"sourcePostgresReplicationMethodLogicalReplicationCdc"`
+	SourcePostgresReplicationMethodStandard                    GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardInput                    `pulumi:"sourcePostgresReplicationMethodStandard"`
+	SourcePostgresReplicationMethodStandardXmin                GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminInput                `pulumi:"sourcePostgresReplicationMethodStandardXmin"`
+	SourcePostgresUpdateReplicationMethodLogicalReplicationCdc GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcInput `pulumi:"sourcePostgresUpdateReplicationMethodLogicalReplicationCdc"`
+	SourcePostgresUpdateReplicationMethodStandard              GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardInput              `pulumi:"sourcePostgresUpdateReplicationMethodStandard"`
+	SourcePostgresUpdateReplicationMethodStandardXmin          GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminInput          `pulumi:"sourcePostgresUpdateReplicationMethodStandardXmin"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethod)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodArgs) ToGetSourcePostgresConfigurationReplicationMethodOutput() GetSourcePostgresConfigurationReplicationMethodOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodArgs) ToGetSourcePostgresConfigurationReplicationMethodOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodOutput)
+}
+
 type GetSourcePostgresConfigurationReplicationMethodOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationReplicationMethodOutput) ElementType() reflect.Type {
@@ -2558,6 +4358,40 @@ type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMet
 	Publication           string  `pulumi:"publication"`
 	QueueSize             int     `pulumi:"queueSize"`
 	ReplicationSlot       string  `pulumi:"replicationSlot"`
+}
+
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs struct {
+	AdditionalProperties  pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	InitialWaitingSeconds pulumi.IntInput       `pulumi:"initialWaitingSeconds"`
+	LsnCommitBehaviour    pulumi.StringInput    `pulumi:"lsnCommitBehaviour"`
+	Method                pulumi.StringInput    `pulumi:"method"`
+	Plugin                pulumi.StringInput    `pulumi:"plugin"`
+	Publication           pulumi.StringInput    `pulumi:"publication"`
+	QueueSize             pulumi.IntInput       `pulumi:"queueSize"`
+	ReplicationSlot       pulumi.StringInput    `pulumi:"replicationSlot"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdc)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput)
 }
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcOutput struct{ *pulumi.OutputState }
@@ -2626,6 +4460,33 @@ type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMet
 	Method string `pulumi:"method"`
 }
 
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs struct {
+	Method pulumi.StringInput `pulumi:"method"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandard)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput)
+}
+
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardOutput) ElementType() reflect.Type {
@@ -2648,6 +4509,33 @@ func (o GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplication
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin struct {
 	Method string `pulumi:"method"`
+}
+
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs struct {
+	Method pulumi.StringInput `pulumi:"method"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXmin)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput)
 }
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminOutput struct{ *pulumi.OutputState }
@@ -2679,6 +4567,40 @@ type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicat
 	Publication           string  `pulumi:"publication"`
 	QueueSize             int     `pulumi:"queueSize"`
 	ReplicationSlot       string  `pulumi:"replicationSlot"`
+}
+
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs struct {
+	AdditionalProperties  pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	InitialWaitingSeconds pulumi.IntInput       `pulumi:"initialWaitingSeconds"`
+	LsnCommitBehaviour    pulumi.StringInput    `pulumi:"lsnCommitBehaviour"`
+	Method                pulumi.StringInput    `pulumi:"method"`
+	Plugin                pulumi.StringInput    `pulumi:"plugin"`
+	Publication           pulumi.StringInput    `pulumi:"publication"`
+	QueueSize             pulumi.IntInput       `pulumi:"queueSize"`
+	ReplicationSlot       pulumi.StringInput    `pulumi:"replicationSlot"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdc)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput)
 }
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcOutput struct{ *pulumi.OutputState }
@@ -2747,6 +4669,33 @@ type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicat
 	Method string `pulumi:"method"`
 }
 
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs struct {
+	Method pulumi.StringInput `pulumi:"method"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandard)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput)
+}
+
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardOutput) ElementType() reflect.Type {
@@ -2769,6 +4718,33 @@ func (o GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateRepli
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin struct {
 	Method string `pulumi:"method"`
+}
+
+// GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminInput is an input type that accepts GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs and GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminInput` via:
+//
+//	GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs{...}
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput
+	ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutputWithContext(context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput
+}
+
+type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs struct {
+	Method pulumi.StringInput `pulumi:"method"`
+}
+
+func (GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXmin)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput() GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput {
+	return i.ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs) ToGetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput)
 }
 
 type GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminOutput struct{ *pulumi.OutputState }
@@ -2804,6 +4780,44 @@ type GetSourcePostgresConfigurationSslMode struct {
 	SourcePostgresUpdateSslModesRequire    GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire    `pulumi:"sourcePostgresUpdateSslModesRequire"`
 	SourcePostgresUpdateSslModesVerifyCa   GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa   `pulumi:"sourcePostgresUpdateSslModesVerifyCa"`
 	SourcePostgresUpdateSslModesVerifyFull GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull `pulumi:"sourcePostgresUpdateSslModesVerifyFull"`
+}
+
+// GetSourcePostgresConfigurationSslModeInput is an input type that accepts GetSourcePostgresConfigurationSslModeArgs and GetSourcePostgresConfigurationSslModeOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeArgs{...}
+type GetSourcePostgresConfigurationSslModeInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeOutput() GetSourcePostgresConfigurationSslModeOutput
+	ToGetSourcePostgresConfigurationSslModeOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeOutput
+}
+
+type GetSourcePostgresConfigurationSslModeArgs struct {
+	SourcePostgresSslModesAllow            GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowInput            `pulumi:"sourcePostgresSslModesAllow"`
+	SourcePostgresSslModesDisable          GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableInput          `pulumi:"sourcePostgresSslModesDisable"`
+	SourcePostgresSslModesPrefer           GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferInput           `pulumi:"sourcePostgresSslModesPrefer"`
+	SourcePostgresSslModesRequire          GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireInput          `pulumi:"sourcePostgresSslModesRequire"`
+	SourcePostgresSslModesVerifyCa         GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaInput         `pulumi:"sourcePostgresSslModesVerifyCa"`
+	SourcePostgresSslModesVerifyFull       GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullInput       `pulumi:"sourcePostgresSslModesVerifyFull"`
+	SourcePostgresUpdateSslModesAllow      GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowInput      `pulumi:"sourcePostgresUpdateSslModesAllow"`
+	SourcePostgresUpdateSslModesDisable    GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableInput    `pulumi:"sourcePostgresUpdateSslModesDisable"`
+	SourcePostgresUpdateSslModesPrefer     GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferInput     `pulumi:"sourcePostgresUpdateSslModesPrefer"`
+	SourcePostgresUpdateSslModesRequire    GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireInput    `pulumi:"sourcePostgresUpdateSslModesRequire"`
+	SourcePostgresUpdateSslModesVerifyCa   GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaInput   `pulumi:"sourcePostgresUpdateSslModesVerifyCa"`
+	SourcePostgresUpdateSslModesVerifyFull GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullInput `pulumi:"sourcePostgresUpdateSslModesVerifyFull"`
+}
+
+func (GetSourcePostgresConfigurationSslModeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslMode)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeArgs) ToGetSourcePostgresConfigurationSslModeOutput() GetSourcePostgresConfigurationSslModeOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeArgs) ToGetSourcePostgresConfigurationSslModeOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeOutput struct{ *pulumi.OutputState }
@@ -2897,6 +4911,34 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllow struct {
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllow)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput) ElementType() reflect.Type {
@@ -2924,6 +4966,34 @@ func (o GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowOutput) 
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisable struct {
 	AdditionalProperties *string `pulumi:"additionalProperties"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisable)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableOutput struct{ *pulumi.OutputState }
@@ -2955,6 +5025,34 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer struct {
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPrefer)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput) ElementType() reflect.Type {
@@ -2982,6 +5080,34 @@ func (o GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferOutput)
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequire struct {
 	AdditionalProperties *string `pulumi:"additionalProperties"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequire)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireOutput struct{ *pulumi.OutputState }
@@ -3015,6 +5141,38 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa struct 
 	ClientKey            string  `pulumi:"clientKey"`
 	ClientKeyPassword    string  `pulumi:"clientKeyPassword"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	CaCertificate        pulumi.StringInput    `pulumi:"caCertificate"`
+	ClientCertificate    pulumi.StringInput    `pulumi:"clientCertificate"`
+	ClientKey            pulumi.StringInput    `pulumi:"clientKey"`
+	ClientKeyPassword    pulumi.StringInput    `pulumi:"clientKeyPassword"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCa)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaOutput struct{ *pulumi.OutputState }
@@ -3072,6 +5230,38 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull struc
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs and GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	CaCertificate        pulumi.StringInput    `pulumi:"caCertificate"`
+	ClientCertificate    pulumi.StringInput    `pulumi:"clientCertificate"`
+	ClientKey            pulumi.StringInput    `pulumi:"clientKey"`
+	ClientKeyPassword    pulumi.StringInput    `pulumi:"clientKeyPassword"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFull)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput() GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullOutput) ElementType() reflect.Type {
@@ -3125,6 +5315,34 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow stru
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllow)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOutput) ElementType() reflect.Type {
@@ -3152,6 +5370,34 @@ func (o GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowOu
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable struct {
 	AdditionalProperties *string `pulumi:"additionalProperties"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisable)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableOutput struct{ *pulumi.OutputState }
@@ -3183,6 +5429,34 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer str
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPrefer)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferOutput) ElementType() reflect.Type {
@@ -3210,6 +5484,34 @@ func (o GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferO
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire struct {
 	AdditionalProperties *string `pulumi:"additionalProperties"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequire)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireOutput struct{ *pulumi.OutputState }
@@ -3243,6 +5545,38 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa s
 	ClientKey            string  `pulumi:"clientKey"`
 	ClientKeyPassword    string  `pulumi:"clientKeyPassword"`
 	Mode                 string  `pulumi:"mode"`
+}
+
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	CaCertificate        pulumi.StringInput    `pulumi:"caCertificate"`
+	ClientCertificate    pulumi.StringInput    `pulumi:"clientCertificate"`
+	ClientKey            pulumi.StringInput    `pulumi:"clientKey"`
+	ClientKeyPassword    pulumi.StringInput    `pulumi:"clientKeyPassword"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCa)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput)
 }
 
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaOutput struct{ *pulumi.OutputState }
@@ -3304,6 +5638,38 @@ type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull
 	Mode                 string  `pulumi:"mode"`
 }
 
+// GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullInput is an input type that accepts GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs and GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullInput` via:
+//
+//	GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs{...}
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput
+	ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutputWithContext(context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput
+}
+
+type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	CaCertificate        pulumi.StringInput    `pulumi:"caCertificate"`
+	ClientCertificate    pulumi.StringInput    `pulumi:"clientCertificate"`
+	ClientKey            pulumi.StringInput    `pulumi:"clientKey"`
+	ClientKeyPassword    pulumi.StringInput    `pulumi:"clientKeyPassword"`
+	Mode                 pulumi.StringInput    `pulumi:"mode"`
+}
+
+func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFull)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput() GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput {
+	return i.ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs) ToGetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput)
+}
+
 type GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullOutput) ElementType() reflect.Type {
@@ -3363,6 +5729,38 @@ type GetSourcePostgresConfigurationTunnelMethod struct {
 	SourcePostgresUpdateSshTunnelMethodSshKeyAuthentication   GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication   `pulumi:"sourcePostgresUpdateSshTunnelMethodSshKeyAuthentication"`
 }
 
+// GetSourcePostgresConfigurationTunnelMethodInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodArgs and GetSourcePostgresConfigurationTunnelMethodOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodOutput() GetSourcePostgresConfigurationTunnelMethodOutput
+	ToGetSourcePostgresConfigurationTunnelMethodOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodArgs struct {
+	SourcePostgresSshTunnelMethodNoTunnel                     GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelInput                     `pulumi:"sourcePostgresSshTunnelMethodNoTunnel"`
+	SourcePostgresSshTunnelMethodPasswordAuthentication       GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationInput       `pulumi:"sourcePostgresSshTunnelMethodPasswordAuthentication"`
+	SourcePostgresSshTunnelMethodSshKeyAuthentication         GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationInput         `pulumi:"sourcePostgresSshTunnelMethodSshKeyAuthentication"`
+	SourcePostgresUpdateSshTunnelMethodNoTunnel               GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelInput               `pulumi:"sourcePostgresUpdateSshTunnelMethodNoTunnel"`
+	SourcePostgresUpdateSshTunnelMethodPasswordAuthentication GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationInput `pulumi:"sourcePostgresUpdateSshTunnelMethodPasswordAuthentication"`
+	SourcePostgresUpdateSshTunnelMethodSshKeyAuthentication   GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationInput   `pulumi:"sourcePostgresUpdateSshTunnelMethodSshKeyAuthentication"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethod)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodArgs) ToGetSourcePostgresConfigurationTunnelMethodOutput() GetSourcePostgresConfigurationTunnelMethodOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodArgs) ToGetSourcePostgresConfigurationTunnelMethodOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodOutput)
+}
+
 type GetSourcePostgresConfigurationTunnelMethodOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationTunnelMethodOutput) ElementType() reflect.Type {
@@ -3417,6 +5815,33 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTu
 	TunnelMethod string `pulumi:"tunnelMethod"`
 }
 
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs struct {
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnel)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput)
+}
+
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelOutput) ElementType() reflect.Type {
@@ -3443,6 +5868,37 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPass
 	TunnelPort         int    `pulumi:"tunnelPort"`
 	TunnelUser         string `pulumi:"tunnelUser"`
 	TunnelUserPassword string `pulumi:"tunnelUserPassword"`
+}
+
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs struct {
+	TunnelHost         pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod       pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort         pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser         pulumi.StringInput `pulumi:"tunnelUser"`
+	TunnelUserPassword pulumi.StringInput `pulumi:"tunnelUserPassword"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput)
 }
 
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationOutput struct{ *pulumi.OutputState }
@@ -3497,6 +5953,37 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshK
 	TunnelUser   string `pulumi:"tunnelUser"`
 }
 
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs struct {
+	SshKey       pulumi.StringInput `pulumi:"sshKey"`
+	TunnelHost   pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort   pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser   pulumi.StringInput `pulumi:"tunnelUser"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput)
+}
+
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationOutput) ElementType() reflect.Type {
@@ -3545,6 +6032,33 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMeth
 	TunnelMethod string `pulumi:"tunnelMethod"`
 }
 
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs struct {
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnel)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput)
+}
+
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelOutput) ElementType() reflect.Type {
@@ -3571,6 +6085,37 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMeth
 	TunnelPort         int    `pulumi:"tunnelPort"`
 	TunnelUser         string `pulumi:"tunnelUser"`
 	TunnelUserPassword string `pulumi:"tunnelUserPassword"`
+}
+
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs struct {
+	TunnelHost         pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod       pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort         pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser         pulumi.StringInput `pulumi:"tunnelUser"`
+	TunnelUserPassword pulumi.StringInput `pulumi:"tunnelUserPassword"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput)
 }
 
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationOutput struct{ *pulumi.OutputState }
@@ -3623,6 +6168,37 @@ type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMeth
 	TunnelMethod string `pulumi:"tunnelMethod"`
 	TunnelPort   int    `pulumi:"tunnelPort"`
 	TunnelUser   string `pulumi:"tunnelUser"`
+}
+
+// GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationInput is an input type that accepts GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs and GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationInput` via:
+//
+//	GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs{...}
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput
+	ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput
+}
+
+type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs struct {
+	SshKey       pulumi.StringInput `pulumi:"sshKey"`
+	TunnelHost   pulumi.StringInput `pulumi:"tunnelHost"`
+	TunnelMethod pulumi.StringInput `pulumi:"tunnelMethod"`
+	TunnelPort   pulumi.IntInput    `pulumi:"tunnelPort"`
+	TunnelUser   pulumi.StringInput `pulumi:"tunnelUser"`
+}
+
+func (GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput() GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput {
+	return i.ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs) ToGetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput)
 }
 
 type GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
@@ -3680,6 +6256,40 @@ type GetSourcePosthogConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourcePosthogConfigurationInput is an input type that accepts GetSourcePosthogConfigurationArgs and GetSourcePosthogConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePosthogConfigurationInput` via:
+//
+//	GetSourcePosthogConfigurationArgs{...}
+type GetSourcePosthogConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePosthogConfigurationOutput() GetSourcePosthogConfigurationOutput
+	ToGetSourcePosthogConfigurationOutputWithContext(context.Context) GetSourcePosthogConfigurationOutput
+}
+
+type GetSourcePosthogConfigurationArgs struct {
+	// API Key. See the \n\ndocs\n\n for information on how to generate this key.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Base PostHog url. Defaults to PostHog Cloud (https://app.posthog.com).
+	BaseUrl pulumi.StringInput `pulumi:"baseUrl"`
+	// must be one of ["posthog"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate the data. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourcePosthogConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePosthogConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePosthogConfigurationArgs) ToGetSourcePosthogConfigurationOutput() GetSourcePosthogConfigurationOutput {
+	return i.ToGetSourcePosthogConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePosthogConfigurationArgs) ToGetSourcePosthogConfigurationOutputWithContext(ctx context.Context) GetSourcePosthogConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePosthogConfigurationOutput)
+}
+
 type GetSourcePosthogConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePosthogConfigurationOutput) ElementType() reflect.Type {
@@ -3723,6 +6333,38 @@ type GetSourcePostmarkappConfiguration struct {
 	XPostmarkServerToken string `pulumi:"xPostmarkServerToken"`
 }
 
+// GetSourcePostmarkappConfigurationInput is an input type that accepts GetSourcePostmarkappConfigurationArgs and GetSourcePostmarkappConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePostmarkappConfigurationInput` via:
+//
+//	GetSourcePostmarkappConfigurationArgs{...}
+type GetSourcePostmarkappConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePostmarkappConfigurationOutput() GetSourcePostmarkappConfigurationOutput
+	ToGetSourcePostmarkappConfigurationOutputWithContext(context.Context) GetSourcePostmarkappConfigurationOutput
+}
+
+type GetSourcePostmarkappConfigurationArgs struct {
+	// must be one of ["postmarkapp"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// API Key for account
+	XPostmarkAccountToken pulumi.StringInput `pulumi:"xPostmarkAccountToken"`
+	// API Key for server
+	XPostmarkServerToken pulumi.StringInput `pulumi:"xPostmarkServerToken"`
+}
+
+func (GetSourcePostmarkappConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePostmarkappConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePostmarkappConfigurationArgs) ToGetSourcePostmarkappConfigurationOutput() GetSourcePostmarkappConfigurationOutput {
+	return i.ToGetSourcePostmarkappConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePostmarkappConfigurationArgs) ToGetSourcePostmarkappConfigurationOutputWithContext(ctx context.Context) GetSourcePostmarkappConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePostmarkappConfigurationOutput)
+}
+
 type GetSourcePostmarkappConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePostmarkappConfigurationOutput) ElementType() reflect.Type {
@@ -3761,6 +6403,40 @@ type GetSourcePrestashopConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// Shop URL without trailing slash.
 	Url string `pulumi:"url"`
+}
+
+// GetSourcePrestashopConfigurationInput is an input type that accepts GetSourcePrestashopConfigurationArgs and GetSourcePrestashopConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePrestashopConfigurationInput` via:
+//
+//	GetSourcePrestashopConfigurationArgs{...}
+type GetSourcePrestashopConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePrestashopConfigurationOutput() GetSourcePrestashopConfigurationOutput
+	ToGetSourcePrestashopConfigurationOutputWithContext(context.Context) GetSourcePrestashopConfigurationOutput
+}
+
+type GetSourcePrestashopConfigurationArgs struct {
+	// Your PrestaShop access key. See \n\n the docs \n\n for info on how to obtain this.
+	AccessKey pulumi.StringInput `pulumi:"accessKey"`
+	// must be one of ["prestashop"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The Start date in the format YYYY-MM-DD.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Shop URL without trailing slash.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetSourcePrestashopConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePrestashopConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePrestashopConfigurationArgs) ToGetSourcePrestashopConfigurationOutput() GetSourcePrestashopConfigurationOutput {
+	return i.ToGetSourcePrestashopConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePrestashopConfigurationArgs) ToGetSourcePrestashopConfigurationOutputWithContext(ctx context.Context) GetSourcePrestashopConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePrestashopConfigurationOutput)
 }
 
 type GetSourcePrestashopConfigurationOutput struct{ *pulumi.OutputState }
@@ -3802,6 +6478,34 @@ type GetSourcePublicApisConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourcePublicApisConfigurationInput is an input type that accepts GetSourcePublicApisConfigurationArgs and GetSourcePublicApisConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePublicApisConfigurationInput` via:
+//
+//	GetSourcePublicApisConfigurationArgs{...}
+type GetSourcePublicApisConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePublicApisConfigurationOutput() GetSourcePublicApisConfigurationOutput
+	ToGetSourcePublicApisConfigurationOutputWithContext(context.Context) GetSourcePublicApisConfigurationOutput
+}
+
+type GetSourcePublicApisConfigurationArgs struct {
+	// must be one of ["public-apis"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePublicApisConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePublicApisConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePublicApisConfigurationArgs) ToGetSourcePublicApisConfigurationOutput() GetSourcePublicApisConfigurationOutput {
+	return i.ToGetSourcePublicApisConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePublicApisConfigurationArgs) ToGetSourcePublicApisConfigurationOutputWithContext(ctx context.Context) GetSourcePublicApisConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePublicApisConfigurationOutput)
+}
+
 type GetSourcePublicApisConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePublicApisConfigurationOutput) ElementType() reflect.Type {
@@ -3830,6 +6534,40 @@ type GetSourcePunkApiConfiguration struct {
 	Id string `pulumi:"id"`
 	// must be one of ["punk-api"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourcePunkApiConfigurationInput is an input type that accepts GetSourcePunkApiConfigurationArgs and GetSourcePunkApiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePunkApiConfigurationInput` via:
+//
+//	GetSourcePunkApiConfigurationArgs{...}
+type GetSourcePunkApiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePunkApiConfigurationOutput() GetSourcePunkApiConfigurationOutput
+	ToGetSourcePunkApiConfigurationOutputWithContext(context.Context) GetSourcePunkApiConfigurationOutput
+}
+
+type GetSourcePunkApiConfigurationArgs struct {
+	// To extract specific data with Unique ID
+	BrewedAfter pulumi.StringInput `pulumi:"brewedAfter"`
+	// To extract specific data with Unique ID
+	BrewedBefore pulumi.StringInput `pulumi:"brewedBefore"`
+	// To extract specific data with Unique ID
+	Id pulumi.StringInput `pulumi:"id"`
+	// must be one of ["punk-api"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourcePunkApiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePunkApiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePunkApiConfigurationArgs) ToGetSourcePunkApiConfigurationOutput() GetSourcePunkApiConfigurationOutput {
+	return i.ToGetSourcePunkApiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePunkApiConfigurationArgs) ToGetSourcePunkApiConfigurationOutputWithContext(ctx context.Context) GetSourcePunkApiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePunkApiConfigurationOutput)
 }
 
 type GetSourcePunkApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -3875,6 +6613,38 @@ type GetSourcePypiConfiguration struct {
 	Version string `pulumi:"version"`
 }
 
+// GetSourcePypiConfigurationInput is an input type that accepts GetSourcePypiConfigurationArgs and GetSourcePypiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourcePypiConfigurationInput` via:
+//
+//	GetSourcePypiConfigurationArgs{...}
+type GetSourcePypiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourcePypiConfigurationOutput() GetSourcePypiConfigurationOutput
+	ToGetSourcePypiConfigurationOutputWithContext(context.Context) GetSourcePypiConfigurationOutput
+}
+
+type GetSourcePypiConfigurationArgs struct {
+	// Name of the project/package. Can only be in lowercase with hyphen. This is the name used using pip command for installing the package.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// must be one of ["pypi"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Version of the project/package.  Use it to find a particular release instead of all releases.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetSourcePypiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcePypiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourcePypiConfigurationArgs) ToGetSourcePypiConfigurationOutput() GetSourcePypiConfigurationOutput {
+	return i.ToGetSourcePypiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourcePypiConfigurationArgs) ToGetSourcePypiConfigurationOutputWithContext(ctx context.Context) GetSourcePypiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcePypiConfigurationOutput)
+}
+
 type GetSourcePypiConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourcePypiConfigurationOutput) ElementType() reflect.Type {
@@ -3915,6 +6685,42 @@ type GetSourceQualarooConfiguration struct {
 	SurveyIds []string `pulumi:"surveyIds"`
 	// A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
 	Token string `pulumi:"token"`
+}
+
+// GetSourceQualarooConfigurationInput is an input type that accepts GetSourceQualarooConfigurationArgs and GetSourceQualarooConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceQualarooConfigurationInput` via:
+//
+//	GetSourceQualarooConfigurationArgs{...}
+type GetSourceQualarooConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceQualarooConfigurationOutput() GetSourceQualarooConfigurationOutput
+	ToGetSourceQualarooConfigurationOutputWithContext(context.Context) GetSourceQualarooConfigurationOutput
+}
+
+type GetSourceQualarooConfigurationArgs struct {
+	// A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+	Key pulumi.StringInput `pulumi:"key"`
+	// must be one of ["qualaroo"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// IDs of the surveys from which you'd like to replicate data. If left empty, data from all surveys to which you have access will be replicated.
+	SurveyIds pulumi.StringArrayInput `pulumi:"surveyIds"`
+	// A Qualaroo token. See the \n\ndocs\n\n for instructions on how to generate it.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (GetSourceQualarooConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceQualarooConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceQualarooConfigurationArgs) ToGetSourceQualarooConfigurationOutput() GetSourceQualarooConfigurationOutput {
+	return i.ToGetSourceQualarooConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceQualarooConfigurationArgs) ToGetSourceQualarooConfigurationOutputWithContext(ctx context.Context) GetSourceQualarooConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceQualarooConfigurationOutput)
 }
 
 type GetSourceQualarooConfigurationOutput struct{ *pulumi.OutputState }
@@ -3966,6 +6772,39 @@ type GetSourceQuickbooksConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceQuickbooksConfigurationInput is an input type that accepts GetSourceQuickbooksConfigurationArgs and GetSourceQuickbooksConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceQuickbooksConfigurationInput` via:
+//
+//	GetSourceQuickbooksConfigurationArgs{...}
+type GetSourceQuickbooksConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceQuickbooksConfigurationOutput() GetSourceQuickbooksConfigurationOutput
+	ToGetSourceQuickbooksConfigurationOutputWithContext(context.Context) GetSourceQuickbooksConfigurationOutput
+}
+
+type GetSourceQuickbooksConfigurationArgs struct {
+	Credentials GetSourceQuickbooksConfigurationCredentialsInput `pulumi:"credentials"`
+	// Determines whether to use the sandbox or production environment.
+	Sandbox pulumi.BoolInput `pulumi:"sandbox"`
+	// must be one of ["quickbooks"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The default value to use if no bookmark exists for an endpoint (rfc3339 date string). E.g, 2021-03-20T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceQuickbooksConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceQuickbooksConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceQuickbooksConfigurationArgs) ToGetSourceQuickbooksConfigurationOutput() GetSourceQuickbooksConfigurationOutput {
+	return i.ToGetSourceQuickbooksConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceQuickbooksConfigurationArgs) ToGetSourceQuickbooksConfigurationOutputWithContext(ctx context.Context) GetSourceQuickbooksConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceQuickbooksConfigurationOutput)
+}
+
 type GetSourceQuickbooksConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceQuickbooksConfigurationOutput) ElementType() reflect.Type {
@@ -4006,6 +6845,34 @@ type GetSourceQuickbooksConfigurationCredentials struct {
 	SourceQuickbooksUpdateAuthorizationMethodOAuth20 GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20 `pulumi:"sourceQuickbooksUpdateAuthorizationMethodOAuth20"`
 }
 
+// GetSourceQuickbooksConfigurationCredentialsInput is an input type that accepts GetSourceQuickbooksConfigurationCredentialsArgs and GetSourceQuickbooksConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceQuickbooksConfigurationCredentialsInput` via:
+//
+//	GetSourceQuickbooksConfigurationCredentialsArgs{...}
+type GetSourceQuickbooksConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceQuickbooksConfigurationCredentialsOutput() GetSourceQuickbooksConfigurationCredentialsOutput
+	ToGetSourceQuickbooksConfigurationCredentialsOutputWithContext(context.Context) GetSourceQuickbooksConfigurationCredentialsOutput
+}
+
+type GetSourceQuickbooksConfigurationCredentialsArgs struct {
+	SourceQuickbooksAuthorizationMethodOAuth20       GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Input       `pulumi:"sourceQuickbooksAuthorizationMethodOAuth20"`
+	SourceQuickbooksUpdateAuthorizationMethodOAuth20 GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Input `pulumi:"sourceQuickbooksUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceQuickbooksConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsArgs) ToGetSourceQuickbooksConfigurationCredentialsOutput() GetSourceQuickbooksConfigurationCredentialsOutput {
+	return i.ToGetSourceQuickbooksConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsArgs) ToGetSourceQuickbooksConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceQuickbooksConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceQuickbooksConfigurationCredentialsOutput)
+}
+
 type GetSourceQuickbooksConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceQuickbooksConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -4040,6 +6907,39 @@ type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMet
 	RealmId         string `pulumi:"realmId"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Input is an input type that accepts GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args and GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args{...}
+type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output() GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output
+	ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output
+}
+
+type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RealmId         pulumi.StringInput `pulumi:"realmId"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args) ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output() GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args) ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -4106,6 +7006,39 @@ type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizat
 	RealmId         string `pulumi:"realmId"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args and GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output() GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RealmId         pulumi.StringInput `pulumi:"realmId"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args) ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output() GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args) ToGetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -4175,6 +7108,40 @@ type GetSourceRailzConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceRailzConfigurationInput is an input type that accepts GetSourceRailzConfigurationArgs and GetSourceRailzConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRailzConfigurationInput` via:
+//
+//	GetSourceRailzConfigurationArgs{...}
+type GetSourceRailzConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRailzConfigurationOutput() GetSourceRailzConfigurationOutput
+	ToGetSourceRailzConfigurationOutputWithContext(context.Context) GetSourceRailzConfigurationOutput
+}
+
+type GetSourceRailzConfigurationArgs struct {
+	// Client ID (client_id)
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Secret key (secret_key)
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// must be one of ["railz"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Start date
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceRailzConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRailzConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRailzConfigurationArgs) ToGetSourceRailzConfigurationOutput() GetSourceRailzConfigurationOutput {
+	return i.ToGetSourceRailzConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRailzConfigurationArgs) ToGetSourceRailzConfigurationOutputWithContext(ctx context.Context) GetSourceRailzConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRailzConfigurationOutput)
+}
+
 type GetSourceRailzConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRailzConfigurationOutput) ElementType() reflect.Type {
@@ -4218,6 +7185,38 @@ type GetSourceRechargeConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceRechargeConfigurationInput is an input type that accepts GetSourceRechargeConfigurationArgs and GetSourceRechargeConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRechargeConfigurationInput` via:
+//
+//	GetSourceRechargeConfigurationArgs{...}
+type GetSourceRechargeConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRechargeConfigurationOutput() GetSourceRechargeConfigurationOutput
+	ToGetSourceRechargeConfigurationOutputWithContext(context.Context) GetSourceRechargeConfigurationOutput
+}
+
+type GetSourceRechargeConfigurationArgs struct {
+	// The value of the Access Token generated. See the \n\ndocs\n\n for more information.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// must be one of ["recharge"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Recharge API, in the format YYYY-MM-DDT00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceRechargeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRechargeConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRechargeConfigurationArgs) ToGetSourceRechargeConfigurationOutput() GetSourceRechargeConfigurationOutput {
+	return i.ToGetSourceRechargeConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRechargeConfigurationArgs) ToGetSourceRechargeConfigurationOutputWithContext(ctx context.Context) GetSourceRechargeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRechargeConfigurationOutput)
+}
+
 type GetSourceRechargeConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRechargeConfigurationOutput) ElementType() reflect.Type {
@@ -4255,6 +7254,37 @@ type GetSourceRecreationConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceRecreationConfigurationInput is an input type that accepts GetSourceRecreationConfigurationArgs and GetSourceRecreationConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRecreationConfigurationInput` via:
+//
+//	GetSourceRecreationConfigurationArgs{...}
+type GetSourceRecreationConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRecreationConfigurationOutput() GetSourceRecreationConfigurationOutput
+	ToGetSourceRecreationConfigurationOutputWithContext(context.Context) GetSourceRecreationConfigurationOutput
+}
+
+type GetSourceRecreationConfigurationArgs struct {
+	// API Key
+	Apikey         pulumi.StringInput `pulumi:"apikey"`
+	QueryCampsites pulumi.StringInput `pulumi:"queryCampsites"`
+	// must be one of ["recreation"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceRecreationConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRecreationConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRecreationConfigurationArgs) ToGetSourceRecreationConfigurationOutput() GetSourceRecreationConfigurationOutput {
+	return i.ToGetSourceRecreationConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRecreationConfigurationArgs) ToGetSourceRecreationConfigurationOutputWithContext(ctx context.Context) GetSourceRecreationConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRecreationConfigurationOutput)
+}
+
 type GetSourceRecreationConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRecreationConfigurationOutput) ElementType() reflect.Type {
@@ -4290,6 +7320,38 @@ type GetSourceRecruiteeConfiguration struct {
 	CompanyId int `pulumi:"companyId"`
 	// must be one of ["recruitee"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceRecruiteeConfigurationInput is an input type that accepts GetSourceRecruiteeConfigurationArgs and GetSourceRecruiteeConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRecruiteeConfigurationInput` via:
+//
+//	GetSourceRecruiteeConfigurationArgs{...}
+type GetSourceRecruiteeConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRecruiteeConfigurationOutput() GetSourceRecruiteeConfigurationOutput
+	ToGetSourceRecruiteeConfigurationOutputWithContext(context.Context) GetSourceRecruiteeConfigurationOutput
+}
+
+type GetSourceRecruiteeConfigurationArgs struct {
+	// Recruitee API Key. See \n\nhere\n\n.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Recruitee Company ID. You can also find this ID on the \n\nRecruitee API tokens page\n\n.
+	CompanyId pulumi.IntInput `pulumi:"companyId"`
+	// must be one of ["recruitee"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceRecruiteeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRecruiteeConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRecruiteeConfigurationArgs) ToGetSourceRecruiteeConfigurationOutput() GetSourceRecruiteeConfigurationOutput {
+	return i.ToGetSourceRecruiteeConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRecruiteeConfigurationArgs) ToGetSourceRecruiteeConfigurationOutputWithContext(ctx context.Context) GetSourceRecruiteeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRecruiteeConfigurationOutput)
 }
 
 type GetSourceRecruiteeConfigurationOutput struct{ *pulumi.OutputState }
@@ -4330,6 +7392,40 @@ type GetSourceRecurlyConfiguration struct {
 	EndTime string `pulumi:"endTime"`
 	// must be one of ["recurly"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceRecurlyConfigurationInput is an input type that accepts GetSourceRecurlyConfigurationArgs and GetSourceRecurlyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRecurlyConfigurationInput` via:
+//
+//	GetSourceRecurlyConfigurationArgs{...}
+type GetSourceRecurlyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRecurlyConfigurationOutput() GetSourceRecurlyConfigurationOutput
+	ToGetSourceRecurlyConfigurationOutputWithContext(context.Context) GetSourceRecurlyConfigurationOutput
+}
+
+type GetSourceRecurlyConfigurationArgs struct {
+	// Recurly API Key. See the  \n\ndocs\n\n for more information on how to generate this key.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// ISO8601 timestamp from which the replication from Recurly API will start from.
+	BeginTime pulumi.StringInput `pulumi:"beginTime"`
+	// ISO8601 timestamp to which the replication from Recurly API will stop. Records after that date won't be imported.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// must be one of ["recurly"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceRecurlyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRecurlyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRecurlyConfigurationArgs) ToGetSourceRecurlyConfigurationOutput() GetSourceRecurlyConfigurationOutput {
+	return i.ToGetSourceRecurlyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRecurlyConfigurationArgs) ToGetSourceRecurlyConfigurationOutputWithContext(ctx context.Context) GetSourceRecurlyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRecurlyConfigurationOutput)
 }
 
 type GetSourceRecurlyConfigurationOutput struct{ *pulumi.OutputState }
@@ -4383,6 +7479,48 @@ type GetSourceRedshiftConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// Username to use to access the database.
 	Username string `pulumi:"username"`
+}
+
+// GetSourceRedshiftConfigurationInput is an input type that accepts GetSourceRedshiftConfigurationArgs and GetSourceRedshiftConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRedshiftConfigurationInput` via:
+//
+//	GetSourceRedshiftConfigurationArgs{...}
+type GetSourceRedshiftConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRedshiftConfigurationOutput() GetSourceRedshiftConfigurationOutput
+	ToGetSourceRedshiftConfigurationOutputWithContext(context.Context) GetSourceRedshiftConfigurationOutput
+}
+
+type GetSourceRedshiftConfigurationArgs struct {
+	// Name of the database.
+	Database pulumi.StringInput `pulumi:"database"`
+	// Host Endpoint of the Redshift Cluster (must include the cluster-id, region and end with .redshift.amazonaws.com).
+	Host pulumi.StringInput `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams pulumi.StringInput `pulumi:"jdbcUrlParams"`
+	// Password associated with the username.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Port of the database.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The list of schemas to sync from. Specify one or more explicitly or keep empty to process all schemas. Schema names are case sensitive.
+	Schemas pulumi.StringArrayInput `pulumi:"schemas"`
+	// must be one of ["redshift"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Username to use to access the database.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceRedshiftConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRedshiftConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRedshiftConfigurationArgs) ToGetSourceRedshiftConfigurationOutput() GetSourceRedshiftConfigurationOutput {
+	return i.ToGetSourceRedshiftConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRedshiftConfigurationArgs) ToGetSourceRedshiftConfigurationOutputWithContext(ctx context.Context) GetSourceRedshiftConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRedshiftConfigurationOutput)
 }
 
 type GetSourceRedshiftConfigurationOutput struct{ *pulumi.OutputState }
@@ -4446,6 +7584,36 @@ type GetSourceRetentlyConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceRetentlyConfigurationInput is an input type that accepts GetSourceRetentlyConfigurationArgs and GetSourceRetentlyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationInput` via:
+//
+//	GetSourceRetentlyConfigurationArgs{...}
+type GetSourceRetentlyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationOutput() GetSourceRetentlyConfigurationOutput
+	ToGetSourceRetentlyConfigurationOutputWithContext(context.Context) GetSourceRetentlyConfigurationOutput
+}
+
+type GetSourceRetentlyConfigurationArgs struct {
+	// Choose how to authenticate to Retently
+	Credentials GetSourceRetentlyConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["retently"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceRetentlyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationArgs) ToGetSourceRetentlyConfigurationOutput() GetSourceRetentlyConfigurationOutput {
+	return i.ToGetSourceRetentlyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationArgs) ToGetSourceRetentlyConfigurationOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationOutput)
+}
+
 type GetSourceRetentlyConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRetentlyConfigurationOutput) ElementType() reflect.Type {
@@ -4475,6 +7643,36 @@ type GetSourceRetentlyConfigurationCredentials struct {
 	SourceRetentlyAuthenticationMechanismAuthenticateWithApiToken           GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken           `pulumi:"sourceRetentlyAuthenticationMechanismAuthenticateWithApiToken"`
 	SourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth `pulumi:"sourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth"`
 	SourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken     GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken     `pulumi:"sourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken"`
+}
+
+// GetSourceRetentlyConfigurationCredentialsInput is an input type that accepts GetSourceRetentlyConfigurationCredentialsArgs and GetSourceRetentlyConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationCredentialsInput` via:
+//
+//	GetSourceRetentlyConfigurationCredentialsArgs{...}
+type GetSourceRetentlyConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationCredentialsOutput() GetSourceRetentlyConfigurationCredentialsOutput
+	ToGetSourceRetentlyConfigurationCredentialsOutputWithContext(context.Context) GetSourceRetentlyConfigurationCredentialsOutput
+}
+
+type GetSourceRetentlyConfigurationCredentialsArgs struct {
+	SourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth       GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthInput       `pulumi:"sourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth"`
+	SourceRetentlyAuthenticationMechanismAuthenticateWithApiToken           GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenInput           `pulumi:"sourceRetentlyAuthenticationMechanismAuthenticateWithApiToken"`
+	SourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthInput `pulumi:"sourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth"`
+	SourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken     GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenInput     `pulumi:"sourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken"`
+}
+
+func (GetSourceRetentlyConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsArgs) ToGetSourceRetentlyConfigurationCredentialsOutput() GetSourceRetentlyConfigurationCredentialsOutput {
+	return i.ToGetSourceRetentlyConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsArgs) ToGetSourceRetentlyConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationCredentialsOutput)
 }
 
 type GetSourceRetentlyConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -4521,6 +7719,37 @@ type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechan
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
 	RefreshToken         string  `pulumi:"refreshToken"`
+}
+
+// GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthInput is an input type that accepts GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs and GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthInput` via:
+//
+//	GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs{...}
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput
+}
+
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+	RefreshToken         pulumi.StringInput    `pulumi:"refreshToken"`
+}
+
+func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuth)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput {
+	return i.ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput)
 }
 
 type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput struct{ *pulumi.OutputState }
@@ -4573,6 +7802,35 @@ type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechan
 	AuthType             string  `pulumi:"authType"`
 }
 
+// GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenInput is an input type that accepts GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs and GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenInput` via:
+//
+//	GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs{...}
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput
+}
+
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiKey               pulumi.StringInput    `pulumi:"apiKey"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+}
+
+func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiToken)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput {
+	return i.ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput)
+}
+
 type GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenOutput) ElementType() reflect.Type {
@@ -4611,6 +7869,37 @@ type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthentication
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
 	RefreshToken         string  `pulumi:"refreshToken"`
+}
+
+// GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthInput is an input type that accepts GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs and GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthInput` via:
+//
+//	GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs{...}
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput
+}
+
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+	RefreshToken         pulumi.StringInput    `pulumi:"refreshToken"`
+}
+
+func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuth)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput {
+	return i.ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput)
 }
 
 type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthOutput struct{ *pulumi.OutputState }
@@ -4663,6 +7952,35 @@ type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthentication
 	AuthType             string  `pulumi:"authType"`
 }
 
+// GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenInput is an input type that accepts GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs and GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenInput` via:
+//
+//	GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs{...}
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput
+	ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput
+}
+
+type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiKey               pulumi.StringInput    `pulumi:"apiKey"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+}
+
+func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiToken)(nil)).Elem()
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput() GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput {
+	return i.ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs) ToGetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutputWithContext(ctx context.Context) GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput)
+}
+
 type GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenOutput) ElementType() reflect.Type {
@@ -4702,6 +8020,36 @@ type GetSourceRkiCovidConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceRkiCovidConfigurationInput is an input type that accepts GetSourceRkiCovidConfigurationArgs and GetSourceRkiCovidConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRkiCovidConfigurationInput` via:
+//
+//	GetSourceRkiCovidConfigurationArgs{...}
+type GetSourceRkiCovidConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRkiCovidConfigurationOutput() GetSourceRkiCovidConfigurationOutput
+	ToGetSourceRkiCovidConfigurationOutputWithContext(context.Context) GetSourceRkiCovidConfigurationOutput
+}
+
+type GetSourceRkiCovidConfigurationArgs struct {
+	// must be one of ["rki-covid"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date in the format 2017-01-25. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceRkiCovidConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRkiCovidConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRkiCovidConfigurationArgs) ToGetSourceRkiCovidConfigurationOutput() GetSourceRkiCovidConfigurationOutput {
+	return i.ToGetSourceRkiCovidConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRkiCovidConfigurationArgs) ToGetSourceRkiCovidConfigurationOutputWithContext(ctx context.Context) GetSourceRkiCovidConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRkiCovidConfigurationOutput)
+}
+
 type GetSourceRkiCovidConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceRkiCovidConfigurationOutput) ElementType() reflect.Type {
@@ -4731,6 +8079,36 @@ type GetSourceRssConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// RSS Feed URL
 	Url string `pulumi:"url"`
+}
+
+// GetSourceRssConfigurationInput is an input type that accepts GetSourceRssConfigurationArgs and GetSourceRssConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceRssConfigurationInput` via:
+//
+//	GetSourceRssConfigurationArgs{...}
+type GetSourceRssConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceRssConfigurationOutput() GetSourceRssConfigurationOutput
+	ToGetSourceRssConfigurationOutputWithContext(context.Context) GetSourceRssConfigurationOutput
+}
+
+type GetSourceRssConfigurationArgs struct {
+	// must be one of ["rss"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// RSS Feed URL
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetSourceRssConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceRssConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceRssConfigurationArgs) ToGetSourceRssConfigurationOutput() GetSourceRssConfigurationOutput {
+	return i.ToGetSourceRssConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceRssConfigurationArgs) ToGetSourceRssConfigurationOutputWithContext(ctx context.Context) GetSourceRssConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceRssConfigurationOutput)
 }
 
 type GetSourceRssConfigurationOutput struct{ *pulumi.OutputState }
@@ -4770,6 +8148,44 @@ type GetSourceS3Configuration struct {
 	Schema string `pulumi:"schema"`
 	// must be one of ["s3"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceS3ConfigurationInput is an input type that accepts GetSourceS3ConfigurationArgs and GetSourceS3ConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationInput` via:
+//
+//	GetSourceS3ConfigurationArgs{...}
+type GetSourceS3ConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationOutput() GetSourceS3ConfigurationOutput
+	ToGetSourceS3ConfigurationOutputWithContext(context.Context) GetSourceS3ConfigurationOutput
+}
+
+type GetSourceS3ConfigurationArgs struct {
+	// The name of the stream you would like this source to output. Can contain letters, numbers, or underscores.
+	Dataset pulumi.StringInput `pulumi:"dataset"`
+	// The format of the files you'd like to replicate
+	Format GetSourceS3ConfigurationFormatInput `pulumi:"format"`
+	// A regular expression which tells the connector which files to replicate. All files which match this pattern will be replicated. Use | to separate multiple patterns. See \n\nthis page\n\n to understand pattern syntax (GLOBSTAR and SPLIT flags are enabled). Use pattern \n\n**\n\n to pick up all files.
+	PathPattern pulumi.StringInput `pulumi:"pathPattern"`
+	// Use this to load files from S3 or S3-compatible services
+	Provider GetSourceS3ConfigurationProviderInput `pulumi:"provider"`
+	// Optionally provide a schema to enforce, as a valid JSON string. Ensure this is a mapping of \n\n{ "column" : "type" }\n\n, where types are valid \n\nJSON Schema datatypes\n\n. Leave as {} to auto-infer the schema.
+	Schema pulumi.StringInput `pulumi:"schema"`
+	// must be one of ["s3"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceS3ConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3Configuration)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationArgs) ToGetSourceS3ConfigurationOutput() GetSourceS3ConfigurationOutput {
+	return i.ToGetSourceS3ConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationArgs) ToGetSourceS3ConfigurationOutputWithContext(ctx context.Context) GetSourceS3ConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationOutput)
 }
 
 type GetSourceS3ConfigurationOutput struct{ *pulumi.OutputState }
@@ -4825,6 +8241,40 @@ type GetSourceS3ConfigurationFormat struct {
 	SourceS3UpdateFileFormatCsv     GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv     `pulumi:"sourceS3UpdateFileFormatCsv"`
 	SourceS3UpdateFileFormatJsonl   GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl   `pulumi:"sourceS3UpdateFileFormatJsonl"`
 	SourceS3UpdateFileFormatParquet GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet `pulumi:"sourceS3UpdateFileFormatParquet"`
+}
+
+// GetSourceS3ConfigurationFormatInput is an input type that accepts GetSourceS3ConfigurationFormatArgs and GetSourceS3ConfigurationFormatOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatInput` via:
+//
+//	GetSourceS3ConfigurationFormatArgs{...}
+type GetSourceS3ConfigurationFormatInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatOutput() GetSourceS3ConfigurationFormatOutput
+	ToGetSourceS3ConfigurationFormatOutputWithContext(context.Context) GetSourceS3ConfigurationFormatOutput
+}
+
+type GetSourceS3ConfigurationFormatArgs struct {
+	SourceS3FileFormatAvro          GetSourceS3ConfigurationFormatSourceS3FileFormatAvroInput          `pulumi:"sourceS3FileFormatAvro"`
+	SourceS3FileFormatCsv           GetSourceS3ConfigurationFormatSourceS3FileFormatCsvInput           `pulumi:"sourceS3FileFormatCsv"`
+	SourceS3FileFormatJsonl         GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlInput         `pulumi:"sourceS3FileFormatJsonl"`
+	SourceS3FileFormatParquet       GetSourceS3ConfigurationFormatSourceS3FileFormatParquetInput       `pulumi:"sourceS3FileFormatParquet"`
+	SourceS3UpdateFileFormatAvro    GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroInput    `pulumi:"sourceS3UpdateFileFormatAvro"`
+	SourceS3UpdateFileFormatCsv     GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvInput     `pulumi:"sourceS3UpdateFileFormatCsv"`
+	SourceS3UpdateFileFormatJsonl   GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlInput   `pulumi:"sourceS3UpdateFileFormatJsonl"`
+	SourceS3UpdateFileFormatParquet GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetInput `pulumi:"sourceS3UpdateFileFormatParquet"`
+}
+
+func (GetSourceS3ConfigurationFormatArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormat)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatArgs) ToGetSourceS3ConfigurationFormatOutput() GetSourceS3ConfigurationFormatOutput {
+	return i.ToGetSourceS3ConfigurationFormatOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatArgs) ToGetSourceS3ConfigurationFormatOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatOutput)
 }
 
 type GetSourceS3ConfigurationFormatOutput struct{ *pulumi.OutputState }
@@ -4893,6 +8343,33 @@ type GetSourceS3ConfigurationFormatSourceS3FileFormatAvro struct {
 	Filetype string `pulumi:"filetype"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3FileFormatAvroInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs and GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3FileFormatAvroInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3FileFormatAvroInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs struct {
+	Filetype pulumi.StringInput `pulumi:"filetype"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatAvro)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3FileFormatAvroOutput) ElementType() reflect.Type {
@@ -4923,6 +8400,43 @@ type GetSourceS3ConfigurationFormatSourceS3FileFormatCsv struct {
 	InferDatatypes          bool   `pulumi:"inferDatatypes"`
 	NewlinesInValues        bool   `pulumi:"newlinesInValues"`
 	QuoteChar               string `pulumi:"quoteChar"`
+}
+
+// GetSourceS3ConfigurationFormatSourceS3FileFormatCsvInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs and GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3FileFormatCsvInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3FileFormatCsvInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs struct {
+	AdditionalReaderOptions pulumi.StringInput `pulumi:"additionalReaderOptions"`
+	AdvancedOptions         pulumi.StringInput `pulumi:"advancedOptions"`
+	BlockSize               pulumi.IntInput    `pulumi:"blockSize"`
+	Delimiter               pulumi.StringInput `pulumi:"delimiter"`
+	DoubleQuote             pulumi.BoolInput   `pulumi:"doubleQuote"`
+	Encoding                pulumi.StringInput `pulumi:"encoding"`
+	EscapeChar              pulumi.StringInput `pulumi:"escapeChar"`
+	Filetype                pulumi.StringInput `pulumi:"filetype"`
+	InferDatatypes          pulumi.BoolInput   `pulumi:"inferDatatypes"`
+	NewlinesInValues        pulumi.BoolInput   `pulumi:"newlinesInValues"`
+	QuoteChar               pulumi.StringInput `pulumi:"quoteChar"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatCsv)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput)
 }
 
 type GetSourceS3ConfigurationFormatSourceS3FileFormatCsvOutput struct{ *pulumi.OutputState }
@@ -4990,6 +8504,36 @@ type GetSourceS3ConfigurationFormatSourceS3FileFormatJsonl struct {
 	UnexpectedFieldBehavior string `pulumi:"unexpectedFieldBehavior"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs and GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs struct {
+	BlockSize               pulumi.IntInput    `pulumi:"blockSize"`
+	Filetype                pulumi.StringInput `pulumi:"filetype"`
+	NewlinesInValues        pulumi.BoolInput   `pulumi:"newlinesInValues"`
+	UnexpectedFieldBehavior pulumi.StringInput `pulumi:"unexpectedFieldBehavior"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatJsonl)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlOutput) ElementType() reflect.Type {
@@ -5027,6 +8571,36 @@ type GetSourceS3ConfigurationFormatSourceS3FileFormatParquet struct {
 	Filetype   string   `pulumi:"filetype"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3FileFormatParquetInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs and GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3FileFormatParquetInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3FileFormatParquetInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput
+	ToGetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs struct {
+	BatchSize  pulumi.IntInput         `pulumi:"batchSize"`
+	BufferSize pulumi.IntInput         `pulumi:"bufferSize"`
+	Columns    pulumi.StringArrayInput `pulumi:"columns"`
+	Filetype   pulumi.StringInput      `pulumi:"filetype"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatParquet)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput() GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs) ToGetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3FileFormatParquetOutput) ElementType() reflect.Type {
@@ -5061,6 +8635,33 @@ type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro struct {
 	Filetype string `pulumi:"filetype"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs and GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs struct {
+	Filetype pulumi.StringInput `pulumi:"filetype"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvro)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroOutput) ElementType() reflect.Type {
@@ -5091,6 +8692,43 @@ type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv struct {
 	InferDatatypes          bool   `pulumi:"inferDatatypes"`
 	NewlinesInValues        bool   `pulumi:"newlinesInValues"`
 	QuoteChar               string `pulumi:"quoteChar"`
+}
+
+// GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs and GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs struct {
+	AdditionalReaderOptions pulumi.StringInput `pulumi:"additionalReaderOptions"`
+	AdvancedOptions         pulumi.StringInput `pulumi:"advancedOptions"`
+	BlockSize               pulumi.IntInput    `pulumi:"blockSize"`
+	Delimiter               pulumi.StringInput `pulumi:"delimiter"`
+	DoubleQuote             pulumi.BoolInput   `pulumi:"doubleQuote"`
+	Encoding                pulumi.StringInput `pulumi:"encoding"`
+	EscapeChar              pulumi.StringInput `pulumi:"escapeChar"`
+	Filetype                pulumi.StringInput `pulumi:"filetype"`
+	InferDatatypes          pulumi.BoolInput   `pulumi:"inferDatatypes"`
+	NewlinesInValues        pulumi.BoolInput   `pulumi:"newlinesInValues"`
+	QuoteChar               pulumi.StringInput `pulumi:"quoteChar"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsv)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput)
 }
 
 type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvOutput struct{ *pulumi.OutputState }
@@ -5160,6 +8798,36 @@ type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl struct {
 	UnexpectedFieldBehavior string `pulumi:"unexpectedFieldBehavior"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs and GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs struct {
+	BlockSize               pulumi.IntInput    `pulumi:"blockSize"`
+	Filetype                pulumi.StringInput `pulumi:"filetype"`
+	NewlinesInValues        pulumi.BoolInput   `pulumi:"newlinesInValues"`
+	UnexpectedFieldBehavior pulumi.StringInput `pulumi:"unexpectedFieldBehavior"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonl)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlOutput) ElementType() reflect.Type {
@@ -5199,6 +8867,36 @@ type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet struct {
 	Filetype   string   `pulumi:"filetype"`
 }
 
+// GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetInput is an input type that accepts GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs and GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetInput` via:
+//
+//	GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs{...}
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput
+	ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutputWithContext(context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput
+}
+
+type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs struct {
+	BatchSize  pulumi.IntInput         `pulumi:"batchSize"`
+	BufferSize pulumi.IntInput         `pulumi:"bufferSize"`
+	Columns    pulumi.StringArrayInput `pulumi:"columns"`
+	Filetype   pulumi.StringInput      `pulumi:"filetype"`
+}
+
+func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquet)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput() GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput {
+	return i.ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs) ToGetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutputWithContext(ctx context.Context) GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput)
+}
+
 type GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput struct{ *pulumi.OutputState }
 
 func (GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetOutput) ElementType() reflect.Type {
@@ -5236,6 +8934,38 @@ type GetSourceS3ConfigurationProvider struct {
 	Endpoint           string `pulumi:"endpoint"`
 	PathPrefix         string `pulumi:"pathPrefix"`
 	StartDate          string `pulumi:"startDate"`
+}
+
+// GetSourceS3ConfigurationProviderInput is an input type that accepts GetSourceS3ConfigurationProviderArgs and GetSourceS3ConfigurationProviderOutput values.
+// You can construct a concrete instance of `GetSourceS3ConfigurationProviderInput` via:
+//
+//	GetSourceS3ConfigurationProviderArgs{...}
+type GetSourceS3ConfigurationProviderInput interface {
+	pulumi.Input
+
+	ToGetSourceS3ConfigurationProviderOutput() GetSourceS3ConfigurationProviderOutput
+	ToGetSourceS3ConfigurationProviderOutputWithContext(context.Context) GetSourceS3ConfigurationProviderOutput
+}
+
+type GetSourceS3ConfigurationProviderArgs struct {
+	AwsAccessKeyId     pulumi.StringInput `pulumi:"awsAccessKeyId"`
+	AwsSecretAccessKey pulumi.StringInput `pulumi:"awsSecretAccessKey"`
+	Bucket             pulumi.StringInput `pulumi:"bucket"`
+	Endpoint           pulumi.StringInput `pulumi:"endpoint"`
+	PathPrefix         pulumi.StringInput `pulumi:"pathPrefix"`
+	StartDate          pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceS3ConfigurationProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceS3ConfigurationProvider)(nil)).Elem()
+}
+
+func (i GetSourceS3ConfigurationProviderArgs) ToGetSourceS3ConfigurationProviderOutput() GetSourceS3ConfigurationProviderOutput {
+	return i.ToGetSourceS3ConfigurationProviderOutputWithContext(context.Background())
+}
+
+func (i GetSourceS3ConfigurationProviderArgs) ToGetSourceS3ConfigurationProviderOutputWithContext(ctx context.Context) GetSourceS3ConfigurationProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceS3ConfigurationProviderOutput)
 }
 
 type GetSourceS3ConfigurationProviderOutput struct{ *pulumi.OutputState }
@@ -5295,6 +9025,50 @@ type GetSourceSalesforceConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
 	StreamsCriterias []GetSourceSalesforceConfigurationStreamsCriteria `pulumi:"streamsCriterias"`
+}
+
+// GetSourceSalesforceConfigurationInput is an input type that accepts GetSourceSalesforceConfigurationArgs and GetSourceSalesforceConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSalesforceConfigurationInput` via:
+//
+//	GetSourceSalesforceConfigurationArgs{...}
+type GetSourceSalesforceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesforceConfigurationOutput() GetSourceSalesforceConfigurationOutput
+	ToGetSourceSalesforceConfigurationOutputWithContext(context.Context) GetSourceSalesforceConfigurationOutput
+}
+
+type GetSourceSalesforceConfigurationArgs struct {
+	// must be one of ["Client"]
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// Enter your Salesforce developer application's \n\nClient ID\n\n
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Enter your Salesforce developer application's \n\nClient secret\n\n
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Toggle to use Bulk API (this might cause empty fields for some streams)
+	ForceUseBulkApi pulumi.BoolInput `pulumi:"forceUseBulkApi"`
+	// Toggle if you're using a \n\nSalesforce Sandbox\n\n
+	IsSandbox pulumi.BoolInput `pulumi:"isSandbox"`
+	// Enter your application's \n\nSalesforce Refresh Token\n\n used for Airbyte to access your Salesforce account.
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["salesforce"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Enter the date (or date-time) in the YYYY-MM-DD or YYYY-MM-DDTHH:mm:ssZ format. Airbyte will replicate the data updated on and after this date. If this field is blank, Airbyte will replicate the data for last two years.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Add filters to select only required stream based on `SObject` name. Use this field to filter which tables are displayed by this connector. This is useful if your Salesforce account has a large number of tables (>1000), in which case you may find it easier to navigate the UI and speed up the connector's performance if you restrict the tables displayed by this connector.
+	StreamsCriterias GetSourceSalesforceConfigurationStreamsCriteriaArrayInput `pulumi:"streamsCriterias"`
+}
+
+func (GetSourceSalesforceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesforceConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSalesforceConfigurationArgs) ToGetSourceSalesforceConfigurationOutput() GetSourceSalesforceConfigurationOutput {
+	return i.ToGetSourceSalesforceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesforceConfigurationArgs) ToGetSourceSalesforceConfigurationOutputWithContext(ctx context.Context) GetSourceSalesforceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesforceConfigurationOutput)
 }
 
 type GetSourceSalesforceConfigurationOutput struct{ *pulumi.OutputState }
@@ -5363,6 +9137,59 @@ type GetSourceSalesforceConfigurationStreamsCriteria struct {
 	Value    string `pulumi:"value"`
 }
 
+// GetSourceSalesforceConfigurationStreamsCriteriaInput is an input type that accepts GetSourceSalesforceConfigurationStreamsCriteriaArgs and GetSourceSalesforceConfigurationStreamsCriteriaOutput values.
+// You can construct a concrete instance of `GetSourceSalesforceConfigurationStreamsCriteriaInput` via:
+//
+//	GetSourceSalesforceConfigurationStreamsCriteriaArgs{...}
+type GetSourceSalesforceConfigurationStreamsCriteriaInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesforceConfigurationStreamsCriteriaOutput() GetSourceSalesforceConfigurationStreamsCriteriaOutput
+	ToGetSourceSalesforceConfigurationStreamsCriteriaOutputWithContext(context.Context) GetSourceSalesforceConfigurationStreamsCriteriaOutput
+}
+
+type GetSourceSalesforceConfigurationStreamsCriteriaArgs struct {
+	Criteria pulumi.StringInput `pulumi:"criteria"`
+	Value    pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetSourceSalesforceConfigurationStreamsCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesforceConfigurationStreamsCriteria)(nil)).Elem()
+}
+
+func (i GetSourceSalesforceConfigurationStreamsCriteriaArgs) ToGetSourceSalesforceConfigurationStreamsCriteriaOutput() GetSourceSalesforceConfigurationStreamsCriteriaOutput {
+	return i.ToGetSourceSalesforceConfigurationStreamsCriteriaOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesforceConfigurationStreamsCriteriaArgs) ToGetSourceSalesforceConfigurationStreamsCriteriaOutputWithContext(ctx context.Context) GetSourceSalesforceConfigurationStreamsCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesforceConfigurationStreamsCriteriaOutput)
+}
+
+// GetSourceSalesforceConfigurationStreamsCriteriaArrayInput is an input type that accepts GetSourceSalesforceConfigurationStreamsCriteriaArray and GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput values.
+// You can construct a concrete instance of `GetSourceSalesforceConfigurationStreamsCriteriaArrayInput` via:
+//
+//	GetSourceSalesforceConfigurationStreamsCriteriaArray{ GetSourceSalesforceConfigurationStreamsCriteriaArgs{...} }
+type GetSourceSalesforceConfigurationStreamsCriteriaArrayInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesforceConfigurationStreamsCriteriaArrayOutput() GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput
+	ToGetSourceSalesforceConfigurationStreamsCriteriaArrayOutputWithContext(context.Context) GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput
+}
+
+type GetSourceSalesforceConfigurationStreamsCriteriaArray []GetSourceSalesforceConfigurationStreamsCriteriaInput
+
+func (GetSourceSalesforceConfigurationStreamsCriteriaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSourceSalesforceConfigurationStreamsCriteria)(nil)).Elem()
+}
+
+func (i GetSourceSalesforceConfigurationStreamsCriteriaArray) ToGetSourceSalesforceConfigurationStreamsCriteriaArrayOutput() GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput {
+	return i.ToGetSourceSalesforceConfigurationStreamsCriteriaArrayOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesforceConfigurationStreamsCriteriaArray) ToGetSourceSalesforceConfigurationStreamsCriteriaArrayOutputWithContext(ctx context.Context) GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesforceConfigurationStreamsCriteriaArrayOutput)
+}
+
 type GetSourceSalesforceConfigurationStreamsCriteriaOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSalesforceConfigurationStreamsCriteriaOutput) ElementType() reflect.Type {
@@ -5413,6 +9240,37 @@ type GetSourceSalesloftConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceSalesloftConfigurationInput is an input type that accepts GetSourceSalesloftConfigurationArgs and GetSourceSalesloftConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationInput` via:
+//
+//	GetSourceSalesloftConfigurationArgs{...}
+type GetSourceSalesloftConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationOutput() GetSourceSalesloftConfigurationOutput
+	ToGetSourceSalesloftConfigurationOutputWithContext(context.Context) GetSourceSalesloftConfigurationOutput
+}
+
+type GetSourceSalesloftConfigurationArgs struct {
+	Credentials GetSourceSalesloftConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["salesloft"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Salesloft API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceSalesloftConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationArgs) ToGetSourceSalesloftConfigurationOutput() GetSourceSalesloftConfigurationOutput {
+	return i.ToGetSourceSalesloftConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationArgs) ToGetSourceSalesloftConfigurationOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationOutput)
+}
+
 type GetSourceSalesloftConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSalesloftConfigurationOutput) ElementType() reflect.Type {
@@ -5448,6 +9306,36 @@ type GetSourceSalesloftConfigurationCredentials struct {
 	SourceSalesloftCredentialsAuthenticateViaOAuth        GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth        `pulumi:"sourceSalesloftCredentialsAuthenticateViaOAuth"`
 	SourceSalesloftUpdateCredentialsAuthenticateViaApiKey GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey `pulumi:"sourceSalesloftUpdateCredentialsAuthenticateViaApiKey"`
 	SourceSalesloftUpdateCredentialsAuthenticateViaOAuth  GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth  `pulumi:"sourceSalesloftUpdateCredentialsAuthenticateViaOAuth"`
+}
+
+// GetSourceSalesloftConfigurationCredentialsInput is an input type that accepts GetSourceSalesloftConfigurationCredentialsArgs and GetSourceSalesloftConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationCredentialsInput` via:
+//
+//	GetSourceSalesloftConfigurationCredentialsArgs{...}
+type GetSourceSalesloftConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationCredentialsOutput() GetSourceSalesloftConfigurationCredentialsOutput
+	ToGetSourceSalesloftConfigurationCredentialsOutputWithContext(context.Context) GetSourceSalesloftConfigurationCredentialsOutput
+}
+
+type GetSourceSalesloftConfigurationCredentialsArgs struct {
+	SourceSalesloftCredentialsAuthenticateViaApiKey       GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyInput       `pulumi:"sourceSalesloftCredentialsAuthenticateViaApiKey"`
+	SourceSalesloftCredentialsAuthenticateViaOAuth        GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthInput        `pulumi:"sourceSalesloftCredentialsAuthenticateViaOAuth"`
+	SourceSalesloftUpdateCredentialsAuthenticateViaApiKey GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyInput `pulumi:"sourceSalesloftUpdateCredentialsAuthenticateViaApiKey"`
+	SourceSalesloftUpdateCredentialsAuthenticateViaOAuth  GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthInput  `pulumi:"sourceSalesloftUpdateCredentialsAuthenticateViaOAuth"`
+}
+
+func (GetSourceSalesloftConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsArgs) ToGetSourceSalesloftConfigurationCredentialsOutput() GetSourceSalesloftConfigurationCredentialsOutput {
+	return i.ToGetSourceSalesloftConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsArgs) ToGetSourceSalesloftConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationCredentialsOutput)
 }
 
 type GetSourceSalesloftConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -5493,6 +9381,34 @@ type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthent
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyInput is an input type that accepts GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs and GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyInput` via:
+//
+//	GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs{...}
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutputWithContext(context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput
+}
+
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs struct {
+	ApiKey   pulumi.StringInput `pulumi:"apiKey"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKey)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput {
+	return i.ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput)
+}
+
 type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyOutput) ElementType() reflect.Type {
@@ -5526,6 +9442,38 @@ type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthent
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthInput is an input type that accepts GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs and GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthInput` via:
+//
+//	GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs{...}
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutputWithContext(context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput
+}
+
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuth)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput {
+	return i.ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput)
 }
 
 type GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthOutput struct{ *pulumi.OutputState }
@@ -5583,6 +9531,34 @@ type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsA
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyInput is an input type that accepts GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs and GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyInput` via:
+//
+//	GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs{...}
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutputWithContext(context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput
+}
+
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs struct {
+	ApiKey   pulumi.StringInput `pulumi:"apiKey"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKey)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput {
+	return i.ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput)
+}
+
 type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyOutput) ElementType() reflect.Type {
@@ -5616,6 +9592,38 @@ type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsA
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthInput is an input type that accepts GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs and GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput values.
+// You can construct a concrete instance of `GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthInput` via:
+//
+//	GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs{...}
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput
+	ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutputWithContext(context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput
+}
+
+type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuth)(nil)).Elem()
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput() GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput {
+	return i.ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs) ToGetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutputWithContext(ctx context.Context) GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput)
 }
 
 type GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthOutput struct{ *pulumi.OutputState }
@@ -5675,6 +9683,36 @@ type GetSourceSapFieldglassConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceSapFieldglassConfigurationInput is an input type that accepts GetSourceSapFieldglassConfigurationArgs and GetSourceSapFieldglassConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSapFieldglassConfigurationInput` via:
+//
+//	GetSourceSapFieldglassConfigurationArgs{...}
+type GetSourceSapFieldglassConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSapFieldglassConfigurationOutput() GetSourceSapFieldglassConfigurationOutput
+	ToGetSourceSapFieldglassConfigurationOutputWithContext(context.Context) GetSourceSapFieldglassConfigurationOutput
+}
+
+type GetSourceSapFieldglassConfigurationArgs struct {
+	// API Key
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["sap-fieldglass"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSapFieldglassConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSapFieldglassConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSapFieldglassConfigurationArgs) ToGetSourceSapFieldglassConfigurationOutput() GetSourceSapFieldglassConfigurationOutput {
+	return i.ToGetSourceSapFieldglassConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSapFieldglassConfigurationArgs) ToGetSourceSapFieldglassConfigurationOutputWithContext(ctx context.Context) GetSourceSapFieldglassConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSapFieldglassConfigurationOutput)
+}
+
 type GetSourceSapFieldglassConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSapFieldglassConfigurationOutput) ElementType() reflect.Type {
@@ -5704,6 +9742,36 @@ type GetSourceSecodaConfiguration struct {
 	ApiKey string `pulumi:"apiKey"`
 	// must be one of ["secoda"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceSecodaConfigurationInput is an input type that accepts GetSourceSecodaConfigurationArgs and GetSourceSecodaConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSecodaConfigurationInput` via:
+//
+//	GetSourceSecodaConfigurationArgs{...}
+type GetSourceSecodaConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSecodaConfigurationOutput() GetSourceSecodaConfigurationOutput
+	ToGetSourceSecodaConfigurationOutputWithContext(context.Context) GetSourceSecodaConfigurationOutput
+}
+
+type GetSourceSecodaConfigurationArgs struct {
+	// Your API Access Key. See \n\nhere\n\n. The key is case sensitive.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["secoda"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSecodaConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSecodaConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSecodaConfigurationArgs) ToGetSourceSecodaConfigurationOutput() GetSourceSecodaConfigurationOutput {
+	return i.ToGetSourceSecodaConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSecodaConfigurationArgs) ToGetSourceSecodaConfigurationOutputWithContext(ctx context.Context) GetSourceSecodaConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSecodaConfigurationOutput)
 }
 
 type GetSourceSecodaConfigurationOutput struct{ *pulumi.OutputState }
@@ -5737,6 +9805,38 @@ type GetSourceSendgridConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// Start time in ISO8601 format. Any data before this time point will not be replicated.
 	StartTime string `pulumi:"startTime"`
+}
+
+// GetSourceSendgridConfigurationInput is an input type that accepts GetSourceSendgridConfigurationArgs and GetSourceSendgridConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSendgridConfigurationInput` via:
+//
+//	GetSourceSendgridConfigurationArgs{...}
+type GetSourceSendgridConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSendgridConfigurationOutput() GetSourceSendgridConfigurationOutput
+	ToGetSourceSendgridConfigurationOutputWithContext(context.Context) GetSourceSendgridConfigurationOutput
+}
+
+type GetSourceSendgridConfigurationArgs struct {
+	// API Key, use \n\nadmin\n\n to generate this key.
+	Apikey pulumi.StringInput `pulumi:"apikey"`
+	// must be one of ["sendgrid"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Start time in ISO8601 format. Any data before this time point will not be replicated.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+}
+
+func (GetSourceSendgridConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSendgridConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSendgridConfigurationArgs) ToGetSourceSendgridConfigurationOutput() GetSourceSendgridConfigurationOutput {
+	return i.ToGetSourceSendgridConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSendgridConfigurationArgs) ToGetSourceSendgridConfigurationOutputWithContext(ctx context.Context) GetSourceSendgridConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSendgridConfigurationOutput)
 }
 
 type GetSourceSendgridConfigurationOutput struct{ *pulumi.OutputState }
@@ -5773,6 +9873,36 @@ type GetSourceSendinblueConfiguration struct {
 	ApiKey string `pulumi:"apiKey"`
 	// must be one of ["sendinblue"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceSendinblueConfigurationInput is an input type that accepts GetSourceSendinblueConfigurationArgs and GetSourceSendinblueConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSendinblueConfigurationInput` via:
+//
+//	GetSourceSendinblueConfigurationArgs{...}
+type GetSourceSendinblueConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSendinblueConfigurationOutput() GetSourceSendinblueConfigurationOutput
+	ToGetSourceSendinblueConfigurationOutputWithContext(context.Context) GetSourceSendinblueConfigurationOutput
+}
+
+type GetSourceSendinblueConfigurationArgs struct {
+	// Your API Key. See \n\nhere\n\n.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["sendinblue"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSendinblueConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSendinblueConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSendinblueConfigurationArgs) ToGetSourceSendinblueConfigurationOutput() GetSourceSendinblueConfigurationOutput {
+	return i.ToGetSourceSendinblueConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSendinblueConfigurationArgs) ToGetSourceSendinblueConfigurationOutputWithContext(ctx context.Context) GetSourceSendinblueConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSendinblueConfigurationOutput)
 }
 
 type GetSourceSendinblueConfigurationOutput struct{ *pulumi.OutputState }
@@ -5812,6 +9942,44 @@ type GetSourceSenseforceConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the startDate to 2020-10-10 or later
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceSenseforceConfigurationInput is an input type that accepts GetSourceSenseforceConfigurationArgs and GetSourceSenseforceConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSenseforceConfigurationInput` via:
+//
+//	GetSourceSenseforceConfigurationArgs{...}
+type GetSourceSenseforceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSenseforceConfigurationOutput() GetSourceSenseforceConfigurationOutput
+	ToGetSourceSenseforceConfigurationOutputWithContext(context.Context) GetSourceSenseforceConfigurationOutput
+}
+
+type GetSourceSenseforceConfigurationArgs struct {
+	// Your API access token. See \n\nhere\n\n. The toke is case sensitive.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// Your Senseforce API backend URL. This is the URL shown during the Login screen. See \n\nhere\n\n for more details. (Note: Most Senseforce backend APIs have the term 'galaxy' in their ULR)
+	BackendUrl pulumi.StringInput `pulumi:"backendUrl"`
+	// The ID of the dataset you want to synchronize. The ID can be found in the URL when opening the dataset. See \n\nhere\n\n for more details. (Note: As the Senseforce API only allows to synchronize a specific dataset, each dataset you  want to synchronize needs to be implemented as a separate airbyte source).
+	DatasetId pulumi.StringInput `pulumi:"datasetId"`
+	// The time increment used by the connector when requesting data from the Senseforce API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted and the more likely one could run into rate limites.  Furthermore, consider that large chunks of time might take a long time for the Senseforce query to return data - meaning it could take in effect longer than with more smaller time slices. If there are a lot of data per day, set this setting to 1. If there is only very little data per day, you might change the setting to 10 or more.
+	SliceRange pulumi.IntInput `pulumi:"sliceRange"`
+	// must be one of ["senseforce"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25. Only data with "Timestamp" after this date will be replicated. Important note: This start date must be set to the first day of where your dataset provides data.  If your dataset has data from 2020-10-10 10:21:10, set the startDate to 2020-10-10 or later
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceSenseforceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSenseforceConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSenseforceConfigurationArgs) ToGetSourceSenseforceConfigurationOutput() GetSourceSenseforceConfigurationOutput {
+	return i.ToGetSourceSenseforceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSenseforceConfigurationArgs) ToGetSourceSenseforceConfigurationOutputWithContext(ctx context.Context) GetSourceSenseforceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSenseforceConfigurationOutput)
 }
 
 type GetSourceSenseforceConfigurationOutput struct{ *pulumi.OutputState }
@@ -5871,6 +10039,44 @@ type GetSourceSentryConfiguration struct {
 	Project string `pulumi:"project"`
 	// must be one of ["sentry"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceSentryConfigurationInput is an input type that accepts GetSourceSentryConfigurationArgs and GetSourceSentryConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSentryConfigurationInput` via:
+//
+//	GetSourceSentryConfigurationArgs{...}
+type GetSourceSentryConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSentryConfigurationOutput() GetSourceSentryConfigurationOutput
+	ToGetSourceSentryConfigurationOutputWithContext(context.Context) GetSourceSentryConfigurationOutput
+}
+
+type GetSourceSentryConfigurationArgs struct {
+	// Log into Sentry and then \n\ncreate authentication tokens\n\n.For self-hosted, you can find or create authentication tokens by visiting "{instance*url*prefix}/settings/account/api/auth-tokens/"
+	AuthToken pulumi.StringInput `pulumi:"authToken"`
+	// Fields to retrieve when fetching discover events
+	DiscoverFields pulumi.StringArrayInput `pulumi:"discoverFields"`
+	// Host name of Sentry API server.For self-hosted, specify your host name here. Otherwise, leave it empty.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// The slug of the organization the groups belong to.
+	Organization pulumi.StringInput `pulumi:"organization"`
+	// The name (slug) of the Project you want to sync.
+	Project pulumi.StringInput `pulumi:"project"`
+	// must be one of ["sentry"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSentryConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSentryConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSentryConfigurationArgs) ToGetSourceSentryConfigurationOutput() GetSourceSentryConfigurationOutput {
+	return i.ToGetSourceSentryConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSentryConfigurationArgs) ToGetSourceSentryConfigurationOutputWithContext(ctx context.Context) GetSourceSentryConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSentryConfigurationOutput)
 }
 
 type GetSourceSentryConfigurationOutput struct{ *pulumi.OutputState }
@@ -5945,6 +10151,59 @@ type GetSourceSftpBulkConfiguration struct {
 	StreamName string `pulumi:"streamName"`
 	// The server user
 	Username string `pulumi:"username"`
+}
+
+// GetSourceSftpBulkConfigurationInput is an input type that accepts GetSourceSftpBulkConfigurationArgs and GetSourceSftpBulkConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSftpBulkConfigurationInput` via:
+//
+//	GetSourceSftpBulkConfigurationArgs{...}
+type GetSourceSftpBulkConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpBulkConfigurationOutput() GetSourceSftpBulkConfigurationOutput
+	ToGetSourceSftpBulkConfigurationOutputWithContext(context.Context) GetSourceSftpBulkConfigurationOutput
+}
+
+type GetSourceSftpBulkConfigurationArgs struct {
+	// Sync only the most recent file for the configured folder path and file pattern
+	FileMostRecent pulumi.BoolInput `pulumi:"fileMostRecent"`
+	// The regular expression to specify files for sync in a chosen Folder Path
+	FilePattern pulumi.StringInput `pulumi:"filePattern"`
+	// must be one of ["csv", "json"]
+	// The file type you want to sync. Currently only 'csv' and 'json' files are supported.
+	FileType pulumi.StringInput `pulumi:"fileType"`
+	// The directory to search files for sync
+	FolderPath pulumi.StringInput `pulumi:"folderPath"`
+	// The server host address
+	Host pulumi.StringInput `pulumi:"host"`
+	// OS-level password for logging into the jump server host
+	Password pulumi.StringInput `pulumi:"password"`
+	// The server port
+	Port pulumi.IntInput `pulumi:"port"`
+	// The private key
+	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
+	// The separator used in the CSV files. Define None if you want to use the Sniffer functionality
+	Separator pulumi.StringInput `pulumi:"separator"`
+	// must be one of ["sftp-bulk"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The name of the stream or table you want to create
+	StreamName pulumi.StringInput `pulumi:"streamName"`
+	// The server user
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceSftpBulkConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpBulkConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSftpBulkConfigurationArgs) ToGetSourceSftpBulkConfigurationOutput() GetSourceSftpBulkConfigurationOutput {
+	return i.ToGetSourceSftpBulkConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpBulkConfigurationArgs) ToGetSourceSftpBulkConfigurationOutputWithContext(ctx context.Context) GetSourceSftpBulkConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpBulkConfigurationOutput)
 }
 
 type GetSourceSftpBulkConfigurationOutput struct{ *pulumi.OutputState }
@@ -6046,6 +10305,48 @@ type GetSourceSftpConfiguration struct {
 	User string `pulumi:"user"`
 }
 
+// GetSourceSftpConfigurationInput is an input type that accepts GetSourceSftpConfigurationArgs and GetSourceSftpConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationInput` via:
+//
+//	GetSourceSftpConfigurationArgs{...}
+type GetSourceSftpConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationOutput() GetSourceSftpConfigurationOutput
+	ToGetSourceSftpConfigurationOutputWithContext(context.Context) GetSourceSftpConfigurationOutput
+}
+
+type GetSourceSftpConfigurationArgs struct {
+	// The server authentication method
+	Credentials GetSourceSftpConfigurationCredentialsInput `pulumi:"credentials"`
+	// The regular expression to specify files for sync in a chosen Folder Path
+	FilePattern pulumi.StringInput `pulumi:"filePattern"`
+	// Coma separated file types. Currently only 'csv' and 'json' types are supported.
+	FileTypes pulumi.StringInput `pulumi:"fileTypes"`
+	// The directory to search files for sync
+	FolderPath pulumi.StringInput `pulumi:"folderPath"`
+	// The server host address
+	Host pulumi.StringInput `pulumi:"host"`
+	// The server port
+	Port pulumi.IntInput `pulumi:"port"`
+	// must be one of ["sftp"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The server user
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (GetSourceSftpConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationArgs) ToGetSourceSftpConfigurationOutput() GetSourceSftpConfigurationOutput {
+	return i.ToGetSourceSftpConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationArgs) ToGetSourceSftpConfigurationOutputWithContext(ctx context.Context) GetSourceSftpConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationOutput)
+}
+
 type GetSourceSftpConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSftpConfigurationOutput) ElementType() reflect.Type {
@@ -6107,6 +10408,36 @@ type GetSourceSftpConfigurationCredentials struct {
 	SourceSftpUpdateAuthenticationWildcardSshKeyAuthentication   GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication   `pulumi:"sourceSftpUpdateAuthenticationWildcardSshKeyAuthentication"`
 }
 
+// GetSourceSftpConfigurationCredentialsInput is an input type that accepts GetSourceSftpConfigurationCredentialsArgs and GetSourceSftpConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationCredentialsInput` via:
+//
+//	GetSourceSftpConfigurationCredentialsArgs{...}
+type GetSourceSftpConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationCredentialsOutput() GetSourceSftpConfigurationCredentialsOutput
+	ToGetSourceSftpConfigurationCredentialsOutputWithContext(context.Context) GetSourceSftpConfigurationCredentialsOutput
+}
+
+type GetSourceSftpConfigurationCredentialsArgs struct {
+	SourceSftpAuthenticationWildcardPasswordAuthentication       GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationInput       `pulumi:"sourceSftpAuthenticationWildcardPasswordAuthentication"`
+	SourceSftpAuthenticationWildcardSshKeyAuthentication         GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationInput         `pulumi:"sourceSftpAuthenticationWildcardSshKeyAuthentication"`
+	SourceSftpUpdateAuthenticationWildcardPasswordAuthentication GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationInput `pulumi:"sourceSftpUpdateAuthenticationWildcardPasswordAuthentication"`
+	SourceSftpUpdateAuthenticationWildcardSshKeyAuthentication   GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationInput   `pulumi:"sourceSftpUpdateAuthenticationWildcardSshKeyAuthentication"`
+}
+
+func (GetSourceSftpConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationCredentialsArgs) ToGetSourceSftpConfigurationCredentialsOutput() GetSourceSftpConfigurationCredentialsOutput {
+	return i.ToGetSourceSftpConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationCredentialsArgs) ToGetSourceSftpConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSftpConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationCredentialsOutput)
+}
+
 type GetSourceSftpConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSftpConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -6150,6 +10481,34 @@ type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswo
 	AuthUserPassword string `pulumi:"authUserPassword"`
 }
 
+// GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationInput is an input type that accepts GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs and GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationInput` via:
+//
+//	GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs{...}
+type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput
+	ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutputWithContext(context.Context) GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput
+}
+
+type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs struct {
+	AuthMethod       pulumi.StringInput `pulumi:"authMethod"`
+	AuthUserPassword pulumi.StringInput `pulumi:"authUserPassword"`
+}
+
+func (GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput {
+	return i.ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput)
+}
+
 type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationOutput) ElementType() reflect.Type {
@@ -6179,6 +10538,34 @@ func (o GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPas
 type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication struct {
 	AuthMethod string `pulumi:"authMethod"`
 	AuthSshKey string `pulumi:"authSshKey"`
+}
+
+// GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationInput is an input type that accepts GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs and GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationInput` via:
+//
+//	GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs{...}
+type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput
+	ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutputWithContext(context.Context) GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput
+}
+
+type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs struct {
+	AuthMethod pulumi.StringInput `pulumi:"authMethod"`
+	AuthSshKey pulumi.StringInput `pulumi:"authSshKey"`
+}
+
+func (GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput {
+	return i.ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput)
 }
 
 type GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
@@ -6212,6 +10599,34 @@ type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcard
 	AuthUserPassword string `pulumi:"authUserPassword"`
 }
 
+// GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationInput is an input type that accepts GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs and GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationInput` via:
+//
+//	GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs{...}
+type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput
+	ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutputWithContext(context.Context) GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput
+}
+
+type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs struct {
+	AuthMethod       pulumi.StringInput `pulumi:"authMethod"`
+	AuthUserPassword pulumi.StringInput `pulumi:"authUserPassword"`
+}
+
+func (GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput {
+	return i.ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutputWithContext(ctx context.Context) GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput)
+}
+
 type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationOutput) ElementType() reflect.Type {
@@ -6241,6 +10656,34 @@ func (o GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildc
 type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication struct {
 	AuthMethod string `pulumi:"authMethod"`
 	AuthSshKey string `pulumi:"authSshKey"`
+}
+
+// GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationInput is an input type that accepts GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs and GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationInput` via:
+//
+//	GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs{...}
+type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput
+	ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutputWithContext(context.Context) GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput
+}
+
+type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs struct {
+	AuthMethod pulumi.StringInput `pulumi:"authMethod"`
+	AuthSshKey pulumi.StringInput `pulumi:"authSshKey"`
+}
+
+func (GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput() GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput {
+	return i.ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs) ToGetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutputWithContext(ctx context.Context) GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput)
 }
 
 type GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationOutput struct{ *pulumi.OutputState }
@@ -6278,6 +10721,40 @@ type GetSourceShopifyConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceShopifyConfigurationInput is an input type that accepts GetSourceShopifyConfigurationArgs and GetSourceShopifyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationInput` via:
+//
+//	GetSourceShopifyConfigurationArgs{...}
+type GetSourceShopifyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationOutput() GetSourceShopifyConfigurationOutput
+	ToGetSourceShopifyConfigurationOutputWithContext(context.Context) GetSourceShopifyConfigurationOutput
+}
+
+type GetSourceShopifyConfigurationArgs struct {
+	// The authorization method to use to retrieve data from Shopify
+	Credentials GetSourceShopifyConfigurationCredentialsInput `pulumi:"credentials"`
+	// The name of your Shopify store found in the URL. For example, if your URL was https://NAME.myshopify.com, then the name would be 'NAME' or 'NAME.myshopify.com'.
+	Shop pulumi.StringInput `pulumi:"shop"`
+	// must be one of ["shopify"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date you would like to replicate data from. Format: YYYY-MM-DD. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceShopifyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationArgs) ToGetSourceShopifyConfigurationOutput() GetSourceShopifyConfigurationOutput {
+	return i.ToGetSourceShopifyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationArgs) ToGetSourceShopifyConfigurationOutputWithContext(ctx context.Context) GetSourceShopifyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationOutput)
 }
 
 type GetSourceShopifyConfigurationOutput struct{ *pulumi.OutputState }
@@ -6319,6 +10796,36 @@ type GetSourceShopifyConfigurationCredentials struct {
 	SourceShopifyShopifyAuthorizationMethodOAuth20           GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20           `pulumi:"sourceShopifyShopifyAuthorizationMethodOAuth20"`
 	SourceShopifyUpdateShopifyAuthorizationMethodApiPassword GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword `pulumi:"sourceShopifyUpdateShopifyAuthorizationMethodApiPassword"`
 	SourceShopifyUpdateShopifyAuthorizationMethodOAuth20     GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20     `pulumi:"sourceShopifyUpdateShopifyAuthorizationMethodOAuth20"`
+}
+
+// GetSourceShopifyConfigurationCredentialsInput is an input type that accepts GetSourceShopifyConfigurationCredentialsArgs and GetSourceShopifyConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationCredentialsInput` via:
+//
+//	GetSourceShopifyConfigurationCredentialsArgs{...}
+type GetSourceShopifyConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationCredentialsOutput() GetSourceShopifyConfigurationCredentialsOutput
+	ToGetSourceShopifyConfigurationCredentialsOutputWithContext(context.Context) GetSourceShopifyConfigurationCredentialsOutput
+}
+
+type GetSourceShopifyConfigurationCredentialsArgs struct {
+	SourceShopifyShopifyAuthorizationMethodApiPassword       GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordInput       `pulumi:"sourceShopifyShopifyAuthorizationMethodApiPassword"`
+	SourceShopifyShopifyAuthorizationMethodOAuth20           GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Input           `pulumi:"sourceShopifyShopifyAuthorizationMethodOAuth20"`
+	SourceShopifyUpdateShopifyAuthorizationMethodApiPassword GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordInput `pulumi:"sourceShopifyUpdateShopifyAuthorizationMethodApiPassword"`
+	SourceShopifyUpdateShopifyAuthorizationMethodOAuth20     GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Input     `pulumi:"sourceShopifyUpdateShopifyAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceShopifyConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationCredentialsArgs) ToGetSourceShopifyConfigurationCredentialsOutput() GetSourceShopifyConfigurationCredentialsOutput {
+	return i.ToGetSourceShopifyConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationCredentialsArgs) ToGetSourceShopifyConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceShopifyConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationCredentialsOutput)
 }
 
 type GetSourceShopifyConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -6364,6 +10871,34 @@ type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMe
 	AuthMethod  string `pulumi:"authMethod"`
 }
 
+// GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordInput is an input type that accepts GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs and GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordInput` via:
+//
+//	GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs{...}
+type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput() GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutputWithContext(context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput
+}
+
+type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs struct {
+	ApiPassword pulumi.StringInput `pulumi:"apiPassword"`
+	AuthMethod  pulumi.StringInput `pulumi:"authMethod"`
+}
+
+func (GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPassword)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs) ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput() GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput {
+	return i.ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs) ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutputWithContext(ctx context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput)
+}
+
 type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput struct{ *pulumi.OutputState }
 
 func (GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordOutput) ElementType() reflect.Type {
@@ -6395,6 +10930,36 @@ type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMe
 	AuthMethod   string `pulumi:"authMethod"`
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
+}
+
+// GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Input is an input type that accepts GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args and GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args{...}
+type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output() GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output
+}
+
+type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AuthMethod   pulumi.StringInput `pulumi:"authMethod"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+}
+
+func (GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args) ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output() GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args) ToGetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -6440,6 +11005,34 @@ type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthoriza
 	AuthMethod  string `pulumi:"authMethod"`
 }
 
+// GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordInput is an input type that accepts GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs and GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordInput` via:
+//
+//	GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs{...}
+type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput() GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutputWithContext(context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput
+}
+
+type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs struct {
+	ApiPassword pulumi.StringInput `pulumi:"apiPassword"`
+	AuthMethod  pulumi.StringInput `pulumi:"authMethod"`
+}
+
+func (GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPassword)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs) ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput() GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput {
+	return i.ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs) ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutputWithContext(ctx context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput)
+}
+
 type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput struct{ *pulumi.OutputState }
 
 func (GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordOutput) ElementType() reflect.Type {
@@ -6471,6 +11064,36 @@ type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthoriza
 	AuthMethod   string `pulumi:"authMethod"`
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
+}
+
+// GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Input is an input type that accepts GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args and GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args{...}
+type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output() GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output
+	ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output
+}
+
+type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AuthMethod   pulumi.StringInput `pulumi:"authMethod"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+}
+
+func (GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args) ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output() GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args) ToGetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -6521,6 +11144,39 @@ type GetSourceShortioConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceShortioConfigurationInput is an input type that accepts GetSourceShortioConfigurationArgs and GetSourceShortioConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceShortioConfigurationInput` via:
+//
+//	GetSourceShortioConfigurationArgs{...}
+type GetSourceShortioConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceShortioConfigurationOutput() GetSourceShortioConfigurationOutput
+	ToGetSourceShortioConfigurationOutputWithContext(context.Context) GetSourceShortioConfigurationOutput
+}
+
+type GetSourceShortioConfigurationArgs struct {
+	DomainId pulumi.StringInput `pulumi:"domainId"`
+	// Short.io Secret Key
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// must be one of ["shortio"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceShortioConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceShortioConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceShortioConfigurationArgs) ToGetSourceShortioConfigurationOutput() GetSourceShortioConfigurationOutput {
+	return i.ToGetSourceShortioConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceShortioConfigurationArgs) ToGetSourceShortioConfigurationOutputWithContext(ctx context.Context) GetSourceShortioConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceShortioConfigurationOutput)
+}
+
 type GetSourceShortioConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceShortioConfigurationOutput) ElementType() reflect.Type {
@@ -6567,6 +11223,44 @@ type GetSourceSlackConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceSlackConfigurationInput is an input type that accepts GetSourceSlackConfigurationArgs and GetSourceSlackConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationInput` via:
+//
+//	GetSourceSlackConfigurationArgs{...}
+type GetSourceSlackConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationOutput() GetSourceSlackConfigurationOutput
+	ToGetSourceSlackConfigurationOutputWithContext(context.Context) GetSourceSlackConfigurationOutput
+}
+
+type GetSourceSlackConfigurationArgs struct {
+	// A channel name list (without leading '#' char) which limit the channels from which you'd like to sync. Empty list means no filter.
+	ChannelFilters pulumi.StringArrayInput `pulumi:"channelFilters"`
+	// Choose how to authenticate into Slack
+	Credentials GetSourceSlackConfigurationCredentialsInput `pulumi:"credentials"`
+	// Whether to join all channels or to sync data only from channels the bot is already in.  If false, you'll need to manually add the bot to all the channels from which you'd like to sync messages.
+	JoinChannels pulumi.BoolInput `pulumi:"joinChannels"`
+	// How far into the past to look for messages in threads, default is 0 days
+	LookbackWindow pulumi.IntInput `pulumi:"lookbackWindow"`
+	// must be one of ["slack"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceSlackConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationArgs) ToGetSourceSlackConfigurationOutput() GetSourceSlackConfigurationOutput {
+	return i.ToGetSourceSlackConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationArgs) ToGetSourceSlackConfigurationOutputWithContext(ctx context.Context) GetSourceSlackConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationOutput)
 }
 
 type GetSourceSlackConfigurationOutput struct{ *pulumi.OutputState }
@@ -6620,6 +11314,36 @@ type GetSourceSlackConfigurationCredentials struct {
 	SourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth `pulumi:"sourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth"`
 }
 
+// GetSourceSlackConfigurationCredentialsInput is an input type that accepts GetSourceSlackConfigurationCredentialsArgs and GetSourceSlackConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationCredentialsInput` via:
+//
+//	GetSourceSlackConfigurationCredentialsArgs{...}
+type GetSourceSlackConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationCredentialsOutput() GetSourceSlackConfigurationCredentialsOutput
+	ToGetSourceSlackConfigurationCredentialsOutputWithContext(context.Context) GetSourceSlackConfigurationCredentialsOutput
+}
+
+type GetSourceSlackConfigurationCredentialsArgs struct {
+	SourceSlackAuthenticationMechanismApiToken                  GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenInput                  `pulumi:"sourceSlackAuthenticationMechanismApiToken"`
+	SourceSlackAuthenticationMechanismSignInViaSlackOAuth       GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthInput       `pulumi:"sourceSlackAuthenticationMechanismSignInViaSlackOAuth"`
+	SourceSlackUpdateAuthenticationMechanismApiToken            GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenInput            `pulumi:"sourceSlackUpdateAuthenticationMechanismApiToken"`
+	SourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthInput `pulumi:"sourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth"`
+}
+
+func (GetSourceSlackConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationCredentialsArgs) ToGetSourceSlackConfigurationCredentialsOutput() GetSourceSlackConfigurationCredentialsOutput {
+	return i.ToGetSourceSlackConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationCredentialsArgs) ToGetSourceSlackConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSlackConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationCredentialsOutput)
+}
+
 type GetSourceSlackConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSlackConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -6663,6 +11387,34 @@ type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApi
 	OptionTitle string `pulumi:"optionTitle"`
 }
 
+// GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenInput is an input type that accepts GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs and GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenInput` via:
+//
+//	GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs{...}
+type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput() GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput
+	ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutputWithContext(context.Context) GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput
+}
+
+type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs struct {
+	ApiToken    pulumi.StringInput `pulumi:"apiToken"`
+	OptionTitle pulumi.StringInput `pulumi:"optionTitle"`
+}
+
+func (GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiToken)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput() GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput {
+	return i.ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutputWithContext(ctx context.Context) GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput)
+}
+
 type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenOutput) ElementType() reflect.Type {
@@ -6694,6 +11446,36 @@ type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSig
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	OptionTitle  string `pulumi:"optionTitle"`
+}
+
+// GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthInput is an input type that accepts GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs and GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthInput` via:
+//
+//	GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs{...}
+type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput() GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput
+	ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(context.Context) GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput
+}
+
+type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	OptionTitle  pulumi.StringInput `pulumi:"optionTitle"`
+}
+
+func (GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuth)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput() GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput {
+	return i.ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(ctx context.Context) GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput)
 }
 
 type GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthOutput struct{ *pulumi.OutputState }
@@ -6739,6 +11521,34 @@ type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechan
 	OptionTitle string `pulumi:"optionTitle"`
 }
 
+// GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenInput is an input type that accepts GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs and GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenInput` via:
+//
+//	GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs{...}
+type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput() GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput
+	ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutputWithContext(context.Context) GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput
+}
+
+type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs struct {
+	ApiToken    pulumi.StringInput `pulumi:"apiToken"`
+	OptionTitle pulumi.StringInput `pulumi:"optionTitle"`
+}
+
+func (GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiToken)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput() GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput {
+	return i.ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutputWithContext(ctx context.Context) GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput)
+}
+
 type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenOutput) ElementType() reflect.Type {
@@ -6770,6 +11580,36 @@ type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechan
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	OptionTitle  string `pulumi:"optionTitle"`
+}
+
+// GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthInput is an input type that accepts GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs and GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput values.
+// You can construct a concrete instance of `GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthInput` via:
+//
+//	GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs{...}
+type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthInput interface {
+	pulumi.Input
+
+	ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput() GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput
+	ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(context.Context) GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput
+}
+
+type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	OptionTitle  pulumi.StringInput `pulumi:"optionTitle"`
+}
+
+func (GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuth)(nil)).Elem()
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput() GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput {
+	return i.ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(context.Background())
+}
+
+func (i GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs) ToGetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutputWithContext(ctx context.Context) GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput)
 }
 
 type GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthOutput struct{ *pulumi.OutputState }
@@ -6821,6 +11661,40 @@ type GetSourceSmailyConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceSmailyConfigurationInput is an input type that accepts GetSourceSmailyConfigurationArgs and GetSourceSmailyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSmailyConfigurationInput` via:
+//
+//	GetSourceSmailyConfigurationArgs{...}
+type GetSourceSmailyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSmailyConfigurationOutput() GetSourceSmailyConfigurationOutput
+	ToGetSourceSmailyConfigurationOutputWithContext(context.Context) GetSourceSmailyConfigurationOutput
+}
+
+type GetSourceSmailyConfigurationArgs struct {
+	// API user password. See https://smaily.com/help/api/general/create-api-user/
+	ApiPassword pulumi.StringInput `pulumi:"apiPassword"`
+	// API Subdomain. See https://smaily.com/help/api/general/create-api-user/
+	ApiSubdomain pulumi.StringInput `pulumi:"apiSubdomain"`
+	// API user username. See https://smaily.com/help/api/general/create-api-user/
+	ApiUsername pulumi.StringInput `pulumi:"apiUsername"`
+	// must be one of ["smaily"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSmailyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmailyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSmailyConfigurationArgs) ToGetSourceSmailyConfigurationOutput() GetSourceSmailyConfigurationOutput {
+	return i.ToGetSourceSmailyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmailyConfigurationArgs) ToGetSourceSmailyConfigurationOutputWithContext(ctx context.Context) GetSourceSmailyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmailyConfigurationOutput)
+}
+
 type GetSourceSmailyConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSmailyConfigurationOutput) ElementType() reflect.Type {
@@ -6862,6 +11736,36 @@ type GetSourceSmartengageConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceSmartengageConfigurationInput is an input type that accepts GetSourceSmartengageConfigurationArgs and GetSourceSmartengageConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSmartengageConfigurationInput` via:
+//
+//	GetSourceSmartengageConfigurationArgs{...}
+type GetSourceSmartengageConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSmartengageConfigurationOutput() GetSourceSmartengageConfigurationOutput
+	ToGetSourceSmartengageConfigurationOutputWithContext(context.Context) GetSourceSmartengageConfigurationOutput
+}
+
+type GetSourceSmartengageConfigurationArgs struct {
+	// API Key
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// must be one of ["smartengage"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSmartengageConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartengageConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSmartengageConfigurationArgs) ToGetSourceSmartengageConfigurationOutput() GetSourceSmartengageConfigurationOutput {
+	return i.ToGetSourceSmartengageConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartengageConfigurationArgs) ToGetSourceSmartengageConfigurationOutputWithContext(ctx context.Context) GetSourceSmartengageConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartengageConfigurationOutput)
+}
+
 type GetSourceSmartengageConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSmartengageConfigurationOutput) ElementType() reflect.Type {
@@ -6896,6 +11800,41 @@ type GetSourceSmartsheetsConfiguration struct {
 	SpreadsheetId string `pulumi:"spreadsheetId"`
 	// Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
 	StartDatetime string `pulumi:"startDatetime"`
+}
+
+// GetSourceSmartsheetsConfigurationInput is an input type that accepts GetSourceSmartsheetsConfigurationArgs and GetSourceSmartsheetsConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationInput` via:
+//
+//	GetSourceSmartsheetsConfigurationArgs{...}
+type GetSourceSmartsheetsConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationOutput() GetSourceSmartsheetsConfigurationOutput
+	ToGetSourceSmartsheetsConfigurationOutputWithContext(context.Context) GetSourceSmartsheetsConfigurationOutput
+}
+
+type GetSourceSmartsheetsConfigurationArgs struct {
+	Credentials GetSourceSmartsheetsConfigurationCredentialsInput `pulumi:"credentials"`
+	// A List of available columns which metadata can be pulled from.
+	MetadataFields pulumi.StringArrayInput `pulumi:"metadataFields"`
+	// must be one of ["smartsheets"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The spreadsheet ID. Find it by opening the spreadsheet then navigating to File > Properties
+	SpreadsheetId pulumi.StringInput `pulumi:"spreadsheetId"`
+	// Only rows modified after this date/time will be replicated. This should be an ISO 8601 string, for instance: `2000-01-01T13:00:00`
+	StartDatetime pulumi.StringInput `pulumi:"startDatetime"`
+}
+
+func (GetSourceSmartsheetsConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationArgs) ToGetSourceSmartsheetsConfigurationOutput() GetSourceSmartsheetsConfigurationOutput {
+	return i.ToGetSourceSmartsheetsConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationArgs) ToGetSourceSmartsheetsConfigurationOutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationOutput)
 }
 
 type GetSourceSmartsheetsConfigurationOutput struct{ *pulumi.OutputState }
@@ -6945,6 +11884,36 @@ type GetSourceSmartsheetsConfigurationCredentials struct {
 	SourceSmartsheetsUpdateAuthorizationMethodOAuth20        GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20        `pulumi:"sourceSmartsheetsUpdateAuthorizationMethodOAuth20"`
 }
 
+// GetSourceSmartsheetsConfigurationCredentialsInput is an input type that accepts GetSourceSmartsheetsConfigurationCredentialsArgs and GetSourceSmartsheetsConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationCredentialsInput` via:
+//
+//	GetSourceSmartsheetsConfigurationCredentialsArgs{...}
+type GetSourceSmartsheetsConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationCredentialsOutput() GetSourceSmartsheetsConfigurationCredentialsOutput
+	ToGetSourceSmartsheetsConfigurationCredentialsOutputWithContext(context.Context) GetSourceSmartsheetsConfigurationCredentialsOutput
+}
+
+type GetSourceSmartsheetsConfigurationCredentialsArgs struct {
+	SourceSmartsheetsAuthorizationMethodApiAccessToken       GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenInput       `pulumi:"sourceSmartsheetsAuthorizationMethodApiAccessToken"`
+	SourceSmartsheetsAuthorizationMethodOAuth20              GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Input              `pulumi:"sourceSmartsheetsAuthorizationMethodOAuth20"`
+	SourceSmartsheetsUpdateAuthorizationMethodApiAccessToken GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenInput `pulumi:"sourceSmartsheetsUpdateAuthorizationMethodApiAccessToken"`
+	SourceSmartsheetsUpdateAuthorizationMethodOAuth20        GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Input        `pulumi:"sourceSmartsheetsUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceSmartsheetsConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsArgs) ToGetSourceSmartsheetsConfigurationCredentialsOutput() GetSourceSmartsheetsConfigurationCredentialsOutput {
+	return i.ToGetSourceSmartsheetsConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsArgs) ToGetSourceSmartsheetsConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationCredentialsOutput)
+}
+
 type GetSourceSmartsheetsConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSmartsheetsConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -6988,6 +11957,34 @@ type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationM
 	AuthType    string `pulumi:"authType"`
 }
 
+// GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenInput is an input type that accepts GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs and GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenInput` via:
+//
+//	GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs{...}
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutputWithContext(context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput
+}
+
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthType    pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput {
+	return i.ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput)
+}
+
 type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenOutput) ElementType() reflect.Type {
@@ -7021,6 +12018,38 @@ type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationM
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Input is an input type that accepts GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args and GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args{...}
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output
+}
+
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -7078,6 +12107,34 @@ type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthoriz
 	AuthType    string `pulumi:"authType"`
 }
 
+// GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenInput is an input type that accepts GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs and GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenInput` via:
+//
+//	GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs{...}
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutputWithContext(context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput
+}
+
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthType    pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput {
+	return i.ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput)
+}
+
 type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenOutput) ElementType() reflect.Type {
@@ -7111,6 +12168,38 @@ type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthoriz
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args and GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output() GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args) ToGetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -7178,6 +12267,44 @@ type GetSourceSnapchatMarketingConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceSnapchatMarketingConfigurationInput is an input type that accepts GetSourceSnapchatMarketingConfigurationArgs and GetSourceSnapchatMarketingConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSnapchatMarketingConfigurationInput` via:
+//
+//	GetSourceSnapchatMarketingConfigurationArgs{...}
+type GetSourceSnapchatMarketingConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSnapchatMarketingConfigurationOutput() GetSourceSnapchatMarketingConfigurationOutput
+	ToGetSourceSnapchatMarketingConfigurationOutputWithContext(context.Context) GetSourceSnapchatMarketingConfigurationOutput
+}
+
+type GetSourceSnapchatMarketingConfigurationArgs struct {
+	// The Client ID of your Snapchat developer application.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The Client Secret of your Snapchat developer application.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Date in the format 2017-01-25. Any data after this date will not be replicated.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// Refresh Token to renew the expired Access Token.
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["snapchat-marketing"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Date in the format 2022-01-01. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceSnapchatMarketingConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnapchatMarketingConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSnapchatMarketingConfigurationArgs) ToGetSourceSnapchatMarketingConfigurationOutput() GetSourceSnapchatMarketingConfigurationOutput {
+	return i.ToGetSourceSnapchatMarketingConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSnapchatMarketingConfigurationArgs) ToGetSourceSnapchatMarketingConfigurationOutputWithContext(ctx context.Context) GetSourceSnapchatMarketingConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnapchatMarketingConfigurationOutput)
+}
+
 type GetSourceSnapchatMarketingConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSnapchatMarketingConfigurationOutput) ElementType() reflect.Type {
@@ -7238,6 +12365,47 @@ type GetSourceSnowflakeConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// The warehouse you created for Airbyte to access data.
 	Warehouse string `pulumi:"warehouse"`
+}
+
+// GetSourceSnowflakeConfigurationInput is an input type that accepts GetSourceSnowflakeConfigurationArgs and GetSourceSnowflakeConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationInput` via:
+//
+//	GetSourceSnowflakeConfigurationArgs{...}
+type GetSourceSnowflakeConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationOutput() GetSourceSnowflakeConfigurationOutput
+	ToGetSourceSnowflakeConfigurationOutputWithContext(context.Context) GetSourceSnowflakeConfigurationOutput
+}
+
+type GetSourceSnowflakeConfigurationArgs struct {
+	Credentials GetSourceSnowflakeConfigurationCredentialsInput `pulumi:"credentials"`
+	// The database you created for Airbyte to access data.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The host domain of the snowflake instance (must include the account, region, cloud environment, and end with snowflakecomputing.com).
+	Host pulumi.StringInput `pulumi:"host"`
+	// Additional properties to pass to the JDBC URL string when connecting to the database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).
+	JdbcUrlParams pulumi.StringInput `pulumi:"jdbcUrlParams"`
+	// The role you created for Airbyte to access Snowflake.
+	Role pulumi.StringInput `pulumi:"role"`
+	// The source Snowflake schema tables. Leave empty to access tables from multiple schemas.
+	Schema pulumi.StringInput `pulumi:"schema"`
+	// must be one of ["snowflake"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The warehouse you created for Airbyte to access data.
+	Warehouse pulumi.StringInput `pulumi:"warehouse"`
+}
+
+func (GetSourceSnowflakeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationArgs) ToGetSourceSnowflakeConfigurationOutput() GetSourceSnowflakeConfigurationOutput {
+	return i.ToGetSourceSnowflakeConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationArgs) ToGetSourceSnowflakeConfigurationOutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationOutput)
 }
 
 type GetSourceSnowflakeConfigurationOutput struct{ *pulumi.OutputState }
@@ -7302,6 +12470,36 @@ type GetSourceSnowflakeConfigurationCredentials struct {
 	SourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword `pulumi:"sourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword"`
 }
 
+// GetSourceSnowflakeConfigurationCredentialsInput is an input type that accepts GetSourceSnowflakeConfigurationCredentialsArgs and GetSourceSnowflakeConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationCredentialsInput` via:
+//
+//	GetSourceSnowflakeConfigurationCredentialsArgs{...}
+type GetSourceSnowflakeConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationCredentialsOutput() GetSourceSnowflakeConfigurationCredentialsOutput
+	ToGetSourceSnowflakeConfigurationCredentialsOutputWithContext(context.Context) GetSourceSnowflakeConfigurationCredentialsOutput
+}
+
+type GetSourceSnowflakeConfigurationCredentialsArgs struct {
+	SourceSnowflakeAuthorizationMethodOAuth20                   GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Input                   `pulumi:"sourceSnowflakeAuthorizationMethodOAuth20"`
+	SourceSnowflakeAuthorizationMethodUsernameAndPassword       GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordInput       `pulumi:"sourceSnowflakeAuthorizationMethodUsernameAndPassword"`
+	SourceSnowflakeUpdateAuthorizationMethodOAuth20             GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Input             `pulumi:"sourceSnowflakeUpdateAuthorizationMethodOAuth20"`
+	SourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordInput `pulumi:"sourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword"`
+}
+
+func (GetSourceSnowflakeConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsArgs) ToGetSourceSnowflakeConfigurationCredentialsOutput() GetSourceSnowflakeConfigurationCredentialsOutput {
+	return i.ToGetSourceSnowflakeConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsArgs) ToGetSourceSnowflakeConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationCredentialsOutput)
+}
+
 type GetSourceSnowflakeConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSnowflakeConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -7346,6 +12544,37 @@ type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMetho
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Input is an input type that accepts GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args and GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args{...}
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output
+}
+
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -7398,6 +12627,35 @@ type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMetho
 	Username string `pulumi:"username"`
 }
 
+// GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordInput is an input type that accepts GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs and GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordInput` via:
+//
+//	GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs{...}
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutputWithContext(context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput
+}
+
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs struct {
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	Password pulumi.StringInput `pulumi:"password"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPassword)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput {
+	return i.ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput)
+}
+
 type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordOutput) ElementType() reflect.Type {
@@ -7436,6 +12694,37 @@ type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizatio
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args and GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -7488,6 +12777,35 @@ type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizatio
 	Username string `pulumi:"username"`
 }
 
+// GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordInput is an input type that accepts GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs and GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput values.
+// You can construct a concrete instance of `GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordInput` via:
+//
+//	GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs{...}
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordInput interface {
+	pulumi.Input
+
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput
+	ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutputWithContext(context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput
+}
+
+type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs struct {
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	Password pulumi.StringInput `pulumi:"password"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPassword)(nil)).Elem()
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput() GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput {
+	return i.ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutputWithContext(context.Background())
+}
+
+func (i GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs) ToGetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutputWithContext(ctx context.Context) GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput)
+}
+
 type GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordOutput) ElementType() reflect.Type {
@@ -7533,6 +12851,44 @@ type GetSourceSonarCloudConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// Your User Token. See \n\nhere\n\n. The token is case sensitive.
 	UserToken string `pulumi:"userToken"`
+}
+
+// GetSourceSonarCloudConfigurationInput is an input type that accepts GetSourceSonarCloudConfigurationArgs and GetSourceSonarCloudConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSonarCloudConfigurationInput` via:
+//
+//	GetSourceSonarCloudConfigurationArgs{...}
+type GetSourceSonarCloudConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSonarCloudConfigurationOutput() GetSourceSonarCloudConfigurationOutput
+	ToGetSourceSonarCloudConfigurationOutputWithContext(context.Context) GetSourceSonarCloudConfigurationOutput
+}
+
+type GetSourceSonarCloudConfigurationArgs struct {
+	// Comma-separated list of component keys.
+	ComponentKeys pulumi.StringArrayInput `pulumi:"componentKeys"`
+	// To retrieve issues created before the given date (inclusive).
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// Organization key. See \n\nhere\n\n.
+	Organization pulumi.StringInput `pulumi:"organization"`
+	// must be one of ["sonar-cloud"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// To retrieve issues created after the given date (inclusive).
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Your User Token. See \n\nhere\n\n. The token is case sensitive.
+	UserToken pulumi.StringInput `pulumi:"userToken"`
+}
+
+func (GetSourceSonarCloudConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSonarCloudConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSonarCloudConfigurationArgs) ToGetSourceSonarCloudConfigurationOutput() GetSourceSonarCloudConfigurationOutput {
+	return i.ToGetSourceSonarCloudConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSonarCloudConfigurationArgs) ToGetSourceSonarCloudConfigurationOutputWithContext(ctx context.Context) GetSourceSonarCloudConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSonarCloudConfigurationOutput)
 }
 
 type GetSourceSonarCloudConfigurationOutput struct{ *pulumi.OutputState }
@@ -7586,6 +12942,36 @@ type GetSourceSpaceXApiConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceSpaceXApiConfigurationInput is an input type that accepts GetSourceSpaceXApiConfigurationArgs and GetSourceSpaceXApiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSpaceXApiConfigurationInput` via:
+//
+//	GetSourceSpaceXApiConfigurationArgs{...}
+type GetSourceSpaceXApiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSpaceXApiConfigurationOutput() GetSourceSpaceXApiConfigurationOutput
+	ToGetSourceSpaceXApiConfigurationOutputWithContext(context.Context) GetSourceSpaceXApiConfigurationOutput
+}
+
+type GetSourceSpaceXApiConfigurationArgs struct {
+	Id      pulumi.StringInput `pulumi:"id"`
+	Options pulumi.StringInput `pulumi:"options"`
+	// must be one of ["spacex-api"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceSpaceXApiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSpaceXApiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSpaceXApiConfigurationArgs) ToGetSourceSpaceXApiConfigurationOutput() GetSourceSpaceXApiConfigurationOutput {
+	return i.ToGetSourceSpaceXApiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSpaceXApiConfigurationArgs) ToGetSourceSpaceXApiConfigurationOutputWithContext(ctx context.Context) GetSourceSpaceXApiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSpaceXApiConfigurationOutput)
+}
+
 type GetSourceSpaceXApiConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSpaceXApiConfigurationOutput) ElementType() reflect.Type {
@@ -7624,6 +13010,42 @@ type GetSourceSquareConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceSquareConfigurationInput is an input type that accepts GetSourceSquareConfigurationArgs and GetSourceSquareConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationInput` via:
+//
+//	GetSourceSquareConfigurationArgs{...}
+type GetSourceSquareConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationOutput() GetSourceSquareConfigurationOutput
+	ToGetSourceSquareConfigurationOutputWithContext(context.Context) GetSourceSquareConfigurationOutput
+}
+
+type GetSourceSquareConfigurationArgs struct {
+	// Choose how to authenticate to Square.
+	Credentials GetSourceSquareConfigurationCredentialsInput `pulumi:"credentials"`
+	// In some streams there is an option to include deleted objects (Items, Categories, Discounts, Taxes)
+	IncludeDeletedObjects pulumi.BoolInput `pulumi:"includeDeletedObjects"`
+	// Determines whether to use the sandbox or production environment.
+	IsSandbox pulumi.BoolInput `pulumi:"isSandbox"`
+	// must be one of ["square"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date in the format YYYY-MM-DD. Any data before this date will not be replicated. If not set, all data will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceSquareConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationArgs) ToGetSourceSquareConfigurationOutput() GetSourceSquareConfigurationOutput {
+	return i.ToGetSourceSquareConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationArgs) ToGetSourceSquareConfigurationOutputWithContext(ctx context.Context) GetSourceSquareConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationOutput)
 }
 
 type GetSourceSquareConfigurationOutput struct{ *pulumi.OutputState }
@@ -7672,6 +13094,36 @@ type GetSourceSquareConfigurationCredentials struct {
 	SourceSquareUpdateAuthenticationOauthAuthentication GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication `pulumi:"sourceSquareUpdateAuthenticationOauthAuthentication"`
 }
 
+// GetSourceSquareConfigurationCredentialsInput is an input type that accepts GetSourceSquareConfigurationCredentialsArgs and GetSourceSquareConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationCredentialsInput` via:
+//
+//	GetSourceSquareConfigurationCredentialsArgs{...}
+type GetSourceSquareConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationCredentialsOutput() GetSourceSquareConfigurationCredentialsOutput
+	ToGetSourceSquareConfigurationCredentialsOutputWithContext(context.Context) GetSourceSquareConfigurationCredentialsOutput
+}
+
+type GetSourceSquareConfigurationCredentialsArgs struct {
+	SourceSquareAuthenticationApiKey                    GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyInput                    `pulumi:"sourceSquareAuthenticationApiKey"`
+	SourceSquareAuthenticationOauthAuthentication       GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationInput       `pulumi:"sourceSquareAuthenticationOauthAuthentication"`
+	SourceSquareUpdateAuthenticationApiKey              GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyInput              `pulumi:"sourceSquareUpdateAuthenticationApiKey"`
+	SourceSquareUpdateAuthenticationOauthAuthentication GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationInput `pulumi:"sourceSquareUpdateAuthenticationOauthAuthentication"`
+}
+
+func (GetSourceSquareConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationCredentialsArgs) ToGetSourceSquareConfigurationCredentialsOutput() GetSourceSquareConfigurationCredentialsOutput {
+	return i.ToGetSourceSquareConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationCredentialsArgs) ToGetSourceSquareConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSquareConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationCredentialsOutput)
+}
+
 type GetSourceSquareConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSquareConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -7715,6 +13167,34 @@ type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey str
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyInput is an input type that accepts GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs and GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyInput` via:
+//
+//	GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs{...}
+type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput() GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput
+	ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutputWithContext(context.Context) GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput
+}
+
+type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs struct {
+	ApiKey   pulumi.StringInput `pulumi:"apiKey"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKey)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput() GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput {
+	return i.ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutputWithContext(ctx context.Context) GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput)
+}
+
 type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyOutput) ElementType() reflect.Type {
@@ -7746,6 +13226,36 @@ type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthe
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationInput is an input type that accepts GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs and GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationInput` via:
+//
+//	GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs{...}
+type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput() GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput
+	ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutputWithContext(context.Context) GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput
+}
+
+type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs struct {
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput() GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput {
+	return i.ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutputWithContext(ctx context.Context) GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput)
 }
 
 type GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationOutput struct{ *pulumi.OutputState }
@@ -7791,6 +13301,34 @@ type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiK
 	AuthType string `pulumi:"authType"`
 }
 
+// GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyInput is an input type that accepts GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs and GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyInput` via:
+//
+//	GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs{...}
+type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput() GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput
+	ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutputWithContext(context.Context) GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput
+}
+
+type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs struct {
+	ApiKey   pulumi.StringInput `pulumi:"apiKey"`
+	AuthType pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKey)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput() GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput {
+	return i.ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutputWithContext(ctx context.Context) GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput)
+}
+
 type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyOutput) ElementType() reflect.Type {
@@ -7822,6 +13360,36 @@ type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOaut
 	ClientId     string `pulumi:"clientId"`
 	ClientSecret string `pulumi:"clientSecret"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationInput is an input type that accepts GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs and GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationInput` via:
+//
+//	GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs{...}
+type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput() GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput
+	ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutputWithContext(context.Context) GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput
+}
+
+type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs struct {
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput() GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput {
+	return i.ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs) ToGetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutputWithContext(ctx context.Context) GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput)
 }
 
 type GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationOutput struct{ *pulumi.OutputState }
@@ -7877,6 +13445,46 @@ type GetSourceStravaConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// UTC date and time. Any data before this date will not be replicated.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceStravaConfigurationInput is an input type that accepts GetSourceStravaConfigurationArgs and GetSourceStravaConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceStravaConfigurationInput` via:
+//
+//	GetSourceStravaConfigurationArgs{...}
+type GetSourceStravaConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceStravaConfigurationOutput() GetSourceStravaConfigurationOutput
+	ToGetSourceStravaConfigurationOutputWithContext(context.Context) GetSourceStravaConfigurationOutput
+}
+
+type GetSourceStravaConfigurationArgs struct {
+	// The Athlete ID of your Strava developer application.
+	AthleteId pulumi.IntInput `pulumi:"athleteId"`
+	// must be one of ["Client"]
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// The Client ID of your Strava developer application.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The Client Secret of your Strava developer application.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// The Refresh Token with the activity: readAll permissions.
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["strava"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceStravaConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceStravaConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceStravaConfigurationArgs) ToGetSourceStravaConfigurationOutput() GetSourceStravaConfigurationOutput {
+	return i.ToGetSourceStravaConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceStravaConfigurationArgs) ToGetSourceStravaConfigurationOutputWithContext(ctx context.Context) GetSourceStravaConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceStravaConfigurationOutput)
 }
 
 type GetSourceStravaConfigurationOutput struct{ *pulumi.OutputState }
@@ -7943,6 +13551,44 @@ type GetSourceStripeConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceStripeConfigurationInput is an input type that accepts GetSourceStripeConfigurationArgs and GetSourceStripeConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceStripeConfigurationInput` via:
+//
+//	GetSourceStripeConfigurationArgs{...}
+type GetSourceStripeConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceStripeConfigurationOutput() GetSourceStripeConfigurationOutput
+	ToGetSourceStripeConfigurationOutputWithContext(context.Context) GetSourceStripeConfigurationOutput
+}
+
+type GetSourceStripeConfigurationArgs struct {
+	// Your Stripe account ID (starts with 'acct_', find yours \n\nhere\n\n).
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Stripe API key (usually starts with 'sk*live*'; find yours \n\nhere\n\n).
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// When set, the connector will always re-export data from the past N days, where N is the value set here. This is useful if your data is frequently updated after creation. More info \n\nhere\n\n
+	LookbackWindowDays pulumi.IntInput `pulumi:"lookbackWindowDays"`
+	// The time increment used by the connector when requesting data from the Stripe API. The bigger the value is, the less requests will be made and faster the sync will be. On the other hand, the more seldom the state is persisted.
+	SliceRange pulumi.IntInput `pulumi:"sliceRange"`
+	// must be one of ["stripe"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Only data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceStripeConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceStripeConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceStripeConfigurationArgs) ToGetSourceStripeConfigurationOutput() GetSourceStripeConfigurationOutput {
+	return i.ToGetSourceStripeConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceStripeConfigurationArgs) ToGetSourceStripeConfigurationOutputWithContext(ctx context.Context) GetSourceStripeConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceStripeConfigurationOutput)
+}
+
 type GetSourceStripeConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceStripeConfigurationOutput) ElementType() reflect.Type {
@@ -7998,6 +13644,40 @@ type GetSourceSurveySparrowConfiguration struct {
 	SurveyIds []string `pulumi:"surveyIds"`
 }
 
+// GetSourceSurveySparrowConfigurationInput is an input type that accepts GetSourceSurveySparrowConfigurationArgs and GetSourceSurveySparrowConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationInput` via:
+//
+//	GetSourceSurveySparrowConfigurationArgs{...}
+type GetSourceSurveySparrowConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationOutput() GetSourceSurveySparrowConfigurationOutput
+	ToGetSourceSurveySparrowConfigurationOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationOutput
+}
+
+type GetSourceSurveySparrowConfigurationArgs struct {
+	// Your access token. See \n\nhere\n\n. The key is case sensitive.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// Is your account location is EU based? If yes, the base url to retrieve data will be different.
+	Region GetSourceSurveySparrowConfigurationRegionInput `pulumi:"region"`
+	// must be one of ["survey-sparrow"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// A List of your survey ids for survey-specific stream
+	SurveyIds pulumi.StringArrayInput `pulumi:"surveyIds"`
+}
+
+func (GetSourceSurveySparrowConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationArgs) ToGetSourceSurveySparrowConfigurationOutput() GetSourceSurveySparrowConfigurationOutput {
+	return i.ToGetSourceSurveySparrowConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationArgs) ToGetSourceSurveySparrowConfigurationOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationOutput)
+}
+
 type GetSourceSurveySparrowConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSurveySparrowConfigurationOutput) ElementType() reflect.Type {
@@ -8037,6 +13717,36 @@ type GetSourceSurveySparrowConfigurationRegion struct {
 	SourceSurveySparrowBaseUrlGlobalAccount        GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount        `pulumi:"sourceSurveySparrowBaseUrlGlobalAccount"`
 	SourceSurveySparrowUpdateBaseUrlEuBasedAccount GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount `pulumi:"sourceSurveySparrowUpdateBaseUrlEuBasedAccount"`
 	SourceSurveySparrowUpdateBaseUrlGlobalAccount  GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount  `pulumi:"sourceSurveySparrowUpdateBaseUrlGlobalAccount"`
+}
+
+// GetSourceSurveySparrowConfigurationRegionInput is an input type that accepts GetSourceSurveySparrowConfigurationRegionArgs and GetSourceSurveySparrowConfigurationRegionOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationRegionInput` via:
+//
+//	GetSourceSurveySparrowConfigurationRegionArgs{...}
+type GetSourceSurveySparrowConfigurationRegionInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationRegionOutput() GetSourceSurveySparrowConfigurationRegionOutput
+	ToGetSourceSurveySparrowConfigurationRegionOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationRegionOutput
+}
+
+type GetSourceSurveySparrowConfigurationRegionArgs struct {
+	SourceSurveySparrowBaseUrlEuBasedAccount       GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountInput       `pulumi:"sourceSurveySparrowBaseUrlEuBasedAccount"`
+	SourceSurveySparrowBaseUrlGlobalAccount        GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountInput        `pulumi:"sourceSurveySparrowBaseUrlGlobalAccount"`
+	SourceSurveySparrowUpdateBaseUrlEuBasedAccount GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountInput `pulumi:"sourceSurveySparrowUpdateBaseUrlEuBasedAccount"`
+	SourceSurveySparrowUpdateBaseUrlGlobalAccount  GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountInput  `pulumi:"sourceSurveySparrowUpdateBaseUrlGlobalAccount"`
+}
+
+func (GetSourceSurveySparrowConfigurationRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegion)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionArgs) ToGetSourceSurveySparrowConfigurationRegionOutput() GetSourceSurveySparrowConfigurationRegionOutput {
+	return i.ToGetSourceSurveySparrowConfigurationRegionOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionArgs) ToGetSourceSurveySparrowConfigurationRegionOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationRegionOutput)
 }
 
 type GetSourceSurveySparrowConfigurationRegionOutput struct{ *pulumi.OutputState }
@@ -8081,6 +13791,33 @@ type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedA
 	UrlBase string `pulumi:"urlBase"`
 }
 
+// GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountInput is an input type that accepts GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs and GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountInput` via:
+//
+//	GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs{...}
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput
+}
+
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs struct {
+	UrlBase pulumi.StringInput `pulumi:"urlBase"`
+}
+
+func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccount)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput {
+	return i.ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput)
+}
+
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountOutput) ElementType() reflect.Type {
@@ -8103,6 +13840,33 @@ func (o GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBas
 
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount struct {
 	UrlBase string `pulumi:"urlBase"`
+}
+
+// GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountInput is an input type that accepts GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs and GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountInput` via:
+//
+//	GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs{...}
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput
+}
+
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs struct {
+	UrlBase pulumi.StringInput `pulumi:"urlBase"`
+}
+
+func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccount)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput {
+	return i.ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput)
 }
 
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountOutput struct{ *pulumi.OutputState }
@@ -8129,6 +13893,33 @@ type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEu
 	UrlBase string `pulumi:"urlBase"`
 }
 
+// GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountInput is an input type that accepts GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs and GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountInput` via:
+//
+//	GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs{...}
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput
+}
+
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs struct {
+	UrlBase pulumi.StringInput `pulumi:"urlBase"`
+}
+
+func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccount)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput {
+	return i.ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput)
+}
+
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountOutput) ElementType() reflect.Type {
@@ -8151,6 +13942,33 @@ func (o GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUr
 
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount struct {
 	UrlBase string `pulumi:"urlBase"`
+}
+
+// GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountInput is an input type that accepts GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs and GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput values.
+// You can construct a concrete instance of `GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountInput` via:
+//
+//	GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs{...}
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput
+	ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutputWithContext(context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput
+}
+
+type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs struct {
+	UrlBase pulumi.StringInput `pulumi:"urlBase"`
+}
+
+func (GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccount)(nil)).Elem()
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput() GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput {
+	return i.ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs) ToGetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutputWithContext(ctx context.Context) GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput)
 }
 
 type GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountOutput struct{ *pulumi.OutputState }
@@ -8185,6 +14003,43 @@ type GetSourceSurveymonkeyConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
 	SurveyIds []string `pulumi:"surveyIds"`
+}
+
+// GetSourceSurveymonkeyConfigurationInput is an input type that accepts GetSourceSurveymonkeyConfigurationArgs and GetSourceSurveymonkeyConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceSurveymonkeyConfigurationInput` via:
+//
+//	GetSourceSurveymonkeyConfigurationArgs{...}
+type GetSourceSurveymonkeyConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveymonkeyConfigurationOutput() GetSourceSurveymonkeyConfigurationOutput
+	ToGetSourceSurveymonkeyConfigurationOutputWithContext(context.Context) GetSourceSurveymonkeyConfigurationOutput
+}
+
+type GetSourceSurveymonkeyConfigurationArgs struct {
+	// The authorization method to use to retrieve data from SurveyMonkey
+	Credentials GetSourceSurveymonkeyConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["USA", "Europe", "Canada"]
+	// Depending on the originating datacenter of the SurveyMonkey account, the API access URL may be different.
+	Origin pulumi.StringInput `pulumi:"origin"`
+	// must be one of ["surveymonkey"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// IDs of the surveys from which you'd like to replicate data. If left empty, data from all boards to which you have access will be replicated.
+	SurveyIds pulumi.StringArrayInput `pulumi:"surveyIds"`
+}
+
+func (GetSourceSurveymonkeyConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveymonkeyConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceSurveymonkeyConfigurationArgs) ToGetSourceSurveymonkeyConfigurationOutput() GetSourceSurveymonkeyConfigurationOutput {
+	return i.ToGetSourceSurveymonkeyConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveymonkeyConfigurationArgs) ToGetSourceSurveymonkeyConfigurationOutputWithContext(ctx context.Context) GetSourceSurveymonkeyConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveymonkeyConfigurationOutput)
 }
 
 type GetSourceSurveymonkeyConfigurationOutput struct{ *pulumi.OutputState }
@@ -8236,6 +14091,36 @@ type GetSourceSurveymonkeyConfigurationCredentials struct {
 	ClientSecret string `pulumi:"clientSecret"`
 }
 
+// GetSourceSurveymonkeyConfigurationCredentialsInput is an input type that accepts GetSourceSurveymonkeyConfigurationCredentialsArgs and GetSourceSurveymonkeyConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceSurveymonkeyConfigurationCredentialsInput` via:
+//
+//	GetSourceSurveymonkeyConfigurationCredentialsArgs{...}
+type GetSourceSurveymonkeyConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceSurveymonkeyConfigurationCredentialsOutput() GetSourceSurveymonkeyConfigurationCredentialsOutput
+	ToGetSourceSurveymonkeyConfigurationCredentialsOutputWithContext(context.Context) GetSourceSurveymonkeyConfigurationCredentialsOutput
+}
+
+type GetSourceSurveymonkeyConfigurationCredentialsArgs struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AuthMethod   pulumi.StringInput `pulumi:"authMethod"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+}
+
+func (GetSourceSurveymonkeyConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceSurveymonkeyConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceSurveymonkeyConfigurationCredentialsArgs) ToGetSourceSurveymonkeyConfigurationCredentialsOutput() GetSourceSurveymonkeyConfigurationCredentialsOutput {
+	return i.ToGetSourceSurveymonkeyConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceSurveymonkeyConfigurationCredentialsArgs) ToGetSourceSurveymonkeyConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceSurveymonkeyConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceSurveymonkeyConfigurationCredentialsOutput)
+}
+
 type GetSourceSurveymonkeyConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceSurveymonkeyConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -8271,6 +14156,36 @@ type GetSourceTempoConfiguration struct {
 	ApiToken string `pulumi:"apiToken"`
 	// must be one of ["tempo"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceTempoConfigurationInput is an input type that accepts GetSourceTempoConfigurationArgs and GetSourceTempoConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTempoConfigurationInput` via:
+//
+//	GetSourceTempoConfigurationArgs{...}
+type GetSourceTempoConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTempoConfigurationOutput() GetSourceTempoConfigurationOutput
+	ToGetSourceTempoConfigurationOutputWithContext(context.Context) GetSourceTempoConfigurationOutput
+}
+
+type GetSourceTempoConfigurationArgs struct {
+	// Tempo API Token. Go to Tempo>Settings, scroll down to Data Access and select API integration.
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	// must be one of ["tempo"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceTempoConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTempoConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTempoConfigurationArgs) ToGetSourceTempoConfigurationOutput() GetSourceTempoConfigurationOutput {
+	return i.ToGetSourceTempoConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTempoConfigurationArgs) ToGetSourceTempoConfigurationOutputWithContext(ctx context.Context) GetSourceTempoConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTempoConfigurationOutput)
 }
 
 type GetSourceTempoConfigurationOutput struct{ *pulumi.OutputState }
@@ -8312,6 +14227,46 @@ type GetSourceTheGuardianApiConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \n\nhere\n\n for a list of all tags, and \n\nhere\n\n for the tags endpoint documentation.
 	Tag string `pulumi:"tag"`
+}
+
+// GetSourceTheGuardianApiConfigurationInput is an input type that accepts GetSourceTheGuardianApiConfigurationArgs and GetSourceTheGuardianApiConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTheGuardianApiConfigurationInput` via:
+//
+//	GetSourceTheGuardianApiConfigurationArgs{...}
+type GetSourceTheGuardianApiConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTheGuardianApiConfigurationOutput() GetSourceTheGuardianApiConfigurationOutput
+	ToGetSourceTheGuardianApiConfigurationOutputWithContext(context.Context) GetSourceTheGuardianApiConfigurationOutput
+}
+
+type GetSourceTheGuardianApiConfigurationArgs struct {
+	// Your API Key. See \n\nhere\n\n. The key is case sensitive.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// (Optional) Use this to set the maximum date (YYYY-MM-DD) of the results. Results newer than the endDate will not be shown. Default is set to the current date (today) for incremental syncs.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// (Optional) The query (q) parameter filters the results to only those that include that search term. The q parameter supports AND, OR and NOT operators.
+	Query pulumi.StringInput `pulumi:"query"`
+	// (Optional) Use this to filter the results by a particular section. See \n\nhere\n\n for a list of all sections, and \n\nhere\n\n for the sections endpoint documentation.
+	Section pulumi.StringInput `pulumi:"section"`
+	// must be one of ["the-guardian-api"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Use this to set the minimum date (YYYY-MM-DD) of the results. Results older than the startDate will not be shown.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// (Optional) A tag is a piece of data that is used by The Guardian to categorise content. Use this parameter to filter results by showing only the ones matching the entered tag. See \n\nhere\n\n for a list of all tags, and \n\nhere\n\n for the tags endpoint documentation.
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetSourceTheGuardianApiConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTheGuardianApiConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTheGuardianApiConfigurationArgs) ToGetSourceTheGuardianApiConfigurationOutput() GetSourceTheGuardianApiConfigurationOutput {
+	return i.ToGetSourceTheGuardianApiConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTheGuardianApiConfigurationArgs) ToGetSourceTheGuardianApiConfigurationOutputWithContext(ctx context.Context) GetSourceTheGuardianApiConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTheGuardianApiConfigurationOutput)
 }
 
 type GetSourceTheGuardianApiConfigurationOutput struct{ *pulumi.OutputState }
@@ -8378,6 +14333,44 @@ type GetSourceTiktokMarketingConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceTiktokMarketingConfigurationInput is an input type that accepts GetSourceTiktokMarketingConfigurationArgs and GetSourceTiktokMarketingConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationInput` via:
+//
+//	GetSourceTiktokMarketingConfigurationArgs{...}
+type GetSourceTiktokMarketingConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationOutput() GetSourceTiktokMarketingConfigurationOutput
+	ToGetSourceTiktokMarketingConfigurationOutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationOutput
+}
+
+type GetSourceTiktokMarketingConfigurationArgs struct {
+	// The attribution window in days.
+	AttributionWindow pulumi.IntInput `pulumi:"attributionWindow"`
+	// Authentication method
+	Credentials GetSourceTiktokMarketingConfigurationCredentialsInput `pulumi:"credentials"`
+	// The date until which you'd like to replicate data for all incremental streams, in the format YYYY-MM-DD. All data generated between startDate and this date will be replicated. Not setting this option will result in always syncing the data till the current date.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// Set to active if you want to include deleted data in reports.
+	IncludeDeleted pulumi.BoolInput `pulumi:"includeDeleted"`
+	// must be one of ["tiktok-marketing"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The Start Date in format: YYYY-MM-DD. Any data before this date will not be replicated. If this parameter is not set, all data will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceTiktokMarketingConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationArgs) ToGetSourceTiktokMarketingConfigurationOutput() GetSourceTiktokMarketingConfigurationOutput {
+	return i.ToGetSourceTiktokMarketingConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationArgs) ToGetSourceTiktokMarketingConfigurationOutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationOutput)
+}
+
 type GetSourceTiktokMarketingConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTiktokMarketingConfigurationOutput) ElementType() reflect.Type {
@@ -8431,6 +14424,36 @@ type GetSourceTiktokMarketingConfigurationCredentials struct {
 	SourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken `pulumi:"sourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken"`
 }
 
+// GetSourceTiktokMarketingConfigurationCredentialsInput is an input type that accepts GetSourceTiktokMarketingConfigurationCredentialsArgs and GetSourceTiktokMarketingConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationCredentialsInput` via:
+//
+//	GetSourceTiktokMarketingConfigurationCredentialsArgs{...}
+type GetSourceTiktokMarketingConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationCredentialsOutput() GetSourceTiktokMarketingConfigurationCredentialsOutput
+	ToGetSourceTiktokMarketingConfigurationCredentialsOutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationCredentialsOutput
+}
+
+type GetSourceTiktokMarketingConfigurationCredentialsArgs struct {
+	SourceTiktokMarketingAuthenticationMethodOAuth20                  GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Input                  `pulumi:"sourceTiktokMarketingAuthenticationMethodOAuth20"`
+	SourceTiktokMarketingAuthenticationMethodSandboxAccessToken       GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenInput       `pulumi:"sourceTiktokMarketingAuthenticationMethodSandboxAccessToken"`
+	SourceTiktokMarketingUpdateAuthenticationMethodOAuth20            GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Input            `pulumi:"sourceTiktokMarketingUpdateAuthenticationMethodOAuth20"`
+	SourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenInput `pulumi:"sourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken"`
+}
+
+func (GetSourceTiktokMarketingConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsArgs) ToGetSourceTiktokMarketingConfigurationCredentialsOutput() GetSourceTiktokMarketingConfigurationCredentialsOutput {
+	return i.ToGetSourceTiktokMarketingConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsArgs) ToGetSourceTiktokMarketingConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationCredentialsOutput)
+}
+
 type GetSourceTiktokMarketingConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTiktokMarketingConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -8475,6 +14498,37 @@ type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthen
 	AppId        string `pulumi:"appId"`
 	AuthType     string `pulumi:"authType"`
 	Secret       string `pulumi:"secret"`
+}
+
+// GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Input is an input type that accepts GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args and GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Input` via:
+//
+//	GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args{...}
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20OutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output
+}
+
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AdvertiserId pulumi.StringInput `pulumi:"advertiserId"`
+	AppId        pulumi.StringInput `pulumi:"appId"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	Secret       pulumi.StringInput `pulumi:"secret"`
+}
+
+func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output {
+	return i.ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output)
 }
 
 type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -8527,6 +14581,35 @@ type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthen
 	AuthType     string `pulumi:"authType"`
 }
 
+// GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenInput is an input type that accepts GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs and GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenInput` via:
+//
+//	GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs{...}
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput
+}
+
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AdvertiserId pulumi.StringInput `pulumi:"advertiserId"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput {
+	return i.ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput)
+}
+
 type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenOutput) ElementType() reflect.Type {
@@ -8565,6 +14648,37 @@ type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdate
 	AppId        string `pulumi:"appId"`
 	AuthType     string `pulumi:"authType"`
 	Secret       string `pulumi:"secret"`
+}
+
+// GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Input is an input type that accepts GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args and GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Input` via:
+//
+//	GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args{...}
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20OutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output
+}
+
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AdvertiserId pulumi.StringInput `pulumi:"advertiserId"`
+	AppId        pulumi.StringInput `pulumi:"appId"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+	Secret       pulumi.StringInput `pulumi:"secret"`
+}
+
+func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output {
+	return i.ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output)
 }
 
 type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -8617,6 +14731,35 @@ type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdate
 	AuthType     string `pulumi:"authType"`
 }
 
+// GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenInput is an input type that accepts GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs and GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenInput` via:
+//
+//	GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs{...}
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput
+	ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutputWithContext(context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput
+}
+
+type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	AdvertiserId pulumi.StringInput `pulumi:"advertiserId"`
+	AuthType     pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput() GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput {
+	return i.ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs) ToGetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutputWithContext(ctx context.Context) GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput)
+}
+
 type GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenOutput) ElementType() reflect.Type {
@@ -8656,6 +14799,36 @@ type GetSourceTodoistConfiguration struct {
 	Token string `pulumi:"token"`
 }
 
+// GetSourceTodoistConfigurationInput is an input type that accepts GetSourceTodoistConfigurationArgs and GetSourceTodoistConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTodoistConfigurationInput` via:
+//
+//	GetSourceTodoistConfigurationArgs{...}
+type GetSourceTodoistConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTodoistConfigurationOutput() GetSourceTodoistConfigurationOutput
+	ToGetSourceTodoistConfigurationOutputWithContext(context.Context) GetSourceTodoistConfigurationOutput
+}
+
+type GetSourceTodoistConfigurationArgs struct {
+	// must be one of ["todoist"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Your API Token. See \n\nhere\n\n. The token is case sensitive.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (GetSourceTodoistConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTodoistConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTodoistConfigurationArgs) ToGetSourceTodoistConfigurationOutput() GetSourceTodoistConfigurationOutput {
+	return i.ToGetSourceTodoistConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTodoistConfigurationArgs) ToGetSourceTodoistConfigurationOutputWithContext(ctx context.Context) GetSourceTodoistConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTodoistConfigurationOutput)
+}
+
 type GetSourceTodoistConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTodoistConfigurationOutput) ElementType() reflect.Type {
@@ -8691,6 +14864,42 @@ type GetSourceTrelloConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 	// Trello API token. See the \n\ndocs\n\n for instructions on how to generate it.
 	Token string `pulumi:"token"`
+}
+
+// GetSourceTrelloConfigurationInput is an input type that accepts GetSourceTrelloConfigurationArgs and GetSourceTrelloConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTrelloConfigurationInput` via:
+//
+//	GetSourceTrelloConfigurationArgs{...}
+type GetSourceTrelloConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTrelloConfigurationOutput() GetSourceTrelloConfigurationOutput
+	ToGetSourceTrelloConfigurationOutputWithContext(context.Context) GetSourceTrelloConfigurationOutput
+}
+
+type GetSourceTrelloConfigurationArgs struct {
+	// IDs of the boards to replicate data from. If left empty, data from all boards to which you have access will be replicated.
+	BoardIds pulumi.StringArrayInput `pulumi:"boardIds"`
+	// Trello API key. See the \n\ndocs\n\n for instructions on how to generate it.
+	Key pulumi.StringInput `pulumi:"key"`
+	// must be one of ["trello"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2017-01-25T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Trello API token. See the \n\ndocs\n\n for instructions on how to generate it.
+	Token pulumi.StringInput `pulumi:"token"`
+}
+
+func (GetSourceTrelloConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrelloConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTrelloConfigurationArgs) ToGetSourceTrelloConfigurationOutput() GetSourceTrelloConfigurationOutput {
+	return i.ToGetSourceTrelloConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTrelloConfigurationArgs) ToGetSourceTrelloConfigurationOutputWithContext(ctx context.Context) GetSourceTrelloConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrelloConfigurationOutput)
 }
 
 type GetSourceTrelloConfigurationOutput struct{ *pulumi.OutputState }
@@ -8742,6 +14951,39 @@ type GetSourceTrustpilotConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceTrustpilotConfigurationInput is an input type that accepts GetSourceTrustpilotConfigurationArgs and GetSourceTrustpilotConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationInput` via:
+//
+//	GetSourceTrustpilotConfigurationArgs{...}
+type GetSourceTrustpilotConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationOutput() GetSourceTrustpilotConfigurationOutput
+	ToGetSourceTrustpilotConfigurationOutputWithContext(context.Context) GetSourceTrustpilotConfigurationOutput
+}
+
+type GetSourceTrustpilotConfigurationArgs struct {
+	// The names of business units which shall be synchronized. Some streams e.g. configured*business*units or privateReviews use this configuration.
+	BusinessUnits pulumi.StringArrayInput                          `pulumi:"businessUnits"`
+	Credentials   GetSourceTrustpilotConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["trustpilot"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// For streams with sync. method incremental the start date time to be used
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceTrustpilotConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationArgs) ToGetSourceTrustpilotConfigurationOutput() GetSourceTrustpilotConfigurationOutput {
+	return i.ToGetSourceTrustpilotConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationArgs) ToGetSourceTrustpilotConfigurationOutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationOutput)
+}
+
 type GetSourceTrustpilotConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTrustpilotConfigurationOutput) ElementType() reflect.Type {
@@ -8782,6 +15024,36 @@ type GetSourceTrustpilotConfigurationCredentials struct {
 	SourceTrustpilotAuthorizationMethodOAuth20       GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20       `pulumi:"sourceTrustpilotAuthorizationMethodOAuth20"`
 	SourceTrustpilotUpdateAuthorizationMethodApiKey  GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey  `pulumi:"sourceTrustpilotUpdateAuthorizationMethodApiKey"`
 	SourceTrustpilotUpdateAuthorizationMethodOAuth20 GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20 `pulumi:"sourceTrustpilotUpdateAuthorizationMethodOAuth20"`
+}
+
+// GetSourceTrustpilotConfigurationCredentialsInput is an input type that accepts GetSourceTrustpilotConfigurationCredentialsArgs and GetSourceTrustpilotConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationCredentialsInput` via:
+//
+//	GetSourceTrustpilotConfigurationCredentialsArgs{...}
+type GetSourceTrustpilotConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationCredentialsOutput() GetSourceTrustpilotConfigurationCredentialsOutput
+	ToGetSourceTrustpilotConfigurationCredentialsOutputWithContext(context.Context) GetSourceTrustpilotConfigurationCredentialsOutput
+}
+
+type GetSourceTrustpilotConfigurationCredentialsArgs struct {
+	SourceTrustpilotAuthorizationMethodApiKey        GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyInput        `pulumi:"sourceTrustpilotAuthorizationMethodApiKey"`
+	SourceTrustpilotAuthorizationMethodOAuth20       GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Input       `pulumi:"sourceTrustpilotAuthorizationMethodOAuth20"`
+	SourceTrustpilotUpdateAuthorizationMethodApiKey  GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyInput  `pulumi:"sourceTrustpilotUpdateAuthorizationMethodApiKey"`
+	SourceTrustpilotUpdateAuthorizationMethodOAuth20 GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Input `pulumi:"sourceTrustpilotUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceTrustpilotConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsArgs) ToGetSourceTrustpilotConfigurationCredentialsOutput() GetSourceTrustpilotConfigurationCredentialsOutput {
+	return i.ToGetSourceTrustpilotConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsArgs) ToGetSourceTrustpilotConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationCredentialsOutput)
 }
 
 type GetSourceTrustpilotConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -8827,6 +15099,34 @@ type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMet
 	ClientId string `pulumi:"clientId"`
 }
 
+// GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyInput is an input type that accepts GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs and GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyInput` via:
+//
+//	GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs{...}
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutputWithContext(context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput
+}
+
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs struct {
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+}
+
+func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKey)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput {
+	return i.ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput)
+}
+
 type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyOutput) ElementType() reflect.Type {
@@ -8860,6 +15160,38 @@ type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMet
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Input is an input type that accepts GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args and GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args{...}
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output
+}
+
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -8917,6 +15249,34 @@ type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizat
 	ClientId string `pulumi:"clientId"`
 }
 
+// GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyInput is an input type that accepts GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs and GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyInput` via:
+//
+//	GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs{...}
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyInput interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutputWithContext(context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput
+}
+
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs struct {
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+}
+
+func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKey)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput {
+	return i.ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput)
+}
+
 type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyOutput) ElementType() reflect.Type {
@@ -8950,6 +15310,38 @@ type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizat
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args and GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output() GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args) ToGetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -9017,6 +15409,44 @@ type GetSourceTvmazeScheduleConfiguration struct {
 	WebScheduleCountryCode string `pulumi:"webScheduleCountryCode"`
 }
 
+// GetSourceTvmazeScheduleConfigurationInput is an input type that accepts GetSourceTvmazeScheduleConfigurationArgs and GetSourceTvmazeScheduleConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTvmazeScheduleConfigurationInput` via:
+//
+//	GetSourceTvmazeScheduleConfigurationArgs{...}
+type GetSourceTvmazeScheduleConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTvmazeScheduleConfigurationOutput() GetSourceTvmazeScheduleConfigurationOutput
+	ToGetSourceTvmazeScheduleConfigurationOutputWithContext(context.Context) GetSourceTvmazeScheduleConfigurationOutput
+}
+
+type GetSourceTvmazeScheduleConfigurationArgs struct {
+	// Country code for domestic TV schedule retrieval.
+	DomesticScheduleCountryCode pulumi.StringInput `pulumi:"domesticScheduleCountryCode"`
+	// End date for TV schedule retrieval. May be in the future. Optional.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// must be one of ["tvmaze-schedule"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Start date for TV schedule retrieval. May be in the future.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// ISO 3166-1 country code for web TV schedule retrieval. Leave blank for
+	// all countries plus global web channels (e.g. Netflix). Alternatively,
+	// set to 'global' for just global web channels.
+	WebScheduleCountryCode pulumi.StringInput `pulumi:"webScheduleCountryCode"`
+}
+
+func (GetSourceTvmazeScheduleConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTvmazeScheduleConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTvmazeScheduleConfigurationArgs) ToGetSourceTvmazeScheduleConfigurationOutput() GetSourceTvmazeScheduleConfigurationOutput {
+	return i.ToGetSourceTvmazeScheduleConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTvmazeScheduleConfigurationArgs) ToGetSourceTvmazeScheduleConfigurationOutputWithContext(ctx context.Context) GetSourceTvmazeScheduleConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTvmazeScheduleConfigurationOutput)
+}
+
 type GetSourceTvmazeScheduleConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTvmazeScheduleConfigurationOutput) ElementType() reflect.Type {
@@ -9071,6 +15501,42 @@ type GetSourceTwilioConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceTwilioConfigurationInput is an input type that accepts GetSourceTwilioConfigurationArgs and GetSourceTwilioConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTwilioConfigurationInput` via:
+//
+//	GetSourceTwilioConfigurationArgs{...}
+type GetSourceTwilioConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTwilioConfigurationOutput() GetSourceTwilioConfigurationOutput
+	ToGetSourceTwilioConfigurationOutputWithContext(context.Context) GetSourceTwilioConfigurationOutput
+}
+
+type GetSourceTwilioConfigurationArgs struct {
+	// Twilio account SID
+	AccountSid pulumi.StringInput `pulumi:"accountSid"`
+	// Twilio Auth Token.
+	AuthToken pulumi.StringInput `pulumi:"authToken"`
+	// How far into the past to look for records. (in minutes)
+	LookbackWindow pulumi.IntInput `pulumi:"lookbackWindow"`
+	// must be one of ["twilio"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format 2020-10-01T00:00:00Z. Any data before this date will not be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceTwilioConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTwilioConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTwilioConfigurationArgs) ToGetSourceTwilioConfigurationOutput() GetSourceTwilioConfigurationOutput {
+	return i.ToGetSourceTwilioConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTwilioConfigurationArgs) ToGetSourceTwilioConfigurationOutputWithContext(ctx context.Context) GetSourceTwilioConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTwilioConfigurationOutput)
+}
+
 type GetSourceTwilioConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTwilioConfigurationOutput) ElementType() reflect.Type {
@@ -9119,6 +15585,38 @@ type GetSourceTwilioTaskrouterConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceTwilioTaskrouterConfigurationInput is an input type that accepts GetSourceTwilioTaskrouterConfigurationArgs and GetSourceTwilioTaskrouterConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTwilioTaskrouterConfigurationInput` via:
+//
+//	GetSourceTwilioTaskrouterConfigurationArgs{...}
+type GetSourceTwilioTaskrouterConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTwilioTaskrouterConfigurationOutput() GetSourceTwilioTaskrouterConfigurationOutput
+	ToGetSourceTwilioTaskrouterConfigurationOutputWithContext(context.Context) GetSourceTwilioTaskrouterConfigurationOutput
+}
+
+type GetSourceTwilioTaskrouterConfigurationArgs struct {
+	// Twilio Account ID
+	AccountSid pulumi.StringInput `pulumi:"accountSid"`
+	// Twilio Auth Token
+	AuthToken pulumi.StringInput `pulumi:"authToken"`
+	// must be one of ["twilio-taskrouter"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceTwilioTaskrouterConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTwilioTaskrouterConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTwilioTaskrouterConfigurationArgs) ToGetSourceTwilioTaskrouterConfigurationOutput() GetSourceTwilioTaskrouterConfigurationOutput {
+	return i.ToGetSourceTwilioTaskrouterConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTwilioTaskrouterConfigurationArgs) ToGetSourceTwilioTaskrouterConfigurationOutputWithContext(ctx context.Context) GetSourceTwilioTaskrouterConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTwilioTaskrouterConfigurationOutput)
+}
+
 type GetSourceTwilioTaskrouterConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTwilioTaskrouterConfigurationOutput) ElementType() reflect.Type {
@@ -9159,6 +15657,42 @@ type GetSourceTwitterConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// The start date for retrieving tweets cannot be more than 7 days in the past.
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceTwitterConfigurationInput is an input type that accepts GetSourceTwitterConfigurationArgs and GetSourceTwitterConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTwitterConfigurationInput` via:
+//
+//	GetSourceTwitterConfigurationArgs{...}
+type GetSourceTwitterConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTwitterConfigurationOutput() GetSourceTwitterConfigurationOutput
+	ToGetSourceTwitterConfigurationOutputWithContext(context.Context) GetSourceTwitterConfigurationOutput
+}
+
+type GetSourceTwitterConfigurationArgs struct {
+	// App only Bearer Token. See the \n\ndocs\n\n for more information on how to obtain this token.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The end date for retrieving tweets must be a minimum of 10 seconds prior to the request time.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// Query for matching Tweets. You can learn how to build this query by reading \n\n build a query guide \n\n.
+	Query pulumi.StringInput `pulumi:"query"`
+	// must be one of ["twitter"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The start date for retrieving tweets cannot be more than 7 days in the past.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceTwitterConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTwitterConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTwitterConfigurationArgs) ToGetSourceTwitterConfigurationOutput() GetSourceTwitterConfigurationOutput {
+	return i.ToGetSourceTwitterConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTwitterConfigurationArgs) ToGetSourceTwitterConfigurationOutputWithContext(ctx context.Context) GetSourceTwitterConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTwitterConfigurationOutput)
 }
 
 type GetSourceTwitterConfigurationOutput struct{ *pulumi.OutputState }
@@ -9210,6 +15744,39 @@ type GetSourceTypeformConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceTypeformConfigurationInput is an input type that accepts GetSourceTypeformConfigurationArgs and GetSourceTypeformConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationInput` via:
+//
+//	GetSourceTypeformConfigurationArgs{...}
+type GetSourceTypeformConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationOutput() GetSourceTypeformConfigurationOutput
+	ToGetSourceTypeformConfigurationOutputWithContext(context.Context) GetSourceTypeformConfigurationOutput
+}
+
+type GetSourceTypeformConfigurationArgs struct {
+	Credentials GetSourceTypeformConfigurationCredentialsInput `pulumi:"credentials"`
+	// When this parameter is set, the connector will replicate data only from the input forms. Otherwise, all forms in your Typeform account will be replicated. You can find form IDs in your form URLs. For example, in the URL "https://mysite.typeform.com/to/u6nXL7" the formId is u6nXL7. You can find form URLs on Share panel
+	FormIds pulumi.StringArrayInput `pulumi:"formIds"`
+	// must be one of ["typeform"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Typeform API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceTypeformConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationArgs) ToGetSourceTypeformConfigurationOutput() GetSourceTypeformConfigurationOutput {
+	return i.ToGetSourceTypeformConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationArgs) ToGetSourceTypeformConfigurationOutputWithContext(ctx context.Context) GetSourceTypeformConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationOutput)
+}
+
 type GetSourceTypeformConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTypeformConfigurationOutput) ElementType() reflect.Type {
@@ -9248,6 +15815,36 @@ type GetSourceTypeformConfigurationCredentials struct {
 	SourceTypeformAuthorizationMethodPrivateToken       GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken       `pulumi:"sourceTypeformAuthorizationMethodPrivateToken"`
 	SourceTypeformUpdateAuthorizationMethodOAuth20      GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20      `pulumi:"sourceTypeformUpdateAuthorizationMethodOAuth20"`
 	SourceTypeformUpdateAuthorizationMethodPrivateToken GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken `pulumi:"sourceTypeformUpdateAuthorizationMethodPrivateToken"`
+}
+
+// GetSourceTypeformConfigurationCredentialsInput is an input type that accepts GetSourceTypeformConfigurationCredentialsArgs and GetSourceTypeformConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationCredentialsInput` via:
+//
+//	GetSourceTypeformConfigurationCredentialsArgs{...}
+type GetSourceTypeformConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationCredentialsOutput() GetSourceTypeformConfigurationCredentialsOutput
+	ToGetSourceTypeformConfigurationCredentialsOutputWithContext(context.Context) GetSourceTypeformConfigurationCredentialsOutput
+}
+
+type GetSourceTypeformConfigurationCredentialsArgs struct {
+	SourceTypeformAuthorizationMethodOAuth20            GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Input            `pulumi:"sourceTypeformAuthorizationMethodOAuth20"`
+	SourceTypeformAuthorizationMethodPrivateToken       GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenInput       `pulumi:"sourceTypeformAuthorizationMethodPrivateToken"`
+	SourceTypeformUpdateAuthorizationMethodOAuth20      GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Input      `pulumi:"sourceTypeformUpdateAuthorizationMethodOAuth20"`
+	SourceTypeformUpdateAuthorizationMethodPrivateToken GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenInput `pulumi:"sourceTypeformUpdateAuthorizationMethodPrivateToken"`
+}
+
+func (GetSourceTypeformConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationCredentialsArgs) ToGetSourceTypeformConfigurationCredentialsOutput() GetSourceTypeformConfigurationCredentialsOutput {
+	return i.ToGetSourceTypeformConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationCredentialsArgs) ToGetSourceTypeformConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceTypeformConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationCredentialsOutput)
 }
 
 type GetSourceTypeformConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -9295,6 +15892,38 @@ type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodO
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Input is an input type that accepts GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args and GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args{...}
+type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output() GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output
+}
+
+type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args) ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output() GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args) ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -9352,6 +15981,34 @@ type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodP
 	AuthType    string `pulumi:"authType"`
 }
 
+// GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenInput is an input type that accepts GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs and GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenInput` via:
+//
+//	GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs{...}
+type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput() GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutputWithContext(context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput
+}
+
+type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthType    pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateToken)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs) ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput() GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput {
+	return i.ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs) ToGetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutputWithContext(ctx context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput)
+}
+
 type GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenOutput) ElementType() reflect.Type {
@@ -9385,6 +16042,38 @@ type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationM
 	ClientSecret    string `pulumi:"clientSecret"`
 	RefreshToken    string `pulumi:"refreshToken"`
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
+}
+
+// GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args and GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output() GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	AuthType        pulumi.StringInput `pulumi:"authType"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args) ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output() GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args) ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -9442,6 +16131,34 @@ type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationM
 	AuthType    string `pulumi:"authType"`
 }
 
+// GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenInput is an input type that accepts GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs and GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput values.
+// You can construct a concrete instance of `GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenInput` via:
+//
+//	GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs{...}
+type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput() GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput
+	ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutputWithContext(context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput
+}
+
+type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	AuthType    pulumi.StringInput `pulumi:"authType"`
+}
+
+func (GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateToken)(nil)).Elem()
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs) ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput() GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput {
+	return i.ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs) ToGetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutputWithContext(ctx context.Context) GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput)
+}
+
 type GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenOutput) ElementType() reflect.Type {
@@ -9477,6 +16194,40 @@ type GetSourceUsCensusConfiguration struct {
 	QueryPath string `pulumi:"queryPath"`
 	// must be one of ["us-census"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceUsCensusConfigurationInput is an input type that accepts GetSourceUsCensusConfigurationArgs and GetSourceUsCensusConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceUsCensusConfigurationInput` via:
+//
+//	GetSourceUsCensusConfigurationArgs{...}
+type GetSourceUsCensusConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceUsCensusConfigurationOutput() GetSourceUsCensusConfigurationOutput
+	ToGetSourceUsCensusConfigurationOutputWithContext(context.Context) GetSourceUsCensusConfigurationOutput
+}
+
+type GetSourceUsCensusConfigurationArgs struct {
+	// Your API Key. Get your key \n\nhere\n\n.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The query parameters portion of the GET request, without the api key
+	QueryParams pulumi.StringInput `pulumi:"queryParams"`
+	// The path portion of the GET request
+	QueryPath pulumi.StringInput `pulumi:"queryPath"`
+	// must be one of ["us-census"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceUsCensusConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceUsCensusConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceUsCensusConfigurationArgs) ToGetSourceUsCensusConfigurationOutput() GetSourceUsCensusConfigurationOutput {
+	return i.ToGetSourceUsCensusConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceUsCensusConfigurationArgs) ToGetSourceUsCensusConfigurationOutputWithContext(ctx context.Context) GetSourceUsCensusConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceUsCensusConfigurationOutput)
 }
 
 type GetSourceUsCensusConfigurationOutput struct{ *pulumi.OutputState }
@@ -9520,6 +16271,36 @@ type GetSourceVantageConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceVantageConfigurationInput is an input type that accepts GetSourceVantageConfigurationArgs and GetSourceVantageConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceVantageConfigurationInput` via:
+//
+//	GetSourceVantageConfigurationArgs{...}
+type GetSourceVantageConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceVantageConfigurationOutput() GetSourceVantageConfigurationOutput
+	ToGetSourceVantageConfigurationOutputWithContext(context.Context) GetSourceVantageConfigurationOutput
+}
+
+type GetSourceVantageConfigurationArgs struct {
+	// Your API Access token. See \n\nhere\n\n.
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// must be one of ["vantage"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceVantageConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceVantageConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceVantageConfigurationArgs) ToGetSourceVantageConfigurationOutput() GetSourceVantageConfigurationOutput {
+	return i.ToGetSourceVantageConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceVantageConfigurationArgs) ToGetSourceVantageConfigurationOutputWithContext(ctx context.Context) GetSourceVantageConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceVantageConfigurationOutput)
+}
+
 type GetSourceVantageConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceVantageConfigurationOutput) ElementType() reflect.Type {
@@ -9551,6 +16332,38 @@ type GetSourceWebflowConfiguration struct {
 	SiteId string `pulumi:"siteId"`
 	// must be one of ["webflow"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceWebflowConfigurationInput is an input type that accepts GetSourceWebflowConfigurationArgs and GetSourceWebflowConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceWebflowConfigurationInput` via:
+//
+//	GetSourceWebflowConfigurationArgs{...}
+type GetSourceWebflowConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceWebflowConfigurationOutput() GetSourceWebflowConfigurationOutput
+	ToGetSourceWebflowConfigurationOutputWithContext(context.Context) GetSourceWebflowConfigurationOutput
+}
+
+type GetSourceWebflowConfigurationArgs struct {
+	// The API token for authenticating to Webflow. See https://university.webflow.com/lesson/intro-to-the-webflow-api
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// The id of the Webflow site you are requesting data from. See https://developers.webflow.com/#sites
+	SiteId pulumi.StringInput `pulumi:"siteId"`
+	// must be one of ["webflow"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceWebflowConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceWebflowConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceWebflowConfigurationArgs) ToGetSourceWebflowConfigurationOutput() GetSourceWebflowConfigurationOutput {
+	return i.ToGetSourceWebflowConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceWebflowConfigurationArgs) ToGetSourceWebflowConfigurationOutputWithContext(ctx context.Context) GetSourceWebflowConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceWebflowConfigurationOutput)
 }
 
 type GetSourceWebflowConfigurationOutput struct{ *pulumi.OutputState }
@@ -9585,6 +16398,34 @@ func (o GetSourceWebflowConfigurationOutput) SourceType() pulumi.StringOutput {
 type GetSourceWhiskyHunterConfiguration struct {
 	// must be one of ["whisky-hunter"]
 	SourceType string `pulumi:"sourceType"`
+}
+
+// GetSourceWhiskyHunterConfigurationInput is an input type that accepts GetSourceWhiskyHunterConfigurationArgs and GetSourceWhiskyHunterConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceWhiskyHunterConfigurationInput` via:
+//
+//	GetSourceWhiskyHunterConfigurationArgs{...}
+type GetSourceWhiskyHunterConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceWhiskyHunterConfigurationOutput() GetSourceWhiskyHunterConfigurationOutput
+	ToGetSourceWhiskyHunterConfigurationOutputWithContext(context.Context) GetSourceWhiskyHunterConfigurationOutput
+}
+
+type GetSourceWhiskyHunterConfigurationArgs struct {
+	// must be one of ["whisky-hunter"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceWhiskyHunterConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceWhiskyHunterConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceWhiskyHunterConfigurationArgs) ToGetSourceWhiskyHunterConfigurationOutput() GetSourceWhiskyHunterConfigurationOutput {
+	return i.ToGetSourceWhiskyHunterConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceWhiskyHunterConfigurationArgs) ToGetSourceWhiskyHunterConfigurationOutputWithContext(ctx context.Context) GetSourceWhiskyHunterConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceWhiskyHunterConfigurationOutput)
 }
 
 type GetSourceWhiskyHunterConfigurationOutput struct{ *pulumi.OutputState }
@@ -9623,6 +16464,48 @@ type GetSourceWikipediaPageviewsConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
 	Start string `pulumi:"start"`
+}
+
+// GetSourceWikipediaPageviewsConfigurationInput is an input type that accepts GetSourceWikipediaPageviewsConfigurationArgs and GetSourceWikipediaPageviewsConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceWikipediaPageviewsConfigurationInput` via:
+//
+//	GetSourceWikipediaPageviewsConfigurationArgs{...}
+type GetSourceWikipediaPageviewsConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceWikipediaPageviewsConfigurationOutput() GetSourceWikipediaPageviewsConfigurationOutput
+	ToGetSourceWikipediaPageviewsConfigurationOutputWithContext(context.Context) GetSourceWikipediaPageviewsConfigurationOutput
+}
+
+type GetSourceWikipediaPageviewsConfigurationArgs struct {
+	// If you want to filter by access method, use one of desktop, mobile-app or mobile-web. If you are interested in pageviews regardless of access method, use all-access.
+	Access pulumi.StringInput `pulumi:"access"`
+	// If you want to filter by agent type, use one of user, automated or spider. If you are interested in pageviews regardless of agent type, use all-agents.
+	Agent pulumi.StringInput `pulumi:"agent"`
+	// The title of any article in the specified project. Any spaces should be replaced with underscores. It also should be URI-encoded, so that non-URI-safe characters like %, / or ? are accepted.
+	Article pulumi.StringInput `pulumi:"article"`
+	// The ISO 3166-1 alpha-2 code of a country for which to retrieve top articles.
+	Country pulumi.StringInput `pulumi:"country"`
+	// The date of the last day to include, in YYYYMMDD or YYYYMMDDHH format.
+	End pulumi.StringInput `pulumi:"end"`
+	// If you want to filter by project, use the domain of any Wikimedia project.
+	Project pulumi.StringInput `pulumi:"project"`
+	// must be one of ["wikipedia-pageviews"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date of the first day to include, in YYYYMMDD or YYYYMMDDHH format.
+	Start pulumi.StringInput `pulumi:"start"`
+}
+
+func (GetSourceWikipediaPageviewsConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceWikipediaPageviewsConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceWikipediaPageviewsConfigurationArgs) ToGetSourceWikipediaPageviewsConfigurationOutput() GetSourceWikipediaPageviewsConfigurationOutput {
+	return i.ToGetSourceWikipediaPageviewsConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceWikipediaPageviewsConfigurationArgs) ToGetSourceWikipediaPageviewsConfigurationOutputWithContext(ctx context.Context) GetSourceWikipediaPageviewsConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceWikipediaPageviewsConfigurationOutput)
 }
 
 type GetSourceWikipediaPageviewsConfigurationOutput struct{ *pulumi.OutputState }
@@ -9692,6 +16575,42 @@ type GetSourceWoocommerceConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceWoocommerceConfigurationInput is an input type that accepts GetSourceWoocommerceConfigurationArgs and GetSourceWoocommerceConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceWoocommerceConfigurationInput` via:
+//
+//	GetSourceWoocommerceConfigurationArgs{...}
+type GetSourceWoocommerceConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceWoocommerceConfigurationOutput() GetSourceWoocommerceConfigurationOutput
+	ToGetSourceWoocommerceConfigurationOutputWithContext(context.Context) GetSourceWoocommerceConfigurationOutput
+}
+
+type GetSourceWoocommerceConfigurationArgs struct {
+	// Customer Key for API in WooCommerce shop
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Customer Secret for API in WooCommerce shop
+	ApiSecret pulumi.StringInput `pulumi:"apiSecret"`
+	// The name of the store. For https://EXAMPLE.com, the shop name is 'EXAMPLE.com'.
+	Shop pulumi.StringInput `pulumi:"shop"`
+	// must be one of ["woocommerce"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date you would like to replicate data from. Format: YYYY-MM-DD
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceWoocommerceConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceWoocommerceConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceWoocommerceConfigurationArgs) ToGetSourceWoocommerceConfigurationOutput() GetSourceWoocommerceConfigurationOutput {
+	return i.ToGetSourceWoocommerceConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceWoocommerceConfigurationArgs) ToGetSourceWoocommerceConfigurationOutputWithContext(ctx context.Context) GetSourceWoocommerceConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceWoocommerceConfigurationOutput)
+}
+
 type GetSourceWoocommerceConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceWoocommerceConfigurationOutput) ElementType() reflect.Type {
@@ -9741,6 +16660,39 @@ type GetSourceXeroConfiguration struct {
 	TenantId string `pulumi:"tenantId"`
 }
 
+// GetSourceXeroConfigurationInput is an input type that accepts GetSourceXeroConfigurationArgs and GetSourceXeroConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceXeroConfigurationInput` via:
+//
+//	GetSourceXeroConfigurationArgs{...}
+type GetSourceXeroConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceXeroConfigurationOutput() GetSourceXeroConfigurationOutput
+	ToGetSourceXeroConfigurationOutputWithContext(context.Context) GetSourceXeroConfigurationOutput
+}
+
+type GetSourceXeroConfigurationArgs struct {
+	Authentication GetSourceXeroConfigurationAuthenticationInput `pulumi:"authentication"`
+	// must be one of ["xero"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// UTC date and time in the format YYYY-MM-DDTHH:mm:ssZ. Any data with createdAt before this data will not be synced.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Enter your Xero organization's Tenant ID
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+}
+
+func (GetSourceXeroConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceXeroConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceXeroConfigurationArgs) ToGetSourceXeroConfigurationOutput() GetSourceXeroConfigurationOutput {
+	return i.ToGetSourceXeroConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceXeroConfigurationArgs) ToGetSourceXeroConfigurationOutputWithContext(ctx context.Context) GetSourceXeroConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceXeroConfigurationOutput)
+}
+
 type GetSourceXeroConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceXeroConfigurationOutput) ElementType() reflect.Type {
@@ -9782,6 +16734,37 @@ type GetSourceXeroConfigurationAuthentication struct {
 	TokenExpiryDate string `pulumi:"tokenExpiryDate"`
 }
 
+// GetSourceXeroConfigurationAuthenticationInput is an input type that accepts GetSourceXeroConfigurationAuthenticationArgs and GetSourceXeroConfigurationAuthenticationOutput values.
+// You can construct a concrete instance of `GetSourceXeroConfigurationAuthenticationInput` via:
+//
+//	GetSourceXeroConfigurationAuthenticationArgs{...}
+type GetSourceXeroConfigurationAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetSourceXeroConfigurationAuthenticationOutput() GetSourceXeroConfigurationAuthenticationOutput
+	ToGetSourceXeroConfigurationAuthenticationOutputWithContext(context.Context) GetSourceXeroConfigurationAuthenticationOutput
+}
+
+type GetSourceXeroConfigurationAuthenticationArgs struct {
+	AccessToken     pulumi.StringInput `pulumi:"accessToken"`
+	ClientId        pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret    pulumi.StringInput `pulumi:"clientSecret"`
+	RefreshToken    pulumi.StringInput `pulumi:"refreshToken"`
+	TokenExpiryDate pulumi.StringInput `pulumi:"tokenExpiryDate"`
+}
+
+func (GetSourceXeroConfigurationAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceXeroConfigurationAuthentication)(nil)).Elem()
+}
+
+func (i GetSourceXeroConfigurationAuthenticationArgs) ToGetSourceXeroConfigurationAuthenticationOutput() GetSourceXeroConfigurationAuthenticationOutput {
+	return i.ToGetSourceXeroConfigurationAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetSourceXeroConfigurationAuthenticationArgs) ToGetSourceXeroConfigurationAuthenticationOutputWithContext(ctx context.Context) GetSourceXeroConfigurationAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceXeroConfigurationAuthenticationOutput)
+}
+
 type GetSourceXeroConfigurationAuthenticationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceXeroConfigurationAuthenticationOutput) ElementType() reflect.Type {
@@ -9821,6 +16804,34 @@ type GetSourceXkcdConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceXkcdConfigurationInput is an input type that accepts GetSourceXkcdConfigurationArgs and GetSourceXkcdConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceXkcdConfigurationInput` via:
+//
+//	GetSourceXkcdConfigurationArgs{...}
+type GetSourceXkcdConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceXkcdConfigurationOutput() GetSourceXkcdConfigurationOutput
+	ToGetSourceXkcdConfigurationOutputWithContext(context.Context) GetSourceXkcdConfigurationOutput
+}
+
+type GetSourceXkcdConfigurationArgs struct {
+	// must be one of ["xkcd"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceXkcdConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceXkcdConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceXkcdConfigurationArgs) ToGetSourceXkcdConfigurationOutput() GetSourceXkcdConfigurationOutput {
+	return i.ToGetSourceXkcdConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceXkcdConfigurationArgs) ToGetSourceXkcdConfigurationOutputWithContext(ctx context.Context) GetSourceXkcdConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceXkcdConfigurationOutput)
+}
+
 type GetSourceXkcdConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceXkcdConfigurationOutput) ElementType() reflect.Type {
@@ -9851,6 +16862,42 @@ type GetSourceYandexMetricaConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// Starting point for your data replication, in format of "YYYY-MM-DD".
 	StartDate string `pulumi:"startDate"`
+}
+
+// GetSourceYandexMetricaConfigurationInput is an input type that accepts GetSourceYandexMetricaConfigurationArgs and GetSourceYandexMetricaConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceYandexMetricaConfigurationInput` via:
+//
+//	GetSourceYandexMetricaConfigurationArgs{...}
+type GetSourceYandexMetricaConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceYandexMetricaConfigurationOutput() GetSourceYandexMetricaConfigurationOutput
+	ToGetSourceYandexMetricaConfigurationOutputWithContext(context.Context) GetSourceYandexMetricaConfigurationOutput
+}
+
+type GetSourceYandexMetricaConfigurationArgs struct {
+	// Your Yandex Metrica API access token
+	AuthToken pulumi.StringInput `pulumi:"authToken"`
+	// Counter ID
+	CounterId pulumi.StringInput `pulumi:"counterId"`
+	// Starting point for your data replication, in format of "YYYY-MM-DD". If not provided will sync till most recent date.
+	EndDate pulumi.StringInput `pulumi:"endDate"`
+	// must be one of ["yandex-metrica"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Starting point for your data replication, in format of "YYYY-MM-DD".
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceYandexMetricaConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceYandexMetricaConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceYandexMetricaConfigurationArgs) ToGetSourceYandexMetricaConfigurationOutput() GetSourceYandexMetricaConfigurationOutput {
+	return i.ToGetSourceYandexMetricaConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceYandexMetricaConfigurationArgs) ToGetSourceYandexMetricaConfigurationOutputWithContext(ctx context.Context) GetSourceYandexMetricaConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceYandexMetricaConfigurationOutput)
 }
 
 type GetSourceYandexMetricaConfigurationOutput struct{ *pulumi.OutputState }
@@ -9905,6 +16952,42 @@ type GetSourceYotpoConfiguration struct {
 	StartDate string `pulumi:"startDate"`
 }
 
+// GetSourceYotpoConfigurationInput is an input type that accepts GetSourceYotpoConfigurationArgs and GetSourceYotpoConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceYotpoConfigurationInput` via:
+//
+//	GetSourceYotpoConfigurationArgs{...}
+type GetSourceYotpoConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceYotpoConfigurationOutput() GetSourceYotpoConfigurationOutput
+	ToGetSourceYotpoConfigurationOutputWithContext(context.Context) GetSourceYotpoConfigurationOutput
+}
+
+type GetSourceYotpoConfigurationArgs struct {
+	// Access token recieved as a result of API call to https://api.yotpo.com/oauth/token (Ref- https://apidocs.yotpo.com/reference/yotpo-authentication)
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	// App key found at settings (Ref- https://settings.yotpo.com/#/general_settings)
+	AppKey pulumi.StringInput `pulumi:"appKey"`
+	// Email address registered with yotpo.
+	Email pulumi.StringInput `pulumi:"email"`
+	// must be one of ["yotpo"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Date time filter for incremental filter, Specify which date to extract from.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+}
+
+func (GetSourceYotpoConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceYotpoConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceYotpoConfigurationArgs) ToGetSourceYotpoConfigurationOutput() GetSourceYotpoConfigurationOutput {
+	return i.ToGetSourceYotpoConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceYotpoConfigurationArgs) ToGetSourceYotpoConfigurationOutputWithContext(ctx context.Context) GetSourceYotpoConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceYotpoConfigurationOutput)
+}
+
 type GetSourceYotpoConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceYotpoConfigurationOutput) ElementType() reflect.Type {
@@ -9957,6 +17040,42 @@ type GetSourceYouniumConfiguration struct {
 	Username string `pulumi:"username"`
 }
 
+// GetSourceYouniumConfigurationInput is an input type that accepts GetSourceYouniumConfigurationArgs and GetSourceYouniumConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceYouniumConfigurationInput` via:
+//
+//	GetSourceYouniumConfigurationArgs{...}
+type GetSourceYouniumConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceYouniumConfigurationOutput() GetSourceYouniumConfigurationOutput
+	ToGetSourceYouniumConfigurationOutputWithContext(context.Context) GetSourceYouniumConfigurationOutput
+}
+
+type GetSourceYouniumConfigurationArgs struct {
+	// Legal Entity that data should be pulled from
+	LegalEntity pulumi.StringInput `pulumi:"legalEntity"`
+	// Account password for younium account API key
+	Password pulumi.StringInput `pulumi:"password"`
+	// Property defining if connector is used against playground or production environment
+	Playground pulumi.BoolInput `pulumi:"playground"`
+	// must be one of ["younium"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Username for Younium account
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetSourceYouniumConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceYouniumConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceYouniumConfigurationArgs) ToGetSourceYouniumConfigurationOutput() GetSourceYouniumConfigurationOutput {
+	return i.ToGetSourceYouniumConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceYouniumConfigurationArgs) ToGetSourceYouniumConfigurationOutputWithContext(ctx context.Context) GetSourceYouniumConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceYouniumConfigurationOutput)
+}
+
 type GetSourceYouniumConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceYouniumConfigurationOutput) ElementType() reflect.Type {
@@ -10002,6 +17121,35 @@ type GetSourceYoutubeAnalyticsConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceYoutubeAnalyticsConfigurationInput is an input type that accepts GetSourceYoutubeAnalyticsConfigurationArgs and GetSourceYoutubeAnalyticsConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceYoutubeAnalyticsConfigurationInput` via:
+//
+//	GetSourceYoutubeAnalyticsConfigurationArgs{...}
+type GetSourceYoutubeAnalyticsConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceYoutubeAnalyticsConfigurationOutput() GetSourceYoutubeAnalyticsConfigurationOutput
+	ToGetSourceYoutubeAnalyticsConfigurationOutputWithContext(context.Context) GetSourceYoutubeAnalyticsConfigurationOutput
+}
+
+type GetSourceYoutubeAnalyticsConfigurationArgs struct {
+	Credentials GetSourceYoutubeAnalyticsConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["youtube-analytics"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceYoutubeAnalyticsConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceYoutubeAnalyticsConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceYoutubeAnalyticsConfigurationArgs) ToGetSourceYoutubeAnalyticsConfigurationOutput() GetSourceYoutubeAnalyticsConfigurationOutput {
+	return i.ToGetSourceYoutubeAnalyticsConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceYoutubeAnalyticsConfigurationArgs) ToGetSourceYoutubeAnalyticsConfigurationOutputWithContext(ctx context.Context) GetSourceYoutubeAnalyticsConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceYoutubeAnalyticsConfigurationOutput)
+}
+
 type GetSourceYoutubeAnalyticsConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceYoutubeAnalyticsConfigurationOutput) ElementType() reflect.Type {
@@ -10032,6 +17180,36 @@ type GetSourceYoutubeAnalyticsConfigurationCredentials struct {
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
 	RefreshToken         string  `pulumi:"refreshToken"`
+}
+
+// GetSourceYoutubeAnalyticsConfigurationCredentialsInput is an input type that accepts GetSourceYoutubeAnalyticsConfigurationCredentialsArgs and GetSourceYoutubeAnalyticsConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceYoutubeAnalyticsConfigurationCredentialsInput` via:
+//
+//	GetSourceYoutubeAnalyticsConfigurationCredentialsArgs{...}
+type GetSourceYoutubeAnalyticsConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceYoutubeAnalyticsConfigurationCredentialsOutput() GetSourceYoutubeAnalyticsConfigurationCredentialsOutput
+	ToGetSourceYoutubeAnalyticsConfigurationCredentialsOutputWithContext(context.Context) GetSourceYoutubeAnalyticsConfigurationCredentialsOutput
+}
+
+type GetSourceYoutubeAnalyticsConfigurationCredentialsArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+	RefreshToken         pulumi.StringInput    `pulumi:"refreshToken"`
+}
+
+func (GetSourceYoutubeAnalyticsConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceYoutubeAnalyticsConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceYoutubeAnalyticsConfigurationCredentialsArgs) ToGetSourceYoutubeAnalyticsConfigurationCredentialsOutput() GetSourceYoutubeAnalyticsConfigurationCredentialsOutput {
+	return i.ToGetSourceYoutubeAnalyticsConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceYoutubeAnalyticsConfigurationCredentialsArgs) ToGetSourceYoutubeAnalyticsConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceYoutubeAnalyticsConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceYoutubeAnalyticsConfigurationCredentialsOutput)
 }
 
 type GetSourceYoutubeAnalyticsConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -10074,6 +17252,39 @@ type GetSourceZendeskChatConfiguration struct {
 	Subdomain string `pulumi:"subdomain"`
 }
 
+// GetSourceZendeskChatConfigurationInput is an input type that accepts GetSourceZendeskChatConfigurationArgs and GetSourceZendeskChatConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationInput` via:
+//
+//	GetSourceZendeskChatConfigurationArgs{...}
+type GetSourceZendeskChatConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationOutput() GetSourceZendeskChatConfigurationOutput
+	ToGetSourceZendeskChatConfigurationOutputWithContext(context.Context) GetSourceZendeskChatConfigurationOutput
+}
+
+type GetSourceZendeskChatConfigurationArgs struct {
+	Credentials GetSourceZendeskChatConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["zendesk-chat"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Zendesk Chat API, in the format YYYY-MM-DDT00:00:00Z.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// Required if you access Zendesk Chat from a Zendesk Support subdomain.
+	Subdomain pulumi.StringInput `pulumi:"subdomain"`
+}
+
+func (GetSourceZendeskChatConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationArgs) ToGetSourceZendeskChatConfigurationOutput() GetSourceZendeskChatConfigurationOutput {
+	return i.ToGetSourceZendeskChatConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationArgs) ToGetSourceZendeskChatConfigurationOutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationOutput)
+}
+
 type GetSourceZendeskChatConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskChatConfigurationOutput) ElementType() reflect.Type {
@@ -10114,6 +17325,36 @@ type GetSourceZendeskChatConfigurationCredentials struct {
 	SourceZendeskChatAuthorizationMethodOAuth20           GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20           `pulumi:"sourceZendeskChatAuthorizationMethodOAuth20"`
 	SourceZendeskChatUpdateAuthorizationMethodAccessToken GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken `pulumi:"sourceZendeskChatUpdateAuthorizationMethodAccessToken"`
 	SourceZendeskChatUpdateAuthorizationMethodOAuth20     GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20     `pulumi:"sourceZendeskChatUpdateAuthorizationMethodOAuth20"`
+}
+
+// GetSourceZendeskChatConfigurationCredentialsInput is an input type that accepts GetSourceZendeskChatConfigurationCredentialsArgs and GetSourceZendeskChatConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationCredentialsInput` via:
+//
+//	GetSourceZendeskChatConfigurationCredentialsArgs{...}
+type GetSourceZendeskChatConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationCredentialsOutput() GetSourceZendeskChatConfigurationCredentialsOutput
+	ToGetSourceZendeskChatConfigurationCredentialsOutputWithContext(context.Context) GetSourceZendeskChatConfigurationCredentialsOutput
+}
+
+type GetSourceZendeskChatConfigurationCredentialsArgs struct {
+	SourceZendeskChatAuthorizationMethodAccessToken       GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenInput       `pulumi:"sourceZendeskChatAuthorizationMethodAccessToken"`
+	SourceZendeskChatAuthorizationMethodOAuth20           GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Input           `pulumi:"sourceZendeskChatAuthorizationMethodOAuth20"`
+	SourceZendeskChatUpdateAuthorizationMethodAccessToken GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenInput `pulumi:"sourceZendeskChatUpdateAuthorizationMethodAccessToken"`
+	SourceZendeskChatUpdateAuthorizationMethodOAuth20     GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Input     `pulumi:"sourceZendeskChatUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceZendeskChatConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsArgs) ToGetSourceZendeskChatConfigurationCredentialsOutput() GetSourceZendeskChatConfigurationCredentialsOutput {
+	return i.ToGetSourceZendeskChatConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsArgs) ToGetSourceZendeskChatConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationCredentialsOutput)
 }
 
 type GetSourceZendeskChatConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -10159,6 +17400,34 @@ type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationM
 	Credentials string `pulumi:"credentials"`
 }
 
+// GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenInput is an input type that accepts GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs and GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenInput` via:
+//
+//	GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs{...}
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutputWithContext(context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput
+}
+
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	Credentials pulumi.StringInput `pulumi:"credentials"`
+}
+
+func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput {
+	return i.ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput)
+}
+
 type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -10191,6 +17460,37 @@ type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationM
 	ClientSecret string `pulumi:"clientSecret"`
 	Credentials  string `pulumi:"credentials"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Input is an input type that accepts GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args and GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args{...}
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output
+}
+
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	Credentials  pulumi.StringInput `pulumi:"credentials"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -10242,6 +17542,34 @@ type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthoriz
 	Credentials string `pulumi:"credentials"`
 }
 
+// GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenInput is an input type that accepts GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs and GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenInput` via:
+//
+//	GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs{...}
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutputWithContext(context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput
+}
+
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs struct {
+	AccessToken pulumi.StringInput `pulumi:"accessToken"`
+	Credentials pulumi.StringInput `pulumi:"credentials"`
+}
+
+func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput {
+	return i.ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput)
+}
+
 type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenOutput) ElementType() reflect.Type {
@@ -10274,6 +17602,37 @@ type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthoriz
 	ClientSecret string `pulumi:"clientSecret"`
 	Credentials  string `pulumi:"credentials"`
 	RefreshToken string `pulumi:"refreshToken"`
+}
+
+// GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args and GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken  pulumi.StringInput `pulumi:"accessToken"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	Credentials  pulumi.StringInput `pulumi:"credentials"`
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+}
+
+func (GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output() GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args) ToGetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -10330,6 +17689,39 @@ type GetSourceZendeskSunshineConfiguration struct {
 	Subdomain string `pulumi:"subdomain"`
 }
 
+// GetSourceZendeskSunshineConfigurationInput is an input type that accepts GetSourceZendeskSunshineConfigurationArgs and GetSourceZendeskSunshineConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationInput` via:
+//
+//	GetSourceZendeskSunshineConfigurationArgs{...}
+type GetSourceZendeskSunshineConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationOutput() GetSourceZendeskSunshineConfigurationOutput
+	ToGetSourceZendeskSunshineConfigurationOutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationOutput
+}
+
+type GetSourceZendeskSunshineConfigurationArgs struct {
+	Credentials GetSourceZendeskSunshineConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["zendesk-sunshine"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Zendesk Sunshine API, in the format YYYY-MM-DDT00:00:00Z.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The subdomain for your Zendesk Account.
+	Subdomain pulumi.StringInput `pulumi:"subdomain"`
+}
+
+func (GetSourceZendeskSunshineConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationArgs) ToGetSourceZendeskSunshineConfigurationOutput() GetSourceZendeskSunshineConfigurationOutput {
+	return i.ToGetSourceZendeskSunshineConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationArgs) ToGetSourceZendeskSunshineConfigurationOutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationOutput)
+}
+
 type GetSourceZendeskSunshineConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSunshineConfigurationOutput) ElementType() reflect.Type {
@@ -10370,6 +17762,36 @@ type GetSourceZendeskSunshineConfigurationCredentials struct {
 	SourceZendeskSunshineAuthorizationMethodOAuth20        GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20        `pulumi:"sourceZendeskSunshineAuthorizationMethodOAuth20"`
 	SourceZendeskSunshineUpdateAuthorizationMethodApiToken GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken `pulumi:"sourceZendeskSunshineUpdateAuthorizationMethodApiToken"`
 	SourceZendeskSunshineUpdateAuthorizationMethodOAuth20  GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20  `pulumi:"sourceZendeskSunshineUpdateAuthorizationMethodOAuth20"`
+}
+
+// GetSourceZendeskSunshineConfigurationCredentialsInput is an input type that accepts GetSourceZendeskSunshineConfigurationCredentialsArgs and GetSourceZendeskSunshineConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationCredentialsInput` via:
+//
+//	GetSourceZendeskSunshineConfigurationCredentialsArgs{...}
+type GetSourceZendeskSunshineConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationCredentialsOutput() GetSourceZendeskSunshineConfigurationCredentialsOutput
+	ToGetSourceZendeskSunshineConfigurationCredentialsOutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationCredentialsOutput
+}
+
+type GetSourceZendeskSunshineConfigurationCredentialsArgs struct {
+	SourceZendeskSunshineAuthorizationMethodApiToken       GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenInput       `pulumi:"sourceZendeskSunshineAuthorizationMethodApiToken"`
+	SourceZendeskSunshineAuthorizationMethodOAuth20        GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Input        `pulumi:"sourceZendeskSunshineAuthorizationMethodOAuth20"`
+	SourceZendeskSunshineUpdateAuthorizationMethodApiToken GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenInput `pulumi:"sourceZendeskSunshineUpdateAuthorizationMethodApiToken"`
+	SourceZendeskSunshineUpdateAuthorizationMethodOAuth20  GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Input  `pulumi:"sourceZendeskSunshineUpdateAuthorizationMethodOAuth20"`
+}
+
+func (GetSourceZendeskSunshineConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsArgs) ToGetSourceZendeskSunshineConfigurationCredentialsOutput() GetSourceZendeskSunshineConfigurationCredentialsOutput {
+	return i.ToGetSourceZendeskSunshineConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsArgs) ToGetSourceZendeskSunshineConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationCredentialsOutput)
 }
 
 type GetSourceZendeskSunshineConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -10417,6 +17839,36 @@ type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthor
 	Email                string  `pulumi:"email"`
 }
 
+// GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenInput is an input type that accepts GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs and GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenInput` via:
+//
+//	GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs{...}
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput
+}
+
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	AuthMethod           pulumi.StringInput    `pulumi:"authMethod"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput {
+	return i.ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput)
+}
+
 type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenOutput) ElementType() reflect.Type {
@@ -10461,6 +17913,37 @@ type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthor
 	AuthMethod           string  `pulumi:"authMethod"`
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
+}
+
+// GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Input is an input type that accepts GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args and GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args{...}
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output
+}
+
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthMethod           pulumi.StringInput    `pulumi:"authMethod"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+}
+
+func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -10514,6 +17997,36 @@ type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdate
 	Email                string  `pulumi:"email"`
 }
 
+// GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenInput is an input type that accepts GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs and GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenInput` via:
+//
+//	GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs{...}
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput
+}
+
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	AuthMethod           pulumi.StringInput    `pulumi:"authMethod"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput {
+	return i.ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput)
+}
+
 type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenOutput) ElementType() reflect.Type {
@@ -10558,6 +18071,37 @@ type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdate
 	AuthMethod           string  `pulumi:"authMethod"`
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
+}
+
+// GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Input is an input type that accepts GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args and GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Input` via:
+//
+//	GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args{...}
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output
+	ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20OutputWithContext(context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output
+}
+
+type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthMethod           pulumi.StringInput    `pulumi:"authMethod"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+}
+
+func (GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output() GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output {
+	return i.ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args) ToGetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output)
 }
 
 type GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Output struct{ *pulumi.OutputState }
@@ -10617,6 +18161,42 @@ type GetSourceZendeskSupportConfiguration struct {
 	Subdomain string `pulumi:"subdomain"`
 }
 
+// GetSourceZendeskSupportConfigurationInput is an input type that accepts GetSourceZendeskSupportConfigurationArgs and GetSourceZendeskSupportConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationInput` via:
+//
+//	GetSourceZendeskSupportConfigurationArgs{...}
+type GetSourceZendeskSupportConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationOutput() GetSourceZendeskSupportConfigurationOutput
+	ToGetSourceZendeskSupportConfigurationOutputWithContext(context.Context) GetSourceZendeskSupportConfigurationOutput
+}
+
+type GetSourceZendeskSupportConfigurationArgs struct {
+	// Zendesk allows two authentication methods. We recommend using `OAuth2.0` for Airbyte Cloud users and `API token` for Airbyte Open Source users.
+	Credentials GetSourceZendeskSupportConfigurationCredentialsInput `pulumi:"credentials"`
+	// Makes each stream read a single page of data.
+	IgnorePagination pulumi.BoolInput `pulumi:"ignorePagination"`
+	// must be one of ["zendesk-support"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The UTC date and time from which you'd like to replicate data, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// This is your unique Zendesk subdomain that can be found in your account URL. For example, in https://MY*SUBDOMAIN.zendesk.com/, MY*SUBDOMAIN is the value of your subdomain.
+	Subdomain pulumi.StringInput `pulumi:"subdomain"`
+}
+
+func (GetSourceZendeskSupportConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationArgs) ToGetSourceZendeskSupportConfigurationOutput() GetSourceZendeskSupportConfigurationOutput {
+	return i.ToGetSourceZendeskSupportConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationArgs) ToGetSourceZendeskSupportConfigurationOutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationOutput)
+}
+
 type GetSourceZendeskSupportConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSupportConfigurationOutput) ElementType() reflect.Type {
@@ -10665,6 +18245,36 @@ type GetSourceZendeskSupportConfigurationCredentials struct {
 	SourceZendeskSupportUpdateAuthenticationOAuth20  GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20  `pulumi:"sourceZendeskSupportUpdateAuthenticationOAuth20"`
 }
 
+// GetSourceZendeskSupportConfigurationCredentialsInput is an input type that accepts GetSourceZendeskSupportConfigurationCredentialsArgs and GetSourceZendeskSupportConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationCredentialsInput` via:
+//
+//	GetSourceZendeskSupportConfigurationCredentialsArgs{...}
+type GetSourceZendeskSupportConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationCredentialsOutput() GetSourceZendeskSupportConfigurationCredentialsOutput
+	ToGetSourceZendeskSupportConfigurationCredentialsOutputWithContext(context.Context) GetSourceZendeskSupportConfigurationCredentialsOutput
+}
+
+type GetSourceZendeskSupportConfigurationCredentialsArgs struct {
+	SourceZendeskSupportAuthenticationApiToken       GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenInput       `pulumi:"sourceZendeskSupportAuthenticationApiToken"`
+	SourceZendeskSupportAuthenticationOAuth20        GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Input        `pulumi:"sourceZendeskSupportAuthenticationOAuth20"`
+	SourceZendeskSupportUpdateAuthenticationApiToken GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenInput `pulumi:"sourceZendeskSupportUpdateAuthenticationApiToken"`
+	SourceZendeskSupportUpdateAuthenticationOAuth20  GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Input  `pulumi:"sourceZendeskSupportUpdateAuthenticationOAuth20"`
+}
+
+func (GetSourceZendeskSupportConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsArgs) ToGetSourceZendeskSupportConfigurationCredentialsOutput() GetSourceZendeskSupportConfigurationCredentialsOutput {
+	return i.ToGetSourceZendeskSupportConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsArgs) ToGetSourceZendeskSupportConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationCredentialsOutput)
+}
+
 type GetSourceZendeskSupportConfigurationCredentialsOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSupportConfigurationCredentialsOutput) ElementType() reflect.Type {
@@ -10708,6 +18318,36 @@ type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenti
 	ApiToken             string  `pulumi:"apiToken"`
 	Credentials          string  `pulumi:"credentials"`
 	Email                string  `pulumi:"email"`
+}
+
+// GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenInput is an input type that accepts GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs and GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenInput` via:
+//
+//	GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs{...}
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutputWithContext(context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput
+}
+
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	Credentials          pulumi.StringInput    `pulumi:"credentials"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput {
+	return i.ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput)
 }
 
 type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenOutput struct{ *pulumi.OutputState }
@@ -10754,6 +18394,37 @@ type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenti
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
 	Credentials          string  `pulumi:"credentials"`
+}
+
+// GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Input is an input type that accepts GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args and GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Input` via:
+//
+//	GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args{...}
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20OutputWithContext(context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output
+}
+
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+	Credentials          pulumi.StringInput    `pulumi:"credentials"`
+}
+
+func (GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output {
+	return i.ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output)
 }
 
 type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Output struct{ *pulumi.OutputState }
@@ -10807,6 +18478,36 @@ type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAu
 	Email                string  `pulumi:"email"`
 }
 
+// GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenInput is an input type that accepts GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs and GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenInput` via:
+//
+//	GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs{...}
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutputWithContext(context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput
+}
+
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	Credentials          pulumi.StringInput    `pulumi:"credentials"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput {
+	return i.ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput)
+}
+
 type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenOutput) ElementType() reflect.Type {
@@ -10851,6 +18552,37 @@ type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAu
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
 	Credentials          string  `pulumi:"credentials"`
+}
+
+// GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Input is an input type that accepts GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args and GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Input` via:
+//
+//	GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args{...}
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output
+	ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20OutputWithContext(context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output
+}
+
+type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+	Credentials          pulumi.StringInput    `pulumi:"credentials"`
+}
+
+func (GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output() GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output {
+	return i.ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args) ToGetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output)
 }
 
 type GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Output struct{ *pulumi.OutputState }
@@ -10908,6 +18640,40 @@ type GetSourceZendeskTalkConfiguration struct {
 	Subdomain string `pulumi:"subdomain"`
 }
 
+// GetSourceZendeskTalkConfigurationInput is an input type that accepts GetSourceZendeskTalkConfigurationArgs and GetSourceZendeskTalkConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationInput` via:
+//
+//	GetSourceZendeskTalkConfigurationArgs{...}
+type GetSourceZendeskTalkConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationOutput() GetSourceZendeskTalkConfigurationOutput
+	ToGetSourceZendeskTalkConfigurationOutputWithContext(context.Context) GetSourceZendeskTalkConfigurationOutput
+}
+
+type GetSourceZendeskTalkConfigurationArgs struct {
+	// Zendesk service provides two authentication methods. Choose between: `OAuth2.0` or `API token`.
+	Credentials GetSourceZendeskTalkConfigurationCredentialsInput `pulumi:"credentials"`
+	// must be one of ["zendesk-talk"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// The date from which you'd like to replicate data for Zendesk Talk API, in the format YYYY-MM-DDT00:00:00Z. All data generated after this date will be replicated.
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// This is your Zendesk subdomain that can be found in your account URL. For example, in https://{MY*SUBDOMAIN}.zendesk.com/, where MY*SUBDOMAIN is the value of your subdomain.
+	Subdomain pulumi.StringInput `pulumi:"subdomain"`
+}
+
+func (GetSourceZendeskTalkConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationArgs) ToGetSourceZendeskTalkConfigurationOutput() GetSourceZendeskTalkConfigurationOutput {
+	return i.ToGetSourceZendeskTalkConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationArgs) ToGetSourceZendeskTalkConfigurationOutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationOutput)
+}
+
 type GetSourceZendeskTalkConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskTalkConfigurationOutput) ElementType() reflect.Type {
@@ -10949,6 +18715,36 @@ type GetSourceZendeskTalkConfigurationCredentials struct {
 	SourceZendeskTalkAuthenticationOAuth20        GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20        `pulumi:"sourceZendeskTalkAuthenticationOAuth20"`
 	SourceZendeskTalkUpdateAuthenticationApiToken GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken `pulumi:"sourceZendeskTalkUpdateAuthenticationApiToken"`
 	SourceZendeskTalkUpdateAuthenticationOAuth20  GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20  `pulumi:"sourceZendeskTalkUpdateAuthenticationOAuth20"`
+}
+
+// GetSourceZendeskTalkConfigurationCredentialsInput is an input type that accepts GetSourceZendeskTalkConfigurationCredentialsArgs and GetSourceZendeskTalkConfigurationCredentialsOutput values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationCredentialsInput` via:
+//
+//	GetSourceZendeskTalkConfigurationCredentialsArgs{...}
+type GetSourceZendeskTalkConfigurationCredentialsInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationCredentialsOutput() GetSourceZendeskTalkConfigurationCredentialsOutput
+	ToGetSourceZendeskTalkConfigurationCredentialsOutputWithContext(context.Context) GetSourceZendeskTalkConfigurationCredentialsOutput
+}
+
+type GetSourceZendeskTalkConfigurationCredentialsArgs struct {
+	SourceZendeskTalkAuthenticationApiToken       GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenInput       `pulumi:"sourceZendeskTalkAuthenticationApiToken"`
+	SourceZendeskTalkAuthenticationOAuth20        GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Input        `pulumi:"sourceZendeskTalkAuthenticationOAuth20"`
+	SourceZendeskTalkUpdateAuthenticationApiToken GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenInput `pulumi:"sourceZendeskTalkUpdateAuthenticationApiToken"`
+	SourceZendeskTalkUpdateAuthenticationOAuth20  GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Input  `pulumi:"sourceZendeskTalkUpdateAuthenticationOAuth20"`
+}
+
+func (GetSourceZendeskTalkConfigurationCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentials)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsArgs) ToGetSourceZendeskTalkConfigurationCredentialsOutput() GetSourceZendeskTalkConfigurationCredentialsOutput {
+	return i.ToGetSourceZendeskTalkConfigurationCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsArgs) ToGetSourceZendeskTalkConfigurationCredentialsOutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationCredentialsOutput)
 }
 
 type GetSourceZendeskTalkConfigurationCredentialsOutput struct{ *pulumi.OutputState }
@@ -10996,6 +18792,36 @@ type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthentication
 	Email                string  `pulumi:"email"`
 }
 
+// GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenInput is an input type that accepts GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs and GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenInput` via:
+//
+//	GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs{...}
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutputWithContext(context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput
+}
+
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput {
+	return i.ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput)
+}
+
 type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenOutput) ElementType() reflect.Type {
@@ -11040,6 +18866,37 @@ type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthentication
 	AuthType             string  `pulumi:"authType"`
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
+}
+
+// GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Input is an input type that accepts GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args and GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Input` via:
+//
+//	GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args{...}
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20OutputWithContext(context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output
+}
+
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+}
+
+func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output {
+	return i.ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output)
 }
 
 type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Output struct{ *pulumi.OutputState }
@@ -11093,6 +18950,36 @@ type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenti
 	Email                string  `pulumi:"email"`
 }
 
+// GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenInput is an input type that accepts GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs and GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenInput` via:
+//
+//	GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs{...}
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenInput interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutputWithContext(context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput
+}
+
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs struct {
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	ApiToken             pulumi.StringInput    `pulumi:"apiToken"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	Email                pulumi.StringInput    `pulumi:"email"`
+}
+
+func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiToken)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput {
+	return i.ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput)
+}
+
 type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenOutput) ElementType() reflect.Type {
@@ -11137,6 +19024,37 @@ type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenti
 	AuthType             string  `pulumi:"authType"`
 	ClientId             string  `pulumi:"clientId"`
 	ClientSecret         string  `pulumi:"clientSecret"`
+}
+
+// GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Input is an input type that accepts GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args and GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output values.
+// You can construct a concrete instance of `GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Input` via:
+//
+//	GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args{...}
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Input interface {
+	pulumi.Input
+
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output
+	ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20OutputWithContext(context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output
+}
+
+type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args struct {
+	AccessToken          pulumi.StringInput    `pulumi:"accessToken"`
+	AdditionalProperties pulumi.StringPtrInput `pulumi:"additionalProperties"`
+	AuthType             pulumi.StringInput    `pulumi:"authType"`
+	ClientId             pulumi.StringInput    `pulumi:"clientId"`
+	ClientSecret         pulumi.StringInput    `pulumi:"clientSecret"`
+}
+
+func (GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20)(nil)).Elem()
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output() GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output {
+	return i.ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20OutputWithContext(context.Background())
+}
+
+func (i GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args) ToGetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20OutputWithContext(ctx context.Context) GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output)
 }
 
 type GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Output struct{ *pulumi.OutputState }
@@ -11194,6 +19112,42 @@ type GetSourceZenloopConfiguration struct {
 	SurveyGroupId string `pulumi:"surveyGroupId"`
 	// Zenloop Survey ID. Can be found \n\nhere\n\n. Leave empty to pull answers from all surveys
 	SurveyId string `pulumi:"surveyId"`
+}
+
+// GetSourceZenloopConfigurationInput is an input type that accepts GetSourceZenloopConfigurationArgs and GetSourceZenloopConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZenloopConfigurationInput` via:
+//
+//	GetSourceZenloopConfigurationArgs{...}
+type GetSourceZenloopConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZenloopConfigurationOutput() GetSourceZenloopConfigurationOutput
+	ToGetSourceZenloopConfigurationOutputWithContext(context.Context) GetSourceZenloopConfigurationOutput
+}
+
+type GetSourceZenloopConfigurationArgs struct {
+	// Zenloop API Token. You can get the API token in settings page \n\nhere\n\n
+	ApiToken pulumi.StringInput `pulumi:"apiToken"`
+	// Zenloop date_from. Format: 2021-10-24T03:30:30Z or 2021-10-24. Leave empty if only data from current data should be synced
+	DateFrom pulumi.StringInput `pulumi:"dateFrom"`
+	// must be one of ["zenloop"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Zenloop Survey Group ID. Can be found by pulling All Survey Groups via SurveyGroups stream. Leave empty to pull answers from all survey groups
+	SurveyGroupId pulumi.StringInput `pulumi:"surveyGroupId"`
+	// Zenloop Survey ID. Can be found \n\nhere\n\n. Leave empty to pull answers from all surveys
+	SurveyId pulumi.StringInput `pulumi:"surveyId"`
+}
+
+func (GetSourceZenloopConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZenloopConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZenloopConfigurationArgs) ToGetSourceZenloopConfigurationOutput() GetSourceZenloopConfigurationOutput {
+	return i.ToGetSourceZenloopConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZenloopConfigurationArgs) ToGetSourceZenloopConfigurationOutputWithContext(ctx context.Context) GetSourceZenloopConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZenloopConfigurationOutput)
 }
 
 type GetSourceZenloopConfigurationOutput struct{ *pulumi.OutputState }
@@ -11255,6 +19209,51 @@ type GetSourceZohoCrmConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 	// ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
 	StartDatetime string `pulumi:"startDatetime"`
+}
+
+// GetSourceZohoCrmConfigurationInput is an input type that accepts GetSourceZohoCrmConfigurationArgs and GetSourceZohoCrmConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZohoCrmConfigurationInput` via:
+//
+//	GetSourceZohoCrmConfigurationArgs{...}
+type GetSourceZohoCrmConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZohoCrmConfigurationOutput() GetSourceZohoCrmConfigurationOutput
+	ToGetSourceZohoCrmConfigurationOutputWithContext(context.Context) GetSourceZohoCrmConfigurationOutput
+}
+
+type GetSourceZohoCrmConfigurationArgs struct {
+	// OAuth2.0 Client ID
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OAuth2.0 Client Secret
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// must be one of ["US", "AU", "EU", "IN", "CN", "JP"]
+	// Please choose the region of your Data Center location. More info by this \n\nLink\n\n
+	DcRegion pulumi.StringInput `pulumi:"dcRegion"`
+	// must be one of ["Free", "Standard", "Professional", "Enterprise", "Ultimate"]
+	// Choose your Edition of Zoho CRM to determine API Concurrency Limits
+	Edition pulumi.StringInput `pulumi:"edition"`
+	// must be one of ["Production", "Developer", "Sandbox"]
+	// Please choose the environment
+	Environment pulumi.StringInput `pulumi:"environment"`
+	// OAuth2.0 Refresh Token
+	RefreshToken pulumi.StringInput `pulumi:"refreshToken"`
+	// must be one of ["zoho-crm"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// ISO 8601, for instance: `YYYY-MM-DD`, `YYYY-MM-DD HH:MM:SS+HH:MM`
+	StartDatetime pulumi.StringInput `pulumi:"startDatetime"`
+}
+
+func (GetSourceZohoCrmConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZohoCrmConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZohoCrmConfigurationArgs) ToGetSourceZohoCrmConfigurationOutput() GetSourceZohoCrmConfigurationOutput {
+	return i.ToGetSourceZohoCrmConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZohoCrmConfigurationArgs) ToGetSourceZohoCrmConfigurationOutputWithContext(ctx context.Context) GetSourceZohoCrmConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZohoCrmConfigurationOutput)
 }
 
 type GetSourceZohoCrmConfigurationOutput struct{ *pulumi.OutputState }
@@ -11321,6 +19320,36 @@ type GetSourceZoomConfiguration struct {
 	SourceType string `pulumi:"sourceType"`
 }
 
+// GetSourceZoomConfigurationInput is an input type that accepts GetSourceZoomConfigurationArgs and GetSourceZoomConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZoomConfigurationInput` via:
+//
+//	GetSourceZoomConfigurationArgs{...}
+type GetSourceZoomConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZoomConfigurationOutput() GetSourceZoomConfigurationOutput
+	ToGetSourceZoomConfigurationOutputWithContext(context.Context) GetSourceZoomConfigurationOutput
+}
+
+type GetSourceZoomConfigurationArgs struct {
+	// JWT Token
+	JwtToken pulumi.StringInput `pulumi:"jwtToken"`
+	// must be one of ["zoom"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+}
+
+func (GetSourceZoomConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZoomConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZoomConfigurationArgs) ToGetSourceZoomConfigurationOutput() GetSourceZoomConfigurationOutput {
+	return i.ToGetSourceZoomConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZoomConfigurationArgs) ToGetSourceZoomConfigurationOutputWithContext(ctx context.Context) GetSourceZoomConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZoomConfigurationOutput)
+}
+
 type GetSourceZoomConfigurationOutput struct{ *pulumi.OutputState }
 
 func (GetSourceZoomConfigurationOutput) ElementType() reflect.Type {
@@ -11362,6 +19391,48 @@ type GetSourceZuoraConfiguration struct {
 	TenantEndpoint string `pulumi:"tenantEndpoint"`
 	// The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
 	WindowInDays string `pulumi:"windowInDays"`
+}
+
+// GetSourceZuoraConfigurationInput is an input type that accepts GetSourceZuoraConfigurationArgs and GetSourceZuoraConfigurationOutput values.
+// You can construct a concrete instance of `GetSourceZuoraConfigurationInput` via:
+//
+//	GetSourceZuoraConfigurationArgs{...}
+type GetSourceZuoraConfigurationInput interface {
+	pulumi.Input
+
+	ToGetSourceZuoraConfigurationOutput() GetSourceZuoraConfigurationOutput
+	ToGetSourceZuoraConfigurationOutputWithContext(context.Context) GetSourceZuoraConfigurationOutput
+}
+
+type GetSourceZuoraConfigurationArgs struct {
+	// Your OAuth user Client ID
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Your OAuth user Client Secret
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// must be one of ["Live", "Unlimited"]
+	// Choose between `Live`, or `Unlimited` - the optimized, replicated database at 12 hours freshness for high volume extraction \n\nLink\n\n
+	DataQuery pulumi.StringInput `pulumi:"dataQuery"`
+	// must be one of ["zuora"]
+	SourceType pulumi.StringInput `pulumi:"sourceType"`
+	// Start Date in format: YYYY-MM-DD
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// must be one of ["US Production", "US Cloud Production", "US API Sandbox", "US Cloud API Sandbox", "US Central Sandbox", "US Performance Test", "EU Production", "EU API Sandbox", "EU Central Sandbox"]
+	// Please choose the right endpoint where your Tenant is located. More info by this \n\nLink\n\n
+	TenantEndpoint pulumi.StringInput `pulumi:"tenantEndpoint"`
+	// The amount of days for each data-chunk begining from start_date. Bigger the value - faster the fetch. (0.1 - as for couple of hours, 1 - as for a Day; 364 - as for a Year).
+	WindowInDays pulumi.StringInput `pulumi:"windowInDays"`
+}
+
+func (GetSourceZuoraConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourceZuoraConfiguration)(nil)).Elem()
+}
+
+func (i GetSourceZuoraConfigurationArgs) ToGetSourceZuoraConfigurationOutput() GetSourceZuoraConfigurationOutput {
+	return i.ToGetSourceZuoraConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetSourceZuoraConfigurationArgs) ToGetSourceZuoraConfigurationOutputWithContext(ctx context.Context) GetSourceZuoraConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourceZuoraConfigurationOutput)
 }
 
 type GetSourceZuoraConfigurationOutput struct{ *pulumi.OutputState }
@@ -11416,6 +19487,260 @@ func (o GetSourceZuoraConfigurationOutput) WindowInDays() pulumi.StringOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationInput)(nil)).Elem(), GetSourceOktaConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationCredentialsInput)(nil)).Elem(), GetSourceOktaConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenInput)(nil)).Elem(), GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenInput)(nil)).Elem(), GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceOktaConfigurationCredentialsSourceOktaUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOmnisendConfigurationInput)(nil)).Elem(), GetSourceOmnisendConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOnesignalConfigurationInput)(nil)).Elem(), GetSourceOnesignalConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOnesignalConfigurationApplicationInput)(nil)).Elem(), GetSourceOnesignalConfigurationApplicationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOnesignalConfigurationApplicationArrayInput)(nil)).Elem(), GetSourceOnesignalConfigurationApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOpenweatherConfigurationInput)(nil)).Elem(), GetSourceOpenweatherConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationInput)(nil)).Elem(), GetSourceOracleConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataInput)(nil)).Elem(), GetSourceOracleConfigurationConnectionDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameInput)(nil)).Elem(), GetSourceOracleConfigurationConnectionDataSourceOracleConnectByServiceNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidInput)(nil)).Elem(), GetSourceOracleConfigurationConnectionDataSourceOracleConnectBySystemIdSidArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameInput)(nil)).Elem(), GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectByServiceNameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidInput)(nil)).Elem(), GetSourceOracleConfigurationConnectionDataSourceOracleUpdateConnectBySystemIdSidArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationEncryptionInput)(nil)).Elem(), GetSourceOracleConfigurationEncryptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneInput)(nil)).Elem(), GetSourceOracleConfigurationEncryptionSourceOracleEncryptionNativeNetworkEncryptionNneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateInput)(nil)).Elem(), GetSourceOracleConfigurationEncryptionSourceOracleEncryptionTlsEncryptedVerifyCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneInput)(nil)).Elem(), GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionNativeNetworkEncryptionNneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateInput)(nil)).Elem(), GetSourceOracleConfigurationEncryptionSourceOracleUpdateEncryptionTlsEncryptedVerifyCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodNoTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleSshTunnelMethodSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodNoTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationInput)(nil)).Elem(), GetSourceOracleConfigurationTunnelMethodSourceOracleUpdateSshTunnelMethodSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOrbConfigurationInput)(nil)).Elem(), GetSourceOrbConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOrbitConfigurationInput)(nil)).Elem(), GetSourceOrbitConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyAuthenticationMethodUsernamePasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordInput)(nil)).Elem(), GetSourceOutbrainAmplifyConfigurationCredentialsSourceOutbrainAmplifyUpdateAuthenticationMethodUsernamePasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceOutreachConfigurationInput)(nil)).Elem(), GetSourceOutreachConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePaypalTransactionConfigurationInput)(nil)).Elem(), GetSourcePaypalTransactionConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePaystackConfigurationInput)(nil)).Elem(), GetSourcePaystackConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePendoConfigurationInput)(nil)).Elem(), GetSourcePendoConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePersistiqConfigurationInput)(nil)).Elem(), GetSourcePersistiqConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePexelsApiConfigurationInput)(nil)).Elem(), GetSourcePexelsApiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationInput)(nil)).Elem(), GetSourcePinterestConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsInput)(nil)).Elem(), GetSourcePinterestConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenInput)(nil)).Elem(), GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourcePinterestConfigurationCredentialsSourcePinterestAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenInput)(nil)).Elem(), GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourcePinterestConfigurationCredentialsSourcePinterestUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePipedriveConfigurationInput)(nil)).Elem(), GetSourcePipedriveConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePipedriveConfigurationAuthorizationInput)(nil)).Elem(), GetSourcePipedriveConfigurationAuthorizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePocketConfigurationInput)(nil)).Elem(), GetSourcePocketConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePokeapiConfigurationInput)(nil)).Elem(), GetSourcePokeapiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePolygonStockApiConfigurationInput)(nil)).Elem(), GetSourcePolygonStockApiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationInput)(nil)).Elem(), GetSourcePostgresConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodLogicalReplicationCdcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresReplicationMethodStandardXminArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodLogicalReplicationCdcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminInput)(nil)).Elem(), GetSourcePostgresConfigurationReplicationMethodSourcePostgresUpdateReplicationMethodStandardXminArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesAllowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesDisableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesPreferArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesRequireArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyCaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresSslModesVerifyFullArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesAllowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesDisableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesPreferArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesRequireArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyCaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullInput)(nil)).Elem(), GetSourcePostgresConfigurationSslModeSourcePostgresUpdateSslModesVerifyFullArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodNoTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresSshTunnelMethodSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodNoTunnelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationInput)(nil)).Elem(), GetSourcePostgresConfigurationTunnelMethodSourcePostgresUpdateSshTunnelMethodSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePosthogConfigurationInput)(nil)).Elem(), GetSourcePosthogConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePostmarkappConfigurationInput)(nil)).Elem(), GetSourcePostmarkappConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePrestashopConfigurationInput)(nil)).Elem(), GetSourcePrestashopConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePublicApisConfigurationInput)(nil)).Elem(), GetSourcePublicApisConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePunkApiConfigurationInput)(nil)).Elem(), GetSourcePunkApiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcePypiConfigurationInput)(nil)).Elem(), GetSourcePypiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceQualarooConfigurationInput)(nil)).Elem(), GetSourceQualarooConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceQuickbooksConfigurationInput)(nil)).Elem(), GetSourceQuickbooksConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentialsInput)(nil)).Elem(), GetSourceQuickbooksConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceQuickbooksConfigurationCredentialsSourceQuickbooksUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRailzConfigurationInput)(nil)).Elem(), GetSourceRailzConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRechargeConfigurationInput)(nil)).Elem(), GetSourceRechargeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRecreationConfigurationInput)(nil)).Elem(), GetSourceRecreationConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRecruiteeConfigurationInput)(nil)).Elem(), GetSourceRecruiteeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRecurlyConfigurationInput)(nil)).Elem(), GetSourceRecurlyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRedshiftConfigurationInput)(nil)).Elem(), GetSourceRedshiftConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationInput)(nil)).Elem(), GetSourceRetentlyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsInput)(nil)).Elem(), GetSourceRetentlyConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthInput)(nil)).Elem(), GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenInput)(nil)).Elem(), GetSourceRetentlyConfigurationCredentialsSourceRetentlyAuthenticationMechanismAuthenticateWithApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthInput)(nil)).Elem(), GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateViaRetentlyOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenInput)(nil)).Elem(), GetSourceRetentlyConfigurationCredentialsSourceRetentlyUpdateAuthenticationMechanismAuthenticateWithApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRkiCovidConfigurationInput)(nil)).Elem(), GetSourceRkiCovidConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceRssConfigurationInput)(nil)).Elem(), GetSourceRssConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationInput)(nil)).Elem(), GetSourceS3ConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatInput)(nil)).Elem(), GetSourceS3ConfigurationFormatArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatAvroInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3FileFormatAvroArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatCsvInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3FileFormatCsvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3FileFormatJsonlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3FileFormatParquetInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3FileFormatParquetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatAvroArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatCsvArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatJsonlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetInput)(nil)).Elem(), GetSourceS3ConfigurationFormatSourceS3UpdateFileFormatParquetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceS3ConfigurationProviderInput)(nil)).Elem(), GetSourceS3ConfigurationProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesforceConfigurationInput)(nil)).Elem(), GetSourceSalesforceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesforceConfigurationStreamsCriteriaInput)(nil)).Elem(), GetSourceSalesforceConfigurationStreamsCriteriaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesforceConfigurationStreamsCriteriaArrayInput)(nil)).Elem(), GetSourceSalesforceConfigurationStreamsCriteriaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationInput)(nil)).Elem(), GetSourceSalesloftConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsInput)(nil)).Elem(), GetSourceSalesloftConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyInput)(nil)).Elem(), GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthInput)(nil)).Elem(), GetSourceSalesloftConfigurationCredentialsSourceSalesloftCredentialsAuthenticateViaOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyInput)(nil)).Elem(), GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthInput)(nil)).Elem(), GetSourceSalesloftConfigurationCredentialsSourceSalesloftUpdateCredentialsAuthenticateViaOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSapFieldglassConfigurationInput)(nil)).Elem(), GetSourceSapFieldglassConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSecodaConfigurationInput)(nil)).Elem(), GetSourceSecodaConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSendgridConfigurationInput)(nil)).Elem(), GetSourceSendgridConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSendinblueConfigurationInput)(nil)).Elem(), GetSourceSendinblueConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSenseforceConfigurationInput)(nil)).Elem(), GetSourceSenseforceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSentryConfigurationInput)(nil)).Elem(), GetSourceSentryConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpBulkConfigurationInput)(nil)).Elem(), GetSourceSftpBulkConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationInput)(nil)).Elem(), GetSourceSftpConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationCredentialsInput)(nil)).Elem(), GetSourceSftpConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationInput)(nil)).Elem(), GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationInput)(nil)).Elem(), GetSourceSftpConfigurationCredentialsSourceSftpAuthenticationWildcardSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationInput)(nil)).Elem(), GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardPasswordAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationInput)(nil)).Elem(), GetSourceSftpConfigurationCredentialsSourceSftpUpdateAuthenticationWildcardSshKeyAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationInput)(nil)).Elem(), GetSourceShopifyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsInput)(nil)).Elem(), GetSourceShopifyConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordInput)(nil)).Elem(), GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodApiPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceShopifyConfigurationCredentialsSourceShopifyShopifyAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordInput)(nil)).Elem(), GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodApiPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceShopifyConfigurationCredentialsSourceShopifyUpdateShopifyAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceShortioConfigurationInput)(nil)).Elem(), GetSourceShortioConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationInput)(nil)).Elem(), GetSourceSlackConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationCredentialsInput)(nil)).Elem(), GetSourceSlackConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenInput)(nil)).Elem(), GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthInput)(nil)).Elem(), GetSourceSlackConfigurationCredentialsSourceSlackAuthenticationMechanismSignInViaSlackOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenInput)(nil)).Elem(), GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthInput)(nil)).Elem(), GetSourceSlackConfigurationCredentialsSourceSlackUpdateAuthenticationMechanismSignInViaSlackOAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmailyConfigurationInput)(nil)).Elem(), GetSourceSmailyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartengageConfigurationInput)(nil)).Elem(), GetSourceSmartengageConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationInput)(nil)).Elem(), GetSourceSmartsheetsConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsInput)(nil)).Elem(), GetSourceSmartsheetsConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenInput)(nil)).Elem(), GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodApiAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenInput)(nil)).Elem(), GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodApiAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceSmartsheetsConfigurationCredentialsSourceSmartsheetsUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnapchatMarketingConfigurationInput)(nil)).Elem(), GetSourceSnapchatMarketingConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationInput)(nil)).Elem(), GetSourceSnowflakeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsInput)(nil)).Elem(), GetSourceSnowflakeConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordInput)(nil)).Elem(), GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeAuthorizationMethodUsernameAndPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordInput)(nil)).Elem(), GetSourceSnowflakeConfigurationCredentialsSourceSnowflakeUpdateAuthorizationMethodUsernameAndPasswordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSonarCloudConfigurationInput)(nil)).Elem(), GetSourceSonarCloudConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSpaceXApiConfigurationInput)(nil)).Elem(), GetSourceSpaceXApiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationInput)(nil)).Elem(), GetSourceSquareConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationCredentialsInput)(nil)).Elem(), GetSourceSquareConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyInput)(nil)).Elem(), GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationInput)(nil)).Elem(), GetSourceSquareConfigurationCredentialsSourceSquareAuthenticationOauthAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyInput)(nil)).Elem(), GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationInput)(nil)).Elem(), GetSourceSquareConfigurationCredentialsSourceSquareUpdateAuthenticationOauthAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceStravaConfigurationInput)(nil)).Elem(), GetSourceStravaConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceStripeConfigurationInput)(nil)).Elem(), GetSourceStripeConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlEuBasedAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowBaseUrlGlobalAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlEuBasedAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountInput)(nil)).Elem(), GetSourceSurveySparrowConfigurationRegionSourceSurveySparrowUpdateBaseUrlGlobalAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveymonkeyConfigurationInput)(nil)).Elem(), GetSourceSurveymonkeyConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceSurveymonkeyConfigurationCredentialsInput)(nil)).Elem(), GetSourceSurveymonkeyConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTempoConfigurationInput)(nil)).Elem(), GetSourceTempoConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTheGuardianApiConfigurationInput)(nil)).Elem(), GetSourceTheGuardianApiConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationInput)(nil)).Elem(), GetSourceTiktokMarketingConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsInput)(nil)).Elem(), GetSourceTiktokMarketingConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Input)(nil)).Elem(), GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenInput)(nil)).Elem(), GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingAuthenticationMethodSandboxAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Input)(nil)).Elem(), GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenInput)(nil)).Elem(), GetSourceTiktokMarketingConfigurationCredentialsSourceTiktokMarketingUpdateAuthenticationMethodSandboxAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTodoistConfigurationInput)(nil)).Elem(), GetSourceTodoistConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrelloConfigurationInput)(nil)).Elem(), GetSourceTrelloConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationInput)(nil)).Elem(), GetSourceTrustpilotConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsInput)(nil)).Elem(), GetSourceTrustpilotConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyInput)(nil)).Elem(), GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyInput)(nil)).Elem(), GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceTrustpilotConfigurationCredentialsSourceTrustpilotUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTvmazeScheduleConfigurationInput)(nil)).Elem(), GetSourceTvmazeScheduleConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTwilioConfigurationInput)(nil)).Elem(), GetSourceTwilioConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTwilioTaskrouterConfigurationInput)(nil)).Elem(), GetSourceTwilioTaskrouterConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTwitterConfigurationInput)(nil)).Elem(), GetSourceTwitterConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationInput)(nil)).Elem(), GetSourceTypeformConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsInput)(nil)).Elem(), GetSourceTypeformConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenInput)(nil)).Elem(), GetSourceTypeformConfigurationCredentialsSourceTypeformAuthorizationMethodPrivateTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenInput)(nil)).Elem(), GetSourceTypeformConfigurationCredentialsSourceTypeformUpdateAuthorizationMethodPrivateTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceUsCensusConfigurationInput)(nil)).Elem(), GetSourceUsCensusConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceVantageConfigurationInput)(nil)).Elem(), GetSourceVantageConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceWebflowConfigurationInput)(nil)).Elem(), GetSourceWebflowConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceWhiskyHunterConfigurationInput)(nil)).Elem(), GetSourceWhiskyHunterConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceWikipediaPageviewsConfigurationInput)(nil)).Elem(), GetSourceWikipediaPageviewsConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceWoocommerceConfigurationInput)(nil)).Elem(), GetSourceWoocommerceConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceXeroConfigurationInput)(nil)).Elem(), GetSourceXeroConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceXeroConfigurationAuthenticationInput)(nil)).Elem(), GetSourceXeroConfigurationAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceXkcdConfigurationInput)(nil)).Elem(), GetSourceXkcdConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceYandexMetricaConfigurationInput)(nil)).Elem(), GetSourceYandexMetricaConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceYotpoConfigurationInput)(nil)).Elem(), GetSourceYotpoConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceYouniumConfigurationInput)(nil)).Elem(), GetSourceYouniumConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceYoutubeAnalyticsConfigurationInput)(nil)).Elem(), GetSourceYoutubeAnalyticsConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceYoutubeAnalyticsConfigurationCredentialsInput)(nil)).Elem(), GetSourceYoutubeAnalyticsConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationInput)(nil)).Elem(), GetSourceZendeskChatConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsInput)(nil)).Elem(), GetSourceZendeskChatConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenInput)(nil)).Elem(), GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenInput)(nil)).Elem(), GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodAccessTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceZendeskChatConfigurationCredentialsSourceZendeskChatUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationInput)(nil)).Elem(), GetSourceZendeskSunshineConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsInput)(nil)).Elem(), GetSourceZendeskSunshineConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenInput)(nil)).Elem(), GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenInput)(nil)).Elem(), GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Input)(nil)).Elem(), GetSourceZendeskSunshineConfigurationCredentialsSourceZendeskSunshineUpdateAuthorizationMethodOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationInput)(nil)).Elem(), GetSourceZendeskSupportConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsInput)(nil)).Elem(), GetSourceZendeskSupportConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenInput)(nil)).Elem(), GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Input)(nil)).Elem(), GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportAuthenticationOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenInput)(nil)).Elem(), GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Input)(nil)).Elem(), GetSourceZendeskSupportConfigurationCredentialsSourceZendeskSupportUpdateAuthenticationOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationInput)(nil)).Elem(), GetSourceZendeskTalkConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsInput)(nil)).Elem(), GetSourceZendeskTalkConfigurationCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenInput)(nil)).Elem(), GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Input)(nil)).Elem(), GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkAuthenticationOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenInput)(nil)).Elem(), GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationApiTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Input)(nil)).Elem(), GetSourceZendeskTalkConfigurationCredentialsSourceZendeskTalkUpdateAuthenticationOAuth20Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZenloopConfigurationInput)(nil)).Elem(), GetSourceZenloopConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZohoCrmConfigurationInput)(nil)).Elem(), GetSourceZohoCrmConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZoomConfigurationInput)(nil)).Elem(), GetSourceZoomConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourceZuoraConfigurationInput)(nil)).Elem(), GetSourceZuoraConfigurationArgs{})
 	pulumi.RegisterOutputType(GetSourceOktaConfigurationOutput{})
 	pulumi.RegisterOutputType(GetSourceOktaConfigurationCredentialsOutput{})
 	pulumi.RegisterOutputType(GetSourceOktaConfigurationCredentialsSourceOktaAuthorizationMethodApiTokenOutput{})

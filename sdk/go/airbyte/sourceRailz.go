@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRailz Resource
@@ -127,6 +127,56 @@ func (i *SourceRailz) ToSourceRailzOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRailzOutput)
 }
 
+// SourceRailzArrayInput is an input type that accepts SourceRailzArray and SourceRailzArrayOutput values.
+// You can construct a concrete instance of `SourceRailzArrayInput` via:
+//
+//	SourceRailzArray{ SourceRailzArgs{...} }
+type SourceRailzArrayInput interface {
+	pulumi.Input
+
+	ToSourceRailzArrayOutput() SourceRailzArrayOutput
+	ToSourceRailzArrayOutputWithContext(context.Context) SourceRailzArrayOutput
+}
+
+type SourceRailzArray []SourceRailzInput
+
+func (SourceRailzArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRailz)(nil)).Elem()
+}
+
+func (i SourceRailzArray) ToSourceRailzArrayOutput() SourceRailzArrayOutput {
+	return i.ToSourceRailzArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRailzArray) ToSourceRailzArrayOutputWithContext(ctx context.Context) SourceRailzArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRailzArrayOutput)
+}
+
+// SourceRailzMapInput is an input type that accepts SourceRailzMap and SourceRailzMapOutput values.
+// You can construct a concrete instance of `SourceRailzMapInput` via:
+//
+//	SourceRailzMap{ "key": SourceRailzArgs{...} }
+type SourceRailzMapInput interface {
+	pulumi.Input
+
+	ToSourceRailzMapOutput() SourceRailzMapOutput
+	ToSourceRailzMapOutputWithContext(context.Context) SourceRailzMapOutput
+}
+
+type SourceRailzMap map[string]SourceRailzInput
+
+func (SourceRailzMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRailz)(nil)).Elem()
+}
+
+func (i SourceRailzMap) ToSourceRailzMapOutput() SourceRailzMapOutput {
+	return i.ToSourceRailzMapOutputWithContext(context.Background())
+}
+
+func (i SourceRailzMap) ToSourceRailzMapOutputWithContext(ctx context.Context) SourceRailzMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRailzMapOutput)
+}
+
 type SourceRailzOutput struct{ *pulumi.OutputState }
 
 func (SourceRailzOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRailzOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRailz) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRailzArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRailzArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRailz)(nil)).Elem()
+}
+
+func (o SourceRailzArrayOutput) ToSourceRailzArrayOutput() SourceRailzArrayOutput {
+	return o
+}
+
+func (o SourceRailzArrayOutput) ToSourceRailzArrayOutputWithContext(ctx context.Context) SourceRailzArrayOutput {
+	return o
+}
+
+func (o SourceRailzArrayOutput) Index(i pulumi.IntInput) SourceRailzOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRailz {
+		return vs[0].([]*SourceRailz)[vs[1].(int)]
+	}).(SourceRailzOutput)
+}
+
+type SourceRailzMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRailzMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRailz)(nil)).Elem()
+}
+
+func (o SourceRailzMapOutput) ToSourceRailzMapOutput() SourceRailzMapOutput {
+	return o
+}
+
+func (o SourceRailzMapOutput) ToSourceRailzMapOutputWithContext(ctx context.Context) SourceRailzMapOutput {
+	return o
+}
+
+func (o SourceRailzMapOutput) MapIndex(k pulumi.StringInput) SourceRailzOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRailz {
+		return vs[0].(map[string]*SourceRailz)[vs[1].(string)]
+	}).(SourceRailzOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRailzInput)(nil)).Elem(), &SourceRailz{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRailzArrayInput)(nil)).Elem(), SourceRailzArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRailzMapInput)(nil)).Elem(), SourceRailzMap{})
 	pulumi.RegisterOutputType(SourceRailzOutput{})
+	pulumi.RegisterOutputType(SourceRailzArrayOutput{})
+	pulumi.RegisterOutputType(SourceRailzMapOutput{})
 }

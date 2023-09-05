@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceHubplanner Resource
@@ -127,6 +127,56 @@ func (i *SourceHubplanner) ToSourceHubplannerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceHubplannerOutput)
 }
 
+// SourceHubplannerArrayInput is an input type that accepts SourceHubplannerArray and SourceHubplannerArrayOutput values.
+// You can construct a concrete instance of `SourceHubplannerArrayInput` via:
+//
+//	SourceHubplannerArray{ SourceHubplannerArgs{...} }
+type SourceHubplannerArrayInput interface {
+	pulumi.Input
+
+	ToSourceHubplannerArrayOutput() SourceHubplannerArrayOutput
+	ToSourceHubplannerArrayOutputWithContext(context.Context) SourceHubplannerArrayOutput
+}
+
+type SourceHubplannerArray []SourceHubplannerInput
+
+func (SourceHubplannerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHubplanner)(nil)).Elem()
+}
+
+func (i SourceHubplannerArray) ToSourceHubplannerArrayOutput() SourceHubplannerArrayOutput {
+	return i.ToSourceHubplannerArrayOutputWithContext(context.Background())
+}
+
+func (i SourceHubplannerArray) ToSourceHubplannerArrayOutputWithContext(ctx context.Context) SourceHubplannerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHubplannerArrayOutput)
+}
+
+// SourceHubplannerMapInput is an input type that accepts SourceHubplannerMap and SourceHubplannerMapOutput values.
+// You can construct a concrete instance of `SourceHubplannerMapInput` via:
+//
+//	SourceHubplannerMap{ "key": SourceHubplannerArgs{...} }
+type SourceHubplannerMapInput interface {
+	pulumi.Input
+
+	ToSourceHubplannerMapOutput() SourceHubplannerMapOutput
+	ToSourceHubplannerMapOutputWithContext(context.Context) SourceHubplannerMapOutput
+}
+
+type SourceHubplannerMap map[string]SourceHubplannerInput
+
+func (SourceHubplannerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHubplanner)(nil)).Elem()
+}
+
+func (i SourceHubplannerMap) ToSourceHubplannerMapOutput() SourceHubplannerMapOutput {
+	return i.ToSourceHubplannerMapOutputWithContext(context.Background())
+}
+
+func (i SourceHubplannerMap) ToSourceHubplannerMapOutputWithContext(ctx context.Context) SourceHubplannerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHubplannerMapOutput)
+}
+
 type SourceHubplannerOutput struct{ *pulumi.OutputState }
 
 func (SourceHubplannerOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceHubplannerOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceHubplanner) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceHubplannerArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceHubplannerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHubplanner)(nil)).Elem()
+}
+
+func (o SourceHubplannerArrayOutput) ToSourceHubplannerArrayOutput() SourceHubplannerArrayOutput {
+	return o
+}
+
+func (o SourceHubplannerArrayOutput) ToSourceHubplannerArrayOutputWithContext(ctx context.Context) SourceHubplannerArrayOutput {
+	return o
+}
+
+func (o SourceHubplannerArrayOutput) Index(i pulumi.IntInput) SourceHubplannerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceHubplanner {
+		return vs[0].([]*SourceHubplanner)[vs[1].(int)]
+	}).(SourceHubplannerOutput)
+}
+
+type SourceHubplannerMapOutput struct{ *pulumi.OutputState }
+
+func (SourceHubplannerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHubplanner)(nil)).Elem()
+}
+
+func (o SourceHubplannerMapOutput) ToSourceHubplannerMapOutput() SourceHubplannerMapOutput {
+	return o
+}
+
+func (o SourceHubplannerMapOutput) ToSourceHubplannerMapOutputWithContext(ctx context.Context) SourceHubplannerMapOutput {
+	return o
+}
+
+func (o SourceHubplannerMapOutput) MapIndex(k pulumi.StringInput) SourceHubplannerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceHubplanner {
+		return vs[0].(map[string]*SourceHubplanner)[vs[1].(string)]
+	}).(SourceHubplannerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubplannerInput)(nil)).Elem(), &SourceHubplanner{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubplannerArrayInput)(nil)).Elem(), SourceHubplannerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubplannerMapInput)(nil)).Elem(), SourceHubplannerMap{})
 	pulumi.RegisterOutputType(SourceHubplannerOutput{})
+	pulumi.RegisterOutputType(SourceHubplannerArrayOutput{})
+	pulumi.RegisterOutputType(SourceHubplannerMapOutput{})
 }

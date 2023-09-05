@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDynamodb Resource
@@ -127,6 +127,56 @@ func (i *SourceDynamodb) ToSourceDynamodbOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDynamodbOutput)
 }
 
+// SourceDynamodbArrayInput is an input type that accepts SourceDynamodbArray and SourceDynamodbArrayOutput values.
+// You can construct a concrete instance of `SourceDynamodbArrayInput` via:
+//
+//	SourceDynamodbArray{ SourceDynamodbArgs{...} }
+type SourceDynamodbArrayInput interface {
+	pulumi.Input
+
+	ToSourceDynamodbArrayOutput() SourceDynamodbArrayOutput
+	ToSourceDynamodbArrayOutputWithContext(context.Context) SourceDynamodbArrayOutput
+}
+
+type SourceDynamodbArray []SourceDynamodbInput
+
+func (SourceDynamodbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDynamodb)(nil)).Elem()
+}
+
+func (i SourceDynamodbArray) ToSourceDynamodbArrayOutput() SourceDynamodbArrayOutput {
+	return i.ToSourceDynamodbArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDynamodbArray) ToSourceDynamodbArrayOutputWithContext(ctx context.Context) SourceDynamodbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDynamodbArrayOutput)
+}
+
+// SourceDynamodbMapInput is an input type that accepts SourceDynamodbMap and SourceDynamodbMapOutput values.
+// You can construct a concrete instance of `SourceDynamodbMapInput` via:
+//
+//	SourceDynamodbMap{ "key": SourceDynamodbArgs{...} }
+type SourceDynamodbMapInput interface {
+	pulumi.Input
+
+	ToSourceDynamodbMapOutput() SourceDynamodbMapOutput
+	ToSourceDynamodbMapOutputWithContext(context.Context) SourceDynamodbMapOutput
+}
+
+type SourceDynamodbMap map[string]SourceDynamodbInput
+
+func (SourceDynamodbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDynamodb)(nil)).Elem()
+}
+
+func (i SourceDynamodbMap) ToSourceDynamodbMapOutput() SourceDynamodbMapOutput {
+	return i.ToSourceDynamodbMapOutputWithContext(context.Background())
+}
+
+func (i SourceDynamodbMap) ToSourceDynamodbMapOutputWithContext(ctx context.Context) SourceDynamodbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDynamodbMapOutput)
+}
+
 type SourceDynamodbOutput struct{ *pulumi.OutputState }
 
 func (SourceDynamodbOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDynamodbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDynamodb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDynamodbArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDynamodbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDynamodb)(nil)).Elem()
+}
+
+func (o SourceDynamodbArrayOutput) ToSourceDynamodbArrayOutput() SourceDynamodbArrayOutput {
+	return o
+}
+
+func (o SourceDynamodbArrayOutput) ToSourceDynamodbArrayOutputWithContext(ctx context.Context) SourceDynamodbArrayOutput {
+	return o
+}
+
+func (o SourceDynamodbArrayOutput) Index(i pulumi.IntInput) SourceDynamodbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDynamodb {
+		return vs[0].([]*SourceDynamodb)[vs[1].(int)]
+	}).(SourceDynamodbOutput)
+}
+
+type SourceDynamodbMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDynamodbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDynamodb)(nil)).Elem()
+}
+
+func (o SourceDynamodbMapOutput) ToSourceDynamodbMapOutput() SourceDynamodbMapOutput {
+	return o
+}
+
+func (o SourceDynamodbMapOutput) ToSourceDynamodbMapOutputWithContext(ctx context.Context) SourceDynamodbMapOutput {
+	return o
+}
+
+func (o SourceDynamodbMapOutput) MapIndex(k pulumi.StringInput) SourceDynamodbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDynamodb {
+		return vs[0].(map[string]*SourceDynamodb)[vs[1].(string)]
+	}).(SourceDynamodbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDynamodbInput)(nil)).Elem(), &SourceDynamodb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDynamodbArrayInput)(nil)).Elem(), SourceDynamodbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDynamodbMapInput)(nil)).Elem(), SourceDynamodbMap{})
 	pulumi.RegisterOutputType(SourceDynamodbOutput{})
+	pulumi.RegisterOutputType(SourceDynamodbArrayOutput{})
+	pulumi.RegisterOutputType(SourceDynamodbMapOutput{})
 }

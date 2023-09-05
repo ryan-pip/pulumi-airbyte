@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleWebfonts Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleWebfonts) ToSourceGoogleWebfontsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWebfontsOutput)
 }
 
+// SourceGoogleWebfontsArrayInput is an input type that accepts SourceGoogleWebfontsArray and SourceGoogleWebfontsArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleWebfontsArrayInput` via:
+//
+//	SourceGoogleWebfontsArray{ SourceGoogleWebfontsArgs{...} }
+type SourceGoogleWebfontsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleWebfontsArrayOutput() SourceGoogleWebfontsArrayOutput
+	ToSourceGoogleWebfontsArrayOutputWithContext(context.Context) SourceGoogleWebfontsArrayOutput
+}
+
+type SourceGoogleWebfontsArray []SourceGoogleWebfontsInput
+
+func (SourceGoogleWebfontsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleWebfonts)(nil)).Elem()
+}
+
+func (i SourceGoogleWebfontsArray) ToSourceGoogleWebfontsArrayOutput() SourceGoogleWebfontsArrayOutput {
+	return i.ToSourceGoogleWebfontsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleWebfontsArray) ToSourceGoogleWebfontsArrayOutputWithContext(ctx context.Context) SourceGoogleWebfontsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWebfontsArrayOutput)
+}
+
+// SourceGoogleWebfontsMapInput is an input type that accepts SourceGoogleWebfontsMap and SourceGoogleWebfontsMapOutput values.
+// You can construct a concrete instance of `SourceGoogleWebfontsMapInput` via:
+//
+//	SourceGoogleWebfontsMap{ "key": SourceGoogleWebfontsArgs{...} }
+type SourceGoogleWebfontsMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleWebfontsMapOutput() SourceGoogleWebfontsMapOutput
+	ToSourceGoogleWebfontsMapOutputWithContext(context.Context) SourceGoogleWebfontsMapOutput
+}
+
+type SourceGoogleWebfontsMap map[string]SourceGoogleWebfontsInput
+
+func (SourceGoogleWebfontsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleWebfonts)(nil)).Elem()
+}
+
+func (i SourceGoogleWebfontsMap) ToSourceGoogleWebfontsMapOutput() SourceGoogleWebfontsMapOutput {
+	return i.ToSourceGoogleWebfontsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleWebfontsMap) ToSourceGoogleWebfontsMapOutputWithContext(ctx context.Context) SourceGoogleWebfontsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWebfontsMapOutput)
+}
+
 type SourceGoogleWebfontsOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleWebfontsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGoogleWebfontsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleWebfonts) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleWebfontsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleWebfontsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleWebfonts)(nil)).Elem()
+}
+
+func (o SourceGoogleWebfontsArrayOutput) ToSourceGoogleWebfontsArrayOutput() SourceGoogleWebfontsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleWebfontsArrayOutput) ToSourceGoogleWebfontsArrayOutputWithContext(ctx context.Context) SourceGoogleWebfontsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleWebfontsArrayOutput) Index(i pulumi.IntInput) SourceGoogleWebfontsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleWebfonts {
+		return vs[0].([]*SourceGoogleWebfonts)[vs[1].(int)]
+	}).(SourceGoogleWebfontsOutput)
+}
+
+type SourceGoogleWebfontsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleWebfontsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleWebfonts)(nil)).Elem()
+}
+
+func (o SourceGoogleWebfontsMapOutput) ToSourceGoogleWebfontsMapOutput() SourceGoogleWebfontsMapOutput {
+	return o
+}
+
+func (o SourceGoogleWebfontsMapOutput) ToSourceGoogleWebfontsMapOutputWithContext(ctx context.Context) SourceGoogleWebfontsMapOutput {
+	return o
+}
+
+func (o SourceGoogleWebfontsMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleWebfontsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleWebfonts {
+		return vs[0].(map[string]*SourceGoogleWebfonts)[vs[1].(string)]
+	}).(SourceGoogleWebfontsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWebfontsInput)(nil)).Elem(), &SourceGoogleWebfonts{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWebfontsArrayInput)(nil)).Elem(), SourceGoogleWebfontsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWebfontsMapInput)(nil)).Elem(), SourceGoogleWebfontsMap{})
 	pulumi.RegisterOutputType(SourceGoogleWebfontsOutput{})
+	pulumi.RegisterOutputType(SourceGoogleWebfontsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleWebfontsMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRecruitee Resource
@@ -127,6 +127,56 @@ func (i *SourceRecruitee) ToSourceRecruiteeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRecruiteeOutput)
 }
 
+// SourceRecruiteeArrayInput is an input type that accepts SourceRecruiteeArray and SourceRecruiteeArrayOutput values.
+// You can construct a concrete instance of `SourceRecruiteeArrayInput` via:
+//
+//	SourceRecruiteeArray{ SourceRecruiteeArgs{...} }
+type SourceRecruiteeArrayInput interface {
+	pulumi.Input
+
+	ToSourceRecruiteeArrayOutput() SourceRecruiteeArrayOutput
+	ToSourceRecruiteeArrayOutputWithContext(context.Context) SourceRecruiteeArrayOutput
+}
+
+type SourceRecruiteeArray []SourceRecruiteeInput
+
+func (SourceRecruiteeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecruitee)(nil)).Elem()
+}
+
+func (i SourceRecruiteeArray) ToSourceRecruiteeArrayOutput() SourceRecruiteeArrayOutput {
+	return i.ToSourceRecruiteeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRecruiteeArray) ToSourceRecruiteeArrayOutputWithContext(ctx context.Context) SourceRecruiteeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecruiteeArrayOutput)
+}
+
+// SourceRecruiteeMapInput is an input type that accepts SourceRecruiteeMap and SourceRecruiteeMapOutput values.
+// You can construct a concrete instance of `SourceRecruiteeMapInput` via:
+//
+//	SourceRecruiteeMap{ "key": SourceRecruiteeArgs{...} }
+type SourceRecruiteeMapInput interface {
+	pulumi.Input
+
+	ToSourceRecruiteeMapOutput() SourceRecruiteeMapOutput
+	ToSourceRecruiteeMapOutputWithContext(context.Context) SourceRecruiteeMapOutput
+}
+
+type SourceRecruiteeMap map[string]SourceRecruiteeInput
+
+func (SourceRecruiteeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecruitee)(nil)).Elem()
+}
+
+func (i SourceRecruiteeMap) ToSourceRecruiteeMapOutput() SourceRecruiteeMapOutput {
+	return i.ToSourceRecruiteeMapOutputWithContext(context.Background())
+}
+
+func (i SourceRecruiteeMap) ToSourceRecruiteeMapOutputWithContext(ctx context.Context) SourceRecruiteeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecruiteeMapOutput)
+}
+
 type SourceRecruiteeOutput struct{ *pulumi.OutputState }
 
 func (SourceRecruiteeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRecruiteeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRecruitee) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRecruiteeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRecruiteeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecruitee)(nil)).Elem()
+}
+
+func (o SourceRecruiteeArrayOutput) ToSourceRecruiteeArrayOutput() SourceRecruiteeArrayOutput {
+	return o
+}
+
+func (o SourceRecruiteeArrayOutput) ToSourceRecruiteeArrayOutputWithContext(ctx context.Context) SourceRecruiteeArrayOutput {
+	return o
+}
+
+func (o SourceRecruiteeArrayOutput) Index(i pulumi.IntInput) SourceRecruiteeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRecruitee {
+		return vs[0].([]*SourceRecruitee)[vs[1].(int)]
+	}).(SourceRecruiteeOutput)
+}
+
+type SourceRecruiteeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRecruiteeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecruitee)(nil)).Elem()
+}
+
+func (o SourceRecruiteeMapOutput) ToSourceRecruiteeMapOutput() SourceRecruiteeMapOutput {
+	return o
+}
+
+func (o SourceRecruiteeMapOutput) ToSourceRecruiteeMapOutputWithContext(ctx context.Context) SourceRecruiteeMapOutput {
+	return o
+}
+
+func (o SourceRecruiteeMapOutput) MapIndex(k pulumi.StringInput) SourceRecruiteeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRecruitee {
+		return vs[0].(map[string]*SourceRecruitee)[vs[1].(string)]
+	}).(SourceRecruiteeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecruiteeInput)(nil)).Elem(), &SourceRecruitee{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecruiteeArrayInput)(nil)).Elem(), SourceRecruiteeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecruiteeMapInput)(nil)).Elem(), SourceRecruiteeMap{})
 	pulumi.RegisterOutputType(SourceRecruiteeOutput{})
+	pulumi.RegisterOutputType(SourceRecruiteeArrayOutput{})
+	pulumi.RegisterOutputType(SourceRecruiteeMapOutput{})
 }

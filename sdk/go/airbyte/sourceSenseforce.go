@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSenseforce Resource
@@ -127,6 +127,56 @@ func (i *SourceSenseforce) ToSourceSenseforceOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSenseforceOutput)
 }
 
+// SourceSenseforceArrayInput is an input type that accepts SourceSenseforceArray and SourceSenseforceArrayOutput values.
+// You can construct a concrete instance of `SourceSenseforceArrayInput` via:
+//
+//	SourceSenseforceArray{ SourceSenseforceArgs{...} }
+type SourceSenseforceArrayInput interface {
+	pulumi.Input
+
+	ToSourceSenseforceArrayOutput() SourceSenseforceArrayOutput
+	ToSourceSenseforceArrayOutputWithContext(context.Context) SourceSenseforceArrayOutput
+}
+
+type SourceSenseforceArray []SourceSenseforceInput
+
+func (SourceSenseforceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSenseforce)(nil)).Elem()
+}
+
+func (i SourceSenseforceArray) ToSourceSenseforceArrayOutput() SourceSenseforceArrayOutput {
+	return i.ToSourceSenseforceArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSenseforceArray) ToSourceSenseforceArrayOutputWithContext(ctx context.Context) SourceSenseforceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSenseforceArrayOutput)
+}
+
+// SourceSenseforceMapInput is an input type that accepts SourceSenseforceMap and SourceSenseforceMapOutput values.
+// You can construct a concrete instance of `SourceSenseforceMapInput` via:
+//
+//	SourceSenseforceMap{ "key": SourceSenseforceArgs{...} }
+type SourceSenseforceMapInput interface {
+	pulumi.Input
+
+	ToSourceSenseforceMapOutput() SourceSenseforceMapOutput
+	ToSourceSenseforceMapOutputWithContext(context.Context) SourceSenseforceMapOutput
+}
+
+type SourceSenseforceMap map[string]SourceSenseforceInput
+
+func (SourceSenseforceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSenseforce)(nil)).Elem()
+}
+
+func (i SourceSenseforceMap) ToSourceSenseforceMapOutput() SourceSenseforceMapOutput {
+	return i.ToSourceSenseforceMapOutputWithContext(context.Background())
+}
+
+func (i SourceSenseforceMap) ToSourceSenseforceMapOutputWithContext(ctx context.Context) SourceSenseforceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSenseforceMapOutput)
+}
+
 type SourceSenseforceOutput struct{ *pulumi.OutputState }
 
 func (SourceSenseforceOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSenseforceOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSenseforce) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSenseforceArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSenseforceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSenseforce)(nil)).Elem()
+}
+
+func (o SourceSenseforceArrayOutput) ToSourceSenseforceArrayOutput() SourceSenseforceArrayOutput {
+	return o
+}
+
+func (o SourceSenseforceArrayOutput) ToSourceSenseforceArrayOutputWithContext(ctx context.Context) SourceSenseforceArrayOutput {
+	return o
+}
+
+func (o SourceSenseforceArrayOutput) Index(i pulumi.IntInput) SourceSenseforceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSenseforce {
+		return vs[0].([]*SourceSenseforce)[vs[1].(int)]
+	}).(SourceSenseforceOutput)
+}
+
+type SourceSenseforceMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSenseforceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSenseforce)(nil)).Elem()
+}
+
+func (o SourceSenseforceMapOutput) ToSourceSenseforceMapOutput() SourceSenseforceMapOutput {
+	return o
+}
+
+func (o SourceSenseforceMapOutput) ToSourceSenseforceMapOutputWithContext(ctx context.Context) SourceSenseforceMapOutput {
+	return o
+}
+
+func (o SourceSenseforceMapOutput) MapIndex(k pulumi.StringInput) SourceSenseforceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSenseforce {
+		return vs[0].(map[string]*SourceSenseforce)[vs[1].(string)]
+	}).(SourceSenseforceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSenseforceInput)(nil)).Elem(), &SourceSenseforce{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSenseforceArrayInput)(nil)).Elem(), SourceSenseforceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSenseforceMapInput)(nil)).Elem(), SourceSenseforceMap{})
 	pulumi.RegisterOutputType(SourceSenseforceOutput{})
+	pulumi.RegisterOutputType(SourceSenseforceArrayOutput{})
+	pulumi.RegisterOutputType(SourceSenseforceMapOutput{})
 }

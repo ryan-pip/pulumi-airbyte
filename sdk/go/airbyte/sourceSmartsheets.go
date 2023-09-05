@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSmartsheets Resource
@@ -127,6 +127,56 @@ func (i *SourceSmartsheets) ToSourceSmartsheetsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartsheetsOutput)
 }
 
+// SourceSmartsheetsArrayInput is an input type that accepts SourceSmartsheetsArray and SourceSmartsheetsArrayOutput values.
+// You can construct a concrete instance of `SourceSmartsheetsArrayInput` via:
+//
+//	SourceSmartsheetsArray{ SourceSmartsheetsArgs{...} }
+type SourceSmartsheetsArrayInput interface {
+	pulumi.Input
+
+	ToSourceSmartsheetsArrayOutput() SourceSmartsheetsArrayOutput
+	ToSourceSmartsheetsArrayOutputWithContext(context.Context) SourceSmartsheetsArrayOutput
+}
+
+type SourceSmartsheetsArray []SourceSmartsheetsInput
+
+func (SourceSmartsheetsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmartsheets)(nil)).Elem()
+}
+
+func (i SourceSmartsheetsArray) ToSourceSmartsheetsArrayOutput() SourceSmartsheetsArrayOutput {
+	return i.ToSourceSmartsheetsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSmartsheetsArray) ToSourceSmartsheetsArrayOutputWithContext(ctx context.Context) SourceSmartsheetsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartsheetsArrayOutput)
+}
+
+// SourceSmartsheetsMapInput is an input type that accepts SourceSmartsheetsMap and SourceSmartsheetsMapOutput values.
+// You can construct a concrete instance of `SourceSmartsheetsMapInput` via:
+//
+//	SourceSmartsheetsMap{ "key": SourceSmartsheetsArgs{...} }
+type SourceSmartsheetsMapInput interface {
+	pulumi.Input
+
+	ToSourceSmartsheetsMapOutput() SourceSmartsheetsMapOutput
+	ToSourceSmartsheetsMapOutputWithContext(context.Context) SourceSmartsheetsMapOutput
+}
+
+type SourceSmartsheetsMap map[string]SourceSmartsheetsInput
+
+func (SourceSmartsheetsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmartsheets)(nil)).Elem()
+}
+
+func (i SourceSmartsheetsMap) ToSourceSmartsheetsMapOutput() SourceSmartsheetsMapOutput {
+	return i.ToSourceSmartsheetsMapOutputWithContext(context.Background())
+}
+
+func (i SourceSmartsheetsMap) ToSourceSmartsheetsMapOutputWithContext(ctx context.Context) SourceSmartsheetsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartsheetsMapOutput)
+}
+
 type SourceSmartsheetsOutput struct{ *pulumi.OutputState }
 
 func (SourceSmartsheetsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSmartsheetsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSmartsheets) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSmartsheetsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSmartsheetsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmartsheets)(nil)).Elem()
+}
+
+func (o SourceSmartsheetsArrayOutput) ToSourceSmartsheetsArrayOutput() SourceSmartsheetsArrayOutput {
+	return o
+}
+
+func (o SourceSmartsheetsArrayOutput) ToSourceSmartsheetsArrayOutputWithContext(ctx context.Context) SourceSmartsheetsArrayOutput {
+	return o
+}
+
+func (o SourceSmartsheetsArrayOutput) Index(i pulumi.IntInput) SourceSmartsheetsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSmartsheets {
+		return vs[0].([]*SourceSmartsheets)[vs[1].(int)]
+	}).(SourceSmartsheetsOutput)
+}
+
+type SourceSmartsheetsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSmartsheetsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmartsheets)(nil)).Elem()
+}
+
+func (o SourceSmartsheetsMapOutput) ToSourceSmartsheetsMapOutput() SourceSmartsheetsMapOutput {
+	return o
+}
+
+func (o SourceSmartsheetsMapOutput) ToSourceSmartsheetsMapOutputWithContext(ctx context.Context) SourceSmartsheetsMapOutput {
+	return o
+}
+
+func (o SourceSmartsheetsMapOutput) MapIndex(k pulumi.StringInput) SourceSmartsheetsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSmartsheets {
+		return vs[0].(map[string]*SourceSmartsheets)[vs[1].(string)]
+	}).(SourceSmartsheetsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartsheetsInput)(nil)).Elem(), &SourceSmartsheets{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartsheetsArrayInput)(nil)).Elem(), SourceSmartsheetsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartsheetsMapInput)(nil)).Elem(), SourceSmartsheetsMap{})
 	pulumi.RegisterOutputType(SourceSmartsheetsOutput{})
+	pulumi.RegisterOutputType(SourceSmartsheetsArrayOutput{})
+	pulumi.RegisterOutputType(SourceSmartsheetsMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMonday Resource
@@ -127,6 +127,56 @@ func (i *SourceMonday) ToSourceMondayOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMondayOutput)
 }
 
+// SourceMondayArrayInput is an input type that accepts SourceMondayArray and SourceMondayArrayOutput values.
+// You can construct a concrete instance of `SourceMondayArrayInput` via:
+//
+//	SourceMondayArray{ SourceMondayArgs{...} }
+type SourceMondayArrayInput interface {
+	pulumi.Input
+
+	ToSourceMondayArrayOutput() SourceMondayArrayOutput
+	ToSourceMondayArrayOutputWithContext(context.Context) SourceMondayArrayOutput
+}
+
+type SourceMondayArray []SourceMondayInput
+
+func (SourceMondayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMonday)(nil)).Elem()
+}
+
+func (i SourceMondayArray) ToSourceMondayArrayOutput() SourceMondayArrayOutput {
+	return i.ToSourceMondayArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMondayArray) ToSourceMondayArrayOutputWithContext(ctx context.Context) SourceMondayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMondayArrayOutput)
+}
+
+// SourceMondayMapInput is an input type that accepts SourceMondayMap and SourceMondayMapOutput values.
+// You can construct a concrete instance of `SourceMondayMapInput` via:
+//
+//	SourceMondayMap{ "key": SourceMondayArgs{...} }
+type SourceMondayMapInput interface {
+	pulumi.Input
+
+	ToSourceMondayMapOutput() SourceMondayMapOutput
+	ToSourceMondayMapOutputWithContext(context.Context) SourceMondayMapOutput
+}
+
+type SourceMondayMap map[string]SourceMondayInput
+
+func (SourceMondayMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMonday)(nil)).Elem()
+}
+
+func (i SourceMondayMap) ToSourceMondayMapOutput() SourceMondayMapOutput {
+	return i.ToSourceMondayMapOutputWithContext(context.Background())
+}
+
+func (i SourceMondayMap) ToSourceMondayMapOutputWithContext(ctx context.Context) SourceMondayMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMondayMapOutput)
+}
+
 type SourceMondayOutput struct{ *pulumi.OutputState }
 
 func (SourceMondayOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMondayOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMonday) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMondayArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMondayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMonday)(nil)).Elem()
+}
+
+func (o SourceMondayArrayOutput) ToSourceMondayArrayOutput() SourceMondayArrayOutput {
+	return o
+}
+
+func (o SourceMondayArrayOutput) ToSourceMondayArrayOutputWithContext(ctx context.Context) SourceMondayArrayOutput {
+	return o
+}
+
+func (o SourceMondayArrayOutput) Index(i pulumi.IntInput) SourceMondayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMonday {
+		return vs[0].([]*SourceMonday)[vs[1].(int)]
+	}).(SourceMondayOutput)
+}
+
+type SourceMondayMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMondayMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMonday)(nil)).Elem()
+}
+
+func (o SourceMondayMapOutput) ToSourceMondayMapOutput() SourceMondayMapOutput {
+	return o
+}
+
+func (o SourceMondayMapOutput) ToSourceMondayMapOutputWithContext(ctx context.Context) SourceMondayMapOutput {
+	return o
+}
+
+func (o SourceMondayMapOutput) MapIndex(k pulumi.StringInput) SourceMondayOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMonday {
+		return vs[0].(map[string]*SourceMonday)[vs[1].(string)]
+	}).(SourceMondayOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMondayInput)(nil)).Elem(), &SourceMonday{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMondayArrayInput)(nil)).Elem(), SourceMondayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMondayMapInput)(nil)).Elem(), SourceMondayMap{})
 	pulumi.RegisterOutputType(SourceMondayOutput{})
+	pulumi.RegisterOutputType(SourceMondayArrayOutput{})
+	pulumi.RegisterOutputType(SourceMondayMapOutput{})
 }

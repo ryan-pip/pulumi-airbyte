@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOrb Resource
@@ -127,6 +127,56 @@ func (i *SourceOrb) ToSourceOrbOutputWithContext(ctx context.Context) SourceOrbO
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbOutput)
 }
 
+// SourceOrbArrayInput is an input type that accepts SourceOrbArray and SourceOrbArrayOutput values.
+// You can construct a concrete instance of `SourceOrbArrayInput` via:
+//
+//	SourceOrbArray{ SourceOrbArgs{...} }
+type SourceOrbArrayInput interface {
+	pulumi.Input
+
+	ToSourceOrbArrayOutput() SourceOrbArrayOutput
+	ToSourceOrbArrayOutputWithContext(context.Context) SourceOrbArrayOutput
+}
+
+type SourceOrbArray []SourceOrbInput
+
+func (SourceOrbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOrb)(nil)).Elem()
+}
+
+func (i SourceOrbArray) ToSourceOrbArrayOutput() SourceOrbArrayOutput {
+	return i.ToSourceOrbArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOrbArray) ToSourceOrbArrayOutputWithContext(ctx context.Context) SourceOrbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbArrayOutput)
+}
+
+// SourceOrbMapInput is an input type that accepts SourceOrbMap and SourceOrbMapOutput values.
+// You can construct a concrete instance of `SourceOrbMapInput` via:
+//
+//	SourceOrbMap{ "key": SourceOrbArgs{...} }
+type SourceOrbMapInput interface {
+	pulumi.Input
+
+	ToSourceOrbMapOutput() SourceOrbMapOutput
+	ToSourceOrbMapOutputWithContext(context.Context) SourceOrbMapOutput
+}
+
+type SourceOrbMap map[string]SourceOrbInput
+
+func (SourceOrbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOrb)(nil)).Elem()
+}
+
+func (i SourceOrbMap) ToSourceOrbMapOutput() SourceOrbMapOutput {
+	return i.ToSourceOrbMapOutputWithContext(context.Background())
+}
+
+func (i SourceOrbMap) ToSourceOrbMapOutputWithContext(ctx context.Context) SourceOrbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbMapOutput)
+}
+
 type SourceOrbOutput struct{ *pulumi.OutputState }
 
 func (SourceOrbOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOrbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOrb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOrbArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOrbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOrb)(nil)).Elem()
+}
+
+func (o SourceOrbArrayOutput) ToSourceOrbArrayOutput() SourceOrbArrayOutput {
+	return o
+}
+
+func (o SourceOrbArrayOutput) ToSourceOrbArrayOutputWithContext(ctx context.Context) SourceOrbArrayOutput {
+	return o
+}
+
+func (o SourceOrbArrayOutput) Index(i pulumi.IntInput) SourceOrbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOrb {
+		return vs[0].([]*SourceOrb)[vs[1].(int)]
+	}).(SourceOrbOutput)
+}
+
+type SourceOrbMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOrbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOrb)(nil)).Elem()
+}
+
+func (o SourceOrbMapOutput) ToSourceOrbMapOutput() SourceOrbMapOutput {
+	return o
+}
+
+func (o SourceOrbMapOutput) ToSourceOrbMapOutputWithContext(ctx context.Context) SourceOrbMapOutput {
+	return o
+}
+
+func (o SourceOrbMapOutput) MapIndex(k pulumi.StringInput) SourceOrbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOrb {
+		return vs[0].(map[string]*SourceOrb)[vs[1].(string)]
+	}).(SourceOrbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbInput)(nil)).Elem(), &SourceOrb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbArrayInput)(nil)).Elem(), SourceOrbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbMapInput)(nil)).Elem(), SourceOrbMap{})
 	pulumi.RegisterOutputType(SourceOrbOutput{})
+	pulumi.RegisterOutputType(SourceOrbArrayOutput{})
+	pulumi.RegisterOutputType(SourceOrbMapOutput{})
 }

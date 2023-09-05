@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTempo Resource
@@ -127,6 +127,56 @@ func (i *SourceTempo) ToSourceTempoOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTempoOutput)
 }
 
+// SourceTempoArrayInput is an input type that accepts SourceTempoArray and SourceTempoArrayOutput values.
+// You can construct a concrete instance of `SourceTempoArrayInput` via:
+//
+//	SourceTempoArray{ SourceTempoArgs{...} }
+type SourceTempoArrayInput interface {
+	pulumi.Input
+
+	ToSourceTempoArrayOutput() SourceTempoArrayOutput
+	ToSourceTempoArrayOutputWithContext(context.Context) SourceTempoArrayOutput
+}
+
+type SourceTempoArray []SourceTempoInput
+
+func (SourceTempoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTempo)(nil)).Elem()
+}
+
+func (i SourceTempoArray) ToSourceTempoArrayOutput() SourceTempoArrayOutput {
+	return i.ToSourceTempoArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTempoArray) ToSourceTempoArrayOutputWithContext(ctx context.Context) SourceTempoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTempoArrayOutput)
+}
+
+// SourceTempoMapInput is an input type that accepts SourceTempoMap and SourceTempoMapOutput values.
+// You can construct a concrete instance of `SourceTempoMapInput` via:
+//
+//	SourceTempoMap{ "key": SourceTempoArgs{...} }
+type SourceTempoMapInput interface {
+	pulumi.Input
+
+	ToSourceTempoMapOutput() SourceTempoMapOutput
+	ToSourceTempoMapOutputWithContext(context.Context) SourceTempoMapOutput
+}
+
+type SourceTempoMap map[string]SourceTempoInput
+
+func (SourceTempoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTempo)(nil)).Elem()
+}
+
+func (i SourceTempoMap) ToSourceTempoMapOutput() SourceTempoMapOutput {
+	return i.ToSourceTempoMapOutputWithContext(context.Background())
+}
+
+func (i SourceTempoMap) ToSourceTempoMapOutputWithContext(ctx context.Context) SourceTempoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTempoMapOutput)
+}
+
 type SourceTempoOutput struct{ *pulumi.OutputState }
 
 func (SourceTempoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTempoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTempo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTempoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTempoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTempo)(nil)).Elem()
+}
+
+func (o SourceTempoArrayOutput) ToSourceTempoArrayOutput() SourceTempoArrayOutput {
+	return o
+}
+
+func (o SourceTempoArrayOutput) ToSourceTempoArrayOutputWithContext(ctx context.Context) SourceTempoArrayOutput {
+	return o
+}
+
+func (o SourceTempoArrayOutput) Index(i pulumi.IntInput) SourceTempoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTempo {
+		return vs[0].([]*SourceTempo)[vs[1].(int)]
+	}).(SourceTempoOutput)
+}
+
+type SourceTempoMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTempoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTempo)(nil)).Elem()
+}
+
+func (o SourceTempoMapOutput) ToSourceTempoMapOutput() SourceTempoMapOutput {
+	return o
+}
+
+func (o SourceTempoMapOutput) ToSourceTempoMapOutputWithContext(ctx context.Context) SourceTempoMapOutput {
+	return o
+}
+
+func (o SourceTempoMapOutput) MapIndex(k pulumi.StringInput) SourceTempoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTempo {
+		return vs[0].(map[string]*SourceTempo)[vs[1].(string)]
+	}).(SourceTempoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTempoInput)(nil)).Elem(), &SourceTempo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTempoArrayInput)(nil)).Elem(), SourceTempoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTempoMapInput)(nil)).Elem(), SourceTempoMap{})
 	pulumi.RegisterOutputType(SourceTempoOutput{})
+	pulumi.RegisterOutputType(SourceTempoArrayOutput{})
+	pulumi.RegisterOutputType(SourceTempoMapOutput{})
 }

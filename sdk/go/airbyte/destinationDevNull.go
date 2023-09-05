@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationDevNull Resource
@@ -117,6 +117,56 @@ func (i *DestinationDevNull) ToDestinationDevNullOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationDevNullOutput)
 }
 
+// DestinationDevNullArrayInput is an input type that accepts DestinationDevNullArray and DestinationDevNullArrayOutput values.
+// You can construct a concrete instance of `DestinationDevNullArrayInput` via:
+//
+//	DestinationDevNullArray{ DestinationDevNullArgs{...} }
+type DestinationDevNullArrayInput interface {
+	pulumi.Input
+
+	ToDestinationDevNullArrayOutput() DestinationDevNullArrayOutput
+	ToDestinationDevNullArrayOutputWithContext(context.Context) DestinationDevNullArrayOutput
+}
+
+type DestinationDevNullArray []DestinationDevNullInput
+
+func (DestinationDevNullArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDevNull)(nil)).Elem()
+}
+
+func (i DestinationDevNullArray) ToDestinationDevNullArrayOutput() DestinationDevNullArrayOutput {
+	return i.ToDestinationDevNullArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationDevNullArray) ToDestinationDevNullArrayOutputWithContext(ctx context.Context) DestinationDevNullArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDevNullArrayOutput)
+}
+
+// DestinationDevNullMapInput is an input type that accepts DestinationDevNullMap and DestinationDevNullMapOutput values.
+// You can construct a concrete instance of `DestinationDevNullMapInput` via:
+//
+//	DestinationDevNullMap{ "key": DestinationDevNullArgs{...} }
+type DestinationDevNullMapInput interface {
+	pulumi.Input
+
+	ToDestinationDevNullMapOutput() DestinationDevNullMapOutput
+	ToDestinationDevNullMapOutputWithContext(context.Context) DestinationDevNullMapOutput
+}
+
+type DestinationDevNullMap map[string]DestinationDevNullInput
+
+func (DestinationDevNullMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDevNull)(nil)).Elem()
+}
+
+func (i DestinationDevNullMap) ToDestinationDevNullMapOutput() DestinationDevNullMapOutput {
+	return i.ToDestinationDevNullMapOutputWithContext(context.Background())
+}
+
+func (i DestinationDevNullMap) ToDestinationDevNullMapOutputWithContext(ctx context.Context) DestinationDevNullMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDevNullMapOutput)
+}
+
 type DestinationDevNullOutput struct{ *pulumi.OutputState }
 
 func (DestinationDevNullOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationDevNullOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationDevNull) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationDevNullArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationDevNullArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDevNull)(nil)).Elem()
+}
+
+func (o DestinationDevNullArrayOutput) ToDestinationDevNullArrayOutput() DestinationDevNullArrayOutput {
+	return o
+}
+
+func (o DestinationDevNullArrayOutput) ToDestinationDevNullArrayOutputWithContext(ctx context.Context) DestinationDevNullArrayOutput {
+	return o
+}
+
+func (o DestinationDevNullArrayOutput) Index(i pulumi.IntInput) DestinationDevNullOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationDevNull {
+		return vs[0].([]*DestinationDevNull)[vs[1].(int)]
+	}).(DestinationDevNullOutput)
+}
+
+type DestinationDevNullMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationDevNullMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDevNull)(nil)).Elem()
+}
+
+func (o DestinationDevNullMapOutput) ToDestinationDevNullMapOutput() DestinationDevNullMapOutput {
+	return o
+}
+
+func (o DestinationDevNullMapOutput) ToDestinationDevNullMapOutputWithContext(ctx context.Context) DestinationDevNullMapOutput {
+	return o
+}
+
+func (o DestinationDevNullMapOutput) MapIndex(k pulumi.StringInput) DestinationDevNullOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationDevNull {
+		return vs[0].(map[string]*DestinationDevNull)[vs[1].(string)]
+	}).(DestinationDevNullOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDevNullInput)(nil)).Elem(), &DestinationDevNull{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDevNullArrayInput)(nil)).Elem(), DestinationDevNullArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDevNullMapInput)(nil)).Elem(), DestinationDevNullMap{})
 	pulumi.RegisterOutputType(DestinationDevNullOutput{})
+	pulumi.RegisterOutputType(DestinationDevNullArrayOutput{})
+	pulumi.RegisterOutputType(DestinationDevNullMapOutput{})
 }

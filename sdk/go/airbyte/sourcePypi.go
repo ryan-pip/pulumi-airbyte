@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePypi Resource
@@ -127,6 +127,56 @@ func (i *SourcePypi) ToSourcePypiOutputWithContext(ctx context.Context) SourcePy
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePypiOutput)
 }
 
+// SourcePypiArrayInput is an input type that accepts SourcePypiArray and SourcePypiArrayOutput values.
+// You can construct a concrete instance of `SourcePypiArrayInput` via:
+//
+//	SourcePypiArray{ SourcePypiArgs{...} }
+type SourcePypiArrayInput interface {
+	pulumi.Input
+
+	ToSourcePypiArrayOutput() SourcePypiArrayOutput
+	ToSourcePypiArrayOutputWithContext(context.Context) SourcePypiArrayOutput
+}
+
+type SourcePypiArray []SourcePypiInput
+
+func (SourcePypiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePypi)(nil)).Elem()
+}
+
+func (i SourcePypiArray) ToSourcePypiArrayOutput() SourcePypiArrayOutput {
+	return i.ToSourcePypiArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePypiArray) ToSourcePypiArrayOutputWithContext(ctx context.Context) SourcePypiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePypiArrayOutput)
+}
+
+// SourcePypiMapInput is an input type that accepts SourcePypiMap and SourcePypiMapOutput values.
+// You can construct a concrete instance of `SourcePypiMapInput` via:
+//
+//	SourcePypiMap{ "key": SourcePypiArgs{...} }
+type SourcePypiMapInput interface {
+	pulumi.Input
+
+	ToSourcePypiMapOutput() SourcePypiMapOutput
+	ToSourcePypiMapOutputWithContext(context.Context) SourcePypiMapOutput
+}
+
+type SourcePypiMap map[string]SourcePypiInput
+
+func (SourcePypiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePypi)(nil)).Elem()
+}
+
+func (i SourcePypiMap) ToSourcePypiMapOutput() SourcePypiMapOutput {
+	return i.ToSourcePypiMapOutputWithContext(context.Background())
+}
+
+func (i SourcePypiMap) ToSourcePypiMapOutputWithContext(ctx context.Context) SourcePypiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePypiMapOutput)
+}
+
 type SourcePypiOutput struct{ *pulumi.OutputState }
 
 func (SourcePypiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePypiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePypi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePypiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePypiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePypi)(nil)).Elem()
+}
+
+func (o SourcePypiArrayOutput) ToSourcePypiArrayOutput() SourcePypiArrayOutput {
+	return o
+}
+
+func (o SourcePypiArrayOutput) ToSourcePypiArrayOutputWithContext(ctx context.Context) SourcePypiArrayOutput {
+	return o
+}
+
+func (o SourcePypiArrayOutput) Index(i pulumi.IntInput) SourcePypiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePypi {
+		return vs[0].([]*SourcePypi)[vs[1].(int)]
+	}).(SourcePypiOutput)
+}
+
+type SourcePypiMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePypiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePypi)(nil)).Elem()
+}
+
+func (o SourcePypiMapOutput) ToSourcePypiMapOutput() SourcePypiMapOutput {
+	return o
+}
+
+func (o SourcePypiMapOutput) ToSourcePypiMapOutputWithContext(ctx context.Context) SourcePypiMapOutput {
+	return o
+}
+
+func (o SourcePypiMapOutput) MapIndex(k pulumi.StringInput) SourcePypiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePypi {
+		return vs[0].(map[string]*SourcePypi)[vs[1].(string)]
+	}).(SourcePypiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePypiInput)(nil)).Elem(), &SourcePypi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePypiArrayInput)(nil)).Elem(), SourcePypiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePypiMapInput)(nil)).Elem(), SourcePypiMap{})
 	pulumi.RegisterOutputType(SourcePypiOutput{})
+	pulumi.RegisterOutputType(SourcePypiArrayOutput{})
+	pulumi.RegisterOutputType(SourcePypiMapOutput{})
 }

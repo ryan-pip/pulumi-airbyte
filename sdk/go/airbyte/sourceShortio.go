@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceShortio Resource
@@ -127,6 +127,56 @@ func (i *SourceShortio) ToSourceShortioOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceShortioOutput)
 }
 
+// SourceShortioArrayInput is an input type that accepts SourceShortioArray and SourceShortioArrayOutput values.
+// You can construct a concrete instance of `SourceShortioArrayInput` via:
+//
+//	SourceShortioArray{ SourceShortioArgs{...} }
+type SourceShortioArrayInput interface {
+	pulumi.Input
+
+	ToSourceShortioArrayOutput() SourceShortioArrayOutput
+	ToSourceShortioArrayOutputWithContext(context.Context) SourceShortioArrayOutput
+}
+
+type SourceShortioArray []SourceShortioInput
+
+func (SourceShortioArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceShortio)(nil)).Elem()
+}
+
+func (i SourceShortioArray) ToSourceShortioArrayOutput() SourceShortioArrayOutput {
+	return i.ToSourceShortioArrayOutputWithContext(context.Background())
+}
+
+func (i SourceShortioArray) ToSourceShortioArrayOutputWithContext(ctx context.Context) SourceShortioArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceShortioArrayOutput)
+}
+
+// SourceShortioMapInput is an input type that accepts SourceShortioMap and SourceShortioMapOutput values.
+// You can construct a concrete instance of `SourceShortioMapInput` via:
+//
+//	SourceShortioMap{ "key": SourceShortioArgs{...} }
+type SourceShortioMapInput interface {
+	pulumi.Input
+
+	ToSourceShortioMapOutput() SourceShortioMapOutput
+	ToSourceShortioMapOutputWithContext(context.Context) SourceShortioMapOutput
+}
+
+type SourceShortioMap map[string]SourceShortioInput
+
+func (SourceShortioMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceShortio)(nil)).Elem()
+}
+
+func (i SourceShortioMap) ToSourceShortioMapOutput() SourceShortioMapOutput {
+	return i.ToSourceShortioMapOutputWithContext(context.Background())
+}
+
+func (i SourceShortioMap) ToSourceShortioMapOutputWithContext(ctx context.Context) SourceShortioMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceShortioMapOutput)
+}
+
 type SourceShortioOutput struct{ *pulumi.OutputState }
 
 func (SourceShortioOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceShortioOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceShortio) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceShortioArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceShortioArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceShortio)(nil)).Elem()
+}
+
+func (o SourceShortioArrayOutput) ToSourceShortioArrayOutput() SourceShortioArrayOutput {
+	return o
+}
+
+func (o SourceShortioArrayOutput) ToSourceShortioArrayOutputWithContext(ctx context.Context) SourceShortioArrayOutput {
+	return o
+}
+
+func (o SourceShortioArrayOutput) Index(i pulumi.IntInput) SourceShortioOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceShortio {
+		return vs[0].([]*SourceShortio)[vs[1].(int)]
+	}).(SourceShortioOutput)
+}
+
+type SourceShortioMapOutput struct{ *pulumi.OutputState }
+
+func (SourceShortioMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceShortio)(nil)).Elem()
+}
+
+func (o SourceShortioMapOutput) ToSourceShortioMapOutput() SourceShortioMapOutput {
+	return o
+}
+
+func (o SourceShortioMapOutput) ToSourceShortioMapOutputWithContext(ctx context.Context) SourceShortioMapOutput {
+	return o
+}
+
+func (o SourceShortioMapOutput) MapIndex(k pulumi.StringInput) SourceShortioOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceShortio {
+		return vs[0].(map[string]*SourceShortio)[vs[1].(string)]
+	}).(SourceShortioOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceShortioInput)(nil)).Elem(), &SourceShortio{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceShortioArrayInput)(nil)).Elem(), SourceShortioArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceShortioMapInput)(nil)).Elem(), SourceShortioMap{})
 	pulumi.RegisterOutputType(SourceShortioOutput{})
+	pulumi.RegisterOutputType(SourceShortioArrayOutput{})
+	pulumi.RegisterOutputType(SourceShortioMapOutput{})
 }

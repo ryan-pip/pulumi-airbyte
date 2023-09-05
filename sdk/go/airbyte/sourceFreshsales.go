@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFreshsales Resource
@@ -127,6 +127,56 @@ func (i *SourceFreshsales) ToSourceFreshsalesOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshsalesOutput)
 }
 
+// SourceFreshsalesArrayInput is an input type that accepts SourceFreshsalesArray and SourceFreshsalesArrayOutput values.
+// You can construct a concrete instance of `SourceFreshsalesArrayInput` via:
+//
+//	SourceFreshsalesArray{ SourceFreshsalesArgs{...} }
+type SourceFreshsalesArrayInput interface {
+	pulumi.Input
+
+	ToSourceFreshsalesArrayOutput() SourceFreshsalesArrayOutput
+	ToSourceFreshsalesArrayOutputWithContext(context.Context) SourceFreshsalesArrayOutput
+}
+
+type SourceFreshsalesArray []SourceFreshsalesInput
+
+func (SourceFreshsalesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshsales)(nil)).Elem()
+}
+
+func (i SourceFreshsalesArray) ToSourceFreshsalesArrayOutput() SourceFreshsalesArrayOutput {
+	return i.ToSourceFreshsalesArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFreshsalesArray) ToSourceFreshsalesArrayOutputWithContext(ctx context.Context) SourceFreshsalesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshsalesArrayOutput)
+}
+
+// SourceFreshsalesMapInput is an input type that accepts SourceFreshsalesMap and SourceFreshsalesMapOutput values.
+// You can construct a concrete instance of `SourceFreshsalesMapInput` via:
+//
+//	SourceFreshsalesMap{ "key": SourceFreshsalesArgs{...} }
+type SourceFreshsalesMapInput interface {
+	pulumi.Input
+
+	ToSourceFreshsalesMapOutput() SourceFreshsalesMapOutput
+	ToSourceFreshsalesMapOutputWithContext(context.Context) SourceFreshsalesMapOutput
+}
+
+type SourceFreshsalesMap map[string]SourceFreshsalesInput
+
+func (SourceFreshsalesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshsales)(nil)).Elem()
+}
+
+func (i SourceFreshsalesMap) ToSourceFreshsalesMapOutput() SourceFreshsalesMapOutput {
+	return i.ToSourceFreshsalesMapOutputWithContext(context.Background())
+}
+
+func (i SourceFreshsalesMap) ToSourceFreshsalesMapOutputWithContext(ctx context.Context) SourceFreshsalesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshsalesMapOutput)
+}
+
 type SourceFreshsalesOutput struct{ *pulumi.OutputState }
 
 func (SourceFreshsalesOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFreshsalesOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFreshsales) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFreshsalesArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshsalesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshsales)(nil)).Elem()
+}
+
+func (o SourceFreshsalesArrayOutput) ToSourceFreshsalesArrayOutput() SourceFreshsalesArrayOutput {
+	return o
+}
+
+func (o SourceFreshsalesArrayOutput) ToSourceFreshsalesArrayOutputWithContext(ctx context.Context) SourceFreshsalesArrayOutput {
+	return o
+}
+
+func (o SourceFreshsalesArrayOutput) Index(i pulumi.IntInput) SourceFreshsalesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFreshsales {
+		return vs[0].([]*SourceFreshsales)[vs[1].(int)]
+	}).(SourceFreshsalesOutput)
+}
+
+type SourceFreshsalesMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshsalesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshsales)(nil)).Elem()
+}
+
+func (o SourceFreshsalesMapOutput) ToSourceFreshsalesMapOutput() SourceFreshsalesMapOutput {
+	return o
+}
+
+func (o SourceFreshsalesMapOutput) ToSourceFreshsalesMapOutputWithContext(ctx context.Context) SourceFreshsalesMapOutput {
+	return o
+}
+
+func (o SourceFreshsalesMapOutput) MapIndex(k pulumi.StringInput) SourceFreshsalesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFreshsales {
+		return vs[0].(map[string]*SourceFreshsales)[vs[1].(string)]
+	}).(SourceFreshsalesOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshsalesInput)(nil)).Elem(), &SourceFreshsales{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshsalesArrayInput)(nil)).Elem(), SourceFreshsalesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshsalesMapInput)(nil)).Elem(), SourceFreshsalesMap{})
 	pulumi.RegisterOutputType(SourceFreshsalesOutput{})
+	pulumi.RegisterOutputType(SourceFreshsalesArrayOutput{})
+	pulumi.RegisterOutputType(SourceFreshsalesMapOutput{})
 }

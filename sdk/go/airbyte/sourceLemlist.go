@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLemlist Resource
@@ -127,6 +127,56 @@ func (i *SourceLemlist) ToSourceLemlistOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLemlistOutput)
 }
 
+// SourceLemlistArrayInput is an input type that accepts SourceLemlistArray and SourceLemlistArrayOutput values.
+// You can construct a concrete instance of `SourceLemlistArrayInput` via:
+//
+//	SourceLemlistArray{ SourceLemlistArgs{...} }
+type SourceLemlistArrayInput interface {
+	pulumi.Input
+
+	ToSourceLemlistArrayOutput() SourceLemlistArrayOutput
+	ToSourceLemlistArrayOutputWithContext(context.Context) SourceLemlistArrayOutput
+}
+
+type SourceLemlistArray []SourceLemlistInput
+
+func (SourceLemlistArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLemlist)(nil)).Elem()
+}
+
+func (i SourceLemlistArray) ToSourceLemlistArrayOutput() SourceLemlistArrayOutput {
+	return i.ToSourceLemlistArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLemlistArray) ToSourceLemlistArrayOutputWithContext(ctx context.Context) SourceLemlistArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLemlistArrayOutput)
+}
+
+// SourceLemlistMapInput is an input type that accepts SourceLemlistMap and SourceLemlistMapOutput values.
+// You can construct a concrete instance of `SourceLemlistMapInput` via:
+//
+//	SourceLemlistMap{ "key": SourceLemlistArgs{...} }
+type SourceLemlistMapInput interface {
+	pulumi.Input
+
+	ToSourceLemlistMapOutput() SourceLemlistMapOutput
+	ToSourceLemlistMapOutputWithContext(context.Context) SourceLemlistMapOutput
+}
+
+type SourceLemlistMap map[string]SourceLemlistInput
+
+func (SourceLemlistMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLemlist)(nil)).Elem()
+}
+
+func (i SourceLemlistMap) ToSourceLemlistMapOutput() SourceLemlistMapOutput {
+	return i.ToSourceLemlistMapOutputWithContext(context.Background())
+}
+
+func (i SourceLemlistMap) ToSourceLemlistMapOutputWithContext(ctx context.Context) SourceLemlistMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLemlistMapOutput)
+}
+
 type SourceLemlistOutput struct{ *pulumi.OutputState }
 
 func (SourceLemlistOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLemlistOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLemlist) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLemlistArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLemlistArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLemlist)(nil)).Elem()
+}
+
+func (o SourceLemlistArrayOutput) ToSourceLemlistArrayOutput() SourceLemlistArrayOutput {
+	return o
+}
+
+func (o SourceLemlistArrayOutput) ToSourceLemlistArrayOutputWithContext(ctx context.Context) SourceLemlistArrayOutput {
+	return o
+}
+
+func (o SourceLemlistArrayOutput) Index(i pulumi.IntInput) SourceLemlistOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLemlist {
+		return vs[0].([]*SourceLemlist)[vs[1].(int)]
+	}).(SourceLemlistOutput)
+}
+
+type SourceLemlistMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLemlistMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLemlist)(nil)).Elem()
+}
+
+func (o SourceLemlistMapOutput) ToSourceLemlistMapOutput() SourceLemlistMapOutput {
+	return o
+}
+
+func (o SourceLemlistMapOutput) ToSourceLemlistMapOutputWithContext(ctx context.Context) SourceLemlistMapOutput {
+	return o
+}
+
+func (o SourceLemlistMapOutput) MapIndex(k pulumi.StringInput) SourceLemlistOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLemlist {
+		return vs[0].(map[string]*SourceLemlist)[vs[1].(string)]
+	}).(SourceLemlistOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLemlistInput)(nil)).Elem(), &SourceLemlist{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLemlistArrayInput)(nil)).Elem(), SourceLemlistArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLemlistMapInput)(nil)).Elem(), SourceLemlistMap{})
 	pulumi.RegisterOutputType(SourceLemlistOutput{})
+	pulumi.RegisterOutputType(SourceLemlistArrayOutput{})
+	pulumi.RegisterOutputType(SourceLemlistMapOutput{})
 }

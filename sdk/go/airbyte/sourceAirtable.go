@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAirtable Resource
@@ -127,6 +127,56 @@ func (i *SourceAirtable) ToSourceAirtableOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAirtableOutput)
 }
 
+// SourceAirtableArrayInput is an input type that accepts SourceAirtableArray and SourceAirtableArrayOutput values.
+// You can construct a concrete instance of `SourceAirtableArrayInput` via:
+//
+//	SourceAirtableArray{ SourceAirtableArgs{...} }
+type SourceAirtableArrayInput interface {
+	pulumi.Input
+
+	ToSourceAirtableArrayOutput() SourceAirtableArrayOutput
+	ToSourceAirtableArrayOutputWithContext(context.Context) SourceAirtableArrayOutput
+}
+
+type SourceAirtableArray []SourceAirtableInput
+
+func (SourceAirtableArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAirtable)(nil)).Elem()
+}
+
+func (i SourceAirtableArray) ToSourceAirtableArrayOutput() SourceAirtableArrayOutput {
+	return i.ToSourceAirtableArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAirtableArray) ToSourceAirtableArrayOutputWithContext(ctx context.Context) SourceAirtableArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAirtableArrayOutput)
+}
+
+// SourceAirtableMapInput is an input type that accepts SourceAirtableMap and SourceAirtableMapOutput values.
+// You can construct a concrete instance of `SourceAirtableMapInput` via:
+//
+//	SourceAirtableMap{ "key": SourceAirtableArgs{...} }
+type SourceAirtableMapInput interface {
+	pulumi.Input
+
+	ToSourceAirtableMapOutput() SourceAirtableMapOutput
+	ToSourceAirtableMapOutputWithContext(context.Context) SourceAirtableMapOutput
+}
+
+type SourceAirtableMap map[string]SourceAirtableInput
+
+func (SourceAirtableMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAirtable)(nil)).Elem()
+}
+
+func (i SourceAirtableMap) ToSourceAirtableMapOutput() SourceAirtableMapOutput {
+	return i.ToSourceAirtableMapOutputWithContext(context.Background())
+}
+
+func (i SourceAirtableMap) ToSourceAirtableMapOutputWithContext(ctx context.Context) SourceAirtableMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAirtableMapOutput)
+}
+
 type SourceAirtableOutput struct{ *pulumi.OutputState }
 
 func (SourceAirtableOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAirtableOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAirtable) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAirtableArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAirtableArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAirtable)(nil)).Elem()
+}
+
+func (o SourceAirtableArrayOutput) ToSourceAirtableArrayOutput() SourceAirtableArrayOutput {
+	return o
+}
+
+func (o SourceAirtableArrayOutput) ToSourceAirtableArrayOutputWithContext(ctx context.Context) SourceAirtableArrayOutput {
+	return o
+}
+
+func (o SourceAirtableArrayOutput) Index(i pulumi.IntInput) SourceAirtableOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAirtable {
+		return vs[0].([]*SourceAirtable)[vs[1].(int)]
+	}).(SourceAirtableOutput)
+}
+
+type SourceAirtableMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAirtableMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAirtable)(nil)).Elem()
+}
+
+func (o SourceAirtableMapOutput) ToSourceAirtableMapOutput() SourceAirtableMapOutput {
+	return o
+}
+
+func (o SourceAirtableMapOutput) ToSourceAirtableMapOutputWithContext(ctx context.Context) SourceAirtableMapOutput {
+	return o
+}
+
+func (o SourceAirtableMapOutput) MapIndex(k pulumi.StringInput) SourceAirtableOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAirtable {
+		return vs[0].(map[string]*SourceAirtable)[vs[1].(string)]
+	}).(SourceAirtableOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAirtableInput)(nil)).Elem(), &SourceAirtable{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAirtableArrayInput)(nil)).Elem(), SourceAirtableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAirtableMapInput)(nil)).Elem(), SourceAirtableMap{})
 	pulumi.RegisterOutputType(SourceAirtableOutput{})
+	pulumi.RegisterOutputType(SourceAirtableArrayOutput{})
+	pulumi.RegisterOutputType(SourceAirtableMapOutput{})
 }

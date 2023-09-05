@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSonarCloud Resource
@@ -127,6 +127,56 @@ func (i *SourceSonarCloud) ToSourceSonarCloudOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSonarCloudOutput)
 }
 
+// SourceSonarCloudArrayInput is an input type that accepts SourceSonarCloudArray and SourceSonarCloudArrayOutput values.
+// You can construct a concrete instance of `SourceSonarCloudArrayInput` via:
+//
+//	SourceSonarCloudArray{ SourceSonarCloudArgs{...} }
+type SourceSonarCloudArrayInput interface {
+	pulumi.Input
+
+	ToSourceSonarCloudArrayOutput() SourceSonarCloudArrayOutput
+	ToSourceSonarCloudArrayOutputWithContext(context.Context) SourceSonarCloudArrayOutput
+}
+
+type SourceSonarCloudArray []SourceSonarCloudInput
+
+func (SourceSonarCloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSonarCloud)(nil)).Elem()
+}
+
+func (i SourceSonarCloudArray) ToSourceSonarCloudArrayOutput() SourceSonarCloudArrayOutput {
+	return i.ToSourceSonarCloudArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSonarCloudArray) ToSourceSonarCloudArrayOutputWithContext(ctx context.Context) SourceSonarCloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSonarCloudArrayOutput)
+}
+
+// SourceSonarCloudMapInput is an input type that accepts SourceSonarCloudMap and SourceSonarCloudMapOutput values.
+// You can construct a concrete instance of `SourceSonarCloudMapInput` via:
+//
+//	SourceSonarCloudMap{ "key": SourceSonarCloudArgs{...} }
+type SourceSonarCloudMapInput interface {
+	pulumi.Input
+
+	ToSourceSonarCloudMapOutput() SourceSonarCloudMapOutput
+	ToSourceSonarCloudMapOutputWithContext(context.Context) SourceSonarCloudMapOutput
+}
+
+type SourceSonarCloudMap map[string]SourceSonarCloudInput
+
+func (SourceSonarCloudMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSonarCloud)(nil)).Elem()
+}
+
+func (i SourceSonarCloudMap) ToSourceSonarCloudMapOutput() SourceSonarCloudMapOutput {
+	return i.ToSourceSonarCloudMapOutputWithContext(context.Background())
+}
+
+func (i SourceSonarCloudMap) ToSourceSonarCloudMapOutputWithContext(ctx context.Context) SourceSonarCloudMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSonarCloudMapOutput)
+}
+
 type SourceSonarCloudOutput struct{ *pulumi.OutputState }
 
 func (SourceSonarCloudOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSonarCloudOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSonarCloud) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSonarCloudArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSonarCloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSonarCloud)(nil)).Elem()
+}
+
+func (o SourceSonarCloudArrayOutput) ToSourceSonarCloudArrayOutput() SourceSonarCloudArrayOutput {
+	return o
+}
+
+func (o SourceSonarCloudArrayOutput) ToSourceSonarCloudArrayOutputWithContext(ctx context.Context) SourceSonarCloudArrayOutput {
+	return o
+}
+
+func (o SourceSonarCloudArrayOutput) Index(i pulumi.IntInput) SourceSonarCloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSonarCloud {
+		return vs[0].([]*SourceSonarCloud)[vs[1].(int)]
+	}).(SourceSonarCloudOutput)
+}
+
+type SourceSonarCloudMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSonarCloudMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSonarCloud)(nil)).Elem()
+}
+
+func (o SourceSonarCloudMapOutput) ToSourceSonarCloudMapOutput() SourceSonarCloudMapOutput {
+	return o
+}
+
+func (o SourceSonarCloudMapOutput) ToSourceSonarCloudMapOutputWithContext(ctx context.Context) SourceSonarCloudMapOutput {
+	return o
+}
+
+func (o SourceSonarCloudMapOutput) MapIndex(k pulumi.StringInput) SourceSonarCloudOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSonarCloud {
+		return vs[0].(map[string]*SourceSonarCloud)[vs[1].(string)]
+	}).(SourceSonarCloudOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSonarCloudInput)(nil)).Elem(), &SourceSonarCloud{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSonarCloudArrayInput)(nil)).Elem(), SourceSonarCloudArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSonarCloudMapInput)(nil)).Elem(), SourceSonarCloudMap{})
 	pulumi.RegisterOutputType(SourceSonarCloudOutput{})
+	pulumi.RegisterOutputType(SourceSonarCloudArrayOutput{})
+	pulumi.RegisterOutputType(SourceSonarCloudMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceJira Resource
@@ -127,6 +127,56 @@ func (i *SourceJira) ToSourceJiraOutputWithContext(ctx context.Context) SourceJi
 	return pulumi.ToOutputWithContext(ctx, i).(SourceJiraOutput)
 }
 
+// SourceJiraArrayInput is an input type that accepts SourceJiraArray and SourceJiraArrayOutput values.
+// You can construct a concrete instance of `SourceJiraArrayInput` via:
+//
+//	SourceJiraArray{ SourceJiraArgs{...} }
+type SourceJiraArrayInput interface {
+	pulumi.Input
+
+	ToSourceJiraArrayOutput() SourceJiraArrayOutput
+	ToSourceJiraArrayOutputWithContext(context.Context) SourceJiraArrayOutput
+}
+
+type SourceJiraArray []SourceJiraInput
+
+func (SourceJiraArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceJira)(nil)).Elem()
+}
+
+func (i SourceJiraArray) ToSourceJiraArrayOutput() SourceJiraArrayOutput {
+	return i.ToSourceJiraArrayOutputWithContext(context.Background())
+}
+
+func (i SourceJiraArray) ToSourceJiraArrayOutputWithContext(ctx context.Context) SourceJiraArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceJiraArrayOutput)
+}
+
+// SourceJiraMapInput is an input type that accepts SourceJiraMap and SourceJiraMapOutput values.
+// You can construct a concrete instance of `SourceJiraMapInput` via:
+//
+//	SourceJiraMap{ "key": SourceJiraArgs{...} }
+type SourceJiraMapInput interface {
+	pulumi.Input
+
+	ToSourceJiraMapOutput() SourceJiraMapOutput
+	ToSourceJiraMapOutputWithContext(context.Context) SourceJiraMapOutput
+}
+
+type SourceJiraMap map[string]SourceJiraInput
+
+func (SourceJiraMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceJira)(nil)).Elem()
+}
+
+func (i SourceJiraMap) ToSourceJiraMapOutput() SourceJiraMapOutput {
+	return i.ToSourceJiraMapOutputWithContext(context.Background())
+}
+
+func (i SourceJiraMap) ToSourceJiraMapOutputWithContext(ctx context.Context) SourceJiraMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceJiraMapOutput)
+}
+
 type SourceJiraOutput struct{ *pulumi.OutputState }
 
 func (SourceJiraOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceJiraOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceJira) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceJiraArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceJiraArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceJira)(nil)).Elem()
+}
+
+func (o SourceJiraArrayOutput) ToSourceJiraArrayOutput() SourceJiraArrayOutput {
+	return o
+}
+
+func (o SourceJiraArrayOutput) ToSourceJiraArrayOutputWithContext(ctx context.Context) SourceJiraArrayOutput {
+	return o
+}
+
+func (o SourceJiraArrayOutput) Index(i pulumi.IntInput) SourceJiraOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceJira {
+		return vs[0].([]*SourceJira)[vs[1].(int)]
+	}).(SourceJiraOutput)
+}
+
+type SourceJiraMapOutput struct{ *pulumi.OutputState }
+
+func (SourceJiraMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceJira)(nil)).Elem()
+}
+
+func (o SourceJiraMapOutput) ToSourceJiraMapOutput() SourceJiraMapOutput {
+	return o
+}
+
+func (o SourceJiraMapOutput) ToSourceJiraMapOutputWithContext(ctx context.Context) SourceJiraMapOutput {
+	return o
+}
+
+func (o SourceJiraMapOutput) MapIndex(k pulumi.StringInput) SourceJiraOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceJira {
+		return vs[0].(map[string]*SourceJira)[vs[1].(string)]
+	}).(SourceJiraOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceJiraInput)(nil)).Elem(), &SourceJira{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceJiraArrayInput)(nil)).Elem(), SourceJiraArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceJiraMapInput)(nil)).Elem(), SourceJiraMap{})
 	pulumi.RegisterOutputType(SourceJiraOutput{})
+	pulumi.RegisterOutputType(SourceJiraArrayOutput{})
+	pulumi.RegisterOutputType(SourceJiraMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMailgun Resource
@@ -127,6 +127,56 @@ func (i *SourceMailgun) ToSourceMailgunOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMailgunOutput)
 }
 
+// SourceMailgunArrayInput is an input type that accepts SourceMailgunArray and SourceMailgunArrayOutput values.
+// You can construct a concrete instance of `SourceMailgunArrayInput` via:
+//
+//	SourceMailgunArray{ SourceMailgunArgs{...} }
+type SourceMailgunArrayInput interface {
+	pulumi.Input
+
+	ToSourceMailgunArrayOutput() SourceMailgunArrayOutput
+	ToSourceMailgunArrayOutputWithContext(context.Context) SourceMailgunArrayOutput
+}
+
+type SourceMailgunArray []SourceMailgunInput
+
+func (SourceMailgunArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailgun)(nil)).Elem()
+}
+
+func (i SourceMailgunArray) ToSourceMailgunArrayOutput() SourceMailgunArrayOutput {
+	return i.ToSourceMailgunArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMailgunArray) ToSourceMailgunArrayOutputWithContext(ctx context.Context) SourceMailgunArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailgunArrayOutput)
+}
+
+// SourceMailgunMapInput is an input type that accepts SourceMailgunMap and SourceMailgunMapOutput values.
+// You can construct a concrete instance of `SourceMailgunMapInput` via:
+//
+//	SourceMailgunMap{ "key": SourceMailgunArgs{...} }
+type SourceMailgunMapInput interface {
+	pulumi.Input
+
+	ToSourceMailgunMapOutput() SourceMailgunMapOutput
+	ToSourceMailgunMapOutputWithContext(context.Context) SourceMailgunMapOutput
+}
+
+type SourceMailgunMap map[string]SourceMailgunInput
+
+func (SourceMailgunMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailgun)(nil)).Elem()
+}
+
+func (i SourceMailgunMap) ToSourceMailgunMapOutput() SourceMailgunMapOutput {
+	return i.ToSourceMailgunMapOutputWithContext(context.Background())
+}
+
+func (i SourceMailgunMap) ToSourceMailgunMapOutputWithContext(ctx context.Context) SourceMailgunMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailgunMapOutput)
+}
+
 type SourceMailgunOutput struct{ *pulumi.OutputState }
 
 func (SourceMailgunOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMailgunOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMailgun) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMailgunArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMailgunArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailgun)(nil)).Elem()
+}
+
+func (o SourceMailgunArrayOutput) ToSourceMailgunArrayOutput() SourceMailgunArrayOutput {
+	return o
+}
+
+func (o SourceMailgunArrayOutput) ToSourceMailgunArrayOutputWithContext(ctx context.Context) SourceMailgunArrayOutput {
+	return o
+}
+
+func (o SourceMailgunArrayOutput) Index(i pulumi.IntInput) SourceMailgunOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMailgun {
+		return vs[0].([]*SourceMailgun)[vs[1].(int)]
+	}).(SourceMailgunOutput)
+}
+
+type SourceMailgunMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMailgunMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailgun)(nil)).Elem()
+}
+
+func (o SourceMailgunMapOutput) ToSourceMailgunMapOutput() SourceMailgunMapOutput {
+	return o
+}
+
+func (o SourceMailgunMapOutput) ToSourceMailgunMapOutputWithContext(ctx context.Context) SourceMailgunMapOutput {
+	return o
+}
+
+func (o SourceMailgunMapOutput) MapIndex(k pulumi.StringInput) SourceMailgunOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMailgun {
+		return vs[0].(map[string]*SourceMailgun)[vs[1].(string)]
+	}).(SourceMailgunOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailgunInput)(nil)).Elem(), &SourceMailgun{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailgunArrayInput)(nil)).Elem(), SourceMailgunArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailgunMapInput)(nil)).Elem(), SourceMailgunMap{})
 	pulumi.RegisterOutputType(SourceMailgunOutput{})
+	pulumi.RegisterOutputType(SourceMailgunArrayOutput{})
+	pulumi.RegisterOutputType(SourceMailgunMapOutput{})
 }

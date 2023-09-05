@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationLangchain Resource
@@ -117,6 +117,56 @@ func (i *DestinationLangchain) ToDestinationLangchainOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationLangchainOutput)
 }
 
+// DestinationLangchainArrayInput is an input type that accepts DestinationLangchainArray and DestinationLangchainArrayOutput values.
+// You can construct a concrete instance of `DestinationLangchainArrayInput` via:
+//
+//	DestinationLangchainArray{ DestinationLangchainArgs{...} }
+type DestinationLangchainArrayInput interface {
+	pulumi.Input
+
+	ToDestinationLangchainArrayOutput() DestinationLangchainArrayOutput
+	ToDestinationLangchainArrayOutputWithContext(context.Context) DestinationLangchainArrayOutput
+}
+
+type DestinationLangchainArray []DestinationLangchainInput
+
+func (DestinationLangchainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationLangchain)(nil)).Elem()
+}
+
+func (i DestinationLangchainArray) ToDestinationLangchainArrayOutput() DestinationLangchainArrayOutput {
+	return i.ToDestinationLangchainArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationLangchainArray) ToDestinationLangchainArrayOutputWithContext(ctx context.Context) DestinationLangchainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationLangchainArrayOutput)
+}
+
+// DestinationLangchainMapInput is an input type that accepts DestinationLangchainMap and DestinationLangchainMapOutput values.
+// You can construct a concrete instance of `DestinationLangchainMapInput` via:
+//
+//	DestinationLangchainMap{ "key": DestinationLangchainArgs{...} }
+type DestinationLangchainMapInput interface {
+	pulumi.Input
+
+	ToDestinationLangchainMapOutput() DestinationLangchainMapOutput
+	ToDestinationLangchainMapOutputWithContext(context.Context) DestinationLangchainMapOutput
+}
+
+type DestinationLangchainMap map[string]DestinationLangchainInput
+
+func (DestinationLangchainMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationLangchain)(nil)).Elem()
+}
+
+func (i DestinationLangchainMap) ToDestinationLangchainMapOutput() DestinationLangchainMapOutput {
+	return i.ToDestinationLangchainMapOutputWithContext(context.Background())
+}
+
+func (i DestinationLangchainMap) ToDestinationLangchainMapOutputWithContext(ctx context.Context) DestinationLangchainMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationLangchainMapOutput)
+}
+
 type DestinationLangchainOutput struct{ *pulumi.OutputState }
 
 func (DestinationLangchainOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationLangchainOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationLangchain) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationLangchainArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationLangchainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationLangchain)(nil)).Elem()
+}
+
+func (o DestinationLangchainArrayOutput) ToDestinationLangchainArrayOutput() DestinationLangchainArrayOutput {
+	return o
+}
+
+func (o DestinationLangchainArrayOutput) ToDestinationLangchainArrayOutputWithContext(ctx context.Context) DestinationLangchainArrayOutput {
+	return o
+}
+
+func (o DestinationLangchainArrayOutput) Index(i pulumi.IntInput) DestinationLangchainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationLangchain {
+		return vs[0].([]*DestinationLangchain)[vs[1].(int)]
+	}).(DestinationLangchainOutput)
+}
+
+type DestinationLangchainMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationLangchainMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationLangchain)(nil)).Elem()
+}
+
+func (o DestinationLangchainMapOutput) ToDestinationLangchainMapOutput() DestinationLangchainMapOutput {
+	return o
+}
+
+func (o DestinationLangchainMapOutput) ToDestinationLangchainMapOutputWithContext(ctx context.Context) DestinationLangchainMapOutput {
+	return o
+}
+
+func (o DestinationLangchainMapOutput) MapIndex(k pulumi.StringInput) DestinationLangchainOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationLangchain {
+		return vs[0].(map[string]*DestinationLangchain)[vs[1].(string)]
+	}).(DestinationLangchainOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationLangchainInput)(nil)).Elem(), &DestinationLangchain{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationLangchainArrayInput)(nil)).Elem(), DestinationLangchainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationLangchainMapInput)(nil)).Elem(), DestinationLangchainMap{})
 	pulumi.RegisterOutputType(DestinationLangchainOutput{})
+	pulumi.RegisterOutputType(DestinationLangchainArrayOutput{})
+	pulumi.RegisterOutputType(DestinationLangchainMapOutput{})
 }

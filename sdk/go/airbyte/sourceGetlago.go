@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGetlago Resource
@@ -127,6 +127,56 @@ func (i *SourceGetlago) ToSourceGetlagoOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGetlagoOutput)
 }
 
+// SourceGetlagoArrayInput is an input type that accepts SourceGetlagoArray and SourceGetlagoArrayOutput values.
+// You can construct a concrete instance of `SourceGetlagoArrayInput` via:
+//
+//	SourceGetlagoArray{ SourceGetlagoArgs{...} }
+type SourceGetlagoArrayInput interface {
+	pulumi.Input
+
+	ToSourceGetlagoArrayOutput() SourceGetlagoArrayOutput
+	ToSourceGetlagoArrayOutputWithContext(context.Context) SourceGetlagoArrayOutput
+}
+
+type SourceGetlagoArray []SourceGetlagoInput
+
+func (SourceGetlagoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGetlago)(nil)).Elem()
+}
+
+func (i SourceGetlagoArray) ToSourceGetlagoArrayOutput() SourceGetlagoArrayOutput {
+	return i.ToSourceGetlagoArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGetlagoArray) ToSourceGetlagoArrayOutputWithContext(ctx context.Context) SourceGetlagoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGetlagoArrayOutput)
+}
+
+// SourceGetlagoMapInput is an input type that accepts SourceGetlagoMap and SourceGetlagoMapOutput values.
+// You can construct a concrete instance of `SourceGetlagoMapInput` via:
+//
+//	SourceGetlagoMap{ "key": SourceGetlagoArgs{...} }
+type SourceGetlagoMapInput interface {
+	pulumi.Input
+
+	ToSourceGetlagoMapOutput() SourceGetlagoMapOutput
+	ToSourceGetlagoMapOutputWithContext(context.Context) SourceGetlagoMapOutput
+}
+
+type SourceGetlagoMap map[string]SourceGetlagoInput
+
+func (SourceGetlagoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGetlago)(nil)).Elem()
+}
+
+func (i SourceGetlagoMap) ToSourceGetlagoMapOutput() SourceGetlagoMapOutput {
+	return i.ToSourceGetlagoMapOutputWithContext(context.Background())
+}
+
+func (i SourceGetlagoMap) ToSourceGetlagoMapOutputWithContext(ctx context.Context) SourceGetlagoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGetlagoMapOutput)
+}
+
 type SourceGetlagoOutput struct{ *pulumi.OutputState }
 
 func (SourceGetlagoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGetlagoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGetlago) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGetlagoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGetlagoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGetlago)(nil)).Elem()
+}
+
+func (o SourceGetlagoArrayOutput) ToSourceGetlagoArrayOutput() SourceGetlagoArrayOutput {
+	return o
+}
+
+func (o SourceGetlagoArrayOutput) ToSourceGetlagoArrayOutputWithContext(ctx context.Context) SourceGetlagoArrayOutput {
+	return o
+}
+
+func (o SourceGetlagoArrayOutput) Index(i pulumi.IntInput) SourceGetlagoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGetlago {
+		return vs[0].([]*SourceGetlago)[vs[1].(int)]
+	}).(SourceGetlagoOutput)
+}
+
+type SourceGetlagoMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGetlagoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGetlago)(nil)).Elem()
+}
+
+func (o SourceGetlagoMapOutput) ToSourceGetlagoMapOutput() SourceGetlagoMapOutput {
+	return o
+}
+
+func (o SourceGetlagoMapOutput) ToSourceGetlagoMapOutputWithContext(ctx context.Context) SourceGetlagoMapOutput {
+	return o
+}
+
+func (o SourceGetlagoMapOutput) MapIndex(k pulumi.StringInput) SourceGetlagoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGetlago {
+		return vs[0].(map[string]*SourceGetlago)[vs[1].(string)]
+	}).(SourceGetlagoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGetlagoInput)(nil)).Elem(), &SourceGetlago{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGetlagoArrayInput)(nil)).Elem(), SourceGetlagoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGetlagoMapInput)(nil)).Elem(), SourceGetlagoMap{})
 	pulumi.RegisterOutputType(SourceGetlagoOutput{})
+	pulumi.RegisterOutputType(SourceGetlagoArrayOutput{})
+	pulumi.RegisterOutputType(SourceGetlagoMapOutput{})
 }

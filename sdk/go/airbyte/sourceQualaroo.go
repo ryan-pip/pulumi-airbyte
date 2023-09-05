@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceQualaroo Resource
@@ -127,6 +127,56 @@ func (i *SourceQualaroo) ToSourceQualarooOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceQualarooOutput)
 }
 
+// SourceQualarooArrayInput is an input type that accepts SourceQualarooArray and SourceQualarooArrayOutput values.
+// You can construct a concrete instance of `SourceQualarooArrayInput` via:
+//
+//	SourceQualarooArray{ SourceQualarooArgs{...} }
+type SourceQualarooArrayInput interface {
+	pulumi.Input
+
+	ToSourceQualarooArrayOutput() SourceQualarooArrayOutput
+	ToSourceQualarooArrayOutputWithContext(context.Context) SourceQualarooArrayOutput
+}
+
+type SourceQualarooArray []SourceQualarooInput
+
+func (SourceQualarooArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceQualaroo)(nil)).Elem()
+}
+
+func (i SourceQualarooArray) ToSourceQualarooArrayOutput() SourceQualarooArrayOutput {
+	return i.ToSourceQualarooArrayOutputWithContext(context.Background())
+}
+
+func (i SourceQualarooArray) ToSourceQualarooArrayOutputWithContext(ctx context.Context) SourceQualarooArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceQualarooArrayOutput)
+}
+
+// SourceQualarooMapInput is an input type that accepts SourceQualarooMap and SourceQualarooMapOutput values.
+// You can construct a concrete instance of `SourceQualarooMapInput` via:
+//
+//	SourceQualarooMap{ "key": SourceQualarooArgs{...} }
+type SourceQualarooMapInput interface {
+	pulumi.Input
+
+	ToSourceQualarooMapOutput() SourceQualarooMapOutput
+	ToSourceQualarooMapOutputWithContext(context.Context) SourceQualarooMapOutput
+}
+
+type SourceQualarooMap map[string]SourceQualarooInput
+
+func (SourceQualarooMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceQualaroo)(nil)).Elem()
+}
+
+func (i SourceQualarooMap) ToSourceQualarooMapOutput() SourceQualarooMapOutput {
+	return i.ToSourceQualarooMapOutputWithContext(context.Background())
+}
+
+func (i SourceQualarooMap) ToSourceQualarooMapOutputWithContext(ctx context.Context) SourceQualarooMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceQualarooMapOutput)
+}
+
 type SourceQualarooOutput struct{ *pulumi.OutputState }
 
 func (SourceQualarooOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceQualarooOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceQualaroo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceQualarooArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceQualarooArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceQualaroo)(nil)).Elem()
+}
+
+func (o SourceQualarooArrayOutput) ToSourceQualarooArrayOutput() SourceQualarooArrayOutput {
+	return o
+}
+
+func (o SourceQualarooArrayOutput) ToSourceQualarooArrayOutputWithContext(ctx context.Context) SourceQualarooArrayOutput {
+	return o
+}
+
+func (o SourceQualarooArrayOutput) Index(i pulumi.IntInput) SourceQualarooOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceQualaroo {
+		return vs[0].([]*SourceQualaroo)[vs[1].(int)]
+	}).(SourceQualarooOutput)
+}
+
+type SourceQualarooMapOutput struct{ *pulumi.OutputState }
+
+func (SourceQualarooMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceQualaroo)(nil)).Elem()
+}
+
+func (o SourceQualarooMapOutput) ToSourceQualarooMapOutput() SourceQualarooMapOutput {
+	return o
+}
+
+func (o SourceQualarooMapOutput) ToSourceQualarooMapOutputWithContext(ctx context.Context) SourceQualarooMapOutput {
+	return o
+}
+
+func (o SourceQualarooMapOutput) MapIndex(k pulumi.StringInput) SourceQualarooOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceQualaroo {
+		return vs[0].(map[string]*SourceQualaroo)[vs[1].(string)]
+	}).(SourceQualarooOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceQualarooInput)(nil)).Elem(), &SourceQualaroo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceQualarooArrayInput)(nil)).Elem(), SourceQualarooArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceQualarooMapInput)(nil)).Elem(), SourceQualarooMap{})
 	pulumi.RegisterOutputType(SourceQualarooOutput{})
+	pulumi.RegisterOutputType(SourceQualarooArrayOutput{})
+	pulumi.RegisterOutputType(SourceQualarooMapOutput{})
 }

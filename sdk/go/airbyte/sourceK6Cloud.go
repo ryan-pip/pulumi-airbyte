@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceK6Cloud Resource
@@ -127,6 +127,56 @@ func (i *SourceK6Cloud) ToSourceK6CloudOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceK6CloudOutput)
 }
 
+// SourceK6CloudArrayInput is an input type that accepts SourceK6CloudArray and SourceK6CloudArrayOutput values.
+// You can construct a concrete instance of `SourceK6CloudArrayInput` via:
+//
+//	SourceK6CloudArray{ SourceK6CloudArgs{...} }
+type SourceK6CloudArrayInput interface {
+	pulumi.Input
+
+	ToSourceK6CloudArrayOutput() SourceK6CloudArrayOutput
+	ToSourceK6CloudArrayOutputWithContext(context.Context) SourceK6CloudArrayOutput
+}
+
+type SourceK6CloudArray []SourceK6CloudInput
+
+func (SourceK6CloudArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceK6Cloud)(nil)).Elem()
+}
+
+func (i SourceK6CloudArray) ToSourceK6CloudArrayOutput() SourceK6CloudArrayOutput {
+	return i.ToSourceK6CloudArrayOutputWithContext(context.Background())
+}
+
+func (i SourceK6CloudArray) ToSourceK6CloudArrayOutputWithContext(ctx context.Context) SourceK6CloudArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceK6CloudArrayOutput)
+}
+
+// SourceK6CloudMapInput is an input type that accepts SourceK6CloudMap and SourceK6CloudMapOutput values.
+// You can construct a concrete instance of `SourceK6CloudMapInput` via:
+//
+//	SourceK6CloudMap{ "key": SourceK6CloudArgs{...} }
+type SourceK6CloudMapInput interface {
+	pulumi.Input
+
+	ToSourceK6CloudMapOutput() SourceK6CloudMapOutput
+	ToSourceK6CloudMapOutputWithContext(context.Context) SourceK6CloudMapOutput
+}
+
+type SourceK6CloudMap map[string]SourceK6CloudInput
+
+func (SourceK6CloudMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceK6Cloud)(nil)).Elem()
+}
+
+func (i SourceK6CloudMap) ToSourceK6CloudMapOutput() SourceK6CloudMapOutput {
+	return i.ToSourceK6CloudMapOutputWithContext(context.Background())
+}
+
+func (i SourceK6CloudMap) ToSourceK6CloudMapOutputWithContext(ctx context.Context) SourceK6CloudMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceK6CloudMapOutput)
+}
+
 type SourceK6CloudOutput struct{ *pulumi.OutputState }
 
 func (SourceK6CloudOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceK6CloudOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceK6Cloud) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceK6CloudArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceK6CloudArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceK6Cloud)(nil)).Elem()
+}
+
+func (o SourceK6CloudArrayOutput) ToSourceK6CloudArrayOutput() SourceK6CloudArrayOutput {
+	return o
+}
+
+func (o SourceK6CloudArrayOutput) ToSourceK6CloudArrayOutputWithContext(ctx context.Context) SourceK6CloudArrayOutput {
+	return o
+}
+
+func (o SourceK6CloudArrayOutput) Index(i pulumi.IntInput) SourceK6CloudOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceK6Cloud {
+		return vs[0].([]*SourceK6Cloud)[vs[1].(int)]
+	}).(SourceK6CloudOutput)
+}
+
+type SourceK6CloudMapOutput struct{ *pulumi.OutputState }
+
+func (SourceK6CloudMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceK6Cloud)(nil)).Elem()
+}
+
+func (o SourceK6CloudMapOutput) ToSourceK6CloudMapOutput() SourceK6CloudMapOutput {
+	return o
+}
+
+func (o SourceK6CloudMapOutput) ToSourceK6CloudMapOutputWithContext(ctx context.Context) SourceK6CloudMapOutput {
+	return o
+}
+
+func (o SourceK6CloudMapOutput) MapIndex(k pulumi.StringInput) SourceK6CloudOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceK6Cloud {
+		return vs[0].(map[string]*SourceK6Cloud)[vs[1].(string)]
+	}).(SourceK6CloudOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceK6CloudInput)(nil)).Elem(), &SourceK6Cloud{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceK6CloudArrayInput)(nil)).Elem(), SourceK6CloudArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceK6CloudMapInput)(nil)).Elem(), SourceK6CloudMap{})
 	pulumi.RegisterOutputType(SourceK6CloudOutput{})
+	pulumi.RegisterOutputType(SourceK6CloudArrayOutput{})
+	pulumi.RegisterOutputType(SourceK6CloudMapOutput{})
 }

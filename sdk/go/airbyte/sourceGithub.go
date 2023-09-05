@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGithub Resource
@@ -127,6 +127,56 @@ func (i *SourceGithub) ToSourceGithubOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGithubOutput)
 }
 
+// SourceGithubArrayInput is an input type that accepts SourceGithubArray and SourceGithubArrayOutput values.
+// You can construct a concrete instance of `SourceGithubArrayInput` via:
+//
+//	SourceGithubArray{ SourceGithubArgs{...} }
+type SourceGithubArrayInput interface {
+	pulumi.Input
+
+	ToSourceGithubArrayOutput() SourceGithubArrayOutput
+	ToSourceGithubArrayOutputWithContext(context.Context) SourceGithubArrayOutput
+}
+
+type SourceGithubArray []SourceGithubInput
+
+func (SourceGithubArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGithub)(nil)).Elem()
+}
+
+func (i SourceGithubArray) ToSourceGithubArrayOutput() SourceGithubArrayOutput {
+	return i.ToSourceGithubArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGithubArray) ToSourceGithubArrayOutputWithContext(ctx context.Context) SourceGithubArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGithubArrayOutput)
+}
+
+// SourceGithubMapInput is an input type that accepts SourceGithubMap and SourceGithubMapOutput values.
+// You can construct a concrete instance of `SourceGithubMapInput` via:
+//
+//	SourceGithubMap{ "key": SourceGithubArgs{...} }
+type SourceGithubMapInput interface {
+	pulumi.Input
+
+	ToSourceGithubMapOutput() SourceGithubMapOutput
+	ToSourceGithubMapOutputWithContext(context.Context) SourceGithubMapOutput
+}
+
+type SourceGithubMap map[string]SourceGithubInput
+
+func (SourceGithubMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGithub)(nil)).Elem()
+}
+
+func (i SourceGithubMap) ToSourceGithubMapOutput() SourceGithubMapOutput {
+	return i.ToSourceGithubMapOutputWithContext(context.Background())
+}
+
+func (i SourceGithubMap) ToSourceGithubMapOutputWithContext(ctx context.Context) SourceGithubMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGithubMapOutput)
+}
+
 type SourceGithubOutput struct{ *pulumi.OutputState }
 
 func (SourceGithubOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGithubOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGithub) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGithubArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGithubArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGithub)(nil)).Elem()
+}
+
+func (o SourceGithubArrayOutput) ToSourceGithubArrayOutput() SourceGithubArrayOutput {
+	return o
+}
+
+func (o SourceGithubArrayOutput) ToSourceGithubArrayOutputWithContext(ctx context.Context) SourceGithubArrayOutput {
+	return o
+}
+
+func (o SourceGithubArrayOutput) Index(i pulumi.IntInput) SourceGithubOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGithub {
+		return vs[0].([]*SourceGithub)[vs[1].(int)]
+	}).(SourceGithubOutput)
+}
+
+type SourceGithubMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGithubMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGithub)(nil)).Elem()
+}
+
+func (o SourceGithubMapOutput) ToSourceGithubMapOutput() SourceGithubMapOutput {
+	return o
+}
+
+func (o SourceGithubMapOutput) ToSourceGithubMapOutputWithContext(ctx context.Context) SourceGithubMapOutput {
+	return o
+}
+
+func (o SourceGithubMapOutput) MapIndex(k pulumi.StringInput) SourceGithubOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGithub {
+		return vs[0].(map[string]*SourceGithub)[vs[1].(string)]
+	}).(SourceGithubOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGithubInput)(nil)).Elem(), &SourceGithub{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGithubArrayInput)(nil)).Elem(), SourceGithubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGithubMapInput)(nil)).Elem(), SourceGithubMap{})
 	pulumi.RegisterOutputType(SourceGithubOutput{})
+	pulumi.RegisterOutputType(SourceGithubArrayOutput{})
+	pulumi.RegisterOutputType(SourceGithubMapOutput{})
 }

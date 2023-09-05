@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTodoist Resource
@@ -127,6 +127,56 @@ func (i *SourceTodoist) ToSourceTodoistOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTodoistOutput)
 }
 
+// SourceTodoistArrayInput is an input type that accepts SourceTodoistArray and SourceTodoistArrayOutput values.
+// You can construct a concrete instance of `SourceTodoistArrayInput` via:
+//
+//	SourceTodoistArray{ SourceTodoistArgs{...} }
+type SourceTodoistArrayInput interface {
+	pulumi.Input
+
+	ToSourceTodoistArrayOutput() SourceTodoistArrayOutput
+	ToSourceTodoistArrayOutputWithContext(context.Context) SourceTodoistArrayOutput
+}
+
+type SourceTodoistArray []SourceTodoistInput
+
+func (SourceTodoistArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTodoist)(nil)).Elem()
+}
+
+func (i SourceTodoistArray) ToSourceTodoistArrayOutput() SourceTodoistArrayOutput {
+	return i.ToSourceTodoistArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTodoistArray) ToSourceTodoistArrayOutputWithContext(ctx context.Context) SourceTodoistArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTodoistArrayOutput)
+}
+
+// SourceTodoistMapInput is an input type that accepts SourceTodoistMap and SourceTodoistMapOutput values.
+// You can construct a concrete instance of `SourceTodoistMapInput` via:
+//
+//	SourceTodoistMap{ "key": SourceTodoistArgs{...} }
+type SourceTodoistMapInput interface {
+	pulumi.Input
+
+	ToSourceTodoistMapOutput() SourceTodoistMapOutput
+	ToSourceTodoistMapOutputWithContext(context.Context) SourceTodoistMapOutput
+}
+
+type SourceTodoistMap map[string]SourceTodoistInput
+
+func (SourceTodoistMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTodoist)(nil)).Elem()
+}
+
+func (i SourceTodoistMap) ToSourceTodoistMapOutput() SourceTodoistMapOutput {
+	return i.ToSourceTodoistMapOutputWithContext(context.Background())
+}
+
+func (i SourceTodoistMap) ToSourceTodoistMapOutputWithContext(ctx context.Context) SourceTodoistMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTodoistMapOutput)
+}
+
 type SourceTodoistOutput struct{ *pulumi.OutputState }
 
 func (SourceTodoistOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTodoistOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTodoist) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTodoistArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTodoistArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTodoist)(nil)).Elem()
+}
+
+func (o SourceTodoistArrayOutput) ToSourceTodoistArrayOutput() SourceTodoistArrayOutput {
+	return o
+}
+
+func (o SourceTodoistArrayOutput) ToSourceTodoistArrayOutputWithContext(ctx context.Context) SourceTodoistArrayOutput {
+	return o
+}
+
+func (o SourceTodoistArrayOutput) Index(i pulumi.IntInput) SourceTodoistOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTodoist {
+		return vs[0].([]*SourceTodoist)[vs[1].(int)]
+	}).(SourceTodoistOutput)
+}
+
+type SourceTodoistMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTodoistMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTodoist)(nil)).Elem()
+}
+
+func (o SourceTodoistMapOutput) ToSourceTodoistMapOutput() SourceTodoistMapOutput {
+	return o
+}
+
+func (o SourceTodoistMapOutput) ToSourceTodoistMapOutputWithContext(ctx context.Context) SourceTodoistMapOutput {
+	return o
+}
+
+func (o SourceTodoistMapOutput) MapIndex(k pulumi.StringInput) SourceTodoistOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTodoist {
+		return vs[0].(map[string]*SourceTodoist)[vs[1].(string)]
+	}).(SourceTodoistOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTodoistInput)(nil)).Elem(), &SourceTodoist{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTodoistArrayInput)(nil)).Elem(), SourceTodoistArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTodoistMapInput)(nil)).Elem(), SourceTodoistMap{})
 	pulumi.RegisterOutputType(SourceTodoistOutput{})
+	pulumi.RegisterOutputType(SourceTodoistArrayOutput{})
+	pulumi.RegisterOutputType(SourceTodoistMapOutput{})
 }

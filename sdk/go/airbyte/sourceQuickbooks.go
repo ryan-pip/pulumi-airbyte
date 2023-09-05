@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceQuickbooks Resource
@@ -127,6 +127,56 @@ func (i *SourceQuickbooks) ToSourceQuickbooksOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceQuickbooksOutput)
 }
 
+// SourceQuickbooksArrayInput is an input type that accepts SourceQuickbooksArray and SourceQuickbooksArrayOutput values.
+// You can construct a concrete instance of `SourceQuickbooksArrayInput` via:
+//
+//	SourceQuickbooksArray{ SourceQuickbooksArgs{...} }
+type SourceQuickbooksArrayInput interface {
+	pulumi.Input
+
+	ToSourceQuickbooksArrayOutput() SourceQuickbooksArrayOutput
+	ToSourceQuickbooksArrayOutputWithContext(context.Context) SourceQuickbooksArrayOutput
+}
+
+type SourceQuickbooksArray []SourceQuickbooksInput
+
+func (SourceQuickbooksArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceQuickbooks)(nil)).Elem()
+}
+
+func (i SourceQuickbooksArray) ToSourceQuickbooksArrayOutput() SourceQuickbooksArrayOutput {
+	return i.ToSourceQuickbooksArrayOutputWithContext(context.Background())
+}
+
+func (i SourceQuickbooksArray) ToSourceQuickbooksArrayOutputWithContext(ctx context.Context) SourceQuickbooksArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceQuickbooksArrayOutput)
+}
+
+// SourceQuickbooksMapInput is an input type that accepts SourceQuickbooksMap and SourceQuickbooksMapOutput values.
+// You can construct a concrete instance of `SourceQuickbooksMapInput` via:
+//
+//	SourceQuickbooksMap{ "key": SourceQuickbooksArgs{...} }
+type SourceQuickbooksMapInput interface {
+	pulumi.Input
+
+	ToSourceQuickbooksMapOutput() SourceQuickbooksMapOutput
+	ToSourceQuickbooksMapOutputWithContext(context.Context) SourceQuickbooksMapOutput
+}
+
+type SourceQuickbooksMap map[string]SourceQuickbooksInput
+
+func (SourceQuickbooksMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceQuickbooks)(nil)).Elem()
+}
+
+func (i SourceQuickbooksMap) ToSourceQuickbooksMapOutput() SourceQuickbooksMapOutput {
+	return i.ToSourceQuickbooksMapOutputWithContext(context.Background())
+}
+
+func (i SourceQuickbooksMap) ToSourceQuickbooksMapOutputWithContext(ctx context.Context) SourceQuickbooksMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceQuickbooksMapOutput)
+}
+
 type SourceQuickbooksOutput struct{ *pulumi.OutputState }
 
 func (SourceQuickbooksOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceQuickbooksOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceQuickbooks) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceQuickbooksArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceQuickbooksArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceQuickbooks)(nil)).Elem()
+}
+
+func (o SourceQuickbooksArrayOutput) ToSourceQuickbooksArrayOutput() SourceQuickbooksArrayOutput {
+	return o
+}
+
+func (o SourceQuickbooksArrayOutput) ToSourceQuickbooksArrayOutputWithContext(ctx context.Context) SourceQuickbooksArrayOutput {
+	return o
+}
+
+func (o SourceQuickbooksArrayOutput) Index(i pulumi.IntInput) SourceQuickbooksOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceQuickbooks {
+		return vs[0].([]*SourceQuickbooks)[vs[1].(int)]
+	}).(SourceQuickbooksOutput)
+}
+
+type SourceQuickbooksMapOutput struct{ *pulumi.OutputState }
+
+func (SourceQuickbooksMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceQuickbooks)(nil)).Elem()
+}
+
+func (o SourceQuickbooksMapOutput) ToSourceQuickbooksMapOutput() SourceQuickbooksMapOutput {
+	return o
+}
+
+func (o SourceQuickbooksMapOutput) ToSourceQuickbooksMapOutputWithContext(ctx context.Context) SourceQuickbooksMapOutput {
+	return o
+}
+
+func (o SourceQuickbooksMapOutput) MapIndex(k pulumi.StringInput) SourceQuickbooksOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceQuickbooks {
+		return vs[0].(map[string]*SourceQuickbooks)[vs[1].(string)]
+	}).(SourceQuickbooksOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceQuickbooksInput)(nil)).Elem(), &SourceQuickbooks{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceQuickbooksArrayInput)(nil)).Elem(), SourceQuickbooksArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceQuickbooksMapInput)(nil)).Elem(), SourceQuickbooksMap{})
 	pulumi.RegisterOutputType(SourceQuickbooksOutput{})
+	pulumi.RegisterOutputType(SourceQuickbooksArrayOutput{})
+	pulumi.RegisterOutputType(SourceQuickbooksMapOutput{})
 }

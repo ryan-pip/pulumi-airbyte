@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceEmailoctopus Resource
@@ -127,6 +127,56 @@ func (i *SourceEmailoctopus) ToSourceEmailoctopusOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceEmailoctopusOutput)
 }
 
+// SourceEmailoctopusArrayInput is an input type that accepts SourceEmailoctopusArray and SourceEmailoctopusArrayOutput values.
+// You can construct a concrete instance of `SourceEmailoctopusArrayInput` via:
+//
+//	SourceEmailoctopusArray{ SourceEmailoctopusArgs{...} }
+type SourceEmailoctopusArrayInput interface {
+	pulumi.Input
+
+	ToSourceEmailoctopusArrayOutput() SourceEmailoctopusArrayOutput
+	ToSourceEmailoctopusArrayOutputWithContext(context.Context) SourceEmailoctopusArrayOutput
+}
+
+type SourceEmailoctopusArray []SourceEmailoctopusInput
+
+func (SourceEmailoctopusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceEmailoctopus)(nil)).Elem()
+}
+
+func (i SourceEmailoctopusArray) ToSourceEmailoctopusArrayOutput() SourceEmailoctopusArrayOutput {
+	return i.ToSourceEmailoctopusArrayOutputWithContext(context.Background())
+}
+
+func (i SourceEmailoctopusArray) ToSourceEmailoctopusArrayOutputWithContext(ctx context.Context) SourceEmailoctopusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceEmailoctopusArrayOutput)
+}
+
+// SourceEmailoctopusMapInput is an input type that accepts SourceEmailoctopusMap and SourceEmailoctopusMapOutput values.
+// You can construct a concrete instance of `SourceEmailoctopusMapInput` via:
+//
+//	SourceEmailoctopusMap{ "key": SourceEmailoctopusArgs{...} }
+type SourceEmailoctopusMapInput interface {
+	pulumi.Input
+
+	ToSourceEmailoctopusMapOutput() SourceEmailoctopusMapOutput
+	ToSourceEmailoctopusMapOutputWithContext(context.Context) SourceEmailoctopusMapOutput
+}
+
+type SourceEmailoctopusMap map[string]SourceEmailoctopusInput
+
+func (SourceEmailoctopusMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceEmailoctopus)(nil)).Elem()
+}
+
+func (i SourceEmailoctopusMap) ToSourceEmailoctopusMapOutput() SourceEmailoctopusMapOutput {
+	return i.ToSourceEmailoctopusMapOutputWithContext(context.Background())
+}
+
+func (i SourceEmailoctopusMap) ToSourceEmailoctopusMapOutputWithContext(ctx context.Context) SourceEmailoctopusMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceEmailoctopusMapOutput)
+}
+
 type SourceEmailoctopusOutput struct{ *pulumi.OutputState }
 
 func (SourceEmailoctopusOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceEmailoctopusOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceEmailoctopus) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceEmailoctopusArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceEmailoctopusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceEmailoctopus)(nil)).Elem()
+}
+
+func (o SourceEmailoctopusArrayOutput) ToSourceEmailoctopusArrayOutput() SourceEmailoctopusArrayOutput {
+	return o
+}
+
+func (o SourceEmailoctopusArrayOutput) ToSourceEmailoctopusArrayOutputWithContext(ctx context.Context) SourceEmailoctopusArrayOutput {
+	return o
+}
+
+func (o SourceEmailoctopusArrayOutput) Index(i pulumi.IntInput) SourceEmailoctopusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceEmailoctopus {
+		return vs[0].([]*SourceEmailoctopus)[vs[1].(int)]
+	}).(SourceEmailoctopusOutput)
+}
+
+type SourceEmailoctopusMapOutput struct{ *pulumi.OutputState }
+
+func (SourceEmailoctopusMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceEmailoctopus)(nil)).Elem()
+}
+
+func (o SourceEmailoctopusMapOutput) ToSourceEmailoctopusMapOutput() SourceEmailoctopusMapOutput {
+	return o
+}
+
+func (o SourceEmailoctopusMapOutput) ToSourceEmailoctopusMapOutputWithContext(ctx context.Context) SourceEmailoctopusMapOutput {
+	return o
+}
+
+func (o SourceEmailoctopusMapOutput) MapIndex(k pulumi.StringInput) SourceEmailoctopusOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceEmailoctopus {
+		return vs[0].(map[string]*SourceEmailoctopus)[vs[1].(string)]
+	}).(SourceEmailoctopusOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceEmailoctopusInput)(nil)).Elem(), &SourceEmailoctopus{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceEmailoctopusArrayInput)(nil)).Elem(), SourceEmailoctopusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceEmailoctopusMapInput)(nil)).Elem(), SourceEmailoctopusMap{})
 	pulumi.RegisterOutputType(SourceEmailoctopusOutput{})
+	pulumi.RegisterOutputType(SourceEmailoctopusArrayOutput{})
+	pulumi.RegisterOutputType(SourceEmailoctopusMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationRedis Resource
@@ -117,6 +117,56 @@ func (i *DestinationRedis) ToDestinationRedisOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedisOutput)
 }
 
+// DestinationRedisArrayInput is an input type that accepts DestinationRedisArray and DestinationRedisArrayOutput values.
+// You can construct a concrete instance of `DestinationRedisArrayInput` via:
+//
+//	DestinationRedisArray{ DestinationRedisArgs{...} }
+type DestinationRedisArrayInput interface {
+	pulumi.Input
+
+	ToDestinationRedisArrayOutput() DestinationRedisArrayOutput
+	ToDestinationRedisArrayOutputWithContext(context.Context) DestinationRedisArrayOutput
+}
+
+type DestinationRedisArray []DestinationRedisInput
+
+func (DestinationRedisArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationRedis)(nil)).Elem()
+}
+
+func (i DestinationRedisArray) ToDestinationRedisArrayOutput() DestinationRedisArrayOutput {
+	return i.ToDestinationRedisArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationRedisArray) ToDestinationRedisArrayOutputWithContext(ctx context.Context) DestinationRedisArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedisArrayOutput)
+}
+
+// DestinationRedisMapInput is an input type that accepts DestinationRedisMap and DestinationRedisMapOutput values.
+// You can construct a concrete instance of `DestinationRedisMapInput` via:
+//
+//	DestinationRedisMap{ "key": DestinationRedisArgs{...} }
+type DestinationRedisMapInput interface {
+	pulumi.Input
+
+	ToDestinationRedisMapOutput() DestinationRedisMapOutput
+	ToDestinationRedisMapOutputWithContext(context.Context) DestinationRedisMapOutput
+}
+
+type DestinationRedisMap map[string]DestinationRedisInput
+
+func (DestinationRedisMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationRedis)(nil)).Elem()
+}
+
+func (i DestinationRedisMap) ToDestinationRedisMapOutput() DestinationRedisMapOutput {
+	return i.ToDestinationRedisMapOutputWithContext(context.Background())
+}
+
+func (i DestinationRedisMap) ToDestinationRedisMapOutputWithContext(ctx context.Context) DestinationRedisMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedisMapOutput)
+}
+
 type DestinationRedisOutput struct{ *pulumi.OutputState }
 
 func (DestinationRedisOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationRedisOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationRedis) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationRedisArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationRedisArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationRedis)(nil)).Elem()
+}
+
+func (o DestinationRedisArrayOutput) ToDestinationRedisArrayOutput() DestinationRedisArrayOutput {
+	return o
+}
+
+func (o DestinationRedisArrayOutput) ToDestinationRedisArrayOutputWithContext(ctx context.Context) DestinationRedisArrayOutput {
+	return o
+}
+
+func (o DestinationRedisArrayOutput) Index(i pulumi.IntInput) DestinationRedisOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationRedis {
+		return vs[0].([]*DestinationRedis)[vs[1].(int)]
+	}).(DestinationRedisOutput)
+}
+
+type DestinationRedisMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationRedisMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationRedis)(nil)).Elem()
+}
+
+func (o DestinationRedisMapOutput) ToDestinationRedisMapOutput() DestinationRedisMapOutput {
+	return o
+}
+
+func (o DestinationRedisMapOutput) ToDestinationRedisMapOutputWithContext(ctx context.Context) DestinationRedisMapOutput {
+	return o
+}
+
+func (o DestinationRedisMapOutput) MapIndex(k pulumi.StringInput) DestinationRedisOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationRedis {
+		return vs[0].(map[string]*DestinationRedis)[vs[1].(string)]
+	}).(DestinationRedisOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedisInput)(nil)).Elem(), &DestinationRedis{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedisArrayInput)(nil)).Elem(), DestinationRedisArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedisMapInput)(nil)).Elem(), DestinationRedisMap{})
 	pulumi.RegisterOutputType(DestinationRedisOutput{})
+	pulumi.RegisterOutputType(DestinationRedisArrayOutput{})
+	pulumi.RegisterOutputType(DestinationRedisMapOutput{})
 }

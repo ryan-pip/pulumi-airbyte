@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceNytimes Resource
@@ -127,6 +127,56 @@ func (i *SourceNytimes) ToSourceNytimesOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceNytimesOutput)
 }
 
+// SourceNytimesArrayInput is an input type that accepts SourceNytimesArray and SourceNytimesArrayOutput values.
+// You can construct a concrete instance of `SourceNytimesArrayInput` via:
+//
+//	SourceNytimesArray{ SourceNytimesArgs{...} }
+type SourceNytimesArrayInput interface {
+	pulumi.Input
+
+	ToSourceNytimesArrayOutput() SourceNytimesArrayOutput
+	ToSourceNytimesArrayOutputWithContext(context.Context) SourceNytimesArrayOutput
+}
+
+type SourceNytimesArray []SourceNytimesInput
+
+func (SourceNytimesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNytimes)(nil)).Elem()
+}
+
+func (i SourceNytimesArray) ToSourceNytimesArrayOutput() SourceNytimesArrayOutput {
+	return i.ToSourceNytimesArrayOutputWithContext(context.Background())
+}
+
+func (i SourceNytimesArray) ToSourceNytimesArrayOutputWithContext(ctx context.Context) SourceNytimesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNytimesArrayOutput)
+}
+
+// SourceNytimesMapInput is an input type that accepts SourceNytimesMap and SourceNytimesMapOutput values.
+// You can construct a concrete instance of `SourceNytimesMapInput` via:
+//
+//	SourceNytimesMap{ "key": SourceNytimesArgs{...} }
+type SourceNytimesMapInput interface {
+	pulumi.Input
+
+	ToSourceNytimesMapOutput() SourceNytimesMapOutput
+	ToSourceNytimesMapOutputWithContext(context.Context) SourceNytimesMapOutput
+}
+
+type SourceNytimesMap map[string]SourceNytimesInput
+
+func (SourceNytimesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNytimes)(nil)).Elem()
+}
+
+func (i SourceNytimesMap) ToSourceNytimesMapOutput() SourceNytimesMapOutput {
+	return i.ToSourceNytimesMapOutputWithContext(context.Background())
+}
+
+func (i SourceNytimesMap) ToSourceNytimesMapOutputWithContext(ctx context.Context) SourceNytimesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNytimesMapOutput)
+}
+
 type SourceNytimesOutput struct{ *pulumi.OutputState }
 
 func (SourceNytimesOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceNytimesOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceNytimes) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceNytimesArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceNytimesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNytimes)(nil)).Elem()
+}
+
+func (o SourceNytimesArrayOutput) ToSourceNytimesArrayOutput() SourceNytimesArrayOutput {
+	return o
+}
+
+func (o SourceNytimesArrayOutput) ToSourceNytimesArrayOutputWithContext(ctx context.Context) SourceNytimesArrayOutput {
+	return o
+}
+
+func (o SourceNytimesArrayOutput) Index(i pulumi.IntInput) SourceNytimesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceNytimes {
+		return vs[0].([]*SourceNytimes)[vs[1].(int)]
+	}).(SourceNytimesOutput)
+}
+
+type SourceNytimesMapOutput struct{ *pulumi.OutputState }
+
+func (SourceNytimesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNytimes)(nil)).Elem()
+}
+
+func (o SourceNytimesMapOutput) ToSourceNytimesMapOutput() SourceNytimesMapOutput {
+	return o
+}
+
+func (o SourceNytimesMapOutput) ToSourceNytimesMapOutputWithContext(ctx context.Context) SourceNytimesMapOutput {
+	return o
+}
+
+func (o SourceNytimesMapOutput) MapIndex(k pulumi.StringInput) SourceNytimesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceNytimes {
+		return vs[0].(map[string]*SourceNytimes)[vs[1].(string)]
+	}).(SourceNytimesOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceNytimesInput)(nil)).Elem(), &SourceNytimes{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNytimesArrayInput)(nil)).Elem(), SourceNytimesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNytimesMapInput)(nil)).Elem(), SourceNytimesMap{})
 	pulumi.RegisterOutputType(SourceNytimesOutput{})
+	pulumi.RegisterOutputType(SourceNytimesArrayOutput{})
+	pulumi.RegisterOutputType(SourceNytimesMapOutput{})
 }

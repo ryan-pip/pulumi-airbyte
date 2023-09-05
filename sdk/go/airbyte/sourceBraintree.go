@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBraintree Resource
@@ -127,6 +127,56 @@ func (i *SourceBraintree) ToSourceBraintreeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBraintreeOutput)
 }
 
+// SourceBraintreeArrayInput is an input type that accepts SourceBraintreeArray and SourceBraintreeArrayOutput values.
+// You can construct a concrete instance of `SourceBraintreeArrayInput` via:
+//
+//	SourceBraintreeArray{ SourceBraintreeArgs{...} }
+type SourceBraintreeArrayInput interface {
+	pulumi.Input
+
+	ToSourceBraintreeArrayOutput() SourceBraintreeArrayOutput
+	ToSourceBraintreeArrayOutputWithContext(context.Context) SourceBraintreeArrayOutput
+}
+
+type SourceBraintreeArray []SourceBraintreeInput
+
+func (SourceBraintreeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBraintree)(nil)).Elem()
+}
+
+func (i SourceBraintreeArray) ToSourceBraintreeArrayOutput() SourceBraintreeArrayOutput {
+	return i.ToSourceBraintreeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBraintreeArray) ToSourceBraintreeArrayOutputWithContext(ctx context.Context) SourceBraintreeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBraintreeArrayOutput)
+}
+
+// SourceBraintreeMapInput is an input type that accepts SourceBraintreeMap and SourceBraintreeMapOutput values.
+// You can construct a concrete instance of `SourceBraintreeMapInput` via:
+//
+//	SourceBraintreeMap{ "key": SourceBraintreeArgs{...} }
+type SourceBraintreeMapInput interface {
+	pulumi.Input
+
+	ToSourceBraintreeMapOutput() SourceBraintreeMapOutput
+	ToSourceBraintreeMapOutputWithContext(context.Context) SourceBraintreeMapOutput
+}
+
+type SourceBraintreeMap map[string]SourceBraintreeInput
+
+func (SourceBraintreeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBraintree)(nil)).Elem()
+}
+
+func (i SourceBraintreeMap) ToSourceBraintreeMapOutput() SourceBraintreeMapOutput {
+	return i.ToSourceBraintreeMapOutputWithContext(context.Background())
+}
+
+func (i SourceBraintreeMap) ToSourceBraintreeMapOutputWithContext(ctx context.Context) SourceBraintreeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBraintreeMapOutput)
+}
+
 type SourceBraintreeOutput struct{ *pulumi.OutputState }
 
 func (SourceBraintreeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBraintreeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBraintree) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBraintreeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBraintreeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBraintree)(nil)).Elem()
+}
+
+func (o SourceBraintreeArrayOutput) ToSourceBraintreeArrayOutput() SourceBraintreeArrayOutput {
+	return o
+}
+
+func (o SourceBraintreeArrayOutput) ToSourceBraintreeArrayOutputWithContext(ctx context.Context) SourceBraintreeArrayOutput {
+	return o
+}
+
+func (o SourceBraintreeArrayOutput) Index(i pulumi.IntInput) SourceBraintreeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBraintree {
+		return vs[0].([]*SourceBraintree)[vs[1].(int)]
+	}).(SourceBraintreeOutput)
+}
+
+type SourceBraintreeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBraintreeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBraintree)(nil)).Elem()
+}
+
+func (o SourceBraintreeMapOutput) ToSourceBraintreeMapOutput() SourceBraintreeMapOutput {
+	return o
+}
+
+func (o SourceBraintreeMapOutput) ToSourceBraintreeMapOutputWithContext(ctx context.Context) SourceBraintreeMapOutput {
+	return o
+}
+
+func (o SourceBraintreeMapOutput) MapIndex(k pulumi.StringInput) SourceBraintreeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBraintree {
+		return vs[0].(map[string]*SourceBraintree)[vs[1].(string)]
+	}).(SourceBraintreeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBraintreeInput)(nil)).Elem(), &SourceBraintree{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBraintreeArrayInput)(nil)).Elem(), SourceBraintreeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBraintreeMapInput)(nil)).Elem(), SourceBraintreeMap{})
 	pulumi.RegisterOutputType(SourceBraintreeOutput{})
+	pulumi.RegisterOutputType(SourceBraintreeArrayOutput{})
+	pulumi.RegisterOutputType(SourceBraintreeMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSendinblue Resource
@@ -127,6 +127,56 @@ func (i *SourceSendinblue) ToSourceSendinblueOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSendinblueOutput)
 }
 
+// SourceSendinblueArrayInput is an input type that accepts SourceSendinblueArray and SourceSendinblueArrayOutput values.
+// You can construct a concrete instance of `SourceSendinblueArrayInput` via:
+//
+//	SourceSendinblueArray{ SourceSendinblueArgs{...} }
+type SourceSendinblueArrayInput interface {
+	pulumi.Input
+
+	ToSourceSendinblueArrayOutput() SourceSendinblueArrayOutput
+	ToSourceSendinblueArrayOutputWithContext(context.Context) SourceSendinblueArrayOutput
+}
+
+type SourceSendinblueArray []SourceSendinblueInput
+
+func (SourceSendinblueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSendinblue)(nil)).Elem()
+}
+
+func (i SourceSendinblueArray) ToSourceSendinblueArrayOutput() SourceSendinblueArrayOutput {
+	return i.ToSourceSendinblueArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSendinblueArray) ToSourceSendinblueArrayOutputWithContext(ctx context.Context) SourceSendinblueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSendinblueArrayOutput)
+}
+
+// SourceSendinblueMapInput is an input type that accepts SourceSendinblueMap and SourceSendinblueMapOutput values.
+// You can construct a concrete instance of `SourceSendinblueMapInput` via:
+//
+//	SourceSendinblueMap{ "key": SourceSendinblueArgs{...} }
+type SourceSendinblueMapInput interface {
+	pulumi.Input
+
+	ToSourceSendinblueMapOutput() SourceSendinblueMapOutput
+	ToSourceSendinblueMapOutputWithContext(context.Context) SourceSendinblueMapOutput
+}
+
+type SourceSendinblueMap map[string]SourceSendinblueInput
+
+func (SourceSendinblueMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSendinblue)(nil)).Elem()
+}
+
+func (i SourceSendinblueMap) ToSourceSendinblueMapOutput() SourceSendinblueMapOutput {
+	return i.ToSourceSendinblueMapOutputWithContext(context.Background())
+}
+
+func (i SourceSendinblueMap) ToSourceSendinblueMapOutputWithContext(ctx context.Context) SourceSendinblueMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSendinblueMapOutput)
+}
+
 type SourceSendinblueOutput struct{ *pulumi.OutputState }
 
 func (SourceSendinblueOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSendinblueOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSendinblue) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSendinblueArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSendinblueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSendinblue)(nil)).Elem()
+}
+
+func (o SourceSendinblueArrayOutput) ToSourceSendinblueArrayOutput() SourceSendinblueArrayOutput {
+	return o
+}
+
+func (o SourceSendinblueArrayOutput) ToSourceSendinblueArrayOutputWithContext(ctx context.Context) SourceSendinblueArrayOutput {
+	return o
+}
+
+func (o SourceSendinblueArrayOutput) Index(i pulumi.IntInput) SourceSendinblueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSendinblue {
+		return vs[0].([]*SourceSendinblue)[vs[1].(int)]
+	}).(SourceSendinblueOutput)
+}
+
+type SourceSendinblueMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSendinblueMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSendinblue)(nil)).Elem()
+}
+
+func (o SourceSendinblueMapOutput) ToSourceSendinblueMapOutput() SourceSendinblueMapOutput {
+	return o
+}
+
+func (o SourceSendinblueMapOutput) ToSourceSendinblueMapOutputWithContext(ctx context.Context) SourceSendinblueMapOutput {
+	return o
+}
+
+func (o SourceSendinblueMapOutput) MapIndex(k pulumi.StringInput) SourceSendinblueOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSendinblue {
+		return vs[0].(map[string]*SourceSendinblue)[vs[1].(string)]
+	}).(SourceSendinblueOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendinblueInput)(nil)).Elem(), &SourceSendinblue{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendinblueArrayInput)(nil)).Elem(), SourceSendinblueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendinblueMapInput)(nil)).Elem(), SourceSendinblueMap{})
 	pulumi.RegisterOutputType(SourceSendinblueOutput{})
+	pulumi.RegisterOutputType(SourceSendinblueArrayOutput{})
+	pulumi.RegisterOutputType(SourceSendinblueMapOutput{})
 }

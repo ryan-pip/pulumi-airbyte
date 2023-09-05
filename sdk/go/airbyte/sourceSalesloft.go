@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSalesloft Resource
@@ -127,6 +127,56 @@ func (i *SourceSalesloft) ToSourceSalesloftOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSalesloftOutput)
 }
 
+// SourceSalesloftArrayInput is an input type that accepts SourceSalesloftArray and SourceSalesloftArrayOutput values.
+// You can construct a concrete instance of `SourceSalesloftArrayInput` via:
+//
+//	SourceSalesloftArray{ SourceSalesloftArgs{...} }
+type SourceSalesloftArrayInput interface {
+	pulumi.Input
+
+	ToSourceSalesloftArrayOutput() SourceSalesloftArrayOutput
+	ToSourceSalesloftArrayOutputWithContext(context.Context) SourceSalesloftArrayOutput
+}
+
+type SourceSalesloftArray []SourceSalesloftInput
+
+func (SourceSalesloftArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSalesloft)(nil)).Elem()
+}
+
+func (i SourceSalesloftArray) ToSourceSalesloftArrayOutput() SourceSalesloftArrayOutput {
+	return i.ToSourceSalesloftArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSalesloftArray) ToSourceSalesloftArrayOutputWithContext(ctx context.Context) SourceSalesloftArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSalesloftArrayOutput)
+}
+
+// SourceSalesloftMapInput is an input type that accepts SourceSalesloftMap and SourceSalesloftMapOutput values.
+// You can construct a concrete instance of `SourceSalesloftMapInput` via:
+//
+//	SourceSalesloftMap{ "key": SourceSalesloftArgs{...} }
+type SourceSalesloftMapInput interface {
+	pulumi.Input
+
+	ToSourceSalesloftMapOutput() SourceSalesloftMapOutput
+	ToSourceSalesloftMapOutputWithContext(context.Context) SourceSalesloftMapOutput
+}
+
+type SourceSalesloftMap map[string]SourceSalesloftInput
+
+func (SourceSalesloftMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSalesloft)(nil)).Elem()
+}
+
+func (i SourceSalesloftMap) ToSourceSalesloftMapOutput() SourceSalesloftMapOutput {
+	return i.ToSourceSalesloftMapOutputWithContext(context.Background())
+}
+
+func (i SourceSalesloftMap) ToSourceSalesloftMapOutputWithContext(ctx context.Context) SourceSalesloftMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSalesloftMapOutput)
+}
+
 type SourceSalesloftOutput struct{ *pulumi.OutputState }
 
 func (SourceSalesloftOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSalesloftOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSalesloft) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSalesloftArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSalesloftArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSalesloft)(nil)).Elem()
+}
+
+func (o SourceSalesloftArrayOutput) ToSourceSalesloftArrayOutput() SourceSalesloftArrayOutput {
+	return o
+}
+
+func (o SourceSalesloftArrayOutput) ToSourceSalesloftArrayOutputWithContext(ctx context.Context) SourceSalesloftArrayOutput {
+	return o
+}
+
+func (o SourceSalesloftArrayOutput) Index(i pulumi.IntInput) SourceSalesloftOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSalesloft {
+		return vs[0].([]*SourceSalesloft)[vs[1].(int)]
+	}).(SourceSalesloftOutput)
+}
+
+type SourceSalesloftMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSalesloftMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSalesloft)(nil)).Elem()
+}
+
+func (o SourceSalesloftMapOutput) ToSourceSalesloftMapOutput() SourceSalesloftMapOutput {
+	return o
+}
+
+func (o SourceSalesloftMapOutput) ToSourceSalesloftMapOutputWithContext(ctx context.Context) SourceSalesloftMapOutput {
+	return o
+}
+
+func (o SourceSalesloftMapOutput) MapIndex(k pulumi.StringInput) SourceSalesloftOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSalesloft {
+		return vs[0].(map[string]*SourceSalesloft)[vs[1].(string)]
+	}).(SourceSalesloftOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSalesloftInput)(nil)).Elem(), &SourceSalesloft{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSalesloftArrayInput)(nil)).Elem(), SourceSalesloftArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSalesloftMapInput)(nil)).Elem(), SourceSalesloftMap{})
 	pulumi.RegisterOutputType(SourceSalesloftOutput{})
+	pulumi.RegisterOutputType(SourceSalesloftArrayOutput{})
+	pulumi.RegisterOutputType(SourceSalesloftMapOutput{})
 }

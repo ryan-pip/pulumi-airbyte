@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceCoinmarketcap Resource
@@ -127,6 +127,56 @@ func (i *SourceCoinmarketcap) ToSourceCoinmarketcapOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinmarketcapOutput)
 }
 
+// SourceCoinmarketcapArrayInput is an input type that accepts SourceCoinmarketcapArray and SourceCoinmarketcapArrayOutput values.
+// You can construct a concrete instance of `SourceCoinmarketcapArrayInput` via:
+//
+//	SourceCoinmarketcapArray{ SourceCoinmarketcapArgs{...} }
+type SourceCoinmarketcapArrayInput interface {
+	pulumi.Input
+
+	ToSourceCoinmarketcapArrayOutput() SourceCoinmarketcapArrayOutput
+	ToSourceCoinmarketcapArrayOutputWithContext(context.Context) SourceCoinmarketcapArrayOutput
+}
+
+type SourceCoinmarketcapArray []SourceCoinmarketcapInput
+
+func (SourceCoinmarketcapArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoinmarketcap)(nil)).Elem()
+}
+
+func (i SourceCoinmarketcapArray) ToSourceCoinmarketcapArrayOutput() SourceCoinmarketcapArrayOutput {
+	return i.ToSourceCoinmarketcapArrayOutputWithContext(context.Background())
+}
+
+func (i SourceCoinmarketcapArray) ToSourceCoinmarketcapArrayOutputWithContext(ctx context.Context) SourceCoinmarketcapArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinmarketcapArrayOutput)
+}
+
+// SourceCoinmarketcapMapInput is an input type that accepts SourceCoinmarketcapMap and SourceCoinmarketcapMapOutput values.
+// You can construct a concrete instance of `SourceCoinmarketcapMapInput` via:
+//
+//	SourceCoinmarketcapMap{ "key": SourceCoinmarketcapArgs{...} }
+type SourceCoinmarketcapMapInput interface {
+	pulumi.Input
+
+	ToSourceCoinmarketcapMapOutput() SourceCoinmarketcapMapOutput
+	ToSourceCoinmarketcapMapOutputWithContext(context.Context) SourceCoinmarketcapMapOutput
+}
+
+type SourceCoinmarketcapMap map[string]SourceCoinmarketcapInput
+
+func (SourceCoinmarketcapMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoinmarketcap)(nil)).Elem()
+}
+
+func (i SourceCoinmarketcapMap) ToSourceCoinmarketcapMapOutput() SourceCoinmarketcapMapOutput {
+	return i.ToSourceCoinmarketcapMapOutputWithContext(context.Background())
+}
+
+func (i SourceCoinmarketcapMap) ToSourceCoinmarketcapMapOutputWithContext(ctx context.Context) SourceCoinmarketcapMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCoinmarketcapMapOutput)
+}
+
 type SourceCoinmarketcapOutput struct{ *pulumi.OutputState }
 
 func (SourceCoinmarketcapOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceCoinmarketcapOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceCoinmarketcap) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceCoinmarketcapArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceCoinmarketcapArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoinmarketcap)(nil)).Elem()
+}
+
+func (o SourceCoinmarketcapArrayOutput) ToSourceCoinmarketcapArrayOutput() SourceCoinmarketcapArrayOutput {
+	return o
+}
+
+func (o SourceCoinmarketcapArrayOutput) ToSourceCoinmarketcapArrayOutputWithContext(ctx context.Context) SourceCoinmarketcapArrayOutput {
+	return o
+}
+
+func (o SourceCoinmarketcapArrayOutput) Index(i pulumi.IntInput) SourceCoinmarketcapOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceCoinmarketcap {
+		return vs[0].([]*SourceCoinmarketcap)[vs[1].(int)]
+	}).(SourceCoinmarketcapOutput)
+}
+
+type SourceCoinmarketcapMapOutput struct{ *pulumi.OutputState }
+
+func (SourceCoinmarketcapMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoinmarketcap)(nil)).Elem()
+}
+
+func (o SourceCoinmarketcapMapOutput) ToSourceCoinmarketcapMapOutput() SourceCoinmarketcapMapOutput {
+	return o
+}
+
+func (o SourceCoinmarketcapMapOutput) ToSourceCoinmarketcapMapOutputWithContext(ctx context.Context) SourceCoinmarketcapMapOutput {
+	return o
+}
+
+func (o SourceCoinmarketcapMapOutput) MapIndex(k pulumi.StringInput) SourceCoinmarketcapOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceCoinmarketcap {
+		return vs[0].(map[string]*SourceCoinmarketcap)[vs[1].(string)]
+	}).(SourceCoinmarketcapOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinmarketcapInput)(nil)).Elem(), &SourceCoinmarketcap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinmarketcapArrayInput)(nil)).Elem(), SourceCoinmarketcapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCoinmarketcapMapInput)(nil)).Elem(), SourceCoinmarketcapMap{})
 	pulumi.RegisterOutputType(SourceCoinmarketcapOutput{})
+	pulumi.RegisterOutputType(SourceCoinmarketcapArrayOutput{})
+	pulumi.RegisterOutputType(SourceCoinmarketcapMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePublicApis Resource
@@ -127,6 +127,56 @@ func (i *SourcePublicApis) ToSourcePublicApisOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePublicApisOutput)
 }
 
+// SourcePublicApisArrayInput is an input type that accepts SourcePublicApisArray and SourcePublicApisArrayOutput values.
+// You can construct a concrete instance of `SourcePublicApisArrayInput` via:
+//
+//	SourcePublicApisArray{ SourcePublicApisArgs{...} }
+type SourcePublicApisArrayInput interface {
+	pulumi.Input
+
+	ToSourcePublicApisArrayOutput() SourcePublicApisArrayOutput
+	ToSourcePublicApisArrayOutputWithContext(context.Context) SourcePublicApisArrayOutput
+}
+
+type SourcePublicApisArray []SourcePublicApisInput
+
+func (SourcePublicApisArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePublicApis)(nil)).Elem()
+}
+
+func (i SourcePublicApisArray) ToSourcePublicApisArrayOutput() SourcePublicApisArrayOutput {
+	return i.ToSourcePublicApisArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePublicApisArray) ToSourcePublicApisArrayOutputWithContext(ctx context.Context) SourcePublicApisArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePublicApisArrayOutput)
+}
+
+// SourcePublicApisMapInput is an input type that accepts SourcePublicApisMap and SourcePublicApisMapOutput values.
+// You can construct a concrete instance of `SourcePublicApisMapInput` via:
+//
+//	SourcePublicApisMap{ "key": SourcePublicApisArgs{...} }
+type SourcePublicApisMapInput interface {
+	pulumi.Input
+
+	ToSourcePublicApisMapOutput() SourcePublicApisMapOutput
+	ToSourcePublicApisMapOutputWithContext(context.Context) SourcePublicApisMapOutput
+}
+
+type SourcePublicApisMap map[string]SourcePublicApisInput
+
+func (SourcePublicApisMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePublicApis)(nil)).Elem()
+}
+
+func (i SourcePublicApisMap) ToSourcePublicApisMapOutput() SourcePublicApisMapOutput {
+	return i.ToSourcePublicApisMapOutputWithContext(context.Background())
+}
+
+func (i SourcePublicApisMap) ToSourcePublicApisMapOutputWithContext(ctx context.Context) SourcePublicApisMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePublicApisMapOutput)
+}
+
 type SourcePublicApisOutput struct{ *pulumi.OutputState }
 
 func (SourcePublicApisOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePublicApisOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePublicApis) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePublicApisArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePublicApisArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePublicApis)(nil)).Elem()
+}
+
+func (o SourcePublicApisArrayOutput) ToSourcePublicApisArrayOutput() SourcePublicApisArrayOutput {
+	return o
+}
+
+func (o SourcePublicApisArrayOutput) ToSourcePublicApisArrayOutputWithContext(ctx context.Context) SourcePublicApisArrayOutput {
+	return o
+}
+
+func (o SourcePublicApisArrayOutput) Index(i pulumi.IntInput) SourcePublicApisOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePublicApis {
+		return vs[0].([]*SourcePublicApis)[vs[1].(int)]
+	}).(SourcePublicApisOutput)
+}
+
+type SourcePublicApisMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePublicApisMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePublicApis)(nil)).Elem()
+}
+
+func (o SourcePublicApisMapOutput) ToSourcePublicApisMapOutput() SourcePublicApisMapOutput {
+	return o
+}
+
+func (o SourcePublicApisMapOutput) ToSourcePublicApisMapOutputWithContext(ctx context.Context) SourcePublicApisMapOutput {
+	return o
+}
+
+func (o SourcePublicApisMapOutput) MapIndex(k pulumi.StringInput) SourcePublicApisOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePublicApis {
+		return vs[0].(map[string]*SourcePublicApis)[vs[1].(string)]
+	}).(SourcePublicApisOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePublicApisInput)(nil)).Elem(), &SourcePublicApis{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePublicApisArrayInput)(nil)).Elem(), SourcePublicApisArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePublicApisMapInput)(nil)).Elem(), SourcePublicApisMap{})
 	pulumi.RegisterOutputType(SourcePublicApisOutput{})
+	pulumi.RegisterOutputType(SourcePublicApisArrayOutput{})
+	pulumi.RegisterOutputType(SourcePublicApisMapOutput{})
 }

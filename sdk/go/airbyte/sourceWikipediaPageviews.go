@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceWikipediaPageviews Resource
@@ -127,6 +127,56 @@ func (i *SourceWikipediaPageviews) ToSourceWikipediaPageviewsOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SourceWikipediaPageviewsOutput)
 }
 
+// SourceWikipediaPageviewsArrayInput is an input type that accepts SourceWikipediaPageviewsArray and SourceWikipediaPageviewsArrayOutput values.
+// You can construct a concrete instance of `SourceWikipediaPageviewsArrayInput` via:
+//
+//	SourceWikipediaPageviewsArray{ SourceWikipediaPageviewsArgs{...} }
+type SourceWikipediaPageviewsArrayInput interface {
+	pulumi.Input
+
+	ToSourceWikipediaPageviewsArrayOutput() SourceWikipediaPageviewsArrayOutput
+	ToSourceWikipediaPageviewsArrayOutputWithContext(context.Context) SourceWikipediaPageviewsArrayOutput
+}
+
+type SourceWikipediaPageviewsArray []SourceWikipediaPageviewsInput
+
+func (SourceWikipediaPageviewsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWikipediaPageviews)(nil)).Elem()
+}
+
+func (i SourceWikipediaPageviewsArray) ToSourceWikipediaPageviewsArrayOutput() SourceWikipediaPageviewsArrayOutput {
+	return i.ToSourceWikipediaPageviewsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceWikipediaPageviewsArray) ToSourceWikipediaPageviewsArrayOutputWithContext(ctx context.Context) SourceWikipediaPageviewsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWikipediaPageviewsArrayOutput)
+}
+
+// SourceWikipediaPageviewsMapInput is an input type that accepts SourceWikipediaPageviewsMap and SourceWikipediaPageviewsMapOutput values.
+// You can construct a concrete instance of `SourceWikipediaPageviewsMapInput` via:
+//
+//	SourceWikipediaPageviewsMap{ "key": SourceWikipediaPageviewsArgs{...} }
+type SourceWikipediaPageviewsMapInput interface {
+	pulumi.Input
+
+	ToSourceWikipediaPageviewsMapOutput() SourceWikipediaPageviewsMapOutput
+	ToSourceWikipediaPageviewsMapOutputWithContext(context.Context) SourceWikipediaPageviewsMapOutput
+}
+
+type SourceWikipediaPageviewsMap map[string]SourceWikipediaPageviewsInput
+
+func (SourceWikipediaPageviewsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWikipediaPageviews)(nil)).Elem()
+}
+
+func (i SourceWikipediaPageviewsMap) ToSourceWikipediaPageviewsMapOutput() SourceWikipediaPageviewsMapOutput {
+	return i.ToSourceWikipediaPageviewsMapOutputWithContext(context.Background())
+}
+
+func (i SourceWikipediaPageviewsMap) ToSourceWikipediaPageviewsMapOutputWithContext(ctx context.Context) SourceWikipediaPageviewsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWikipediaPageviewsMapOutput)
+}
+
 type SourceWikipediaPageviewsOutput struct{ *pulumi.OutputState }
 
 func (SourceWikipediaPageviewsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceWikipediaPageviewsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceWikipediaPageviews) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceWikipediaPageviewsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceWikipediaPageviewsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWikipediaPageviews)(nil)).Elem()
+}
+
+func (o SourceWikipediaPageviewsArrayOutput) ToSourceWikipediaPageviewsArrayOutput() SourceWikipediaPageviewsArrayOutput {
+	return o
+}
+
+func (o SourceWikipediaPageviewsArrayOutput) ToSourceWikipediaPageviewsArrayOutputWithContext(ctx context.Context) SourceWikipediaPageviewsArrayOutput {
+	return o
+}
+
+func (o SourceWikipediaPageviewsArrayOutput) Index(i pulumi.IntInput) SourceWikipediaPageviewsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceWikipediaPageviews {
+		return vs[0].([]*SourceWikipediaPageviews)[vs[1].(int)]
+	}).(SourceWikipediaPageviewsOutput)
+}
+
+type SourceWikipediaPageviewsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceWikipediaPageviewsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWikipediaPageviews)(nil)).Elem()
+}
+
+func (o SourceWikipediaPageviewsMapOutput) ToSourceWikipediaPageviewsMapOutput() SourceWikipediaPageviewsMapOutput {
+	return o
+}
+
+func (o SourceWikipediaPageviewsMapOutput) ToSourceWikipediaPageviewsMapOutputWithContext(ctx context.Context) SourceWikipediaPageviewsMapOutput {
+	return o
+}
+
+func (o SourceWikipediaPageviewsMapOutput) MapIndex(k pulumi.StringInput) SourceWikipediaPageviewsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceWikipediaPageviews {
+		return vs[0].(map[string]*SourceWikipediaPageviews)[vs[1].(string)]
+	}).(SourceWikipediaPageviewsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceWikipediaPageviewsInput)(nil)).Elem(), &SourceWikipediaPageviews{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWikipediaPageviewsArrayInput)(nil)).Elem(), SourceWikipediaPageviewsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWikipediaPageviewsMapInput)(nil)).Elem(), SourceWikipediaPageviewsMap{})
 	pulumi.RegisterOutputType(SourceWikipediaPageviewsOutput{})
+	pulumi.RegisterOutputType(SourceWikipediaPageviewsArrayOutput{})
+	pulumi.RegisterOutputType(SourceWikipediaPageviewsMapOutput{})
 }

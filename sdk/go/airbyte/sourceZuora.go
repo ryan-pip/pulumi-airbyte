@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZuora Resource
@@ -127,6 +127,56 @@ func (i *SourceZuora) ToSourceZuoraOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZuoraOutput)
 }
 
+// SourceZuoraArrayInput is an input type that accepts SourceZuoraArray and SourceZuoraArrayOutput values.
+// You can construct a concrete instance of `SourceZuoraArrayInput` via:
+//
+//	SourceZuoraArray{ SourceZuoraArgs{...} }
+type SourceZuoraArrayInput interface {
+	pulumi.Input
+
+	ToSourceZuoraArrayOutput() SourceZuoraArrayOutput
+	ToSourceZuoraArrayOutputWithContext(context.Context) SourceZuoraArrayOutput
+}
+
+type SourceZuoraArray []SourceZuoraInput
+
+func (SourceZuoraArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZuora)(nil)).Elem()
+}
+
+func (i SourceZuoraArray) ToSourceZuoraArrayOutput() SourceZuoraArrayOutput {
+	return i.ToSourceZuoraArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZuoraArray) ToSourceZuoraArrayOutputWithContext(ctx context.Context) SourceZuoraArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZuoraArrayOutput)
+}
+
+// SourceZuoraMapInput is an input type that accepts SourceZuoraMap and SourceZuoraMapOutput values.
+// You can construct a concrete instance of `SourceZuoraMapInput` via:
+//
+//	SourceZuoraMap{ "key": SourceZuoraArgs{...} }
+type SourceZuoraMapInput interface {
+	pulumi.Input
+
+	ToSourceZuoraMapOutput() SourceZuoraMapOutput
+	ToSourceZuoraMapOutputWithContext(context.Context) SourceZuoraMapOutput
+}
+
+type SourceZuoraMap map[string]SourceZuoraInput
+
+func (SourceZuoraMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZuora)(nil)).Elem()
+}
+
+func (i SourceZuoraMap) ToSourceZuoraMapOutput() SourceZuoraMapOutput {
+	return i.ToSourceZuoraMapOutputWithContext(context.Background())
+}
+
+func (i SourceZuoraMap) ToSourceZuoraMapOutputWithContext(ctx context.Context) SourceZuoraMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZuoraMapOutput)
+}
+
 type SourceZuoraOutput struct{ *pulumi.OutputState }
 
 func (SourceZuoraOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZuoraOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZuora) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZuoraArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZuoraArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZuora)(nil)).Elem()
+}
+
+func (o SourceZuoraArrayOutput) ToSourceZuoraArrayOutput() SourceZuoraArrayOutput {
+	return o
+}
+
+func (o SourceZuoraArrayOutput) ToSourceZuoraArrayOutputWithContext(ctx context.Context) SourceZuoraArrayOutput {
+	return o
+}
+
+func (o SourceZuoraArrayOutput) Index(i pulumi.IntInput) SourceZuoraOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZuora {
+		return vs[0].([]*SourceZuora)[vs[1].(int)]
+	}).(SourceZuoraOutput)
+}
+
+type SourceZuoraMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZuoraMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZuora)(nil)).Elem()
+}
+
+func (o SourceZuoraMapOutput) ToSourceZuoraMapOutput() SourceZuoraMapOutput {
+	return o
+}
+
+func (o SourceZuoraMapOutput) ToSourceZuoraMapOutputWithContext(ctx context.Context) SourceZuoraMapOutput {
+	return o
+}
+
+func (o SourceZuoraMapOutput) MapIndex(k pulumi.StringInput) SourceZuoraOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZuora {
+		return vs[0].(map[string]*SourceZuora)[vs[1].(string)]
+	}).(SourceZuoraOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZuoraInput)(nil)).Elem(), &SourceZuora{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZuoraArrayInput)(nil)).Elem(), SourceZuoraArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZuoraMapInput)(nil)).Elem(), SourceZuoraMap{})
 	pulumi.RegisterOutputType(SourceZuoraOutput{})
+	pulumi.RegisterOutputType(SourceZuoraArrayOutput{})
+	pulumi.RegisterOutputType(SourceZuoraMapOutput{})
 }

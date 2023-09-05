@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAppfollow Resource
@@ -127,6 +127,56 @@ func (i *SourceAppfollow) ToSourceAppfollowOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAppfollowOutput)
 }
 
+// SourceAppfollowArrayInput is an input type that accepts SourceAppfollowArray and SourceAppfollowArrayOutput values.
+// You can construct a concrete instance of `SourceAppfollowArrayInput` via:
+//
+//	SourceAppfollowArray{ SourceAppfollowArgs{...} }
+type SourceAppfollowArrayInput interface {
+	pulumi.Input
+
+	ToSourceAppfollowArrayOutput() SourceAppfollowArrayOutput
+	ToSourceAppfollowArrayOutputWithContext(context.Context) SourceAppfollowArrayOutput
+}
+
+type SourceAppfollowArray []SourceAppfollowInput
+
+func (SourceAppfollowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAppfollow)(nil)).Elem()
+}
+
+func (i SourceAppfollowArray) ToSourceAppfollowArrayOutput() SourceAppfollowArrayOutput {
+	return i.ToSourceAppfollowArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAppfollowArray) ToSourceAppfollowArrayOutputWithContext(ctx context.Context) SourceAppfollowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAppfollowArrayOutput)
+}
+
+// SourceAppfollowMapInput is an input type that accepts SourceAppfollowMap and SourceAppfollowMapOutput values.
+// You can construct a concrete instance of `SourceAppfollowMapInput` via:
+//
+//	SourceAppfollowMap{ "key": SourceAppfollowArgs{...} }
+type SourceAppfollowMapInput interface {
+	pulumi.Input
+
+	ToSourceAppfollowMapOutput() SourceAppfollowMapOutput
+	ToSourceAppfollowMapOutputWithContext(context.Context) SourceAppfollowMapOutput
+}
+
+type SourceAppfollowMap map[string]SourceAppfollowInput
+
+func (SourceAppfollowMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAppfollow)(nil)).Elem()
+}
+
+func (i SourceAppfollowMap) ToSourceAppfollowMapOutput() SourceAppfollowMapOutput {
+	return i.ToSourceAppfollowMapOutputWithContext(context.Background())
+}
+
+func (i SourceAppfollowMap) ToSourceAppfollowMapOutputWithContext(ctx context.Context) SourceAppfollowMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAppfollowMapOutput)
+}
+
 type SourceAppfollowOutput struct{ *pulumi.OutputState }
 
 func (SourceAppfollowOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAppfollowOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAppfollow) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAppfollowArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAppfollowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAppfollow)(nil)).Elem()
+}
+
+func (o SourceAppfollowArrayOutput) ToSourceAppfollowArrayOutput() SourceAppfollowArrayOutput {
+	return o
+}
+
+func (o SourceAppfollowArrayOutput) ToSourceAppfollowArrayOutputWithContext(ctx context.Context) SourceAppfollowArrayOutput {
+	return o
+}
+
+func (o SourceAppfollowArrayOutput) Index(i pulumi.IntInput) SourceAppfollowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAppfollow {
+		return vs[0].([]*SourceAppfollow)[vs[1].(int)]
+	}).(SourceAppfollowOutput)
+}
+
+type SourceAppfollowMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAppfollowMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAppfollow)(nil)).Elem()
+}
+
+func (o SourceAppfollowMapOutput) ToSourceAppfollowMapOutput() SourceAppfollowMapOutput {
+	return o
+}
+
+func (o SourceAppfollowMapOutput) ToSourceAppfollowMapOutputWithContext(ctx context.Context) SourceAppfollowMapOutput {
+	return o
+}
+
+func (o SourceAppfollowMapOutput) MapIndex(k pulumi.StringInput) SourceAppfollowOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAppfollow {
+		return vs[0].(map[string]*SourceAppfollow)[vs[1].(string)]
+	}).(SourceAppfollowOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAppfollowInput)(nil)).Elem(), &SourceAppfollow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAppfollowArrayInput)(nil)).Elem(), SourceAppfollowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAppfollowMapInput)(nil)).Elem(), SourceAppfollowMap{})
 	pulumi.RegisterOutputType(SourceAppfollowOutput{})
+	pulumi.RegisterOutputType(SourceAppfollowArrayOutput{})
+	pulumi.RegisterOutputType(SourceAppfollowMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceIntercom Resource
@@ -127,6 +127,56 @@ func (i *SourceIntercom) ToSourceIntercomOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceIntercomOutput)
 }
 
+// SourceIntercomArrayInput is an input type that accepts SourceIntercomArray and SourceIntercomArrayOutput values.
+// You can construct a concrete instance of `SourceIntercomArrayInput` via:
+//
+//	SourceIntercomArray{ SourceIntercomArgs{...} }
+type SourceIntercomArrayInput interface {
+	pulumi.Input
+
+	ToSourceIntercomArrayOutput() SourceIntercomArrayOutput
+	ToSourceIntercomArrayOutputWithContext(context.Context) SourceIntercomArrayOutput
+}
+
+type SourceIntercomArray []SourceIntercomInput
+
+func (SourceIntercomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceIntercom)(nil)).Elem()
+}
+
+func (i SourceIntercomArray) ToSourceIntercomArrayOutput() SourceIntercomArrayOutput {
+	return i.ToSourceIntercomArrayOutputWithContext(context.Background())
+}
+
+func (i SourceIntercomArray) ToSourceIntercomArrayOutputWithContext(ctx context.Context) SourceIntercomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceIntercomArrayOutput)
+}
+
+// SourceIntercomMapInput is an input type that accepts SourceIntercomMap and SourceIntercomMapOutput values.
+// You can construct a concrete instance of `SourceIntercomMapInput` via:
+//
+//	SourceIntercomMap{ "key": SourceIntercomArgs{...} }
+type SourceIntercomMapInput interface {
+	pulumi.Input
+
+	ToSourceIntercomMapOutput() SourceIntercomMapOutput
+	ToSourceIntercomMapOutputWithContext(context.Context) SourceIntercomMapOutput
+}
+
+type SourceIntercomMap map[string]SourceIntercomInput
+
+func (SourceIntercomMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceIntercom)(nil)).Elem()
+}
+
+func (i SourceIntercomMap) ToSourceIntercomMapOutput() SourceIntercomMapOutput {
+	return i.ToSourceIntercomMapOutputWithContext(context.Background())
+}
+
+func (i SourceIntercomMap) ToSourceIntercomMapOutputWithContext(ctx context.Context) SourceIntercomMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceIntercomMapOutput)
+}
+
 type SourceIntercomOutput struct{ *pulumi.OutputState }
 
 func (SourceIntercomOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceIntercomOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceIntercom) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceIntercomArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceIntercomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceIntercom)(nil)).Elem()
+}
+
+func (o SourceIntercomArrayOutput) ToSourceIntercomArrayOutput() SourceIntercomArrayOutput {
+	return o
+}
+
+func (o SourceIntercomArrayOutput) ToSourceIntercomArrayOutputWithContext(ctx context.Context) SourceIntercomArrayOutput {
+	return o
+}
+
+func (o SourceIntercomArrayOutput) Index(i pulumi.IntInput) SourceIntercomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceIntercom {
+		return vs[0].([]*SourceIntercom)[vs[1].(int)]
+	}).(SourceIntercomOutput)
+}
+
+type SourceIntercomMapOutput struct{ *pulumi.OutputState }
+
+func (SourceIntercomMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceIntercom)(nil)).Elem()
+}
+
+func (o SourceIntercomMapOutput) ToSourceIntercomMapOutput() SourceIntercomMapOutput {
+	return o
+}
+
+func (o SourceIntercomMapOutput) ToSourceIntercomMapOutputWithContext(ctx context.Context) SourceIntercomMapOutput {
+	return o
+}
+
+func (o SourceIntercomMapOutput) MapIndex(k pulumi.StringInput) SourceIntercomOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceIntercom {
+		return vs[0].(map[string]*SourceIntercom)[vs[1].(string)]
+	}).(SourceIntercomOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceIntercomInput)(nil)).Elem(), &SourceIntercom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceIntercomArrayInput)(nil)).Elem(), SourceIntercomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceIntercomMapInput)(nil)).Elem(), SourceIntercomMap{})
 	pulumi.RegisterOutputType(SourceIntercomOutput{})
+	pulumi.RegisterOutputType(SourceIntercomArrayOutput{})
+	pulumi.RegisterOutputType(SourceIntercomMapOutput{})
 }

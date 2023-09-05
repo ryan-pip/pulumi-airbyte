@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFirebolt Resource
@@ -127,6 +127,56 @@ func (i *SourceFirebolt) ToSourceFireboltOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFireboltOutput)
 }
 
+// SourceFireboltArrayInput is an input type that accepts SourceFireboltArray and SourceFireboltArrayOutput values.
+// You can construct a concrete instance of `SourceFireboltArrayInput` via:
+//
+//	SourceFireboltArray{ SourceFireboltArgs{...} }
+type SourceFireboltArrayInput interface {
+	pulumi.Input
+
+	ToSourceFireboltArrayOutput() SourceFireboltArrayOutput
+	ToSourceFireboltArrayOutputWithContext(context.Context) SourceFireboltArrayOutput
+}
+
+type SourceFireboltArray []SourceFireboltInput
+
+func (SourceFireboltArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFirebolt)(nil)).Elem()
+}
+
+func (i SourceFireboltArray) ToSourceFireboltArrayOutput() SourceFireboltArrayOutput {
+	return i.ToSourceFireboltArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFireboltArray) ToSourceFireboltArrayOutputWithContext(ctx context.Context) SourceFireboltArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFireboltArrayOutput)
+}
+
+// SourceFireboltMapInput is an input type that accepts SourceFireboltMap and SourceFireboltMapOutput values.
+// You can construct a concrete instance of `SourceFireboltMapInput` via:
+//
+//	SourceFireboltMap{ "key": SourceFireboltArgs{...} }
+type SourceFireboltMapInput interface {
+	pulumi.Input
+
+	ToSourceFireboltMapOutput() SourceFireboltMapOutput
+	ToSourceFireboltMapOutputWithContext(context.Context) SourceFireboltMapOutput
+}
+
+type SourceFireboltMap map[string]SourceFireboltInput
+
+func (SourceFireboltMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFirebolt)(nil)).Elem()
+}
+
+func (i SourceFireboltMap) ToSourceFireboltMapOutput() SourceFireboltMapOutput {
+	return i.ToSourceFireboltMapOutputWithContext(context.Background())
+}
+
+func (i SourceFireboltMap) ToSourceFireboltMapOutputWithContext(ctx context.Context) SourceFireboltMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFireboltMapOutput)
+}
+
 type SourceFireboltOutput struct{ *pulumi.OutputState }
 
 func (SourceFireboltOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFireboltOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFirebolt) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFireboltArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFireboltArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFirebolt)(nil)).Elem()
+}
+
+func (o SourceFireboltArrayOutput) ToSourceFireboltArrayOutput() SourceFireboltArrayOutput {
+	return o
+}
+
+func (o SourceFireboltArrayOutput) ToSourceFireboltArrayOutputWithContext(ctx context.Context) SourceFireboltArrayOutput {
+	return o
+}
+
+func (o SourceFireboltArrayOutput) Index(i pulumi.IntInput) SourceFireboltOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFirebolt {
+		return vs[0].([]*SourceFirebolt)[vs[1].(int)]
+	}).(SourceFireboltOutput)
+}
+
+type SourceFireboltMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFireboltMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFirebolt)(nil)).Elem()
+}
+
+func (o SourceFireboltMapOutput) ToSourceFireboltMapOutput() SourceFireboltMapOutput {
+	return o
+}
+
+func (o SourceFireboltMapOutput) ToSourceFireboltMapOutputWithContext(ctx context.Context) SourceFireboltMapOutput {
+	return o
+}
+
+func (o SourceFireboltMapOutput) MapIndex(k pulumi.StringInput) SourceFireboltOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFirebolt {
+		return vs[0].(map[string]*SourceFirebolt)[vs[1].(string)]
+	}).(SourceFireboltOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFireboltInput)(nil)).Elem(), &SourceFirebolt{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFireboltArrayInput)(nil)).Elem(), SourceFireboltArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFireboltMapInput)(nil)).Elem(), SourceFireboltMap{})
 	pulumi.RegisterOutputType(SourceFireboltOutput{})
+	pulumi.RegisterOutputType(SourceFireboltArrayOutput{})
+	pulumi.RegisterOutputType(SourceFireboltMapOutput{})
 }

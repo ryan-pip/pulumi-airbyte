@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceConvex Resource
@@ -127,6 +127,56 @@ func (i *SourceConvex) ToSourceConvexOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceConvexOutput)
 }
 
+// SourceConvexArrayInput is an input type that accepts SourceConvexArray and SourceConvexArrayOutput values.
+// You can construct a concrete instance of `SourceConvexArrayInput` via:
+//
+//	SourceConvexArray{ SourceConvexArgs{...} }
+type SourceConvexArrayInput interface {
+	pulumi.Input
+
+	ToSourceConvexArrayOutput() SourceConvexArrayOutput
+	ToSourceConvexArrayOutputWithContext(context.Context) SourceConvexArrayOutput
+}
+
+type SourceConvexArray []SourceConvexInput
+
+func (SourceConvexArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConvex)(nil)).Elem()
+}
+
+func (i SourceConvexArray) ToSourceConvexArrayOutput() SourceConvexArrayOutput {
+	return i.ToSourceConvexArrayOutputWithContext(context.Background())
+}
+
+func (i SourceConvexArray) ToSourceConvexArrayOutputWithContext(ctx context.Context) SourceConvexArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConvexArrayOutput)
+}
+
+// SourceConvexMapInput is an input type that accepts SourceConvexMap and SourceConvexMapOutput values.
+// You can construct a concrete instance of `SourceConvexMapInput` via:
+//
+//	SourceConvexMap{ "key": SourceConvexArgs{...} }
+type SourceConvexMapInput interface {
+	pulumi.Input
+
+	ToSourceConvexMapOutput() SourceConvexMapOutput
+	ToSourceConvexMapOutputWithContext(context.Context) SourceConvexMapOutput
+}
+
+type SourceConvexMap map[string]SourceConvexInput
+
+func (SourceConvexMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConvex)(nil)).Elem()
+}
+
+func (i SourceConvexMap) ToSourceConvexMapOutput() SourceConvexMapOutput {
+	return i.ToSourceConvexMapOutputWithContext(context.Background())
+}
+
+func (i SourceConvexMap) ToSourceConvexMapOutputWithContext(ctx context.Context) SourceConvexMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConvexMapOutput)
+}
+
 type SourceConvexOutput struct{ *pulumi.OutputState }
 
 func (SourceConvexOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceConvexOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceConvex) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceConvexArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceConvexArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConvex)(nil)).Elem()
+}
+
+func (o SourceConvexArrayOutput) ToSourceConvexArrayOutput() SourceConvexArrayOutput {
+	return o
+}
+
+func (o SourceConvexArrayOutput) ToSourceConvexArrayOutputWithContext(ctx context.Context) SourceConvexArrayOutput {
+	return o
+}
+
+func (o SourceConvexArrayOutput) Index(i pulumi.IntInput) SourceConvexOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceConvex {
+		return vs[0].([]*SourceConvex)[vs[1].(int)]
+	}).(SourceConvexOutput)
+}
+
+type SourceConvexMapOutput struct{ *pulumi.OutputState }
+
+func (SourceConvexMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConvex)(nil)).Elem()
+}
+
+func (o SourceConvexMapOutput) ToSourceConvexMapOutput() SourceConvexMapOutput {
+	return o
+}
+
+func (o SourceConvexMapOutput) ToSourceConvexMapOutputWithContext(ctx context.Context) SourceConvexMapOutput {
+	return o
+}
+
+func (o SourceConvexMapOutput) MapIndex(k pulumi.StringInput) SourceConvexOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceConvex {
+		return vs[0].(map[string]*SourceConvex)[vs[1].(string)]
+	}).(SourceConvexOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceConvexInput)(nil)).Elem(), &SourceConvex{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConvexArrayInput)(nil)).Elem(), SourceConvexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConvexMapInput)(nil)).Elem(), SourceConvexMap{})
 	pulumi.RegisterOutputType(SourceConvexOutput{})
+	pulumi.RegisterOutputType(SourceConvexArrayOutput{})
+	pulumi.RegisterOutputType(SourceConvexMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSecoda Resource
@@ -127,6 +127,56 @@ func (i *SourceSecoda) ToSourceSecodaOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSecodaOutput)
 }
 
+// SourceSecodaArrayInput is an input type that accepts SourceSecodaArray and SourceSecodaArrayOutput values.
+// You can construct a concrete instance of `SourceSecodaArrayInput` via:
+//
+//	SourceSecodaArray{ SourceSecodaArgs{...} }
+type SourceSecodaArrayInput interface {
+	pulumi.Input
+
+	ToSourceSecodaArrayOutput() SourceSecodaArrayOutput
+	ToSourceSecodaArrayOutputWithContext(context.Context) SourceSecodaArrayOutput
+}
+
+type SourceSecodaArray []SourceSecodaInput
+
+func (SourceSecodaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSecoda)(nil)).Elem()
+}
+
+func (i SourceSecodaArray) ToSourceSecodaArrayOutput() SourceSecodaArrayOutput {
+	return i.ToSourceSecodaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSecodaArray) ToSourceSecodaArrayOutputWithContext(ctx context.Context) SourceSecodaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSecodaArrayOutput)
+}
+
+// SourceSecodaMapInput is an input type that accepts SourceSecodaMap and SourceSecodaMapOutput values.
+// You can construct a concrete instance of `SourceSecodaMapInput` via:
+//
+//	SourceSecodaMap{ "key": SourceSecodaArgs{...} }
+type SourceSecodaMapInput interface {
+	pulumi.Input
+
+	ToSourceSecodaMapOutput() SourceSecodaMapOutput
+	ToSourceSecodaMapOutputWithContext(context.Context) SourceSecodaMapOutput
+}
+
+type SourceSecodaMap map[string]SourceSecodaInput
+
+func (SourceSecodaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSecoda)(nil)).Elem()
+}
+
+func (i SourceSecodaMap) ToSourceSecodaMapOutput() SourceSecodaMapOutput {
+	return i.ToSourceSecodaMapOutputWithContext(context.Background())
+}
+
+func (i SourceSecodaMap) ToSourceSecodaMapOutputWithContext(ctx context.Context) SourceSecodaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSecodaMapOutput)
+}
+
 type SourceSecodaOutput struct{ *pulumi.OutputState }
 
 func (SourceSecodaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSecodaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSecoda) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSecodaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSecodaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSecoda)(nil)).Elem()
+}
+
+func (o SourceSecodaArrayOutput) ToSourceSecodaArrayOutput() SourceSecodaArrayOutput {
+	return o
+}
+
+func (o SourceSecodaArrayOutput) ToSourceSecodaArrayOutputWithContext(ctx context.Context) SourceSecodaArrayOutput {
+	return o
+}
+
+func (o SourceSecodaArrayOutput) Index(i pulumi.IntInput) SourceSecodaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSecoda {
+		return vs[0].([]*SourceSecoda)[vs[1].(int)]
+	}).(SourceSecodaOutput)
+}
+
+type SourceSecodaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSecodaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSecoda)(nil)).Elem()
+}
+
+func (o SourceSecodaMapOutput) ToSourceSecodaMapOutput() SourceSecodaMapOutput {
+	return o
+}
+
+func (o SourceSecodaMapOutput) ToSourceSecodaMapOutputWithContext(ctx context.Context) SourceSecodaMapOutput {
+	return o
+}
+
+func (o SourceSecodaMapOutput) MapIndex(k pulumi.StringInput) SourceSecodaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSecoda {
+		return vs[0].(map[string]*SourceSecoda)[vs[1].(string)]
+	}).(SourceSecodaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSecodaInput)(nil)).Elem(), &SourceSecoda{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSecodaArrayInput)(nil)).Elem(), SourceSecodaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSecodaMapInput)(nil)).Elem(), SourceSecodaMap{})
 	pulumi.RegisterOutputType(SourceSecodaOutput{})
+	pulumi.RegisterOutputType(SourceSecodaArrayOutput{})
+	pulumi.RegisterOutputType(SourceSecodaMapOutput{})
 }

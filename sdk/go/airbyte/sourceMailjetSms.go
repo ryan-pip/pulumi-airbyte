@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMailjetSms Resource
@@ -127,6 +127,56 @@ func (i *SourceMailjetSms) ToSourceMailjetSmsOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMailjetSmsOutput)
 }
 
+// SourceMailjetSmsArrayInput is an input type that accepts SourceMailjetSmsArray and SourceMailjetSmsArrayOutput values.
+// You can construct a concrete instance of `SourceMailjetSmsArrayInput` via:
+//
+//	SourceMailjetSmsArray{ SourceMailjetSmsArgs{...} }
+type SourceMailjetSmsArrayInput interface {
+	pulumi.Input
+
+	ToSourceMailjetSmsArrayOutput() SourceMailjetSmsArrayOutput
+	ToSourceMailjetSmsArrayOutputWithContext(context.Context) SourceMailjetSmsArrayOutput
+}
+
+type SourceMailjetSmsArray []SourceMailjetSmsInput
+
+func (SourceMailjetSmsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailjetSms)(nil)).Elem()
+}
+
+func (i SourceMailjetSmsArray) ToSourceMailjetSmsArrayOutput() SourceMailjetSmsArrayOutput {
+	return i.ToSourceMailjetSmsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMailjetSmsArray) ToSourceMailjetSmsArrayOutputWithContext(ctx context.Context) SourceMailjetSmsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailjetSmsArrayOutput)
+}
+
+// SourceMailjetSmsMapInput is an input type that accepts SourceMailjetSmsMap and SourceMailjetSmsMapOutput values.
+// You can construct a concrete instance of `SourceMailjetSmsMapInput` via:
+//
+//	SourceMailjetSmsMap{ "key": SourceMailjetSmsArgs{...} }
+type SourceMailjetSmsMapInput interface {
+	pulumi.Input
+
+	ToSourceMailjetSmsMapOutput() SourceMailjetSmsMapOutput
+	ToSourceMailjetSmsMapOutputWithContext(context.Context) SourceMailjetSmsMapOutput
+}
+
+type SourceMailjetSmsMap map[string]SourceMailjetSmsInput
+
+func (SourceMailjetSmsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailjetSms)(nil)).Elem()
+}
+
+func (i SourceMailjetSmsMap) ToSourceMailjetSmsMapOutput() SourceMailjetSmsMapOutput {
+	return i.ToSourceMailjetSmsMapOutputWithContext(context.Background())
+}
+
+func (i SourceMailjetSmsMap) ToSourceMailjetSmsMapOutputWithContext(ctx context.Context) SourceMailjetSmsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailjetSmsMapOutput)
+}
+
 type SourceMailjetSmsOutput struct{ *pulumi.OutputState }
 
 func (SourceMailjetSmsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMailjetSmsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMailjetSms) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMailjetSmsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMailjetSmsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailjetSms)(nil)).Elem()
+}
+
+func (o SourceMailjetSmsArrayOutput) ToSourceMailjetSmsArrayOutput() SourceMailjetSmsArrayOutput {
+	return o
+}
+
+func (o SourceMailjetSmsArrayOutput) ToSourceMailjetSmsArrayOutputWithContext(ctx context.Context) SourceMailjetSmsArrayOutput {
+	return o
+}
+
+func (o SourceMailjetSmsArrayOutput) Index(i pulumi.IntInput) SourceMailjetSmsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMailjetSms {
+		return vs[0].([]*SourceMailjetSms)[vs[1].(int)]
+	}).(SourceMailjetSmsOutput)
+}
+
+type SourceMailjetSmsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMailjetSmsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailjetSms)(nil)).Elem()
+}
+
+func (o SourceMailjetSmsMapOutput) ToSourceMailjetSmsMapOutput() SourceMailjetSmsMapOutput {
+	return o
+}
+
+func (o SourceMailjetSmsMapOutput) ToSourceMailjetSmsMapOutputWithContext(ctx context.Context) SourceMailjetSmsMapOutput {
+	return o
+}
+
+func (o SourceMailjetSmsMapOutput) MapIndex(k pulumi.StringInput) SourceMailjetSmsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMailjetSms {
+		return vs[0].(map[string]*SourceMailjetSms)[vs[1].(string)]
+	}).(SourceMailjetSmsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailjetSmsInput)(nil)).Elem(), &SourceMailjetSms{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailjetSmsArrayInput)(nil)).Elem(), SourceMailjetSmsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailjetSmsMapInput)(nil)).Elem(), SourceMailjetSmsMap{})
 	pulumi.RegisterOutputType(SourceMailjetSmsOutput{})
+	pulumi.RegisterOutputType(SourceMailjetSmsArrayOutput{})
+	pulumi.RegisterOutputType(SourceMailjetSmsMapOutput{})
 }

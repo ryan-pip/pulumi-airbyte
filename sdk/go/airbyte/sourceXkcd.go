@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceXkcd Resource
@@ -127,6 +127,56 @@ func (i *SourceXkcd) ToSourceXkcdOutputWithContext(ctx context.Context) SourceXk
 	return pulumi.ToOutputWithContext(ctx, i).(SourceXkcdOutput)
 }
 
+// SourceXkcdArrayInput is an input type that accepts SourceXkcdArray and SourceXkcdArrayOutput values.
+// You can construct a concrete instance of `SourceXkcdArrayInput` via:
+//
+//	SourceXkcdArray{ SourceXkcdArgs{...} }
+type SourceXkcdArrayInput interface {
+	pulumi.Input
+
+	ToSourceXkcdArrayOutput() SourceXkcdArrayOutput
+	ToSourceXkcdArrayOutputWithContext(context.Context) SourceXkcdArrayOutput
+}
+
+type SourceXkcdArray []SourceXkcdInput
+
+func (SourceXkcdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceXkcd)(nil)).Elem()
+}
+
+func (i SourceXkcdArray) ToSourceXkcdArrayOutput() SourceXkcdArrayOutput {
+	return i.ToSourceXkcdArrayOutputWithContext(context.Background())
+}
+
+func (i SourceXkcdArray) ToSourceXkcdArrayOutputWithContext(ctx context.Context) SourceXkcdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceXkcdArrayOutput)
+}
+
+// SourceXkcdMapInput is an input type that accepts SourceXkcdMap and SourceXkcdMapOutput values.
+// You can construct a concrete instance of `SourceXkcdMapInput` via:
+//
+//	SourceXkcdMap{ "key": SourceXkcdArgs{...} }
+type SourceXkcdMapInput interface {
+	pulumi.Input
+
+	ToSourceXkcdMapOutput() SourceXkcdMapOutput
+	ToSourceXkcdMapOutputWithContext(context.Context) SourceXkcdMapOutput
+}
+
+type SourceXkcdMap map[string]SourceXkcdInput
+
+func (SourceXkcdMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceXkcd)(nil)).Elem()
+}
+
+func (i SourceXkcdMap) ToSourceXkcdMapOutput() SourceXkcdMapOutput {
+	return i.ToSourceXkcdMapOutputWithContext(context.Background())
+}
+
+func (i SourceXkcdMap) ToSourceXkcdMapOutputWithContext(ctx context.Context) SourceXkcdMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceXkcdMapOutput)
+}
+
 type SourceXkcdOutput struct{ *pulumi.OutputState }
 
 func (SourceXkcdOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceXkcdOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceXkcd) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceXkcdArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceXkcdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceXkcd)(nil)).Elem()
+}
+
+func (o SourceXkcdArrayOutput) ToSourceXkcdArrayOutput() SourceXkcdArrayOutput {
+	return o
+}
+
+func (o SourceXkcdArrayOutput) ToSourceXkcdArrayOutputWithContext(ctx context.Context) SourceXkcdArrayOutput {
+	return o
+}
+
+func (o SourceXkcdArrayOutput) Index(i pulumi.IntInput) SourceXkcdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceXkcd {
+		return vs[0].([]*SourceXkcd)[vs[1].(int)]
+	}).(SourceXkcdOutput)
+}
+
+type SourceXkcdMapOutput struct{ *pulumi.OutputState }
+
+func (SourceXkcdMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceXkcd)(nil)).Elem()
+}
+
+func (o SourceXkcdMapOutput) ToSourceXkcdMapOutput() SourceXkcdMapOutput {
+	return o
+}
+
+func (o SourceXkcdMapOutput) ToSourceXkcdMapOutputWithContext(ctx context.Context) SourceXkcdMapOutput {
+	return o
+}
+
+func (o SourceXkcdMapOutput) MapIndex(k pulumi.StringInput) SourceXkcdOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceXkcd {
+		return vs[0].(map[string]*SourceXkcd)[vs[1].(string)]
+	}).(SourceXkcdOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceXkcdInput)(nil)).Elem(), &SourceXkcd{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceXkcdArrayInput)(nil)).Elem(), SourceXkcdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceXkcdMapInput)(nil)).Elem(), SourceXkcdMap{})
 	pulumi.RegisterOutputType(SourceXkcdOutput{})
+	pulumi.RegisterOutputType(SourceXkcdArrayOutput{})
+	pulumi.RegisterOutputType(SourceXkcdMapOutput{})
 }

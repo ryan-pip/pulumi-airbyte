@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePostgres Resource
@@ -127,6 +127,56 @@ func (i *SourcePostgres) ToSourcePostgresOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePostgresOutput)
 }
 
+// SourcePostgresArrayInput is an input type that accepts SourcePostgresArray and SourcePostgresArrayOutput values.
+// You can construct a concrete instance of `SourcePostgresArrayInput` via:
+//
+//	SourcePostgresArray{ SourcePostgresArgs{...} }
+type SourcePostgresArrayInput interface {
+	pulumi.Input
+
+	ToSourcePostgresArrayOutput() SourcePostgresArrayOutput
+	ToSourcePostgresArrayOutputWithContext(context.Context) SourcePostgresArrayOutput
+}
+
+type SourcePostgresArray []SourcePostgresInput
+
+func (SourcePostgresArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePostgres)(nil)).Elem()
+}
+
+func (i SourcePostgresArray) ToSourcePostgresArrayOutput() SourcePostgresArrayOutput {
+	return i.ToSourcePostgresArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePostgresArray) ToSourcePostgresArrayOutputWithContext(ctx context.Context) SourcePostgresArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePostgresArrayOutput)
+}
+
+// SourcePostgresMapInput is an input type that accepts SourcePostgresMap and SourcePostgresMapOutput values.
+// You can construct a concrete instance of `SourcePostgresMapInput` via:
+//
+//	SourcePostgresMap{ "key": SourcePostgresArgs{...} }
+type SourcePostgresMapInput interface {
+	pulumi.Input
+
+	ToSourcePostgresMapOutput() SourcePostgresMapOutput
+	ToSourcePostgresMapOutputWithContext(context.Context) SourcePostgresMapOutput
+}
+
+type SourcePostgresMap map[string]SourcePostgresInput
+
+func (SourcePostgresMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePostgres)(nil)).Elem()
+}
+
+func (i SourcePostgresMap) ToSourcePostgresMapOutput() SourcePostgresMapOutput {
+	return i.ToSourcePostgresMapOutputWithContext(context.Background())
+}
+
+func (i SourcePostgresMap) ToSourcePostgresMapOutputWithContext(ctx context.Context) SourcePostgresMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePostgresMapOutput)
+}
+
 type SourcePostgresOutput struct{ *pulumi.OutputState }
 
 func (SourcePostgresOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePostgresOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePostgres) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePostgresArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePostgresArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePostgres)(nil)).Elem()
+}
+
+func (o SourcePostgresArrayOutput) ToSourcePostgresArrayOutput() SourcePostgresArrayOutput {
+	return o
+}
+
+func (o SourcePostgresArrayOutput) ToSourcePostgresArrayOutputWithContext(ctx context.Context) SourcePostgresArrayOutput {
+	return o
+}
+
+func (o SourcePostgresArrayOutput) Index(i pulumi.IntInput) SourcePostgresOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePostgres {
+		return vs[0].([]*SourcePostgres)[vs[1].(int)]
+	}).(SourcePostgresOutput)
+}
+
+type SourcePostgresMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePostgresMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePostgres)(nil)).Elem()
+}
+
+func (o SourcePostgresMapOutput) ToSourcePostgresMapOutput() SourcePostgresMapOutput {
+	return o
+}
+
+func (o SourcePostgresMapOutput) ToSourcePostgresMapOutputWithContext(ctx context.Context) SourcePostgresMapOutput {
+	return o
+}
+
+func (o SourcePostgresMapOutput) MapIndex(k pulumi.StringInput) SourcePostgresOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePostgres {
+		return vs[0].(map[string]*SourcePostgres)[vs[1].(string)]
+	}).(SourcePostgresOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostgresInput)(nil)).Elem(), &SourcePostgres{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostgresArrayInput)(nil)).Elem(), SourcePostgresArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostgresMapInput)(nil)).Elem(), SourcePostgresMap{})
 	pulumi.RegisterOutputType(SourcePostgresOutput{})
+	pulumi.RegisterOutputType(SourcePostgresArrayOutput{})
+	pulumi.RegisterOutputType(SourcePostgresMapOutput{})
 }

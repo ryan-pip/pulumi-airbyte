@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationDynamodb Resource
@@ -117,6 +117,56 @@ func (i *DestinationDynamodb) ToDestinationDynamodbOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationDynamodbOutput)
 }
 
+// DestinationDynamodbArrayInput is an input type that accepts DestinationDynamodbArray and DestinationDynamodbArrayOutput values.
+// You can construct a concrete instance of `DestinationDynamodbArrayInput` via:
+//
+//	DestinationDynamodbArray{ DestinationDynamodbArgs{...} }
+type DestinationDynamodbArrayInput interface {
+	pulumi.Input
+
+	ToDestinationDynamodbArrayOutput() DestinationDynamodbArrayOutput
+	ToDestinationDynamodbArrayOutputWithContext(context.Context) DestinationDynamodbArrayOutput
+}
+
+type DestinationDynamodbArray []DestinationDynamodbInput
+
+func (DestinationDynamodbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDynamodb)(nil)).Elem()
+}
+
+func (i DestinationDynamodbArray) ToDestinationDynamodbArrayOutput() DestinationDynamodbArrayOutput {
+	return i.ToDestinationDynamodbArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationDynamodbArray) ToDestinationDynamodbArrayOutputWithContext(ctx context.Context) DestinationDynamodbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDynamodbArrayOutput)
+}
+
+// DestinationDynamodbMapInput is an input type that accepts DestinationDynamodbMap and DestinationDynamodbMapOutput values.
+// You can construct a concrete instance of `DestinationDynamodbMapInput` via:
+//
+//	DestinationDynamodbMap{ "key": DestinationDynamodbArgs{...} }
+type DestinationDynamodbMapInput interface {
+	pulumi.Input
+
+	ToDestinationDynamodbMapOutput() DestinationDynamodbMapOutput
+	ToDestinationDynamodbMapOutputWithContext(context.Context) DestinationDynamodbMapOutput
+}
+
+type DestinationDynamodbMap map[string]DestinationDynamodbInput
+
+func (DestinationDynamodbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDynamodb)(nil)).Elem()
+}
+
+func (i DestinationDynamodbMap) ToDestinationDynamodbMapOutput() DestinationDynamodbMapOutput {
+	return i.ToDestinationDynamodbMapOutputWithContext(context.Background())
+}
+
+func (i DestinationDynamodbMap) ToDestinationDynamodbMapOutputWithContext(ctx context.Context) DestinationDynamodbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDynamodbMapOutput)
+}
+
 type DestinationDynamodbOutput struct{ *pulumi.OutputState }
 
 func (DestinationDynamodbOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationDynamodbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationDynamodb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationDynamodbArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationDynamodbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDynamodb)(nil)).Elem()
+}
+
+func (o DestinationDynamodbArrayOutput) ToDestinationDynamodbArrayOutput() DestinationDynamodbArrayOutput {
+	return o
+}
+
+func (o DestinationDynamodbArrayOutput) ToDestinationDynamodbArrayOutputWithContext(ctx context.Context) DestinationDynamodbArrayOutput {
+	return o
+}
+
+func (o DestinationDynamodbArrayOutput) Index(i pulumi.IntInput) DestinationDynamodbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationDynamodb {
+		return vs[0].([]*DestinationDynamodb)[vs[1].(int)]
+	}).(DestinationDynamodbOutput)
+}
+
+type DestinationDynamodbMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationDynamodbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDynamodb)(nil)).Elem()
+}
+
+func (o DestinationDynamodbMapOutput) ToDestinationDynamodbMapOutput() DestinationDynamodbMapOutput {
+	return o
+}
+
+func (o DestinationDynamodbMapOutput) ToDestinationDynamodbMapOutputWithContext(ctx context.Context) DestinationDynamodbMapOutput {
+	return o
+}
+
+func (o DestinationDynamodbMapOutput) MapIndex(k pulumi.StringInput) DestinationDynamodbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationDynamodb {
+		return vs[0].(map[string]*DestinationDynamodb)[vs[1].(string)]
+	}).(DestinationDynamodbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDynamodbInput)(nil)).Elem(), &DestinationDynamodb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDynamodbArrayInput)(nil)).Elem(), DestinationDynamodbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDynamodbMapInput)(nil)).Elem(), DestinationDynamodbMap{})
 	pulumi.RegisterOutputType(DestinationDynamodbOutput{})
+	pulumi.RegisterOutputType(DestinationDynamodbArrayOutput{})
+	pulumi.RegisterOutputType(DestinationDynamodbMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFacebookMarketing Resource
@@ -127,6 +127,56 @@ func (i *SourceFacebookMarketing) ToSourceFacebookMarketingOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookMarketingOutput)
 }
 
+// SourceFacebookMarketingArrayInput is an input type that accepts SourceFacebookMarketingArray and SourceFacebookMarketingArrayOutput values.
+// You can construct a concrete instance of `SourceFacebookMarketingArrayInput` via:
+//
+//	SourceFacebookMarketingArray{ SourceFacebookMarketingArgs{...} }
+type SourceFacebookMarketingArrayInput interface {
+	pulumi.Input
+
+	ToSourceFacebookMarketingArrayOutput() SourceFacebookMarketingArrayOutput
+	ToSourceFacebookMarketingArrayOutputWithContext(context.Context) SourceFacebookMarketingArrayOutput
+}
+
+type SourceFacebookMarketingArray []SourceFacebookMarketingInput
+
+func (SourceFacebookMarketingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFacebookMarketing)(nil)).Elem()
+}
+
+func (i SourceFacebookMarketingArray) ToSourceFacebookMarketingArrayOutput() SourceFacebookMarketingArrayOutput {
+	return i.ToSourceFacebookMarketingArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFacebookMarketingArray) ToSourceFacebookMarketingArrayOutputWithContext(ctx context.Context) SourceFacebookMarketingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookMarketingArrayOutput)
+}
+
+// SourceFacebookMarketingMapInput is an input type that accepts SourceFacebookMarketingMap and SourceFacebookMarketingMapOutput values.
+// You can construct a concrete instance of `SourceFacebookMarketingMapInput` via:
+//
+//	SourceFacebookMarketingMap{ "key": SourceFacebookMarketingArgs{...} }
+type SourceFacebookMarketingMapInput interface {
+	pulumi.Input
+
+	ToSourceFacebookMarketingMapOutput() SourceFacebookMarketingMapOutput
+	ToSourceFacebookMarketingMapOutputWithContext(context.Context) SourceFacebookMarketingMapOutput
+}
+
+type SourceFacebookMarketingMap map[string]SourceFacebookMarketingInput
+
+func (SourceFacebookMarketingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFacebookMarketing)(nil)).Elem()
+}
+
+func (i SourceFacebookMarketingMap) ToSourceFacebookMarketingMapOutput() SourceFacebookMarketingMapOutput {
+	return i.ToSourceFacebookMarketingMapOutputWithContext(context.Background())
+}
+
+func (i SourceFacebookMarketingMap) ToSourceFacebookMarketingMapOutputWithContext(ctx context.Context) SourceFacebookMarketingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookMarketingMapOutput)
+}
+
 type SourceFacebookMarketingOutput struct{ *pulumi.OutputState }
 
 func (SourceFacebookMarketingOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFacebookMarketingOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFacebookMarketing) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFacebookMarketingArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFacebookMarketingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFacebookMarketing)(nil)).Elem()
+}
+
+func (o SourceFacebookMarketingArrayOutput) ToSourceFacebookMarketingArrayOutput() SourceFacebookMarketingArrayOutput {
+	return o
+}
+
+func (o SourceFacebookMarketingArrayOutput) ToSourceFacebookMarketingArrayOutputWithContext(ctx context.Context) SourceFacebookMarketingArrayOutput {
+	return o
+}
+
+func (o SourceFacebookMarketingArrayOutput) Index(i pulumi.IntInput) SourceFacebookMarketingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFacebookMarketing {
+		return vs[0].([]*SourceFacebookMarketing)[vs[1].(int)]
+	}).(SourceFacebookMarketingOutput)
+}
+
+type SourceFacebookMarketingMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFacebookMarketingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFacebookMarketing)(nil)).Elem()
+}
+
+func (o SourceFacebookMarketingMapOutput) ToSourceFacebookMarketingMapOutput() SourceFacebookMarketingMapOutput {
+	return o
+}
+
+func (o SourceFacebookMarketingMapOutput) ToSourceFacebookMarketingMapOutputWithContext(ctx context.Context) SourceFacebookMarketingMapOutput {
+	return o
+}
+
+func (o SourceFacebookMarketingMapOutput) MapIndex(k pulumi.StringInput) SourceFacebookMarketingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFacebookMarketing {
+		return vs[0].(map[string]*SourceFacebookMarketing)[vs[1].(string)]
+	}).(SourceFacebookMarketingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookMarketingInput)(nil)).Elem(), &SourceFacebookMarketing{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookMarketingArrayInput)(nil)).Elem(), SourceFacebookMarketingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookMarketingMapInput)(nil)).Elem(), SourceFacebookMarketingMap{})
 	pulumi.RegisterOutputType(SourceFacebookMarketingOutput{})
+	pulumi.RegisterOutputType(SourceFacebookMarketingArrayOutput{})
+	pulumi.RegisterOutputType(SourceFacebookMarketingMapOutput{})
 }

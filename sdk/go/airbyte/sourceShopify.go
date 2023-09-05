@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceShopify Resource
@@ -127,6 +127,56 @@ func (i *SourceShopify) ToSourceShopifyOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceShopifyOutput)
 }
 
+// SourceShopifyArrayInput is an input type that accepts SourceShopifyArray and SourceShopifyArrayOutput values.
+// You can construct a concrete instance of `SourceShopifyArrayInput` via:
+//
+//	SourceShopifyArray{ SourceShopifyArgs{...} }
+type SourceShopifyArrayInput interface {
+	pulumi.Input
+
+	ToSourceShopifyArrayOutput() SourceShopifyArrayOutput
+	ToSourceShopifyArrayOutputWithContext(context.Context) SourceShopifyArrayOutput
+}
+
+type SourceShopifyArray []SourceShopifyInput
+
+func (SourceShopifyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceShopify)(nil)).Elem()
+}
+
+func (i SourceShopifyArray) ToSourceShopifyArrayOutput() SourceShopifyArrayOutput {
+	return i.ToSourceShopifyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceShopifyArray) ToSourceShopifyArrayOutputWithContext(ctx context.Context) SourceShopifyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceShopifyArrayOutput)
+}
+
+// SourceShopifyMapInput is an input type that accepts SourceShopifyMap and SourceShopifyMapOutput values.
+// You can construct a concrete instance of `SourceShopifyMapInput` via:
+//
+//	SourceShopifyMap{ "key": SourceShopifyArgs{...} }
+type SourceShopifyMapInput interface {
+	pulumi.Input
+
+	ToSourceShopifyMapOutput() SourceShopifyMapOutput
+	ToSourceShopifyMapOutputWithContext(context.Context) SourceShopifyMapOutput
+}
+
+type SourceShopifyMap map[string]SourceShopifyInput
+
+func (SourceShopifyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceShopify)(nil)).Elem()
+}
+
+func (i SourceShopifyMap) ToSourceShopifyMapOutput() SourceShopifyMapOutput {
+	return i.ToSourceShopifyMapOutputWithContext(context.Background())
+}
+
+func (i SourceShopifyMap) ToSourceShopifyMapOutputWithContext(ctx context.Context) SourceShopifyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceShopifyMapOutput)
+}
+
 type SourceShopifyOutput struct{ *pulumi.OutputState }
 
 func (SourceShopifyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceShopifyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceShopify) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceShopifyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceShopifyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceShopify)(nil)).Elem()
+}
+
+func (o SourceShopifyArrayOutput) ToSourceShopifyArrayOutput() SourceShopifyArrayOutput {
+	return o
+}
+
+func (o SourceShopifyArrayOutput) ToSourceShopifyArrayOutputWithContext(ctx context.Context) SourceShopifyArrayOutput {
+	return o
+}
+
+func (o SourceShopifyArrayOutput) Index(i pulumi.IntInput) SourceShopifyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceShopify {
+		return vs[0].([]*SourceShopify)[vs[1].(int)]
+	}).(SourceShopifyOutput)
+}
+
+type SourceShopifyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceShopifyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceShopify)(nil)).Elem()
+}
+
+func (o SourceShopifyMapOutput) ToSourceShopifyMapOutput() SourceShopifyMapOutput {
+	return o
+}
+
+func (o SourceShopifyMapOutput) ToSourceShopifyMapOutputWithContext(ctx context.Context) SourceShopifyMapOutput {
+	return o
+}
+
+func (o SourceShopifyMapOutput) MapIndex(k pulumi.StringInput) SourceShopifyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceShopify {
+		return vs[0].(map[string]*SourceShopify)[vs[1].(string)]
+	}).(SourceShopifyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceShopifyInput)(nil)).Elem(), &SourceShopify{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceShopifyArrayInput)(nil)).Elem(), SourceShopifyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceShopifyMapInput)(nil)).Elem(), SourceShopifyMap{})
 	pulumi.RegisterOutputType(SourceShopifyOutput{})
+	pulumi.RegisterOutputType(SourceShopifyArrayOutput{})
+	pulumi.RegisterOutputType(SourceShopifyMapOutput{})
 }

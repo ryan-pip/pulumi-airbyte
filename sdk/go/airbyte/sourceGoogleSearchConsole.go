@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleSearchConsole Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleSearchConsole) ToSourceGoogleSearchConsoleOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSearchConsoleOutput)
 }
 
+// SourceGoogleSearchConsoleArrayInput is an input type that accepts SourceGoogleSearchConsoleArray and SourceGoogleSearchConsoleArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleSearchConsoleArrayInput` via:
+//
+//	SourceGoogleSearchConsoleArray{ SourceGoogleSearchConsoleArgs{...} }
+type SourceGoogleSearchConsoleArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleSearchConsoleArrayOutput() SourceGoogleSearchConsoleArrayOutput
+	ToSourceGoogleSearchConsoleArrayOutputWithContext(context.Context) SourceGoogleSearchConsoleArrayOutput
+}
+
+type SourceGoogleSearchConsoleArray []SourceGoogleSearchConsoleInput
+
+func (SourceGoogleSearchConsoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleSearchConsole)(nil)).Elem()
+}
+
+func (i SourceGoogleSearchConsoleArray) ToSourceGoogleSearchConsoleArrayOutput() SourceGoogleSearchConsoleArrayOutput {
+	return i.ToSourceGoogleSearchConsoleArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleSearchConsoleArray) ToSourceGoogleSearchConsoleArrayOutputWithContext(ctx context.Context) SourceGoogleSearchConsoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSearchConsoleArrayOutput)
+}
+
+// SourceGoogleSearchConsoleMapInput is an input type that accepts SourceGoogleSearchConsoleMap and SourceGoogleSearchConsoleMapOutput values.
+// You can construct a concrete instance of `SourceGoogleSearchConsoleMapInput` via:
+//
+//	SourceGoogleSearchConsoleMap{ "key": SourceGoogleSearchConsoleArgs{...} }
+type SourceGoogleSearchConsoleMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleSearchConsoleMapOutput() SourceGoogleSearchConsoleMapOutput
+	ToSourceGoogleSearchConsoleMapOutputWithContext(context.Context) SourceGoogleSearchConsoleMapOutput
+}
+
+type SourceGoogleSearchConsoleMap map[string]SourceGoogleSearchConsoleInput
+
+func (SourceGoogleSearchConsoleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleSearchConsole)(nil)).Elem()
+}
+
+func (i SourceGoogleSearchConsoleMap) ToSourceGoogleSearchConsoleMapOutput() SourceGoogleSearchConsoleMapOutput {
+	return i.ToSourceGoogleSearchConsoleMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleSearchConsoleMap) ToSourceGoogleSearchConsoleMapOutputWithContext(ctx context.Context) SourceGoogleSearchConsoleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSearchConsoleMapOutput)
+}
+
 type SourceGoogleSearchConsoleOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleSearchConsoleOutput) ElementType() reflect.Type {
@@ -168,7 +218,51 @@ func (o SourceGoogleSearchConsoleOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleSearchConsole) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleSearchConsoleArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleSearchConsoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleSearchConsole)(nil)).Elem()
+}
+
+func (o SourceGoogleSearchConsoleArrayOutput) ToSourceGoogleSearchConsoleArrayOutput() SourceGoogleSearchConsoleArrayOutput {
+	return o
+}
+
+func (o SourceGoogleSearchConsoleArrayOutput) ToSourceGoogleSearchConsoleArrayOutputWithContext(ctx context.Context) SourceGoogleSearchConsoleArrayOutput {
+	return o
+}
+
+func (o SourceGoogleSearchConsoleArrayOutput) Index(i pulumi.IntInput) SourceGoogleSearchConsoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleSearchConsole {
+		return vs[0].([]*SourceGoogleSearchConsole)[vs[1].(int)]
+	}).(SourceGoogleSearchConsoleOutput)
+}
+
+type SourceGoogleSearchConsoleMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleSearchConsoleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleSearchConsole)(nil)).Elem()
+}
+
+func (o SourceGoogleSearchConsoleMapOutput) ToSourceGoogleSearchConsoleMapOutput() SourceGoogleSearchConsoleMapOutput {
+	return o
+}
+
+func (o SourceGoogleSearchConsoleMapOutput) ToSourceGoogleSearchConsoleMapOutputWithContext(ctx context.Context) SourceGoogleSearchConsoleMapOutput {
+	return o
+}
+
+func (o SourceGoogleSearchConsoleMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleSearchConsoleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleSearchConsole {
+		return vs[0].(map[string]*SourceGoogleSearchConsole)[vs[1].(string)]
+	}).(SourceGoogleSearchConsoleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSearchConsoleInput)(nil)).Elem(), &SourceGoogleSearchConsole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSearchConsoleArrayInput)(nil)).Elem(), SourceGoogleSearchConsoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSearchConsoleMapInput)(nil)).Elem(), SourceGoogleSearchConsoleMap{})
 	pulumi.RegisterOutputType(SourceGoogleSearchConsoleOutput{})
+	pulumi.RegisterOutputType(SourceGoogleSearchConsoleArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleSearchConsoleMapOutput{})
 }

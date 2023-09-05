@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBambooHr Resource
@@ -127,6 +127,56 @@ func (i *SourceBambooHr) ToSourceBambooHrOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBambooHrOutput)
 }
 
+// SourceBambooHrArrayInput is an input type that accepts SourceBambooHrArray and SourceBambooHrArrayOutput values.
+// You can construct a concrete instance of `SourceBambooHrArrayInput` via:
+//
+//	SourceBambooHrArray{ SourceBambooHrArgs{...} }
+type SourceBambooHrArrayInput interface {
+	pulumi.Input
+
+	ToSourceBambooHrArrayOutput() SourceBambooHrArrayOutput
+	ToSourceBambooHrArrayOutputWithContext(context.Context) SourceBambooHrArrayOutput
+}
+
+type SourceBambooHrArray []SourceBambooHrInput
+
+func (SourceBambooHrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBambooHr)(nil)).Elem()
+}
+
+func (i SourceBambooHrArray) ToSourceBambooHrArrayOutput() SourceBambooHrArrayOutput {
+	return i.ToSourceBambooHrArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBambooHrArray) ToSourceBambooHrArrayOutputWithContext(ctx context.Context) SourceBambooHrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBambooHrArrayOutput)
+}
+
+// SourceBambooHrMapInput is an input type that accepts SourceBambooHrMap and SourceBambooHrMapOutput values.
+// You can construct a concrete instance of `SourceBambooHrMapInput` via:
+//
+//	SourceBambooHrMap{ "key": SourceBambooHrArgs{...} }
+type SourceBambooHrMapInput interface {
+	pulumi.Input
+
+	ToSourceBambooHrMapOutput() SourceBambooHrMapOutput
+	ToSourceBambooHrMapOutputWithContext(context.Context) SourceBambooHrMapOutput
+}
+
+type SourceBambooHrMap map[string]SourceBambooHrInput
+
+func (SourceBambooHrMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBambooHr)(nil)).Elem()
+}
+
+func (i SourceBambooHrMap) ToSourceBambooHrMapOutput() SourceBambooHrMapOutput {
+	return i.ToSourceBambooHrMapOutputWithContext(context.Background())
+}
+
+func (i SourceBambooHrMap) ToSourceBambooHrMapOutputWithContext(ctx context.Context) SourceBambooHrMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBambooHrMapOutput)
+}
+
 type SourceBambooHrOutput struct{ *pulumi.OutputState }
 
 func (SourceBambooHrOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBambooHrOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBambooHr) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBambooHrArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBambooHrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBambooHr)(nil)).Elem()
+}
+
+func (o SourceBambooHrArrayOutput) ToSourceBambooHrArrayOutput() SourceBambooHrArrayOutput {
+	return o
+}
+
+func (o SourceBambooHrArrayOutput) ToSourceBambooHrArrayOutputWithContext(ctx context.Context) SourceBambooHrArrayOutput {
+	return o
+}
+
+func (o SourceBambooHrArrayOutput) Index(i pulumi.IntInput) SourceBambooHrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBambooHr {
+		return vs[0].([]*SourceBambooHr)[vs[1].(int)]
+	}).(SourceBambooHrOutput)
+}
+
+type SourceBambooHrMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBambooHrMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBambooHr)(nil)).Elem()
+}
+
+func (o SourceBambooHrMapOutput) ToSourceBambooHrMapOutput() SourceBambooHrMapOutput {
+	return o
+}
+
+func (o SourceBambooHrMapOutput) ToSourceBambooHrMapOutputWithContext(ctx context.Context) SourceBambooHrMapOutput {
+	return o
+}
+
+func (o SourceBambooHrMapOutput) MapIndex(k pulumi.StringInput) SourceBambooHrOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBambooHr {
+		return vs[0].(map[string]*SourceBambooHr)[vs[1].(string)]
+	}).(SourceBambooHrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBambooHrInput)(nil)).Elem(), &SourceBambooHr{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBambooHrArrayInput)(nil)).Elem(), SourceBambooHrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBambooHrMapInput)(nil)).Elem(), SourceBambooHrMap{})
 	pulumi.RegisterOutputType(SourceBambooHrOutput{})
+	pulumi.RegisterOutputType(SourceBambooHrArrayOutput{})
+	pulumi.RegisterOutputType(SourceBambooHrMapOutput{})
 }

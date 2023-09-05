@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePostmarkapp Resource
@@ -127,6 +127,56 @@ func (i *SourcePostmarkapp) ToSourcePostmarkappOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePostmarkappOutput)
 }
 
+// SourcePostmarkappArrayInput is an input type that accepts SourcePostmarkappArray and SourcePostmarkappArrayOutput values.
+// You can construct a concrete instance of `SourcePostmarkappArrayInput` via:
+//
+//	SourcePostmarkappArray{ SourcePostmarkappArgs{...} }
+type SourcePostmarkappArrayInput interface {
+	pulumi.Input
+
+	ToSourcePostmarkappArrayOutput() SourcePostmarkappArrayOutput
+	ToSourcePostmarkappArrayOutputWithContext(context.Context) SourcePostmarkappArrayOutput
+}
+
+type SourcePostmarkappArray []SourcePostmarkappInput
+
+func (SourcePostmarkappArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePostmarkapp)(nil)).Elem()
+}
+
+func (i SourcePostmarkappArray) ToSourcePostmarkappArrayOutput() SourcePostmarkappArrayOutput {
+	return i.ToSourcePostmarkappArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePostmarkappArray) ToSourcePostmarkappArrayOutputWithContext(ctx context.Context) SourcePostmarkappArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePostmarkappArrayOutput)
+}
+
+// SourcePostmarkappMapInput is an input type that accepts SourcePostmarkappMap and SourcePostmarkappMapOutput values.
+// You can construct a concrete instance of `SourcePostmarkappMapInput` via:
+//
+//	SourcePostmarkappMap{ "key": SourcePostmarkappArgs{...} }
+type SourcePostmarkappMapInput interface {
+	pulumi.Input
+
+	ToSourcePostmarkappMapOutput() SourcePostmarkappMapOutput
+	ToSourcePostmarkappMapOutputWithContext(context.Context) SourcePostmarkappMapOutput
+}
+
+type SourcePostmarkappMap map[string]SourcePostmarkappInput
+
+func (SourcePostmarkappMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePostmarkapp)(nil)).Elem()
+}
+
+func (i SourcePostmarkappMap) ToSourcePostmarkappMapOutput() SourcePostmarkappMapOutput {
+	return i.ToSourcePostmarkappMapOutputWithContext(context.Background())
+}
+
+func (i SourcePostmarkappMap) ToSourcePostmarkappMapOutputWithContext(ctx context.Context) SourcePostmarkappMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePostmarkappMapOutput)
+}
+
 type SourcePostmarkappOutput struct{ *pulumi.OutputState }
 
 func (SourcePostmarkappOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePostmarkappOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePostmarkapp) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePostmarkappArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePostmarkappArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePostmarkapp)(nil)).Elem()
+}
+
+func (o SourcePostmarkappArrayOutput) ToSourcePostmarkappArrayOutput() SourcePostmarkappArrayOutput {
+	return o
+}
+
+func (o SourcePostmarkappArrayOutput) ToSourcePostmarkappArrayOutputWithContext(ctx context.Context) SourcePostmarkappArrayOutput {
+	return o
+}
+
+func (o SourcePostmarkappArrayOutput) Index(i pulumi.IntInput) SourcePostmarkappOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePostmarkapp {
+		return vs[0].([]*SourcePostmarkapp)[vs[1].(int)]
+	}).(SourcePostmarkappOutput)
+}
+
+type SourcePostmarkappMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePostmarkappMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePostmarkapp)(nil)).Elem()
+}
+
+func (o SourcePostmarkappMapOutput) ToSourcePostmarkappMapOutput() SourcePostmarkappMapOutput {
+	return o
+}
+
+func (o SourcePostmarkappMapOutput) ToSourcePostmarkappMapOutputWithContext(ctx context.Context) SourcePostmarkappMapOutput {
+	return o
+}
+
+func (o SourcePostmarkappMapOutput) MapIndex(k pulumi.StringInput) SourcePostmarkappOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePostmarkapp {
+		return vs[0].(map[string]*SourcePostmarkapp)[vs[1].(string)]
+	}).(SourcePostmarkappOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostmarkappInput)(nil)).Elem(), &SourcePostmarkapp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostmarkappArrayInput)(nil)).Elem(), SourcePostmarkappArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePostmarkappMapInput)(nil)).Elem(), SourcePostmarkappMap{})
 	pulumi.RegisterOutputType(SourcePostmarkappOutput{})
+	pulumi.RegisterOutputType(SourcePostmarkappArrayOutput{})
+	pulumi.RegisterOutputType(SourcePostmarkappMapOutput{})
 }

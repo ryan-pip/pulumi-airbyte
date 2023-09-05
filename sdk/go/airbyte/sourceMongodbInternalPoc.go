@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMongodbInternalPoc Resource
@@ -127,6 +127,56 @@ func (i *SourceMongodbInternalPoc) ToSourceMongodbInternalPocOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbInternalPocOutput)
 }
 
+// SourceMongodbInternalPocArrayInput is an input type that accepts SourceMongodbInternalPocArray and SourceMongodbInternalPocArrayOutput values.
+// You can construct a concrete instance of `SourceMongodbInternalPocArrayInput` via:
+//
+//	SourceMongodbInternalPocArray{ SourceMongodbInternalPocArgs{...} }
+type SourceMongodbInternalPocArrayInput interface {
+	pulumi.Input
+
+	ToSourceMongodbInternalPocArrayOutput() SourceMongodbInternalPocArrayOutput
+	ToSourceMongodbInternalPocArrayOutputWithContext(context.Context) SourceMongodbInternalPocArrayOutput
+}
+
+type SourceMongodbInternalPocArray []SourceMongodbInternalPocInput
+
+func (SourceMongodbInternalPocArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMongodbInternalPoc)(nil)).Elem()
+}
+
+func (i SourceMongodbInternalPocArray) ToSourceMongodbInternalPocArrayOutput() SourceMongodbInternalPocArrayOutput {
+	return i.ToSourceMongodbInternalPocArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMongodbInternalPocArray) ToSourceMongodbInternalPocArrayOutputWithContext(ctx context.Context) SourceMongodbInternalPocArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbInternalPocArrayOutput)
+}
+
+// SourceMongodbInternalPocMapInput is an input type that accepts SourceMongodbInternalPocMap and SourceMongodbInternalPocMapOutput values.
+// You can construct a concrete instance of `SourceMongodbInternalPocMapInput` via:
+//
+//	SourceMongodbInternalPocMap{ "key": SourceMongodbInternalPocArgs{...} }
+type SourceMongodbInternalPocMapInput interface {
+	pulumi.Input
+
+	ToSourceMongodbInternalPocMapOutput() SourceMongodbInternalPocMapOutput
+	ToSourceMongodbInternalPocMapOutputWithContext(context.Context) SourceMongodbInternalPocMapOutput
+}
+
+type SourceMongodbInternalPocMap map[string]SourceMongodbInternalPocInput
+
+func (SourceMongodbInternalPocMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMongodbInternalPoc)(nil)).Elem()
+}
+
+func (i SourceMongodbInternalPocMap) ToSourceMongodbInternalPocMapOutput() SourceMongodbInternalPocMapOutput {
+	return i.ToSourceMongodbInternalPocMapOutputWithContext(context.Background())
+}
+
+func (i SourceMongodbInternalPocMap) ToSourceMongodbInternalPocMapOutputWithContext(ctx context.Context) SourceMongodbInternalPocMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbInternalPocMapOutput)
+}
+
 type SourceMongodbInternalPocOutput struct{ *pulumi.OutputState }
 
 func (SourceMongodbInternalPocOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMongodbInternalPocOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMongodbInternalPoc) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMongodbInternalPocArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMongodbInternalPocArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMongodbInternalPoc)(nil)).Elem()
+}
+
+func (o SourceMongodbInternalPocArrayOutput) ToSourceMongodbInternalPocArrayOutput() SourceMongodbInternalPocArrayOutput {
+	return o
+}
+
+func (o SourceMongodbInternalPocArrayOutput) ToSourceMongodbInternalPocArrayOutputWithContext(ctx context.Context) SourceMongodbInternalPocArrayOutput {
+	return o
+}
+
+func (o SourceMongodbInternalPocArrayOutput) Index(i pulumi.IntInput) SourceMongodbInternalPocOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMongodbInternalPoc {
+		return vs[0].([]*SourceMongodbInternalPoc)[vs[1].(int)]
+	}).(SourceMongodbInternalPocOutput)
+}
+
+type SourceMongodbInternalPocMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMongodbInternalPocMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMongodbInternalPoc)(nil)).Elem()
+}
+
+func (o SourceMongodbInternalPocMapOutput) ToSourceMongodbInternalPocMapOutput() SourceMongodbInternalPocMapOutput {
+	return o
+}
+
+func (o SourceMongodbInternalPocMapOutput) ToSourceMongodbInternalPocMapOutputWithContext(ctx context.Context) SourceMongodbInternalPocMapOutput {
+	return o
+}
+
+func (o SourceMongodbInternalPocMapOutput) MapIndex(k pulumi.StringInput) SourceMongodbInternalPocOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMongodbInternalPoc {
+		return vs[0].(map[string]*SourceMongodbInternalPoc)[vs[1].(string)]
+	}).(SourceMongodbInternalPocOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbInternalPocInput)(nil)).Elem(), &SourceMongodbInternalPoc{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbInternalPocArrayInput)(nil)).Elem(), SourceMongodbInternalPocArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbInternalPocMapInput)(nil)).Elem(), SourceMongodbInternalPocMap{})
 	pulumi.RegisterOutputType(SourceMongodbInternalPocOutput{})
+	pulumi.RegisterOutputType(SourceMongodbInternalPocArrayOutput{})
+	pulumi.RegisterOutputType(SourceMongodbInternalPocMapOutput{})
 }

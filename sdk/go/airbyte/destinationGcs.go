@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationGcs Resource
@@ -117,6 +117,56 @@ func (i *DestinationGcs) ToDestinationGcsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationGcsOutput)
 }
 
+// DestinationGcsArrayInput is an input type that accepts DestinationGcsArray and DestinationGcsArrayOutput values.
+// You can construct a concrete instance of `DestinationGcsArrayInput` via:
+//
+//	DestinationGcsArray{ DestinationGcsArgs{...} }
+type DestinationGcsArrayInput interface {
+	pulumi.Input
+
+	ToDestinationGcsArrayOutput() DestinationGcsArrayOutput
+	ToDestinationGcsArrayOutputWithContext(context.Context) DestinationGcsArrayOutput
+}
+
+type DestinationGcsArray []DestinationGcsInput
+
+func (DestinationGcsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationGcs)(nil)).Elem()
+}
+
+func (i DestinationGcsArray) ToDestinationGcsArrayOutput() DestinationGcsArrayOutput {
+	return i.ToDestinationGcsArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationGcsArray) ToDestinationGcsArrayOutputWithContext(ctx context.Context) DestinationGcsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationGcsArrayOutput)
+}
+
+// DestinationGcsMapInput is an input type that accepts DestinationGcsMap and DestinationGcsMapOutput values.
+// You can construct a concrete instance of `DestinationGcsMapInput` via:
+//
+//	DestinationGcsMap{ "key": DestinationGcsArgs{...} }
+type DestinationGcsMapInput interface {
+	pulumi.Input
+
+	ToDestinationGcsMapOutput() DestinationGcsMapOutput
+	ToDestinationGcsMapOutputWithContext(context.Context) DestinationGcsMapOutput
+}
+
+type DestinationGcsMap map[string]DestinationGcsInput
+
+func (DestinationGcsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationGcs)(nil)).Elem()
+}
+
+func (i DestinationGcsMap) ToDestinationGcsMapOutput() DestinationGcsMapOutput {
+	return i.ToDestinationGcsMapOutputWithContext(context.Background())
+}
+
+func (i DestinationGcsMap) ToDestinationGcsMapOutputWithContext(ctx context.Context) DestinationGcsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationGcsMapOutput)
+}
+
 type DestinationGcsOutput struct{ *pulumi.OutputState }
 
 func (DestinationGcsOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationGcsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationGcs) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationGcsArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationGcsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationGcs)(nil)).Elem()
+}
+
+func (o DestinationGcsArrayOutput) ToDestinationGcsArrayOutput() DestinationGcsArrayOutput {
+	return o
+}
+
+func (o DestinationGcsArrayOutput) ToDestinationGcsArrayOutputWithContext(ctx context.Context) DestinationGcsArrayOutput {
+	return o
+}
+
+func (o DestinationGcsArrayOutput) Index(i pulumi.IntInput) DestinationGcsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationGcs {
+		return vs[0].([]*DestinationGcs)[vs[1].(int)]
+	}).(DestinationGcsOutput)
+}
+
+type DestinationGcsMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationGcsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationGcs)(nil)).Elem()
+}
+
+func (o DestinationGcsMapOutput) ToDestinationGcsMapOutput() DestinationGcsMapOutput {
+	return o
+}
+
+func (o DestinationGcsMapOutput) ToDestinationGcsMapOutputWithContext(ctx context.Context) DestinationGcsMapOutput {
+	return o
+}
+
+func (o DestinationGcsMapOutput) MapIndex(k pulumi.StringInput) DestinationGcsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationGcs {
+		return vs[0].(map[string]*DestinationGcs)[vs[1].(string)]
+	}).(DestinationGcsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationGcsInput)(nil)).Elem(), &DestinationGcs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationGcsArrayInput)(nil)).Elem(), DestinationGcsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationGcsMapInput)(nil)).Elem(), DestinationGcsMap{})
 	pulumi.RegisterOutputType(DestinationGcsOutput{})
+	pulumi.RegisterOutputType(DestinationGcsArrayOutput{})
+	pulumi.RegisterOutputType(DestinationGcsMapOutput{})
 }

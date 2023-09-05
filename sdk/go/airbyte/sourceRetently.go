@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRetently Resource
@@ -127,6 +127,56 @@ func (i *SourceRetently) ToSourceRetentlyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRetentlyOutput)
 }
 
+// SourceRetentlyArrayInput is an input type that accepts SourceRetentlyArray and SourceRetentlyArrayOutput values.
+// You can construct a concrete instance of `SourceRetentlyArrayInput` via:
+//
+//	SourceRetentlyArray{ SourceRetentlyArgs{...} }
+type SourceRetentlyArrayInput interface {
+	pulumi.Input
+
+	ToSourceRetentlyArrayOutput() SourceRetentlyArrayOutput
+	ToSourceRetentlyArrayOutputWithContext(context.Context) SourceRetentlyArrayOutput
+}
+
+type SourceRetentlyArray []SourceRetentlyInput
+
+func (SourceRetentlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRetently)(nil)).Elem()
+}
+
+func (i SourceRetentlyArray) ToSourceRetentlyArrayOutput() SourceRetentlyArrayOutput {
+	return i.ToSourceRetentlyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRetentlyArray) ToSourceRetentlyArrayOutputWithContext(ctx context.Context) SourceRetentlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRetentlyArrayOutput)
+}
+
+// SourceRetentlyMapInput is an input type that accepts SourceRetentlyMap and SourceRetentlyMapOutput values.
+// You can construct a concrete instance of `SourceRetentlyMapInput` via:
+//
+//	SourceRetentlyMap{ "key": SourceRetentlyArgs{...} }
+type SourceRetentlyMapInput interface {
+	pulumi.Input
+
+	ToSourceRetentlyMapOutput() SourceRetentlyMapOutput
+	ToSourceRetentlyMapOutputWithContext(context.Context) SourceRetentlyMapOutput
+}
+
+type SourceRetentlyMap map[string]SourceRetentlyInput
+
+func (SourceRetentlyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRetently)(nil)).Elem()
+}
+
+func (i SourceRetentlyMap) ToSourceRetentlyMapOutput() SourceRetentlyMapOutput {
+	return i.ToSourceRetentlyMapOutputWithContext(context.Background())
+}
+
+func (i SourceRetentlyMap) ToSourceRetentlyMapOutputWithContext(ctx context.Context) SourceRetentlyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRetentlyMapOutput)
+}
+
 type SourceRetentlyOutput struct{ *pulumi.OutputState }
 
 func (SourceRetentlyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRetentlyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRetently) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRetentlyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRetentlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRetently)(nil)).Elem()
+}
+
+func (o SourceRetentlyArrayOutput) ToSourceRetentlyArrayOutput() SourceRetentlyArrayOutput {
+	return o
+}
+
+func (o SourceRetentlyArrayOutput) ToSourceRetentlyArrayOutputWithContext(ctx context.Context) SourceRetentlyArrayOutput {
+	return o
+}
+
+func (o SourceRetentlyArrayOutput) Index(i pulumi.IntInput) SourceRetentlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRetently {
+		return vs[0].([]*SourceRetently)[vs[1].(int)]
+	}).(SourceRetentlyOutput)
+}
+
+type SourceRetentlyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRetentlyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRetently)(nil)).Elem()
+}
+
+func (o SourceRetentlyMapOutput) ToSourceRetentlyMapOutput() SourceRetentlyMapOutput {
+	return o
+}
+
+func (o SourceRetentlyMapOutput) ToSourceRetentlyMapOutputWithContext(ctx context.Context) SourceRetentlyMapOutput {
+	return o
+}
+
+func (o SourceRetentlyMapOutput) MapIndex(k pulumi.StringInput) SourceRetentlyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRetently {
+		return vs[0].(map[string]*SourceRetently)[vs[1].(string)]
+	}).(SourceRetentlyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRetentlyInput)(nil)).Elem(), &SourceRetently{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRetentlyArrayInput)(nil)).Elem(), SourceRetentlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRetentlyMapInput)(nil)).Elem(), SourceRetentlyMap{})
 	pulumi.RegisterOutputType(SourceRetentlyOutput{})
+	pulumi.RegisterOutputType(SourceRetentlyArrayOutput{})
+	pulumi.RegisterOutputType(SourceRetentlyMapOutput{})
 }

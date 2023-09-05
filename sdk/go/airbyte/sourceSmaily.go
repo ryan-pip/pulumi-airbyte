@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSmaily Resource
@@ -127,6 +127,56 @@ func (i *SourceSmaily) ToSourceSmailyOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSmailyOutput)
 }
 
+// SourceSmailyArrayInput is an input type that accepts SourceSmailyArray and SourceSmailyArrayOutput values.
+// You can construct a concrete instance of `SourceSmailyArrayInput` via:
+//
+//	SourceSmailyArray{ SourceSmailyArgs{...} }
+type SourceSmailyArrayInput interface {
+	pulumi.Input
+
+	ToSourceSmailyArrayOutput() SourceSmailyArrayOutput
+	ToSourceSmailyArrayOutputWithContext(context.Context) SourceSmailyArrayOutput
+}
+
+type SourceSmailyArray []SourceSmailyInput
+
+func (SourceSmailyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmaily)(nil)).Elem()
+}
+
+func (i SourceSmailyArray) ToSourceSmailyArrayOutput() SourceSmailyArrayOutput {
+	return i.ToSourceSmailyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSmailyArray) ToSourceSmailyArrayOutputWithContext(ctx context.Context) SourceSmailyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmailyArrayOutput)
+}
+
+// SourceSmailyMapInput is an input type that accepts SourceSmailyMap and SourceSmailyMapOutput values.
+// You can construct a concrete instance of `SourceSmailyMapInput` via:
+//
+//	SourceSmailyMap{ "key": SourceSmailyArgs{...} }
+type SourceSmailyMapInput interface {
+	pulumi.Input
+
+	ToSourceSmailyMapOutput() SourceSmailyMapOutput
+	ToSourceSmailyMapOutputWithContext(context.Context) SourceSmailyMapOutput
+}
+
+type SourceSmailyMap map[string]SourceSmailyInput
+
+func (SourceSmailyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmaily)(nil)).Elem()
+}
+
+func (i SourceSmailyMap) ToSourceSmailyMapOutput() SourceSmailyMapOutput {
+	return i.ToSourceSmailyMapOutputWithContext(context.Background())
+}
+
+func (i SourceSmailyMap) ToSourceSmailyMapOutputWithContext(ctx context.Context) SourceSmailyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmailyMapOutput)
+}
+
 type SourceSmailyOutput struct{ *pulumi.OutputState }
 
 func (SourceSmailyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSmailyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSmaily) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSmailyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSmailyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmaily)(nil)).Elem()
+}
+
+func (o SourceSmailyArrayOutput) ToSourceSmailyArrayOutput() SourceSmailyArrayOutput {
+	return o
+}
+
+func (o SourceSmailyArrayOutput) ToSourceSmailyArrayOutputWithContext(ctx context.Context) SourceSmailyArrayOutput {
+	return o
+}
+
+func (o SourceSmailyArrayOutput) Index(i pulumi.IntInput) SourceSmailyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSmaily {
+		return vs[0].([]*SourceSmaily)[vs[1].(int)]
+	}).(SourceSmailyOutput)
+}
+
+type SourceSmailyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSmailyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmaily)(nil)).Elem()
+}
+
+func (o SourceSmailyMapOutput) ToSourceSmailyMapOutput() SourceSmailyMapOutput {
+	return o
+}
+
+func (o SourceSmailyMapOutput) ToSourceSmailyMapOutputWithContext(ctx context.Context) SourceSmailyMapOutput {
+	return o
+}
+
+func (o SourceSmailyMapOutput) MapIndex(k pulumi.StringInput) SourceSmailyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSmaily {
+		return vs[0].(map[string]*SourceSmaily)[vs[1].(string)]
+	}).(SourceSmailyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmailyInput)(nil)).Elem(), &SourceSmaily{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmailyArrayInput)(nil)).Elem(), SourceSmailyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmailyMapInput)(nil)).Elem(), SourceSmailyMap{})
 	pulumi.RegisterOutputType(SourceSmailyOutput{})
+	pulumi.RegisterOutputType(SourceSmailyArrayOutput{})
+	pulumi.RegisterOutputType(SourceSmailyMapOutput{})
 }

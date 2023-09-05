@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationAwsDatalake Resource
@@ -117,6 +117,56 @@ func (i *DestinationAWSDatalake) ToDestinationAWSDatalakeOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationAWSDatalakeOutput)
 }
 
+// DestinationAWSDatalakeArrayInput is an input type that accepts DestinationAWSDatalakeArray and DestinationAWSDatalakeArrayOutput values.
+// You can construct a concrete instance of `DestinationAWSDatalakeArrayInput` via:
+//
+//	DestinationAWSDatalakeArray{ DestinationAWSDatalakeArgs{...} }
+type DestinationAWSDatalakeArrayInput interface {
+	pulumi.Input
+
+	ToDestinationAWSDatalakeArrayOutput() DestinationAWSDatalakeArrayOutput
+	ToDestinationAWSDatalakeArrayOutputWithContext(context.Context) DestinationAWSDatalakeArrayOutput
+}
+
+type DestinationAWSDatalakeArray []DestinationAWSDatalakeInput
+
+func (DestinationAWSDatalakeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationAWSDatalake)(nil)).Elem()
+}
+
+func (i DestinationAWSDatalakeArray) ToDestinationAWSDatalakeArrayOutput() DestinationAWSDatalakeArrayOutput {
+	return i.ToDestinationAWSDatalakeArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationAWSDatalakeArray) ToDestinationAWSDatalakeArrayOutputWithContext(ctx context.Context) DestinationAWSDatalakeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationAWSDatalakeArrayOutput)
+}
+
+// DestinationAWSDatalakeMapInput is an input type that accepts DestinationAWSDatalakeMap and DestinationAWSDatalakeMapOutput values.
+// You can construct a concrete instance of `DestinationAWSDatalakeMapInput` via:
+//
+//	DestinationAWSDatalakeMap{ "key": DestinationAWSDatalakeArgs{...} }
+type DestinationAWSDatalakeMapInput interface {
+	pulumi.Input
+
+	ToDestinationAWSDatalakeMapOutput() DestinationAWSDatalakeMapOutput
+	ToDestinationAWSDatalakeMapOutputWithContext(context.Context) DestinationAWSDatalakeMapOutput
+}
+
+type DestinationAWSDatalakeMap map[string]DestinationAWSDatalakeInput
+
+func (DestinationAWSDatalakeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationAWSDatalake)(nil)).Elem()
+}
+
+func (i DestinationAWSDatalakeMap) ToDestinationAWSDatalakeMapOutput() DestinationAWSDatalakeMapOutput {
+	return i.ToDestinationAWSDatalakeMapOutputWithContext(context.Background())
+}
+
+func (i DestinationAWSDatalakeMap) ToDestinationAWSDatalakeMapOutputWithContext(ctx context.Context) DestinationAWSDatalakeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationAWSDatalakeMapOutput)
+}
+
 type DestinationAWSDatalakeOutput struct{ *pulumi.OutputState }
 
 func (DestinationAWSDatalakeOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationAWSDatalakeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationAWSDatalake) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationAWSDatalakeArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationAWSDatalakeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationAWSDatalake)(nil)).Elem()
+}
+
+func (o DestinationAWSDatalakeArrayOutput) ToDestinationAWSDatalakeArrayOutput() DestinationAWSDatalakeArrayOutput {
+	return o
+}
+
+func (o DestinationAWSDatalakeArrayOutput) ToDestinationAWSDatalakeArrayOutputWithContext(ctx context.Context) DestinationAWSDatalakeArrayOutput {
+	return o
+}
+
+func (o DestinationAWSDatalakeArrayOutput) Index(i pulumi.IntInput) DestinationAWSDatalakeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationAWSDatalake {
+		return vs[0].([]*DestinationAWSDatalake)[vs[1].(int)]
+	}).(DestinationAWSDatalakeOutput)
+}
+
+type DestinationAWSDatalakeMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationAWSDatalakeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationAWSDatalake)(nil)).Elem()
+}
+
+func (o DestinationAWSDatalakeMapOutput) ToDestinationAWSDatalakeMapOutput() DestinationAWSDatalakeMapOutput {
+	return o
+}
+
+func (o DestinationAWSDatalakeMapOutput) ToDestinationAWSDatalakeMapOutputWithContext(ctx context.Context) DestinationAWSDatalakeMapOutput {
+	return o
+}
+
+func (o DestinationAWSDatalakeMapOutput) MapIndex(k pulumi.StringInput) DestinationAWSDatalakeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationAWSDatalake {
+		return vs[0].(map[string]*DestinationAWSDatalake)[vs[1].(string)]
+	}).(DestinationAWSDatalakeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationAWSDatalakeInput)(nil)).Elem(), &DestinationAWSDatalake{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationAWSDatalakeArrayInput)(nil)).Elem(), DestinationAWSDatalakeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationAWSDatalakeMapInput)(nil)).Elem(), DestinationAWSDatalakeMap{})
 	pulumi.RegisterOutputType(DestinationAWSDatalakeOutput{})
+	pulumi.RegisterOutputType(DestinationAWSDatalakeArrayOutput{})
+	pulumi.RegisterOutputType(DestinationAWSDatalakeMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFreshcaller Resource
@@ -127,6 +127,56 @@ func (i *SourceFreshcaller) ToSourceFreshcallerOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshcallerOutput)
 }
 
+// SourceFreshcallerArrayInput is an input type that accepts SourceFreshcallerArray and SourceFreshcallerArrayOutput values.
+// You can construct a concrete instance of `SourceFreshcallerArrayInput` via:
+//
+//	SourceFreshcallerArray{ SourceFreshcallerArgs{...} }
+type SourceFreshcallerArrayInput interface {
+	pulumi.Input
+
+	ToSourceFreshcallerArrayOutput() SourceFreshcallerArrayOutput
+	ToSourceFreshcallerArrayOutputWithContext(context.Context) SourceFreshcallerArrayOutput
+}
+
+type SourceFreshcallerArray []SourceFreshcallerInput
+
+func (SourceFreshcallerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshcaller)(nil)).Elem()
+}
+
+func (i SourceFreshcallerArray) ToSourceFreshcallerArrayOutput() SourceFreshcallerArrayOutput {
+	return i.ToSourceFreshcallerArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFreshcallerArray) ToSourceFreshcallerArrayOutputWithContext(ctx context.Context) SourceFreshcallerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshcallerArrayOutput)
+}
+
+// SourceFreshcallerMapInput is an input type that accepts SourceFreshcallerMap and SourceFreshcallerMapOutput values.
+// You can construct a concrete instance of `SourceFreshcallerMapInput` via:
+//
+//	SourceFreshcallerMap{ "key": SourceFreshcallerArgs{...} }
+type SourceFreshcallerMapInput interface {
+	pulumi.Input
+
+	ToSourceFreshcallerMapOutput() SourceFreshcallerMapOutput
+	ToSourceFreshcallerMapOutputWithContext(context.Context) SourceFreshcallerMapOutput
+}
+
+type SourceFreshcallerMap map[string]SourceFreshcallerInput
+
+func (SourceFreshcallerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshcaller)(nil)).Elem()
+}
+
+func (i SourceFreshcallerMap) ToSourceFreshcallerMapOutput() SourceFreshcallerMapOutput {
+	return i.ToSourceFreshcallerMapOutputWithContext(context.Background())
+}
+
+func (i SourceFreshcallerMap) ToSourceFreshcallerMapOutputWithContext(ctx context.Context) SourceFreshcallerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFreshcallerMapOutput)
+}
+
 type SourceFreshcallerOutput struct{ *pulumi.OutputState }
 
 func (SourceFreshcallerOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFreshcallerOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFreshcaller) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFreshcallerArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshcallerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFreshcaller)(nil)).Elem()
+}
+
+func (o SourceFreshcallerArrayOutput) ToSourceFreshcallerArrayOutput() SourceFreshcallerArrayOutput {
+	return o
+}
+
+func (o SourceFreshcallerArrayOutput) ToSourceFreshcallerArrayOutputWithContext(ctx context.Context) SourceFreshcallerArrayOutput {
+	return o
+}
+
+func (o SourceFreshcallerArrayOutput) Index(i pulumi.IntInput) SourceFreshcallerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFreshcaller {
+		return vs[0].([]*SourceFreshcaller)[vs[1].(int)]
+	}).(SourceFreshcallerOutput)
+}
+
+type SourceFreshcallerMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFreshcallerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFreshcaller)(nil)).Elem()
+}
+
+func (o SourceFreshcallerMapOutput) ToSourceFreshcallerMapOutput() SourceFreshcallerMapOutput {
+	return o
+}
+
+func (o SourceFreshcallerMapOutput) ToSourceFreshcallerMapOutputWithContext(ctx context.Context) SourceFreshcallerMapOutput {
+	return o
+}
+
+func (o SourceFreshcallerMapOutput) MapIndex(k pulumi.StringInput) SourceFreshcallerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFreshcaller {
+		return vs[0].(map[string]*SourceFreshcaller)[vs[1].(string)]
+	}).(SourceFreshcallerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshcallerInput)(nil)).Elem(), &SourceFreshcaller{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshcallerArrayInput)(nil)).Elem(), SourceFreshcallerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFreshcallerMapInput)(nil)).Elem(), SourceFreshcallerMap{})
 	pulumi.RegisterOutputType(SourceFreshcallerOutput{})
+	pulumi.RegisterOutputType(SourceFreshcallerArrayOutput{})
+	pulumi.RegisterOutputType(SourceFreshcallerMapOutput{})
 }

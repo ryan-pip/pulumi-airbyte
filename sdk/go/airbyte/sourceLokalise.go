@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLokalise Resource
@@ -127,6 +127,56 @@ func (i *SourceLokalise) ToSourceLokaliseOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLokaliseOutput)
 }
 
+// SourceLokaliseArrayInput is an input type that accepts SourceLokaliseArray and SourceLokaliseArrayOutput values.
+// You can construct a concrete instance of `SourceLokaliseArrayInput` via:
+//
+//	SourceLokaliseArray{ SourceLokaliseArgs{...} }
+type SourceLokaliseArrayInput interface {
+	pulumi.Input
+
+	ToSourceLokaliseArrayOutput() SourceLokaliseArrayOutput
+	ToSourceLokaliseArrayOutputWithContext(context.Context) SourceLokaliseArrayOutput
+}
+
+type SourceLokaliseArray []SourceLokaliseInput
+
+func (SourceLokaliseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLokalise)(nil)).Elem()
+}
+
+func (i SourceLokaliseArray) ToSourceLokaliseArrayOutput() SourceLokaliseArrayOutput {
+	return i.ToSourceLokaliseArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLokaliseArray) ToSourceLokaliseArrayOutputWithContext(ctx context.Context) SourceLokaliseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLokaliseArrayOutput)
+}
+
+// SourceLokaliseMapInput is an input type that accepts SourceLokaliseMap and SourceLokaliseMapOutput values.
+// You can construct a concrete instance of `SourceLokaliseMapInput` via:
+//
+//	SourceLokaliseMap{ "key": SourceLokaliseArgs{...} }
+type SourceLokaliseMapInput interface {
+	pulumi.Input
+
+	ToSourceLokaliseMapOutput() SourceLokaliseMapOutput
+	ToSourceLokaliseMapOutputWithContext(context.Context) SourceLokaliseMapOutput
+}
+
+type SourceLokaliseMap map[string]SourceLokaliseInput
+
+func (SourceLokaliseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLokalise)(nil)).Elem()
+}
+
+func (i SourceLokaliseMap) ToSourceLokaliseMapOutput() SourceLokaliseMapOutput {
+	return i.ToSourceLokaliseMapOutputWithContext(context.Background())
+}
+
+func (i SourceLokaliseMap) ToSourceLokaliseMapOutputWithContext(ctx context.Context) SourceLokaliseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLokaliseMapOutput)
+}
+
 type SourceLokaliseOutput struct{ *pulumi.OutputState }
 
 func (SourceLokaliseOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLokaliseOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLokalise) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLokaliseArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLokaliseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLokalise)(nil)).Elem()
+}
+
+func (o SourceLokaliseArrayOutput) ToSourceLokaliseArrayOutput() SourceLokaliseArrayOutput {
+	return o
+}
+
+func (o SourceLokaliseArrayOutput) ToSourceLokaliseArrayOutputWithContext(ctx context.Context) SourceLokaliseArrayOutput {
+	return o
+}
+
+func (o SourceLokaliseArrayOutput) Index(i pulumi.IntInput) SourceLokaliseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLokalise {
+		return vs[0].([]*SourceLokalise)[vs[1].(int)]
+	}).(SourceLokaliseOutput)
+}
+
+type SourceLokaliseMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLokaliseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLokalise)(nil)).Elem()
+}
+
+func (o SourceLokaliseMapOutput) ToSourceLokaliseMapOutput() SourceLokaliseMapOutput {
+	return o
+}
+
+func (o SourceLokaliseMapOutput) ToSourceLokaliseMapOutputWithContext(ctx context.Context) SourceLokaliseMapOutput {
+	return o
+}
+
+func (o SourceLokaliseMapOutput) MapIndex(k pulumi.StringInput) SourceLokaliseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLokalise {
+		return vs[0].(map[string]*SourceLokalise)[vs[1].(string)]
+	}).(SourceLokaliseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLokaliseInput)(nil)).Elem(), &SourceLokalise{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLokaliseArrayInput)(nil)).Elem(), SourceLokaliseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLokaliseMapInput)(nil)).Elem(), SourceLokaliseMap{})
 	pulumi.RegisterOutputType(SourceLokaliseOutput{})
+	pulumi.RegisterOutputType(SourceLokaliseArrayOutput{})
+	pulumi.RegisterOutputType(SourceLokaliseMapOutput{})
 }

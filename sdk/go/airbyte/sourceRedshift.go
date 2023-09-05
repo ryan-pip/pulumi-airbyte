@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRedshift Resource
@@ -127,6 +127,56 @@ func (i *SourceRedshift) ToSourceRedshiftOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRedshiftOutput)
 }
 
+// SourceRedshiftArrayInput is an input type that accepts SourceRedshiftArray and SourceRedshiftArrayOutput values.
+// You can construct a concrete instance of `SourceRedshiftArrayInput` via:
+//
+//	SourceRedshiftArray{ SourceRedshiftArgs{...} }
+type SourceRedshiftArrayInput interface {
+	pulumi.Input
+
+	ToSourceRedshiftArrayOutput() SourceRedshiftArrayOutput
+	ToSourceRedshiftArrayOutputWithContext(context.Context) SourceRedshiftArrayOutput
+}
+
+type SourceRedshiftArray []SourceRedshiftInput
+
+func (SourceRedshiftArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRedshift)(nil)).Elem()
+}
+
+func (i SourceRedshiftArray) ToSourceRedshiftArrayOutput() SourceRedshiftArrayOutput {
+	return i.ToSourceRedshiftArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRedshiftArray) ToSourceRedshiftArrayOutputWithContext(ctx context.Context) SourceRedshiftArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRedshiftArrayOutput)
+}
+
+// SourceRedshiftMapInput is an input type that accepts SourceRedshiftMap and SourceRedshiftMapOutput values.
+// You can construct a concrete instance of `SourceRedshiftMapInput` via:
+//
+//	SourceRedshiftMap{ "key": SourceRedshiftArgs{...} }
+type SourceRedshiftMapInput interface {
+	pulumi.Input
+
+	ToSourceRedshiftMapOutput() SourceRedshiftMapOutput
+	ToSourceRedshiftMapOutputWithContext(context.Context) SourceRedshiftMapOutput
+}
+
+type SourceRedshiftMap map[string]SourceRedshiftInput
+
+func (SourceRedshiftMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRedshift)(nil)).Elem()
+}
+
+func (i SourceRedshiftMap) ToSourceRedshiftMapOutput() SourceRedshiftMapOutput {
+	return i.ToSourceRedshiftMapOutputWithContext(context.Background())
+}
+
+func (i SourceRedshiftMap) ToSourceRedshiftMapOutputWithContext(ctx context.Context) SourceRedshiftMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRedshiftMapOutput)
+}
+
 type SourceRedshiftOutput struct{ *pulumi.OutputState }
 
 func (SourceRedshiftOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRedshiftOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRedshift) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRedshiftArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRedshiftArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRedshift)(nil)).Elem()
+}
+
+func (o SourceRedshiftArrayOutput) ToSourceRedshiftArrayOutput() SourceRedshiftArrayOutput {
+	return o
+}
+
+func (o SourceRedshiftArrayOutput) ToSourceRedshiftArrayOutputWithContext(ctx context.Context) SourceRedshiftArrayOutput {
+	return o
+}
+
+func (o SourceRedshiftArrayOutput) Index(i pulumi.IntInput) SourceRedshiftOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRedshift {
+		return vs[0].([]*SourceRedshift)[vs[1].(int)]
+	}).(SourceRedshiftOutput)
+}
+
+type SourceRedshiftMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRedshiftMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRedshift)(nil)).Elem()
+}
+
+func (o SourceRedshiftMapOutput) ToSourceRedshiftMapOutput() SourceRedshiftMapOutput {
+	return o
+}
+
+func (o SourceRedshiftMapOutput) ToSourceRedshiftMapOutputWithContext(ctx context.Context) SourceRedshiftMapOutput {
+	return o
+}
+
+func (o SourceRedshiftMapOutput) MapIndex(k pulumi.StringInput) SourceRedshiftOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRedshift {
+		return vs[0].(map[string]*SourceRedshift)[vs[1].(string)]
+	}).(SourceRedshiftOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRedshiftInput)(nil)).Elem(), &SourceRedshift{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRedshiftArrayInput)(nil)).Elem(), SourceRedshiftArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRedshiftMapInput)(nil)).Elem(), SourceRedshiftMap{})
 	pulumi.RegisterOutputType(SourceRedshiftOutput{})
+	pulumi.RegisterOutputType(SourceRedshiftArrayOutput{})
+	pulumi.RegisterOutputType(SourceRedshiftMapOutput{})
 }

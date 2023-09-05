@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceInstagram Resource
@@ -127,6 +127,56 @@ func (i *SourceInstagram) ToSourceInstagramOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceInstagramOutput)
 }
 
+// SourceInstagramArrayInput is an input type that accepts SourceInstagramArray and SourceInstagramArrayOutput values.
+// You can construct a concrete instance of `SourceInstagramArrayInput` via:
+//
+//	SourceInstagramArray{ SourceInstagramArgs{...} }
+type SourceInstagramArrayInput interface {
+	pulumi.Input
+
+	ToSourceInstagramArrayOutput() SourceInstagramArrayOutput
+	ToSourceInstagramArrayOutputWithContext(context.Context) SourceInstagramArrayOutput
+}
+
+type SourceInstagramArray []SourceInstagramInput
+
+func (SourceInstagramArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInstagram)(nil)).Elem()
+}
+
+func (i SourceInstagramArray) ToSourceInstagramArrayOutput() SourceInstagramArrayOutput {
+	return i.ToSourceInstagramArrayOutputWithContext(context.Background())
+}
+
+func (i SourceInstagramArray) ToSourceInstagramArrayOutputWithContext(ctx context.Context) SourceInstagramArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInstagramArrayOutput)
+}
+
+// SourceInstagramMapInput is an input type that accepts SourceInstagramMap and SourceInstagramMapOutput values.
+// You can construct a concrete instance of `SourceInstagramMapInput` via:
+//
+//	SourceInstagramMap{ "key": SourceInstagramArgs{...} }
+type SourceInstagramMapInput interface {
+	pulumi.Input
+
+	ToSourceInstagramMapOutput() SourceInstagramMapOutput
+	ToSourceInstagramMapOutputWithContext(context.Context) SourceInstagramMapOutput
+}
+
+type SourceInstagramMap map[string]SourceInstagramInput
+
+func (SourceInstagramMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInstagram)(nil)).Elem()
+}
+
+func (i SourceInstagramMap) ToSourceInstagramMapOutput() SourceInstagramMapOutput {
+	return i.ToSourceInstagramMapOutputWithContext(context.Background())
+}
+
+func (i SourceInstagramMap) ToSourceInstagramMapOutputWithContext(ctx context.Context) SourceInstagramMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInstagramMapOutput)
+}
+
 type SourceInstagramOutput struct{ *pulumi.OutputState }
 
 func (SourceInstagramOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceInstagramOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceInstagram) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceInstagramArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceInstagramArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInstagram)(nil)).Elem()
+}
+
+func (o SourceInstagramArrayOutput) ToSourceInstagramArrayOutput() SourceInstagramArrayOutput {
+	return o
+}
+
+func (o SourceInstagramArrayOutput) ToSourceInstagramArrayOutputWithContext(ctx context.Context) SourceInstagramArrayOutput {
+	return o
+}
+
+func (o SourceInstagramArrayOutput) Index(i pulumi.IntInput) SourceInstagramOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceInstagram {
+		return vs[0].([]*SourceInstagram)[vs[1].(int)]
+	}).(SourceInstagramOutput)
+}
+
+type SourceInstagramMapOutput struct{ *pulumi.OutputState }
+
+func (SourceInstagramMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInstagram)(nil)).Elem()
+}
+
+func (o SourceInstagramMapOutput) ToSourceInstagramMapOutput() SourceInstagramMapOutput {
+	return o
+}
+
+func (o SourceInstagramMapOutput) ToSourceInstagramMapOutputWithContext(ctx context.Context) SourceInstagramMapOutput {
+	return o
+}
+
+func (o SourceInstagramMapOutput) MapIndex(k pulumi.StringInput) SourceInstagramOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceInstagram {
+		return vs[0].(map[string]*SourceInstagram)[vs[1].(string)]
+	}).(SourceInstagramOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstagramInput)(nil)).Elem(), &SourceInstagram{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstagramArrayInput)(nil)).Elem(), SourceInstagramArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstagramMapInput)(nil)).Elem(), SourceInstagramMap{})
 	pulumi.RegisterOutputType(SourceInstagramOutput{})
+	pulumi.RegisterOutputType(SourceInstagramArrayOutput{})
+	pulumi.RegisterOutputType(SourceInstagramMapOutput{})
 }

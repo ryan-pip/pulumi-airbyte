@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePendo Resource
@@ -127,6 +127,56 @@ func (i *SourcePendo) ToSourcePendoOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePendoOutput)
 }
 
+// SourcePendoArrayInput is an input type that accepts SourcePendoArray and SourcePendoArrayOutput values.
+// You can construct a concrete instance of `SourcePendoArrayInput` via:
+//
+//	SourcePendoArray{ SourcePendoArgs{...} }
+type SourcePendoArrayInput interface {
+	pulumi.Input
+
+	ToSourcePendoArrayOutput() SourcePendoArrayOutput
+	ToSourcePendoArrayOutputWithContext(context.Context) SourcePendoArrayOutput
+}
+
+type SourcePendoArray []SourcePendoInput
+
+func (SourcePendoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePendo)(nil)).Elem()
+}
+
+func (i SourcePendoArray) ToSourcePendoArrayOutput() SourcePendoArrayOutput {
+	return i.ToSourcePendoArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePendoArray) ToSourcePendoArrayOutputWithContext(ctx context.Context) SourcePendoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePendoArrayOutput)
+}
+
+// SourcePendoMapInput is an input type that accepts SourcePendoMap and SourcePendoMapOutput values.
+// You can construct a concrete instance of `SourcePendoMapInput` via:
+//
+//	SourcePendoMap{ "key": SourcePendoArgs{...} }
+type SourcePendoMapInput interface {
+	pulumi.Input
+
+	ToSourcePendoMapOutput() SourcePendoMapOutput
+	ToSourcePendoMapOutputWithContext(context.Context) SourcePendoMapOutput
+}
+
+type SourcePendoMap map[string]SourcePendoInput
+
+func (SourcePendoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePendo)(nil)).Elem()
+}
+
+func (i SourcePendoMap) ToSourcePendoMapOutput() SourcePendoMapOutput {
+	return i.ToSourcePendoMapOutputWithContext(context.Background())
+}
+
+func (i SourcePendoMap) ToSourcePendoMapOutputWithContext(ctx context.Context) SourcePendoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePendoMapOutput)
+}
+
 type SourcePendoOutput struct{ *pulumi.OutputState }
 
 func (SourcePendoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePendoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePendo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePendoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePendoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePendo)(nil)).Elem()
+}
+
+func (o SourcePendoArrayOutput) ToSourcePendoArrayOutput() SourcePendoArrayOutput {
+	return o
+}
+
+func (o SourcePendoArrayOutput) ToSourcePendoArrayOutputWithContext(ctx context.Context) SourcePendoArrayOutput {
+	return o
+}
+
+func (o SourcePendoArrayOutput) Index(i pulumi.IntInput) SourcePendoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePendo {
+		return vs[0].([]*SourcePendo)[vs[1].(int)]
+	}).(SourcePendoOutput)
+}
+
+type SourcePendoMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePendoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePendo)(nil)).Elem()
+}
+
+func (o SourcePendoMapOutput) ToSourcePendoMapOutput() SourcePendoMapOutput {
+	return o
+}
+
+func (o SourcePendoMapOutput) ToSourcePendoMapOutputWithContext(ctx context.Context) SourcePendoMapOutput {
+	return o
+}
+
+func (o SourcePendoMapOutput) MapIndex(k pulumi.StringInput) SourcePendoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePendo {
+		return vs[0].(map[string]*SourcePendo)[vs[1].(string)]
+	}).(SourcePendoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePendoInput)(nil)).Elem(), &SourcePendo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePendoArrayInput)(nil)).Elem(), SourcePendoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePendoMapInput)(nil)).Elem(), SourcePendoMap{})
 	pulumi.RegisterOutputType(SourcePendoOutput{})
+	pulumi.RegisterOutputType(SourcePendoArrayOutput{})
+	pulumi.RegisterOutputType(SourcePendoMapOutput{})
 }

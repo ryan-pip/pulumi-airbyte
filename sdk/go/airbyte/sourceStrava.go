@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceStrava Resource
@@ -127,6 +127,56 @@ func (i *SourceStrava) ToSourceStravaOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceStravaOutput)
 }
 
+// SourceStravaArrayInput is an input type that accepts SourceStravaArray and SourceStravaArrayOutput values.
+// You can construct a concrete instance of `SourceStravaArrayInput` via:
+//
+//	SourceStravaArray{ SourceStravaArgs{...} }
+type SourceStravaArrayInput interface {
+	pulumi.Input
+
+	ToSourceStravaArrayOutput() SourceStravaArrayOutput
+	ToSourceStravaArrayOutputWithContext(context.Context) SourceStravaArrayOutput
+}
+
+type SourceStravaArray []SourceStravaInput
+
+func (SourceStravaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceStrava)(nil)).Elem()
+}
+
+func (i SourceStravaArray) ToSourceStravaArrayOutput() SourceStravaArrayOutput {
+	return i.ToSourceStravaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceStravaArray) ToSourceStravaArrayOutputWithContext(ctx context.Context) SourceStravaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceStravaArrayOutput)
+}
+
+// SourceStravaMapInput is an input type that accepts SourceStravaMap and SourceStravaMapOutput values.
+// You can construct a concrete instance of `SourceStravaMapInput` via:
+//
+//	SourceStravaMap{ "key": SourceStravaArgs{...} }
+type SourceStravaMapInput interface {
+	pulumi.Input
+
+	ToSourceStravaMapOutput() SourceStravaMapOutput
+	ToSourceStravaMapOutputWithContext(context.Context) SourceStravaMapOutput
+}
+
+type SourceStravaMap map[string]SourceStravaInput
+
+func (SourceStravaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceStrava)(nil)).Elem()
+}
+
+func (i SourceStravaMap) ToSourceStravaMapOutput() SourceStravaMapOutput {
+	return i.ToSourceStravaMapOutputWithContext(context.Background())
+}
+
+func (i SourceStravaMap) ToSourceStravaMapOutputWithContext(ctx context.Context) SourceStravaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceStravaMapOutput)
+}
+
 type SourceStravaOutput struct{ *pulumi.OutputState }
 
 func (SourceStravaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceStravaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceStrava) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceStravaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceStravaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceStrava)(nil)).Elem()
+}
+
+func (o SourceStravaArrayOutput) ToSourceStravaArrayOutput() SourceStravaArrayOutput {
+	return o
+}
+
+func (o SourceStravaArrayOutput) ToSourceStravaArrayOutputWithContext(ctx context.Context) SourceStravaArrayOutput {
+	return o
+}
+
+func (o SourceStravaArrayOutput) Index(i pulumi.IntInput) SourceStravaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceStrava {
+		return vs[0].([]*SourceStrava)[vs[1].(int)]
+	}).(SourceStravaOutput)
+}
+
+type SourceStravaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceStravaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceStrava)(nil)).Elem()
+}
+
+func (o SourceStravaMapOutput) ToSourceStravaMapOutput() SourceStravaMapOutput {
+	return o
+}
+
+func (o SourceStravaMapOutput) ToSourceStravaMapOutputWithContext(ctx context.Context) SourceStravaMapOutput {
+	return o
+}
+
+func (o SourceStravaMapOutput) MapIndex(k pulumi.StringInput) SourceStravaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceStrava {
+		return vs[0].(map[string]*SourceStrava)[vs[1].(string)]
+	}).(SourceStravaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceStravaInput)(nil)).Elem(), &SourceStrava{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceStravaArrayInput)(nil)).Elem(), SourceStravaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceStravaMapInput)(nil)).Elem(), SourceStravaMap{})
 	pulumi.RegisterOutputType(SourceStravaOutput{})
+	pulumi.RegisterOutputType(SourceStravaArrayOutput{})
+	pulumi.RegisterOutputType(SourceStravaMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSpacexAPI Resource
@@ -127,6 +127,56 @@ func (i *SourceSpaceXApi) ToSourceSpaceXApiOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSpaceXApiOutput)
 }
 
+// SourceSpaceXApiArrayInput is an input type that accepts SourceSpaceXApiArray and SourceSpaceXApiArrayOutput values.
+// You can construct a concrete instance of `SourceSpaceXApiArrayInput` via:
+//
+//	SourceSpaceXApiArray{ SourceSpaceXApiArgs{...} }
+type SourceSpaceXApiArrayInput interface {
+	pulumi.Input
+
+	ToSourceSpaceXApiArrayOutput() SourceSpaceXApiArrayOutput
+	ToSourceSpaceXApiArrayOutputWithContext(context.Context) SourceSpaceXApiArrayOutput
+}
+
+type SourceSpaceXApiArray []SourceSpaceXApiInput
+
+func (SourceSpaceXApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSpaceXApi)(nil)).Elem()
+}
+
+func (i SourceSpaceXApiArray) ToSourceSpaceXApiArrayOutput() SourceSpaceXApiArrayOutput {
+	return i.ToSourceSpaceXApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSpaceXApiArray) ToSourceSpaceXApiArrayOutputWithContext(ctx context.Context) SourceSpaceXApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSpaceXApiArrayOutput)
+}
+
+// SourceSpaceXApiMapInput is an input type that accepts SourceSpaceXApiMap and SourceSpaceXApiMapOutput values.
+// You can construct a concrete instance of `SourceSpaceXApiMapInput` via:
+//
+//	SourceSpaceXApiMap{ "key": SourceSpaceXApiArgs{...} }
+type SourceSpaceXApiMapInput interface {
+	pulumi.Input
+
+	ToSourceSpaceXApiMapOutput() SourceSpaceXApiMapOutput
+	ToSourceSpaceXApiMapOutputWithContext(context.Context) SourceSpaceXApiMapOutput
+}
+
+type SourceSpaceXApiMap map[string]SourceSpaceXApiInput
+
+func (SourceSpaceXApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSpaceXApi)(nil)).Elem()
+}
+
+func (i SourceSpaceXApiMap) ToSourceSpaceXApiMapOutput() SourceSpaceXApiMapOutput {
+	return i.ToSourceSpaceXApiMapOutputWithContext(context.Background())
+}
+
+func (i SourceSpaceXApiMap) ToSourceSpaceXApiMapOutputWithContext(ctx context.Context) SourceSpaceXApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSpaceXApiMapOutput)
+}
+
 type SourceSpaceXApiOutput struct{ *pulumi.OutputState }
 
 func (SourceSpaceXApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSpaceXApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSpaceXApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSpaceXApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSpaceXApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSpaceXApi)(nil)).Elem()
+}
+
+func (o SourceSpaceXApiArrayOutput) ToSourceSpaceXApiArrayOutput() SourceSpaceXApiArrayOutput {
+	return o
+}
+
+func (o SourceSpaceXApiArrayOutput) ToSourceSpaceXApiArrayOutputWithContext(ctx context.Context) SourceSpaceXApiArrayOutput {
+	return o
+}
+
+func (o SourceSpaceXApiArrayOutput) Index(i pulumi.IntInput) SourceSpaceXApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSpaceXApi {
+		return vs[0].([]*SourceSpaceXApi)[vs[1].(int)]
+	}).(SourceSpaceXApiOutput)
+}
+
+type SourceSpaceXApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSpaceXApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSpaceXApi)(nil)).Elem()
+}
+
+func (o SourceSpaceXApiMapOutput) ToSourceSpaceXApiMapOutput() SourceSpaceXApiMapOutput {
+	return o
+}
+
+func (o SourceSpaceXApiMapOutput) ToSourceSpaceXApiMapOutputWithContext(ctx context.Context) SourceSpaceXApiMapOutput {
+	return o
+}
+
+func (o SourceSpaceXApiMapOutput) MapIndex(k pulumi.StringInput) SourceSpaceXApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSpaceXApi {
+		return vs[0].(map[string]*SourceSpaceXApi)[vs[1].(string)]
+	}).(SourceSpaceXApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSpaceXApiInput)(nil)).Elem(), &SourceSpaceXApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSpaceXApiArrayInput)(nil)).Elem(), SourceSpaceXApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSpaceXApiMapInput)(nil)).Elem(), SourceSpaceXApiMap{})
 	pulumi.RegisterOutputType(SourceSpaceXApiOutput{})
+	pulumi.RegisterOutputType(SourceSpaceXApiArrayOutput{})
+	pulumi.RegisterOutputType(SourceSpaceXApiMapOutput{})
 }

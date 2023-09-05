@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePocket Resource
@@ -127,6 +127,56 @@ func (i *SourcePocket) ToSourcePocketOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePocketOutput)
 }
 
+// SourcePocketArrayInput is an input type that accepts SourcePocketArray and SourcePocketArrayOutput values.
+// You can construct a concrete instance of `SourcePocketArrayInput` via:
+//
+//	SourcePocketArray{ SourcePocketArgs{...} }
+type SourcePocketArrayInput interface {
+	pulumi.Input
+
+	ToSourcePocketArrayOutput() SourcePocketArrayOutput
+	ToSourcePocketArrayOutputWithContext(context.Context) SourcePocketArrayOutput
+}
+
+type SourcePocketArray []SourcePocketInput
+
+func (SourcePocketArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePocket)(nil)).Elem()
+}
+
+func (i SourcePocketArray) ToSourcePocketArrayOutput() SourcePocketArrayOutput {
+	return i.ToSourcePocketArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePocketArray) ToSourcePocketArrayOutputWithContext(ctx context.Context) SourcePocketArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePocketArrayOutput)
+}
+
+// SourcePocketMapInput is an input type that accepts SourcePocketMap and SourcePocketMapOutput values.
+// You can construct a concrete instance of `SourcePocketMapInput` via:
+//
+//	SourcePocketMap{ "key": SourcePocketArgs{...} }
+type SourcePocketMapInput interface {
+	pulumi.Input
+
+	ToSourcePocketMapOutput() SourcePocketMapOutput
+	ToSourcePocketMapOutputWithContext(context.Context) SourcePocketMapOutput
+}
+
+type SourcePocketMap map[string]SourcePocketInput
+
+func (SourcePocketMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePocket)(nil)).Elem()
+}
+
+func (i SourcePocketMap) ToSourcePocketMapOutput() SourcePocketMapOutput {
+	return i.ToSourcePocketMapOutputWithContext(context.Background())
+}
+
+func (i SourcePocketMap) ToSourcePocketMapOutputWithContext(ctx context.Context) SourcePocketMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePocketMapOutput)
+}
+
 type SourcePocketOutput struct{ *pulumi.OutputState }
 
 func (SourcePocketOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePocketOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePocket) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePocketArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePocketArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePocket)(nil)).Elem()
+}
+
+func (o SourcePocketArrayOutput) ToSourcePocketArrayOutput() SourcePocketArrayOutput {
+	return o
+}
+
+func (o SourcePocketArrayOutput) ToSourcePocketArrayOutputWithContext(ctx context.Context) SourcePocketArrayOutput {
+	return o
+}
+
+func (o SourcePocketArrayOutput) Index(i pulumi.IntInput) SourcePocketOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePocket {
+		return vs[0].([]*SourcePocket)[vs[1].(int)]
+	}).(SourcePocketOutput)
+}
+
+type SourcePocketMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePocketMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePocket)(nil)).Elem()
+}
+
+func (o SourcePocketMapOutput) ToSourcePocketMapOutput() SourcePocketMapOutput {
+	return o
+}
+
+func (o SourcePocketMapOutput) ToSourcePocketMapOutputWithContext(ctx context.Context) SourcePocketMapOutput {
+	return o
+}
+
+func (o SourcePocketMapOutput) MapIndex(k pulumi.StringInput) SourcePocketOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePocket {
+		return vs[0].(map[string]*SourcePocket)[vs[1].(string)]
+	}).(SourcePocketOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePocketInput)(nil)).Elem(), &SourcePocket{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePocketArrayInput)(nil)).Elem(), SourcePocketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePocketMapInput)(nil)).Elem(), SourcePocketMap{})
 	pulumi.RegisterOutputType(SourcePocketOutput{})
+	pulumi.RegisterOutputType(SourcePocketArrayOutput{})
+	pulumi.RegisterOutputType(SourcePocketMapOutput{})
 }

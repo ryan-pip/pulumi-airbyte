@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGetlago DataSource
@@ -24,15 +24,20 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := airbyte.LookupSourceGetlago(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := airbyte.LookupSourceGetlago(ctx, &airbyte.LookupSourceGetlagoArgs{
+//				SecretId: pulumi.StringRef("...my_secret_id..."),
+//				SourceId: "...my_source_id...",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupSourceGetlago(ctx *pulumi.Context, args *LookupSourceGetlagoArgs, opts ...pulumi.InvokeOption) (*LookupSourceGetlagoResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

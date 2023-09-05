@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAlloydb Resource
@@ -127,6 +127,56 @@ func (i *SourceAlloydb) ToSourceAlloydbOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAlloydbOutput)
 }
 
+// SourceAlloydbArrayInput is an input type that accepts SourceAlloydbArray and SourceAlloydbArrayOutput values.
+// You can construct a concrete instance of `SourceAlloydbArrayInput` via:
+//
+//	SourceAlloydbArray{ SourceAlloydbArgs{...} }
+type SourceAlloydbArrayInput interface {
+	pulumi.Input
+
+	ToSourceAlloydbArrayOutput() SourceAlloydbArrayOutput
+	ToSourceAlloydbArrayOutputWithContext(context.Context) SourceAlloydbArrayOutput
+}
+
+type SourceAlloydbArray []SourceAlloydbInput
+
+func (SourceAlloydbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAlloydb)(nil)).Elem()
+}
+
+func (i SourceAlloydbArray) ToSourceAlloydbArrayOutput() SourceAlloydbArrayOutput {
+	return i.ToSourceAlloydbArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAlloydbArray) ToSourceAlloydbArrayOutputWithContext(ctx context.Context) SourceAlloydbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAlloydbArrayOutput)
+}
+
+// SourceAlloydbMapInput is an input type that accepts SourceAlloydbMap and SourceAlloydbMapOutput values.
+// You can construct a concrete instance of `SourceAlloydbMapInput` via:
+//
+//	SourceAlloydbMap{ "key": SourceAlloydbArgs{...} }
+type SourceAlloydbMapInput interface {
+	pulumi.Input
+
+	ToSourceAlloydbMapOutput() SourceAlloydbMapOutput
+	ToSourceAlloydbMapOutputWithContext(context.Context) SourceAlloydbMapOutput
+}
+
+type SourceAlloydbMap map[string]SourceAlloydbInput
+
+func (SourceAlloydbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAlloydb)(nil)).Elem()
+}
+
+func (i SourceAlloydbMap) ToSourceAlloydbMapOutput() SourceAlloydbMapOutput {
+	return i.ToSourceAlloydbMapOutputWithContext(context.Background())
+}
+
+func (i SourceAlloydbMap) ToSourceAlloydbMapOutputWithContext(ctx context.Context) SourceAlloydbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAlloydbMapOutput)
+}
+
 type SourceAlloydbOutput struct{ *pulumi.OutputState }
 
 func (SourceAlloydbOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAlloydbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAlloydb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAlloydbArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAlloydbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAlloydb)(nil)).Elem()
+}
+
+func (o SourceAlloydbArrayOutput) ToSourceAlloydbArrayOutput() SourceAlloydbArrayOutput {
+	return o
+}
+
+func (o SourceAlloydbArrayOutput) ToSourceAlloydbArrayOutputWithContext(ctx context.Context) SourceAlloydbArrayOutput {
+	return o
+}
+
+func (o SourceAlloydbArrayOutput) Index(i pulumi.IntInput) SourceAlloydbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAlloydb {
+		return vs[0].([]*SourceAlloydb)[vs[1].(int)]
+	}).(SourceAlloydbOutput)
+}
+
+type SourceAlloydbMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAlloydbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAlloydb)(nil)).Elem()
+}
+
+func (o SourceAlloydbMapOutput) ToSourceAlloydbMapOutput() SourceAlloydbMapOutput {
+	return o
+}
+
+func (o SourceAlloydbMapOutput) ToSourceAlloydbMapOutputWithContext(ctx context.Context) SourceAlloydbMapOutput {
+	return o
+}
+
+func (o SourceAlloydbMapOutput) MapIndex(k pulumi.StringInput) SourceAlloydbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAlloydb {
+		return vs[0].(map[string]*SourceAlloydb)[vs[1].(string)]
+	}).(SourceAlloydbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAlloydbInput)(nil)).Elem(), &SourceAlloydb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAlloydbArrayInput)(nil)).Elem(), SourceAlloydbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAlloydbMapInput)(nil)).Elem(), SourceAlloydbMap{})
 	pulumi.RegisterOutputType(SourceAlloydbOutput{})
+	pulumi.RegisterOutputType(SourceAlloydbArrayOutput{})
+	pulumi.RegisterOutputType(SourceAlloydbMapOutput{})
 }

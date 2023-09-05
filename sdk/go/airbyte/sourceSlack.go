@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSlack Resource
@@ -127,6 +127,56 @@ func (i *SourceSlack) ToSourceSlackOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSlackOutput)
 }
 
+// SourceSlackArrayInput is an input type that accepts SourceSlackArray and SourceSlackArrayOutput values.
+// You can construct a concrete instance of `SourceSlackArrayInput` via:
+//
+//	SourceSlackArray{ SourceSlackArgs{...} }
+type SourceSlackArrayInput interface {
+	pulumi.Input
+
+	ToSourceSlackArrayOutput() SourceSlackArrayOutput
+	ToSourceSlackArrayOutputWithContext(context.Context) SourceSlackArrayOutput
+}
+
+type SourceSlackArray []SourceSlackInput
+
+func (SourceSlackArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSlack)(nil)).Elem()
+}
+
+func (i SourceSlackArray) ToSourceSlackArrayOutput() SourceSlackArrayOutput {
+	return i.ToSourceSlackArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSlackArray) ToSourceSlackArrayOutputWithContext(ctx context.Context) SourceSlackArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSlackArrayOutput)
+}
+
+// SourceSlackMapInput is an input type that accepts SourceSlackMap and SourceSlackMapOutput values.
+// You can construct a concrete instance of `SourceSlackMapInput` via:
+//
+//	SourceSlackMap{ "key": SourceSlackArgs{...} }
+type SourceSlackMapInput interface {
+	pulumi.Input
+
+	ToSourceSlackMapOutput() SourceSlackMapOutput
+	ToSourceSlackMapOutputWithContext(context.Context) SourceSlackMapOutput
+}
+
+type SourceSlackMap map[string]SourceSlackInput
+
+func (SourceSlackMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSlack)(nil)).Elem()
+}
+
+func (i SourceSlackMap) ToSourceSlackMapOutput() SourceSlackMapOutput {
+	return i.ToSourceSlackMapOutputWithContext(context.Background())
+}
+
+func (i SourceSlackMap) ToSourceSlackMapOutputWithContext(ctx context.Context) SourceSlackMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSlackMapOutput)
+}
+
 type SourceSlackOutput struct{ *pulumi.OutputState }
 
 func (SourceSlackOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSlackOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSlack) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSlackArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSlackArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSlack)(nil)).Elem()
+}
+
+func (o SourceSlackArrayOutput) ToSourceSlackArrayOutput() SourceSlackArrayOutput {
+	return o
+}
+
+func (o SourceSlackArrayOutput) ToSourceSlackArrayOutputWithContext(ctx context.Context) SourceSlackArrayOutput {
+	return o
+}
+
+func (o SourceSlackArrayOutput) Index(i pulumi.IntInput) SourceSlackOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSlack {
+		return vs[0].([]*SourceSlack)[vs[1].(int)]
+	}).(SourceSlackOutput)
+}
+
+type SourceSlackMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSlackMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSlack)(nil)).Elem()
+}
+
+func (o SourceSlackMapOutput) ToSourceSlackMapOutput() SourceSlackMapOutput {
+	return o
+}
+
+func (o SourceSlackMapOutput) ToSourceSlackMapOutputWithContext(ctx context.Context) SourceSlackMapOutput {
+	return o
+}
+
+func (o SourceSlackMapOutput) MapIndex(k pulumi.StringInput) SourceSlackOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSlack {
+		return vs[0].(map[string]*SourceSlack)[vs[1].(string)]
+	}).(SourceSlackOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSlackInput)(nil)).Elem(), &SourceSlack{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSlackArrayInput)(nil)).Elem(), SourceSlackArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSlackMapInput)(nil)).Elem(), SourceSlackMap{})
 	pulumi.RegisterOutputType(SourceSlackOutput{})
+	pulumi.RegisterOutputType(SourceSlackArrayOutput{})
+	pulumi.RegisterOutputType(SourceSlackMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMarketo Resource
@@ -127,6 +127,56 @@ func (i *SourceMarketo) ToSourceMarketoOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMarketoOutput)
 }
 
+// SourceMarketoArrayInput is an input type that accepts SourceMarketoArray and SourceMarketoArrayOutput values.
+// You can construct a concrete instance of `SourceMarketoArrayInput` via:
+//
+//	SourceMarketoArray{ SourceMarketoArgs{...} }
+type SourceMarketoArrayInput interface {
+	pulumi.Input
+
+	ToSourceMarketoArrayOutput() SourceMarketoArrayOutput
+	ToSourceMarketoArrayOutputWithContext(context.Context) SourceMarketoArrayOutput
+}
+
+type SourceMarketoArray []SourceMarketoInput
+
+func (SourceMarketoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMarketo)(nil)).Elem()
+}
+
+func (i SourceMarketoArray) ToSourceMarketoArrayOutput() SourceMarketoArrayOutput {
+	return i.ToSourceMarketoArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMarketoArray) ToSourceMarketoArrayOutputWithContext(ctx context.Context) SourceMarketoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMarketoArrayOutput)
+}
+
+// SourceMarketoMapInput is an input type that accepts SourceMarketoMap and SourceMarketoMapOutput values.
+// You can construct a concrete instance of `SourceMarketoMapInput` via:
+//
+//	SourceMarketoMap{ "key": SourceMarketoArgs{...} }
+type SourceMarketoMapInput interface {
+	pulumi.Input
+
+	ToSourceMarketoMapOutput() SourceMarketoMapOutput
+	ToSourceMarketoMapOutputWithContext(context.Context) SourceMarketoMapOutput
+}
+
+type SourceMarketoMap map[string]SourceMarketoInput
+
+func (SourceMarketoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMarketo)(nil)).Elem()
+}
+
+func (i SourceMarketoMap) ToSourceMarketoMapOutput() SourceMarketoMapOutput {
+	return i.ToSourceMarketoMapOutputWithContext(context.Background())
+}
+
+func (i SourceMarketoMap) ToSourceMarketoMapOutputWithContext(ctx context.Context) SourceMarketoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMarketoMapOutput)
+}
+
 type SourceMarketoOutput struct{ *pulumi.OutputState }
 
 func (SourceMarketoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMarketoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMarketo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMarketoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMarketoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMarketo)(nil)).Elem()
+}
+
+func (o SourceMarketoArrayOutput) ToSourceMarketoArrayOutput() SourceMarketoArrayOutput {
+	return o
+}
+
+func (o SourceMarketoArrayOutput) ToSourceMarketoArrayOutputWithContext(ctx context.Context) SourceMarketoArrayOutput {
+	return o
+}
+
+func (o SourceMarketoArrayOutput) Index(i pulumi.IntInput) SourceMarketoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMarketo {
+		return vs[0].([]*SourceMarketo)[vs[1].(int)]
+	}).(SourceMarketoOutput)
+}
+
+type SourceMarketoMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMarketoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMarketo)(nil)).Elem()
+}
+
+func (o SourceMarketoMapOutput) ToSourceMarketoMapOutput() SourceMarketoMapOutput {
+	return o
+}
+
+func (o SourceMarketoMapOutput) ToSourceMarketoMapOutputWithContext(ctx context.Context) SourceMarketoMapOutput {
+	return o
+}
+
+func (o SourceMarketoMapOutput) MapIndex(k pulumi.StringInput) SourceMarketoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMarketo {
+		return vs[0].(map[string]*SourceMarketo)[vs[1].(string)]
+	}).(SourceMarketoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMarketoInput)(nil)).Elem(), &SourceMarketo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMarketoArrayInput)(nil)).Elem(), SourceMarketoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMarketoMapInput)(nil)).Elem(), SourceMarketoMap{})
 	pulumi.RegisterOutputType(SourceMarketoOutput{})
+	pulumi.RegisterOutputType(SourceMarketoArrayOutput{})
+	pulumi.RegisterOutputType(SourceMarketoMapOutput{})
 }

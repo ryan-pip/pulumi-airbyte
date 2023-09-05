@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePunkAPI Resource
@@ -127,6 +127,56 @@ func (i *SourcePunkApi) ToSourcePunkApiOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePunkApiOutput)
 }
 
+// SourcePunkApiArrayInput is an input type that accepts SourcePunkApiArray and SourcePunkApiArrayOutput values.
+// You can construct a concrete instance of `SourcePunkApiArrayInput` via:
+//
+//	SourcePunkApiArray{ SourcePunkApiArgs{...} }
+type SourcePunkApiArrayInput interface {
+	pulumi.Input
+
+	ToSourcePunkApiArrayOutput() SourcePunkApiArrayOutput
+	ToSourcePunkApiArrayOutputWithContext(context.Context) SourcePunkApiArrayOutput
+}
+
+type SourcePunkApiArray []SourcePunkApiInput
+
+func (SourcePunkApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePunkApi)(nil)).Elem()
+}
+
+func (i SourcePunkApiArray) ToSourcePunkApiArrayOutput() SourcePunkApiArrayOutput {
+	return i.ToSourcePunkApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePunkApiArray) ToSourcePunkApiArrayOutputWithContext(ctx context.Context) SourcePunkApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePunkApiArrayOutput)
+}
+
+// SourcePunkApiMapInput is an input type that accepts SourcePunkApiMap and SourcePunkApiMapOutput values.
+// You can construct a concrete instance of `SourcePunkApiMapInput` via:
+//
+//	SourcePunkApiMap{ "key": SourcePunkApiArgs{...} }
+type SourcePunkApiMapInput interface {
+	pulumi.Input
+
+	ToSourcePunkApiMapOutput() SourcePunkApiMapOutput
+	ToSourcePunkApiMapOutputWithContext(context.Context) SourcePunkApiMapOutput
+}
+
+type SourcePunkApiMap map[string]SourcePunkApiInput
+
+func (SourcePunkApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePunkApi)(nil)).Elem()
+}
+
+func (i SourcePunkApiMap) ToSourcePunkApiMapOutput() SourcePunkApiMapOutput {
+	return i.ToSourcePunkApiMapOutputWithContext(context.Background())
+}
+
+func (i SourcePunkApiMap) ToSourcePunkApiMapOutputWithContext(ctx context.Context) SourcePunkApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePunkApiMapOutput)
+}
+
 type SourcePunkApiOutput struct{ *pulumi.OutputState }
 
 func (SourcePunkApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePunkApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePunkApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePunkApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePunkApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePunkApi)(nil)).Elem()
+}
+
+func (o SourcePunkApiArrayOutput) ToSourcePunkApiArrayOutput() SourcePunkApiArrayOutput {
+	return o
+}
+
+func (o SourcePunkApiArrayOutput) ToSourcePunkApiArrayOutputWithContext(ctx context.Context) SourcePunkApiArrayOutput {
+	return o
+}
+
+func (o SourcePunkApiArrayOutput) Index(i pulumi.IntInput) SourcePunkApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePunkApi {
+		return vs[0].([]*SourcePunkApi)[vs[1].(int)]
+	}).(SourcePunkApiOutput)
+}
+
+type SourcePunkApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePunkApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePunkApi)(nil)).Elem()
+}
+
+func (o SourcePunkApiMapOutput) ToSourcePunkApiMapOutput() SourcePunkApiMapOutput {
+	return o
+}
+
+func (o SourcePunkApiMapOutput) ToSourcePunkApiMapOutputWithContext(ctx context.Context) SourcePunkApiMapOutput {
+	return o
+}
+
+func (o SourcePunkApiMapOutput) MapIndex(k pulumi.StringInput) SourcePunkApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePunkApi {
+		return vs[0].(map[string]*SourcePunkApi)[vs[1].(string)]
+	}).(SourcePunkApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePunkApiInput)(nil)).Elem(), &SourcePunkApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePunkApiArrayInput)(nil)).Elem(), SourcePunkApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePunkApiMapInput)(nil)).Elem(), SourcePunkApiMap{})
 	pulumi.RegisterOutputType(SourcePunkApiOutput{})
+	pulumi.RegisterOutputType(SourcePunkApiArrayOutput{})
+	pulumi.RegisterOutputType(SourcePunkApiMapOutput{})
 }

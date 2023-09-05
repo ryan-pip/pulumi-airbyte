@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleWorkspaceAdminReports Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleWorkspaceAdminReports) ToSourceGoogleWorkspaceAdminReportsO
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWorkspaceAdminReportsOutput)
 }
 
+// SourceGoogleWorkspaceAdminReportsArrayInput is an input type that accepts SourceGoogleWorkspaceAdminReportsArray and SourceGoogleWorkspaceAdminReportsArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleWorkspaceAdminReportsArrayInput` via:
+//
+//	SourceGoogleWorkspaceAdminReportsArray{ SourceGoogleWorkspaceAdminReportsArgs{...} }
+type SourceGoogleWorkspaceAdminReportsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleWorkspaceAdminReportsArrayOutput() SourceGoogleWorkspaceAdminReportsArrayOutput
+	ToSourceGoogleWorkspaceAdminReportsArrayOutputWithContext(context.Context) SourceGoogleWorkspaceAdminReportsArrayOutput
+}
+
+type SourceGoogleWorkspaceAdminReportsArray []SourceGoogleWorkspaceAdminReportsInput
+
+func (SourceGoogleWorkspaceAdminReportsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleWorkspaceAdminReports)(nil)).Elem()
+}
+
+func (i SourceGoogleWorkspaceAdminReportsArray) ToSourceGoogleWorkspaceAdminReportsArrayOutput() SourceGoogleWorkspaceAdminReportsArrayOutput {
+	return i.ToSourceGoogleWorkspaceAdminReportsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleWorkspaceAdminReportsArray) ToSourceGoogleWorkspaceAdminReportsArrayOutputWithContext(ctx context.Context) SourceGoogleWorkspaceAdminReportsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWorkspaceAdminReportsArrayOutput)
+}
+
+// SourceGoogleWorkspaceAdminReportsMapInput is an input type that accepts SourceGoogleWorkspaceAdminReportsMap and SourceGoogleWorkspaceAdminReportsMapOutput values.
+// You can construct a concrete instance of `SourceGoogleWorkspaceAdminReportsMapInput` via:
+//
+//	SourceGoogleWorkspaceAdminReportsMap{ "key": SourceGoogleWorkspaceAdminReportsArgs{...} }
+type SourceGoogleWorkspaceAdminReportsMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleWorkspaceAdminReportsMapOutput() SourceGoogleWorkspaceAdminReportsMapOutput
+	ToSourceGoogleWorkspaceAdminReportsMapOutputWithContext(context.Context) SourceGoogleWorkspaceAdminReportsMapOutput
+}
+
+type SourceGoogleWorkspaceAdminReportsMap map[string]SourceGoogleWorkspaceAdminReportsInput
+
+func (SourceGoogleWorkspaceAdminReportsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleWorkspaceAdminReports)(nil)).Elem()
+}
+
+func (i SourceGoogleWorkspaceAdminReportsMap) ToSourceGoogleWorkspaceAdminReportsMapOutput() SourceGoogleWorkspaceAdminReportsMapOutput {
+	return i.ToSourceGoogleWorkspaceAdminReportsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleWorkspaceAdminReportsMap) ToSourceGoogleWorkspaceAdminReportsMapOutputWithContext(ctx context.Context) SourceGoogleWorkspaceAdminReportsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleWorkspaceAdminReportsMapOutput)
+}
+
 type SourceGoogleWorkspaceAdminReportsOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleWorkspaceAdminReportsOutput) ElementType() reflect.Type {
@@ -168,7 +218,51 @@ func (o SourceGoogleWorkspaceAdminReportsOutput) WorkspaceId() pulumi.StringOutp
 	return o.ApplyT(func(v *SourceGoogleWorkspaceAdminReports) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleWorkspaceAdminReportsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleWorkspaceAdminReportsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleWorkspaceAdminReports)(nil)).Elem()
+}
+
+func (o SourceGoogleWorkspaceAdminReportsArrayOutput) ToSourceGoogleWorkspaceAdminReportsArrayOutput() SourceGoogleWorkspaceAdminReportsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleWorkspaceAdminReportsArrayOutput) ToSourceGoogleWorkspaceAdminReportsArrayOutputWithContext(ctx context.Context) SourceGoogleWorkspaceAdminReportsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleWorkspaceAdminReportsArrayOutput) Index(i pulumi.IntInput) SourceGoogleWorkspaceAdminReportsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleWorkspaceAdminReports {
+		return vs[0].([]*SourceGoogleWorkspaceAdminReports)[vs[1].(int)]
+	}).(SourceGoogleWorkspaceAdminReportsOutput)
+}
+
+type SourceGoogleWorkspaceAdminReportsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleWorkspaceAdminReportsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleWorkspaceAdminReports)(nil)).Elem()
+}
+
+func (o SourceGoogleWorkspaceAdminReportsMapOutput) ToSourceGoogleWorkspaceAdminReportsMapOutput() SourceGoogleWorkspaceAdminReportsMapOutput {
+	return o
+}
+
+func (o SourceGoogleWorkspaceAdminReportsMapOutput) ToSourceGoogleWorkspaceAdminReportsMapOutputWithContext(ctx context.Context) SourceGoogleWorkspaceAdminReportsMapOutput {
+	return o
+}
+
+func (o SourceGoogleWorkspaceAdminReportsMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleWorkspaceAdminReportsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleWorkspaceAdminReports {
+		return vs[0].(map[string]*SourceGoogleWorkspaceAdminReports)[vs[1].(string)]
+	}).(SourceGoogleWorkspaceAdminReportsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWorkspaceAdminReportsInput)(nil)).Elem(), &SourceGoogleWorkspaceAdminReports{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWorkspaceAdminReportsArrayInput)(nil)).Elem(), SourceGoogleWorkspaceAdminReportsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleWorkspaceAdminReportsMapInput)(nil)).Elem(), SourceGoogleWorkspaceAdminReportsMap{})
 	pulumi.RegisterOutputType(SourceGoogleWorkspaceAdminReportsOutput{})
+	pulumi.RegisterOutputType(SourceGoogleWorkspaceAdminReportsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleWorkspaceAdminReportsMapOutput{})
 }

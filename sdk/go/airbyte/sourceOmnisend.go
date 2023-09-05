@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOmnisend Resource
@@ -127,6 +127,56 @@ func (i *SourceOmnisend) ToSourceOmnisendOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOmnisendOutput)
 }
 
+// SourceOmnisendArrayInput is an input type that accepts SourceOmnisendArray and SourceOmnisendArrayOutput values.
+// You can construct a concrete instance of `SourceOmnisendArrayInput` via:
+//
+//	SourceOmnisendArray{ SourceOmnisendArgs{...} }
+type SourceOmnisendArrayInput interface {
+	pulumi.Input
+
+	ToSourceOmnisendArrayOutput() SourceOmnisendArrayOutput
+	ToSourceOmnisendArrayOutputWithContext(context.Context) SourceOmnisendArrayOutput
+}
+
+type SourceOmnisendArray []SourceOmnisendInput
+
+func (SourceOmnisendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOmnisend)(nil)).Elem()
+}
+
+func (i SourceOmnisendArray) ToSourceOmnisendArrayOutput() SourceOmnisendArrayOutput {
+	return i.ToSourceOmnisendArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOmnisendArray) ToSourceOmnisendArrayOutputWithContext(ctx context.Context) SourceOmnisendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOmnisendArrayOutput)
+}
+
+// SourceOmnisendMapInput is an input type that accepts SourceOmnisendMap and SourceOmnisendMapOutput values.
+// You can construct a concrete instance of `SourceOmnisendMapInput` via:
+//
+//	SourceOmnisendMap{ "key": SourceOmnisendArgs{...} }
+type SourceOmnisendMapInput interface {
+	pulumi.Input
+
+	ToSourceOmnisendMapOutput() SourceOmnisendMapOutput
+	ToSourceOmnisendMapOutputWithContext(context.Context) SourceOmnisendMapOutput
+}
+
+type SourceOmnisendMap map[string]SourceOmnisendInput
+
+func (SourceOmnisendMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOmnisend)(nil)).Elem()
+}
+
+func (i SourceOmnisendMap) ToSourceOmnisendMapOutput() SourceOmnisendMapOutput {
+	return i.ToSourceOmnisendMapOutputWithContext(context.Background())
+}
+
+func (i SourceOmnisendMap) ToSourceOmnisendMapOutputWithContext(ctx context.Context) SourceOmnisendMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOmnisendMapOutput)
+}
+
 type SourceOmnisendOutput struct{ *pulumi.OutputState }
 
 func (SourceOmnisendOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOmnisendOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOmnisend) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOmnisendArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOmnisendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOmnisend)(nil)).Elem()
+}
+
+func (o SourceOmnisendArrayOutput) ToSourceOmnisendArrayOutput() SourceOmnisendArrayOutput {
+	return o
+}
+
+func (o SourceOmnisendArrayOutput) ToSourceOmnisendArrayOutputWithContext(ctx context.Context) SourceOmnisendArrayOutput {
+	return o
+}
+
+func (o SourceOmnisendArrayOutput) Index(i pulumi.IntInput) SourceOmnisendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOmnisend {
+		return vs[0].([]*SourceOmnisend)[vs[1].(int)]
+	}).(SourceOmnisendOutput)
+}
+
+type SourceOmnisendMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOmnisendMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOmnisend)(nil)).Elem()
+}
+
+func (o SourceOmnisendMapOutput) ToSourceOmnisendMapOutput() SourceOmnisendMapOutput {
+	return o
+}
+
+func (o SourceOmnisendMapOutput) ToSourceOmnisendMapOutputWithContext(ctx context.Context) SourceOmnisendMapOutput {
+	return o
+}
+
+func (o SourceOmnisendMapOutput) MapIndex(k pulumi.StringInput) SourceOmnisendOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOmnisend {
+		return vs[0].(map[string]*SourceOmnisend)[vs[1].(string)]
+	}).(SourceOmnisendOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOmnisendInput)(nil)).Elem(), &SourceOmnisend{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOmnisendArrayInput)(nil)).Elem(), SourceOmnisendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOmnisendMapInput)(nil)).Elem(), SourceOmnisendMap{})
 	pulumi.RegisterOutputType(SourceOmnisendOutput{})
+	pulumi.RegisterOutputType(SourceOmnisendArrayOutput{})
+	pulumi.RegisterOutputType(SourceOmnisendMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePolygonStockAPI Resource
@@ -127,6 +127,56 @@ func (i *SourcePolygonStockApi) ToSourcePolygonStockApiOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePolygonStockApiOutput)
 }
 
+// SourcePolygonStockApiArrayInput is an input type that accepts SourcePolygonStockApiArray and SourcePolygonStockApiArrayOutput values.
+// You can construct a concrete instance of `SourcePolygonStockApiArrayInput` via:
+//
+//	SourcePolygonStockApiArray{ SourcePolygonStockApiArgs{...} }
+type SourcePolygonStockApiArrayInput interface {
+	pulumi.Input
+
+	ToSourcePolygonStockApiArrayOutput() SourcePolygonStockApiArrayOutput
+	ToSourcePolygonStockApiArrayOutputWithContext(context.Context) SourcePolygonStockApiArrayOutput
+}
+
+type SourcePolygonStockApiArray []SourcePolygonStockApiInput
+
+func (SourcePolygonStockApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePolygonStockApi)(nil)).Elem()
+}
+
+func (i SourcePolygonStockApiArray) ToSourcePolygonStockApiArrayOutput() SourcePolygonStockApiArrayOutput {
+	return i.ToSourcePolygonStockApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePolygonStockApiArray) ToSourcePolygonStockApiArrayOutputWithContext(ctx context.Context) SourcePolygonStockApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePolygonStockApiArrayOutput)
+}
+
+// SourcePolygonStockApiMapInput is an input type that accepts SourcePolygonStockApiMap and SourcePolygonStockApiMapOutput values.
+// You can construct a concrete instance of `SourcePolygonStockApiMapInput` via:
+//
+//	SourcePolygonStockApiMap{ "key": SourcePolygonStockApiArgs{...} }
+type SourcePolygonStockApiMapInput interface {
+	pulumi.Input
+
+	ToSourcePolygonStockApiMapOutput() SourcePolygonStockApiMapOutput
+	ToSourcePolygonStockApiMapOutputWithContext(context.Context) SourcePolygonStockApiMapOutput
+}
+
+type SourcePolygonStockApiMap map[string]SourcePolygonStockApiInput
+
+func (SourcePolygonStockApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePolygonStockApi)(nil)).Elem()
+}
+
+func (i SourcePolygonStockApiMap) ToSourcePolygonStockApiMapOutput() SourcePolygonStockApiMapOutput {
+	return i.ToSourcePolygonStockApiMapOutputWithContext(context.Background())
+}
+
+func (i SourcePolygonStockApiMap) ToSourcePolygonStockApiMapOutputWithContext(ctx context.Context) SourcePolygonStockApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePolygonStockApiMapOutput)
+}
+
 type SourcePolygonStockApiOutput struct{ *pulumi.OutputState }
 
 func (SourcePolygonStockApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePolygonStockApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePolygonStockApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePolygonStockApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePolygonStockApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePolygonStockApi)(nil)).Elem()
+}
+
+func (o SourcePolygonStockApiArrayOutput) ToSourcePolygonStockApiArrayOutput() SourcePolygonStockApiArrayOutput {
+	return o
+}
+
+func (o SourcePolygonStockApiArrayOutput) ToSourcePolygonStockApiArrayOutputWithContext(ctx context.Context) SourcePolygonStockApiArrayOutput {
+	return o
+}
+
+func (o SourcePolygonStockApiArrayOutput) Index(i pulumi.IntInput) SourcePolygonStockApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePolygonStockApi {
+		return vs[0].([]*SourcePolygonStockApi)[vs[1].(int)]
+	}).(SourcePolygonStockApiOutput)
+}
+
+type SourcePolygonStockApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePolygonStockApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePolygonStockApi)(nil)).Elem()
+}
+
+func (o SourcePolygonStockApiMapOutput) ToSourcePolygonStockApiMapOutput() SourcePolygonStockApiMapOutput {
+	return o
+}
+
+func (o SourcePolygonStockApiMapOutput) ToSourcePolygonStockApiMapOutputWithContext(ctx context.Context) SourcePolygonStockApiMapOutput {
+	return o
+}
+
+func (o SourcePolygonStockApiMapOutput) MapIndex(k pulumi.StringInput) SourcePolygonStockApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePolygonStockApi {
+		return vs[0].(map[string]*SourcePolygonStockApi)[vs[1].(string)]
+	}).(SourcePolygonStockApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePolygonStockApiInput)(nil)).Elem(), &SourcePolygonStockApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePolygonStockApiArrayInput)(nil)).Elem(), SourcePolygonStockApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePolygonStockApiMapInput)(nil)).Elem(), SourcePolygonStockApiMap{})
 	pulumi.RegisterOutputType(SourcePolygonStockApiOutput{})
+	pulumi.RegisterOutputType(SourcePolygonStockApiArrayOutput{})
+	pulumi.RegisterOutputType(SourcePolygonStockApiMapOutput{})
 }

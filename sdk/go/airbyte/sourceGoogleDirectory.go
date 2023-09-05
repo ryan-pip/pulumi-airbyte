@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleDirectory Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleDirectory) ToSourceGoogleDirectoryOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleDirectoryOutput)
 }
 
+// SourceGoogleDirectoryArrayInput is an input type that accepts SourceGoogleDirectoryArray and SourceGoogleDirectoryArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleDirectoryArrayInput` via:
+//
+//	SourceGoogleDirectoryArray{ SourceGoogleDirectoryArgs{...} }
+type SourceGoogleDirectoryArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleDirectoryArrayOutput() SourceGoogleDirectoryArrayOutput
+	ToSourceGoogleDirectoryArrayOutputWithContext(context.Context) SourceGoogleDirectoryArrayOutput
+}
+
+type SourceGoogleDirectoryArray []SourceGoogleDirectoryInput
+
+func (SourceGoogleDirectoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleDirectory)(nil)).Elem()
+}
+
+func (i SourceGoogleDirectoryArray) ToSourceGoogleDirectoryArrayOutput() SourceGoogleDirectoryArrayOutput {
+	return i.ToSourceGoogleDirectoryArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleDirectoryArray) ToSourceGoogleDirectoryArrayOutputWithContext(ctx context.Context) SourceGoogleDirectoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleDirectoryArrayOutput)
+}
+
+// SourceGoogleDirectoryMapInput is an input type that accepts SourceGoogleDirectoryMap and SourceGoogleDirectoryMapOutput values.
+// You can construct a concrete instance of `SourceGoogleDirectoryMapInput` via:
+//
+//	SourceGoogleDirectoryMap{ "key": SourceGoogleDirectoryArgs{...} }
+type SourceGoogleDirectoryMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleDirectoryMapOutput() SourceGoogleDirectoryMapOutput
+	ToSourceGoogleDirectoryMapOutputWithContext(context.Context) SourceGoogleDirectoryMapOutput
+}
+
+type SourceGoogleDirectoryMap map[string]SourceGoogleDirectoryInput
+
+func (SourceGoogleDirectoryMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleDirectory)(nil)).Elem()
+}
+
+func (i SourceGoogleDirectoryMap) ToSourceGoogleDirectoryMapOutput() SourceGoogleDirectoryMapOutput {
+	return i.ToSourceGoogleDirectoryMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleDirectoryMap) ToSourceGoogleDirectoryMapOutputWithContext(ctx context.Context) SourceGoogleDirectoryMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleDirectoryMapOutput)
+}
+
 type SourceGoogleDirectoryOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleDirectoryOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGoogleDirectoryOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleDirectory) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleDirectoryArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleDirectoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleDirectory)(nil)).Elem()
+}
+
+func (o SourceGoogleDirectoryArrayOutput) ToSourceGoogleDirectoryArrayOutput() SourceGoogleDirectoryArrayOutput {
+	return o
+}
+
+func (o SourceGoogleDirectoryArrayOutput) ToSourceGoogleDirectoryArrayOutputWithContext(ctx context.Context) SourceGoogleDirectoryArrayOutput {
+	return o
+}
+
+func (o SourceGoogleDirectoryArrayOutput) Index(i pulumi.IntInput) SourceGoogleDirectoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleDirectory {
+		return vs[0].([]*SourceGoogleDirectory)[vs[1].(int)]
+	}).(SourceGoogleDirectoryOutput)
+}
+
+type SourceGoogleDirectoryMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleDirectoryMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleDirectory)(nil)).Elem()
+}
+
+func (o SourceGoogleDirectoryMapOutput) ToSourceGoogleDirectoryMapOutput() SourceGoogleDirectoryMapOutput {
+	return o
+}
+
+func (o SourceGoogleDirectoryMapOutput) ToSourceGoogleDirectoryMapOutputWithContext(ctx context.Context) SourceGoogleDirectoryMapOutput {
+	return o
+}
+
+func (o SourceGoogleDirectoryMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleDirectoryOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleDirectory {
+		return vs[0].(map[string]*SourceGoogleDirectory)[vs[1].(string)]
+	}).(SourceGoogleDirectoryOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleDirectoryInput)(nil)).Elem(), &SourceGoogleDirectory{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleDirectoryArrayInput)(nil)).Elem(), SourceGoogleDirectoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleDirectoryMapInput)(nil)).Elem(), SourceGoogleDirectoryMap{})
 	pulumi.RegisterOutputType(SourceGoogleDirectoryOutput{})
+	pulumi.RegisterOutputType(SourceGoogleDirectoryArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleDirectoryMapOutput{})
 }

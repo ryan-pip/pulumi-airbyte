@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMongodb Resource
@@ -127,6 +127,56 @@ func (i *SourceMongodb) ToSourceMongodbOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbOutput)
 }
 
+// SourceMongodbArrayInput is an input type that accepts SourceMongodbArray and SourceMongodbArrayOutput values.
+// You can construct a concrete instance of `SourceMongodbArrayInput` via:
+//
+//	SourceMongodbArray{ SourceMongodbArgs{...} }
+type SourceMongodbArrayInput interface {
+	pulumi.Input
+
+	ToSourceMongodbArrayOutput() SourceMongodbArrayOutput
+	ToSourceMongodbArrayOutputWithContext(context.Context) SourceMongodbArrayOutput
+}
+
+type SourceMongodbArray []SourceMongodbInput
+
+func (SourceMongodbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMongodb)(nil)).Elem()
+}
+
+func (i SourceMongodbArray) ToSourceMongodbArrayOutput() SourceMongodbArrayOutput {
+	return i.ToSourceMongodbArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMongodbArray) ToSourceMongodbArrayOutputWithContext(ctx context.Context) SourceMongodbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbArrayOutput)
+}
+
+// SourceMongodbMapInput is an input type that accepts SourceMongodbMap and SourceMongodbMapOutput values.
+// You can construct a concrete instance of `SourceMongodbMapInput` via:
+//
+//	SourceMongodbMap{ "key": SourceMongodbArgs{...} }
+type SourceMongodbMapInput interface {
+	pulumi.Input
+
+	ToSourceMongodbMapOutput() SourceMongodbMapOutput
+	ToSourceMongodbMapOutputWithContext(context.Context) SourceMongodbMapOutput
+}
+
+type SourceMongodbMap map[string]SourceMongodbInput
+
+func (SourceMongodbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMongodb)(nil)).Elem()
+}
+
+func (i SourceMongodbMap) ToSourceMongodbMapOutput() SourceMongodbMapOutput {
+	return i.ToSourceMongodbMapOutputWithContext(context.Background())
+}
+
+func (i SourceMongodbMap) ToSourceMongodbMapOutputWithContext(ctx context.Context) SourceMongodbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMongodbMapOutput)
+}
+
 type SourceMongodbOutput struct{ *pulumi.OutputState }
 
 func (SourceMongodbOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMongodbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMongodb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMongodbArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMongodbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMongodb)(nil)).Elem()
+}
+
+func (o SourceMongodbArrayOutput) ToSourceMongodbArrayOutput() SourceMongodbArrayOutput {
+	return o
+}
+
+func (o SourceMongodbArrayOutput) ToSourceMongodbArrayOutputWithContext(ctx context.Context) SourceMongodbArrayOutput {
+	return o
+}
+
+func (o SourceMongodbArrayOutput) Index(i pulumi.IntInput) SourceMongodbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMongodb {
+		return vs[0].([]*SourceMongodb)[vs[1].(int)]
+	}).(SourceMongodbOutput)
+}
+
+type SourceMongodbMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMongodbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMongodb)(nil)).Elem()
+}
+
+func (o SourceMongodbMapOutput) ToSourceMongodbMapOutput() SourceMongodbMapOutput {
+	return o
+}
+
+func (o SourceMongodbMapOutput) ToSourceMongodbMapOutputWithContext(ctx context.Context) SourceMongodbMapOutput {
+	return o
+}
+
+func (o SourceMongodbMapOutput) MapIndex(k pulumi.StringInput) SourceMongodbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMongodb {
+		return vs[0].(map[string]*SourceMongodb)[vs[1].(string)]
+	}).(SourceMongodbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbInput)(nil)).Elem(), &SourceMongodb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbArrayInput)(nil)).Elem(), SourceMongodbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMongodbMapInput)(nil)).Elem(), SourceMongodbMap{})
 	pulumi.RegisterOutputType(SourceMongodbOutput{})
+	pulumi.RegisterOutputType(SourceMongodbArrayOutput{})
+	pulumi.RegisterOutputType(SourceMongodbMapOutput{})
 }

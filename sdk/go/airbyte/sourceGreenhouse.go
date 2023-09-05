@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGreenhouse Resource
@@ -127,6 +127,56 @@ func (i *SourceGreenhouse) ToSourceGreenhouseOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGreenhouseOutput)
 }
 
+// SourceGreenhouseArrayInput is an input type that accepts SourceGreenhouseArray and SourceGreenhouseArrayOutput values.
+// You can construct a concrete instance of `SourceGreenhouseArrayInput` via:
+//
+//	SourceGreenhouseArray{ SourceGreenhouseArgs{...} }
+type SourceGreenhouseArrayInput interface {
+	pulumi.Input
+
+	ToSourceGreenhouseArrayOutput() SourceGreenhouseArrayOutput
+	ToSourceGreenhouseArrayOutputWithContext(context.Context) SourceGreenhouseArrayOutput
+}
+
+type SourceGreenhouseArray []SourceGreenhouseInput
+
+func (SourceGreenhouseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGreenhouse)(nil)).Elem()
+}
+
+func (i SourceGreenhouseArray) ToSourceGreenhouseArrayOutput() SourceGreenhouseArrayOutput {
+	return i.ToSourceGreenhouseArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGreenhouseArray) ToSourceGreenhouseArrayOutputWithContext(ctx context.Context) SourceGreenhouseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGreenhouseArrayOutput)
+}
+
+// SourceGreenhouseMapInput is an input type that accepts SourceGreenhouseMap and SourceGreenhouseMapOutput values.
+// You can construct a concrete instance of `SourceGreenhouseMapInput` via:
+//
+//	SourceGreenhouseMap{ "key": SourceGreenhouseArgs{...} }
+type SourceGreenhouseMapInput interface {
+	pulumi.Input
+
+	ToSourceGreenhouseMapOutput() SourceGreenhouseMapOutput
+	ToSourceGreenhouseMapOutputWithContext(context.Context) SourceGreenhouseMapOutput
+}
+
+type SourceGreenhouseMap map[string]SourceGreenhouseInput
+
+func (SourceGreenhouseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGreenhouse)(nil)).Elem()
+}
+
+func (i SourceGreenhouseMap) ToSourceGreenhouseMapOutput() SourceGreenhouseMapOutput {
+	return i.ToSourceGreenhouseMapOutputWithContext(context.Background())
+}
+
+func (i SourceGreenhouseMap) ToSourceGreenhouseMapOutputWithContext(ctx context.Context) SourceGreenhouseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGreenhouseMapOutput)
+}
+
 type SourceGreenhouseOutput struct{ *pulumi.OutputState }
 
 func (SourceGreenhouseOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGreenhouseOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGreenhouse) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGreenhouseArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGreenhouseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGreenhouse)(nil)).Elem()
+}
+
+func (o SourceGreenhouseArrayOutput) ToSourceGreenhouseArrayOutput() SourceGreenhouseArrayOutput {
+	return o
+}
+
+func (o SourceGreenhouseArrayOutput) ToSourceGreenhouseArrayOutputWithContext(ctx context.Context) SourceGreenhouseArrayOutput {
+	return o
+}
+
+func (o SourceGreenhouseArrayOutput) Index(i pulumi.IntInput) SourceGreenhouseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGreenhouse {
+		return vs[0].([]*SourceGreenhouse)[vs[1].(int)]
+	}).(SourceGreenhouseOutput)
+}
+
+type SourceGreenhouseMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGreenhouseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGreenhouse)(nil)).Elem()
+}
+
+func (o SourceGreenhouseMapOutput) ToSourceGreenhouseMapOutput() SourceGreenhouseMapOutput {
+	return o
+}
+
+func (o SourceGreenhouseMapOutput) ToSourceGreenhouseMapOutputWithContext(ctx context.Context) SourceGreenhouseMapOutput {
+	return o
+}
+
+func (o SourceGreenhouseMapOutput) MapIndex(k pulumi.StringInput) SourceGreenhouseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGreenhouse {
+		return vs[0].(map[string]*SourceGreenhouse)[vs[1].(string)]
+	}).(SourceGreenhouseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGreenhouseInput)(nil)).Elem(), &SourceGreenhouse{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGreenhouseArrayInput)(nil)).Elem(), SourceGreenhouseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGreenhouseMapInput)(nil)).Elem(), SourceGreenhouseMap{})
 	pulumi.RegisterOutputType(SourceGreenhouseOutput{})
+	pulumi.RegisterOutputType(SourceGreenhouseArrayOutput{})
+	pulumi.RegisterOutputType(SourceGreenhouseMapOutput{})
 }

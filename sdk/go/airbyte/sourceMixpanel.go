@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMixpanel Resource
@@ -127,6 +127,56 @@ func (i *SourceMixpanel) ToSourceMixpanelOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMixpanelOutput)
 }
 
+// SourceMixpanelArrayInput is an input type that accepts SourceMixpanelArray and SourceMixpanelArrayOutput values.
+// You can construct a concrete instance of `SourceMixpanelArrayInput` via:
+//
+//	SourceMixpanelArray{ SourceMixpanelArgs{...} }
+type SourceMixpanelArrayInput interface {
+	pulumi.Input
+
+	ToSourceMixpanelArrayOutput() SourceMixpanelArrayOutput
+	ToSourceMixpanelArrayOutputWithContext(context.Context) SourceMixpanelArrayOutput
+}
+
+type SourceMixpanelArray []SourceMixpanelInput
+
+func (SourceMixpanelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMixpanel)(nil)).Elem()
+}
+
+func (i SourceMixpanelArray) ToSourceMixpanelArrayOutput() SourceMixpanelArrayOutput {
+	return i.ToSourceMixpanelArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMixpanelArray) ToSourceMixpanelArrayOutputWithContext(ctx context.Context) SourceMixpanelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMixpanelArrayOutput)
+}
+
+// SourceMixpanelMapInput is an input type that accepts SourceMixpanelMap and SourceMixpanelMapOutput values.
+// You can construct a concrete instance of `SourceMixpanelMapInput` via:
+//
+//	SourceMixpanelMap{ "key": SourceMixpanelArgs{...} }
+type SourceMixpanelMapInput interface {
+	pulumi.Input
+
+	ToSourceMixpanelMapOutput() SourceMixpanelMapOutput
+	ToSourceMixpanelMapOutputWithContext(context.Context) SourceMixpanelMapOutput
+}
+
+type SourceMixpanelMap map[string]SourceMixpanelInput
+
+func (SourceMixpanelMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMixpanel)(nil)).Elem()
+}
+
+func (i SourceMixpanelMap) ToSourceMixpanelMapOutput() SourceMixpanelMapOutput {
+	return i.ToSourceMixpanelMapOutputWithContext(context.Background())
+}
+
+func (i SourceMixpanelMap) ToSourceMixpanelMapOutputWithContext(ctx context.Context) SourceMixpanelMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMixpanelMapOutput)
+}
+
 type SourceMixpanelOutput struct{ *pulumi.OutputState }
 
 func (SourceMixpanelOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMixpanelOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMixpanel) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMixpanelArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMixpanelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMixpanel)(nil)).Elem()
+}
+
+func (o SourceMixpanelArrayOutput) ToSourceMixpanelArrayOutput() SourceMixpanelArrayOutput {
+	return o
+}
+
+func (o SourceMixpanelArrayOutput) ToSourceMixpanelArrayOutputWithContext(ctx context.Context) SourceMixpanelArrayOutput {
+	return o
+}
+
+func (o SourceMixpanelArrayOutput) Index(i pulumi.IntInput) SourceMixpanelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMixpanel {
+		return vs[0].([]*SourceMixpanel)[vs[1].(int)]
+	}).(SourceMixpanelOutput)
+}
+
+type SourceMixpanelMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMixpanelMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMixpanel)(nil)).Elem()
+}
+
+func (o SourceMixpanelMapOutput) ToSourceMixpanelMapOutput() SourceMixpanelMapOutput {
+	return o
+}
+
+func (o SourceMixpanelMapOutput) ToSourceMixpanelMapOutputWithContext(ctx context.Context) SourceMixpanelMapOutput {
+	return o
+}
+
+func (o SourceMixpanelMapOutput) MapIndex(k pulumi.StringInput) SourceMixpanelOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMixpanel {
+		return vs[0].(map[string]*SourceMixpanel)[vs[1].(string)]
+	}).(SourceMixpanelOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMixpanelInput)(nil)).Elem(), &SourceMixpanel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMixpanelArrayInput)(nil)).Elem(), SourceMixpanelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMixpanelMapInput)(nil)).Elem(), SourceMixpanelMap{})
 	pulumi.RegisterOutputType(SourceMixpanelOutput{})
+	pulumi.RegisterOutputType(SourceMixpanelArrayOutput{})
+	pulumi.RegisterOutputType(SourceMixpanelMapOutput{})
 }

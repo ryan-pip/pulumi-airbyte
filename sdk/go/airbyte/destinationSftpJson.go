@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationSftpJSON Resource
@@ -117,6 +117,56 @@ func (i *DestinationSftpJson) ToDestinationSftpJsonOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationSftpJsonOutput)
 }
 
+// DestinationSftpJsonArrayInput is an input type that accepts DestinationSftpJsonArray and DestinationSftpJsonArrayOutput values.
+// You can construct a concrete instance of `DestinationSftpJsonArrayInput` via:
+//
+//	DestinationSftpJsonArray{ DestinationSftpJsonArgs{...} }
+type DestinationSftpJsonArrayInput interface {
+	pulumi.Input
+
+	ToDestinationSftpJsonArrayOutput() DestinationSftpJsonArrayOutput
+	ToDestinationSftpJsonArrayOutputWithContext(context.Context) DestinationSftpJsonArrayOutput
+}
+
+type DestinationSftpJsonArray []DestinationSftpJsonInput
+
+func (DestinationSftpJsonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationSftpJson)(nil)).Elem()
+}
+
+func (i DestinationSftpJsonArray) ToDestinationSftpJsonArrayOutput() DestinationSftpJsonArrayOutput {
+	return i.ToDestinationSftpJsonArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationSftpJsonArray) ToDestinationSftpJsonArrayOutputWithContext(ctx context.Context) DestinationSftpJsonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationSftpJsonArrayOutput)
+}
+
+// DestinationSftpJsonMapInput is an input type that accepts DestinationSftpJsonMap and DestinationSftpJsonMapOutput values.
+// You can construct a concrete instance of `DestinationSftpJsonMapInput` via:
+//
+//	DestinationSftpJsonMap{ "key": DestinationSftpJsonArgs{...} }
+type DestinationSftpJsonMapInput interface {
+	pulumi.Input
+
+	ToDestinationSftpJsonMapOutput() DestinationSftpJsonMapOutput
+	ToDestinationSftpJsonMapOutputWithContext(context.Context) DestinationSftpJsonMapOutput
+}
+
+type DestinationSftpJsonMap map[string]DestinationSftpJsonInput
+
+func (DestinationSftpJsonMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationSftpJson)(nil)).Elem()
+}
+
+func (i DestinationSftpJsonMap) ToDestinationSftpJsonMapOutput() DestinationSftpJsonMapOutput {
+	return i.ToDestinationSftpJsonMapOutputWithContext(context.Background())
+}
+
+func (i DestinationSftpJsonMap) ToDestinationSftpJsonMapOutputWithContext(ctx context.Context) DestinationSftpJsonMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationSftpJsonMapOutput)
+}
+
 type DestinationSftpJsonOutput struct{ *pulumi.OutputState }
 
 func (DestinationSftpJsonOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationSftpJsonOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationSftpJson) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationSftpJsonArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationSftpJsonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationSftpJson)(nil)).Elem()
+}
+
+func (o DestinationSftpJsonArrayOutput) ToDestinationSftpJsonArrayOutput() DestinationSftpJsonArrayOutput {
+	return o
+}
+
+func (o DestinationSftpJsonArrayOutput) ToDestinationSftpJsonArrayOutputWithContext(ctx context.Context) DestinationSftpJsonArrayOutput {
+	return o
+}
+
+func (o DestinationSftpJsonArrayOutput) Index(i pulumi.IntInput) DestinationSftpJsonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationSftpJson {
+		return vs[0].([]*DestinationSftpJson)[vs[1].(int)]
+	}).(DestinationSftpJsonOutput)
+}
+
+type DestinationSftpJsonMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationSftpJsonMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationSftpJson)(nil)).Elem()
+}
+
+func (o DestinationSftpJsonMapOutput) ToDestinationSftpJsonMapOutput() DestinationSftpJsonMapOutput {
+	return o
+}
+
+func (o DestinationSftpJsonMapOutput) ToDestinationSftpJsonMapOutputWithContext(ctx context.Context) DestinationSftpJsonMapOutput {
+	return o
+}
+
+func (o DestinationSftpJsonMapOutput) MapIndex(k pulumi.StringInput) DestinationSftpJsonOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationSftpJson {
+		return vs[0].(map[string]*DestinationSftpJson)[vs[1].(string)]
+	}).(DestinationSftpJsonOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSftpJsonInput)(nil)).Elem(), &DestinationSftpJson{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSftpJsonArrayInput)(nil)).Elem(), DestinationSftpJsonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSftpJsonMapInput)(nil)).Elem(), DestinationSftpJsonMap{})
 	pulumi.RegisterOutputType(DestinationSftpJsonOutput{})
+	pulumi.RegisterOutputType(DestinationSftpJsonArrayOutput{})
+	pulumi.RegisterOutputType(DestinationSftpJsonMapOutput{})
 }

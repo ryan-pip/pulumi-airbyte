@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceConfluence Resource
@@ -127,6 +127,56 @@ func (i *SourceConfluence) ToSourceConfluenceOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceConfluenceOutput)
 }
 
+// SourceConfluenceArrayInput is an input type that accepts SourceConfluenceArray and SourceConfluenceArrayOutput values.
+// You can construct a concrete instance of `SourceConfluenceArrayInput` via:
+//
+//	SourceConfluenceArray{ SourceConfluenceArgs{...} }
+type SourceConfluenceArrayInput interface {
+	pulumi.Input
+
+	ToSourceConfluenceArrayOutput() SourceConfluenceArrayOutput
+	ToSourceConfluenceArrayOutputWithContext(context.Context) SourceConfluenceArrayOutput
+}
+
+type SourceConfluenceArray []SourceConfluenceInput
+
+func (SourceConfluenceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConfluence)(nil)).Elem()
+}
+
+func (i SourceConfluenceArray) ToSourceConfluenceArrayOutput() SourceConfluenceArrayOutput {
+	return i.ToSourceConfluenceArrayOutputWithContext(context.Background())
+}
+
+func (i SourceConfluenceArray) ToSourceConfluenceArrayOutputWithContext(ctx context.Context) SourceConfluenceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConfluenceArrayOutput)
+}
+
+// SourceConfluenceMapInput is an input type that accepts SourceConfluenceMap and SourceConfluenceMapOutput values.
+// You can construct a concrete instance of `SourceConfluenceMapInput` via:
+//
+//	SourceConfluenceMap{ "key": SourceConfluenceArgs{...} }
+type SourceConfluenceMapInput interface {
+	pulumi.Input
+
+	ToSourceConfluenceMapOutput() SourceConfluenceMapOutput
+	ToSourceConfluenceMapOutputWithContext(context.Context) SourceConfluenceMapOutput
+}
+
+type SourceConfluenceMap map[string]SourceConfluenceInput
+
+func (SourceConfluenceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConfluence)(nil)).Elem()
+}
+
+func (i SourceConfluenceMap) ToSourceConfluenceMapOutput() SourceConfluenceMapOutput {
+	return i.ToSourceConfluenceMapOutputWithContext(context.Background())
+}
+
+func (i SourceConfluenceMap) ToSourceConfluenceMapOutputWithContext(ctx context.Context) SourceConfluenceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConfluenceMapOutput)
+}
+
 type SourceConfluenceOutput struct{ *pulumi.OutputState }
 
 func (SourceConfluenceOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceConfluenceOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceConfluence) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceConfluenceArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceConfluenceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConfluence)(nil)).Elem()
+}
+
+func (o SourceConfluenceArrayOutput) ToSourceConfluenceArrayOutput() SourceConfluenceArrayOutput {
+	return o
+}
+
+func (o SourceConfluenceArrayOutput) ToSourceConfluenceArrayOutputWithContext(ctx context.Context) SourceConfluenceArrayOutput {
+	return o
+}
+
+func (o SourceConfluenceArrayOutput) Index(i pulumi.IntInput) SourceConfluenceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceConfluence {
+		return vs[0].([]*SourceConfluence)[vs[1].(int)]
+	}).(SourceConfluenceOutput)
+}
+
+type SourceConfluenceMapOutput struct{ *pulumi.OutputState }
+
+func (SourceConfluenceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConfluence)(nil)).Elem()
+}
+
+func (o SourceConfluenceMapOutput) ToSourceConfluenceMapOutput() SourceConfluenceMapOutput {
+	return o
+}
+
+func (o SourceConfluenceMapOutput) ToSourceConfluenceMapOutputWithContext(ctx context.Context) SourceConfluenceMapOutput {
+	return o
+}
+
+func (o SourceConfluenceMapOutput) MapIndex(k pulumi.StringInput) SourceConfluenceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceConfluence {
+		return vs[0].(map[string]*SourceConfluence)[vs[1].(string)]
+	}).(SourceConfluenceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfluenceInput)(nil)).Elem(), &SourceConfluence{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfluenceArrayInput)(nil)).Elem(), SourceConfluenceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfluenceMapInput)(nil)).Elem(), SourceConfluenceMap{})
 	pulumi.RegisterOutputType(SourceConfluenceOutput{})
+	pulumi.RegisterOutputType(SourceConfluenceArrayOutput{})
+	pulumi.RegisterOutputType(SourceConfluenceMapOutput{})
 }

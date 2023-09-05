@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceYandexMetrica Resource
@@ -127,6 +127,56 @@ func (i *SourceYandexMetrica) ToSourceYandexMetricaOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceYandexMetricaOutput)
 }
 
+// SourceYandexMetricaArrayInput is an input type that accepts SourceYandexMetricaArray and SourceYandexMetricaArrayOutput values.
+// You can construct a concrete instance of `SourceYandexMetricaArrayInput` via:
+//
+//	SourceYandexMetricaArray{ SourceYandexMetricaArgs{...} }
+type SourceYandexMetricaArrayInput interface {
+	pulumi.Input
+
+	ToSourceYandexMetricaArrayOutput() SourceYandexMetricaArrayOutput
+	ToSourceYandexMetricaArrayOutputWithContext(context.Context) SourceYandexMetricaArrayOutput
+}
+
+type SourceYandexMetricaArray []SourceYandexMetricaInput
+
+func (SourceYandexMetricaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYandexMetrica)(nil)).Elem()
+}
+
+func (i SourceYandexMetricaArray) ToSourceYandexMetricaArrayOutput() SourceYandexMetricaArrayOutput {
+	return i.ToSourceYandexMetricaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceYandexMetricaArray) ToSourceYandexMetricaArrayOutputWithContext(ctx context.Context) SourceYandexMetricaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYandexMetricaArrayOutput)
+}
+
+// SourceYandexMetricaMapInput is an input type that accepts SourceYandexMetricaMap and SourceYandexMetricaMapOutput values.
+// You can construct a concrete instance of `SourceYandexMetricaMapInput` via:
+//
+//	SourceYandexMetricaMap{ "key": SourceYandexMetricaArgs{...} }
+type SourceYandexMetricaMapInput interface {
+	pulumi.Input
+
+	ToSourceYandexMetricaMapOutput() SourceYandexMetricaMapOutput
+	ToSourceYandexMetricaMapOutputWithContext(context.Context) SourceYandexMetricaMapOutput
+}
+
+type SourceYandexMetricaMap map[string]SourceYandexMetricaInput
+
+func (SourceYandexMetricaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYandexMetrica)(nil)).Elem()
+}
+
+func (i SourceYandexMetricaMap) ToSourceYandexMetricaMapOutput() SourceYandexMetricaMapOutput {
+	return i.ToSourceYandexMetricaMapOutputWithContext(context.Background())
+}
+
+func (i SourceYandexMetricaMap) ToSourceYandexMetricaMapOutputWithContext(ctx context.Context) SourceYandexMetricaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYandexMetricaMapOutput)
+}
+
 type SourceYandexMetricaOutput struct{ *pulumi.OutputState }
 
 func (SourceYandexMetricaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceYandexMetricaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceYandexMetrica) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceYandexMetricaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceYandexMetricaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYandexMetrica)(nil)).Elem()
+}
+
+func (o SourceYandexMetricaArrayOutput) ToSourceYandexMetricaArrayOutput() SourceYandexMetricaArrayOutput {
+	return o
+}
+
+func (o SourceYandexMetricaArrayOutput) ToSourceYandexMetricaArrayOutputWithContext(ctx context.Context) SourceYandexMetricaArrayOutput {
+	return o
+}
+
+func (o SourceYandexMetricaArrayOutput) Index(i pulumi.IntInput) SourceYandexMetricaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceYandexMetrica {
+		return vs[0].([]*SourceYandexMetrica)[vs[1].(int)]
+	}).(SourceYandexMetricaOutput)
+}
+
+type SourceYandexMetricaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceYandexMetricaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYandexMetrica)(nil)).Elem()
+}
+
+func (o SourceYandexMetricaMapOutput) ToSourceYandexMetricaMapOutput() SourceYandexMetricaMapOutput {
+	return o
+}
+
+func (o SourceYandexMetricaMapOutput) ToSourceYandexMetricaMapOutputWithContext(ctx context.Context) SourceYandexMetricaMapOutput {
+	return o
+}
+
+func (o SourceYandexMetricaMapOutput) MapIndex(k pulumi.StringInput) SourceYandexMetricaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceYandexMetrica {
+		return vs[0].(map[string]*SourceYandexMetrica)[vs[1].(string)]
+	}).(SourceYandexMetricaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceYandexMetricaInput)(nil)).Elem(), &SourceYandexMetrica{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYandexMetricaArrayInput)(nil)).Elem(), SourceYandexMetricaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYandexMetricaMapInput)(nil)).Elem(), SourceYandexMetricaMap{})
 	pulumi.RegisterOutputType(SourceYandexMetricaOutput{})
+	pulumi.RegisterOutputType(SourceYandexMetricaArrayOutput{})
+	pulumi.RegisterOutputType(SourceYandexMetricaMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceXero Resource
@@ -127,6 +127,56 @@ func (i *SourceXero) ToSourceXeroOutputWithContext(ctx context.Context) SourceXe
 	return pulumi.ToOutputWithContext(ctx, i).(SourceXeroOutput)
 }
 
+// SourceXeroArrayInput is an input type that accepts SourceXeroArray and SourceXeroArrayOutput values.
+// You can construct a concrete instance of `SourceXeroArrayInput` via:
+//
+//	SourceXeroArray{ SourceXeroArgs{...} }
+type SourceXeroArrayInput interface {
+	pulumi.Input
+
+	ToSourceXeroArrayOutput() SourceXeroArrayOutput
+	ToSourceXeroArrayOutputWithContext(context.Context) SourceXeroArrayOutput
+}
+
+type SourceXeroArray []SourceXeroInput
+
+func (SourceXeroArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceXero)(nil)).Elem()
+}
+
+func (i SourceXeroArray) ToSourceXeroArrayOutput() SourceXeroArrayOutput {
+	return i.ToSourceXeroArrayOutputWithContext(context.Background())
+}
+
+func (i SourceXeroArray) ToSourceXeroArrayOutputWithContext(ctx context.Context) SourceXeroArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceXeroArrayOutput)
+}
+
+// SourceXeroMapInput is an input type that accepts SourceXeroMap and SourceXeroMapOutput values.
+// You can construct a concrete instance of `SourceXeroMapInput` via:
+//
+//	SourceXeroMap{ "key": SourceXeroArgs{...} }
+type SourceXeroMapInput interface {
+	pulumi.Input
+
+	ToSourceXeroMapOutput() SourceXeroMapOutput
+	ToSourceXeroMapOutputWithContext(context.Context) SourceXeroMapOutput
+}
+
+type SourceXeroMap map[string]SourceXeroInput
+
+func (SourceXeroMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceXero)(nil)).Elem()
+}
+
+func (i SourceXeroMap) ToSourceXeroMapOutput() SourceXeroMapOutput {
+	return i.ToSourceXeroMapOutputWithContext(context.Background())
+}
+
+func (i SourceXeroMap) ToSourceXeroMapOutputWithContext(ctx context.Context) SourceXeroMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceXeroMapOutput)
+}
+
 type SourceXeroOutput struct{ *pulumi.OutputState }
 
 func (SourceXeroOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceXeroOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceXero) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceXeroArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceXeroArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceXero)(nil)).Elem()
+}
+
+func (o SourceXeroArrayOutput) ToSourceXeroArrayOutput() SourceXeroArrayOutput {
+	return o
+}
+
+func (o SourceXeroArrayOutput) ToSourceXeroArrayOutputWithContext(ctx context.Context) SourceXeroArrayOutput {
+	return o
+}
+
+func (o SourceXeroArrayOutput) Index(i pulumi.IntInput) SourceXeroOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceXero {
+		return vs[0].([]*SourceXero)[vs[1].(int)]
+	}).(SourceXeroOutput)
+}
+
+type SourceXeroMapOutput struct{ *pulumi.OutputState }
+
+func (SourceXeroMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceXero)(nil)).Elem()
+}
+
+func (o SourceXeroMapOutput) ToSourceXeroMapOutput() SourceXeroMapOutput {
+	return o
+}
+
+func (o SourceXeroMapOutput) ToSourceXeroMapOutputWithContext(ctx context.Context) SourceXeroMapOutput {
+	return o
+}
+
+func (o SourceXeroMapOutput) MapIndex(k pulumi.StringInput) SourceXeroOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceXero {
+		return vs[0].(map[string]*SourceXero)[vs[1].(string)]
+	}).(SourceXeroOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceXeroInput)(nil)).Elem(), &SourceXero{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceXeroArrayInput)(nil)).Elem(), SourceXeroArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceXeroMapInput)(nil)).Elem(), SourceXeroMap{})
 	pulumi.RegisterOutputType(SourceXeroOutput{})
+	pulumi.RegisterOutputType(SourceXeroArrayOutput{})
+	pulumi.RegisterOutputType(SourceXeroMapOutput{})
 }

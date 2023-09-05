@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLeverHiring Resource
@@ -127,6 +127,56 @@ func (i *SourceLeverHiring) ToSourceLeverHiringOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLeverHiringOutput)
 }
 
+// SourceLeverHiringArrayInput is an input type that accepts SourceLeverHiringArray and SourceLeverHiringArrayOutput values.
+// You can construct a concrete instance of `SourceLeverHiringArrayInput` via:
+//
+//	SourceLeverHiringArray{ SourceLeverHiringArgs{...} }
+type SourceLeverHiringArrayInput interface {
+	pulumi.Input
+
+	ToSourceLeverHiringArrayOutput() SourceLeverHiringArrayOutput
+	ToSourceLeverHiringArrayOutputWithContext(context.Context) SourceLeverHiringArrayOutput
+}
+
+type SourceLeverHiringArray []SourceLeverHiringInput
+
+func (SourceLeverHiringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLeverHiring)(nil)).Elem()
+}
+
+func (i SourceLeverHiringArray) ToSourceLeverHiringArrayOutput() SourceLeverHiringArrayOutput {
+	return i.ToSourceLeverHiringArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLeverHiringArray) ToSourceLeverHiringArrayOutputWithContext(ctx context.Context) SourceLeverHiringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLeverHiringArrayOutput)
+}
+
+// SourceLeverHiringMapInput is an input type that accepts SourceLeverHiringMap and SourceLeverHiringMapOutput values.
+// You can construct a concrete instance of `SourceLeverHiringMapInput` via:
+//
+//	SourceLeverHiringMap{ "key": SourceLeverHiringArgs{...} }
+type SourceLeverHiringMapInput interface {
+	pulumi.Input
+
+	ToSourceLeverHiringMapOutput() SourceLeverHiringMapOutput
+	ToSourceLeverHiringMapOutputWithContext(context.Context) SourceLeverHiringMapOutput
+}
+
+type SourceLeverHiringMap map[string]SourceLeverHiringInput
+
+func (SourceLeverHiringMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLeverHiring)(nil)).Elem()
+}
+
+func (i SourceLeverHiringMap) ToSourceLeverHiringMapOutput() SourceLeverHiringMapOutput {
+	return i.ToSourceLeverHiringMapOutputWithContext(context.Background())
+}
+
+func (i SourceLeverHiringMap) ToSourceLeverHiringMapOutputWithContext(ctx context.Context) SourceLeverHiringMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLeverHiringMapOutput)
+}
+
 type SourceLeverHiringOutput struct{ *pulumi.OutputState }
 
 func (SourceLeverHiringOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLeverHiringOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLeverHiring) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLeverHiringArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLeverHiringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLeverHiring)(nil)).Elem()
+}
+
+func (o SourceLeverHiringArrayOutput) ToSourceLeverHiringArrayOutput() SourceLeverHiringArrayOutput {
+	return o
+}
+
+func (o SourceLeverHiringArrayOutput) ToSourceLeverHiringArrayOutputWithContext(ctx context.Context) SourceLeverHiringArrayOutput {
+	return o
+}
+
+func (o SourceLeverHiringArrayOutput) Index(i pulumi.IntInput) SourceLeverHiringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLeverHiring {
+		return vs[0].([]*SourceLeverHiring)[vs[1].(int)]
+	}).(SourceLeverHiringOutput)
+}
+
+type SourceLeverHiringMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLeverHiringMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLeverHiring)(nil)).Elem()
+}
+
+func (o SourceLeverHiringMapOutput) ToSourceLeverHiringMapOutput() SourceLeverHiringMapOutput {
+	return o
+}
+
+func (o SourceLeverHiringMapOutput) ToSourceLeverHiringMapOutputWithContext(ctx context.Context) SourceLeverHiringMapOutput {
+	return o
+}
+
+func (o SourceLeverHiringMapOutput) MapIndex(k pulumi.StringInput) SourceLeverHiringOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLeverHiring {
+		return vs[0].(map[string]*SourceLeverHiring)[vs[1].(string)]
+	}).(SourceLeverHiringOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLeverHiringInput)(nil)).Elem(), &SourceLeverHiring{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLeverHiringArrayInput)(nil)).Elem(), SourceLeverHiringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLeverHiringMapInput)(nil)).Elem(), SourceLeverHiringMap{})
 	pulumi.RegisterOutputType(SourceLeverHiringOutput{})
+	pulumi.RegisterOutputType(SourceLeverHiringArrayOutput{})
+	pulumi.RegisterOutputType(SourceLeverHiringMapOutput{})
 }

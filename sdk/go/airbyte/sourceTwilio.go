@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTwilio Resource
@@ -127,6 +127,56 @@ func (i *SourceTwilio) ToSourceTwilioOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioOutput)
 }
 
+// SourceTwilioArrayInput is an input type that accepts SourceTwilioArray and SourceTwilioArrayOutput values.
+// You can construct a concrete instance of `SourceTwilioArrayInput` via:
+//
+//	SourceTwilioArray{ SourceTwilioArgs{...} }
+type SourceTwilioArrayInput interface {
+	pulumi.Input
+
+	ToSourceTwilioArrayOutput() SourceTwilioArrayOutput
+	ToSourceTwilioArrayOutputWithContext(context.Context) SourceTwilioArrayOutput
+}
+
+type SourceTwilioArray []SourceTwilioInput
+
+func (SourceTwilioArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTwilio)(nil)).Elem()
+}
+
+func (i SourceTwilioArray) ToSourceTwilioArrayOutput() SourceTwilioArrayOutput {
+	return i.ToSourceTwilioArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTwilioArray) ToSourceTwilioArrayOutputWithContext(ctx context.Context) SourceTwilioArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioArrayOutput)
+}
+
+// SourceTwilioMapInput is an input type that accepts SourceTwilioMap and SourceTwilioMapOutput values.
+// You can construct a concrete instance of `SourceTwilioMapInput` via:
+//
+//	SourceTwilioMap{ "key": SourceTwilioArgs{...} }
+type SourceTwilioMapInput interface {
+	pulumi.Input
+
+	ToSourceTwilioMapOutput() SourceTwilioMapOutput
+	ToSourceTwilioMapOutputWithContext(context.Context) SourceTwilioMapOutput
+}
+
+type SourceTwilioMap map[string]SourceTwilioInput
+
+func (SourceTwilioMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTwilio)(nil)).Elem()
+}
+
+func (i SourceTwilioMap) ToSourceTwilioMapOutput() SourceTwilioMapOutput {
+	return i.ToSourceTwilioMapOutputWithContext(context.Background())
+}
+
+func (i SourceTwilioMap) ToSourceTwilioMapOutputWithContext(ctx context.Context) SourceTwilioMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioMapOutput)
+}
+
 type SourceTwilioOutput struct{ *pulumi.OutputState }
 
 func (SourceTwilioOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTwilioOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTwilio) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTwilioArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTwilioArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTwilio)(nil)).Elem()
+}
+
+func (o SourceTwilioArrayOutput) ToSourceTwilioArrayOutput() SourceTwilioArrayOutput {
+	return o
+}
+
+func (o SourceTwilioArrayOutput) ToSourceTwilioArrayOutputWithContext(ctx context.Context) SourceTwilioArrayOutput {
+	return o
+}
+
+func (o SourceTwilioArrayOutput) Index(i pulumi.IntInput) SourceTwilioOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTwilio {
+		return vs[0].([]*SourceTwilio)[vs[1].(int)]
+	}).(SourceTwilioOutput)
+}
+
+type SourceTwilioMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTwilioMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTwilio)(nil)).Elem()
+}
+
+func (o SourceTwilioMapOutput) ToSourceTwilioMapOutput() SourceTwilioMapOutput {
+	return o
+}
+
+func (o SourceTwilioMapOutput) ToSourceTwilioMapOutputWithContext(ctx context.Context) SourceTwilioMapOutput {
+	return o
+}
+
+func (o SourceTwilioMapOutput) MapIndex(k pulumi.StringInput) SourceTwilioOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTwilio {
+		return vs[0].(map[string]*SourceTwilio)[vs[1].(string)]
+	}).(SourceTwilioOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioInput)(nil)).Elem(), &SourceTwilio{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioArrayInput)(nil)).Elem(), SourceTwilioArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioMapInput)(nil)).Elem(), SourceTwilioMap{})
 	pulumi.RegisterOutputType(SourceTwilioOutput{})
+	pulumi.RegisterOutputType(SourceTwilioArrayOutput{})
+	pulumi.RegisterOutputType(SourceTwilioMapOutput{})
 }

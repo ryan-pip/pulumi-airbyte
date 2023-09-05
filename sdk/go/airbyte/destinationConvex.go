@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationConvex Resource
@@ -117,6 +117,56 @@ func (i *DestinationConvex) ToDestinationConvexOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationConvexOutput)
 }
 
+// DestinationConvexArrayInput is an input type that accepts DestinationConvexArray and DestinationConvexArrayOutput values.
+// You can construct a concrete instance of `DestinationConvexArrayInput` via:
+//
+//	DestinationConvexArray{ DestinationConvexArgs{...} }
+type DestinationConvexArrayInput interface {
+	pulumi.Input
+
+	ToDestinationConvexArrayOutput() DestinationConvexArrayOutput
+	ToDestinationConvexArrayOutputWithContext(context.Context) DestinationConvexArrayOutput
+}
+
+type DestinationConvexArray []DestinationConvexInput
+
+func (DestinationConvexArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationConvex)(nil)).Elem()
+}
+
+func (i DestinationConvexArray) ToDestinationConvexArrayOutput() DestinationConvexArrayOutput {
+	return i.ToDestinationConvexArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationConvexArray) ToDestinationConvexArrayOutputWithContext(ctx context.Context) DestinationConvexArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationConvexArrayOutput)
+}
+
+// DestinationConvexMapInput is an input type that accepts DestinationConvexMap and DestinationConvexMapOutput values.
+// You can construct a concrete instance of `DestinationConvexMapInput` via:
+//
+//	DestinationConvexMap{ "key": DestinationConvexArgs{...} }
+type DestinationConvexMapInput interface {
+	pulumi.Input
+
+	ToDestinationConvexMapOutput() DestinationConvexMapOutput
+	ToDestinationConvexMapOutputWithContext(context.Context) DestinationConvexMapOutput
+}
+
+type DestinationConvexMap map[string]DestinationConvexInput
+
+func (DestinationConvexMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationConvex)(nil)).Elem()
+}
+
+func (i DestinationConvexMap) ToDestinationConvexMapOutput() DestinationConvexMapOutput {
+	return i.ToDestinationConvexMapOutputWithContext(context.Background())
+}
+
+func (i DestinationConvexMap) ToDestinationConvexMapOutputWithContext(ctx context.Context) DestinationConvexMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationConvexMapOutput)
+}
+
 type DestinationConvexOutput struct{ *pulumi.OutputState }
 
 func (DestinationConvexOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationConvexOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationConvex) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationConvexArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationConvexArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationConvex)(nil)).Elem()
+}
+
+func (o DestinationConvexArrayOutput) ToDestinationConvexArrayOutput() DestinationConvexArrayOutput {
+	return o
+}
+
+func (o DestinationConvexArrayOutput) ToDestinationConvexArrayOutputWithContext(ctx context.Context) DestinationConvexArrayOutput {
+	return o
+}
+
+func (o DestinationConvexArrayOutput) Index(i pulumi.IntInput) DestinationConvexOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationConvex {
+		return vs[0].([]*DestinationConvex)[vs[1].(int)]
+	}).(DestinationConvexOutput)
+}
+
+type DestinationConvexMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationConvexMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationConvex)(nil)).Elem()
+}
+
+func (o DestinationConvexMapOutput) ToDestinationConvexMapOutput() DestinationConvexMapOutput {
+	return o
+}
+
+func (o DestinationConvexMapOutput) ToDestinationConvexMapOutputWithContext(ctx context.Context) DestinationConvexMapOutput {
+	return o
+}
+
+func (o DestinationConvexMapOutput) MapIndex(k pulumi.StringInput) DestinationConvexOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationConvex {
+		return vs[0].(map[string]*DestinationConvex)[vs[1].(string)]
+	}).(DestinationConvexOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationConvexInput)(nil)).Elem(), &DestinationConvex{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationConvexArrayInput)(nil)).Elem(), DestinationConvexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationConvexMapInput)(nil)).Elem(), DestinationConvexMap{})
 	pulumi.RegisterOutputType(DestinationConvexOutput{})
+	pulumi.RegisterOutputType(DestinationConvexArrayOutput{})
+	pulumi.RegisterOutputType(DestinationConvexMapOutput{})
 }

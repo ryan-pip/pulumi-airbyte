@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZendeskTalk Resource
@@ -127,6 +127,56 @@ func (i *SourceZendeskTalk) ToSourceZendeskTalkOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskTalkOutput)
 }
 
+// SourceZendeskTalkArrayInput is an input type that accepts SourceZendeskTalkArray and SourceZendeskTalkArrayOutput values.
+// You can construct a concrete instance of `SourceZendeskTalkArrayInput` via:
+//
+//	SourceZendeskTalkArray{ SourceZendeskTalkArgs{...} }
+type SourceZendeskTalkArrayInput interface {
+	pulumi.Input
+
+	ToSourceZendeskTalkArrayOutput() SourceZendeskTalkArrayOutput
+	ToSourceZendeskTalkArrayOutputWithContext(context.Context) SourceZendeskTalkArrayOutput
+}
+
+type SourceZendeskTalkArray []SourceZendeskTalkInput
+
+func (SourceZendeskTalkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZendeskTalk)(nil)).Elem()
+}
+
+func (i SourceZendeskTalkArray) ToSourceZendeskTalkArrayOutput() SourceZendeskTalkArrayOutput {
+	return i.ToSourceZendeskTalkArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZendeskTalkArray) ToSourceZendeskTalkArrayOutputWithContext(ctx context.Context) SourceZendeskTalkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskTalkArrayOutput)
+}
+
+// SourceZendeskTalkMapInput is an input type that accepts SourceZendeskTalkMap and SourceZendeskTalkMapOutput values.
+// You can construct a concrete instance of `SourceZendeskTalkMapInput` via:
+//
+//	SourceZendeskTalkMap{ "key": SourceZendeskTalkArgs{...} }
+type SourceZendeskTalkMapInput interface {
+	pulumi.Input
+
+	ToSourceZendeskTalkMapOutput() SourceZendeskTalkMapOutput
+	ToSourceZendeskTalkMapOutputWithContext(context.Context) SourceZendeskTalkMapOutput
+}
+
+type SourceZendeskTalkMap map[string]SourceZendeskTalkInput
+
+func (SourceZendeskTalkMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZendeskTalk)(nil)).Elem()
+}
+
+func (i SourceZendeskTalkMap) ToSourceZendeskTalkMapOutput() SourceZendeskTalkMapOutput {
+	return i.ToSourceZendeskTalkMapOutputWithContext(context.Background())
+}
+
+func (i SourceZendeskTalkMap) ToSourceZendeskTalkMapOutputWithContext(ctx context.Context) SourceZendeskTalkMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskTalkMapOutput)
+}
+
 type SourceZendeskTalkOutput struct{ *pulumi.OutputState }
 
 func (SourceZendeskTalkOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZendeskTalkOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZendeskTalk) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZendeskTalkArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZendeskTalkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZendeskTalk)(nil)).Elem()
+}
+
+func (o SourceZendeskTalkArrayOutput) ToSourceZendeskTalkArrayOutput() SourceZendeskTalkArrayOutput {
+	return o
+}
+
+func (o SourceZendeskTalkArrayOutput) ToSourceZendeskTalkArrayOutputWithContext(ctx context.Context) SourceZendeskTalkArrayOutput {
+	return o
+}
+
+func (o SourceZendeskTalkArrayOutput) Index(i pulumi.IntInput) SourceZendeskTalkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZendeskTalk {
+		return vs[0].([]*SourceZendeskTalk)[vs[1].(int)]
+	}).(SourceZendeskTalkOutput)
+}
+
+type SourceZendeskTalkMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZendeskTalkMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZendeskTalk)(nil)).Elem()
+}
+
+func (o SourceZendeskTalkMapOutput) ToSourceZendeskTalkMapOutput() SourceZendeskTalkMapOutput {
+	return o
+}
+
+func (o SourceZendeskTalkMapOutput) ToSourceZendeskTalkMapOutputWithContext(ctx context.Context) SourceZendeskTalkMapOutput {
+	return o
+}
+
+func (o SourceZendeskTalkMapOutput) MapIndex(k pulumi.StringInput) SourceZendeskTalkOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZendeskTalk {
+		return vs[0].(map[string]*SourceZendeskTalk)[vs[1].(string)]
+	}).(SourceZendeskTalkOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskTalkInput)(nil)).Elem(), &SourceZendeskTalk{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskTalkArrayInput)(nil)).Elem(), SourceZendeskTalkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskTalkMapInput)(nil)).Elem(), SourceZendeskTalkMap{})
 	pulumi.RegisterOutputType(SourceZendeskTalkOutput{})
+	pulumi.RegisterOutputType(SourceZendeskTalkArrayOutput{})
+	pulumi.RegisterOutputType(SourceZendeskTalkMapOutput{})
 }

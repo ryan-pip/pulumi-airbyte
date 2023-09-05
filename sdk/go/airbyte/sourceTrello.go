@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTrello Resource
@@ -127,6 +127,56 @@ func (i *SourceTrello) ToSourceTrelloOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTrelloOutput)
 }
 
+// SourceTrelloArrayInput is an input type that accepts SourceTrelloArray and SourceTrelloArrayOutput values.
+// You can construct a concrete instance of `SourceTrelloArrayInput` via:
+//
+//	SourceTrelloArray{ SourceTrelloArgs{...} }
+type SourceTrelloArrayInput interface {
+	pulumi.Input
+
+	ToSourceTrelloArrayOutput() SourceTrelloArrayOutput
+	ToSourceTrelloArrayOutputWithContext(context.Context) SourceTrelloArrayOutput
+}
+
+type SourceTrelloArray []SourceTrelloInput
+
+func (SourceTrelloArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTrello)(nil)).Elem()
+}
+
+func (i SourceTrelloArray) ToSourceTrelloArrayOutput() SourceTrelloArrayOutput {
+	return i.ToSourceTrelloArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTrelloArray) ToSourceTrelloArrayOutputWithContext(ctx context.Context) SourceTrelloArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTrelloArrayOutput)
+}
+
+// SourceTrelloMapInput is an input type that accepts SourceTrelloMap and SourceTrelloMapOutput values.
+// You can construct a concrete instance of `SourceTrelloMapInput` via:
+//
+//	SourceTrelloMap{ "key": SourceTrelloArgs{...} }
+type SourceTrelloMapInput interface {
+	pulumi.Input
+
+	ToSourceTrelloMapOutput() SourceTrelloMapOutput
+	ToSourceTrelloMapOutputWithContext(context.Context) SourceTrelloMapOutput
+}
+
+type SourceTrelloMap map[string]SourceTrelloInput
+
+func (SourceTrelloMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTrello)(nil)).Elem()
+}
+
+func (i SourceTrelloMap) ToSourceTrelloMapOutput() SourceTrelloMapOutput {
+	return i.ToSourceTrelloMapOutputWithContext(context.Background())
+}
+
+func (i SourceTrelloMap) ToSourceTrelloMapOutputWithContext(ctx context.Context) SourceTrelloMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTrelloMapOutput)
+}
+
 type SourceTrelloOutput struct{ *pulumi.OutputState }
 
 func (SourceTrelloOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTrelloOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTrello) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTrelloArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTrelloArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTrello)(nil)).Elem()
+}
+
+func (o SourceTrelloArrayOutput) ToSourceTrelloArrayOutput() SourceTrelloArrayOutput {
+	return o
+}
+
+func (o SourceTrelloArrayOutput) ToSourceTrelloArrayOutputWithContext(ctx context.Context) SourceTrelloArrayOutput {
+	return o
+}
+
+func (o SourceTrelloArrayOutput) Index(i pulumi.IntInput) SourceTrelloOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTrello {
+		return vs[0].([]*SourceTrello)[vs[1].(int)]
+	}).(SourceTrelloOutput)
+}
+
+type SourceTrelloMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTrelloMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTrello)(nil)).Elem()
+}
+
+func (o SourceTrelloMapOutput) ToSourceTrelloMapOutput() SourceTrelloMapOutput {
+	return o
+}
+
+func (o SourceTrelloMapOutput) ToSourceTrelloMapOutputWithContext(ctx context.Context) SourceTrelloMapOutput {
+	return o
+}
+
+func (o SourceTrelloMapOutput) MapIndex(k pulumi.StringInput) SourceTrelloOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTrello {
+		return vs[0].(map[string]*SourceTrello)[vs[1].(string)]
+	}).(SourceTrelloOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrelloInput)(nil)).Elem(), &SourceTrello{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrelloArrayInput)(nil)).Elem(), SourceTrelloArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrelloMapInput)(nil)).Elem(), SourceTrelloMap{})
 	pulumi.RegisterOutputType(SourceTrelloOutput{})
+	pulumi.RegisterOutputType(SourceTrelloArrayOutput{})
+	pulumi.RegisterOutputType(SourceTrelloMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOpenweather Resource
@@ -127,6 +127,56 @@ func (i *SourceOpenweather) ToSourceOpenweatherOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOpenweatherOutput)
 }
 
+// SourceOpenweatherArrayInput is an input type that accepts SourceOpenweatherArray and SourceOpenweatherArrayOutput values.
+// You can construct a concrete instance of `SourceOpenweatherArrayInput` via:
+//
+//	SourceOpenweatherArray{ SourceOpenweatherArgs{...} }
+type SourceOpenweatherArrayInput interface {
+	pulumi.Input
+
+	ToSourceOpenweatherArrayOutput() SourceOpenweatherArrayOutput
+	ToSourceOpenweatherArrayOutputWithContext(context.Context) SourceOpenweatherArrayOutput
+}
+
+type SourceOpenweatherArray []SourceOpenweatherInput
+
+func (SourceOpenweatherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOpenweather)(nil)).Elem()
+}
+
+func (i SourceOpenweatherArray) ToSourceOpenweatherArrayOutput() SourceOpenweatherArrayOutput {
+	return i.ToSourceOpenweatherArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOpenweatherArray) ToSourceOpenweatherArrayOutputWithContext(ctx context.Context) SourceOpenweatherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOpenweatherArrayOutput)
+}
+
+// SourceOpenweatherMapInput is an input type that accepts SourceOpenweatherMap and SourceOpenweatherMapOutput values.
+// You can construct a concrete instance of `SourceOpenweatherMapInput` via:
+//
+//	SourceOpenweatherMap{ "key": SourceOpenweatherArgs{...} }
+type SourceOpenweatherMapInput interface {
+	pulumi.Input
+
+	ToSourceOpenweatherMapOutput() SourceOpenweatherMapOutput
+	ToSourceOpenweatherMapOutputWithContext(context.Context) SourceOpenweatherMapOutput
+}
+
+type SourceOpenweatherMap map[string]SourceOpenweatherInput
+
+func (SourceOpenweatherMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOpenweather)(nil)).Elem()
+}
+
+func (i SourceOpenweatherMap) ToSourceOpenweatherMapOutput() SourceOpenweatherMapOutput {
+	return i.ToSourceOpenweatherMapOutputWithContext(context.Background())
+}
+
+func (i SourceOpenweatherMap) ToSourceOpenweatherMapOutputWithContext(ctx context.Context) SourceOpenweatherMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOpenweatherMapOutput)
+}
+
 type SourceOpenweatherOutput struct{ *pulumi.OutputState }
 
 func (SourceOpenweatherOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOpenweatherOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOpenweather) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOpenweatherArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOpenweatherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOpenweather)(nil)).Elem()
+}
+
+func (o SourceOpenweatherArrayOutput) ToSourceOpenweatherArrayOutput() SourceOpenweatherArrayOutput {
+	return o
+}
+
+func (o SourceOpenweatherArrayOutput) ToSourceOpenweatherArrayOutputWithContext(ctx context.Context) SourceOpenweatherArrayOutput {
+	return o
+}
+
+func (o SourceOpenweatherArrayOutput) Index(i pulumi.IntInput) SourceOpenweatherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOpenweather {
+		return vs[0].([]*SourceOpenweather)[vs[1].(int)]
+	}).(SourceOpenweatherOutput)
+}
+
+type SourceOpenweatherMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOpenweatherMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOpenweather)(nil)).Elem()
+}
+
+func (o SourceOpenweatherMapOutput) ToSourceOpenweatherMapOutput() SourceOpenweatherMapOutput {
+	return o
+}
+
+func (o SourceOpenweatherMapOutput) ToSourceOpenweatherMapOutputWithContext(ctx context.Context) SourceOpenweatherMapOutput {
+	return o
+}
+
+func (o SourceOpenweatherMapOutput) MapIndex(k pulumi.StringInput) SourceOpenweatherOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOpenweather {
+		return vs[0].(map[string]*SourceOpenweather)[vs[1].(string)]
+	}).(SourceOpenweatherOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOpenweatherInput)(nil)).Elem(), &SourceOpenweather{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOpenweatherArrayInput)(nil)).Elem(), SourceOpenweatherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOpenweatherMapInput)(nil)).Elem(), SourceOpenweatherMap{})
 	pulumi.RegisterOutputType(SourceOpenweatherOutput{})
+	pulumi.RegisterOutputType(SourceOpenweatherArrayOutput{})
+	pulumi.RegisterOutputType(SourceOpenweatherMapOutput{})
 }

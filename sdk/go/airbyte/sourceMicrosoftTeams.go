@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMicrosoftTeams Resource
@@ -127,6 +127,56 @@ func (i *SourceMicrosoftTeams) ToSourceMicrosoftTeamsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMicrosoftTeamsOutput)
 }
 
+// SourceMicrosoftTeamsArrayInput is an input type that accepts SourceMicrosoftTeamsArray and SourceMicrosoftTeamsArrayOutput values.
+// You can construct a concrete instance of `SourceMicrosoftTeamsArrayInput` via:
+//
+//	SourceMicrosoftTeamsArray{ SourceMicrosoftTeamsArgs{...} }
+type SourceMicrosoftTeamsArrayInput interface {
+	pulumi.Input
+
+	ToSourceMicrosoftTeamsArrayOutput() SourceMicrosoftTeamsArrayOutput
+	ToSourceMicrosoftTeamsArrayOutputWithContext(context.Context) SourceMicrosoftTeamsArrayOutput
+}
+
+type SourceMicrosoftTeamsArray []SourceMicrosoftTeamsInput
+
+func (SourceMicrosoftTeamsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMicrosoftTeams)(nil)).Elem()
+}
+
+func (i SourceMicrosoftTeamsArray) ToSourceMicrosoftTeamsArrayOutput() SourceMicrosoftTeamsArrayOutput {
+	return i.ToSourceMicrosoftTeamsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMicrosoftTeamsArray) ToSourceMicrosoftTeamsArrayOutputWithContext(ctx context.Context) SourceMicrosoftTeamsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMicrosoftTeamsArrayOutput)
+}
+
+// SourceMicrosoftTeamsMapInput is an input type that accepts SourceMicrosoftTeamsMap and SourceMicrosoftTeamsMapOutput values.
+// You can construct a concrete instance of `SourceMicrosoftTeamsMapInput` via:
+//
+//	SourceMicrosoftTeamsMap{ "key": SourceMicrosoftTeamsArgs{...} }
+type SourceMicrosoftTeamsMapInput interface {
+	pulumi.Input
+
+	ToSourceMicrosoftTeamsMapOutput() SourceMicrosoftTeamsMapOutput
+	ToSourceMicrosoftTeamsMapOutputWithContext(context.Context) SourceMicrosoftTeamsMapOutput
+}
+
+type SourceMicrosoftTeamsMap map[string]SourceMicrosoftTeamsInput
+
+func (SourceMicrosoftTeamsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMicrosoftTeams)(nil)).Elem()
+}
+
+func (i SourceMicrosoftTeamsMap) ToSourceMicrosoftTeamsMapOutput() SourceMicrosoftTeamsMapOutput {
+	return i.ToSourceMicrosoftTeamsMapOutputWithContext(context.Background())
+}
+
+func (i SourceMicrosoftTeamsMap) ToSourceMicrosoftTeamsMapOutputWithContext(ctx context.Context) SourceMicrosoftTeamsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMicrosoftTeamsMapOutput)
+}
+
 type SourceMicrosoftTeamsOutput struct{ *pulumi.OutputState }
 
 func (SourceMicrosoftTeamsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMicrosoftTeamsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMicrosoftTeams) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMicrosoftTeamsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMicrosoftTeamsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMicrosoftTeams)(nil)).Elem()
+}
+
+func (o SourceMicrosoftTeamsArrayOutput) ToSourceMicrosoftTeamsArrayOutput() SourceMicrosoftTeamsArrayOutput {
+	return o
+}
+
+func (o SourceMicrosoftTeamsArrayOutput) ToSourceMicrosoftTeamsArrayOutputWithContext(ctx context.Context) SourceMicrosoftTeamsArrayOutput {
+	return o
+}
+
+func (o SourceMicrosoftTeamsArrayOutput) Index(i pulumi.IntInput) SourceMicrosoftTeamsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMicrosoftTeams {
+		return vs[0].([]*SourceMicrosoftTeams)[vs[1].(int)]
+	}).(SourceMicrosoftTeamsOutput)
+}
+
+type SourceMicrosoftTeamsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMicrosoftTeamsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMicrosoftTeams)(nil)).Elem()
+}
+
+func (o SourceMicrosoftTeamsMapOutput) ToSourceMicrosoftTeamsMapOutput() SourceMicrosoftTeamsMapOutput {
+	return o
+}
+
+func (o SourceMicrosoftTeamsMapOutput) ToSourceMicrosoftTeamsMapOutputWithContext(ctx context.Context) SourceMicrosoftTeamsMapOutput {
+	return o
+}
+
+func (o SourceMicrosoftTeamsMapOutput) MapIndex(k pulumi.StringInput) SourceMicrosoftTeamsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMicrosoftTeams {
+		return vs[0].(map[string]*SourceMicrosoftTeams)[vs[1].(string)]
+	}).(SourceMicrosoftTeamsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMicrosoftTeamsInput)(nil)).Elem(), &SourceMicrosoftTeams{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMicrosoftTeamsArrayInput)(nil)).Elem(), SourceMicrosoftTeamsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMicrosoftTeamsMapInput)(nil)).Elem(), SourceMicrosoftTeamsMap{})
 	pulumi.RegisterOutputType(SourceMicrosoftTeamsOutput{})
+	pulumi.RegisterOutputType(SourceMicrosoftTeamsArrayOutput{})
+	pulumi.RegisterOutputType(SourceMicrosoftTeamsMapOutput{})
 }

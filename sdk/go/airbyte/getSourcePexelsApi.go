@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePexelsAPI DataSource
@@ -24,15 +24,20 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := airbyte.LookupSourcePexelsApi(ctx, %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference), nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := airbyte.LookupSourcePexelsApi(ctx, &airbyte.LookupSourcePexelsApiArgs{
+//				SecretId: pulumi.StringRef("...my_secret_id..."),
+//				SourceId: "...my_source_id...",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupSourcePexelsApi(ctx *pulumi.Context, args *LookupSourcePexelsApiArgs, opts ...pulumi.InvokeOption) (*LookupSourcePexelsApiResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

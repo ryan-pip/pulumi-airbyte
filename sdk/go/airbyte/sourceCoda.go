@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceCoda Resource
@@ -127,6 +127,56 @@ func (i *SourceCoda) ToSourceCodaOutputWithContext(ctx context.Context) SourceCo
 	return pulumi.ToOutputWithContext(ctx, i).(SourceCodaOutput)
 }
 
+// SourceCodaArrayInput is an input type that accepts SourceCodaArray and SourceCodaArrayOutput values.
+// You can construct a concrete instance of `SourceCodaArrayInput` via:
+//
+//	SourceCodaArray{ SourceCodaArgs{...} }
+type SourceCodaArrayInput interface {
+	pulumi.Input
+
+	ToSourceCodaArrayOutput() SourceCodaArrayOutput
+	ToSourceCodaArrayOutputWithContext(context.Context) SourceCodaArrayOutput
+}
+
+type SourceCodaArray []SourceCodaInput
+
+func (SourceCodaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoda)(nil)).Elem()
+}
+
+func (i SourceCodaArray) ToSourceCodaArrayOutput() SourceCodaArrayOutput {
+	return i.ToSourceCodaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceCodaArray) ToSourceCodaArrayOutputWithContext(ctx context.Context) SourceCodaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCodaArrayOutput)
+}
+
+// SourceCodaMapInput is an input type that accepts SourceCodaMap and SourceCodaMapOutput values.
+// You can construct a concrete instance of `SourceCodaMapInput` via:
+//
+//	SourceCodaMap{ "key": SourceCodaArgs{...} }
+type SourceCodaMapInput interface {
+	pulumi.Input
+
+	ToSourceCodaMapOutput() SourceCodaMapOutput
+	ToSourceCodaMapOutputWithContext(context.Context) SourceCodaMapOutput
+}
+
+type SourceCodaMap map[string]SourceCodaInput
+
+func (SourceCodaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoda)(nil)).Elem()
+}
+
+func (i SourceCodaMap) ToSourceCodaMapOutput() SourceCodaMapOutput {
+	return i.ToSourceCodaMapOutputWithContext(context.Background())
+}
+
+func (i SourceCodaMap) ToSourceCodaMapOutputWithContext(ctx context.Context) SourceCodaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCodaMapOutput)
+}
+
 type SourceCodaOutput struct{ *pulumi.OutputState }
 
 func (SourceCodaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceCodaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceCoda) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceCodaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceCodaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCoda)(nil)).Elem()
+}
+
+func (o SourceCodaArrayOutput) ToSourceCodaArrayOutput() SourceCodaArrayOutput {
+	return o
+}
+
+func (o SourceCodaArrayOutput) ToSourceCodaArrayOutputWithContext(ctx context.Context) SourceCodaArrayOutput {
+	return o
+}
+
+func (o SourceCodaArrayOutput) Index(i pulumi.IntInput) SourceCodaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceCoda {
+		return vs[0].([]*SourceCoda)[vs[1].(int)]
+	}).(SourceCodaOutput)
+}
+
+type SourceCodaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceCodaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCoda)(nil)).Elem()
+}
+
+func (o SourceCodaMapOutput) ToSourceCodaMapOutput() SourceCodaMapOutput {
+	return o
+}
+
+func (o SourceCodaMapOutput) ToSourceCodaMapOutputWithContext(ctx context.Context) SourceCodaMapOutput {
+	return o
+}
+
+func (o SourceCodaMapOutput) MapIndex(k pulumi.StringInput) SourceCodaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceCoda {
+		return vs[0].(map[string]*SourceCoda)[vs[1].(string)]
+	}).(SourceCodaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceCodaInput)(nil)).Elem(), &SourceCoda{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCodaArrayInput)(nil)).Elem(), SourceCodaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCodaMapInput)(nil)).Elem(), SourceCodaMap{})
 	pulumi.RegisterOutputType(SourceCodaOutput{})
+	pulumi.RegisterOutputType(SourceCodaArrayOutput{})
+	pulumi.RegisterOutputType(SourceCodaMapOutput{})
 }

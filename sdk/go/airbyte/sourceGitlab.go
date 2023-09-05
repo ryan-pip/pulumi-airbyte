@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGitlab Resource
@@ -127,6 +127,56 @@ func (i *SourceGitlab) ToSourceGitlabOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGitlabOutput)
 }
 
+// SourceGitlabArrayInput is an input type that accepts SourceGitlabArray and SourceGitlabArrayOutput values.
+// You can construct a concrete instance of `SourceGitlabArrayInput` via:
+//
+//	SourceGitlabArray{ SourceGitlabArgs{...} }
+type SourceGitlabArrayInput interface {
+	pulumi.Input
+
+	ToSourceGitlabArrayOutput() SourceGitlabArrayOutput
+	ToSourceGitlabArrayOutputWithContext(context.Context) SourceGitlabArrayOutput
+}
+
+type SourceGitlabArray []SourceGitlabInput
+
+func (SourceGitlabArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGitlab)(nil)).Elem()
+}
+
+func (i SourceGitlabArray) ToSourceGitlabArrayOutput() SourceGitlabArrayOutput {
+	return i.ToSourceGitlabArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGitlabArray) ToSourceGitlabArrayOutputWithContext(ctx context.Context) SourceGitlabArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGitlabArrayOutput)
+}
+
+// SourceGitlabMapInput is an input type that accepts SourceGitlabMap and SourceGitlabMapOutput values.
+// You can construct a concrete instance of `SourceGitlabMapInput` via:
+//
+//	SourceGitlabMap{ "key": SourceGitlabArgs{...} }
+type SourceGitlabMapInput interface {
+	pulumi.Input
+
+	ToSourceGitlabMapOutput() SourceGitlabMapOutput
+	ToSourceGitlabMapOutputWithContext(context.Context) SourceGitlabMapOutput
+}
+
+type SourceGitlabMap map[string]SourceGitlabInput
+
+func (SourceGitlabMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGitlab)(nil)).Elem()
+}
+
+func (i SourceGitlabMap) ToSourceGitlabMapOutput() SourceGitlabMapOutput {
+	return i.ToSourceGitlabMapOutputWithContext(context.Background())
+}
+
+func (i SourceGitlabMap) ToSourceGitlabMapOutputWithContext(ctx context.Context) SourceGitlabMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGitlabMapOutput)
+}
+
 type SourceGitlabOutput struct{ *pulumi.OutputState }
 
 func (SourceGitlabOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGitlabOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGitlab) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGitlabArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGitlabArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGitlab)(nil)).Elem()
+}
+
+func (o SourceGitlabArrayOutput) ToSourceGitlabArrayOutput() SourceGitlabArrayOutput {
+	return o
+}
+
+func (o SourceGitlabArrayOutput) ToSourceGitlabArrayOutputWithContext(ctx context.Context) SourceGitlabArrayOutput {
+	return o
+}
+
+func (o SourceGitlabArrayOutput) Index(i pulumi.IntInput) SourceGitlabOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGitlab {
+		return vs[0].([]*SourceGitlab)[vs[1].(int)]
+	}).(SourceGitlabOutput)
+}
+
+type SourceGitlabMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGitlabMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGitlab)(nil)).Elem()
+}
+
+func (o SourceGitlabMapOutput) ToSourceGitlabMapOutput() SourceGitlabMapOutput {
+	return o
+}
+
+func (o SourceGitlabMapOutput) ToSourceGitlabMapOutputWithContext(ctx context.Context) SourceGitlabMapOutput {
+	return o
+}
+
+func (o SourceGitlabMapOutput) MapIndex(k pulumi.StringInput) SourceGitlabOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGitlab {
+		return vs[0].(map[string]*SourceGitlab)[vs[1].(string)]
+	}).(SourceGitlabOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGitlabInput)(nil)).Elem(), &SourceGitlab{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGitlabArrayInput)(nil)).Elem(), SourceGitlabArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGitlabMapInput)(nil)).Elem(), SourceGitlabMap{})
 	pulumi.RegisterOutputType(SourceGitlabOutput{})
+	pulumi.RegisterOutputType(SourceGitlabArrayOutput{})
+	pulumi.RegisterOutputType(SourceGitlabMapOutput{})
 }

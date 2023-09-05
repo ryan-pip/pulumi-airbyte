@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAha Resource
@@ -127,6 +127,56 @@ func (i *SourceAha) ToSourceAhaOutputWithContext(ctx context.Context) SourceAhaO
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAhaOutput)
 }
 
+// SourceAhaArrayInput is an input type that accepts SourceAhaArray and SourceAhaArrayOutput values.
+// You can construct a concrete instance of `SourceAhaArrayInput` via:
+//
+//	SourceAhaArray{ SourceAhaArgs{...} }
+type SourceAhaArrayInput interface {
+	pulumi.Input
+
+	ToSourceAhaArrayOutput() SourceAhaArrayOutput
+	ToSourceAhaArrayOutputWithContext(context.Context) SourceAhaArrayOutput
+}
+
+type SourceAhaArray []SourceAhaInput
+
+func (SourceAhaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAha)(nil)).Elem()
+}
+
+func (i SourceAhaArray) ToSourceAhaArrayOutput() SourceAhaArrayOutput {
+	return i.ToSourceAhaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAhaArray) ToSourceAhaArrayOutputWithContext(ctx context.Context) SourceAhaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAhaArrayOutput)
+}
+
+// SourceAhaMapInput is an input type that accepts SourceAhaMap and SourceAhaMapOutput values.
+// You can construct a concrete instance of `SourceAhaMapInput` via:
+//
+//	SourceAhaMap{ "key": SourceAhaArgs{...} }
+type SourceAhaMapInput interface {
+	pulumi.Input
+
+	ToSourceAhaMapOutput() SourceAhaMapOutput
+	ToSourceAhaMapOutputWithContext(context.Context) SourceAhaMapOutput
+}
+
+type SourceAhaMap map[string]SourceAhaInput
+
+func (SourceAhaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAha)(nil)).Elem()
+}
+
+func (i SourceAhaMap) ToSourceAhaMapOutput() SourceAhaMapOutput {
+	return i.ToSourceAhaMapOutputWithContext(context.Background())
+}
+
+func (i SourceAhaMap) ToSourceAhaMapOutputWithContext(ctx context.Context) SourceAhaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAhaMapOutput)
+}
+
 type SourceAhaOutput struct{ *pulumi.OutputState }
 
 func (SourceAhaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAhaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAha) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAhaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAhaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAha)(nil)).Elem()
+}
+
+func (o SourceAhaArrayOutput) ToSourceAhaArrayOutput() SourceAhaArrayOutput {
+	return o
+}
+
+func (o SourceAhaArrayOutput) ToSourceAhaArrayOutputWithContext(ctx context.Context) SourceAhaArrayOutput {
+	return o
+}
+
+func (o SourceAhaArrayOutput) Index(i pulumi.IntInput) SourceAhaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAha {
+		return vs[0].([]*SourceAha)[vs[1].(int)]
+	}).(SourceAhaOutput)
+}
+
+type SourceAhaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAhaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAha)(nil)).Elem()
+}
+
+func (o SourceAhaMapOutput) ToSourceAhaMapOutput() SourceAhaMapOutput {
+	return o
+}
+
+func (o SourceAhaMapOutput) ToSourceAhaMapOutputWithContext(ctx context.Context) SourceAhaMapOutput {
+	return o
+}
+
+func (o SourceAhaMapOutput) MapIndex(k pulumi.StringInput) SourceAhaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAha {
+		return vs[0].(map[string]*SourceAha)[vs[1].(string)]
+	}).(SourceAhaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAhaInput)(nil)).Elem(), &SourceAha{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAhaArrayInput)(nil)).Elem(), SourceAhaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAhaMapInput)(nil)).Elem(), SourceAhaMap{})
 	pulumi.RegisterOutputType(SourceAhaOutput{})
+	pulumi.RegisterOutputType(SourceAhaArrayOutput{})
+	pulumi.RegisterOutputType(SourceAhaMapOutput{})
 }

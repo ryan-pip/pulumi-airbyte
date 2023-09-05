@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDixa Resource
@@ -127,6 +127,56 @@ func (i *SourceDixa) ToSourceDixaOutputWithContext(ctx context.Context) SourceDi
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDixaOutput)
 }
 
+// SourceDixaArrayInput is an input type that accepts SourceDixaArray and SourceDixaArrayOutput values.
+// You can construct a concrete instance of `SourceDixaArrayInput` via:
+//
+//	SourceDixaArray{ SourceDixaArgs{...} }
+type SourceDixaArrayInput interface {
+	pulumi.Input
+
+	ToSourceDixaArrayOutput() SourceDixaArrayOutput
+	ToSourceDixaArrayOutputWithContext(context.Context) SourceDixaArrayOutput
+}
+
+type SourceDixaArray []SourceDixaInput
+
+func (SourceDixaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDixa)(nil)).Elem()
+}
+
+func (i SourceDixaArray) ToSourceDixaArrayOutput() SourceDixaArrayOutput {
+	return i.ToSourceDixaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDixaArray) ToSourceDixaArrayOutputWithContext(ctx context.Context) SourceDixaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDixaArrayOutput)
+}
+
+// SourceDixaMapInput is an input type that accepts SourceDixaMap and SourceDixaMapOutput values.
+// You can construct a concrete instance of `SourceDixaMapInput` via:
+//
+//	SourceDixaMap{ "key": SourceDixaArgs{...} }
+type SourceDixaMapInput interface {
+	pulumi.Input
+
+	ToSourceDixaMapOutput() SourceDixaMapOutput
+	ToSourceDixaMapOutputWithContext(context.Context) SourceDixaMapOutput
+}
+
+type SourceDixaMap map[string]SourceDixaInput
+
+func (SourceDixaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDixa)(nil)).Elem()
+}
+
+func (i SourceDixaMap) ToSourceDixaMapOutput() SourceDixaMapOutput {
+	return i.ToSourceDixaMapOutputWithContext(context.Background())
+}
+
+func (i SourceDixaMap) ToSourceDixaMapOutputWithContext(ctx context.Context) SourceDixaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDixaMapOutput)
+}
+
 type SourceDixaOutput struct{ *pulumi.OutputState }
 
 func (SourceDixaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDixaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDixa) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDixaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDixaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDixa)(nil)).Elem()
+}
+
+func (o SourceDixaArrayOutput) ToSourceDixaArrayOutput() SourceDixaArrayOutput {
+	return o
+}
+
+func (o SourceDixaArrayOutput) ToSourceDixaArrayOutputWithContext(ctx context.Context) SourceDixaArrayOutput {
+	return o
+}
+
+func (o SourceDixaArrayOutput) Index(i pulumi.IntInput) SourceDixaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDixa {
+		return vs[0].([]*SourceDixa)[vs[1].(int)]
+	}).(SourceDixaOutput)
+}
+
+type SourceDixaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDixaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDixa)(nil)).Elem()
+}
+
+func (o SourceDixaMapOutput) ToSourceDixaMapOutput() SourceDixaMapOutput {
+	return o
+}
+
+func (o SourceDixaMapOutput) ToSourceDixaMapOutputWithContext(ctx context.Context) SourceDixaMapOutput {
+	return o
+}
+
+func (o SourceDixaMapOutput) MapIndex(k pulumi.StringInput) SourceDixaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDixa {
+		return vs[0].(map[string]*SourceDixa)[vs[1].(string)]
+	}).(SourceDixaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDixaInput)(nil)).Elem(), &SourceDixa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDixaArrayInput)(nil)).Elem(), SourceDixaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDixaMapInput)(nil)).Elem(), SourceDixaMap{})
 	pulumi.RegisterOutputType(SourceDixaOutput{})
+	pulumi.RegisterOutputType(SourceDixaArrayOutput{})
+	pulumi.RegisterOutputType(SourceDixaMapOutput{})
 }

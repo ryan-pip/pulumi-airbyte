@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationKinesis Resource
@@ -117,6 +117,56 @@ func (i *DestinationKinesis) ToDestinationKinesisOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationKinesisOutput)
 }
 
+// DestinationKinesisArrayInput is an input type that accepts DestinationKinesisArray and DestinationKinesisArrayOutput values.
+// You can construct a concrete instance of `DestinationKinesisArrayInput` via:
+//
+//	DestinationKinesisArray{ DestinationKinesisArgs{...} }
+type DestinationKinesisArrayInput interface {
+	pulumi.Input
+
+	ToDestinationKinesisArrayOutput() DestinationKinesisArrayOutput
+	ToDestinationKinesisArrayOutputWithContext(context.Context) DestinationKinesisArrayOutput
+}
+
+type DestinationKinesisArray []DestinationKinesisInput
+
+func (DestinationKinesisArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationKinesis)(nil)).Elem()
+}
+
+func (i DestinationKinesisArray) ToDestinationKinesisArrayOutput() DestinationKinesisArrayOutput {
+	return i.ToDestinationKinesisArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationKinesisArray) ToDestinationKinesisArrayOutputWithContext(ctx context.Context) DestinationKinesisArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationKinesisArrayOutput)
+}
+
+// DestinationKinesisMapInput is an input type that accepts DestinationKinesisMap and DestinationKinesisMapOutput values.
+// You can construct a concrete instance of `DestinationKinesisMapInput` via:
+//
+//	DestinationKinesisMap{ "key": DestinationKinesisArgs{...} }
+type DestinationKinesisMapInput interface {
+	pulumi.Input
+
+	ToDestinationKinesisMapOutput() DestinationKinesisMapOutput
+	ToDestinationKinesisMapOutputWithContext(context.Context) DestinationKinesisMapOutput
+}
+
+type DestinationKinesisMap map[string]DestinationKinesisInput
+
+func (DestinationKinesisMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationKinesis)(nil)).Elem()
+}
+
+func (i DestinationKinesisMap) ToDestinationKinesisMapOutput() DestinationKinesisMapOutput {
+	return i.ToDestinationKinesisMapOutputWithContext(context.Background())
+}
+
+func (i DestinationKinesisMap) ToDestinationKinesisMapOutputWithContext(ctx context.Context) DestinationKinesisMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationKinesisMapOutput)
+}
+
 type DestinationKinesisOutput struct{ *pulumi.OutputState }
 
 func (DestinationKinesisOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationKinesisOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationKinesis) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationKinesisArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationKinesisArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationKinesis)(nil)).Elem()
+}
+
+func (o DestinationKinesisArrayOutput) ToDestinationKinesisArrayOutput() DestinationKinesisArrayOutput {
+	return o
+}
+
+func (o DestinationKinesisArrayOutput) ToDestinationKinesisArrayOutputWithContext(ctx context.Context) DestinationKinesisArrayOutput {
+	return o
+}
+
+func (o DestinationKinesisArrayOutput) Index(i pulumi.IntInput) DestinationKinesisOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationKinesis {
+		return vs[0].([]*DestinationKinesis)[vs[1].(int)]
+	}).(DestinationKinesisOutput)
+}
+
+type DestinationKinesisMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationKinesisMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationKinesis)(nil)).Elem()
+}
+
+func (o DestinationKinesisMapOutput) ToDestinationKinesisMapOutput() DestinationKinesisMapOutput {
+	return o
+}
+
+func (o DestinationKinesisMapOutput) ToDestinationKinesisMapOutputWithContext(ctx context.Context) DestinationKinesisMapOutput {
+	return o
+}
+
+func (o DestinationKinesisMapOutput) MapIndex(k pulumi.StringInput) DestinationKinesisOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationKinesis {
+		return vs[0].(map[string]*DestinationKinesis)[vs[1].(string)]
+	}).(DestinationKinesisOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKinesisInput)(nil)).Elem(), &DestinationKinesis{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKinesisArrayInput)(nil)).Elem(), DestinationKinesisArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationKinesisMapInput)(nil)).Elem(), DestinationKinesisMap{})
 	pulumi.RegisterOutputType(DestinationKinesisOutput{})
+	pulumi.RegisterOutputType(DestinationKinesisArrayOutput{})
+	pulumi.RegisterOutputType(DestinationKinesisMapOutput{})
 }

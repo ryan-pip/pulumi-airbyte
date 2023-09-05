@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationSnowflake Resource
@@ -117,6 +117,56 @@ func (i *DestinationSnowflake) ToDestinationSnowflakeOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationSnowflakeOutput)
 }
 
+// DestinationSnowflakeArrayInput is an input type that accepts DestinationSnowflakeArray and DestinationSnowflakeArrayOutput values.
+// You can construct a concrete instance of `DestinationSnowflakeArrayInput` via:
+//
+//	DestinationSnowflakeArray{ DestinationSnowflakeArgs{...} }
+type DestinationSnowflakeArrayInput interface {
+	pulumi.Input
+
+	ToDestinationSnowflakeArrayOutput() DestinationSnowflakeArrayOutput
+	ToDestinationSnowflakeArrayOutputWithContext(context.Context) DestinationSnowflakeArrayOutput
+}
+
+type DestinationSnowflakeArray []DestinationSnowflakeInput
+
+func (DestinationSnowflakeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationSnowflake)(nil)).Elem()
+}
+
+func (i DestinationSnowflakeArray) ToDestinationSnowflakeArrayOutput() DestinationSnowflakeArrayOutput {
+	return i.ToDestinationSnowflakeArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationSnowflakeArray) ToDestinationSnowflakeArrayOutputWithContext(ctx context.Context) DestinationSnowflakeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationSnowflakeArrayOutput)
+}
+
+// DestinationSnowflakeMapInput is an input type that accepts DestinationSnowflakeMap and DestinationSnowflakeMapOutput values.
+// You can construct a concrete instance of `DestinationSnowflakeMapInput` via:
+//
+//	DestinationSnowflakeMap{ "key": DestinationSnowflakeArgs{...} }
+type DestinationSnowflakeMapInput interface {
+	pulumi.Input
+
+	ToDestinationSnowflakeMapOutput() DestinationSnowflakeMapOutput
+	ToDestinationSnowflakeMapOutputWithContext(context.Context) DestinationSnowflakeMapOutput
+}
+
+type DestinationSnowflakeMap map[string]DestinationSnowflakeInput
+
+func (DestinationSnowflakeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationSnowflake)(nil)).Elem()
+}
+
+func (i DestinationSnowflakeMap) ToDestinationSnowflakeMapOutput() DestinationSnowflakeMapOutput {
+	return i.ToDestinationSnowflakeMapOutputWithContext(context.Background())
+}
+
+func (i DestinationSnowflakeMap) ToDestinationSnowflakeMapOutputWithContext(ctx context.Context) DestinationSnowflakeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationSnowflakeMapOutput)
+}
+
 type DestinationSnowflakeOutput struct{ *pulumi.OutputState }
 
 func (DestinationSnowflakeOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationSnowflakeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationSnowflake) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationSnowflakeArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationSnowflakeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationSnowflake)(nil)).Elem()
+}
+
+func (o DestinationSnowflakeArrayOutput) ToDestinationSnowflakeArrayOutput() DestinationSnowflakeArrayOutput {
+	return o
+}
+
+func (o DestinationSnowflakeArrayOutput) ToDestinationSnowflakeArrayOutputWithContext(ctx context.Context) DestinationSnowflakeArrayOutput {
+	return o
+}
+
+func (o DestinationSnowflakeArrayOutput) Index(i pulumi.IntInput) DestinationSnowflakeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationSnowflake {
+		return vs[0].([]*DestinationSnowflake)[vs[1].(int)]
+	}).(DestinationSnowflakeOutput)
+}
+
+type DestinationSnowflakeMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationSnowflakeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationSnowflake)(nil)).Elem()
+}
+
+func (o DestinationSnowflakeMapOutput) ToDestinationSnowflakeMapOutput() DestinationSnowflakeMapOutput {
+	return o
+}
+
+func (o DestinationSnowflakeMapOutput) ToDestinationSnowflakeMapOutputWithContext(ctx context.Context) DestinationSnowflakeMapOutput {
+	return o
+}
+
+func (o DestinationSnowflakeMapOutput) MapIndex(k pulumi.StringInput) DestinationSnowflakeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationSnowflake {
+		return vs[0].(map[string]*DestinationSnowflake)[vs[1].(string)]
+	}).(DestinationSnowflakeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSnowflakeInput)(nil)).Elem(), &DestinationSnowflake{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSnowflakeArrayInput)(nil)).Elem(), DestinationSnowflakeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationSnowflakeMapInput)(nil)).Elem(), DestinationSnowflakeMap{})
 	pulumi.RegisterOutputType(DestinationSnowflakeOutput{})
+	pulumi.RegisterOutputType(DestinationSnowflakeArrayOutput{})
+	pulumi.RegisterOutputType(DestinationSnowflakeMapOutput{})
 }

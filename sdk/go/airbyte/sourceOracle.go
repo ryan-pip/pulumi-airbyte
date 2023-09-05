@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOracle Resource
@@ -127,6 +127,56 @@ func (i *SourceOracle) ToSourceOracleOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOracleOutput)
 }
 
+// SourceOracleArrayInput is an input type that accepts SourceOracleArray and SourceOracleArrayOutput values.
+// You can construct a concrete instance of `SourceOracleArrayInput` via:
+//
+//	SourceOracleArray{ SourceOracleArgs{...} }
+type SourceOracleArrayInput interface {
+	pulumi.Input
+
+	ToSourceOracleArrayOutput() SourceOracleArrayOutput
+	ToSourceOracleArrayOutputWithContext(context.Context) SourceOracleArrayOutput
+}
+
+type SourceOracleArray []SourceOracleInput
+
+func (SourceOracleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOracle)(nil)).Elem()
+}
+
+func (i SourceOracleArray) ToSourceOracleArrayOutput() SourceOracleArrayOutput {
+	return i.ToSourceOracleArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOracleArray) ToSourceOracleArrayOutputWithContext(ctx context.Context) SourceOracleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOracleArrayOutput)
+}
+
+// SourceOracleMapInput is an input type that accepts SourceOracleMap and SourceOracleMapOutput values.
+// You can construct a concrete instance of `SourceOracleMapInput` via:
+//
+//	SourceOracleMap{ "key": SourceOracleArgs{...} }
+type SourceOracleMapInput interface {
+	pulumi.Input
+
+	ToSourceOracleMapOutput() SourceOracleMapOutput
+	ToSourceOracleMapOutputWithContext(context.Context) SourceOracleMapOutput
+}
+
+type SourceOracleMap map[string]SourceOracleInput
+
+func (SourceOracleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOracle)(nil)).Elem()
+}
+
+func (i SourceOracleMap) ToSourceOracleMapOutput() SourceOracleMapOutput {
+	return i.ToSourceOracleMapOutputWithContext(context.Background())
+}
+
+func (i SourceOracleMap) ToSourceOracleMapOutputWithContext(ctx context.Context) SourceOracleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOracleMapOutput)
+}
+
 type SourceOracleOutput struct{ *pulumi.OutputState }
 
 func (SourceOracleOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOracleOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOracle) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOracleArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOracleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOracle)(nil)).Elem()
+}
+
+func (o SourceOracleArrayOutput) ToSourceOracleArrayOutput() SourceOracleArrayOutput {
+	return o
+}
+
+func (o SourceOracleArrayOutput) ToSourceOracleArrayOutputWithContext(ctx context.Context) SourceOracleArrayOutput {
+	return o
+}
+
+func (o SourceOracleArrayOutput) Index(i pulumi.IntInput) SourceOracleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOracle {
+		return vs[0].([]*SourceOracle)[vs[1].(int)]
+	}).(SourceOracleOutput)
+}
+
+type SourceOracleMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOracleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOracle)(nil)).Elem()
+}
+
+func (o SourceOracleMapOutput) ToSourceOracleMapOutput() SourceOracleMapOutput {
+	return o
+}
+
+func (o SourceOracleMapOutput) ToSourceOracleMapOutputWithContext(ctx context.Context) SourceOracleMapOutput {
+	return o
+}
+
+func (o SourceOracleMapOutput) MapIndex(k pulumi.StringInput) SourceOracleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOracle {
+		return vs[0].(map[string]*SourceOracle)[vs[1].(string)]
+	}).(SourceOracleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOracleInput)(nil)).Elem(), &SourceOracle{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOracleArrayInput)(nil)).Elem(), SourceOracleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOracleMapInput)(nil)).Elem(), SourceOracleMap{})
 	pulumi.RegisterOutputType(SourceOracleOutput{})
+	pulumi.RegisterOutputType(SourceOracleArrayOutput{})
+	pulumi.RegisterOutputType(SourceOracleMapOutput{})
 }

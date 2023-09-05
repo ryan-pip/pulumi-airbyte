@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMysql Resource
@@ -127,6 +127,56 @@ func (i *SourceMysql) ToSourceMysqlOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMysqlOutput)
 }
 
+// SourceMysqlArrayInput is an input type that accepts SourceMysqlArray and SourceMysqlArrayOutput values.
+// You can construct a concrete instance of `SourceMysqlArrayInput` via:
+//
+//	SourceMysqlArray{ SourceMysqlArgs{...} }
+type SourceMysqlArrayInput interface {
+	pulumi.Input
+
+	ToSourceMysqlArrayOutput() SourceMysqlArrayOutput
+	ToSourceMysqlArrayOutputWithContext(context.Context) SourceMysqlArrayOutput
+}
+
+type SourceMysqlArray []SourceMysqlInput
+
+func (SourceMysqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMysql)(nil)).Elem()
+}
+
+func (i SourceMysqlArray) ToSourceMysqlArrayOutput() SourceMysqlArrayOutput {
+	return i.ToSourceMysqlArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMysqlArray) ToSourceMysqlArrayOutputWithContext(ctx context.Context) SourceMysqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMysqlArrayOutput)
+}
+
+// SourceMysqlMapInput is an input type that accepts SourceMysqlMap and SourceMysqlMapOutput values.
+// You can construct a concrete instance of `SourceMysqlMapInput` via:
+//
+//	SourceMysqlMap{ "key": SourceMysqlArgs{...} }
+type SourceMysqlMapInput interface {
+	pulumi.Input
+
+	ToSourceMysqlMapOutput() SourceMysqlMapOutput
+	ToSourceMysqlMapOutputWithContext(context.Context) SourceMysqlMapOutput
+}
+
+type SourceMysqlMap map[string]SourceMysqlInput
+
+func (SourceMysqlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMysql)(nil)).Elem()
+}
+
+func (i SourceMysqlMap) ToSourceMysqlMapOutput() SourceMysqlMapOutput {
+	return i.ToSourceMysqlMapOutputWithContext(context.Background())
+}
+
+func (i SourceMysqlMap) ToSourceMysqlMapOutputWithContext(ctx context.Context) SourceMysqlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMysqlMapOutput)
+}
+
 type SourceMysqlOutput struct{ *pulumi.OutputState }
 
 func (SourceMysqlOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMysqlOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMysql) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMysqlArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMysqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMysql)(nil)).Elem()
+}
+
+func (o SourceMysqlArrayOutput) ToSourceMysqlArrayOutput() SourceMysqlArrayOutput {
+	return o
+}
+
+func (o SourceMysqlArrayOutput) ToSourceMysqlArrayOutputWithContext(ctx context.Context) SourceMysqlArrayOutput {
+	return o
+}
+
+func (o SourceMysqlArrayOutput) Index(i pulumi.IntInput) SourceMysqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMysql {
+		return vs[0].([]*SourceMysql)[vs[1].(int)]
+	}).(SourceMysqlOutput)
+}
+
+type SourceMysqlMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMysqlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMysql)(nil)).Elem()
+}
+
+func (o SourceMysqlMapOutput) ToSourceMysqlMapOutput() SourceMysqlMapOutput {
+	return o
+}
+
+func (o SourceMysqlMapOutput) ToSourceMysqlMapOutputWithContext(ctx context.Context) SourceMysqlMapOutput {
+	return o
+}
+
+func (o SourceMysqlMapOutput) MapIndex(k pulumi.StringInput) SourceMysqlOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMysql {
+		return vs[0].(map[string]*SourceMysql)[vs[1].(string)]
+	}).(SourceMysqlOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMysqlInput)(nil)).Elem(), &SourceMysql{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMysqlArrayInput)(nil)).Elem(), SourceMysqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMysqlMapInput)(nil)).Elem(), SourceMysqlMap{})
 	pulumi.RegisterOutputType(SourceMysqlOutput{})
+	pulumi.RegisterOutputType(SourceMysqlArrayOutput{})
+	pulumi.RegisterOutputType(SourceMysqlMapOutput{})
 }

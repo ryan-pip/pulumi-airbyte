@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceVantage Resource
@@ -127,6 +127,56 @@ func (i *SourceVantage) ToSourceVantageOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceVantageOutput)
 }
 
+// SourceVantageArrayInput is an input type that accepts SourceVantageArray and SourceVantageArrayOutput values.
+// You can construct a concrete instance of `SourceVantageArrayInput` via:
+//
+//	SourceVantageArray{ SourceVantageArgs{...} }
+type SourceVantageArrayInput interface {
+	pulumi.Input
+
+	ToSourceVantageArrayOutput() SourceVantageArrayOutput
+	ToSourceVantageArrayOutputWithContext(context.Context) SourceVantageArrayOutput
+}
+
+type SourceVantageArray []SourceVantageInput
+
+func (SourceVantageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceVantage)(nil)).Elem()
+}
+
+func (i SourceVantageArray) ToSourceVantageArrayOutput() SourceVantageArrayOutput {
+	return i.ToSourceVantageArrayOutputWithContext(context.Background())
+}
+
+func (i SourceVantageArray) ToSourceVantageArrayOutputWithContext(ctx context.Context) SourceVantageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceVantageArrayOutput)
+}
+
+// SourceVantageMapInput is an input type that accepts SourceVantageMap and SourceVantageMapOutput values.
+// You can construct a concrete instance of `SourceVantageMapInput` via:
+//
+//	SourceVantageMap{ "key": SourceVantageArgs{...} }
+type SourceVantageMapInput interface {
+	pulumi.Input
+
+	ToSourceVantageMapOutput() SourceVantageMapOutput
+	ToSourceVantageMapOutputWithContext(context.Context) SourceVantageMapOutput
+}
+
+type SourceVantageMap map[string]SourceVantageInput
+
+func (SourceVantageMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceVantage)(nil)).Elem()
+}
+
+func (i SourceVantageMap) ToSourceVantageMapOutput() SourceVantageMapOutput {
+	return i.ToSourceVantageMapOutputWithContext(context.Background())
+}
+
+func (i SourceVantageMap) ToSourceVantageMapOutputWithContext(ctx context.Context) SourceVantageMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceVantageMapOutput)
+}
+
 type SourceVantageOutput struct{ *pulumi.OutputState }
 
 func (SourceVantageOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceVantageOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceVantage) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceVantageArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceVantageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceVantage)(nil)).Elem()
+}
+
+func (o SourceVantageArrayOutput) ToSourceVantageArrayOutput() SourceVantageArrayOutput {
+	return o
+}
+
+func (o SourceVantageArrayOutput) ToSourceVantageArrayOutputWithContext(ctx context.Context) SourceVantageArrayOutput {
+	return o
+}
+
+func (o SourceVantageArrayOutput) Index(i pulumi.IntInput) SourceVantageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceVantage {
+		return vs[0].([]*SourceVantage)[vs[1].(int)]
+	}).(SourceVantageOutput)
+}
+
+type SourceVantageMapOutput struct{ *pulumi.OutputState }
+
+func (SourceVantageMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceVantage)(nil)).Elem()
+}
+
+func (o SourceVantageMapOutput) ToSourceVantageMapOutput() SourceVantageMapOutput {
+	return o
+}
+
+func (o SourceVantageMapOutput) ToSourceVantageMapOutputWithContext(ctx context.Context) SourceVantageMapOutput {
+	return o
+}
+
+func (o SourceVantageMapOutput) MapIndex(k pulumi.StringInput) SourceVantageOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceVantage {
+		return vs[0].(map[string]*SourceVantage)[vs[1].(string)]
+	}).(SourceVantageOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceVantageInput)(nil)).Elem(), &SourceVantage{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceVantageArrayInput)(nil)).Elem(), SourceVantageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceVantageMapInput)(nil)).Elem(), SourceVantageMap{})
 	pulumi.RegisterOutputType(SourceVantageOutput{})
+	pulumi.RegisterOutputType(SourceVantageArrayOutput{})
+	pulumi.RegisterOutputType(SourceVantageMapOutput{})
 }

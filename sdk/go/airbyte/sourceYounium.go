@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceYounium Resource
@@ -127,6 +127,56 @@ func (i *SourceYounium) ToSourceYouniumOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceYouniumOutput)
 }
 
+// SourceYouniumArrayInput is an input type that accepts SourceYouniumArray and SourceYouniumArrayOutput values.
+// You can construct a concrete instance of `SourceYouniumArrayInput` via:
+//
+//	SourceYouniumArray{ SourceYouniumArgs{...} }
+type SourceYouniumArrayInput interface {
+	pulumi.Input
+
+	ToSourceYouniumArrayOutput() SourceYouniumArrayOutput
+	ToSourceYouniumArrayOutputWithContext(context.Context) SourceYouniumArrayOutput
+}
+
+type SourceYouniumArray []SourceYouniumInput
+
+func (SourceYouniumArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYounium)(nil)).Elem()
+}
+
+func (i SourceYouniumArray) ToSourceYouniumArrayOutput() SourceYouniumArrayOutput {
+	return i.ToSourceYouniumArrayOutputWithContext(context.Background())
+}
+
+func (i SourceYouniumArray) ToSourceYouniumArrayOutputWithContext(ctx context.Context) SourceYouniumArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYouniumArrayOutput)
+}
+
+// SourceYouniumMapInput is an input type that accepts SourceYouniumMap and SourceYouniumMapOutput values.
+// You can construct a concrete instance of `SourceYouniumMapInput` via:
+//
+//	SourceYouniumMap{ "key": SourceYouniumArgs{...} }
+type SourceYouniumMapInput interface {
+	pulumi.Input
+
+	ToSourceYouniumMapOutput() SourceYouniumMapOutput
+	ToSourceYouniumMapOutputWithContext(context.Context) SourceYouniumMapOutput
+}
+
+type SourceYouniumMap map[string]SourceYouniumInput
+
+func (SourceYouniumMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYounium)(nil)).Elem()
+}
+
+func (i SourceYouniumMap) ToSourceYouniumMapOutput() SourceYouniumMapOutput {
+	return i.ToSourceYouniumMapOutputWithContext(context.Background())
+}
+
+func (i SourceYouniumMap) ToSourceYouniumMapOutputWithContext(ctx context.Context) SourceYouniumMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYouniumMapOutput)
+}
+
 type SourceYouniumOutput struct{ *pulumi.OutputState }
 
 func (SourceYouniumOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceYouniumOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceYounium) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceYouniumArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceYouniumArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYounium)(nil)).Elem()
+}
+
+func (o SourceYouniumArrayOutput) ToSourceYouniumArrayOutput() SourceYouniumArrayOutput {
+	return o
+}
+
+func (o SourceYouniumArrayOutput) ToSourceYouniumArrayOutputWithContext(ctx context.Context) SourceYouniumArrayOutput {
+	return o
+}
+
+func (o SourceYouniumArrayOutput) Index(i pulumi.IntInput) SourceYouniumOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceYounium {
+		return vs[0].([]*SourceYounium)[vs[1].(int)]
+	}).(SourceYouniumOutput)
+}
+
+type SourceYouniumMapOutput struct{ *pulumi.OutputState }
+
+func (SourceYouniumMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYounium)(nil)).Elem()
+}
+
+func (o SourceYouniumMapOutput) ToSourceYouniumMapOutput() SourceYouniumMapOutput {
+	return o
+}
+
+func (o SourceYouniumMapOutput) ToSourceYouniumMapOutputWithContext(ctx context.Context) SourceYouniumMapOutput {
+	return o
+}
+
+func (o SourceYouniumMapOutput) MapIndex(k pulumi.StringInput) SourceYouniumOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceYounium {
+		return vs[0].(map[string]*SourceYounium)[vs[1].(string)]
+	}).(SourceYouniumOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceYouniumInput)(nil)).Elem(), &SourceYounium{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYouniumArrayInput)(nil)).Elem(), SourceYouniumArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYouniumMapInput)(nil)).Elem(), SourceYouniumMap{})
 	pulumi.RegisterOutputType(SourceYouniumOutput{})
+	pulumi.RegisterOutputType(SourceYouniumArrayOutput{})
+	pulumi.RegisterOutputType(SourceYouniumMapOutput{})
 }

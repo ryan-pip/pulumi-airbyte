@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceWebflow Resource
@@ -127,6 +127,56 @@ func (i *SourceWebflow) ToSourceWebflowOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceWebflowOutput)
 }
 
+// SourceWebflowArrayInput is an input type that accepts SourceWebflowArray and SourceWebflowArrayOutput values.
+// You can construct a concrete instance of `SourceWebflowArrayInput` via:
+//
+//	SourceWebflowArray{ SourceWebflowArgs{...} }
+type SourceWebflowArrayInput interface {
+	pulumi.Input
+
+	ToSourceWebflowArrayOutput() SourceWebflowArrayOutput
+	ToSourceWebflowArrayOutputWithContext(context.Context) SourceWebflowArrayOutput
+}
+
+type SourceWebflowArray []SourceWebflowInput
+
+func (SourceWebflowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWebflow)(nil)).Elem()
+}
+
+func (i SourceWebflowArray) ToSourceWebflowArrayOutput() SourceWebflowArrayOutput {
+	return i.ToSourceWebflowArrayOutputWithContext(context.Background())
+}
+
+func (i SourceWebflowArray) ToSourceWebflowArrayOutputWithContext(ctx context.Context) SourceWebflowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWebflowArrayOutput)
+}
+
+// SourceWebflowMapInput is an input type that accepts SourceWebflowMap and SourceWebflowMapOutput values.
+// You can construct a concrete instance of `SourceWebflowMapInput` via:
+//
+//	SourceWebflowMap{ "key": SourceWebflowArgs{...} }
+type SourceWebflowMapInput interface {
+	pulumi.Input
+
+	ToSourceWebflowMapOutput() SourceWebflowMapOutput
+	ToSourceWebflowMapOutputWithContext(context.Context) SourceWebflowMapOutput
+}
+
+type SourceWebflowMap map[string]SourceWebflowInput
+
+func (SourceWebflowMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWebflow)(nil)).Elem()
+}
+
+func (i SourceWebflowMap) ToSourceWebflowMapOutput() SourceWebflowMapOutput {
+	return i.ToSourceWebflowMapOutputWithContext(context.Background())
+}
+
+func (i SourceWebflowMap) ToSourceWebflowMapOutputWithContext(ctx context.Context) SourceWebflowMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWebflowMapOutput)
+}
+
 type SourceWebflowOutput struct{ *pulumi.OutputState }
 
 func (SourceWebflowOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceWebflowOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceWebflow) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceWebflowArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceWebflowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWebflow)(nil)).Elem()
+}
+
+func (o SourceWebflowArrayOutput) ToSourceWebflowArrayOutput() SourceWebflowArrayOutput {
+	return o
+}
+
+func (o SourceWebflowArrayOutput) ToSourceWebflowArrayOutputWithContext(ctx context.Context) SourceWebflowArrayOutput {
+	return o
+}
+
+func (o SourceWebflowArrayOutput) Index(i pulumi.IntInput) SourceWebflowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceWebflow {
+		return vs[0].([]*SourceWebflow)[vs[1].(int)]
+	}).(SourceWebflowOutput)
+}
+
+type SourceWebflowMapOutput struct{ *pulumi.OutputState }
+
+func (SourceWebflowMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWebflow)(nil)).Elem()
+}
+
+func (o SourceWebflowMapOutput) ToSourceWebflowMapOutput() SourceWebflowMapOutput {
+	return o
+}
+
+func (o SourceWebflowMapOutput) ToSourceWebflowMapOutputWithContext(ctx context.Context) SourceWebflowMapOutput {
+	return o
+}
+
+func (o SourceWebflowMapOutput) MapIndex(k pulumi.StringInput) SourceWebflowOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceWebflow {
+		return vs[0].(map[string]*SourceWebflow)[vs[1].(string)]
+	}).(SourceWebflowOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceWebflowInput)(nil)).Elem(), &SourceWebflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWebflowArrayInput)(nil)).Elem(), SourceWebflowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWebflowMapInput)(nil)).Elem(), SourceWebflowMap{})
 	pulumi.RegisterOutputType(SourceWebflowOutput{})
+	pulumi.RegisterOutputType(SourceWebflowArrayOutput{})
+	pulumi.RegisterOutputType(SourceWebflowMapOutput{})
 }

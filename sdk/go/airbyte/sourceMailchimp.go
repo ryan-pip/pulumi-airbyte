@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMailchimp Resource
@@ -127,6 +127,56 @@ func (i *SourceMailchimp) ToSourceMailchimpOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMailchimpOutput)
 }
 
+// SourceMailchimpArrayInput is an input type that accepts SourceMailchimpArray and SourceMailchimpArrayOutput values.
+// You can construct a concrete instance of `SourceMailchimpArrayInput` via:
+//
+//	SourceMailchimpArray{ SourceMailchimpArgs{...} }
+type SourceMailchimpArrayInput interface {
+	pulumi.Input
+
+	ToSourceMailchimpArrayOutput() SourceMailchimpArrayOutput
+	ToSourceMailchimpArrayOutputWithContext(context.Context) SourceMailchimpArrayOutput
+}
+
+type SourceMailchimpArray []SourceMailchimpInput
+
+func (SourceMailchimpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailchimp)(nil)).Elem()
+}
+
+func (i SourceMailchimpArray) ToSourceMailchimpArrayOutput() SourceMailchimpArrayOutput {
+	return i.ToSourceMailchimpArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMailchimpArray) ToSourceMailchimpArrayOutputWithContext(ctx context.Context) SourceMailchimpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailchimpArrayOutput)
+}
+
+// SourceMailchimpMapInput is an input type that accepts SourceMailchimpMap and SourceMailchimpMapOutput values.
+// You can construct a concrete instance of `SourceMailchimpMapInput` via:
+//
+//	SourceMailchimpMap{ "key": SourceMailchimpArgs{...} }
+type SourceMailchimpMapInput interface {
+	pulumi.Input
+
+	ToSourceMailchimpMapOutput() SourceMailchimpMapOutput
+	ToSourceMailchimpMapOutputWithContext(context.Context) SourceMailchimpMapOutput
+}
+
+type SourceMailchimpMap map[string]SourceMailchimpInput
+
+func (SourceMailchimpMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailchimp)(nil)).Elem()
+}
+
+func (i SourceMailchimpMap) ToSourceMailchimpMapOutput() SourceMailchimpMapOutput {
+	return i.ToSourceMailchimpMapOutputWithContext(context.Background())
+}
+
+func (i SourceMailchimpMap) ToSourceMailchimpMapOutputWithContext(ctx context.Context) SourceMailchimpMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMailchimpMapOutput)
+}
+
 type SourceMailchimpOutput struct{ *pulumi.OutputState }
 
 func (SourceMailchimpOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMailchimpOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMailchimp) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMailchimpArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMailchimpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMailchimp)(nil)).Elem()
+}
+
+func (o SourceMailchimpArrayOutput) ToSourceMailchimpArrayOutput() SourceMailchimpArrayOutput {
+	return o
+}
+
+func (o SourceMailchimpArrayOutput) ToSourceMailchimpArrayOutputWithContext(ctx context.Context) SourceMailchimpArrayOutput {
+	return o
+}
+
+func (o SourceMailchimpArrayOutput) Index(i pulumi.IntInput) SourceMailchimpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMailchimp {
+		return vs[0].([]*SourceMailchimp)[vs[1].(int)]
+	}).(SourceMailchimpOutput)
+}
+
+type SourceMailchimpMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMailchimpMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMailchimp)(nil)).Elem()
+}
+
+func (o SourceMailchimpMapOutput) ToSourceMailchimpMapOutput() SourceMailchimpMapOutput {
+	return o
+}
+
+func (o SourceMailchimpMapOutput) ToSourceMailchimpMapOutputWithContext(ctx context.Context) SourceMailchimpMapOutput {
+	return o
+}
+
+func (o SourceMailchimpMapOutput) MapIndex(k pulumi.StringInput) SourceMailchimpOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMailchimp {
+		return vs[0].(map[string]*SourceMailchimp)[vs[1].(string)]
+	}).(SourceMailchimpOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailchimpInput)(nil)).Elem(), &SourceMailchimp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailchimpArrayInput)(nil)).Elem(), SourceMailchimpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMailchimpMapInput)(nil)).Elem(), SourceMailchimpMap{})
 	pulumi.RegisterOutputType(SourceMailchimpOutput{})
+	pulumi.RegisterOutputType(SourceMailchimpArrayOutput{})
+	pulumi.RegisterOutputType(SourceMailchimpMapOutput{})
 }

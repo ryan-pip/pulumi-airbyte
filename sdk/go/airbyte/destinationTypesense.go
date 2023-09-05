@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationTypesense Resource
@@ -117,6 +117,56 @@ func (i *DestinationTypesense) ToDestinationTypesenseOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationTypesenseOutput)
 }
 
+// DestinationTypesenseArrayInput is an input type that accepts DestinationTypesenseArray and DestinationTypesenseArrayOutput values.
+// You can construct a concrete instance of `DestinationTypesenseArrayInput` via:
+//
+//	DestinationTypesenseArray{ DestinationTypesenseArgs{...} }
+type DestinationTypesenseArrayInput interface {
+	pulumi.Input
+
+	ToDestinationTypesenseArrayOutput() DestinationTypesenseArrayOutput
+	ToDestinationTypesenseArrayOutputWithContext(context.Context) DestinationTypesenseArrayOutput
+}
+
+type DestinationTypesenseArray []DestinationTypesenseInput
+
+func (DestinationTypesenseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationTypesense)(nil)).Elem()
+}
+
+func (i DestinationTypesenseArray) ToDestinationTypesenseArrayOutput() DestinationTypesenseArrayOutput {
+	return i.ToDestinationTypesenseArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationTypesenseArray) ToDestinationTypesenseArrayOutputWithContext(ctx context.Context) DestinationTypesenseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationTypesenseArrayOutput)
+}
+
+// DestinationTypesenseMapInput is an input type that accepts DestinationTypesenseMap and DestinationTypesenseMapOutput values.
+// You can construct a concrete instance of `DestinationTypesenseMapInput` via:
+//
+//	DestinationTypesenseMap{ "key": DestinationTypesenseArgs{...} }
+type DestinationTypesenseMapInput interface {
+	pulumi.Input
+
+	ToDestinationTypesenseMapOutput() DestinationTypesenseMapOutput
+	ToDestinationTypesenseMapOutputWithContext(context.Context) DestinationTypesenseMapOutput
+}
+
+type DestinationTypesenseMap map[string]DestinationTypesenseInput
+
+func (DestinationTypesenseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationTypesense)(nil)).Elem()
+}
+
+func (i DestinationTypesenseMap) ToDestinationTypesenseMapOutput() DestinationTypesenseMapOutput {
+	return i.ToDestinationTypesenseMapOutputWithContext(context.Background())
+}
+
+func (i DestinationTypesenseMap) ToDestinationTypesenseMapOutputWithContext(ctx context.Context) DestinationTypesenseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationTypesenseMapOutput)
+}
+
 type DestinationTypesenseOutput struct{ *pulumi.OutputState }
 
 func (DestinationTypesenseOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationTypesenseOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationTypesense) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationTypesenseArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationTypesenseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationTypesense)(nil)).Elem()
+}
+
+func (o DestinationTypesenseArrayOutput) ToDestinationTypesenseArrayOutput() DestinationTypesenseArrayOutput {
+	return o
+}
+
+func (o DestinationTypesenseArrayOutput) ToDestinationTypesenseArrayOutputWithContext(ctx context.Context) DestinationTypesenseArrayOutput {
+	return o
+}
+
+func (o DestinationTypesenseArrayOutput) Index(i pulumi.IntInput) DestinationTypesenseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationTypesense {
+		return vs[0].([]*DestinationTypesense)[vs[1].(int)]
+	}).(DestinationTypesenseOutput)
+}
+
+type DestinationTypesenseMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationTypesenseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationTypesense)(nil)).Elem()
+}
+
+func (o DestinationTypesenseMapOutput) ToDestinationTypesenseMapOutput() DestinationTypesenseMapOutput {
+	return o
+}
+
+func (o DestinationTypesenseMapOutput) ToDestinationTypesenseMapOutputWithContext(ctx context.Context) DestinationTypesenseMapOutput {
+	return o
+}
+
+func (o DestinationTypesenseMapOutput) MapIndex(k pulumi.StringInput) DestinationTypesenseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationTypesense {
+		return vs[0].(map[string]*DestinationTypesense)[vs[1].(string)]
+	}).(DestinationTypesenseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationTypesenseInput)(nil)).Elem(), &DestinationTypesense{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationTypesenseArrayInput)(nil)).Elem(), DestinationTypesenseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationTypesenseMapInput)(nil)).Elem(), DestinationTypesenseMap{})
 	pulumi.RegisterOutputType(DestinationTypesenseOutput{})
+	pulumi.RegisterOutputType(DestinationTypesenseArrayOutput{})
+	pulumi.RegisterOutputType(DestinationTypesenseMapOutput{})
 }

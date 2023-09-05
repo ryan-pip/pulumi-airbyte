@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAircall Resource
@@ -127,6 +127,56 @@ func (i *SourceAircall) ToSourceAircallOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAircallOutput)
 }
 
+// SourceAircallArrayInput is an input type that accepts SourceAircallArray and SourceAircallArrayOutput values.
+// You can construct a concrete instance of `SourceAircallArrayInput` via:
+//
+//	SourceAircallArray{ SourceAircallArgs{...} }
+type SourceAircallArrayInput interface {
+	pulumi.Input
+
+	ToSourceAircallArrayOutput() SourceAircallArrayOutput
+	ToSourceAircallArrayOutputWithContext(context.Context) SourceAircallArrayOutput
+}
+
+type SourceAircallArray []SourceAircallInput
+
+func (SourceAircallArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAircall)(nil)).Elem()
+}
+
+func (i SourceAircallArray) ToSourceAircallArrayOutput() SourceAircallArrayOutput {
+	return i.ToSourceAircallArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAircallArray) ToSourceAircallArrayOutputWithContext(ctx context.Context) SourceAircallArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAircallArrayOutput)
+}
+
+// SourceAircallMapInput is an input type that accepts SourceAircallMap and SourceAircallMapOutput values.
+// You can construct a concrete instance of `SourceAircallMapInput` via:
+//
+//	SourceAircallMap{ "key": SourceAircallArgs{...} }
+type SourceAircallMapInput interface {
+	pulumi.Input
+
+	ToSourceAircallMapOutput() SourceAircallMapOutput
+	ToSourceAircallMapOutputWithContext(context.Context) SourceAircallMapOutput
+}
+
+type SourceAircallMap map[string]SourceAircallInput
+
+func (SourceAircallMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAircall)(nil)).Elem()
+}
+
+func (i SourceAircallMap) ToSourceAircallMapOutput() SourceAircallMapOutput {
+	return i.ToSourceAircallMapOutputWithContext(context.Background())
+}
+
+func (i SourceAircallMap) ToSourceAircallMapOutputWithContext(ctx context.Context) SourceAircallMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAircallMapOutput)
+}
+
 type SourceAircallOutput struct{ *pulumi.OutputState }
 
 func (SourceAircallOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAircallOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAircall) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAircallArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAircallArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAircall)(nil)).Elem()
+}
+
+func (o SourceAircallArrayOutput) ToSourceAircallArrayOutput() SourceAircallArrayOutput {
+	return o
+}
+
+func (o SourceAircallArrayOutput) ToSourceAircallArrayOutputWithContext(ctx context.Context) SourceAircallArrayOutput {
+	return o
+}
+
+func (o SourceAircallArrayOutput) Index(i pulumi.IntInput) SourceAircallOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAircall {
+		return vs[0].([]*SourceAircall)[vs[1].(int)]
+	}).(SourceAircallOutput)
+}
+
+type SourceAircallMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAircallMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAircall)(nil)).Elem()
+}
+
+func (o SourceAircallMapOutput) ToSourceAircallMapOutput() SourceAircallMapOutput {
+	return o
+}
+
+func (o SourceAircallMapOutput) ToSourceAircallMapOutputWithContext(ctx context.Context) SourceAircallMapOutput {
+	return o
+}
+
+func (o SourceAircallMapOutput) MapIndex(k pulumi.StringInput) SourceAircallOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAircall {
+		return vs[0].(map[string]*SourceAircall)[vs[1].(string)]
+	}).(SourceAircallOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAircallInput)(nil)).Elem(), &SourceAircall{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAircallArrayInput)(nil)).Elem(), SourceAircallArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAircallMapInput)(nil)).Elem(), SourceAircallMap{})
 	pulumi.RegisterOutputType(SourceAircallOutput{})
+	pulumi.RegisterOutputType(SourceAircallArrayOutput{})
+	pulumi.RegisterOutputType(SourceAircallMapOutput{})
 }

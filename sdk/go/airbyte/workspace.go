@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // Workspace Resource
@@ -135,6 +135,56 @@ func (i *Workspace) ToWorkspaceOutputWithContext(ctx context.Context) WorkspaceO
 	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceOutput)
 }
 
+// WorkspaceArrayInput is an input type that accepts WorkspaceArray and WorkspaceArrayOutput values.
+// You can construct a concrete instance of `WorkspaceArrayInput` via:
+//
+//	WorkspaceArray{ WorkspaceArgs{...} }
+type WorkspaceArrayInput interface {
+	pulumi.Input
+
+	ToWorkspaceArrayOutput() WorkspaceArrayOutput
+	ToWorkspaceArrayOutputWithContext(context.Context) WorkspaceArrayOutput
+}
+
+type WorkspaceArray []WorkspaceInput
+
+func (WorkspaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Workspace)(nil)).Elem()
+}
+
+func (i WorkspaceArray) ToWorkspaceArrayOutput() WorkspaceArrayOutput {
+	return i.ToWorkspaceArrayOutputWithContext(context.Background())
+}
+
+func (i WorkspaceArray) ToWorkspaceArrayOutputWithContext(ctx context.Context) WorkspaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceArrayOutput)
+}
+
+// WorkspaceMapInput is an input type that accepts WorkspaceMap and WorkspaceMapOutput values.
+// You can construct a concrete instance of `WorkspaceMapInput` via:
+//
+//	WorkspaceMap{ "key": WorkspaceArgs{...} }
+type WorkspaceMapInput interface {
+	pulumi.Input
+
+	ToWorkspaceMapOutput() WorkspaceMapOutput
+	ToWorkspaceMapOutputWithContext(context.Context) WorkspaceMapOutput
+}
+
+type WorkspaceMap map[string]WorkspaceInput
+
+func (WorkspaceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Workspace)(nil)).Elem()
+}
+
+func (i WorkspaceMap) ToWorkspaceMapOutput() WorkspaceMapOutput {
+	return i.ToWorkspaceMapOutputWithContext(context.Background())
+}
+
+func (i WorkspaceMap) ToWorkspaceMapOutputWithContext(ctx context.Context) WorkspaceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkspaceMapOutput)
+}
+
 type WorkspaceOutput struct{ *pulumi.OutputState }
 
 func (WorkspaceOutput) ElementType() reflect.Type {
@@ -163,7 +213,51 @@ func (o WorkspaceOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type WorkspaceArrayOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Workspace)(nil)).Elem()
+}
+
+func (o WorkspaceArrayOutput) ToWorkspaceArrayOutput() WorkspaceArrayOutput {
+	return o
+}
+
+func (o WorkspaceArrayOutput) ToWorkspaceArrayOutputWithContext(ctx context.Context) WorkspaceArrayOutput {
+	return o
+}
+
+func (o WorkspaceArrayOutput) Index(i pulumi.IntInput) WorkspaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Workspace {
+		return vs[0].([]*Workspace)[vs[1].(int)]
+	}).(WorkspaceOutput)
+}
+
+type WorkspaceMapOutput struct{ *pulumi.OutputState }
+
+func (WorkspaceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Workspace)(nil)).Elem()
+}
+
+func (o WorkspaceMapOutput) ToWorkspaceMapOutput() WorkspaceMapOutput {
+	return o
+}
+
+func (o WorkspaceMapOutput) ToWorkspaceMapOutputWithContext(ctx context.Context) WorkspaceMapOutput {
+	return o
+}
+
+func (o WorkspaceMapOutput) MapIndex(k pulumi.StringInput) WorkspaceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Workspace {
+		return vs[0].(map[string]*Workspace)[vs[1].(string)]
+	}).(WorkspaceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceInput)(nil)).Elem(), &Workspace{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceArrayInput)(nil)).Elem(), WorkspaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkspaceMapInput)(nil)).Elem(), WorkspaceMap{})
 	pulumi.RegisterOutputType(WorkspaceOutput{})
+	pulumi.RegisterOutputType(WorkspaceArrayOutput{})
+	pulumi.RegisterOutputType(WorkspaceMapOutput{})
 }

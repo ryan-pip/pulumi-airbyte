@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDockerhub Resource
@@ -127,6 +127,56 @@ func (i *SourceDockerhub) ToSourceDockerhubOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDockerhubOutput)
 }
 
+// SourceDockerhubArrayInput is an input type that accepts SourceDockerhubArray and SourceDockerhubArrayOutput values.
+// You can construct a concrete instance of `SourceDockerhubArrayInput` via:
+//
+//	SourceDockerhubArray{ SourceDockerhubArgs{...} }
+type SourceDockerhubArrayInput interface {
+	pulumi.Input
+
+	ToSourceDockerhubArrayOutput() SourceDockerhubArrayOutput
+	ToSourceDockerhubArrayOutputWithContext(context.Context) SourceDockerhubArrayOutput
+}
+
+type SourceDockerhubArray []SourceDockerhubInput
+
+func (SourceDockerhubArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDockerhub)(nil)).Elem()
+}
+
+func (i SourceDockerhubArray) ToSourceDockerhubArrayOutput() SourceDockerhubArrayOutput {
+	return i.ToSourceDockerhubArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDockerhubArray) ToSourceDockerhubArrayOutputWithContext(ctx context.Context) SourceDockerhubArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDockerhubArrayOutput)
+}
+
+// SourceDockerhubMapInput is an input type that accepts SourceDockerhubMap and SourceDockerhubMapOutput values.
+// You can construct a concrete instance of `SourceDockerhubMapInput` via:
+//
+//	SourceDockerhubMap{ "key": SourceDockerhubArgs{...} }
+type SourceDockerhubMapInput interface {
+	pulumi.Input
+
+	ToSourceDockerhubMapOutput() SourceDockerhubMapOutput
+	ToSourceDockerhubMapOutputWithContext(context.Context) SourceDockerhubMapOutput
+}
+
+type SourceDockerhubMap map[string]SourceDockerhubInput
+
+func (SourceDockerhubMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDockerhub)(nil)).Elem()
+}
+
+func (i SourceDockerhubMap) ToSourceDockerhubMapOutput() SourceDockerhubMapOutput {
+	return i.ToSourceDockerhubMapOutputWithContext(context.Background())
+}
+
+func (i SourceDockerhubMap) ToSourceDockerhubMapOutputWithContext(ctx context.Context) SourceDockerhubMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDockerhubMapOutput)
+}
+
 type SourceDockerhubOutput struct{ *pulumi.OutputState }
 
 func (SourceDockerhubOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDockerhubOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDockerhub) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDockerhubArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDockerhubArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDockerhub)(nil)).Elem()
+}
+
+func (o SourceDockerhubArrayOutput) ToSourceDockerhubArrayOutput() SourceDockerhubArrayOutput {
+	return o
+}
+
+func (o SourceDockerhubArrayOutput) ToSourceDockerhubArrayOutputWithContext(ctx context.Context) SourceDockerhubArrayOutput {
+	return o
+}
+
+func (o SourceDockerhubArrayOutput) Index(i pulumi.IntInput) SourceDockerhubOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDockerhub {
+		return vs[0].([]*SourceDockerhub)[vs[1].(int)]
+	}).(SourceDockerhubOutput)
+}
+
+type SourceDockerhubMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDockerhubMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDockerhub)(nil)).Elem()
+}
+
+func (o SourceDockerhubMapOutput) ToSourceDockerhubMapOutput() SourceDockerhubMapOutput {
+	return o
+}
+
+func (o SourceDockerhubMapOutput) ToSourceDockerhubMapOutputWithContext(ctx context.Context) SourceDockerhubMapOutput {
+	return o
+}
+
+func (o SourceDockerhubMapOutput) MapIndex(k pulumi.StringInput) SourceDockerhubOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDockerhub {
+		return vs[0].(map[string]*SourceDockerhub)[vs[1].(string)]
+	}).(SourceDockerhubOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDockerhubInput)(nil)).Elem(), &SourceDockerhub{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDockerhubArrayInput)(nil)).Elem(), SourceDockerhubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDockerhubMapInput)(nil)).Elem(), SourceDockerhubMap{})
 	pulumi.RegisterOutputType(SourceDockerhubOutput{})
+	pulumi.RegisterOutputType(SourceDockerhubArrayOutput{})
+	pulumi.RegisterOutputType(SourceDockerhubMapOutput{})
 }

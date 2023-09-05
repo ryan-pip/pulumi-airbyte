@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGooglePagespeedInsights Resource
@@ -127,6 +127,56 @@ func (i *SourceGooglePagespeedInsights) ToSourceGooglePagespeedInsightsOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGooglePagespeedInsightsOutput)
 }
 
+// SourceGooglePagespeedInsightsArrayInput is an input type that accepts SourceGooglePagespeedInsightsArray and SourceGooglePagespeedInsightsArrayOutput values.
+// You can construct a concrete instance of `SourceGooglePagespeedInsightsArrayInput` via:
+//
+//	SourceGooglePagespeedInsightsArray{ SourceGooglePagespeedInsightsArgs{...} }
+type SourceGooglePagespeedInsightsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGooglePagespeedInsightsArrayOutput() SourceGooglePagespeedInsightsArrayOutput
+	ToSourceGooglePagespeedInsightsArrayOutputWithContext(context.Context) SourceGooglePagespeedInsightsArrayOutput
+}
+
+type SourceGooglePagespeedInsightsArray []SourceGooglePagespeedInsightsInput
+
+func (SourceGooglePagespeedInsightsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGooglePagespeedInsights)(nil)).Elem()
+}
+
+func (i SourceGooglePagespeedInsightsArray) ToSourceGooglePagespeedInsightsArrayOutput() SourceGooglePagespeedInsightsArrayOutput {
+	return i.ToSourceGooglePagespeedInsightsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGooglePagespeedInsightsArray) ToSourceGooglePagespeedInsightsArrayOutputWithContext(ctx context.Context) SourceGooglePagespeedInsightsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGooglePagespeedInsightsArrayOutput)
+}
+
+// SourceGooglePagespeedInsightsMapInput is an input type that accepts SourceGooglePagespeedInsightsMap and SourceGooglePagespeedInsightsMapOutput values.
+// You can construct a concrete instance of `SourceGooglePagespeedInsightsMapInput` via:
+//
+//	SourceGooglePagespeedInsightsMap{ "key": SourceGooglePagespeedInsightsArgs{...} }
+type SourceGooglePagespeedInsightsMapInput interface {
+	pulumi.Input
+
+	ToSourceGooglePagespeedInsightsMapOutput() SourceGooglePagespeedInsightsMapOutput
+	ToSourceGooglePagespeedInsightsMapOutputWithContext(context.Context) SourceGooglePagespeedInsightsMapOutput
+}
+
+type SourceGooglePagespeedInsightsMap map[string]SourceGooglePagespeedInsightsInput
+
+func (SourceGooglePagespeedInsightsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGooglePagespeedInsights)(nil)).Elem()
+}
+
+func (i SourceGooglePagespeedInsightsMap) ToSourceGooglePagespeedInsightsMapOutput() SourceGooglePagespeedInsightsMapOutput {
+	return i.ToSourceGooglePagespeedInsightsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGooglePagespeedInsightsMap) ToSourceGooglePagespeedInsightsMapOutputWithContext(ctx context.Context) SourceGooglePagespeedInsightsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGooglePagespeedInsightsMapOutput)
+}
+
 type SourceGooglePagespeedInsightsOutput struct{ *pulumi.OutputState }
 
 func (SourceGooglePagespeedInsightsOutput) ElementType() reflect.Type {
@@ -168,7 +218,51 @@ func (o SourceGooglePagespeedInsightsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGooglePagespeedInsights) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGooglePagespeedInsightsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGooglePagespeedInsightsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGooglePagespeedInsights)(nil)).Elem()
+}
+
+func (o SourceGooglePagespeedInsightsArrayOutput) ToSourceGooglePagespeedInsightsArrayOutput() SourceGooglePagespeedInsightsArrayOutput {
+	return o
+}
+
+func (o SourceGooglePagespeedInsightsArrayOutput) ToSourceGooglePagespeedInsightsArrayOutputWithContext(ctx context.Context) SourceGooglePagespeedInsightsArrayOutput {
+	return o
+}
+
+func (o SourceGooglePagespeedInsightsArrayOutput) Index(i pulumi.IntInput) SourceGooglePagespeedInsightsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGooglePagespeedInsights {
+		return vs[0].([]*SourceGooglePagespeedInsights)[vs[1].(int)]
+	}).(SourceGooglePagespeedInsightsOutput)
+}
+
+type SourceGooglePagespeedInsightsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGooglePagespeedInsightsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGooglePagespeedInsights)(nil)).Elem()
+}
+
+func (o SourceGooglePagespeedInsightsMapOutput) ToSourceGooglePagespeedInsightsMapOutput() SourceGooglePagespeedInsightsMapOutput {
+	return o
+}
+
+func (o SourceGooglePagespeedInsightsMapOutput) ToSourceGooglePagespeedInsightsMapOutputWithContext(ctx context.Context) SourceGooglePagespeedInsightsMapOutput {
+	return o
+}
+
+func (o SourceGooglePagespeedInsightsMapOutput) MapIndex(k pulumi.StringInput) SourceGooglePagespeedInsightsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGooglePagespeedInsights {
+		return vs[0].(map[string]*SourceGooglePagespeedInsights)[vs[1].(string)]
+	}).(SourceGooglePagespeedInsightsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGooglePagespeedInsightsInput)(nil)).Elem(), &SourceGooglePagespeedInsights{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGooglePagespeedInsightsArrayInput)(nil)).Elem(), SourceGooglePagespeedInsightsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGooglePagespeedInsightsMapInput)(nil)).Elem(), SourceGooglePagespeedInsightsMap{})
 	pulumi.RegisterOutputType(SourceGooglePagespeedInsightsOutput{})
+	pulumi.RegisterOutputType(SourceGooglePagespeedInsightsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGooglePagespeedInsightsMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLinnworks Resource
@@ -127,6 +127,56 @@ func (i *SourceLinnworks) ToSourceLinnworksOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLinnworksOutput)
 }
 
+// SourceLinnworksArrayInput is an input type that accepts SourceLinnworksArray and SourceLinnworksArrayOutput values.
+// You can construct a concrete instance of `SourceLinnworksArrayInput` via:
+//
+//	SourceLinnworksArray{ SourceLinnworksArgs{...} }
+type SourceLinnworksArrayInput interface {
+	pulumi.Input
+
+	ToSourceLinnworksArrayOutput() SourceLinnworksArrayOutput
+	ToSourceLinnworksArrayOutputWithContext(context.Context) SourceLinnworksArrayOutput
+}
+
+type SourceLinnworksArray []SourceLinnworksInput
+
+func (SourceLinnworksArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinnworks)(nil)).Elem()
+}
+
+func (i SourceLinnworksArray) ToSourceLinnworksArrayOutput() SourceLinnworksArrayOutput {
+	return i.ToSourceLinnworksArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLinnworksArray) ToSourceLinnworksArrayOutputWithContext(ctx context.Context) SourceLinnworksArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinnworksArrayOutput)
+}
+
+// SourceLinnworksMapInput is an input type that accepts SourceLinnworksMap and SourceLinnworksMapOutput values.
+// You can construct a concrete instance of `SourceLinnworksMapInput` via:
+//
+//	SourceLinnworksMap{ "key": SourceLinnworksArgs{...} }
+type SourceLinnworksMapInput interface {
+	pulumi.Input
+
+	ToSourceLinnworksMapOutput() SourceLinnworksMapOutput
+	ToSourceLinnworksMapOutputWithContext(context.Context) SourceLinnworksMapOutput
+}
+
+type SourceLinnworksMap map[string]SourceLinnworksInput
+
+func (SourceLinnworksMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinnworks)(nil)).Elem()
+}
+
+func (i SourceLinnworksMap) ToSourceLinnworksMapOutput() SourceLinnworksMapOutput {
+	return i.ToSourceLinnworksMapOutputWithContext(context.Background())
+}
+
+func (i SourceLinnworksMap) ToSourceLinnworksMapOutputWithContext(ctx context.Context) SourceLinnworksMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLinnworksMapOutput)
+}
+
 type SourceLinnworksOutput struct{ *pulumi.OutputState }
 
 func (SourceLinnworksOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLinnworksOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLinnworks) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLinnworksArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLinnworksArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLinnworks)(nil)).Elem()
+}
+
+func (o SourceLinnworksArrayOutput) ToSourceLinnworksArrayOutput() SourceLinnworksArrayOutput {
+	return o
+}
+
+func (o SourceLinnworksArrayOutput) ToSourceLinnworksArrayOutputWithContext(ctx context.Context) SourceLinnworksArrayOutput {
+	return o
+}
+
+func (o SourceLinnworksArrayOutput) Index(i pulumi.IntInput) SourceLinnworksOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLinnworks {
+		return vs[0].([]*SourceLinnworks)[vs[1].(int)]
+	}).(SourceLinnworksOutput)
+}
+
+type SourceLinnworksMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLinnworksMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLinnworks)(nil)).Elem()
+}
+
+func (o SourceLinnworksMapOutput) ToSourceLinnworksMapOutput() SourceLinnworksMapOutput {
+	return o
+}
+
+func (o SourceLinnworksMapOutput) ToSourceLinnworksMapOutputWithContext(ctx context.Context) SourceLinnworksMapOutput {
+	return o
+}
+
+func (o SourceLinnworksMapOutput) MapIndex(k pulumi.StringInput) SourceLinnworksOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLinnworks {
+		return vs[0].(map[string]*SourceLinnworks)[vs[1].(string)]
+	}).(SourceLinnworksOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinnworksInput)(nil)).Elem(), &SourceLinnworks{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinnworksArrayInput)(nil)).Elem(), SourceLinnworksArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLinnworksMapInput)(nil)).Elem(), SourceLinnworksMap{})
 	pulumi.RegisterOutputType(SourceLinnworksOutput{})
+	pulumi.RegisterOutputType(SourceLinnworksArrayOutput{})
+	pulumi.RegisterOutputType(SourceLinnworksMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceCloseCom Resource
@@ -127,6 +127,56 @@ func (i *SourceCloseCom) ToSourceCloseComOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceCloseComOutput)
 }
 
+// SourceCloseComArrayInput is an input type that accepts SourceCloseComArray and SourceCloseComArrayOutput values.
+// You can construct a concrete instance of `SourceCloseComArrayInput` via:
+//
+//	SourceCloseComArray{ SourceCloseComArgs{...} }
+type SourceCloseComArrayInput interface {
+	pulumi.Input
+
+	ToSourceCloseComArrayOutput() SourceCloseComArrayOutput
+	ToSourceCloseComArrayOutputWithContext(context.Context) SourceCloseComArrayOutput
+}
+
+type SourceCloseComArray []SourceCloseComInput
+
+func (SourceCloseComArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCloseCom)(nil)).Elem()
+}
+
+func (i SourceCloseComArray) ToSourceCloseComArrayOutput() SourceCloseComArrayOutput {
+	return i.ToSourceCloseComArrayOutputWithContext(context.Background())
+}
+
+func (i SourceCloseComArray) ToSourceCloseComArrayOutputWithContext(ctx context.Context) SourceCloseComArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCloseComArrayOutput)
+}
+
+// SourceCloseComMapInput is an input type that accepts SourceCloseComMap and SourceCloseComMapOutput values.
+// You can construct a concrete instance of `SourceCloseComMapInput` via:
+//
+//	SourceCloseComMap{ "key": SourceCloseComArgs{...} }
+type SourceCloseComMapInput interface {
+	pulumi.Input
+
+	ToSourceCloseComMapOutput() SourceCloseComMapOutput
+	ToSourceCloseComMapOutputWithContext(context.Context) SourceCloseComMapOutput
+}
+
+type SourceCloseComMap map[string]SourceCloseComInput
+
+func (SourceCloseComMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCloseCom)(nil)).Elem()
+}
+
+func (i SourceCloseComMap) ToSourceCloseComMapOutput() SourceCloseComMapOutput {
+	return i.ToSourceCloseComMapOutputWithContext(context.Background())
+}
+
+func (i SourceCloseComMap) ToSourceCloseComMapOutputWithContext(ctx context.Context) SourceCloseComMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceCloseComMapOutput)
+}
+
 type SourceCloseComOutput struct{ *pulumi.OutputState }
 
 func (SourceCloseComOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceCloseComOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceCloseCom) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceCloseComArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceCloseComArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceCloseCom)(nil)).Elem()
+}
+
+func (o SourceCloseComArrayOutput) ToSourceCloseComArrayOutput() SourceCloseComArrayOutput {
+	return o
+}
+
+func (o SourceCloseComArrayOutput) ToSourceCloseComArrayOutputWithContext(ctx context.Context) SourceCloseComArrayOutput {
+	return o
+}
+
+func (o SourceCloseComArrayOutput) Index(i pulumi.IntInput) SourceCloseComOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceCloseCom {
+		return vs[0].([]*SourceCloseCom)[vs[1].(int)]
+	}).(SourceCloseComOutput)
+}
+
+type SourceCloseComMapOutput struct{ *pulumi.OutputState }
+
+func (SourceCloseComMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceCloseCom)(nil)).Elem()
+}
+
+func (o SourceCloseComMapOutput) ToSourceCloseComMapOutput() SourceCloseComMapOutput {
+	return o
+}
+
+func (o SourceCloseComMapOutput) ToSourceCloseComMapOutputWithContext(ctx context.Context) SourceCloseComMapOutput {
+	return o
+}
+
+func (o SourceCloseComMapOutput) MapIndex(k pulumi.StringInput) SourceCloseComOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceCloseCom {
+		return vs[0].(map[string]*SourceCloseCom)[vs[1].(string)]
+	}).(SourceCloseComOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceCloseComInput)(nil)).Elem(), &SourceCloseCom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCloseComArrayInput)(nil)).Elem(), SourceCloseComArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceCloseComMapInput)(nil)).Elem(), SourceCloseComMap{})
 	pulumi.RegisterOutputType(SourceCloseComOutput{})
+	pulumi.RegisterOutputType(SourceCloseComArrayOutput{})
+	pulumi.RegisterOutputType(SourceCloseComMapOutput{})
 }

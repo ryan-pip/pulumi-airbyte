@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOrbit Resource
@@ -127,6 +127,56 @@ func (i *SourceOrbit) ToSourceOrbitOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbitOutput)
 }
 
+// SourceOrbitArrayInput is an input type that accepts SourceOrbitArray and SourceOrbitArrayOutput values.
+// You can construct a concrete instance of `SourceOrbitArrayInput` via:
+//
+//	SourceOrbitArray{ SourceOrbitArgs{...} }
+type SourceOrbitArrayInput interface {
+	pulumi.Input
+
+	ToSourceOrbitArrayOutput() SourceOrbitArrayOutput
+	ToSourceOrbitArrayOutputWithContext(context.Context) SourceOrbitArrayOutput
+}
+
+type SourceOrbitArray []SourceOrbitInput
+
+func (SourceOrbitArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOrbit)(nil)).Elem()
+}
+
+func (i SourceOrbitArray) ToSourceOrbitArrayOutput() SourceOrbitArrayOutput {
+	return i.ToSourceOrbitArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOrbitArray) ToSourceOrbitArrayOutputWithContext(ctx context.Context) SourceOrbitArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbitArrayOutput)
+}
+
+// SourceOrbitMapInput is an input type that accepts SourceOrbitMap and SourceOrbitMapOutput values.
+// You can construct a concrete instance of `SourceOrbitMapInput` via:
+//
+//	SourceOrbitMap{ "key": SourceOrbitArgs{...} }
+type SourceOrbitMapInput interface {
+	pulumi.Input
+
+	ToSourceOrbitMapOutput() SourceOrbitMapOutput
+	ToSourceOrbitMapOutputWithContext(context.Context) SourceOrbitMapOutput
+}
+
+type SourceOrbitMap map[string]SourceOrbitInput
+
+func (SourceOrbitMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOrbit)(nil)).Elem()
+}
+
+func (i SourceOrbitMap) ToSourceOrbitMapOutput() SourceOrbitMapOutput {
+	return i.ToSourceOrbitMapOutputWithContext(context.Background())
+}
+
+func (i SourceOrbitMap) ToSourceOrbitMapOutputWithContext(ctx context.Context) SourceOrbitMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOrbitMapOutput)
+}
+
 type SourceOrbitOutput struct{ *pulumi.OutputState }
 
 func (SourceOrbitOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOrbitOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOrbit) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOrbitArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOrbitArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOrbit)(nil)).Elem()
+}
+
+func (o SourceOrbitArrayOutput) ToSourceOrbitArrayOutput() SourceOrbitArrayOutput {
+	return o
+}
+
+func (o SourceOrbitArrayOutput) ToSourceOrbitArrayOutputWithContext(ctx context.Context) SourceOrbitArrayOutput {
+	return o
+}
+
+func (o SourceOrbitArrayOutput) Index(i pulumi.IntInput) SourceOrbitOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOrbit {
+		return vs[0].([]*SourceOrbit)[vs[1].(int)]
+	}).(SourceOrbitOutput)
+}
+
+type SourceOrbitMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOrbitMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOrbit)(nil)).Elem()
+}
+
+func (o SourceOrbitMapOutput) ToSourceOrbitMapOutput() SourceOrbitMapOutput {
+	return o
+}
+
+func (o SourceOrbitMapOutput) ToSourceOrbitMapOutputWithContext(ctx context.Context) SourceOrbitMapOutput {
+	return o
+}
+
+func (o SourceOrbitMapOutput) MapIndex(k pulumi.StringInput) SourceOrbitOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOrbit {
+		return vs[0].(map[string]*SourceOrbit)[vs[1].(string)]
+	}).(SourceOrbitOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbitInput)(nil)).Elem(), &SourceOrbit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbitArrayInput)(nil)).Elem(), SourceOrbitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOrbitMapInput)(nil)).Elem(), SourceOrbitMap{})
 	pulumi.RegisterOutputType(SourceOrbitOutput{})
+	pulumi.RegisterOutputType(SourceOrbitArrayOutput{})
+	pulumi.RegisterOutputType(SourceOrbitMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTvmazeSchedule Resource
@@ -127,6 +127,56 @@ func (i *SourceTvmazeSchedule) ToSourceTvmazeScheduleOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTvmazeScheduleOutput)
 }
 
+// SourceTvmazeScheduleArrayInput is an input type that accepts SourceTvmazeScheduleArray and SourceTvmazeScheduleArrayOutput values.
+// You can construct a concrete instance of `SourceTvmazeScheduleArrayInput` via:
+//
+//	SourceTvmazeScheduleArray{ SourceTvmazeScheduleArgs{...} }
+type SourceTvmazeScheduleArrayInput interface {
+	pulumi.Input
+
+	ToSourceTvmazeScheduleArrayOutput() SourceTvmazeScheduleArrayOutput
+	ToSourceTvmazeScheduleArrayOutputWithContext(context.Context) SourceTvmazeScheduleArrayOutput
+}
+
+type SourceTvmazeScheduleArray []SourceTvmazeScheduleInput
+
+func (SourceTvmazeScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTvmazeSchedule)(nil)).Elem()
+}
+
+func (i SourceTvmazeScheduleArray) ToSourceTvmazeScheduleArrayOutput() SourceTvmazeScheduleArrayOutput {
+	return i.ToSourceTvmazeScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTvmazeScheduleArray) ToSourceTvmazeScheduleArrayOutputWithContext(ctx context.Context) SourceTvmazeScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTvmazeScheduleArrayOutput)
+}
+
+// SourceTvmazeScheduleMapInput is an input type that accepts SourceTvmazeScheduleMap and SourceTvmazeScheduleMapOutput values.
+// You can construct a concrete instance of `SourceTvmazeScheduleMapInput` via:
+//
+//	SourceTvmazeScheduleMap{ "key": SourceTvmazeScheduleArgs{...} }
+type SourceTvmazeScheduleMapInput interface {
+	pulumi.Input
+
+	ToSourceTvmazeScheduleMapOutput() SourceTvmazeScheduleMapOutput
+	ToSourceTvmazeScheduleMapOutputWithContext(context.Context) SourceTvmazeScheduleMapOutput
+}
+
+type SourceTvmazeScheduleMap map[string]SourceTvmazeScheduleInput
+
+func (SourceTvmazeScheduleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTvmazeSchedule)(nil)).Elem()
+}
+
+func (i SourceTvmazeScheduleMap) ToSourceTvmazeScheduleMapOutput() SourceTvmazeScheduleMapOutput {
+	return i.ToSourceTvmazeScheduleMapOutputWithContext(context.Background())
+}
+
+func (i SourceTvmazeScheduleMap) ToSourceTvmazeScheduleMapOutputWithContext(ctx context.Context) SourceTvmazeScheduleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTvmazeScheduleMapOutput)
+}
+
 type SourceTvmazeScheduleOutput struct{ *pulumi.OutputState }
 
 func (SourceTvmazeScheduleOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTvmazeScheduleOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTvmazeSchedule) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTvmazeScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTvmazeScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTvmazeSchedule)(nil)).Elem()
+}
+
+func (o SourceTvmazeScheduleArrayOutput) ToSourceTvmazeScheduleArrayOutput() SourceTvmazeScheduleArrayOutput {
+	return o
+}
+
+func (o SourceTvmazeScheduleArrayOutput) ToSourceTvmazeScheduleArrayOutputWithContext(ctx context.Context) SourceTvmazeScheduleArrayOutput {
+	return o
+}
+
+func (o SourceTvmazeScheduleArrayOutput) Index(i pulumi.IntInput) SourceTvmazeScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTvmazeSchedule {
+		return vs[0].([]*SourceTvmazeSchedule)[vs[1].(int)]
+	}).(SourceTvmazeScheduleOutput)
+}
+
+type SourceTvmazeScheduleMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTvmazeScheduleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTvmazeSchedule)(nil)).Elem()
+}
+
+func (o SourceTvmazeScheduleMapOutput) ToSourceTvmazeScheduleMapOutput() SourceTvmazeScheduleMapOutput {
+	return o
+}
+
+func (o SourceTvmazeScheduleMapOutput) ToSourceTvmazeScheduleMapOutputWithContext(ctx context.Context) SourceTvmazeScheduleMapOutput {
+	return o
+}
+
+func (o SourceTvmazeScheduleMapOutput) MapIndex(k pulumi.StringInput) SourceTvmazeScheduleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTvmazeSchedule {
+		return vs[0].(map[string]*SourceTvmazeSchedule)[vs[1].(string)]
+	}).(SourceTvmazeScheduleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTvmazeScheduleInput)(nil)).Elem(), &SourceTvmazeSchedule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTvmazeScheduleArrayInput)(nil)).Elem(), SourceTvmazeScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTvmazeScheduleMapInput)(nil)).Elem(), SourceTvmazeScheduleMap{})
 	pulumi.RegisterOutputType(SourceTvmazeScheduleOutput{})
+	pulumi.RegisterOutputType(SourceTvmazeScheduleArrayOutput{})
+	pulumi.RegisterOutputType(SourceTvmazeScheduleMapOutput{})
 }

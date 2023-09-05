@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRecurly Resource
@@ -127,6 +127,56 @@ func (i *SourceRecurly) ToSourceRecurlyOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRecurlyOutput)
 }
 
+// SourceRecurlyArrayInput is an input type that accepts SourceRecurlyArray and SourceRecurlyArrayOutput values.
+// You can construct a concrete instance of `SourceRecurlyArrayInput` via:
+//
+//	SourceRecurlyArray{ SourceRecurlyArgs{...} }
+type SourceRecurlyArrayInput interface {
+	pulumi.Input
+
+	ToSourceRecurlyArrayOutput() SourceRecurlyArrayOutput
+	ToSourceRecurlyArrayOutputWithContext(context.Context) SourceRecurlyArrayOutput
+}
+
+type SourceRecurlyArray []SourceRecurlyInput
+
+func (SourceRecurlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecurly)(nil)).Elem()
+}
+
+func (i SourceRecurlyArray) ToSourceRecurlyArrayOutput() SourceRecurlyArrayOutput {
+	return i.ToSourceRecurlyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRecurlyArray) ToSourceRecurlyArrayOutputWithContext(ctx context.Context) SourceRecurlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecurlyArrayOutput)
+}
+
+// SourceRecurlyMapInput is an input type that accepts SourceRecurlyMap and SourceRecurlyMapOutput values.
+// You can construct a concrete instance of `SourceRecurlyMapInput` via:
+//
+//	SourceRecurlyMap{ "key": SourceRecurlyArgs{...} }
+type SourceRecurlyMapInput interface {
+	pulumi.Input
+
+	ToSourceRecurlyMapOutput() SourceRecurlyMapOutput
+	ToSourceRecurlyMapOutputWithContext(context.Context) SourceRecurlyMapOutput
+}
+
+type SourceRecurlyMap map[string]SourceRecurlyInput
+
+func (SourceRecurlyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecurly)(nil)).Elem()
+}
+
+func (i SourceRecurlyMap) ToSourceRecurlyMapOutput() SourceRecurlyMapOutput {
+	return i.ToSourceRecurlyMapOutputWithContext(context.Background())
+}
+
+func (i SourceRecurlyMap) ToSourceRecurlyMapOutputWithContext(ctx context.Context) SourceRecurlyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRecurlyMapOutput)
+}
+
 type SourceRecurlyOutput struct{ *pulumi.OutputState }
 
 func (SourceRecurlyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRecurlyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRecurly) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRecurlyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRecurlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecurly)(nil)).Elem()
+}
+
+func (o SourceRecurlyArrayOutput) ToSourceRecurlyArrayOutput() SourceRecurlyArrayOutput {
+	return o
+}
+
+func (o SourceRecurlyArrayOutput) ToSourceRecurlyArrayOutputWithContext(ctx context.Context) SourceRecurlyArrayOutput {
+	return o
+}
+
+func (o SourceRecurlyArrayOutput) Index(i pulumi.IntInput) SourceRecurlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRecurly {
+		return vs[0].([]*SourceRecurly)[vs[1].(int)]
+	}).(SourceRecurlyOutput)
+}
+
+type SourceRecurlyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRecurlyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecurly)(nil)).Elem()
+}
+
+func (o SourceRecurlyMapOutput) ToSourceRecurlyMapOutput() SourceRecurlyMapOutput {
+	return o
+}
+
+func (o SourceRecurlyMapOutput) ToSourceRecurlyMapOutputWithContext(ctx context.Context) SourceRecurlyMapOutput {
+	return o
+}
+
+func (o SourceRecurlyMapOutput) MapIndex(k pulumi.StringInput) SourceRecurlyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRecurly {
+		return vs[0].(map[string]*SourceRecurly)[vs[1].(string)]
+	}).(SourceRecurlyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecurlyInput)(nil)).Elem(), &SourceRecurly{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecurlyArrayInput)(nil)).Elem(), SourceRecurlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRecurlyMapInput)(nil)).Elem(), SourceRecurlyMap{})
 	pulumi.RegisterOutputType(SourceRecurlyOutput{})
+	pulumi.RegisterOutputType(SourceRecurlyArrayOutput{})
+	pulumi.RegisterOutputType(SourceRecurlyMapOutput{})
 }

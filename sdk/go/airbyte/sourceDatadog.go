@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDatadog Resource
@@ -127,6 +127,56 @@ func (i *SourceDatadog) ToSourceDatadogOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDatadogOutput)
 }
 
+// SourceDatadogArrayInput is an input type that accepts SourceDatadogArray and SourceDatadogArrayOutput values.
+// You can construct a concrete instance of `SourceDatadogArrayInput` via:
+//
+//	SourceDatadogArray{ SourceDatadogArgs{...} }
+type SourceDatadogArrayInput interface {
+	pulumi.Input
+
+	ToSourceDatadogArrayOutput() SourceDatadogArrayOutput
+	ToSourceDatadogArrayOutputWithContext(context.Context) SourceDatadogArrayOutput
+}
+
+type SourceDatadogArray []SourceDatadogInput
+
+func (SourceDatadogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDatadog)(nil)).Elem()
+}
+
+func (i SourceDatadogArray) ToSourceDatadogArrayOutput() SourceDatadogArrayOutput {
+	return i.ToSourceDatadogArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDatadogArray) ToSourceDatadogArrayOutputWithContext(ctx context.Context) SourceDatadogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDatadogArrayOutput)
+}
+
+// SourceDatadogMapInput is an input type that accepts SourceDatadogMap and SourceDatadogMapOutput values.
+// You can construct a concrete instance of `SourceDatadogMapInput` via:
+//
+//	SourceDatadogMap{ "key": SourceDatadogArgs{...} }
+type SourceDatadogMapInput interface {
+	pulumi.Input
+
+	ToSourceDatadogMapOutput() SourceDatadogMapOutput
+	ToSourceDatadogMapOutputWithContext(context.Context) SourceDatadogMapOutput
+}
+
+type SourceDatadogMap map[string]SourceDatadogInput
+
+func (SourceDatadogMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDatadog)(nil)).Elem()
+}
+
+func (i SourceDatadogMap) ToSourceDatadogMapOutput() SourceDatadogMapOutput {
+	return i.ToSourceDatadogMapOutputWithContext(context.Background())
+}
+
+func (i SourceDatadogMap) ToSourceDatadogMapOutputWithContext(ctx context.Context) SourceDatadogMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDatadogMapOutput)
+}
+
 type SourceDatadogOutput struct{ *pulumi.OutputState }
 
 func (SourceDatadogOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDatadogOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDatadog) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDatadogArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDatadogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDatadog)(nil)).Elem()
+}
+
+func (o SourceDatadogArrayOutput) ToSourceDatadogArrayOutput() SourceDatadogArrayOutput {
+	return o
+}
+
+func (o SourceDatadogArrayOutput) ToSourceDatadogArrayOutputWithContext(ctx context.Context) SourceDatadogArrayOutput {
+	return o
+}
+
+func (o SourceDatadogArrayOutput) Index(i pulumi.IntInput) SourceDatadogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDatadog {
+		return vs[0].([]*SourceDatadog)[vs[1].(int)]
+	}).(SourceDatadogOutput)
+}
+
+type SourceDatadogMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDatadogMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDatadog)(nil)).Elem()
+}
+
+func (o SourceDatadogMapOutput) ToSourceDatadogMapOutput() SourceDatadogMapOutput {
+	return o
+}
+
+func (o SourceDatadogMapOutput) ToSourceDatadogMapOutputWithContext(ctx context.Context) SourceDatadogMapOutput {
+	return o
+}
+
+func (o SourceDatadogMapOutput) MapIndex(k pulumi.StringInput) SourceDatadogOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDatadog {
+		return vs[0].(map[string]*SourceDatadog)[vs[1].(string)]
+	}).(SourceDatadogOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatadogInput)(nil)).Elem(), &SourceDatadog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatadogArrayInput)(nil)).Elem(), SourceDatadogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDatadogMapInput)(nil)).Elem(), SourceDatadogMap{})
 	pulumi.RegisterOutputType(SourceDatadogOutput{})
+	pulumi.RegisterOutputType(SourceDatadogArrayOutput{})
+	pulumi.RegisterOutputType(SourceDatadogMapOutput{})
 }

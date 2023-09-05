@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceNetsuite Resource
@@ -127,6 +127,56 @@ func (i *SourceNetsuite) ToSourceNetsuiteOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceNetsuiteOutput)
 }
 
+// SourceNetsuiteArrayInput is an input type that accepts SourceNetsuiteArray and SourceNetsuiteArrayOutput values.
+// You can construct a concrete instance of `SourceNetsuiteArrayInput` via:
+//
+//	SourceNetsuiteArray{ SourceNetsuiteArgs{...} }
+type SourceNetsuiteArrayInput interface {
+	pulumi.Input
+
+	ToSourceNetsuiteArrayOutput() SourceNetsuiteArrayOutput
+	ToSourceNetsuiteArrayOutputWithContext(context.Context) SourceNetsuiteArrayOutput
+}
+
+type SourceNetsuiteArray []SourceNetsuiteInput
+
+func (SourceNetsuiteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNetsuite)(nil)).Elem()
+}
+
+func (i SourceNetsuiteArray) ToSourceNetsuiteArrayOutput() SourceNetsuiteArrayOutput {
+	return i.ToSourceNetsuiteArrayOutputWithContext(context.Background())
+}
+
+func (i SourceNetsuiteArray) ToSourceNetsuiteArrayOutputWithContext(ctx context.Context) SourceNetsuiteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNetsuiteArrayOutput)
+}
+
+// SourceNetsuiteMapInput is an input type that accepts SourceNetsuiteMap and SourceNetsuiteMapOutput values.
+// You can construct a concrete instance of `SourceNetsuiteMapInput` via:
+//
+//	SourceNetsuiteMap{ "key": SourceNetsuiteArgs{...} }
+type SourceNetsuiteMapInput interface {
+	pulumi.Input
+
+	ToSourceNetsuiteMapOutput() SourceNetsuiteMapOutput
+	ToSourceNetsuiteMapOutputWithContext(context.Context) SourceNetsuiteMapOutput
+}
+
+type SourceNetsuiteMap map[string]SourceNetsuiteInput
+
+func (SourceNetsuiteMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNetsuite)(nil)).Elem()
+}
+
+func (i SourceNetsuiteMap) ToSourceNetsuiteMapOutput() SourceNetsuiteMapOutput {
+	return i.ToSourceNetsuiteMapOutputWithContext(context.Background())
+}
+
+func (i SourceNetsuiteMap) ToSourceNetsuiteMapOutputWithContext(ctx context.Context) SourceNetsuiteMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNetsuiteMapOutput)
+}
+
 type SourceNetsuiteOutput struct{ *pulumi.OutputState }
 
 func (SourceNetsuiteOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceNetsuiteOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceNetsuite) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceNetsuiteArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceNetsuiteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNetsuite)(nil)).Elem()
+}
+
+func (o SourceNetsuiteArrayOutput) ToSourceNetsuiteArrayOutput() SourceNetsuiteArrayOutput {
+	return o
+}
+
+func (o SourceNetsuiteArrayOutput) ToSourceNetsuiteArrayOutputWithContext(ctx context.Context) SourceNetsuiteArrayOutput {
+	return o
+}
+
+func (o SourceNetsuiteArrayOutput) Index(i pulumi.IntInput) SourceNetsuiteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceNetsuite {
+		return vs[0].([]*SourceNetsuite)[vs[1].(int)]
+	}).(SourceNetsuiteOutput)
+}
+
+type SourceNetsuiteMapOutput struct{ *pulumi.OutputState }
+
+func (SourceNetsuiteMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNetsuite)(nil)).Elem()
+}
+
+func (o SourceNetsuiteMapOutput) ToSourceNetsuiteMapOutput() SourceNetsuiteMapOutput {
+	return o
+}
+
+func (o SourceNetsuiteMapOutput) ToSourceNetsuiteMapOutputWithContext(ctx context.Context) SourceNetsuiteMapOutput {
+	return o
+}
+
+func (o SourceNetsuiteMapOutput) MapIndex(k pulumi.StringInput) SourceNetsuiteOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceNetsuite {
+		return vs[0].(map[string]*SourceNetsuite)[vs[1].(string)]
+	}).(SourceNetsuiteOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceNetsuiteInput)(nil)).Elem(), &SourceNetsuite{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNetsuiteArrayInput)(nil)).Elem(), SourceNetsuiteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNetsuiteMapInput)(nil)).Elem(), SourceNetsuiteMap{})
 	pulumi.RegisterOutputType(SourceNetsuiteOutput{})
+	pulumi.RegisterOutputType(SourceNetsuiteArrayOutput{})
+	pulumi.RegisterOutputType(SourceNetsuiteMapOutput{})
 }

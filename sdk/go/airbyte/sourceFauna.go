@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFauna Resource
@@ -127,6 +127,56 @@ func (i *SourceFauna) ToSourceFaunaOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFaunaOutput)
 }
 
+// SourceFaunaArrayInput is an input type that accepts SourceFaunaArray and SourceFaunaArrayOutput values.
+// You can construct a concrete instance of `SourceFaunaArrayInput` via:
+//
+//	SourceFaunaArray{ SourceFaunaArgs{...} }
+type SourceFaunaArrayInput interface {
+	pulumi.Input
+
+	ToSourceFaunaArrayOutput() SourceFaunaArrayOutput
+	ToSourceFaunaArrayOutputWithContext(context.Context) SourceFaunaArrayOutput
+}
+
+type SourceFaunaArray []SourceFaunaInput
+
+func (SourceFaunaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFauna)(nil)).Elem()
+}
+
+func (i SourceFaunaArray) ToSourceFaunaArrayOutput() SourceFaunaArrayOutput {
+	return i.ToSourceFaunaArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFaunaArray) ToSourceFaunaArrayOutputWithContext(ctx context.Context) SourceFaunaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFaunaArrayOutput)
+}
+
+// SourceFaunaMapInput is an input type that accepts SourceFaunaMap and SourceFaunaMapOutput values.
+// You can construct a concrete instance of `SourceFaunaMapInput` via:
+//
+//	SourceFaunaMap{ "key": SourceFaunaArgs{...} }
+type SourceFaunaMapInput interface {
+	pulumi.Input
+
+	ToSourceFaunaMapOutput() SourceFaunaMapOutput
+	ToSourceFaunaMapOutputWithContext(context.Context) SourceFaunaMapOutput
+}
+
+type SourceFaunaMap map[string]SourceFaunaInput
+
+func (SourceFaunaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFauna)(nil)).Elem()
+}
+
+func (i SourceFaunaMap) ToSourceFaunaMapOutput() SourceFaunaMapOutput {
+	return i.ToSourceFaunaMapOutputWithContext(context.Background())
+}
+
+func (i SourceFaunaMap) ToSourceFaunaMapOutputWithContext(ctx context.Context) SourceFaunaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFaunaMapOutput)
+}
+
 type SourceFaunaOutput struct{ *pulumi.OutputState }
 
 func (SourceFaunaOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFaunaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFauna) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFaunaArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFaunaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFauna)(nil)).Elem()
+}
+
+func (o SourceFaunaArrayOutput) ToSourceFaunaArrayOutput() SourceFaunaArrayOutput {
+	return o
+}
+
+func (o SourceFaunaArrayOutput) ToSourceFaunaArrayOutputWithContext(ctx context.Context) SourceFaunaArrayOutput {
+	return o
+}
+
+func (o SourceFaunaArrayOutput) Index(i pulumi.IntInput) SourceFaunaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFauna {
+		return vs[0].([]*SourceFauna)[vs[1].(int)]
+	}).(SourceFaunaOutput)
+}
+
+type SourceFaunaMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFaunaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFauna)(nil)).Elem()
+}
+
+func (o SourceFaunaMapOutput) ToSourceFaunaMapOutput() SourceFaunaMapOutput {
+	return o
+}
+
+func (o SourceFaunaMapOutput) ToSourceFaunaMapOutputWithContext(ctx context.Context) SourceFaunaMapOutput {
+	return o
+}
+
+func (o SourceFaunaMapOutput) MapIndex(k pulumi.StringInput) SourceFaunaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFauna {
+		return vs[0].(map[string]*SourceFauna)[vs[1].(string)]
+	}).(SourceFaunaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFaunaInput)(nil)).Elem(), &SourceFauna{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFaunaArrayInput)(nil)).Elem(), SourceFaunaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFaunaMapInput)(nil)).Elem(), SourceFaunaMap{})
 	pulumi.RegisterOutputType(SourceFaunaOutput{})
+	pulumi.RegisterOutputType(SourceFaunaArrayOutput{})
+	pulumi.RegisterOutputType(SourceFaunaMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRecharge Resource
@@ -127,6 +127,56 @@ func (i *SourceRecharge) ToSourceRechargeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRechargeOutput)
 }
 
+// SourceRechargeArrayInput is an input type that accepts SourceRechargeArray and SourceRechargeArrayOutput values.
+// You can construct a concrete instance of `SourceRechargeArrayInput` via:
+//
+//	SourceRechargeArray{ SourceRechargeArgs{...} }
+type SourceRechargeArrayInput interface {
+	pulumi.Input
+
+	ToSourceRechargeArrayOutput() SourceRechargeArrayOutput
+	ToSourceRechargeArrayOutputWithContext(context.Context) SourceRechargeArrayOutput
+}
+
+type SourceRechargeArray []SourceRechargeInput
+
+func (SourceRechargeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecharge)(nil)).Elem()
+}
+
+func (i SourceRechargeArray) ToSourceRechargeArrayOutput() SourceRechargeArrayOutput {
+	return i.ToSourceRechargeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRechargeArray) ToSourceRechargeArrayOutputWithContext(ctx context.Context) SourceRechargeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRechargeArrayOutput)
+}
+
+// SourceRechargeMapInput is an input type that accepts SourceRechargeMap and SourceRechargeMapOutput values.
+// You can construct a concrete instance of `SourceRechargeMapInput` via:
+//
+//	SourceRechargeMap{ "key": SourceRechargeArgs{...} }
+type SourceRechargeMapInput interface {
+	pulumi.Input
+
+	ToSourceRechargeMapOutput() SourceRechargeMapOutput
+	ToSourceRechargeMapOutputWithContext(context.Context) SourceRechargeMapOutput
+}
+
+type SourceRechargeMap map[string]SourceRechargeInput
+
+func (SourceRechargeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecharge)(nil)).Elem()
+}
+
+func (i SourceRechargeMap) ToSourceRechargeMapOutput() SourceRechargeMapOutput {
+	return i.ToSourceRechargeMapOutputWithContext(context.Background())
+}
+
+func (i SourceRechargeMap) ToSourceRechargeMapOutputWithContext(ctx context.Context) SourceRechargeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRechargeMapOutput)
+}
+
 type SourceRechargeOutput struct{ *pulumi.OutputState }
 
 func (SourceRechargeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRechargeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRecharge) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRechargeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRechargeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRecharge)(nil)).Elem()
+}
+
+func (o SourceRechargeArrayOutput) ToSourceRechargeArrayOutput() SourceRechargeArrayOutput {
+	return o
+}
+
+func (o SourceRechargeArrayOutput) ToSourceRechargeArrayOutputWithContext(ctx context.Context) SourceRechargeArrayOutput {
+	return o
+}
+
+func (o SourceRechargeArrayOutput) Index(i pulumi.IntInput) SourceRechargeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRecharge {
+		return vs[0].([]*SourceRecharge)[vs[1].(int)]
+	}).(SourceRechargeOutput)
+}
+
+type SourceRechargeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRechargeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRecharge)(nil)).Elem()
+}
+
+func (o SourceRechargeMapOutput) ToSourceRechargeMapOutput() SourceRechargeMapOutput {
+	return o
+}
+
+func (o SourceRechargeMapOutput) ToSourceRechargeMapOutputWithContext(ctx context.Context) SourceRechargeMapOutput {
+	return o
+}
+
+func (o SourceRechargeMapOutput) MapIndex(k pulumi.StringInput) SourceRechargeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRecharge {
+		return vs[0].(map[string]*SourceRecharge)[vs[1].(string)]
+	}).(SourceRechargeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRechargeInput)(nil)).Elem(), &SourceRecharge{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRechargeArrayInput)(nil)).Elem(), SourceRechargeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRechargeMapInput)(nil)).Elem(), SourceRechargeMap{})
 	pulumi.RegisterOutputType(SourceRechargeOutput{})
+	pulumi.RegisterOutputType(SourceRechargeArrayOutput{})
+	pulumi.RegisterOutputType(SourceRechargeMapOutput{})
 }

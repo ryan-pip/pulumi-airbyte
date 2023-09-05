@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSurveySparrow Resource
@@ -127,6 +127,56 @@ func (i *SourceSurveySparrow) ToSourceSurveySparrowOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveySparrowOutput)
 }
 
+// SourceSurveySparrowArrayInput is an input type that accepts SourceSurveySparrowArray and SourceSurveySparrowArrayOutput values.
+// You can construct a concrete instance of `SourceSurveySparrowArrayInput` via:
+//
+//	SourceSurveySparrowArray{ SourceSurveySparrowArgs{...} }
+type SourceSurveySparrowArrayInput interface {
+	pulumi.Input
+
+	ToSourceSurveySparrowArrayOutput() SourceSurveySparrowArrayOutput
+	ToSourceSurveySparrowArrayOutputWithContext(context.Context) SourceSurveySparrowArrayOutput
+}
+
+type SourceSurveySparrowArray []SourceSurveySparrowInput
+
+func (SourceSurveySparrowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSurveySparrow)(nil)).Elem()
+}
+
+func (i SourceSurveySparrowArray) ToSourceSurveySparrowArrayOutput() SourceSurveySparrowArrayOutput {
+	return i.ToSourceSurveySparrowArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSurveySparrowArray) ToSourceSurveySparrowArrayOutputWithContext(ctx context.Context) SourceSurveySparrowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveySparrowArrayOutput)
+}
+
+// SourceSurveySparrowMapInput is an input type that accepts SourceSurveySparrowMap and SourceSurveySparrowMapOutput values.
+// You can construct a concrete instance of `SourceSurveySparrowMapInput` via:
+//
+//	SourceSurveySparrowMap{ "key": SourceSurveySparrowArgs{...} }
+type SourceSurveySparrowMapInput interface {
+	pulumi.Input
+
+	ToSourceSurveySparrowMapOutput() SourceSurveySparrowMapOutput
+	ToSourceSurveySparrowMapOutputWithContext(context.Context) SourceSurveySparrowMapOutput
+}
+
+type SourceSurveySparrowMap map[string]SourceSurveySparrowInput
+
+func (SourceSurveySparrowMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSurveySparrow)(nil)).Elem()
+}
+
+func (i SourceSurveySparrowMap) ToSourceSurveySparrowMapOutput() SourceSurveySparrowMapOutput {
+	return i.ToSourceSurveySparrowMapOutputWithContext(context.Background())
+}
+
+func (i SourceSurveySparrowMap) ToSourceSurveySparrowMapOutputWithContext(ctx context.Context) SourceSurveySparrowMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSurveySparrowMapOutput)
+}
+
 type SourceSurveySparrowOutput struct{ *pulumi.OutputState }
 
 func (SourceSurveySparrowOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSurveySparrowOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSurveySparrow) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSurveySparrowArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSurveySparrowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSurveySparrow)(nil)).Elem()
+}
+
+func (o SourceSurveySparrowArrayOutput) ToSourceSurveySparrowArrayOutput() SourceSurveySparrowArrayOutput {
+	return o
+}
+
+func (o SourceSurveySparrowArrayOutput) ToSourceSurveySparrowArrayOutputWithContext(ctx context.Context) SourceSurveySparrowArrayOutput {
+	return o
+}
+
+func (o SourceSurveySparrowArrayOutput) Index(i pulumi.IntInput) SourceSurveySparrowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSurveySparrow {
+		return vs[0].([]*SourceSurveySparrow)[vs[1].(int)]
+	}).(SourceSurveySparrowOutput)
+}
+
+type SourceSurveySparrowMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSurveySparrowMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSurveySparrow)(nil)).Elem()
+}
+
+func (o SourceSurveySparrowMapOutput) ToSourceSurveySparrowMapOutput() SourceSurveySparrowMapOutput {
+	return o
+}
+
+func (o SourceSurveySparrowMapOutput) ToSourceSurveySparrowMapOutputWithContext(ctx context.Context) SourceSurveySparrowMapOutput {
+	return o
+}
+
+func (o SourceSurveySparrowMapOutput) MapIndex(k pulumi.StringInput) SourceSurveySparrowOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSurveySparrow {
+		return vs[0].(map[string]*SourceSurveySparrow)[vs[1].(string)]
+	}).(SourceSurveySparrowOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveySparrowInput)(nil)).Elem(), &SourceSurveySparrow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveySparrowArrayInput)(nil)).Elem(), SourceSurveySparrowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSurveySparrowMapInput)(nil)).Elem(), SourceSurveySparrowMap{})
 	pulumi.RegisterOutputType(SourceSurveySparrowOutput{})
+	pulumi.RegisterOutputType(SourceSurveySparrowArrayOutput{})
+	pulumi.RegisterOutputType(SourceSurveySparrowMapOutput{})
 }

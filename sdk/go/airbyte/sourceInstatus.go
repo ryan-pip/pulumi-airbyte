@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceInstatus Resource
@@ -127,6 +127,56 @@ func (i *SourceInstatus) ToSourceInstatusOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceInstatusOutput)
 }
 
+// SourceInstatusArrayInput is an input type that accepts SourceInstatusArray and SourceInstatusArrayOutput values.
+// You can construct a concrete instance of `SourceInstatusArrayInput` via:
+//
+//	SourceInstatusArray{ SourceInstatusArgs{...} }
+type SourceInstatusArrayInput interface {
+	pulumi.Input
+
+	ToSourceInstatusArrayOutput() SourceInstatusArrayOutput
+	ToSourceInstatusArrayOutputWithContext(context.Context) SourceInstatusArrayOutput
+}
+
+type SourceInstatusArray []SourceInstatusInput
+
+func (SourceInstatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInstatus)(nil)).Elem()
+}
+
+func (i SourceInstatusArray) ToSourceInstatusArrayOutput() SourceInstatusArrayOutput {
+	return i.ToSourceInstatusArrayOutputWithContext(context.Background())
+}
+
+func (i SourceInstatusArray) ToSourceInstatusArrayOutputWithContext(ctx context.Context) SourceInstatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInstatusArrayOutput)
+}
+
+// SourceInstatusMapInput is an input type that accepts SourceInstatusMap and SourceInstatusMapOutput values.
+// You can construct a concrete instance of `SourceInstatusMapInput` via:
+//
+//	SourceInstatusMap{ "key": SourceInstatusArgs{...} }
+type SourceInstatusMapInput interface {
+	pulumi.Input
+
+	ToSourceInstatusMapOutput() SourceInstatusMapOutput
+	ToSourceInstatusMapOutputWithContext(context.Context) SourceInstatusMapOutput
+}
+
+type SourceInstatusMap map[string]SourceInstatusInput
+
+func (SourceInstatusMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInstatus)(nil)).Elem()
+}
+
+func (i SourceInstatusMap) ToSourceInstatusMapOutput() SourceInstatusMapOutput {
+	return i.ToSourceInstatusMapOutputWithContext(context.Background())
+}
+
+func (i SourceInstatusMap) ToSourceInstatusMapOutputWithContext(ctx context.Context) SourceInstatusMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceInstatusMapOutput)
+}
+
 type SourceInstatusOutput struct{ *pulumi.OutputState }
 
 func (SourceInstatusOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceInstatusOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceInstatus) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceInstatusArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceInstatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceInstatus)(nil)).Elem()
+}
+
+func (o SourceInstatusArrayOutput) ToSourceInstatusArrayOutput() SourceInstatusArrayOutput {
+	return o
+}
+
+func (o SourceInstatusArrayOutput) ToSourceInstatusArrayOutputWithContext(ctx context.Context) SourceInstatusArrayOutput {
+	return o
+}
+
+func (o SourceInstatusArrayOutput) Index(i pulumi.IntInput) SourceInstatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceInstatus {
+		return vs[0].([]*SourceInstatus)[vs[1].(int)]
+	}).(SourceInstatusOutput)
+}
+
+type SourceInstatusMapOutput struct{ *pulumi.OutputState }
+
+func (SourceInstatusMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceInstatus)(nil)).Elem()
+}
+
+func (o SourceInstatusMapOutput) ToSourceInstatusMapOutput() SourceInstatusMapOutput {
+	return o
+}
+
+func (o SourceInstatusMapOutput) ToSourceInstatusMapOutputWithContext(ctx context.Context) SourceInstatusMapOutput {
+	return o
+}
+
+func (o SourceInstatusMapOutput) MapIndex(k pulumi.StringInput) SourceInstatusOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceInstatus {
+		return vs[0].(map[string]*SourceInstatus)[vs[1].(string)]
+	}).(SourceInstatusOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstatusInput)(nil)).Elem(), &SourceInstatus{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstatusArrayInput)(nil)).Elem(), SourceInstatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceInstatusMapInput)(nil)).Elem(), SourceInstatusMap{})
 	pulumi.RegisterOutputType(SourceInstatusOutput{})
+	pulumi.RegisterOutputType(SourceInstatusArrayOutput{})
+	pulumi.RegisterOutputType(SourceInstatusMapOutput{})
 }

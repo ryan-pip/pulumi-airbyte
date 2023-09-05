@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDremio Resource
@@ -127,6 +127,56 @@ func (i *SourceDremio) ToSourceDremioOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDremioOutput)
 }
 
+// SourceDremioArrayInput is an input type that accepts SourceDremioArray and SourceDremioArrayOutput values.
+// You can construct a concrete instance of `SourceDremioArrayInput` via:
+//
+//	SourceDremioArray{ SourceDremioArgs{...} }
+type SourceDremioArrayInput interface {
+	pulumi.Input
+
+	ToSourceDremioArrayOutput() SourceDremioArrayOutput
+	ToSourceDremioArrayOutputWithContext(context.Context) SourceDremioArrayOutput
+}
+
+type SourceDremioArray []SourceDremioInput
+
+func (SourceDremioArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDremio)(nil)).Elem()
+}
+
+func (i SourceDremioArray) ToSourceDremioArrayOutput() SourceDremioArrayOutput {
+	return i.ToSourceDremioArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDremioArray) ToSourceDremioArrayOutputWithContext(ctx context.Context) SourceDremioArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDremioArrayOutput)
+}
+
+// SourceDremioMapInput is an input type that accepts SourceDremioMap and SourceDremioMapOutput values.
+// You can construct a concrete instance of `SourceDremioMapInput` via:
+//
+//	SourceDremioMap{ "key": SourceDremioArgs{...} }
+type SourceDremioMapInput interface {
+	pulumi.Input
+
+	ToSourceDremioMapOutput() SourceDremioMapOutput
+	ToSourceDremioMapOutputWithContext(context.Context) SourceDremioMapOutput
+}
+
+type SourceDremioMap map[string]SourceDremioInput
+
+func (SourceDremioMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDremio)(nil)).Elem()
+}
+
+func (i SourceDremioMap) ToSourceDremioMapOutput() SourceDremioMapOutput {
+	return i.ToSourceDremioMapOutputWithContext(context.Background())
+}
+
+func (i SourceDremioMap) ToSourceDremioMapOutputWithContext(ctx context.Context) SourceDremioMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDremioMapOutput)
+}
+
 type SourceDremioOutput struct{ *pulumi.OutputState }
 
 func (SourceDremioOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDremioOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDremio) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDremioArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDremioArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDremio)(nil)).Elem()
+}
+
+func (o SourceDremioArrayOutput) ToSourceDremioArrayOutput() SourceDremioArrayOutput {
+	return o
+}
+
+func (o SourceDremioArrayOutput) ToSourceDremioArrayOutputWithContext(ctx context.Context) SourceDremioArrayOutput {
+	return o
+}
+
+func (o SourceDremioArrayOutput) Index(i pulumi.IntInput) SourceDremioOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDremio {
+		return vs[0].([]*SourceDremio)[vs[1].(int)]
+	}).(SourceDremioOutput)
+}
+
+type SourceDremioMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDremioMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDremio)(nil)).Elem()
+}
+
+func (o SourceDremioMapOutput) ToSourceDremioMapOutput() SourceDremioMapOutput {
+	return o
+}
+
+func (o SourceDremioMapOutput) ToSourceDremioMapOutputWithContext(ctx context.Context) SourceDremioMapOutput {
+	return o
+}
+
+func (o SourceDremioMapOutput) MapIndex(k pulumi.StringInput) SourceDremioOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDremio {
+		return vs[0].(map[string]*SourceDremio)[vs[1].(string)]
+	}).(SourceDremioOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDremioInput)(nil)).Elem(), &SourceDremio{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDremioArrayInput)(nil)).Elem(), SourceDremioArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDremioMapInput)(nil)).Elem(), SourceDremioMap{})
 	pulumi.RegisterOutputType(SourceDremioOutput{})
+	pulumi.RegisterOutputType(SourceDremioArrayOutput{})
+	pulumi.RegisterOutputType(SourceDremioMapOutput{})
 }

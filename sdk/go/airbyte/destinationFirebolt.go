@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationFirebolt Resource
@@ -117,6 +117,56 @@ func (i *DestinationFirebolt) ToDestinationFireboltOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationFireboltOutput)
 }
 
+// DestinationFireboltArrayInput is an input type that accepts DestinationFireboltArray and DestinationFireboltArrayOutput values.
+// You can construct a concrete instance of `DestinationFireboltArrayInput` via:
+//
+//	DestinationFireboltArray{ DestinationFireboltArgs{...} }
+type DestinationFireboltArrayInput interface {
+	pulumi.Input
+
+	ToDestinationFireboltArrayOutput() DestinationFireboltArrayOutput
+	ToDestinationFireboltArrayOutputWithContext(context.Context) DestinationFireboltArrayOutput
+}
+
+type DestinationFireboltArray []DestinationFireboltInput
+
+func (DestinationFireboltArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationFirebolt)(nil)).Elem()
+}
+
+func (i DestinationFireboltArray) ToDestinationFireboltArrayOutput() DestinationFireboltArrayOutput {
+	return i.ToDestinationFireboltArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationFireboltArray) ToDestinationFireboltArrayOutputWithContext(ctx context.Context) DestinationFireboltArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationFireboltArrayOutput)
+}
+
+// DestinationFireboltMapInput is an input type that accepts DestinationFireboltMap and DestinationFireboltMapOutput values.
+// You can construct a concrete instance of `DestinationFireboltMapInput` via:
+//
+//	DestinationFireboltMap{ "key": DestinationFireboltArgs{...} }
+type DestinationFireboltMapInput interface {
+	pulumi.Input
+
+	ToDestinationFireboltMapOutput() DestinationFireboltMapOutput
+	ToDestinationFireboltMapOutputWithContext(context.Context) DestinationFireboltMapOutput
+}
+
+type DestinationFireboltMap map[string]DestinationFireboltInput
+
+func (DestinationFireboltMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationFirebolt)(nil)).Elem()
+}
+
+func (i DestinationFireboltMap) ToDestinationFireboltMapOutput() DestinationFireboltMapOutput {
+	return i.ToDestinationFireboltMapOutputWithContext(context.Background())
+}
+
+func (i DestinationFireboltMap) ToDestinationFireboltMapOutputWithContext(ctx context.Context) DestinationFireboltMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationFireboltMapOutput)
+}
+
 type DestinationFireboltOutput struct{ *pulumi.OutputState }
 
 func (DestinationFireboltOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationFireboltOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationFirebolt) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationFireboltArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationFireboltArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationFirebolt)(nil)).Elem()
+}
+
+func (o DestinationFireboltArrayOutput) ToDestinationFireboltArrayOutput() DestinationFireboltArrayOutput {
+	return o
+}
+
+func (o DestinationFireboltArrayOutput) ToDestinationFireboltArrayOutputWithContext(ctx context.Context) DestinationFireboltArrayOutput {
+	return o
+}
+
+func (o DestinationFireboltArrayOutput) Index(i pulumi.IntInput) DestinationFireboltOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationFirebolt {
+		return vs[0].([]*DestinationFirebolt)[vs[1].(int)]
+	}).(DestinationFireboltOutput)
+}
+
+type DestinationFireboltMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationFireboltMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationFirebolt)(nil)).Elem()
+}
+
+func (o DestinationFireboltMapOutput) ToDestinationFireboltMapOutput() DestinationFireboltMapOutput {
+	return o
+}
+
+func (o DestinationFireboltMapOutput) ToDestinationFireboltMapOutputWithContext(ctx context.Context) DestinationFireboltMapOutput {
+	return o
+}
+
+func (o DestinationFireboltMapOutput) MapIndex(k pulumi.StringInput) DestinationFireboltOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationFirebolt {
+		return vs[0].(map[string]*DestinationFirebolt)[vs[1].(string)]
+	}).(DestinationFireboltOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFireboltInput)(nil)).Elem(), &DestinationFirebolt{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFireboltArrayInput)(nil)).Elem(), DestinationFireboltArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFireboltMapInput)(nil)).Elem(), DestinationFireboltMap{})
 	pulumi.RegisterOutputType(DestinationFireboltOutput{})
+	pulumi.RegisterOutputType(DestinationFireboltArrayOutput{})
+	pulumi.RegisterOutputType(DestinationFireboltMapOutput{})
 }

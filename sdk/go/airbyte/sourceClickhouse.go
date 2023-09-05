@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceClickhouse Resource
@@ -127,6 +127,56 @@ func (i *SourceClickhouse) ToSourceClickhouseOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceClickhouseOutput)
 }
 
+// SourceClickhouseArrayInput is an input type that accepts SourceClickhouseArray and SourceClickhouseArrayOutput values.
+// You can construct a concrete instance of `SourceClickhouseArrayInput` via:
+//
+//	SourceClickhouseArray{ SourceClickhouseArgs{...} }
+type SourceClickhouseArrayInput interface {
+	pulumi.Input
+
+	ToSourceClickhouseArrayOutput() SourceClickhouseArrayOutput
+	ToSourceClickhouseArrayOutputWithContext(context.Context) SourceClickhouseArrayOutput
+}
+
+type SourceClickhouseArray []SourceClickhouseInput
+
+func (SourceClickhouseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClickhouse)(nil)).Elem()
+}
+
+func (i SourceClickhouseArray) ToSourceClickhouseArrayOutput() SourceClickhouseArrayOutput {
+	return i.ToSourceClickhouseArrayOutputWithContext(context.Background())
+}
+
+func (i SourceClickhouseArray) ToSourceClickhouseArrayOutputWithContext(ctx context.Context) SourceClickhouseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClickhouseArrayOutput)
+}
+
+// SourceClickhouseMapInput is an input type that accepts SourceClickhouseMap and SourceClickhouseMapOutput values.
+// You can construct a concrete instance of `SourceClickhouseMapInput` via:
+//
+//	SourceClickhouseMap{ "key": SourceClickhouseArgs{...} }
+type SourceClickhouseMapInput interface {
+	pulumi.Input
+
+	ToSourceClickhouseMapOutput() SourceClickhouseMapOutput
+	ToSourceClickhouseMapOutputWithContext(context.Context) SourceClickhouseMapOutput
+}
+
+type SourceClickhouseMap map[string]SourceClickhouseInput
+
+func (SourceClickhouseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClickhouse)(nil)).Elem()
+}
+
+func (i SourceClickhouseMap) ToSourceClickhouseMapOutput() SourceClickhouseMapOutput {
+	return i.ToSourceClickhouseMapOutputWithContext(context.Background())
+}
+
+func (i SourceClickhouseMap) ToSourceClickhouseMapOutputWithContext(ctx context.Context) SourceClickhouseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClickhouseMapOutput)
+}
+
 type SourceClickhouseOutput struct{ *pulumi.OutputState }
 
 func (SourceClickhouseOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceClickhouseOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceClickhouse) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceClickhouseArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceClickhouseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClickhouse)(nil)).Elem()
+}
+
+func (o SourceClickhouseArrayOutput) ToSourceClickhouseArrayOutput() SourceClickhouseArrayOutput {
+	return o
+}
+
+func (o SourceClickhouseArrayOutput) ToSourceClickhouseArrayOutputWithContext(ctx context.Context) SourceClickhouseArrayOutput {
+	return o
+}
+
+func (o SourceClickhouseArrayOutput) Index(i pulumi.IntInput) SourceClickhouseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceClickhouse {
+		return vs[0].([]*SourceClickhouse)[vs[1].(int)]
+	}).(SourceClickhouseOutput)
+}
+
+type SourceClickhouseMapOutput struct{ *pulumi.OutputState }
+
+func (SourceClickhouseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClickhouse)(nil)).Elem()
+}
+
+func (o SourceClickhouseMapOutput) ToSourceClickhouseMapOutput() SourceClickhouseMapOutput {
+	return o
+}
+
+func (o SourceClickhouseMapOutput) ToSourceClickhouseMapOutputWithContext(ctx context.Context) SourceClickhouseMapOutput {
+	return o
+}
+
+func (o SourceClickhouseMapOutput) MapIndex(k pulumi.StringInput) SourceClickhouseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceClickhouse {
+		return vs[0].(map[string]*SourceClickhouse)[vs[1].(string)]
+	}).(SourceClickhouseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickhouseInput)(nil)).Elem(), &SourceClickhouse{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickhouseArrayInput)(nil)).Elem(), SourceClickhouseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickhouseMapInput)(nil)).Elem(), SourceClickhouseMap{})
 	pulumi.RegisterOutputType(SourceClickhouseOutput{})
+	pulumi.RegisterOutputType(SourceClickhouseArrayOutput{})
+	pulumi.RegisterOutputType(SourceClickhouseMapOutput{})
 }

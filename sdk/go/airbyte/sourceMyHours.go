@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMyHours Resource
@@ -127,6 +127,56 @@ func (i *SourceMyHours) ToSourceMyHoursOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMyHoursOutput)
 }
 
+// SourceMyHoursArrayInput is an input type that accepts SourceMyHoursArray and SourceMyHoursArrayOutput values.
+// You can construct a concrete instance of `SourceMyHoursArrayInput` via:
+//
+//	SourceMyHoursArray{ SourceMyHoursArgs{...} }
+type SourceMyHoursArrayInput interface {
+	pulumi.Input
+
+	ToSourceMyHoursArrayOutput() SourceMyHoursArrayOutput
+	ToSourceMyHoursArrayOutputWithContext(context.Context) SourceMyHoursArrayOutput
+}
+
+type SourceMyHoursArray []SourceMyHoursInput
+
+func (SourceMyHoursArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMyHours)(nil)).Elem()
+}
+
+func (i SourceMyHoursArray) ToSourceMyHoursArrayOutput() SourceMyHoursArrayOutput {
+	return i.ToSourceMyHoursArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMyHoursArray) ToSourceMyHoursArrayOutputWithContext(ctx context.Context) SourceMyHoursArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMyHoursArrayOutput)
+}
+
+// SourceMyHoursMapInput is an input type that accepts SourceMyHoursMap and SourceMyHoursMapOutput values.
+// You can construct a concrete instance of `SourceMyHoursMapInput` via:
+//
+//	SourceMyHoursMap{ "key": SourceMyHoursArgs{...} }
+type SourceMyHoursMapInput interface {
+	pulumi.Input
+
+	ToSourceMyHoursMapOutput() SourceMyHoursMapOutput
+	ToSourceMyHoursMapOutputWithContext(context.Context) SourceMyHoursMapOutput
+}
+
+type SourceMyHoursMap map[string]SourceMyHoursInput
+
+func (SourceMyHoursMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMyHours)(nil)).Elem()
+}
+
+func (i SourceMyHoursMap) ToSourceMyHoursMapOutput() SourceMyHoursMapOutput {
+	return i.ToSourceMyHoursMapOutputWithContext(context.Background())
+}
+
+func (i SourceMyHoursMap) ToSourceMyHoursMapOutputWithContext(ctx context.Context) SourceMyHoursMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMyHoursMapOutput)
+}
+
 type SourceMyHoursOutput struct{ *pulumi.OutputState }
 
 func (SourceMyHoursOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMyHoursOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMyHours) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMyHoursArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMyHoursArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMyHours)(nil)).Elem()
+}
+
+func (o SourceMyHoursArrayOutput) ToSourceMyHoursArrayOutput() SourceMyHoursArrayOutput {
+	return o
+}
+
+func (o SourceMyHoursArrayOutput) ToSourceMyHoursArrayOutputWithContext(ctx context.Context) SourceMyHoursArrayOutput {
+	return o
+}
+
+func (o SourceMyHoursArrayOutput) Index(i pulumi.IntInput) SourceMyHoursOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMyHours {
+		return vs[0].([]*SourceMyHours)[vs[1].(int)]
+	}).(SourceMyHoursOutput)
+}
+
+type SourceMyHoursMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMyHoursMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMyHours)(nil)).Elem()
+}
+
+func (o SourceMyHoursMapOutput) ToSourceMyHoursMapOutput() SourceMyHoursMapOutput {
+	return o
+}
+
+func (o SourceMyHoursMapOutput) ToSourceMyHoursMapOutputWithContext(ctx context.Context) SourceMyHoursMapOutput {
+	return o
+}
+
+func (o SourceMyHoursMapOutput) MapIndex(k pulumi.StringInput) SourceMyHoursOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMyHours {
+		return vs[0].(map[string]*SourceMyHours)[vs[1].(string)]
+	}).(SourceMyHoursOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMyHoursInput)(nil)).Elem(), &SourceMyHours{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMyHoursArrayInput)(nil)).Elem(), SourceMyHoursArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMyHoursMapInput)(nil)).Elem(), SourceMyHoursMap{})
 	pulumi.RegisterOutputType(SourceMyHoursOutput{})
+	pulumi.RegisterOutputType(SourceMyHoursArrayOutput{})
+	pulumi.RegisterOutputType(SourceMyHoursMapOutput{})
 }

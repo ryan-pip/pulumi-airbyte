@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationPostgres Resource
@@ -117,6 +117,56 @@ func (i *DestinationPostgres) ToDestinationPostgresOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationPostgresOutput)
 }
 
+// DestinationPostgresArrayInput is an input type that accepts DestinationPostgresArray and DestinationPostgresArrayOutput values.
+// You can construct a concrete instance of `DestinationPostgresArrayInput` via:
+//
+//	DestinationPostgresArray{ DestinationPostgresArgs{...} }
+type DestinationPostgresArrayInput interface {
+	pulumi.Input
+
+	ToDestinationPostgresArrayOutput() DestinationPostgresArrayOutput
+	ToDestinationPostgresArrayOutputWithContext(context.Context) DestinationPostgresArrayOutput
+}
+
+type DestinationPostgresArray []DestinationPostgresInput
+
+func (DestinationPostgresArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationPostgres)(nil)).Elem()
+}
+
+func (i DestinationPostgresArray) ToDestinationPostgresArrayOutput() DestinationPostgresArrayOutput {
+	return i.ToDestinationPostgresArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationPostgresArray) ToDestinationPostgresArrayOutputWithContext(ctx context.Context) DestinationPostgresArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationPostgresArrayOutput)
+}
+
+// DestinationPostgresMapInput is an input type that accepts DestinationPostgresMap and DestinationPostgresMapOutput values.
+// You can construct a concrete instance of `DestinationPostgresMapInput` via:
+//
+//	DestinationPostgresMap{ "key": DestinationPostgresArgs{...} }
+type DestinationPostgresMapInput interface {
+	pulumi.Input
+
+	ToDestinationPostgresMapOutput() DestinationPostgresMapOutput
+	ToDestinationPostgresMapOutputWithContext(context.Context) DestinationPostgresMapOutput
+}
+
+type DestinationPostgresMap map[string]DestinationPostgresInput
+
+func (DestinationPostgresMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationPostgres)(nil)).Elem()
+}
+
+func (i DestinationPostgresMap) ToDestinationPostgresMapOutput() DestinationPostgresMapOutput {
+	return i.ToDestinationPostgresMapOutputWithContext(context.Background())
+}
+
+func (i DestinationPostgresMap) ToDestinationPostgresMapOutputWithContext(ctx context.Context) DestinationPostgresMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationPostgresMapOutput)
+}
+
 type DestinationPostgresOutput struct{ *pulumi.OutputState }
 
 func (DestinationPostgresOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationPostgresOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationPostgres) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationPostgresArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationPostgresArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationPostgres)(nil)).Elem()
+}
+
+func (o DestinationPostgresArrayOutput) ToDestinationPostgresArrayOutput() DestinationPostgresArrayOutput {
+	return o
+}
+
+func (o DestinationPostgresArrayOutput) ToDestinationPostgresArrayOutputWithContext(ctx context.Context) DestinationPostgresArrayOutput {
+	return o
+}
+
+func (o DestinationPostgresArrayOutput) Index(i pulumi.IntInput) DestinationPostgresOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationPostgres {
+		return vs[0].([]*DestinationPostgres)[vs[1].(int)]
+	}).(DestinationPostgresOutput)
+}
+
+type DestinationPostgresMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationPostgresMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationPostgres)(nil)).Elem()
+}
+
+func (o DestinationPostgresMapOutput) ToDestinationPostgresMapOutput() DestinationPostgresMapOutput {
+	return o
+}
+
+func (o DestinationPostgresMapOutput) ToDestinationPostgresMapOutputWithContext(ctx context.Context) DestinationPostgresMapOutput {
+	return o
+}
+
+func (o DestinationPostgresMapOutput) MapIndex(k pulumi.StringInput) DestinationPostgresOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationPostgres {
+		return vs[0].(map[string]*DestinationPostgres)[vs[1].(string)]
+	}).(DestinationPostgresOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPostgresInput)(nil)).Elem(), &DestinationPostgres{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPostgresArrayInput)(nil)).Elem(), DestinationPostgresArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationPostgresMapInput)(nil)).Elem(), DestinationPostgresMap{})
 	pulumi.RegisterOutputType(DestinationPostgresOutput{})
+	pulumi.RegisterOutputType(DestinationPostgresArrayOutput{})
+	pulumi.RegisterOutputType(DestinationPostgresMapOutput{})
 }

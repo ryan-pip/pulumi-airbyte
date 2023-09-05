@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePosthog Resource
@@ -127,6 +127,56 @@ func (i *SourcePosthog) ToSourcePosthogOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePosthogOutput)
 }
 
+// SourcePosthogArrayInput is an input type that accepts SourcePosthogArray and SourcePosthogArrayOutput values.
+// You can construct a concrete instance of `SourcePosthogArrayInput` via:
+//
+//	SourcePosthogArray{ SourcePosthogArgs{...} }
+type SourcePosthogArrayInput interface {
+	pulumi.Input
+
+	ToSourcePosthogArrayOutput() SourcePosthogArrayOutput
+	ToSourcePosthogArrayOutputWithContext(context.Context) SourcePosthogArrayOutput
+}
+
+type SourcePosthogArray []SourcePosthogInput
+
+func (SourcePosthogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePosthog)(nil)).Elem()
+}
+
+func (i SourcePosthogArray) ToSourcePosthogArrayOutput() SourcePosthogArrayOutput {
+	return i.ToSourcePosthogArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePosthogArray) ToSourcePosthogArrayOutputWithContext(ctx context.Context) SourcePosthogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePosthogArrayOutput)
+}
+
+// SourcePosthogMapInput is an input type that accepts SourcePosthogMap and SourcePosthogMapOutput values.
+// You can construct a concrete instance of `SourcePosthogMapInput` via:
+//
+//	SourcePosthogMap{ "key": SourcePosthogArgs{...} }
+type SourcePosthogMapInput interface {
+	pulumi.Input
+
+	ToSourcePosthogMapOutput() SourcePosthogMapOutput
+	ToSourcePosthogMapOutputWithContext(context.Context) SourcePosthogMapOutput
+}
+
+type SourcePosthogMap map[string]SourcePosthogInput
+
+func (SourcePosthogMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePosthog)(nil)).Elem()
+}
+
+func (i SourcePosthogMap) ToSourcePosthogMapOutput() SourcePosthogMapOutput {
+	return i.ToSourcePosthogMapOutputWithContext(context.Background())
+}
+
+func (i SourcePosthogMap) ToSourcePosthogMapOutputWithContext(ctx context.Context) SourcePosthogMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePosthogMapOutput)
+}
+
 type SourcePosthogOutput struct{ *pulumi.OutputState }
 
 func (SourcePosthogOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePosthogOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePosthog) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePosthogArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePosthogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePosthog)(nil)).Elem()
+}
+
+func (o SourcePosthogArrayOutput) ToSourcePosthogArrayOutput() SourcePosthogArrayOutput {
+	return o
+}
+
+func (o SourcePosthogArrayOutput) ToSourcePosthogArrayOutputWithContext(ctx context.Context) SourcePosthogArrayOutput {
+	return o
+}
+
+func (o SourcePosthogArrayOutput) Index(i pulumi.IntInput) SourcePosthogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePosthog {
+		return vs[0].([]*SourcePosthog)[vs[1].(int)]
+	}).(SourcePosthogOutput)
+}
+
+type SourcePosthogMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePosthogMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePosthog)(nil)).Elem()
+}
+
+func (o SourcePosthogMapOutput) ToSourcePosthogMapOutput() SourcePosthogMapOutput {
+	return o
+}
+
+func (o SourcePosthogMapOutput) ToSourcePosthogMapOutputWithContext(ctx context.Context) SourcePosthogMapOutput {
+	return o
+}
+
+func (o SourcePosthogMapOutput) MapIndex(k pulumi.StringInput) SourcePosthogOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePosthog {
+		return vs[0].(map[string]*SourcePosthog)[vs[1].(string)]
+	}).(SourcePosthogOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePosthogInput)(nil)).Elem(), &SourcePosthog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePosthogArrayInput)(nil)).Elem(), SourcePosthogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePosthogMapInput)(nil)).Elem(), SourcePosthogMap{})
 	pulumi.RegisterOutputType(SourcePosthogOutput{})
+	pulumi.RegisterOutputType(SourcePosthogArrayOutput{})
+	pulumi.RegisterOutputType(SourcePosthogMapOutput{})
 }

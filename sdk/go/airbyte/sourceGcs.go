@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGcs Resource
@@ -127,6 +127,56 @@ func (i *SourceGcs) ToSourceGcsOutputWithContext(ctx context.Context) SourceGcsO
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGcsOutput)
 }
 
+// SourceGcsArrayInput is an input type that accepts SourceGcsArray and SourceGcsArrayOutput values.
+// You can construct a concrete instance of `SourceGcsArrayInput` via:
+//
+//	SourceGcsArray{ SourceGcsArgs{...} }
+type SourceGcsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGcsArrayOutput() SourceGcsArrayOutput
+	ToSourceGcsArrayOutputWithContext(context.Context) SourceGcsArrayOutput
+}
+
+type SourceGcsArray []SourceGcsInput
+
+func (SourceGcsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGcs)(nil)).Elem()
+}
+
+func (i SourceGcsArray) ToSourceGcsArrayOutput() SourceGcsArrayOutput {
+	return i.ToSourceGcsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGcsArray) ToSourceGcsArrayOutputWithContext(ctx context.Context) SourceGcsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGcsArrayOutput)
+}
+
+// SourceGcsMapInput is an input type that accepts SourceGcsMap and SourceGcsMapOutput values.
+// You can construct a concrete instance of `SourceGcsMapInput` via:
+//
+//	SourceGcsMap{ "key": SourceGcsArgs{...} }
+type SourceGcsMapInput interface {
+	pulumi.Input
+
+	ToSourceGcsMapOutput() SourceGcsMapOutput
+	ToSourceGcsMapOutputWithContext(context.Context) SourceGcsMapOutput
+}
+
+type SourceGcsMap map[string]SourceGcsInput
+
+func (SourceGcsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGcs)(nil)).Elem()
+}
+
+func (i SourceGcsMap) ToSourceGcsMapOutput() SourceGcsMapOutput {
+	return i.ToSourceGcsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGcsMap) ToSourceGcsMapOutputWithContext(ctx context.Context) SourceGcsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGcsMapOutput)
+}
+
 type SourceGcsOutput struct{ *pulumi.OutputState }
 
 func (SourceGcsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGcsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGcs) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGcsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGcsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGcs)(nil)).Elem()
+}
+
+func (o SourceGcsArrayOutput) ToSourceGcsArrayOutput() SourceGcsArrayOutput {
+	return o
+}
+
+func (o SourceGcsArrayOutput) ToSourceGcsArrayOutputWithContext(ctx context.Context) SourceGcsArrayOutput {
+	return o
+}
+
+func (o SourceGcsArrayOutput) Index(i pulumi.IntInput) SourceGcsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGcs {
+		return vs[0].([]*SourceGcs)[vs[1].(int)]
+	}).(SourceGcsOutput)
+}
+
+type SourceGcsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGcsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGcs)(nil)).Elem()
+}
+
+func (o SourceGcsMapOutput) ToSourceGcsMapOutput() SourceGcsMapOutput {
+	return o
+}
+
+func (o SourceGcsMapOutput) ToSourceGcsMapOutputWithContext(ctx context.Context) SourceGcsMapOutput {
+	return o
+}
+
+func (o SourceGcsMapOutput) MapIndex(k pulumi.StringInput) SourceGcsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGcs {
+		return vs[0].(map[string]*SourceGcs)[vs[1].(string)]
+	}).(SourceGcsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGcsInput)(nil)).Elem(), &SourceGcs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGcsArrayInput)(nil)).Elem(), SourceGcsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGcsMapInput)(nil)).Elem(), SourceGcsMap{})
 	pulumi.RegisterOutputType(SourceGcsOutput{})
+	pulumi.RegisterOutputType(SourceGcsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGcsMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSmartengage Resource
@@ -127,6 +127,56 @@ func (i *SourceSmartengage) ToSourceSmartengageOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartengageOutput)
 }
 
+// SourceSmartengageArrayInput is an input type that accepts SourceSmartengageArray and SourceSmartengageArrayOutput values.
+// You can construct a concrete instance of `SourceSmartengageArrayInput` via:
+//
+//	SourceSmartengageArray{ SourceSmartengageArgs{...} }
+type SourceSmartengageArrayInput interface {
+	pulumi.Input
+
+	ToSourceSmartengageArrayOutput() SourceSmartengageArrayOutput
+	ToSourceSmartengageArrayOutputWithContext(context.Context) SourceSmartengageArrayOutput
+}
+
+type SourceSmartengageArray []SourceSmartengageInput
+
+func (SourceSmartengageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmartengage)(nil)).Elem()
+}
+
+func (i SourceSmartengageArray) ToSourceSmartengageArrayOutput() SourceSmartengageArrayOutput {
+	return i.ToSourceSmartengageArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSmartengageArray) ToSourceSmartengageArrayOutputWithContext(ctx context.Context) SourceSmartengageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartengageArrayOutput)
+}
+
+// SourceSmartengageMapInput is an input type that accepts SourceSmartengageMap and SourceSmartengageMapOutput values.
+// You can construct a concrete instance of `SourceSmartengageMapInput` via:
+//
+//	SourceSmartengageMap{ "key": SourceSmartengageArgs{...} }
+type SourceSmartengageMapInput interface {
+	pulumi.Input
+
+	ToSourceSmartengageMapOutput() SourceSmartengageMapOutput
+	ToSourceSmartengageMapOutputWithContext(context.Context) SourceSmartengageMapOutput
+}
+
+type SourceSmartengageMap map[string]SourceSmartengageInput
+
+func (SourceSmartengageMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmartengage)(nil)).Elem()
+}
+
+func (i SourceSmartengageMap) ToSourceSmartengageMapOutput() SourceSmartengageMapOutput {
+	return i.ToSourceSmartengageMapOutputWithContext(context.Background())
+}
+
+func (i SourceSmartengageMap) ToSourceSmartengageMapOutputWithContext(ctx context.Context) SourceSmartengageMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSmartengageMapOutput)
+}
+
 type SourceSmartengageOutput struct{ *pulumi.OutputState }
 
 func (SourceSmartengageOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSmartengageOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSmartengage) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSmartengageArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSmartengageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSmartengage)(nil)).Elem()
+}
+
+func (o SourceSmartengageArrayOutput) ToSourceSmartengageArrayOutput() SourceSmartengageArrayOutput {
+	return o
+}
+
+func (o SourceSmartengageArrayOutput) ToSourceSmartengageArrayOutputWithContext(ctx context.Context) SourceSmartengageArrayOutput {
+	return o
+}
+
+func (o SourceSmartengageArrayOutput) Index(i pulumi.IntInput) SourceSmartengageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSmartengage {
+		return vs[0].([]*SourceSmartengage)[vs[1].(int)]
+	}).(SourceSmartengageOutput)
+}
+
+type SourceSmartengageMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSmartengageMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSmartengage)(nil)).Elem()
+}
+
+func (o SourceSmartengageMapOutput) ToSourceSmartengageMapOutput() SourceSmartengageMapOutput {
+	return o
+}
+
+func (o SourceSmartengageMapOutput) ToSourceSmartengageMapOutputWithContext(ctx context.Context) SourceSmartengageMapOutput {
+	return o
+}
+
+func (o SourceSmartengageMapOutput) MapIndex(k pulumi.StringInput) SourceSmartengageOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSmartengage {
+		return vs[0].(map[string]*SourceSmartengage)[vs[1].(string)]
+	}).(SourceSmartengageOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartengageInput)(nil)).Elem(), &SourceSmartengage{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartengageArrayInput)(nil)).Elem(), SourceSmartengageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSmartengageMapInput)(nil)).Elem(), SourceSmartengageMap{})
 	pulumi.RegisterOutputType(SourceSmartengageOutput{})
+	pulumi.RegisterOutputType(SourceSmartengageArrayOutput{})
+	pulumi.RegisterOutputType(SourceSmartengageMapOutput{})
 }

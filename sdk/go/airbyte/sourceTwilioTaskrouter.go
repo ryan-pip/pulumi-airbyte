@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTwilioTaskrouter Resource
@@ -127,6 +127,56 @@ func (i *SourceTwilioTaskrouter) ToSourceTwilioTaskrouterOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioTaskrouterOutput)
 }
 
+// SourceTwilioTaskrouterArrayInput is an input type that accepts SourceTwilioTaskrouterArray and SourceTwilioTaskrouterArrayOutput values.
+// You can construct a concrete instance of `SourceTwilioTaskrouterArrayInput` via:
+//
+//	SourceTwilioTaskrouterArray{ SourceTwilioTaskrouterArgs{...} }
+type SourceTwilioTaskrouterArrayInput interface {
+	pulumi.Input
+
+	ToSourceTwilioTaskrouterArrayOutput() SourceTwilioTaskrouterArrayOutput
+	ToSourceTwilioTaskrouterArrayOutputWithContext(context.Context) SourceTwilioTaskrouterArrayOutput
+}
+
+type SourceTwilioTaskrouterArray []SourceTwilioTaskrouterInput
+
+func (SourceTwilioTaskrouterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTwilioTaskrouter)(nil)).Elem()
+}
+
+func (i SourceTwilioTaskrouterArray) ToSourceTwilioTaskrouterArrayOutput() SourceTwilioTaskrouterArrayOutput {
+	return i.ToSourceTwilioTaskrouterArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTwilioTaskrouterArray) ToSourceTwilioTaskrouterArrayOutputWithContext(ctx context.Context) SourceTwilioTaskrouterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioTaskrouterArrayOutput)
+}
+
+// SourceTwilioTaskrouterMapInput is an input type that accepts SourceTwilioTaskrouterMap and SourceTwilioTaskrouterMapOutput values.
+// You can construct a concrete instance of `SourceTwilioTaskrouterMapInput` via:
+//
+//	SourceTwilioTaskrouterMap{ "key": SourceTwilioTaskrouterArgs{...} }
+type SourceTwilioTaskrouterMapInput interface {
+	pulumi.Input
+
+	ToSourceTwilioTaskrouterMapOutput() SourceTwilioTaskrouterMapOutput
+	ToSourceTwilioTaskrouterMapOutputWithContext(context.Context) SourceTwilioTaskrouterMapOutput
+}
+
+type SourceTwilioTaskrouterMap map[string]SourceTwilioTaskrouterInput
+
+func (SourceTwilioTaskrouterMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTwilioTaskrouter)(nil)).Elem()
+}
+
+func (i SourceTwilioTaskrouterMap) ToSourceTwilioTaskrouterMapOutput() SourceTwilioTaskrouterMapOutput {
+	return i.ToSourceTwilioTaskrouterMapOutputWithContext(context.Background())
+}
+
+func (i SourceTwilioTaskrouterMap) ToSourceTwilioTaskrouterMapOutputWithContext(ctx context.Context) SourceTwilioTaskrouterMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTwilioTaskrouterMapOutput)
+}
+
 type SourceTwilioTaskrouterOutput struct{ *pulumi.OutputState }
 
 func (SourceTwilioTaskrouterOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTwilioTaskrouterOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTwilioTaskrouter) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTwilioTaskrouterArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTwilioTaskrouterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTwilioTaskrouter)(nil)).Elem()
+}
+
+func (o SourceTwilioTaskrouterArrayOutput) ToSourceTwilioTaskrouterArrayOutput() SourceTwilioTaskrouterArrayOutput {
+	return o
+}
+
+func (o SourceTwilioTaskrouterArrayOutput) ToSourceTwilioTaskrouterArrayOutputWithContext(ctx context.Context) SourceTwilioTaskrouterArrayOutput {
+	return o
+}
+
+func (o SourceTwilioTaskrouterArrayOutput) Index(i pulumi.IntInput) SourceTwilioTaskrouterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTwilioTaskrouter {
+		return vs[0].([]*SourceTwilioTaskrouter)[vs[1].(int)]
+	}).(SourceTwilioTaskrouterOutput)
+}
+
+type SourceTwilioTaskrouterMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTwilioTaskrouterMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTwilioTaskrouter)(nil)).Elem()
+}
+
+func (o SourceTwilioTaskrouterMapOutput) ToSourceTwilioTaskrouterMapOutput() SourceTwilioTaskrouterMapOutput {
+	return o
+}
+
+func (o SourceTwilioTaskrouterMapOutput) ToSourceTwilioTaskrouterMapOutputWithContext(ctx context.Context) SourceTwilioTaskrouterMapOutput {
+	return o
+}
+
+func (o SourceTwilioTaskrouterMapOutput) MapIndex(k pulumi.StringInput) SourceTwilioTaskrouterOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTwilioTaskrouter {
+		return vs[0].(map[string]*SourceTwilioTaskrouter)[vs[1].(string)]
+	}).(SourceTwilioTaskrouterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioTaskrouterInput)(nil)).Elem(), &SourceTwilioTaskrouter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioTaskrouterArrayInput)(nil)).Elem(), SourceTwilioTaskrouterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTwilioTaskrouterMapInput)(nil)).Elem(), SourceTwilioTaskrouterMap{})
 	pulumi.RegisterOutputType(SourceTwilioTaskrouterOutput{})
+	pulumi.RegisterOutputType(SourceTwilioTaskrouterArrayOutput{})
+	pulumi.RegisterOutputType(SourceTwilioTaskrouterMapOutput{})
 }

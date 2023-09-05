@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceKlaviyo Resource
@@ -127,6 +127,56 @@ func (i *SourceKlaviyo) ToSourceKlaviyoOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceKlaviyoOutput)
 }
 
+// SourceKlaviyoArrayInput is an input type that accepts SourceKlaviyoArray and SourceKlaviyoArrayOutput values.
+// You can construct a concrete instance of `SourceKlaviyoArrayInput` via:
+//
+//	SourceKlaviyoArray{ SourceKlaviyoArgs{...} }
+type SourceKlaviyoArrayInput interface {
+	pulumi.Input
+
+	ToSourceKlaviyoArrayOutput() SourceKlaviyoArrayOutput
+	ToSourceKlaviyoArrayOutputWithContext(context.Context) SourceKlaviyoArrayOutput
+}
+
+type SourceKlaviyoArray []SourceKlaviyoInput
+
+func (SourceKlaviyoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKlaviyo)(nil)).Elem()
+}
+
+func (i SourceKlaviyoArray) ToSourceKlaviyoArrayOutput() SourceKlaviyoArrayOutput {
+	return i.ToSourceKlaviyoArrayOutputWithContext(context.Background())
+}
+
+func (i SourceKlaviyoArray) ToSourceKlaviyoArrayOutputWithContext(ctx context.Context) SourceKlaviyoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKlaviyoArrayOutput)
+}
+
+// SourceKlaviyoMapInput is an input type that accepts SourceKlaviyoMap and SourceKlaviyoMapOutput values.
+// You can construct a concrete instance of `SourceKlaviyoMapInput` via:
+//
+//	SourceKlaviyoMap{ "key": SourceKlaviyoArgs{...} }
+type SourceKlaviyoMapInput interface {
+	pulumi.Input
+
+	ToSourceKlaviyoMapOutput() SourceKlaviyoMapOutput
+	ToSourceKlaviyoMapOutputWithContext(context.Context) SourceKlaviyoMapOutput
+}
+
+type SourceKlaviyoMap map[string]SourceKlaviyoInput
+
+func (SourceKlaviyoMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKlaviyo)(nil)).Elem()
+}
+
+func (i SourceKlaviyoMap) ToSourceKlaviyoMapOutput() SourceKlaviyoMapOutput {
+	return i.ToSourceKlaviyoMapOutputWithContext(context.Background())
+}
+
+func (i SourceKlaviyoMap) ToSourceKlaviyoMapOutputWithContext(ctx context.Context) SourceKlaviyoMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceKlaviyoMapOutput)
+}
+
 type SourceKlaviyoOutput struct{ *pulumi.OutputState }
 
 func (SourceKlaviyoOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceKlaviyoOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceKlaviyo) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceKlaviyoArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceKlaviyoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceKlaviyo)(nil)).Elem()
+}
+
+func (o SourceKlaviyoArrayOutput) ToSourceKlaviyoArrayOutput() SourceKlaviyoArrayOutput {
+	return o
+}
+
+func (o SourceKlaviyoArrayOutput) ToSourceKlaviyoArrayOutputWithContext(ctx context.Context) SourceKlaviyoArrayOutput {
+	return o
+}
+
+func (o SourceKlaviyoArrayOutput) Index(i pulumi.IntInput) SourceKlaviyoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceKlaviyo {
+		return vs[0].([]*SourceKlaviyo)[vs[1].(int)]
+	}).(SourceKlaviyoOutput)
+}
+
+type SourceKlaviyoMapOutput struct{ *pulumi.OutputState }
+
+func (SourceKlaviyoMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceKlaviyo)(nil)).Elem()
+}
+
+func (o SourceKlaviyoMapOutput) ToSourceKlaviyoMapOutput() SourceKlaviyoMapOutput {
+	return o
+}
+
+func (o SourceKlaviyoMapOutput) ToSourceKlaviyoMapOutputWithContext(ctx context.Context) SourceKlaviyoMapOutput {
+	return o
+}
+
+func (o SourceKlaviyoMapOutput) MapIndex(k pulumi.StringInput) SourceKlaviyoOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceKlaviyo {
+		return vs[0].(map[string]*SourceKlaviyo)[vs[1].(string)]
+	}).(SourceKlaviyoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlaviyoInput)(nil)).Elem(), &SourceKlaviyo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlaviyoArrayInput)(nil)).Elem(), SourceKlaviyoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceKlaviyoMapInput)(nil)).Elem(), SourceKlaviyoMap{})
 	pulumi.RegisterOutputType(SourceKlaviyoOutput{})
+	pulumi.RegisterOutputType(SourceKlaviyoArrayOutput{})
+	pulumi.RegisterOutputType(SourceKlaviyoMapOutput{})
 }

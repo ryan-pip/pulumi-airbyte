@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRkiCovid Resource
@@ -127,6 +127,56 @@ func (i *SourceRkiCovid) ToSourceRkiCovidOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRkiCovidOutput)
 }
 
+// SourceRkiCovidArrayInput is an input type that accepts SourceRkiCovidArray and SourceRkiCovidArrayOutput values.
+// You can construct a concrete instance of `SourceRkiCovidArrayInput` via:
+//
+//	SourceRkiCovidArray{ SourceRkiCovidArgs{...} }
+type SourceRkiCovidArrayInput interface {
+	pulumi.Input
+
+	ToSourceRkiCovidArrayOutput() SourceRkiCovidArrayOutput
+	ToSourceRkiCovidArrayOutputWithContext(context.Context) SourceRkiCovidArrayOutput
+}
+
+type SourceRkiCovidArray []SourceRkiCovidInput
+
+func (SourceRkiCovidArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRkiCovid)(nil)).Elem()
+}
+
+func (i SourceRkiCovidArray) ToSourceRkiCovidArrayOutput() SourceRkiCovidArrayOutput {
+	return i.ToSourceRkiCovidArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRkiCovidArray) ToSourceRkiCovidArrayOutputWithContext(ctx context.Context) SourceRkiCovidArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRkiCovidArrayOutput)
+}
+
+// SourceRkiCovidMapInput is an input type that accepts SourceRkiCovidMap and SourceRkiCovidMapOutput values.
+// You can construct a concrete instance of `SourceRkiCovidMapInput` via:
+//
+//	SourceRkiCovidMap{ "key": SourceRkiCovidArgs{...} }
+type SourceRkiCovidMapInput interface {
+	pulumi.Input
+
+	ToSourceRkiCovidMapOutput() SourceRkiCovidMapOutput
+	ToSourceRkiCovidMapOutputWithContext(context.Context) SourceRkiCovidMapOutput
+}
+
+type SourceRkiCovidMap map[string]SourceRkiCovidInput
+
+func (SourceRkiCovidMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRkiCovid)(nil)).Elem()
+}
+
+func (i SourceRkiCovidMap) ToSourceRkiCovidMapOutput() SourceRkiCovidMapOutput {
+	return i.ToSourceRkiCovidMapOutputWithContext(context.Background())
+}
+
+func (i SourceRkiCovidMap) ToSourceRkiCovidMapOutputWithContext(ctx context.Context) SourceRkiCovidMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRkiCovidMapOutput)
+}
+
 type SourceRkiCovidOutput struct{ *pulumi.OutputState }
 
 func (SourceRkiCovidOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRkiCovidOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRkiCovid) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRkiCovidArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRkiCovidArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRkiCovid)(nil)).Elem()
+}
+
+func (o SourceRkiCovidArrayOutput) ToSourceRkiCovidArrayOutput() SourceRkiCovidArrayOutput {
+	return o
+}
+
+func (o SourceRkiCovidArrayOutput) ToSourceRkiCovidArrayOutputWithContext(ctx context.Context) SourceRkiCovidArrayOutput {
+	return o
+}
+
+func (o SourceRkiCovidArrayOutput) Index(i pulumi.IntInput) SourceRkiCovidOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRkiCovid {
+		return vs[0].([]*SourceRkiCovid)[vs[1].(int)]
+	}).(SourceRkiCovidOutput)
+}
+
+type SourceRkiCovidMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRkiCovidMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRkiCovid)(nil)).Elem()
+}
+
+func (o SourceRkiCovidMapOutput) ToSourceRkiCovidMapOutput() SourceRkiCovidMapOutput {
+	return o
+}
+
+func (o SourceRkiCovidMapOutput) ToSourceRkiCovidMapOutputWithContext(ctx context.Context) SourceRkiCovidMapOutput {
+	return o
+}
+
+func (o SourceRkiCovidMapOutput) MapIndex(k pulumi.StringInput) SourceRkiCovidOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRkiCovid {
+		return vs[0].(map[string]*SourceRkiCovid)[vs[1].(string)]
+	}).(SourceRkiCovidOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRkiCovidInput)(nil)).Elem(), &SourceRkiCovid{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRkiCovidArrayInput)(nil)).Elem(), SourceRkiCovidArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRkiCovidMapInput)(nil)).Elem(), SourceRkiCovidMap{})
 	pulumi.RegisterOutputType(SourceRkiCovidOutput{})
+	pulumi.RegisterOutputType(SourceRkiCovidArrayOutput{})
+	pulumi.RegisterOutputType(SourceRkiCovidMapOutput{})
 }

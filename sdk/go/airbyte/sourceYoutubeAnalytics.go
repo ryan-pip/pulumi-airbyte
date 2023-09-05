@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceYoutubeAnalytics Resource
@@ -127,6 +127,56 @@ func (i *SourceYoutubeAnalytics) ToSourceYoutubeAnalyticsOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SourceYoutubeAnalyticsOutput)
 }
 
+// SourceYoutubeAnalyticsArrayInput is an input type that accepts SourceYoutubeAnalyticsArray and SourceYoutubeAnalyticsArrayOutput values.
+// You can construct a concrete instance of `SourceYoutubeAnalyticsArrayInput` via:
+//
+//	SourceYoutubeAnalyticsArray{ SourceYoutubeAnalyticsArgs{...} }
+type SourceYoutubeAnalyticsArrayInput interface {
+	pulumi.Input
+
+	ToSourceYoutubeAnalyticsArrayOutput() SourceYoutubeAnalyticsArrayOutput
+	ToSourceYoutubeAnalyticsArrayOutputWithContext(context.Context) SourceYoutubeAnalyticsArrayOutput
+}
+
+type SourceYoutubeAnalyticsArray []SourceYoutubeAnalyticsInput
+
+func (SourceYoutubeAnalyticsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYoutubeAnalytics)(nil)).Elem()
+}
+
+func (i SourceYoutubeAnalyticsArray) ToSourceYoutubeAnalyticsArrayOutput() SourceYoutubeAnalyticsArrayOutput {
+	return i.ToSourceYoutubeAnalyticsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceYoutubeAnalyticsArray) ToSourceYoutubeAnalyticsArrayOutputWithContext(ctx context.Context) SourceYoutubeAnalyticsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYoutubeAnalyticsArrayOutput)
+}
+
+// SourceYoutubeAnalyticsMapInput is an input type that accepts SourceYoutubeAnalyticsMap and SourceYoutubeAnalyticsMapOutput values.
+// You can construct a concrete instance of `SourceYoutubeAnalyticsMapInput` via:
+//
+//	SourceYoutubeAnalyticsMap{ "key": SourceYoutubeAnalyticsArgs{...} }
+type SourceYoutubeAnalyticsMapInput interface {
+	pulumi.Input
+
+	ToSourceYoutubeAnalyticsMapOutput() SourceYoutubeAnalyticsMapOutput
+	ToSourceYoutubeAnalyticsMapOutputWithContext(context.Context) SourceYoutubeAnalyticsMapOutput
+}
+
+type SourceYoutubeAnalyticsMap map[string]SourceYoutubeAnalyticsInput
+
+func (SourceYoutubeAnalyticsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYoutubeAnalytics)(nil)).Elem()
+}
+
+func (i SourceYoutubeAnalyticsMap) ToSourceYoutubeAnalyticsMapOutput() SourceYoutubeAnalyticsMapOutput {
+	return i.ToSourceYoutubeAnalyticsMapOutputWithContext(context.Background())
+}
+
+func (i SourceYoutubeAnalyticsMap) ToSourceYoutubeAnalyticsMapOutputWithContext(ctx context.Context) SourceYoutubeAnalyticsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceYoutubeAnalyticsMapOutput)
+}
+
 type SourceYoutubeAnalyticsOutput struct{ *pulumi.OutputState }
 
 func (SourceYoutubeAnalyticsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceYoutubeAnalyticsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceYoutubeAnalytics) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceYoutubeAnalyticsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceYoutubeAnalyticsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceYoutubeAnalytics)(nil)).Elem()
+}
+
+func (o SourceYoutubeAnalyticsArrayOutput) ToSourceYoutubeAnalyticsArrayOutput() SourceYoutubeAnalyticsArrayOutput {
+	return o
+}
+
+func (o SourceYoutubeAnalyticsArrayOutput) ToSourceYoutubeAnalyticsArrayOutputWithContext(ctx context.Context) SourceYoutubeAnalyticsArrayOutput {
+	return o
+}
+
+func (o SourceYoutubeAnalyticsArrayOutput) Index(i pulumi.IntInput) SourceYoutubeAnalyticsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceYoutubeAnalytics {
+		return vs[0].([]*SourceYoutubeAnalytics)[vs[1].(int)]
+	}).(SourceYoutubeAnalyticsOutput)
+}
+
+type SourceYoutubeAnalyticsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceYoutubeAnalyticsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceYoutubeAnalytics)(nil)).Elem()
+}
+
+func (o SourceYoutubeAnalyticsMapOutput) ToSourceYoutubeAnalyticsMapOutput() SourceYoutubeAnalyticsMapOutput {
+	return o
+}
+
+func (o SourceYoutubeAnalyticsMapOutput) ToSourceYoutubeAnalyticsMapOutputWithContext(ctx context.Context) SourceYoutubeAnalyticsMapOutput {
+	return o
+}
+
+func (o SourceYoutubeAnalyticsMapOutput) MapIndex(k pulumi.StringInput) SourceYoutubeAnalyticsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceYoutubeAnalytics {
+		return vs[0].(map[string]*SourceYoutubeAnalytics)[vs[1].(string)]
+	}).(SourceYoutubeAnalyticsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceYoutubeAnalyticsInput)(nil)).Elem(), &SourceYoutubeAnalytics{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYoutubeAnalyticsArrayInput)(nil)).Elem(), SourceYoutubeAnalyticsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceYoutubeAnalyticsMapInput)(nil)).Elem(), SourceYoutubeAnalyticsMap{})
 	pulumi.RegisterOutputType(SourceYoutubeAnalyticsOutput{})
+	pulumi.RegisterOutputType(SourceYoutubeAnalyticsArrayOutput{})
+	pulumi.RegisterOutputType(SourceYoutubeAnalyticsMapOutput{})
 }

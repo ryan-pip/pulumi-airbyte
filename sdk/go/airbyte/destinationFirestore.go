@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationFirestore Resource
@@ -117,6 +117,56 @@ func (i *DestinationFirestore) ToDestinationFirestoreOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationFirestoreOutput)
 }
 
+// DestinationFirestoreArrayInput is an input type that accepts DestinationFirestoreArray and DestinationFirestoreArrayOutput values.
+// You can construct a concrete instance of `DestinationFirestoreArrayInput` via:
+//
+//	DestinationFirestoreArray{ DestinationFirestoreArgs{...} }
+type DestinationFirestoreArrayInput interface {
+	pulumi.Input
+
+	ToDestinationFirestoreArrayOutput() DestinationFirestoreArrayOutput
+	ToDestinationFirestoreArrayOutputWithContext(context.Context) DestinationFirestoreArrayOutput
+}
+
+type DestinationFirestoreArray []DestinationFirestoreInput
+
+func (DestinationFirestoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationFirestore)(nil)).Elem()
+}
+
+func (i DestinationFirestoreArray) ToDestinationFirestoreArrayOutput() DestinationFirestoreArrayOutput {
+	return i.ToDestinationFirestoreArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationFirestoreArray) ToDestinationFirestoreArrayOutputWithContext(ctx context.Context) DestinationFirestoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationFirestoreArrayOutput)
+}
+
+// DestinationFirestoreMapInput is an input type that accepts DestinationFirestoreMap and DestinationFirestoreMapOutput values.
+// You can construct a concrete instance of `DestinationFirestoreMapInput` via:
+//
+//	DestinationFirestoreMap{ "key": DestinationFirestoreArgs{...} }
+type DestinationFirestoreMapInput interface {
+	pulumi.Input
+
+	ToDestinationFirestoreMapOutput() DestinationFirestoreMapOutput
+	ToDestinationFirestoreMapOutputWithContext(context.Context) DestinationFirestoreMapOutput
+}
+
+type DestinationFirestoreMap map[string]DestinationFirestoreInput
+
+func (DestinationFirestoreMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationFirestore)(nil)).Elem()
+}
+
+func (i DestinationFirestoreMap) ToDestinationFirestoreMapOutput() DestinationFirestoreMapOutput {
+	return i.ToDestinationFirestoreMapOutputWithContext(context.Background())
+}
+
+func (i DestinationFirestoreMap) ToDestinationFirestoreMapOutputWithContext(ctx context.Context) DestinationFirestoreMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationFirestoreMapOutput)
+}
+
 type DestinationFirestoreOutput struct{ *pulumi.OutputState }
 
 func (DestinationFirestoreOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationFirestoreOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationFirestore) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationFirestoreArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationFirestoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationFirestore)(nil)).Elem()
+}
+
+func (o DestinationFirestoreArrayOutput) ToDestinationFirestoreArrayOutput() DestinationFirestoreArrayOutput {
+	return o
+}
+
+func (o DestinationFirestoreArrayOutput) ToDestinationFirestoreArrayOutputWithContext(ctx context.Context) DestinationFirestoreArrayOutput {
+	return o
+}
+
+func (o DestinationFirestoreArrayOutput) Index(i pulumi.IntInput) DestinationFirestoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationFirestore {
+		return vs[0].([]*DestinationFirestore)[vs[1].(int)]
+	}).(DestinationFirestoreOutput)
+}
+
+type DestinationFirestoreMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationFirestoreMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationFirestore)(nil)).Elem()
+}
+
+func (o DestinationFirestoreMapOutput) ToDestinationFirestoreMapOutput() DestinationFirestoreMapOutput {
+	return o
+}
+
+func (o DestinationFirestoreMapOutput) ToDestinationFirestoreMapOutputWithContext(ctx context.Context) DestinationFirestoreMapOutput {
+	return o
+}
+
+func (o DestinationFirestoreMapOutput) MapIndex(k pulumi.StringInput) DestinationFirestoreOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationFirestore {
+		return vs[0].(map[string]*DestinationFirestore)[vs[1].(string)]
+	}).(DestinationFirestoreOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFirestoreInput)(nil)).Elem(), &DestinationFirestore{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFirestoreArrayInput)(nil)).Elem(), DestinationFirestoreArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationFirestoreMapInput)(nil)).Elem(), DestinationFirestoreMap{})
 	pulumi.RegisterOutputType(DestinationFirestoreOutput{})
+	pulumi.RegisterOutputType(DestinationFirestoreArrayOutput{})
+	pulumi.RegisterOutputType(DestinationFirestoreMapOutput{})
 }

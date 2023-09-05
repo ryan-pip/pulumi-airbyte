@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceConfigcat Resource
@@ -127,6 +127,56 @@ func (i *SourceConfigcat) ToSourceConfigcatOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceConfigcatOutput)
 }
 
+// SourceConfigcatArrayInput is an input type that accepts SourceConfigcatArray and SourceConfigcatArrayOutput values.
+// You can construct a concrete instance of `SourceConfigcatArrayInput` via:
+//
+//	SourceConfigcatArray{ SourceConfigcatArgs{...} }
+type SourceConfigcatArrayInput interface {
+	pulumi.Input
+
+	ToSourceConfigcatArrayOutput() SourceConfigcatArrayOutput
+	ToSourceConfigcatArrayOutputWithContext(context.Context) SourceConfigcatArrayOutput
+}
+
+type SourceConfigcatArray []SourceConfigcatInput
+
+func (SourceConfigcatArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConfigcat)(nil)).Elem()
+}
+
+func (i SourceConfigcatArray) ToSourceConfigcatArrayOutput() SourceConfigcatArrayOutput {
+	return i.ToSourceConfigcatArrayOutputWithContext(context.Background())
+}
+
+func (i SourceConfigcatArray) ToSourceConfigcatArrayOutputWithContext(ctx context.Context) SourceConfigcatArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConfigcatArrayOutput)
+}
+
+// SourceConfigcatMapInput is an input type that accepts SourceConfigcatMap and SourceConfigcatMapOutput values.
+// You can construct a concrete instance of `SourceConfigcatMapInput` via:
+//
+//	SourceConfigcatMap{ "key": SourceConfigcatArgs{...} }
+type SourceConfigcatMapInput interface {
+	pulumi.Input
+
+	ToSourceConfigcatMapOutput() SourceConfigcatMapOutput
+	ToSourceConfigcatMapOutputWithContext(context.Context) SourceConfigcatMapOutput
+}
+
+type SourceConfigcatMap map[string]SourceConfigcatInput
+
+func (SourceConfigcatMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConfigcat)(nil)).Elem()
+}
+
+func (i SourceConfigcatMap) ToSourceConfigcatMapOutput() SourceConfigcatMapOutput {
+	return i.ToSourceConfigcatMapOutputWithContext(context.Background())
+}
+
+func (i SourceConfigcatMap) ToSourceConfigcatMapOutputWithContext(ctx context.Context) SourceConfigcatMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceConfigcatMapOutput)
+}
+
 type SourceConfigcatOutput struct{ *pulumi.OutputState }
 
 func (SourceConfigcatOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceConfigcatOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceConfigcat) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceConfigcatArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceConfigcatArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceConfigcat)(nil)).Elem()
+}
+
+func (o SourceConfigcatArrayOutput) ToSourceConfigcatArrayOutput() SourceConfigcatArrayOutput {
+	return o
+}
+
+func (o SourceConfigcatArrayOutput) ToSourceConfigcatArrayOutputWithContext(ctx context.Context) SourceConfigcatArrayOutput {
+	return o
+}
+
+func (o SourceConfigcatArrayOutput) Index(i pulumi.IntInput) SourceConfigcatOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceConfigcat {
+		return vs[0].([]*SourceConfigcat)[vs[1].(int)]
+	}).(SourceConfigcatOutput)
+}
+
+type SourceConfigcatMapOutput struct{ *pulumi.OutputState }
+
+func (SourceConfigcatMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceConfigcat)(nil)).Elem()
+}
+
+func (o SourceConfigcatMapOutput) ToSourceConfigcatMapOutput() SourceConfigcatMapOutput {
+	return o
+}
+
+func (o SourceConfigcatMapOutput) ToSourceConfigcatMapOutputWithContext(ctx context.Context) SourceConfigcatMapOutput {
+	return o
+}
+
+func (o SourceConfigcatMapOutput) MapIndex(k pulumi.StringInput) SourceConfigcatOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceConfigcat {
+		return vs[0].(map[string]*SourceConfigcat)[vs[1].(string)]
+	}).(SourceConfigcatOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfigcatInput)(nil)).Elem(), &SourceConfigcat{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfigcatArrayInput)(nil)).Elem(), SourceConfigcatArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceConfigcatMapInput)(nil)).Elem(), SourceConfigcatMap{})
 	pulumi.RegisterOutputType(SourceConfigcatOutput{})
+	pulumi.RegisterOutputType(SourceConfigcatArrayOutput{})
+	pulumi.RegisterOutputType(SourceConfigcatMapOutput{})
 }

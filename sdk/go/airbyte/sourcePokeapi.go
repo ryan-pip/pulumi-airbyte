@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePokeapi Resource
@@ -127,6 +127,56 @@ func (i *SourcePokeapi) ToSourcePokeapiOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePokeapiOutput)
 }
 
+// SourcePokeapiArrayInput is an input type that accepts SourcePokeapiArray and SourcePokeapiArrayOutput values.
+// You can construct a concrete instance of `SourcePokeapiArrayInput` via:
+//
+//	SourcePokeapiArray{ SourcePokeapiArgs{...} }
+type SourcePokeapiArrayInput interface {
+	pulumi.Input
+
+	ToSourcePokeapiArrayOutput() SourcePokeapiArrayOutput
+	ToSourcePokeapiArrayOutputWithContext(context.Context) SourcePokeapiArrayOutput
+}
+
+type SourcePokeapiArray []SourcePokeapiInput
+
+func (SourcePokeapiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePokeapi)(nil)).Elem()
+}
+
+func (i SourcePokeapiArray) ToSourcePokeapiArrayOutput() SourcePokeapiArrayOutput {
+	return i.ToSourcePokeapiArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePokeapiArray) ToSourcePokeapiArrayOutputWithContext(ctx context.Context) SourcePokeapiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePokeapiArrayOutput)
+}
+
+// SourcePokeapiMapInput is an input type that accepts SourcePokeapiMap and SourcePokeapiMapOutput values.
+// You can construct a concrete instance of `SourcePokeapiMapInput` via:
+//
+//	SourcePokeapiMap{ "key": SourcePokeapiArgs{...} }
+type SourcePokeapiMapInput interface {
+	pulumi.Input
+
+	ToSourcePokeapiMapOutput() SourcePokeapiMapOutput
+	ToSourcePokeapiMapOutputWithContext(context.Context) SourcePokeapiMapOutput
+}
+
+type SourcePokeapiMap map[string]SourcePokeapiInput
+
+func (SourcePokeapiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePokeapi)(nil)).Elem()
+}
+
+func (i SourcePokeapiMap) ToSourcePokeapiMapOutput() SourcePokeapiMapOutput {
+	return i.ToSourcePokeapiMapOutputWithContext(context.Background())
+}
+
+func (i SourcePokeapiMap) ToSourcePokeapiMapOutputWithContext(ctx context.Context) SourcePokeapiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePokeapiMapOutput)
+}
+
 type SourcePokeapiOutput struct{ *pulumi.OutputState }
 
 func (SourcePokeapiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePokeapiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePokeapi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePokeapiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePokeapiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePokeapi)(nil)).Elem()
+}
+
+func (o SourcePokeapiArrayOutput) ToSourcePokeapiArrayOutput() SourcePokeapiArrayOutput {
+	return o
+}
+
+func (o SourcePokeapiArrayOutput) ToSourcePokeapiArrayOutputWithContext(ctx context.Context) SourcePokeapiArrayOutput {
+	return o
+}
+
+func (o SourcePokeapiArrayOutput) Index(i pulumi.IntInput) SourcePokeapiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePokeapi {
+		return vs[0].([]*SourcePokeapi)[vs[1].(int)]
+	}).(SourcePokeapiOutput)
+}
+
+type SourcePokeapiMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePokeapiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePokeapi)(nil)).Elem()
+}
+
+func (o SourcePokeapiMapOutput) ToSourcePokeapiMapOutput() SourcePokeapiMapOutput {
+	return o
+}
+
+func (o SourcePokeapiMapOutput) ToSourcePokeapiMapOutputWithContext(ctx context.Context) SourcePokeapiMapOutput {
+	return o
+}
+
+func (o SourcePokeapiMapOutput) MapIndex(k pulumi.StringInput) SourcePokeapiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePokeapi {
+		return vs[0].(map[string]*SourcePokeapi)[vs[1].(string)]
+	}).(SourcePokeapiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePokeapiInput)(nil)).Elem(), &SourcePokeapi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePokeapiArrayInput)(nil)).Elem(), SourcePokeapiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePokeapiMapInput)(nil)).Elem(), SourcePokeapiMap{})
 	pulumi.RegisterOutputType(SourcePokeapiOutput{})
+	pulumi.RegisterOutputType(SourcePokeapiArrayOutput{})
+	pulumi.RegisterOutputType(SourcePokeapiMapOutput{})
 }

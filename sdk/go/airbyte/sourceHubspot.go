@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceHubspot Resource
@@ -127,6 +127,56 @@ func (i *SourceHubspot) ToSourceHubspotOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceHubspotOutput)
 }
 
+// SourceHubspotArrayInput is an input type that accepts SourceHubspotArray and SourceHubspotArrayOutput values.
+// You can construct a concrete instance of `SourceHubspotArrayInput` via:
+//
+//	SourceHubspotArray{ SourceHubspotArgs{...} }
+type SourceHubspotArrayInput interface {
+	pulumi.Input
+
+	ToSourceHubspotArrayOutput() SourceHubspotArrayOutput
+	ToSourceHubspotArrayOutputWithContext(context.Context) SourceHubspotArrayOutput
+}
+
+type SourceHubspotArray []SourceHubspotInput
+
+func (SourceHubspotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHubspot)(nil)).Elem()
+}
+
+func (i SourceHubspotArray) ToSourceHubspotArrayOutput() SourceHubspotArrayOutput {
+	return i.ToSourceHubspotArrayOutputWithContext(context.Background())
+}
+
+func (i SourceHubspotArray) ToSourceHubspotArrayOutputWithContext(ctx context.Context) SourceHubspotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHubspotArrayOutput)
+}
+
+// SourceHubspotMapInput is an input type that accepts SourceHubspotMap and SourceHubspotMapOutput values.
+// You can construct a concrete instance of `SourceHubspotMapInput` via:
+//
+//	SourceHubspotMap{ "key": SourceHubspotArgs{...} }
+type SourceHubspotMapInput interface {
+	pulumi.Input
+
+	ToSourceHubspotMapOutput() SourceHubspotMapOutput
+	ToSourceHubspotMapOutputWithContext(context.Context) SourceHubspotMapOutput
+}
+
+type SourceHubspotMap map[string]SourceHubspotInput
+
+func (SourceHubspotMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHubspot)(nil)).Elem()
+}
+
+func (i SourceHubspotMap) ToSourceHubspotMapOutput() SourceHubspotMapOutput {
+	return i.ToSourceHubspotMapOutputWithContext(context.Background())
+}
+
+func (i SourceHubspotMap) ToSourceHubspotMapOutputWithContext(ctx context.Context) SourceHubspotMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHubspotMapOutput)
+}
+
 type SourceHubspotOutput struct{ *pulumi.OutputState }
 
 func (SourceHubspotOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceHubspotOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceHubspot) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceHubspotArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceHubspotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHubspot)(nil)).Elem()
+}
+
+func (o SourceHubspotArrayOutput) ToSourceHubspotArrayOutput() SourceHubspotArrayOutput {
+	return o
+}
+
+func (o SourceHubspotArrayOutput) ToSourceHubspotArrayOutputWithContext(ctx context.Context) SourceHubspotArrayOutput {
+	return o
+}
+
+func (o SourceHubspotArrayOutput) Index(i pulumi.IntInput) SourceHubspotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceHubspot {
+		return vs[0].([]*SourceHubspot)[vs[1].(int)]
+	}).(SourceHubspotOutput)
+}
+
+type SourceHubspotMapOutput struct{ *pulumi.OutputState }
+
+func (SourceHubspotMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHubspot)(nil)).Elem()
+}
+
+func (o SourceHubspotMapOutput) ToSourceHubspotMapOutput() SourceHubspotMapOutput {
+	return o
+}
+
+func (o SourceHubspotMapOutput) ToSourceHubspotMapOutputWithContext(ctx context.Context) SourceHubspotMapOutput {
+	return o
+}
+
+func (o SourceHubspotMapOutput) MapIndex(k pulumi.StringInput) SourceHubspotOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceHubspot {
+		return vs[0].(map[string]*SourceHubspot)[vs[1].(string)]
+	}).(SourceHubspotOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubspotInput)(nil)).Elem(), &SourceHubspot{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubspotArrayInput)(nil)).Elem(), SourceHubspotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHubspotMapInput)(nil)).Elem(), SourceHubspotMap{})
 	pulumi.RegisterOutputType(SourceHubspotOutput{})
+	pulumi.RegisterOutputType(SourceHubspotArrayOutput{})
+	pulumi.RegisterOutputType(SourceHubspotMapOutput{})
 }

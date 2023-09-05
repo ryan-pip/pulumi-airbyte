@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationMongodb Resource
@@ -117,6 +117,56 @@ func (i *DestinationMongodb) ToDestinationMongodbOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationMongodbOutput)
 }
 
+// DestinationMongodbArrayInput is an input type that accepts DestinationMongodbArray and DestinationMongodbArrayOutput values.
+// You can construct a concrete instance of `DestinationMongodbArrayInput` via:
+//
+//	DestinationMongodbArray{ DestinationMongodbArgs{...} }
+type DestinationMongodbArrayInput interface {
+	pulumi.Input
+
+	ToDestinationMongodbArrayOutput() DestinationMongodbArrayOutput
+	ToDestinationMongodbArrayOutputWithContext(context.Context) DestinationMongodbArrayOutput
+}
+
+type DestinationMongodbArray []DestinationMongodbInput
+
+func (DestinationMongodbArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMongodb)(nil)).Elem()
+}
+
+func (i DestinationMongodbArray) ToDestinationMongodbArrayOutput() DestinationMongodbArrayOutput {
+	return i.ToDestinationMongodbArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationMongodbArray) ToDestinationMongodbArrayOutputWithContext(ctx context.Context) DestinationMongodbArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMongodbArrayOutput)
+}
+
+// DestinationMongodbMapInput is an input type that accepts DestinationMongodbMap and DestinationMongodbMapOutput values.
+// You can construct a concrete instance of `DestinationMongodbMapInput` via:
+//
+//	DestinationMongodbMap{ "key": DestinationMongodbArgs{...} }
+type DestinationMongodbMapInput interface {
+	pulumi.Input
+
+	ToDestinationMongodbMapOutput() DestinationMongodbMapOutput
+	ToDestinationMongodbMapOutputWithContext(context.Context) DestinationMongodbMapOutput
+}
+
+type DestinationMongodbMap map[string]DestinationMongodbInput
+
+func (DestinationMongodbMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMongodb)(nil)).Elem()
+}
+
+func (i DestinationMongodbMap) ToDestinationMongodbMapOutput() DestinationMongodbMapOutput {
+	return i.ToDestinationMongodbMapOutputWithContext(context.Background())
+}
+
+func (i DestinationMongodbMap) ToDestinationMongodbMapOutputWithContext(ctx context.Context) DestinationMongodbMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMongodbMapOutput)
+}
+
 type DestinationMongodbOutput struct{ *pulumi.OutputState }
 
 func (DestinationMongodbOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationMongodbOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationMongodb) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationMongodbArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationMongodbArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMongodb)(nil)).Elem()
+}
+
+func (o DestinationMongodbArrayOutput) ToDestinationMongodbArrayOutput() DestinationMongodbArrayOutput {
+	return o
+}
+
+func (o DestinationMongodbArrayOutput) ToDestinationMongodbArrayOutputWithContext(ctx context.Context) DestinationMongodbArrayOutput {
+	return o
+}
+
+func (o DestinationMongodbArrayOutput) Index(i pulumi.IntInput) DestinationMongodbOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationMongodb {
+		return vs[0].([]*DestinationMongodb)[vs[1].(int)]
+	}).(DestinationMongodbOutput)
+}
+
+type DestinationMongodbMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationMongodbMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMongodb)(nil)).Elem()
+}
+
+func (o DestinationMongodbMapOutput) ToDestinationMongodbMapOutput() DestinationMongodbMapOutput {
+	return o
+}
+
+func (o DestinationMongodbMapOutput) ToDestinationMongodbMapOutputWithContext(ctx context.Context) DestinationMongodbMapOutput {
+	return o
+}
+
+func (o DestinationMongodbMapOutput) MapIndex(k pulumi.StringInput) DestinationMongodbOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationMongodb {
+		return vs[0].(map[string]*DestinationMongodb)[vs[1].(string)]
+	}).(DestinationMongodbOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMongodbInput)(nil)).Elem(), &DestinationMongodb{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMongodbArrayInput)(nil)).Elem(), DestinationMongodbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMongodbMapInput)(nil)).Elem(), DestinationMongodbMap{})
 	pulumi.RegisterOutputType(DestinationMongodbOutput{})
+	pulumi.RegisterOutputType(DestinationMongodbArrayOutput{})
+	pulumi.RegisterOutputType(DestinationMongodbMapOutput{})
 }

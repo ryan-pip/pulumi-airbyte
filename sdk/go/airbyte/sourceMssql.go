@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMssql Resource
@@ -127,6 +127,56 @@ func (i *SourceMssql) ToSourceMssqlOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMssqlOutput)
 }
 
+// SourceMssqlArrayInput is an input type that accepts SourceMssqlArray and SourceMssqlArrayOutput values.
+// You can construct a concrete instance of `SourceMssqlArrayInput` via:
+//
+//	SourceMssqlArray{ SourceMssqlArgs{...} }
+type SourceMssqlArrayInput interface {
+	pulumi.Input
+
+	ToSourceMssqlArrayOutput() SourceMssqlArrayOutput
+	ToSourceMssqlArrayOutputWithContext(context.Context) SourceMssqlArrayOutput
+}
+
+type SourceMssqlArray []SourceMssqlInput
+
+func (SourceMssqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMssql)(nil)).Elem()
+}
+
+func (i SourceMssqlArray) ToSourceMssqlArrayOutput() SourceMssqlArrayOutput {
+	return i.ToSourceMssqlArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMssqlArray) ToSourceMssqlArrayOutputWithContext(ctx context.Context) SourceMssqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMssqlArrayOutput)
+}
+
+// SourceMssqlMapInput is an input type that accepts SourceMssqlMap and SourceMssqlMapOutput values.
+// You can construct a concrete instance of `SourceMssqlMapInput` via:
+//
+//	SourceMssqlMap{ "key": SourceMssqlArgs{...} }
+type SourceMssqlMapInput interface {
+	pulumi.Input
+
+	ToSourceMssqlMapOutput() SourceMssqlMapOutput
+	ToSourceMssqlMapOutputWithContext(context.Context) SourceMssqlMapOutput
+}
+
+type SourceMssqlMap map[string]SourceMssqlInput
+
+func (SourceMssqlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMssql)(nil)).Elem()
+}
+
+func (i SourceMssqlMap) ToSourceMssqlMapOutput() SourceMssqlMapOutput {
+	return i.ToSourceMssqlMapOutputWithContext(context.Background())
+}
+
+func (i SourceMssqlMap) ToSourceMssqlMapOutputWithContext(ctx context.Context) SourceMssqlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMssqlMapOutput)
+}
+
 type SourceMssqlOutput struct{ *pulumi.OutputState }
 
 func (SourceMssqlOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMssqlOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMssql) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMssqlArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMssqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMssql)(nil)).Elem()
+}
+
+func (o SourceMssqlArrayOutput) ToSourceMssqlArrayOutput() SourceMssqlArrayOutput {
+	return o
+}
+
+func (o SourceMssqlArrayOutput) ToSourceMssqlArrayOutputWithContext(ctx context.Context) SourceMssqlArrayOutput {
+	return o
+}
+
+func (o SourceMssqlArrayOutput) Index(i pulumi.IntInput) SourceMssqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMssql {
+		return vs[0].([]*SourceMssql)[vs[1].(int)]
+	}).(SourceMssqlOutput)
+}
+
+type SourceMssqlMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMssqlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMssql)(nil)).Elem()
+}
+
+func (o SourceMssqlMapOutput) ToSourceMssqlMapOutput() SourceMssqlMapOutput {
+	return o
+}
+
+func (o SourceMssqlMapOutput) ToSourceMssqlMapOutputWithContext(ctx context.Context) SourceMssqlMapOutput {
+	return o
+}
+
+func (o SourceMssqlMapOutput) MapIndex(k pulumi.StringInput) SourceMssqlOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMssql {
+		return vs[0].(map[string]*SourceMssql)[vs[1].(string)]
+	}).(SourceMssqlOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMssqlInput)(nil)).Elem(), &SourceMssql{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMssqlArrayInput)(nil)).Elem(), SourceMssqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMssqlMapInput)(nil)).Elem(), SourceMssqlMap{})
 	pulumi.RegisterOutputType(SourceMssqlOutput{})
+	pulumi.RegisterOutputType(SourceMssqlArrayOutput{})
+	pulumi.RegisterOutputType(SourceMssqlMapOutput{})
 }

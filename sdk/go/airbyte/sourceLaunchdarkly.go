@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceLaunchdarkly Resource
@@ -127,6 +127,56 @@ func (i *SourceLaunchdarkly) ToSourceLaunchdarklyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceLaunchdarklyOutput)
 }
 
+// SourceLaunchdarklyArrayInput is an input type that accepts SourceLaunchdarklyArray and SourceLaunchdarklyArrayOutput values.
+// You can construct a concrete instance of `SourceLaunchdarklyArrayInput` via:
+//
+//	SourceLaunchdarklyArray{ SourceLaunchdarklyArgs{...} }
+type SourceLaunchdarklyArrayInput interface {
+	pulumi.Input
+
+	ToSourceLaunchdarklyArrayOutput() SourceLaunchdarklyArrayOutput
+	ToSourceLaunchdarklyArrayOutputWithContext(context.Context) SourceLaunchdarklyArrayOutput
+}
+
+type SourceLaunchdarklyArray []SourceLaunchdarklyInput
+
+func (SourceLaunchdarklyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLaunchdarkly)(nil)).Elem()
+}
+
+func (i SourceLaunchdarklyArray) ToSourceLaunchdarklyArrayOutput() SourceLaunchdarklyArrayOutput {
+	return i.ToSourceLaunchdarklyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceLaunchdarklyArray) ToSourceLaunchdarklyArrayOutputWithContext(ctx context.Context) SourceLaunchdarklyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLaunchdarklyArrayOutput)
+}
+
+// SourceLaunchdarklyMapInput is an input type that accepts SourceLaunchdarklyMap and SourceLaunchdarklyMapOutput values.
+// You can construct a concrete instance of `SourceLaunchdarklyMapInput` via:
+//
+//	SourceLaunchdarklyMap{ "key": SourceLaunchdarklyArgs{...} }
+type SourceLaunchdarklyMapInput interface {
+	pulumi.Input
+
+	ToSourceLaunchdarklyMapOutput() SourceLaunchdarklyMapOutput
+	ToSourceLaunchdarklyMapOutputWithContext(context.Context) SourceLaunchdarklyMapOutput
+}
+
+type SourceLaunchdarklyMap map[string]SourceLaunchdarklyInput
+
+func (SourceLaunchdarklyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLaunchdarkly)(nil)).Elem()
+}
+
+func (i SourceLaunchdarklyMap) ToSourceLaunchdarklyMapOutput() SourceLaunchdarklyMapOutput {
+	return i.ToSourceLaunchdarklyMapOutputWithContext(context.Background())
+}
+
+func (i SourceLaunchdarklyMap) ToSourceLaunchdarklyMapOutputWithContext(ctx context.Context) SourceLaunchdarklyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceLaunchdarklyMapOutput)
+}
+
 type SourceLaunchdarklyOutput struct{ *pulumi.OutputState }
 
 func (SourceLaunchdarklyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceLaunchdarklyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceLaunchdarkly) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceLaunchdarklyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceLaunchdarklyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceLaunchdarkly)(nil)).Elem()
+}
+
+func (o SourceLaunchdarklyArrayOutput) ToSourceLaunchdarklyArrayOutput() SourceLaunchdarklyArrayOutput {
+	return o
+}
+
+func (o SourceLaunchdarklyArrayOutput) ToSourceLaunchdarklyArrayOutputWithContext(ctx context.Context) SourceLaunchdarklyArrayOutput {
+	return o
+}
+
+func (o SourceLaunchdarklyArrayOutput) Index(i pulumi.IntInput) SourceLaunchdarklyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceLaunchdarkly {
+		return vs[0].([]*SourceLaunchdarkly)[vs[1].(int)]
+	}).(SourceLaunchdarklyOutput)
+}
+
+type SourceLaunchdarklyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceLaunchdarklyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceLaunchdarkly)(nil)).Elem()
+}
+
+func (o SourceLaunchdarklyMapOutput) ToSourceLaunchdarklyMapOutput() SourceLaunchdarklyMapOutput {
+	return o
+}
+
+func (o SourceLaunchdarklyMapOutput) ToSourceLaunchdarklyMapOutputWithContext(ctx context.Context) SourceLaunchdarklyMapOutput {
+	return o
+}
+
+func (o SourceLaunchdarklyMapOutput) MapIndex(k pulumi.StringInput) SourceLaunchdarklyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceLaunchdarkly {
+		return vs[0].(map[string]*SourceLaunchdarkly)[vs[1].(string)]
+	}).(SourceLaunchdarklyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceLaunchdarklyInput)(nil)).Elem(), &SourceLaunchdarkly{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLaunchdarklyArrayInput)(nil)).Elem(), SourceLaunchdarklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceLaunchdarklyMapInput)(nil)).Elem(), SourceLaunchdarklyMap{})
 	pulumi.RegisterOutputType(SourceLaunchdarklyOutput{})
+	pulumi.RegisterOutputType(SourceLaunchdarklyArrayOutput{})
+	pulumi.RegisterOutputType(SourceLaunchdarklyMapOutput{})
 }

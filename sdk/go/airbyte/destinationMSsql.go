@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationMssql Resource
@@ -117,6 +117,56 @@ func (i *DestinationMSsql) ToDestinationMSsqlOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationMSsqlOutput)
 }
 
+// DestinationMSsqlArrayInput is an input type that accepts DestinationMSsqlArray and DestinationMSsqlArrayOutput values.
+// You can construct a concrete instance of `DestinationMSsqlArrayInput` via:
+//
+//	DestinationMSsqlArray{ DestinationMSsqlArgs{...} }
+type DestinationMSsqlArrayInput interface {
+	pulumi.Input
+
+	ToDestinationMSsqlArrayOutput() DestinationMSsqlArrayOutput
+	ToDestinationMSsqlArrayOutputWithContext(context.Context) DestinationMSsqlArrayOutput
+}
+
+type DestinationMSsqlArray []DestinationMSsqlInput
+
+func (DestinationMSsqlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMSsql)(nil)).Elem()
+}
+
+func (i DestinationMSsqlArray) ToDestinationMSsqlArrayOutput() DestinationMSsqlArrayOutput {
+	return i.ToDestinationMSsqlArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationMSsqlArray) ToDestinationMSsqlArrayOutputWithContext(ctx context.Context) DestinationMSsqlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMSsqlArrayOutput)
+}
+
+// DestinationMSsqlMapInput is an input type that accepts DestinationMSsqlMap and DestinationMSsqlMapOutput values.
+// You can construct a concrete instance of `DestinationMSsqlMapInput` via:
+//
+//	DestinationMSsqlMap{ "key": DestinationMSsqlArgs{...} }
+type DestinationMSsqlMapInput interface {
+	pulumi.Input
+
+	ToDestinationMSsqlMapOutput() DestinationMSsqlMapOutput
+	ToDestinationMSsqlMapOutputWithContext(context.Context) DestinationMSsqlMapOutput
+}
+
+type DestinationMSsqlMap map[string]DestinationMSsqlInput
+
+func (DestinationMSsqlMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMSsql)(nil)).Elem()
+}
+
+func (i DestinationMSsqlMap) ToDestinationMSsqlMapOutput() DestinationMSsqlMapOutput {
+	return i.ToDestinationMSsqlMapOutputWithContext(context.Background())
+}
+
+func (i DestinationMSsqlMap) ToDestinationMSsqlMapOutputWithContext(ctx context.Context) DestinationMSsqlMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationMSsqlMapOutput)
+}
+
 type DestinationMSsqlOutput struct{ *pulumi.OutputState }
 
 func (DestinationMSsqlOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationMSsqlOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationMSsql) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationMSsqlArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationMSsqlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationMSsql)(nil)).Elem()
+}
+
+func (o DestinationMSsqlArrayOutput) ToDestinationMSsqlArrayOutput() DestinationMSsqlArrayOutput {
+	return o
+}
+
+func (o DestinationMSsqlArrayOutput) ToDestinationMSsqlArrayOutputWithContext(ctx context.Context) DestinationMSsqlArrayOutput {
+	return o
+}
+
+func (o DestinationMSsqlArrayOutput) Index(i pulumi.IntInput) DestinationMSsqlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationMSsql {
+		return vs[0].([]*DestinationMSsql)[vs[1].(int)]
+	}).(DestinationMSsqlOutput)
+}
+
+type DestinationMSsqlMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationMSsqlMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationMSsql)(nil)).Elem()
+}
+
+func (o DestinationMSsqlMapOutput) ToDestinationMSsqlMapOutput() DestinationMSsqlMapOutput {
+	return o
+}
+
+func (o DestinationMSsqlMapOutput) ToDestinationMSsqlMapOutputWithContext(ctx context.Context) DestinationMSsqlMapOutput {
+	return o
+}
+
+func (o DestinationMSsqlMapOutput) MapIndex(k pulumi.StringInput) DestinationMSsqlOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationMSsql {
+		return vs[0].(map[string]*DestinationMSsql)[vs[1].(string)]
+	}).(DestinationMSsqlOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMSsqlInput)(nil)).Elem(), &DestinationMSsql{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMSsqlArrayInput)(nil)).Elem(), DestinationMSsqlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationMSsqlMapInput)(nil)).Elem(), DestinationMSsqlMap{})
 	pulumi.RegisterOutputType(DestinationMSsqlOutput{})
+	pulumi.RegisterOutputType(DestinationMSsqlArrayOutput{})
+	pulumi.RegisterOutputType(DestinationMSsqlMapOutput{})
 }

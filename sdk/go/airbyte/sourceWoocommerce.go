@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceWoocommerce Resource
@@ -127,6 +127,56 @@ func (i *SourceWoocommerce) ToSourceWoocommerceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceWoocommerceOutput)
 }
 
+// SourceWoocommerceArrayInput is an input type that accepts SourceWoocommerceArray and SourceWoocommerceArrayOutput values.
+// You can construct a concrete instance of `SourceWoocommerceArrayInput` via:
+//
+//	SourceWoocommerceArray{ SourceWoocommerceArgs{...} }
+type SourceWoocommerceArrayInput interface {
+	pulumi.Input
+
+	ToSourceWoocommerceArrayOutput() SourceWoocommerceArrayOutput
+	ToSourceWoocommerceArrayOutputWithContext(context.Context) SourceWoocommerceArrayOutput
+}
+
+type SourceWoocommerceArray []SourceWoocommerceInput
+
+func (SourceWoocommerceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWoocommerce)(nil)).Elem()
+}
+
+func (i SourceWoocommerceArray) ToSourceWoocommerceArrayOutput() SourceWoocommerceArrayOutput {
+	return i.ToSourceWoocommerceArrayOutputWithContext(context.Background())
+}
+
+func (i SourceWoocommerceArray) ToSourceWoocommerceArrayOutputWithContext(ctx context.Context) SourceWoocommerceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWoocommerceArrayOutput)
+}
+
+// SourceWoocommerceMapInput is an input type that accepts SourceWoocommerceMap and SourceWoocommerceMapOutput values.
+// You can construct a concrete instance of `SourceWoocommerceMapInput` via:
+//
+//	SourceWoocommerceMap{ "key": SourceWoocommerceArgs{...} }
+type SourceWoocommerceMapInput interface {
+	pulumi.Input
+
+	ToSourceWoocommerceMapOutput() SourceWoocommerceMapOutput
+	ToSourceWoocommerceMapOutputWithContext(context.Context) SourceWoocommerceMapOutput
+}
+
+type SourceWoocommerceMap map[string]SourceWoocommerceInput
+
+func (SourceWoocommerceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWoocommerce)(nil)).Elem()
+}
+
+func (i SourceWoocommerceMap) ToSourceWoocommerceMapOutput() SourceWoocommerceMapOutput {
+	return i.ToSourceWoocommerceMapOutputWithContext(context.Background())
+}
+
+func (i SourceWoocommerceMap) ToSourceWoocommerceMapOutputWithContext(ctx context.Context) SourceWoocommerceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWoocommerceMapOutput)
+}
+
 type SourceWoocommerceOutput struct{ *pulumi.OutputState }
 
 func (SourceWoocommerceOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceWoocommerceOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceWoocommerce) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceWoocommerceArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceWoocommerceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWoocommerce)(nil)).Elem()
+}
+
+func (o SourceWoocommerceArrayOutput) ToSourceWoocommerceArrayOutput() SourceWoocommerceArrayOutput {
+	return o
+}
+
+func (o SourceWoocommerceArrayOutput) ToSourceWoocommerceArrayOutputWithContext(ctx context.Context) SourceWoocommerceArrayOutput {
+	return o
+}
+
+func (o SourceWoocommerceArrayOutput) Index(i pulumi.IntInput) SourceWoocommerceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceWoocommerce {
+		return vs[0].([]*SourceWoocommerce)[vs[1].(int)]
+	}).(SourceWoocommerceOutput)
+}
+
+type SourceWoocommerceMapOutput struct{ *pulumi.OutputState }
+
+func (SourceWoocommerceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWoocommerce)(nil)).Elem()
+}
+
+func (o SourceWoocommerceMapOutput) ToSourceWoocommerceMapOutput() SourceWoocommerceMapOutput {
+	return o
+}
+
+func (o SourceWoocommerceMapOutput) ToSourceWoocommerceMapOutputWithContext(ctx context.Context) SourceWoocommerceMapOutput {
+	return o
+}
+
+func (o SourceWoocommerceMapOutput) MapIndex(k pulumi.StringInput) SourceWoocommerceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceWoocommerce {
+		return vs[0].(map[string]*SourceWoocommerce)[vs[1].(string)]
+	}).(SourceWoocommerceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceWoocommerceInput)(nil)).Elem(), &SourceWoocommerce{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWoocommerceArrayInput)(nil)).Elem(), SourceWoocommerceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWoocommerceMapInput)(nil)).Elem(), SourceWoocommerceMap{})
 	pulumi.RegisterOutputType(SourceWoocommerceOutput{})
+	pulumi.RegisterOutputType(SourceWoocommerceArrayOutput{})
+	pulumi.RegisterOutputType(SourceWoocommerceMapOutput{})
 }

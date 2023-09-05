@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBingAds Resource
@@ -127,6 +127,56 @@ func (i *SourceBingAds) ToSourceBingAdsOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBingAdsOutput)
 }
 
+// SourceBingAdsArrayInput is an input type that accepts SourceBingAdsArray and SourceBingAdsArrayOutput values.
+// You can construct a concrete instance of `SourceBingAdsArrayInput` via:
+//
+//	SourceBingAdsArray{ SourceBingAdsArgs{...} }
+type SourceBingAdsArrayInput interface {
+	pulumi.Input
+
+	ToSourceBingAdsArrayOutput() SourceBingAdsArrayOutput
+	ToSourceBingAdsArrayOutputWithContext(context.Context) SourceBingAdsArrayOutput
+}
+
+type SourceBingAdsArray []SourceBingAdsInput
+
+func (SourceBingAdsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBingAds)(nil)).Elem()
+}
+
+func (i SourceBingAdsArray) ToSourceBingAdsArrayOutput() SourceBingAdsArrayOutput {
+	return i.ToSourceBingAdsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBingAdsArray) ToSourceBingAdsArrayOutputWithContext(ctx context.Context) SourceBingAdsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBingAdsArrayOutput)
+}
+
+// SourceBingAdsMapInput is an input type that accepts SourceBingAdsMap and SourceBingAdsMapOutput values.
+// You can construct a concrete instance of `SourceBingAdsMapInput` via:
+//
+//	SourceBingAdsMap{ "key": SourceBingAdsArgs{...} }
+type SourceBingAdsMapInput interface {
+	pulumi.Input
+
+	ToSourceBingAdsMapOutput() SourceBingAdsMapOutput
+	ToSourceBingAdsMapOutputWithContext(context.Context) SourceBingAdsMapOutput
+}
+
+type SourceBingAdsMap map[string]SourceBingAdsInput
+
+func (SourceBingAdsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBingAds)(nil)).Elem()
+}
+
+func (i SourceBingAdsMap) ToSourceBingAdsMapOutput() SourceBingAdsMapOutput {
+	return i.ToSourceBingAdsMapOutputWithContext(context.Background())
+}
+
+func (i SourceBingAdsMap) ToSourceBingAdsMapOutputWithContext(ctx context.Context) SourceBingAdsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBingAdsMapOutput)
+}
+
 type SourceBingAdsOutput struct{ *pulumi.OutputState }
 
 func (SourceBingAdsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBingAdsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBingAds) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBingAdsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBingAdsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBingAds)(nil)).Elem()
+}
+
+func (o SourceBingAdsArrayOutput) ToSourceBingAdsArrayOutput() SourceBingAdsArrayOutput {
+	return o
+}
+
+func (o SourceBingAdsArrayOutput) ToSourceBingAdsArrayOutputWithContext(ctx context.Context) SourceBingAdsArrayOutput {
+	return o
+}
+
+func (o SourceBingAdsArrayOutput) Index(i pulumi.IntInput) SourceBingAdsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBingAds {
+		return vs[0].([]*SourceBingAds)[vs[1].(int)]
+	}).(SourceBingAdsOutput)
+}
+
+type SourceBingAdsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBingAdsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBingAds)(nil)).Elem()
+}
+
+func (o SourceBingAdsMapOutput) ToSourceBingAdsMapOutput() SourceBingAdsMapOutput {
+	return o
+}
+
+func (o SourceBingAdsMapOutput) ToSourceBingAdsMapOutputWithContext(ctx context.Context) SourceBingAdsMapOutput {
+	return o
+}
+
+func (o SourceBingAdsMapOutput) MapIndex(k pulumi.StringInput) SourceBingAdsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBingAds {
+		return vs[0].(map[string]*SourceBingAds)[vs[1].(string)]
+	}).(SourceBingAdsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBingAdsInput)(nil)).Elem(), &SourceBingAds{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBingAdsArrayInput)(nil)).Elem(), SourceBingAdsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBingAdsMapInput)(nil)).Elem(), SourceBingAdsMap{})
 	pulumi.RegisterOutputType(SourceBingAdsOutput{})
+	pulumi.RegisterOutputType(SourceBingAdsArrayOutput{})
+	pulumi.RegisterOutputType(SourceBingAdsMapOutput{})
 }

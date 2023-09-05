@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationXata Resource
@@ -117,6 +117,56 @@ func (i *DestinationXata) ToDestinationXataOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationXataOutput)
 }
 
+// DestinationXataArrayInput is an input type that accepts DestinationXataArray and DestinationXataArrayOutput values.
+// You can construct a concrete instance of `DestinationXataArrayInput` via:
+//
+//	DestinationXataArray{ DestinationXataArgs{...} }
+type DestinationXataArrayInput interface {
+	pulumi.Input
+
+	ToDestinationXataArrayOutput() DestinationXataArrayOutput
+	ToDestinationXataArrayOutputWithContext(context.Context) DestinationXataArrayOutput
+}
+
+type DestinationXataArray []DestinationXataInput
+
+func (DestinationXataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationXata)(nil)).Elem()
+}
+
+func (i DestinationXataArray) ToDestinationXataArrayOutput() DestinationXataArrayOutput {
+	return i.ToDestinationXataArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationXataArray) ToDestinationXataArrayOutputWithContext(ctx context.Context) DestinationXataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationXataArrayOutput)
+}
+
+// DestinationXataMapInput is an input type that accepts DestinationXataMap and DestinationXataMapOutput values.
+// You can construct a concrete instance of `DestinationXataMapInput` via:
+//
+//	DestinationXataMap{ "key": DestinationXataArgs{...} }
+type DestinationXataMapInput interface {
+	pulumi.Input
+
+	ToDestinationXataMapOutput() DestinationXataMapOutput
+	ToDestinationXataMapOutputWithContext(context.Context) DestinationXataMapOutput
+}
+
+type DestinationXataMap map[string]DestinationXataInput
+
+func (DestinationXataMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationXata)(nil)).Elem()
+}
+
+func (i DestinationXataMap) ToDestinationXataMapOutput() DestinationXataMapOutput {
+	return i.ToDestinationXataMapOutputWithContext(context.Background())
+}
+
+func (i DestinationXataMap) ToDestinationXataMapOutputWithContext(ctx context.Context) DestinationXataMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationXataMapOutput)
+}
+
 type DestinationXataOutput struct{ *pulumi.OutputState }
 
 func (DestinationXataOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationXataOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationXata) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationXataArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationXataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationXata)(nil)).Elem()
+}
+
+func (o DestinationXataArrayOutput) ToDestinationXataArrayOutput() DestinationXataArrayOutput {
+	return o
+}
+
+func (o DestinationXataArrayOutput) ToDestinationXataArrayOutputWithContext(ctx context.Context) DestinationXataArrayOutput {
+	return o
+}
+
+func (o DestinationXataArrayOutput) Index(i pulumi.IntInput) DestinationXataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationXata {
+		return vs[0].([]*DestinationXata)[vs[1].(int)]
+	}).(DestinationXataOutput)
+}
+
+type DestinationXataMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationXataMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationXata)(nil)).Elem()
+}
+
+func (o DestinationXataMapOutput) ToDestinationXataMapOutput() DestinationXataMapOutput {
+	return o
+}
+
+func (o DestinationXataMapOutput) ToDestinationXataMapOutputWithContext(ctx context.Context) DestinationXataMapOutput {
+	return o
+}
+
+func (o DestinationXataMapOutput) MapIndex(k pulumi.StringInput) DestinationXataOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationXata {
+		return vs[0].(map[string]*DestinationXata)[vs[1].(string)]
+	}).(DestinationXataOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationXataInput)(nil)).Elem(), &DestinationXata{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationXataArrayInput)(nil)).Elem(), DestinationXataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationXataMapInput)(nil)).Elem(), DestinationXataMap{})
 	pulumi.RegisterOutputType(DestinationXataOutput{})
+	pulumi.RegisterOutputType(DestinationXataArrayOutput{})
+	pulumi.RegisterOutputType(DestinationXataMapOutput{})
 }

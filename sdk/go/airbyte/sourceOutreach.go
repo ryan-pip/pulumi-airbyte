@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOutreach Resource
@@ -127,6 +127,56 @@ func (i *SourceOutreach) ToSourceOutreachOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOutreachOutput)
 }
 
+// SourceOutreachArrayInput is an input type that accepts SourceOutreachArray and SourceOutreachArrayOutput values.
+// You can construct a concrete instance of `SourceOutreachArrayInput` via:
+//
+//	SourceOutreachArray{ SourceOutreachArgs{...} }
+type SourceOutreachArrayInput interface {
+	pulumi.Input
+
+	ToSourceOutreachArrayOutput() SourceOutreachArrayOutput
+	ToSourceOutreachArrayOutputWithContext(context.Context) SourceOutreachArrayOutput
+}
+
+type SourceOutreachArray []SourceOutreachInput
+
+func (SourceOutreachArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOutreach)(nil)).Elem()
+}
+
+func (i SourceOutreachArray) ToSourceOutreachArrayOutput() SourceOutreachArrayOutput {
+	return i.ToSourceOutreachArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOutreachArray) ToSourceOutreachArrayOutputWithContext(ctx context.Context) SourceOutreachArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutreachArrayOutput)
+}
+
+// SourceOutreachMapInput is an input type that accepts SourceOutreachMap and SourceOutreachMapOutput values.
+// You can construct a concrete instance of `SourceOutreachMapInput` via:
+//
+//	SourceOutreachMap{ "key": SourceOutreachArgs{...} }
+type SourceOutreachMapInput interface {
+	pulumi.Input
+
+	ToSourceOutreachMapOutput() SourceOutreachMapOutput
+	ToSourceOutreachMapOutputWithContext(context.Context) SourceOutreachMapOutput
+}
+
+type SourceOutreachMap map[string]SourceOutreachInput
+
+func (SourceOutreachMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOutreach)(nil)).Elem()
+}
+
+func (i SourceOutreachMap) ToSourceOutreachMapOutput() SourceOutreachMapOutput {
+	return i.ToSourceOutreachMapOutputWithContext(context.Background())
+}
+
+func (i SourceOutreachMap) ToSourceOutreachMapOutputWithContext(ctx context.Context) SourceOutreachMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutreachMapOutput)
+}
+
 type SourceOutreachOutput struct{ *pulumi.OutputState }
 
 func (SourceOutreachOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOutreachOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOutreach) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOutreachArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOutreachArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOutreach)(nil)).Elem()
+}
+
+func (o SourceOutreachArrayOutput) ToSourceOutreachArrayOutput() SourceOutreachArrayOutput {
+	return o
+}
+
+func (o SourceOutreachArrayOutput) ToSourceOutreachArrayOutputWithContext(ctx context.Context) SourceOutreachArrayOutput {
+	return o
+}
+
+func (o SourceOutreachArrayOutput) Index(i pulumi.IntInput) SourceOutreachOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOutreach {
+		return vs[0].([]*SourceOutreach)[vs[1].(int)]
+	}).(SourceOutreachOutput)
+}
+
+type SourceOutreachMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOutreachMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOutreach)(nil)).Elem()
+}
+
+func (o SourceOutreachMapOutput) ToSourceOutreachMapOutput() SourceOutreachMapOutput {
+	return o
+}
+
+func (o SourceOutreachMapOutput) ToSourceOutreachMapOutputWithContext(ctx context.Context) SourceOutreachMapOutput {
+	return o
+}
+
+func (o SourceOutreachMapOutput) MapIndex(k pulumi.StringInput) SourceOutreachOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOutreach {
+		return vs[0].(map[string]*SourceOutreach)[vs[1].(string)]
+	}).(SourceOutreachOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutreachInput)(nil)).Elem(), &SourceOutreach{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutreachArrayInput)(nil)).Elem(), SourceOutreachArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutreachMapInput)(nil)).Elem(), SourceOutreachMap{})
 	pulumi.RegisterOutputType(SourceOutreachOutput{})
+	pulumi.RegisterOutputType(SourceOutreachArrayOutput{})
+	pulumi.RegisterOutputType(SourceOutreachMapOutput{})
 }

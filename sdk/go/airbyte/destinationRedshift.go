@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationRedshift Resource
@@ -117,6 +117,56 @@ func (i *DestinationRedshift) ToDestinationRedshiftOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedshiftOutput)
 }
 
+// DestinationRedshiftArrayInput is an input type that accepts DestinationRedshiftArray and DestinationRedshiftArrayOutput values.
+// You can construct a concrete instance of `DestinationRedshiftArrayInput` via:
+//
+//	DestinationRedshiftArray{ DestinationRedshiftArgs{...} }
+type DestinationRedshiftArrayInput interface {
+	pulumi.Input
+
+	ToDestinationRedshiftArrayOutput() DestinationRedshiftArrayOutput
+	ToDestinationRedshiftArrayOutputWithContext(context.Context) DestinationRedshiftArrayOutput
+}
+
+type DestinationRedshiftArray []DestinationRedshiftInput
+
+func (DestinationRedshiftArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationRedshift)(nil)).Elem()
+}
+
+func (i DestinationRedshiftArray) ToDestinationRedshiftArrayOutput() DestinationRedshiftArrayOutput {
+	return i.ToDestinationRedshiftArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationRedshiftArray) ToDestinationRedshiftArrayOutputWithContext(ctx context.Context) DestinationRedshiftArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedshiftArrayOutput)
+}
+
+// DestinationRedshiftMapInput is an input type that accepts DestinationRedshiftMap and DestinationRedshiftMapOutput values.
+// You can construct a concrete instance of `DestinationRedshiftMapInput` via:
+//
+//	DestinationRedshiftMap{ "key": DestinationRedshiftArgs{...} }
+type DestinationRedshiftMapInput interface {
+	pulumi.Input
+
+	ToDestinationRedshiftMapOutput() DestinationRedshiftMapOutput
+	ToDestinationRedshiftMapOutputWithContext(context.Context) DestinationRedshiftMapOutput
+}
+
+type DestinationRedshiftMap map[string]DestinationRedshiftInput
+
+func (DestinationRedshiftMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationRedshift)(nil)).Elem()
+}
+
+func (i DestinationRedshiftMap) ToDestinationRedshiftMapOutput() DestinationRedshiftMapOutput {
+	return i.ToDestinationRedshiftMapOutputWithContext(context.Background())
+}
+
+func (i DestinationRedshiftMap) ToDestinationRedshiftMapOutputWithContext(ctx context.Context) DestinationRedshiftMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationRedshiftMapOutput)
+}
+
 type DestinationRedshiftOutput struct{ *pulumi.OutputState }
 
 func (DestinationRedshiftOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationRedshiftOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationRedshift) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationRedshiftArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationRedshiftArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationRedshift)(nil)).Elem()
+}
+
+func (o DestinationRedshiftArrayOutput) ToDestinationRedshiftArrayOutput() DestinationRedshiftArrayOutput {
+	return o
+}
+
+func (o DestinationRedshiftArrayOutput) ToDestinationRedshiftArrayOutputWithContext(ctx context.Context) DestinationRedshiftArrayOutput {
+	return o
+}
+
+func (o DestinationRedshiftArrayOutput) Index(i pulumi.IntInput) DestinationRedshiftOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationRedshift {
+		return vs[0].([]*DestinationRedshift)[vs[1].(int)]
+	}).(DestinationRedshiftOutput)
+}
+
+type DestinationRedshiftMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationRedshiftMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationRedshift)(nil)).Elem()
+}
+
+func (o DestinationRedshiftMapOutput) ToDestinationRedshiftMapOutput() DestinationRedshiftMapOutput {
+	return o
+}
+
+func (o DestinationRedshiftMapOutput) ToDestinationRedshiftMapOutputWithContext(ctx context.Context) DestinationRedshiftMapOutput {
+	return o
+}
+
+func (o DestinationRedshiftMapOutput) MapIndex(k pulumi.StringInput) DestinationRedshiftOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationRedshift {
+		return vs[0].(map[string]*DestinationRedshift)[vs[1].(string)]
+	}).(DestinationRedshiftOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedshiftInput)(nil)).Elem(), &DestinationRedshift{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedshiftArrayInput)(nil)).Elem(), DestinationRedshiftArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationRedshiftMapInput)(nil)).Elem(), DestinationRedshiftMap{})
 	pulumi.RegisterOutputType(DestinationRedshiftOutput{})
+	pulumi.RegisterOutputType(DestinationRedshiftArrayOutput{})
+	pulumi.RegisterOutputType(DestinationRedshiftMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceHarvest Resource
@@ -127,6 +127,56 @@ func (i *SourceHarvest) ToSourceHarvestOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceHarvestOutput)
 }
 
+// SourceHarvestArrayInput is an input type that accepts SourceHarvestArray and SourceHarvestArrayOutput values.
+// You can construct a concrete instance of `SourceHarvestArrayInput` via:
+//
+//	SourceHarvestArray{ SourceHarvestArgs{...} }
+type SourceHarvestArrayInput interface {
+	pulumi.Input
+
+	ToSourceHarvestArrayOutput() SourceHarvestArrayOutput
+	ToSourceHarvestArrayOutputWithContext(context.Context) SourceHarvestArrayOutput
+}
+
+type SourceHarvestArray []SourceHarvestInput
+
+func (SourceHarvestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHarvest)(nil)).Elem()
+}
+
+func (i SourceHarvestArray) ToSourceHarvestArrayOutput() SourceHarvestArrayOutput {
+	return i.ToSourceHarvestArrayOutputWithContext(context.Background())
+}
+
+func (i SourceHarvestArray) ToSourceHarvestArrayOutputWithContext(ctx context.Context) SourceHarvestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHarvestArrayOutput)
+}
+
+// SourceHarvestMapInput is an input type that accepts SourceHarvestMap and SourceHarvestMapOutput values.
+// You can construct a concrete instance of `SourceHarvestMapInput` via:
+//
+//	SourceHarvestMap{ "key": SourceHarvestArgs{...} }
+type SourceHarvestMapInput interface {
+	pulumi.Input
+
+	ToSourceHarvestMapOutput() SourceHarvestMapOutput
+	ToSourceHarvestMapOutputWithContext(context.Context) SourceHarvestMapOutput
+}
+
+type SourceHarvestMap map[string]SourceHarvestInput
+
+func (SourceHarvestMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHarvest)(nil)).Elem()
+}
+
+func (i SourceHarvestMap) ToSourceHarvestMapOutput() SourceHarvestMapOutput {
+	return i.ToSourceHarvestMapOutputWithContext(context.Background())
+}
+
+func (i SourceHarvestMap) ToSourceHarvestMapOutputWithContext(ctx context.Context) SourceHarvestMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceHarvestMapOutput)
+}
+
 type SourceHarvestOutput struct{ *pulumi.OutputState }
 
 func (SourceHarvestOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceHarvestOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceHarvest) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceHarvestArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceHarvestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceHarvest)(nil)).Elem()
+}
+
+func (o SourceHarvestArrayOutput) ToSourceHarvestArrayOutput() SourceHarvestArrayOutput {
+	return o
+}
+
+func (o SourceHarvestArrayOutput) ToSourceHarvestArrayOutputWithContext(ctx context.Context) SourceHarvestArrayOutput {
+	return o
+}
+
+func (o SourceHarvestArrayOutput) Index(i pulumi.IntInput) SourceHarvestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceHarvest {
+		return vs[0].([]*SourceHarvest)[vs[1].(int)]
+	}).(SourceHarvestOutput)
+}
+
+type SourceHarvestMapOutput struct{ *pulumi.OutputState }
+
+func (SourceHarvestMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceHarvest)(nil)).Elem()
+}
+
+func (o SourceHarvestMapOutput) ToSourceHarvestMapOutput() SourceHarvestMapOutput {
+	return o
+}
+
+func (o SourceHarvestMapOutput) ToSourceHarvestMapOutputWithContext(ctx context.Context) SourceHarvestMapOutput {
+	return o
+}
+
+func (o SourceHarvestMapOutput) MapIndex(k pulumi.StringInput) SourceHarvestOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceHarvest {
+		return vs[0].(map[string]*SourceHarvest)[vs[1].(string)]
+	}).(SourceHarvestOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceHarvestInput)(nil)).Elem(), &SourceHarvest{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHarvestArrayInput)(nil)).Elem(), SourceHarvestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceHarvestMapInput)(nil)).Elem(), SourceHarvestMap{})
 	pulumi.RegisterOutputType(SourceHarvestOutput{})
+	pulumi.RegisterOutputType(SourceHarvestArrayOutput{})
+	pulumi.RegisterOutputType(SourceHarvestMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceMetabase Resource
@@ -127,6 +127,56 @@ func (i *SourceMetabase) ToSourceMetabaseOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceMetabaseOutput)
 }
 
+// SourceMetabaseArrayInput is an input type that accepts SourceMetabaseArray and SourceMetabaseArrayOutput values.
+// You can construct a concrete instance of `SourceMetabaseArrayInput` via:
+//
+//	SourceMetabaseArray{ SourceMetabaseArgs{...} }
+type SourceMetabaseArrayInput interface {
+	pulumi.Input
+
+	ToSourceMetabaseArrayOutput() SourceMetabaseArrayOutput
+	ToSourceMetabaseArrayOutputWithContext(context.Context) SourceMetabaseArrayOutput
+}
+
+type SourceMetabaseArray []SourceMetabaseInput
+
+func (SourceMetabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMetabase)(nil)).Elem()
+}
+
+func (i SourceMetabaseArray) ToSourceMetabaseArrayOutput() SourceMetabaseArrayOutput {
+	return i.ToSourceMetabaseArrayOutputWithContext(context.Background())
+}
+
+func (i SourceMetabaseArray) ToSourceMetabaseArrayOutputWithContext(ctx context.Context) SourceMetabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMetabaseArrayOutput)
+}
+
+// SourceMetabaseMapInput is an input type that accepts SourceMetabaseMap and SourceMetabaseMapOutput values.
+// You can construct a concrete instance of `SourceMetabaseMapInput` via:
+//
+//	SourceMetabaseMap{ "key": SourceMetabaseArgs{...} }
+type SourceMetabaseMapInput interface {
+	pulumi.Input
+
+	ToSourceMetabaseMapOutput() SourceMetabaseMapOutput
+	ToSourceMetabaseMapOutputWithContext(context.Context) SourceMetabaseMapOutput
+}
+
+type SourceMetabaseMap map[string]SourceMetabaseInput
+
+func (SourceMetabaseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMetabase)(nil)).Elem()
+}
+
+func (i SourceMetabaseMap) ToSourceMetabaseMapOutput() SourceMetabaseMapOutput {
+	return i.ToSourceMetabaseMapOutputWithContext(context.Background())
+}
+
+func (i SourceMetabaseMap) ToSourceMetabaseMapOutputWithContext(ctx context.Context) SourceMetabaseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceMetabaseMapOutput)
+}
+
 type SourceMetabaseOutput struct{ *pulumi.OutputState }
 
 func (SourceMetabaseOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceMetabaseOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceMetabase) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceMetabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceMetabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceMetabase)(nil)).Elem()
+}
+
+func (o SourceMetabaseArrayOutput) ToSourceMetabaseArrayOutput() SourceMetabaseArrayOutput {
+	return o
+}
+
+func (o SourceMetabaseArrayOutput) ToSourceMetabaseArrayOutputWithContext(ctx context.Context) SourceMetabaseArrayOutput {
+	return o
+}
+
+func (o SourceMetabaseArrayOutput) Index(i pulumi.IntInput) SourceMetabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceMetabase {
+		return vs[0].([]*SourceMetabase)[vs[1].(int)]
+	}).(SourceMetabaseOutput)
+}
+
+type SourceMetabaseMapOutput struct{ *pulumi.OutputState }
+
+func (SourceMetabaseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceMetabase)(nil)).Elem()
+}
+
+func (o SourceMetabaseMapOutput) ToSourceMetabaseMapOutput() SourceMetabaseMapOutput {
+	return o
+}
+
+func (o SourceMetabaseMapOutput) ToSourceMetabaseMapOutputWithContext(ctx context.Context) SourceMetabaseMapOutput {
+	return o
+}
+
+func (o SourceMetabaseMapOutput) MapIndex(k pulumi.StringInput) SourceMetabaseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceMetabase {
+		return vs[0].(map[string]*SourceMetabase)[vs[1].(string)]
+	}).(SourceMetabaseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceMetabaseInput)(nil)).Elem(), &SourceMetabase{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMetabaseArrayInput)(nil)).Elem(), SourceMetabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceMetabaseMapInput)(nil)).Elem(), SourceMetabaseMap{})
 	pulumi.RegisterOutputType(SourceMetabaseOutput{})
+	pulumi.RegisterOutputType(SourceMetabaseArrayOutput{})
+	pulumi.RegisterOutputType(SourceMetabaseMapOutput{})
 }

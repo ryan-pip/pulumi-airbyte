@@ -17,6 +17,8 @@ package airbyte
 import (
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
+	"fmt"
+	"path/filepath"
 	"unicode"
 
 	// "github.com/hashicorp/terraform-plugin-framework/provider"
@@ -24,6 +26,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
+	"github.com/ryan-pip/pulumi-airbyte/provider/pkg/version"
 	"github.com/ryan-pip/terraform-provider-airbyte/shim"
 )
 
@@ -596,6 +599,38 @@ func Provider() tfbridge.ProviderInfo {
 			"airbyte_source_zoho_crm":                       {Tok: airbyteDataSource(airbyteMod, "getSourceZohoCrm")},
 			"airbyte_source_zoom":                           {Tok: airbyteDataSource(airbyteMod, "getSourceZoom")},
 			"airbyte_source_zuora":                          {Tok: airbyteDataSource(airbyteMod, "getSourceZuora")},
+		},
+		JavaScript: &tfbridge.JavaScriptInfo{
+			// List any npm dependencies and their versions
+			Dependencies: map[string]string{
+				"@pulumi/pulumi": "^3.0.0",
+			},
+			DevDependencies: map[string]string{
+				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
+				"@types/mime": "^2.0.0",
+			},
+		},
+		Python: &tfbridge.PythonInfo{
+			Requires: map[string]string{
+				"pulumi": ">=3.0.0,<4.0.0",
+			},
+		},
+		Golang: &tfbridge.GolangInfo{
+			ImportBasePath: filepath.Join(
+				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", airbytePkg),
+				tfbridge.GetModuleMajorVersion(version.Version),
+				"go",
+				airbytePkg,
+			),
+			GenerateResourceContainerTypes: true,
+		},
+		CSharp: &tfbridge.CSharpInfo{
+			PackageReferences: map[string]string{
+				"Pulumi": "3.*",
+			},
+			Namespaces: map[string]string{
+				"airbyte": "Airbyte",
+			},
 		},
 	}
 	return info

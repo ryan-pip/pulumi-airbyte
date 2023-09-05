@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTypeform Resource
@@ -127,6 +127,56 @@ func (i *SourceTypeform) ToSourceTypeformOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTypeformOutput)
 }
 
+// SourceTypeformArrayInput is an input type that accepts SourceTypeformArray and SourceTypeformArrayOutput values.
+// You can construct a concrete instance of `SourceTypeformArrayInput` via:
+//
+//	SourceTypeformArray{ SourceTypeformArgs{...} }
+type SourceTypeformArrayInput interface {
+	pulumi.Input
+
+	ToSourceTypeformArrayOutput() SourceTypeformArrayOutput
+	ToSourceTypeformArrayOutputWithContext(context.Context) SourceTypeformArrayOutput
+}
+
+type SourceTypeformArray []SourceTypeformInput
+
+func (SourceTypeformArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTypeform)(nil)).Elem()
+}
+
+func (i SourceTypeformArray) ToSourceTypeformArrayOutput() SourceTypeformArrayOutput {
+	return i.ToSourceTypeformArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTypeformArray) ToSourceTypeformArrayOutputWithContext(ctx context.Context) SourceTypeformArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTypeformArrayOutput)
+}
+
+// SourceTypeformMapInput is an input type that accepts SourceTypeformMap and SourceTypeformMapOutput values.
+// You can construct a concrete instance of `SourceTypeformMapInput` via:
+//
+//	SourceTypeformMap{ "key": SourceTypeformArgs{...} }
+type SourceTypeformMapInput interface {
+	pulumi.Input
+
+	ToSourceTypeformMapOutput() SourceTypeformMapOutput
+	ToSourceTypeformMapOutputWithContext(context.Context) SourceTypeformMapOutput
+}
+
+type SourceTypeformMap map[string]SourceTypeformInput
+
+func (SourceTypeformMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTypeform)(nil)).Elem()
+}
+
+func (i SourceTypeformMap) ToSourceTypeformMapOutput() SourceTypeformMapOutput {
+	return i.ToSourceTypeformMapOutputWithContext(context.Background())
+}
+
+func (i SourceTypeformMap) ToSourceTypeformMapOutputWithContext(ctx context.Context) SourceTypeformMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTypeformMapOutput)
+}
+
 type SourceTypeformOutput struct{ *pulumi.OutputState }
 
 func (SourceTypeformOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTypeformOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTypeform) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTypeformArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTypeformArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTypeform)(nil)).Elem()
+}
+
+func (o SourceTypeformArrayOutput) ToSourceTypeformArrayOutput() SourceTypeformArrayOutput {
+	return o
+}
+
+func (o SourceTypeformArrayOutput) ToSourceTypeformArrayOutputWithContext(ctx context.Context) SourceTypeformArrayOutput {
+	return o
+}
+
+func (o SourceTypeformArrayOutput) Index(i pulumi.IntInput) SourceTypeformOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTypeform {
+		return vs[0].([]*SourceTypeform)[vs[1].(int)]
+	}).(SourceTypeformOutput)
+}
+
+type SourceTypeformMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTypeformMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTypeform)(nil)).Elem()
+}
+
+func (o SourceTypeformMapOutput) ToSourceTypeformMapOutput() SourceTypeformMapOutput {
+	return o
+}
+
+func (o SourceTypeformMapOutput) ToSourceTypeformMapOutputWithContext(ctx context.Context) SourceTypeformMapOutput {
+	return o
+}
+
+func (o SourceTypeformMapOutput) MapIndex(k pulumi.StringInput) SourceTypeformOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTypeform {
+		return vs[0].(map[string]*SourceTypeform)[vs[1].(string)]
+	}).(SourceTypeformOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTypeformInput)(nil)).Elem(), &SourceTypeform{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTypeformArrayInput)(nil)).Elem(), SourceTypeformArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTypeformMapInput)(nil)).Elem(), SourceTypeformMap{})
 	pulumi.RegisterOutputType(SourceTypeformOutput{})
+	pulumi.RegisterOutputType(SourceTypeformArrayOutput{})
+	pulumi.RegisterOutputType(SourceTypeformMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceRss Resource
@@ -127,6 +127,56 @@ func (i *SourceRss) ToSourceRssOutputWithContext(ctx context.Context) SourceRssO
 	return pulumi.ToOutputWithContext(ctx, i).(SourceRssOutput)
 }
 
+// SourceRssArrayInput is an input type that accepts SourceRssArray and SourceRssArrayOutput values.
+// You can construct a concrete instance of `SourceRssArrayInput` via:
+//
+//	SourceRssArray{ SourceRssArgs{...} }
+type SourceRssArrayInput interface {
+	pulumi.Input
+
+	ToSourceRssArrayOutput() SourceRssArrayOutput
+	ToSourceRssArrayOutputWithContext(context.Context) SourceRssArrayOutput
+}
+
+type SourceRssArray []SourceRssInput
+
+func (SourceRssArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRss)(nil)).Elem()
+}
+
+func (i SourceRssArray) ToSourceRssArrayOutput() SourceRssArrayOutput {
+	return i.ToSourceRssArrayOutputWithContext(context.Background())
+}
+
+func (i SourceRssArray) ToSourceRssArrayOutputWithContext(ctx context.Context) SourceRssArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRssArrayOutput)
+}
+
+// SourceRssMapInput is an input type that accepts SourceRssMap and SourceRssMapOutput values.
+// You can construct a concrete instance of `SourceRssMapInput` via:
+//
+//	SourceRssMap{ "key": SourceRssArgs{...} }
+type SourceRssMapInput interface {
+	pulumi.Input
+
+	ToSourceRssMapOutput() SourceRssMapOutput
+	ToSourceRssMapOutputWithContext(context.Context) SourceRssMapOutput
+}
+
+type SourceRssMap map[string]SourceRssInput
+
+func (SourceRssMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRss)(nil)).Elem()
+}
+
+func (i SourceRssMap) ToSourceRssMapOutput() SourceRssMapOutput {
+	return i.ToSourceRssMapOutputWithContext(context.Background())
+}
+
+func (i SourceRssMap) ToSourceRssMapOutputWithContext(ctx context.Context) SourceRssMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceRssMapOutput)
+}
+
 type SourceRssOutput struct{ *pulumi.OutputState }
 
 func (SourceRssOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceRssOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceRss) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceRssArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceRssArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceRss)(nil)).Elem()
+}
+
+func (o SourceRssArrayOutput) ToSourceRssArrayOutput() SourceRssArrayOutput {
+	return o
+}
+
+func (o SourceRssArrayOutput) ToSourceRssArrayOutputWithContext(ctx context.Context) SourceRssArrayOutput {
+	return o
+}
+
+func (o SourceRssArrayOutput) Index(i pulumi.IntInput) SourceRssOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceRss {
+		return vs[0].([]*SourceRss)[vs[1].(int)]
+	}).(SourceRssOutput)
+}
+
+type SourceRssMapOutput struct{ *pulumi.OutputState }
+
+func (SourceRssMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceRss)(nil)).Elem()
+}
+
+func (o SourceRssMapOutput) ToSourceRssMapOutput() SourceRssMapOutput {
+	return o
+}
+
+func (o SourceRssMapOutput) ToSourceRssMapOutputWithContext(ctx context.Context) SourceRssMapOutput {
+	return o
+}
+
+func (o SourceRssMapOutput) MapIndex(k pulumi.StringInput) SourceRssOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceRss {
+		return vs[0].(map[string]*SourceRss)[vs[1].(string)]
+	}).(SourceRssOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceRssInput)(nil)).Elem(), &SourceRss{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRssArrayInput)(nil)).Elem(), SourceRssArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceRssMapInput)(nil)).Elem(), SourceRssMap{})
 	pulumi.RegisterOutputType(SourceRssOutput{})
+	pulumi.RegisterOutputType(SourceRssArrayOutput{})
+	pulumi.RegisterOutputType(SourceRssMapOutput{})
 }

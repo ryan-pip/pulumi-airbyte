@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFaker Resource
@@ -127,6 +127,56 @@ func (i *SourceFaker) ToSourceFakerOutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFakerOutput)
 }
 
+// SourceFakerArrayInput is an input type that accepts SourceFakerArray and SourceFakerArrayOutput values.
+// You can construct a concrete instance of `SourceFakerArrayInput` via:
+//
+//	SourceFakerArray{ SourceFakerArgs{...} }
+type SourceFakerArrayInput interface {
+	pulumi.Input
+
+	ToSourceFakerArrayOutput() SourceFakerArrayOutput
+	ToSourceFakerArrayOutputWithContext(context.Context) SourceFakerArrayOutput
+}
+
+type SourceFakerArray []SourceFakerInput
+
+func (SourceFakerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFaker)(nil)).Elem()
+}
+
+func (i SourceFakerArray) ToSourceFakerArrayOutput() SourceFakerArrayOutput {
+	return i.ToSourceFakerArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFakerArray) ToSourceFakerArrayOutputWithContext(ctx context.Context) SourceFakerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFakerArrayOutput)
+}
+
+// SourceFakerMapInput is an input type that accepts SourceFakerMap and SourceFakerMapOutput values.
+// You can construct a concrete instance of `SourceFakerMapInput` via:
+//
+//	SourceFakerMap{ "key": SourceFakerArgs{...} }
+type SourceFakerMapInput interface {
+	pulumi.Input
+
+	ToSourceFakerMapOutput() SourceFakerMapOutput
+	ToSourceFakerMapOutputWithContext(context.Context) SourceFakerMapOutput
+}
+
+type SourceFakerMap map[string]SourceFakerInput
+
+func (SourceFakerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFaker)(nil)).Elem()
+}
+
+func (i SourceFakerMap) ToSourceFakerMapOutput() SourceFakerMapOutput {
+	return i.ToSourceFakerMapOutputWithContext(context.Background())
+}
+
+func (i SourceFakerMap) ToSourceFakerMapOutputWithContext(ctx context.Context) SourceFakerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFakerMapOutput)
+}
+
 type SourceFakerOutput struct{ *pulumi.OutputState }
 
 func (SourceFakerOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFakerOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFaker) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFakerArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFakerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFaker)(nil)).Elem()
+}
+
+func (o SourceFakerArrayOutput) ToSourceFakerArrayOutput() SourceFakerArrayOutput {
+	return o
+}
+
+func (o SourceFakerArrayOutput) ToSourceFakerArrayOutputWithContext(ctx context.Context) SourceFakerArrayOutput {
+	return o
+}
+
+func (o SourceFakerArrayOutput) Index(i pulumi.IntInput) SourceFakerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFaker {
+		return vs[0].([]*SourceFaker)[vs[1].(int)]
+	}).(SourceFakerOutput)
+}
+
+type SourceFakerMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFakerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFaker)(nil)).Elem()
+}
+
+func (o SourceFakerMapOutput) ToSourceFakerMapOutput() SourceFakerMapOutput {
+	return o
+}
+
+func (o SourceFakerMapOutput) ToSourceFakerMapOutputWithContext(ctx context.Context) SourceFakerMapOutput {
+	return o
+}
+
+func (o SourceFakerMapOutput) MapIndex(k pulumi.StringInput) SourceFakerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFaker {
+		return vs[0].(map[string]*SourceFaker)[vs[1].(string)]
+	}).(SourceFakerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFakerInput)(nil)).Elem(), &SourceFaker{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFakerArrayInput)(nil)).Elem(), SourceFakerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFakerMapInput)(nil)).Elem(), SourceFakerMap{})
 	pulumi.RegisterOutputType(SourceFakerOutput{})
+	pulumi.RegisterOutputType(SourceFakerArrayOutput{})
+	pulumi.RegisterOutputType(SourceFakerMapOutput{})
 }

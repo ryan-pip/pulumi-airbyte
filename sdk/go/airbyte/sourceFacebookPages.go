@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFacebookPages Resource
@@ -127,6 +127,56 @@ func (i *SourceFacebookPages) ToSourceFacebookPagesOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookPagesOutput)
 }
 
+// SourceFacebookPagesArrayInput is an input type that accepts SourceFacebookPagesArray and SourceFacebookPagesArrayOutput values.
+// You can construct a concrete instance of `SourceFacebookPagesArrayInput` via:
+//
+//	SourceFacebookPagesArray{ SourceFacebookPagesArgs{...} }
+type SourceFacebookPagesArrayInput interface {
+	pulumi.Input
+
+	ToSourceFacebookPagesArrayOutput() SourceFacebookPagesArrayOutput
+	ToSourceFacebookPagesArrayOutputWithContext(context.Context) SourceFacebookPagesArrayOutput
+}
+
+type SourceFacebookPagesArray []SourceFacebookPagesInput
+
+func (SourceFacebookPagesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFacebookPages)(nil)).Elem()
+}
+
+func (i SourceFacebookPagesArray) ToSourceFacebookPagesArrayOutput() SourceFacebookPagesArrayOutput {
+	return i.ToSourceFacebookPagesArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFacebookPagesArray) ToSourceFacebookPagesArrayOutputWithContext(ctx context.Context) SourceFacebookPagesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookPagesArrayOutput)
+}
+
+// SourceFacebookPagesMapInput is an input type that accepts SourceFacebookPagesMap and SourceFacebookPagesMapOutput values.
+// You can construct a concrete instance of `SourceFacebookPagesMapInput` via:
+//
+//	SourceFacebookPagesMap{ "key": SourceFacebookPagesArgs{...} }
+type SourceFacebookPagesMapInput interface {
+	pulumi.Input
+
+	ToSourceFacebookPagesMapOutput() SourceFacebookPagesMapOutput
+	ToSourceFacebookPagesMapOutputWithContext(context.Context) SourceFacebookPagesMapOutput
+}
+
+type SourceFacebookPagesMap map[string]SourceFacebookPagesInput
+
+func (SourceFacebookPagesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFacebookPages)(nil)).Elem()
+}
+
+func (i SourceFacebookPagesMap) ToSourceFacebookPagesMapOutput() SourceFacebookPagesMapOutput {
+	return i.ToSourceFacebookPagesMapOutputWithContext(context.Background())
+}
+
+func (i SourceFacebookPagesMap) ToSourceFacebookPagesMapOutputWithContext(ctx context.Context) SourceFacebookPagesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFacebookPagesMapOutput)
+}
+
 type SourceFacebookPagesOutput struct{ *pulumi.OutputState }
 
 func (SourceFacebookPagesOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFacebookPagesOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFacebookPages) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFacebookPagesArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFacebookPagesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFacebookPages)(nil)).Elem()
+}
+
+func (o SourceFacebookPagesArrayOutput) ToSourceFacebookPagesArrayOutput() SourceFacebookPagesArrayOutput {
+	return o
+}
+
+func (o SourceFacebookPagesArrayOutput) ToSourceFacebookPagesArrayOutputWithContext(ctx context.Context) SourceFacebookPagesArrayOutput {
+	return o
+}
+
+func (o SourceFacebookPagesArrayOutput) Index(i pulumi.IntInput) SourceFacebookPagesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFacebookPages {
+		return vs[0].([]*SourceFacebookPages)[vs[1].(int)]
+	}).(SourceFacebookPagesOutput)
+}
+
+type SourceFacebookPagesMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFacebookPagesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFacebookPages)(nil)).Elem()
+}
+
+func (o SourceFacebookPagesMapOutput) ToSourceFacebookPagesMapOutput() SourceFacebookPagesMapOutput {
+	return o
+}
+
+func (o SourceFacebookPagesMapOutput) ToSourceFacebookPagesMapOutputWithContext(ctx context.Context) SourceFacebookPagesMapOutput {
+	return o
+}
+
+func (o SourceFacebookPagesMapOutput) MapIndex(k pulumi.StringInput) SourceFacebookPagesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFacebookPages {
+		return vs[0].(map[string]*SourceFacebookPages)[vs[1].(string)]
+	}).(SourceFacebookPagesOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookPagesInput)(nil)).Elem(), &SourceFacebookPages{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookPagesArrayInput)(nil)).Elem(), SourceFacebookPagesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFacebookPagesMapInput)(nil)).Elem(), SourceFacebookPagesMap{})
 	pulumi.RegisterOutputType(SourceFacebookPagesOutput{})
+	pulumi.RegisterOutputType(SourceFacebookPagesArrayOutput{})
+	pulumi.RegisterOutputType(SourceFacebookPagesMapOutput{})
 }

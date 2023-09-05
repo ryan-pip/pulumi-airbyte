@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceChartmogul Resource
@@ -127,6 +127,56 @@ func (i *SourceChartmogul) ToSourceChartmogulOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceChartmogulOutput)
 }
 
+// SourceChartmogulArrayInput is an input type that accepts SourceChartmogulArray and SourceChartmogulArrayOutput values.
+// You can construct a concrete instance of `SourceChartmogulArrayInput` via:
+//
+//	SourceChartmogulArray{ SourceChartmogulArgs{...} }
+type SourceChartmogulArrayInput interface {
+	pulumi.Input
+
+	ToSourceChartmogulArrayOutput() SourceChartmogulArrayOutput
+	ToSourceChartmogulArrayOutputWithContext(context.Context) SourceChartmogulArrayOutput
+}
+
+type SourceChartmogulArray []SourceChartmogulInput
+
+func (SourceChartmogulArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceChartmogul)(nil)).Elem()
+}
+
+func (i SourceChartmogulArray) ToSourceChartmogulArrayOutput() SourceChartmogulArrayOutput {
+	return i.ToSourceChartmogulArrayOutputWithContext(context.Background())
+}
+
+func (i SourceChartmogulArray) ToSourceChartmogulArrayOutputWithContext(ctx context.Context) SourceChartmogulArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceChartmogulArrayOutput)
+}
+
+// SourceChartmogulMapInput is an input type that accepts SourceChartmogulMap and SourceChartmogulMapOutput values.
+// You can construct a concrete instance of `SourceChartmogulMapInput` via:
+//
+//	SourceChartmogulMap{ "key": SourceChartmogulArgs{...} }
+type SourceChartmogulMapInput interface {
+	pulumi.Input
+
+	ToSourceChartmogulMapOutput() SourceChartmogulMapOutput
+	ToSourceChartmogulMapOutputWithContext(context.Context) SourceChartmogulMapOutput
+}
+
+type SourceChartmogulMap map[string]SourceChartmogulInput
+
+func (SourceChartmogulMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceChartmogul)(nil)).Elem()
+}
+
+func (i SourceChartmogulMap) ToSourceChartmogulMapOutput() SourceChartmogulMapOutput {
+	return i.ToSourceChartmogulMapOutputWithContext(context.Background())
+}
+
+func (i SourceChartmogulMap) ToSourceChartmogulMapOutputWithContext(ctx context.Context) SourceChartmogulMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceChartmogulMapOutput)
+}
+
 type SourceChartmogulOutput struct{ *pulumi.OutputState }
 
 func (SourceChartmogulOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceChartmogulOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceChartmogul) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceChartmogulArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceChartmogulArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceChartmogul)(nil)).Elem()
+}
+
+func (o SourceChartmogulArrayOutput) ToSourceChartmogulArrayOutput() SourceChartmogulArrayOutput {
+	return o
+}
+
+func (o SourceChartmogulArrayOutput) ToSourceChartmogulArrayOutputWithContext(ctx context.Context) SourceChartmogulArrayOutput {
+	return o
+}
+
+func (o SourceChartmogulArrayOutput) Index(i pulumi.IntInput) SourceChartmogulOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceChartmogul {
+		return vs[0].([]*SourceChartmogul)[vs[1].(int)]
+	}).(SourceChartmogulOutput)
+}
+
+type SourceChartmogulMapOutput struct{ *pulumi.OutputState }
+
+func (SourceChartmogulMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceChartmogul)(nil)).Elem()
+}
+
+func (o SourceChartmogulMapOutput) ToSourceChartmogulMapOutput() SourceChartmogulMapOutput {
+	return o
+}
+
+func (o SourceChartmogulMapOutput) ToSourceChartmogulMapOutputWithContext(ctx context.Context) SourceChartmogulMapOutput {
+	return o
+}
+
+func (o SourceChartmogulMapOutput) MapIndex(k pulumi.StringInput) SourceChartmogulOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceChartmogul {
+		return vs[0].(map[string]*SourceChartmogul)[vs[1].(string)]
+	}).(SourceChartmogulOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceChartmogulInput)(nil)).Elem(), &SourceChartmogul{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceChartmogulArrayInput)(nil)).Elem(), SourceChartmogulArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceChartmogulMapInput)(nil)).Elem(), SourceChartmogulMap{})
 	pulumi.RegisterOutputType(SourceChartmogulOutput{})
+	pulumi.RegisterOutputType(SourceChartmogulArrayOutput{})
+	pulumi.RegisterOutputType(SourceChartmogulMapOutput{})
 }

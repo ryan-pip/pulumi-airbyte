@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceExchangeRates Resource
@@ -127,6 +127,56 @@ func (i *SourceExchangeRates) ToSourceExchangeRatesOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceExchangeRatesOutput)
 }
 
+// SourceExchangeRatesArrayInput is an input type that accepts SourceExchangeRatesArray and SourceExchangeRatesArrayOutput values.
+// You can construct a concrete instance of `SourceExchangeRatesArrayInput` via:
+//
+//	SourceExchangeRatesArray{ SourceExchangeRatesArgs{...} }
+type SourceExchangeRatesArrayInput interface {
+	pulumi.Input
+
+	ToSourceExchangeRatesArrayOutput() SourceExchangeRatesArrayOutput
+	ToSourceExchangeRatesArrayOutputWithContext(context.Context) SourceExchangeRatesArrayOutput
+}
+
+type SourceExchangeRatesArray []SourceExchangeRatesInput
+
+func (SourceExchangeRatesArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceExchangeRates)(nil)).Elem()
+}
+
+func (i SourceExchangeRatesArray) ToSourceExchangeRatesArrayOutput() SourceExchangeRatesArrayOutput {
+	return i.ToSourceExchangeRatesArrayOutputWithContext(context.Background())
+}
+
+func (i SourceExchangeRatesArray) ToSourceExchangeRatesArrayOutputWithContext(ctx context.Context) SourceExchangeRatesArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceExchangeRatesArrayOutput)
+}
+
+// SourceExchangeRatesMapInput is an input type that accepts SourceExchangeRatesMap and SourceExchangeRatesMapOutput values.
+// You can construct a concrete instance of `SourceExchangeRatesMapInput` via:
+//
+//	SourceExchangeRatesMap{ "key": SourceExchangeRatesArgs{...} }
+type SourceExchangeRatesMapInput interface {
+	pulumi.Input
+
+	ToSourceExchangeRatesMapOutput() SourceExchangeRatesMapOutput
+	ToSourceExchangeRatesMapOutputWithContext(context.Context) SourceExchangeRatesMapOutput
+}
+
+type SourceExchangeRatesMap map[string]SourceExchangeRatesInput
+
+func (SourceExchangeRatesMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceExchangeRates)(nil)).Elem()
+}
+
+func (i SourceExchangeRatesMap) ToSourceExchangeRatesMapOutput() SourceExchangeRatesMapOutput {
+	return i.ToSourceExchangeRatesMapOutputWithContext(context.Background())
+}
+
+func (i SourceExchangeRatesMap) ToSourceExchangeRatesMapOutputWithContext(ctx context.Context) SourceExchangeRatesMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceExchangeRatesMapOutput)
+}
+
 type SourceExchangeRatesOutput struct{ *pulumi.OutputState }
 
 func (SourceExchangeRatesOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceExchangeRatesOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceExchangeRates) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceExchangeRatesArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceExchangeRatesArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceExchangeRates)(nil)).Elem()
+}
+
+func (o SourceExchangeRatesArrayOutput) ToSourceExchangeRatesArrayOutput() SourceExchangeRatesArrayOutput {
+	return o
+}
+
+func (o SourceExchangeRatesArrayOutput) ToSourceExchangeRatesArrayOutputWithContext(ctx context.Context) SourceExchangeRatesArrayOutput {
+	return o
+}
+
+func (o SourceExchangeRatesArrayOutput) Index(i pulumi.IntInput) SourceExchangeRatesOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceExchangeRates {
+		return vs[0].([]*SourceExchangeRates)[vs[1].(int)]
+	}).(SourceExchangeRatesOutput)
+}
+
+type SourceExchangeRatesMapOutput struct{ *pulumi.OutputState }
+
+func (SourceExchangeRatesMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceExchangeRates)(nil)).Elem()
+}
+
+func (o SourceExchangeRatesMapOutput) ToSourceExchangeRatesMapOutput() SourceExchangeRatesMapOutput {
+	return o
+}
+
+func (o SourceExchangeRatesMapOutput) ToSourceExchangeRatesMapOutputWithContext(ctx context.Context) SourceExchangeRatesMapOutput {
+	return o
+}
+
+func (o SourceExchangeRatesMapOutput) MapIndex(k pulumi.StringInput) SourceExchangeRatesOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceExchangeRates {
+		return vs[0].(map[string]*SourceExchangeRates)[vs[1].(string)]
+	}).(SourceExchangeRatesOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceExchangeRatesInput)(nil)).Elem(), &SourceExchangeRates{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceExchangeRatesArrayInput)(nil)).Elem(), SourceExchangeRatesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceExchangeRatesMapInput)(nil)).Elem(), SourceExchangeRatesMap{})
 	pulumi.RegisterOutputType(SourceExchangeRatesOutput{})
+	pulumi.RegisterOutputType(SourceExchangeRatesArrayOutput{})
+	pulumi.RegisterOutputType(SourceExchangeRatesMapOutput{})
 }

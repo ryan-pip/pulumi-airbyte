@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZoom Resource
@@ -127,6 +127,56 @@ func (i *SourceZoom) ToSourceZoomOutputWithContext(ctx context.Context) SourceZo
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZoomOutput)
 }
 
+// SourceZoomArrayInput is an input type that accepts SourceZoomArray and SourceZoomArrayOutput values.
+// You can construct a concrete instance of `SourceZoomArrayInput` via:
+//
+//	SourceZoomArray{ SourceZoomArgs{...} }
+type SourceZoomArrayInput interface {
+	pulumi.Input
+
+	ToSourceZoomArrayOutput() SourceZoomArrayOutput
+	ToSourceZoomArrayOutputWithContext(context.Context) SourceZoomArrayOutput
+}
+
+type SourceZoomArray []SourceZoomInput
+
+func (SourceZoomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZoom)(nil)).Elem()
+}
+
+func (i SourceZoomArray) ToSourceZoomArrayOutput() SourceZoomArrayOutput {
+	return i.ToSourceZoomArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZoomArray) ToSourceZoomArrayOutputWithContext(ctx context.Context) SourceZoomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZoomArrayOutput)
+}
+
+// SourceZoomMapInput is an input type that accepts SourceZoomMap and SourceZoomMapOutput values.
+// You can construct a concrete instance of `SourceZoomMapInput` via:
+//
+//	SourceZoomMap{ "key": SourceZoomArgs{...} }
+type SourceZoomMapInput interface {
+	pulumi.Input
+
+	ToSourceZoomMapOutput() SourceZoomMapOutput
+	ToSourceZoomMapOutputWithContext(context.Context) SourceZoomMapOutput
+}
+
+type SourceZoomMap map[string]SourceZoomInput
+
+func (SourceZoomMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZoom)(nil)).Elem()
+}
+
+func (i SourceZoomMap) ToSourceZoomMapOutput() SourceZoomMapOutput {
+	return i.ToSourceZoomMapOutputWithContext(context.Background())
+}
+
+func (i SourceZoomMap) ToSourceZoomMapOutputWithContext(ctx context.Context) SourceZoomMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZoomMapOutput)
+}
+
 type SourceZoomOutput struct{ *pulumi.OutputState }
 
 func (SourceZoomOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZoomOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZoom) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZoomArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZoomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZoom)(nil)).Elem()
+}
+
+func (o SourceZoomArrayOutput) ToSourceZoomArrayOutput() SourceZoomArrayOutput {
+	return o
+}
+
+func (o SourceZoomArrayOutput) ToSourceZoomArrayOutputWithContext(ctx context.Context) SourceZoomArrayOutput {
+	return o
+}
+
+func (o SourceZoomArrayOutput) Index(i pulumi.IntInput) SourceZoomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZoom {
+		return vs[0].([]*SourceZoom)[vs[1].(int)]
+	}).(SourceZoomOutput)
+}
+
+type SourceZoomMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZoomMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZoom)(nil)).Elem()
+}
+
+func (o SourceZoomMapOutput) ToSourceZoomMapOutput() SourceZoomMapOutput {
+	return o
+}
+
+func (o SourceZoomMapOutput) ToSourceZoomMapOutputWithContext(ctx context.Context) SourceZoomMapOutput {
+	return o
+}
+
+func (o SourceZoomMapOutput) MapIndex(k pulumi.StringInput) SourceZoomOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZoom {
+		return vs[0].(map[string]*SourceZoom)[vs[1].(string)]
+	}).(SourceZoomOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZoomInput)(nil)).Elem(), &SourceZoom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZoomArrayInput)(nil)).Elem(), SourceZoomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZoomMapInput)(nil)).Elem(), SourceZoomMap{})
 	pulumi.RegisterOutputType(SourceZoomOutput{})
+	pulumi.RegisterOutputType(SourceZoomArrayOutput{})
+	pulumi.RegisterOutputType(SourceZoomMapOutput{})
 }

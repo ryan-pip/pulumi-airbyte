@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceUsCensus Resource
@@ -127,6 +127,56 @@ func (i *SourceUsCensus) ToSourceUsCensusOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceUsCensusOutput)
 }
 
+// SourceUsCensusArrayInput is an input type that accepts SourceUsCensusArray and SourceUsCensusArrayOutput values.
+// You can construct a concrete instance of `SourceUsCensusArrayInput` via:
+//
+//	SourceUsCensusArray{ SourceUsCensusArgs{...} }
+type SourceUsCensusArrayInput interface {
+	pulumi.Input
+
+	ToSourceUsCensusArrayOutput() SourceUsCensusArrayOutput
+	ToSourceUsCensusArrayOutputWithContext(context.Context) SourceUsCensusArrayOutput
+}
+
+type SourceUsCensusArray []SourceUsCensusInput
+
+func (SourceUsCensusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceUsCensus)(nil)).Elem()
+}
+
+func (i SourceUsCensusArray) ToSourceUsCensusArrayOutput() SourceUsCensusArrayOutput {
+	return i.ToSourceUsCensusArrayOutputWithContext(context.Background())
+}
+
+func (i SourceUsCensusArray) ToSourceUsCensusArrayOutputWithContext(ctx context.Context) SourceUsCensusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceUsCensusArrayOutput)
+}
+
+// SourceUsCensusMapInput is an input type that accepts SourceUsCensusMap and SourceUsCensusMapOutput values.
+// You can construct a concrete instance of `SourceUsCensusMapInput` via:
+//
+//	SourceUsCensusMap{ "key": SourceUsCensusArgs{...} }
+type SourceUsCensusMapInput interface {
+	pulumi.Input
+
+	ToSourceUsCensusMapOutput() SourceUsCensusMapOutput
+	ToSourceUsCensusMapOutputWithContext(context.Context) SourceUsCensusMapOutput
+}
+
+type SourceUsCensusMap map[string]SourceUsCensusInput
+
+func (SourceUsCensusMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceUsCensus)(nil)).Elem()
+}
+
+func (i SourceUsCensusMap) ToSourceUsCensusMapOutput() SourceUsCensusMapOutput {
+	return i.ToSourceUsCensusMapOutputWithContext(context.Background())
+}
+
+func (i SourceUsCensusMap) ToSourceUsCensusMapOutputWithContext(ctx context.Context) SourceUsCensusMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceUsCensusMapOutput)
+}
+
 type SourceUsCensusOutput struct{ *pulumi.OutputState }
 
 func (SourceUsCensusOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceUsCensusOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceUsCensus) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceUsCensusArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceUsCensusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceUsCensus)(nil)).Elem()
+}
+
+func (o SourceUsCensusArrayOutput) ToSourceUsCensusArrayOutput() SourceUsCensusArrayOutput {
+	return o
+}
+
+func (o SourceUsCensusArrayOutput) ToSourceUsCensusArrayOutputWithContext(ctx context.Context) SourceUsCensusArrayOutput {
+	return o
+}
+
+func (o SourceUsCensusArrayOutput) Index(i pulumi.IntInput) SourceUsCensusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceUsCensus {
+		return vs[0].([]*SourceUsCensus)[vs[1].(int)]
+	}).(SourceUsCensusOutput)
+}
+
+type SourceUsCensusMapOutput struct{ *pulumi.OutputState }
+
+func (SourceUsCensusMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceUsCensus)(nil)).Elem()
+}
+
+func (o SourceUsCensusMapOutput) ToSourceUsCensusMapOutput() SourceUsCensusMapOutput {
+	return o
+}
+
+func (o SourceUsCensusMapOutput) ToSourceUsCensusMapOutputWithContext(ctx context.Context) SourceUsCensusMapOutput {
+	return o
+}
+
+func (o SourceUsCensusMapOutput) MapIndex(k pulumi.StringInput) SourceUsCensusOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceUsCensus {
+		return vs[0].(map[string]*SourceUsCensus)[vs[1].(string)]
+	}).(SourceUsCensusOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceUsCensusInput)(nil)).Elem(), &SourceUsCensus{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceUsCensusArrayInput)(nil)).Elem(), SourceUsCensusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceUsCensusMapInput)(nil)).Elem(), SourceUsCensusMap{})
 	pulumi.RegisterOutputType(SourceUsCensusOutput{})
+	pulumi.RegisterOutputType(SourceUsCensusArrayOutput{})
+	pulumi.RegisterOutputType(SourceUsCensusMapOutput{})
 }

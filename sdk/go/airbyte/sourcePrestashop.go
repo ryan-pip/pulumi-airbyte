@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePrestashop Resource
@@ -127,6 +127,56 @@ func (i *SourcePrestashop) ToSourcePrestashopOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePrestashopOutput)
 }
 
+// SourcePrestashopArrayInput is an input type that accepts SourcePrestashopArray and SourcePrestashopArrayOutput values.
+// You can construct a concrete instance of `SourcePrestashopArrayInput` via:
+//
+//	SourcePrestashopArray{ SourcePrestashopArgs{...} }
+type SourcePrestashopArrayInput interface {
+	pulumi.Input
+
+	ToSourcePrestashopArrayOutput() SourcePrestashopArrayOutput
+	ToSourcePrestashopArrayOutputWithContext(context.Context) SourcePrestashopArrayOutput
+}
+
+type SourcePrestashopArray []SourcePrestashopInput
+
+func (SourcePrestashopArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePrestashop)(nil)).Elem()
+}
+
+func (i SourcePrestashopArray) ToSourcePrestashopArrayOutput() SourcePrestashopArrayOutput {
+	return i.ToSourcePrestashopArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePrestashopArray) ToSourcePrestashopArrayOutputWithContext(ctx context.Context) SourcePrestashopArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePrestashopArrayOutput)
+}
+
+// SourcePrestashopMapInput is an input type that accepts SourcePrestashopMap and SourcePrestashopMapOutput values.
+// You can construct a concrete instance of `SourcePrestashopMapInput` via:
+//
+//	SourcePrestashopMap{ "key": SourcePrestashopArgs{...} }
+type SourcePrestashopMapInput interface {
+	pulumi.Input
+
+	ToSourcePrestashopMapOutput() SourcePrestashopMapOutput
+	ToSourcePrestashopMapOutputWithContext(context.Context) SourcePrestashopMapOutput
+}
+
+type SourcePrestashopMap map[string]SourcePrestashopInput
+
+func (SourcePrestashopMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePrestashop)(nil)).Elem()
+}
+
+func (i SourcePrestashopMap) ToSourcePrestashopMapOutput() SourcePrestashopMapOutput {
+	return i.ToSourcePrestashopMapOutputWithContext(context.Background())
+}
+
+func (i SourcePrestashopMap) ToSourcePrestashopMapOutputWithContext(ctx context.Context) SourcePrestashopMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePrestashopMapOutput)
+}
+
 type SourcePrestashopOutput struct{ *pulumi.OutputState }
 
 func (SourcePrestashopOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePrestashopOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePrestashop) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePrestashopArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePrestashopArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePrestashop)(nil)).Elem()
+}
+
+func (o SourcePrestashopArrayOutput) ToSourcePrestashopArrayOutput() SourcePrestashopArrayOutput {
+	return o
+}
+
+func (o SourcePrestashopArrayOutput) ToSourcePrestashopArrayOutputWithContext(ctx context.Context) SourcePrestashopArrayOutput {
+	return o
+}
+
+func (o SourcePrestashopArrayOutput) Index(i pulumi.IntInput) SourcePrestashopOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePrestashop {
+		return vs[0].([]*SourcePrestashop)[vs[1].(int)]
+	}).(SourcePrestashopOutput)
+}
+
+type SourcePrestashopMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePrestashopMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePrestashop)(nil)).Elem()
+}
+
+func (o SourcePrestashopMapOutput) ToSourcePrestashopMapOutput() SourcePrestashopMapOutput {
+	return o
+}
+
+func (o SourcePrestashopMapOutput) ToSourcePrestashopMapOutputWithContext(ctx context.Context) SourcePrestashopMapOutput {
+	return o
+}
+
+func (o SourcePrestashopMapOutput) MapIndex(k pulumi.StringInput) SourcePrestashopOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePrestashop {
+		return vs[0].(map[string]*SourcePrestashop)[vs[1].(string)]
+	}).(SourcePrestashopOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePrestashopInput)(nil)).Elem(), &SourcePrestashop{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePrestashopArrayInput)(nil)).Elem(), SourcePrestashopArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePrestashopMapInput)(nil)).Elem(), SourcePrestashopMap{})
 	pulumi.RegisterOutputType(SourcePrestashopOutput{})
+	pulumi.RegisterOutputType(SourcePrestashopArrayOutput{})
+	pulumi.RegisterOutputType(SourcePrestashopMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSnapchatMarketing Resource
@@ -127,6 +127,56 @@ func (i *SourceSnapchatMarketing) ToSourceSnapchatMarketingOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSnapchatMarketingOutput)
 }
 
+// SourceSnapchatMarketingArrayInput is an input type that accepts SourceSnapchatMarketingArray and SourceSnapchatMarketingArrayOutput values.
+// You can construct a concrete instance of `SourceSnapchatMarketingArrayInput` via:
+//
+//	SourceSnapchatMarketingArray{ SourceSnapchatMarketingArgs{...} }
+type SourceSnapchatMarketingArrayInput interface {
+	pulumi.Input
+
+	ToSourceSnapchatMarketingArrayOutput() SourceSnapchatMarketingArrayOutput
+	ToSourceSnapchatMarketingArrayOutputWithContext(context.Context) SourceSnapchatMarketingArrayOutput
+}
+
+type SourceSnapchatMarketingArray []SourceSnapchatMarketingInput
+
+func (SourceSnapchatMarketingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSnapchatMarketing)(nil)).Elem()
+}
+
+func (i SourceSnapchatMarketingArray) ToSourceSnapchatMarketingArrayOutput() SourceSnapchatMarketingArrayOutput {
+	return i.ToSourceSnapchatMarketingArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSnapchatMarketingArray) ToSourceSnapchatMarketingArrayOutputWithContext(ctx context.Context) SourceSnapchatMarketingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSnapchatMarketingArrayOutput)
+}
+
+// SourceSnapchatMarketingMapInput is an input type that accepts SourceSnapchatMarketingMap and SourceSnapchatMarketingMapOutput values.
+// You can construct a concrete instance of `SourceSnapchatMarketingMapInput` via:
+//
+//	SourceSnapchatMarketingMap{ "key": SourceSnapchatMarketingArgs{...} }
+type SourceSnapchatMarketingMapInput interface {
+	pulumi.Input
+
+	ToSourceSnapchatMarketingMapOutput() SourceSnapchatMarketingMapOutput
+	ToSourceSnapchatMarketingMapOutputWithContext(context.Context) SourceSnapchatMarketingMapOutput
+}
+
+type SourceSnapchatMarketingMap map[string]SourceSnapchatMarketingInput
+
+func (SourceSnapchatMarketingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSnapchatMarketing)(nil)).Elem()
+}
+
+func (i SourceSnapchatMarketingMap) ToSourceSnapchatMarketingMapOutput() SourceSnapchatMarketingMapOutput {
+	return i.ToSourceSnapchatMarketingMapOutputWithContext(context.Background())
+}
+
+func (i SourceSnapchatMarketingMap) ToSourceSnapchatMarketingMapOutputWithContext(ctx context.Context) SourceSnapchatMarketingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSnapchatMarketingMapOutput)
+}
+
 type SourceSnapchatMarketingOutput struct{ *pulumi.OutputState }
 
 func (SourceSnapchatMarketingOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSnapchatMarketingOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSnapchatMarketing) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSnapchatMarketingArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSnapchatMarketingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSnapchatMarketing)(nil)).Elem()
+}
+
+func (o SourceSnapchatMarketingArrayOutput) ToSourceSnapchatMarketingArrayOutput() SourceSnapchatMarketingArrayOutput {
+	return o
+}
+
+func (o SourceSnapchatMarketingArrayOutput) ToSourceSnapchatMarketingArrayOutputWithContext(ctx context.Context) SourceSnapchatMarketingArrayOutput {
+	return o
+}
+
+func (o SourceSnapchatMarketingArrayOutput) Index(i pulumi.IntInput) SourceSnapchatMarketingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSnapchatMarketing {
+		return vs[0].([]*SourceSnapchatMarketing)[vs[1].(int)]
+	}).(SourceSnapchatMarketingOutput)
+}
+
+type SourceSnapchatMarketingMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSnapchatMarketingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSnapchatMarketing)(nil)).Elem()
+}
+
+func (o SourceSnapchatMarketingMapOutput) ToSourceSnapchatMarketingMapOutput() SourceSnapchatMarketingMapOutput {
+	return o
+}
+
+func (o SourceSnapchatMarketingMapOutput) ToSourceSnapchatMarketingMapOutputWithContext(ctx context.Context) SourceSnapchatMarketingMapOutput {
+	return o
+}
+
+func (o SourceSnapchatMarketingMapOutput) MapIndex(k pulumi.StringInput) SourceSnapchatMarketingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSnapchatMarketing {
+		return vs[0].(map[string]*SourceSnapchatMarketing)[vs[1].(string)]
+	}).(SourceSnapchatMarketingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnapchatMarketingInput)(nil)).Elem(), &SourceSnapchatMarketing{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnapchatMarketingArrayInput)(nil)).Elem(), SourceSnapchatMarketingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSnapchatMarketingMapInput)(nil)).Elem(), SourceSnapchatMarketingMap{})
 	pulumi.RegisterOutputType(SourceSnapchatMarketingOutput{})
+	pulumi.RegisterOutputType(SourceSnapchatMarketingArrayOutput{})
+	pulumi.RegisterOutputType(SourceSnapchatMarketingMapOutput{})
 }

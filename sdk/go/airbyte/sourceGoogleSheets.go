@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleSheets Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleSheets) ToSourceGoogleSheetsOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSheetsOutput)
 }
 
+// SourceGoogleSheetsArrayInput is an input type that accepts SourceGoogleSheetsArray and SourceGoogleSheetsArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleSheetsArrayInput` via:
+//
+//	SourceGoogleSheetsArray{ SourceGoogleSheetsArgs{...} }
+type SourceGoogleSheetsArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleSheetsArrayOutput() SourceGoogleSheetsArrayOutput
+	ToSourceGoogleSheetsArrayOutputWithContext(context.Context) SourceGoogleSheetsArrayOutput
+}
+
+type SourceGoogleSheetsArray []SourceGoogleSheetsInput
+
+func (SourceGoogleSheetsArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleSheets)(nil)).Elem()
+}
+
+func (i SourceGoogleSheetsArray) ToSourceGoogleSheetsArrayOutput() SourceGoogleSheetsArrayOutput {
+	return i.ToSourceGoogleSheetsArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleSheetsArray) ToSourceGoogleSheetsArrayOutputWithContext(ctx context.Context) SourceGoogleSheetsArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSheetsArrayOutput)
+}
+
+// SourceGoogleSheetsMapInput is an input type that accepts SourceGoogleSheetsMap and SourceGoogleSheetsMapOutput values.
+// You can construct a concrete instance of `SourceGoogleSheetsMapInput` via:
+//
+//	SourceGoogleSheetsMap{ "key": SourceGoogleSheetsArgs{...} }
+type SourceGoogleSheetsMapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleSheetsMapOutput() SourceGoogleSheetsMapOutput
+	ToSourceGoogleSheetsMapOutputWithContext(context.Context) SourceGoogleSheetsMapOutput
+}
+
+type SourceGoogleSheetsMap map[string]SourceGoogleSheetsInput
+
+func (SourceGoogleSheetsMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleSheets)(nil)).Elem()
+}
+
+func (i SourceGoogleSheetsMap) ToSourceGoogleSheetsMapOutput() SourceGoogleSheetsMapOutput {
+	return i.ToSourceGoogleSheetsMapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleSheetsMap) ToSourceGoogleSheetsMapOutputWithContext(ctx context.Context) SourceGoogleSheetsMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleSheetsMapOutput)
+}
+
 type SourceGoogleSheetsOutput struct{ *pulumi.OutputState }
 
 func (SourceGoogleSheetsOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGoogleSheetsOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleSheets) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleSheetsArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleSheetsArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleSheets)(nil)).Elem()
+}
+
+func (o SourceGoogleSheetsArrayOutput) ToSourceGoogleSheetsArrayOutput() SourceGoogleSheetsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleSheetsArrayOutput) ToSourceGoogleSheetsArrayOutputWithContext(ctx context.Context) SourceGoogleSheetsArrayOutput {
+	return o
+}
+
+func (o SourceGoogleSheetsArrayOutput) Index(i pulumi.IntInput) SourceGoogleSheetsOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleSheets {
+		return vs[0].([]*SourceGoogleSheets)[vs[1].(int)]
+	}).(SourceGoogleSheetsOutput)
+}
+
+type SourceGoogleSheetsMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleSheetsMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleSheets)(nil)).Elem()
+}
+
+func (o SourceGoogleSheetsMapOutput) ToSourceGoogleSheetsMapOutput() SourceGoogleSheetsMapOutput {
+	return o
+}
+
+func (o SourceGoogleSheetsMapOutput) ToSourceGoogleSheetsMapOutputWithContext(ctx context.Context) SourceGoogleSheetsMapOutput {
+	return o
+}
+
+func (o SourceGoogleSheetsMapOutput) MapIndex(k pulumi.StringInput) SourceGoogleSheetsOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleSheets {
+		return vs[0].(map[string]*SourceGoogleSheets)[vs[1].(string)]
+	}).(SourceGoogleSheetsOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSheetsInput)(nil)).Elem(), &SourceGoogleSheets{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSheetsArrayInput)(nil)).Elem(), SourceGoogleSheetsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleSheetsMapInput)(nil)).Elem(), SourceGoogleSheetsMap{})
 	pulumi.RegisterOutputType(SourceGoogleSheetsOutput{})
+	pulumi.RegisterOutputType(SourceGoogleSheetsArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleSheetsMapOutput{})
 }

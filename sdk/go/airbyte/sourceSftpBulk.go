@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSftpBulk Resource
@@ -127,6 +127,56 @@ func (i *SourceSftpBulk) ToSourceSftpBulkOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSftpBulkOutput)
 }
 
+// SourceSftpBulkArrayInput is an input type that accepts SourceSftpBulkArray and SourceSftpBulkArrayOutput values.
+// You can construct a concrete instance of `SourceSftpBulkArrayInput` via:
+//
+//	SourceSftpBulkArray{ SourceSftpBulkArgs{...} }
+type SourceSftpBulkArrayInput interface {
+	pulumi.Input
+
+	ToSourceSftpBulkArrayOutput() SourceSftpBulkArrayOutput
+	ToSourceSftpBulkArrayOutputWithContext(context.Context) SourceSftpBulkArrayOutput
+}
+
+type SourceSftpBulkArray []SourceSftpBulkInput
+
+func (SourceSftpBulkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSftpBulk)(nil)).Elem()
+}
+
+func (i SourceSftpBulkArray) ToSourceSftpBulkArrayOutput() SourceSftpBulkArrayOutput {
+	return i.ToSourceSftpBulkArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSftpBulkArray) ToSourceSftpBulkArrayOutputWithContext(ctx context.Context) SourceSftpBulkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSftpBulkArrayOutput)
+}
+
+// SourceSftpBulkMapInput is an input type that accepts SourceSftpBulkMap and SourceSftpBulkMapOutput values.
+// You can construct a concrete instance of `SourceSftpBulkMapInput` via:
+//
+//	SourceSftpBulkMap{ "key": SourceSftpBulkArgs{...} }
+type SourceSftpBulkMapInput interface {
+	pulumi.Input
+
+	ToSourceSftpBulkMapOutput() SourceSftpBulkMapOutput
+	ToSourceSftpBulkMapOutputWithContext(context.Context) SourceSftpBulkMapOutput
+}
+
+type SourceSftpBulkMap map[string]SourceSftpBulkInput
+
+func (SourceSftpBulkMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSftpBulk)(nil)).Elem()
+}
+
+func (i SourceSftpBulkMap) ToSourceSftpBulkMapOutput() SourceSftpBulkMapOutput {
+	return i.ToSourceSftpBulkMapOutputWithContext(context.Background())
+}
+
+func (i SourceSftpBulkMap) ToSourceSftpBulkMapOutputWithContext(ctx context.Context) SourceSftpBulkMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSftpBulkMapOutput)
+}
+
 type SourceSftpBulkOutput struct{ *pulumi.OutputState }
 
 func (SourceSftpBulkOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSftpBulkOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSftpBulk) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSftpBulkArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSftpBulkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSftpBulk)(nil)).Elem()
+}
+
+func (o SourceSftpBulkArrayOutput) ToSourceSftpBulkArrayOutput() SourceSftpBulkArrayOutput {
+	return o
+}
+
+func (o SourceSftpBulkArrayOutput) ToSourceSftpBulkArrayOutputWithContext(ctx context.Context) SourceSftpBulkArrayOutput {
+	return o
+}
+
+func (o SourceSftpBulkArrayOutput) Index(i pulumi.IntInput) SourceSftpBulkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSftpBulk {
+		return vs[0].([]*SourceSftpBulk)[vs[1].(int)]
+	}).(SourceSftpBulkOutput)
+}
+
+type SourceSftpBulkMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSftpBulkMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSftpBulk)(nil)).Elem()
+}
+
+func (o SourceSftpBulkMapOutput) ToSourceSftpBulkMapOutput() SourceSftpBulkMapOutput {
+	return o
+}
+
+func (o SourceSftpBulkMapOutput) ToSourceSftpBulkMapOutputWithContext(ctx context.Context) SourceSftpBulkMapOutput {
+	return o
+}
+
+func (o SourceSftpBulkMapOutput) MapIndex(k pulumi.StringInput) SourceSftpBulkOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSftpBulk {
+		return vs[0].(map[string]*SourceSftpBulk)[vs[1].(string)]
+	}).(SourceSftpBulkOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSftpBulkInput)(nil)).Elem(), &SourceSftpBulk{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSftpBulkArrayInput)(nil)).Elem(), SourceSftpBulkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSftpBulkMapInput)(nil)).Elem(), SourceSftpBulkMap{})
 	pulumi.RegisterOutputType(SourceSftpBulkOutput{})
+	pulumi.RegisterOutputType(SourceSftpBulkArrayOutput{})
+	pulumi.RegisterOutputType(SourceSftpBulkMapOutput{})
 }

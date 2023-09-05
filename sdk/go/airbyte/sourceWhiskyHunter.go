@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceWhiskyHunter Resource
@@ -127,6 +127,56 @@ func (i *SourceWhiskyHunter) ToSourceWhiskyHunterOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceWhiskyHunterOutput)
 }
 
+// SourceWhiskyHunterArrayInput is an input type that accepts SourceWhiskyHunterArray and SourceWhiskyHunterArrayOutput values.
+// You can construct a concrete instance of `SourceWhiskyHunterArrayInput` via:
+//
+//	SourceWhiskyHunterArray{ SourceWhiskyHunterArgs{...} }
+type SourceWhiskyHunterArrayInput interface {
+	pulumi.Input
+
+	ToSourceWhiskyHunterArrayOutput() SourceWhiskyHunterArrayOutput
+	ToSourceWhiskyHunterArrayOutputWithContext(context.Context) SourceWhiskyHunterArrayOutput
+}
+
+type SourceWhiskyHunterArray []SourceWhiskyHunterInput
+
+func (SourceWhiskyHunterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWhiskyHunter)(nil)).Elem()
+}
+
+func (i SourceWhiskyHunterArray) ToSourceWhiskyHunterArrayOutput() SourceWhiskyHunterArrayOutput {
+	return i.ToSourceWhiskyHunterArrayOutputWithContext(context.Background())
+}
+
+func (i SourceWhiskyHunterArray) ToSourceWhiskyHunterArrayOutputWithContext(ctx context.Context) SourceWhiskyHunterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWhiskyHunterArrayOutput)
+}
+
+// SourceWhiskyHunterMapInput is an input type that accepts SourceWhiskyHunterMap and SourceWhiskyHunterMapOutput values.
+// You can construct a concrete instance of `SourceWhiskyHunterMapInput` via:
+//
+//	SourceWhiskyHunterMap{ "key": SourceWhiskyHunterArgs{...} }
+type SourceWhiskyHunterMapInput interface {
+	pulumi.Input
+
+	ToSourceWhiskyHunterMapOutput() SourceWhiskyHunterMapOutput
+	ToSourceWhiskyHunterMapOutputWithContext(context.Context) SourceWhiskyHunterMapOutput
+}
+
+type SourceWhiskyHunterMap map[string]SourceWhiskyHunterInput
+
+func (SourceWhiskyHunterMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWhiskyHunter)(nil)).Elem()
+}
+
+func (i SourceWhiskyHunterMap) ToSourceWhiskyHunterMapOutput() SourceWhiskyHunterMapOutput {
+	return i.ToSourceWhiskyHunterMapOutputWithContext(context.Background())
+}
+
+func (i SourceWhiskyHunterMap) ToSourceWhiskyHunterMapOutputWithContext(ctx context.Context) SourceWhiskyHunterMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceWhiskyHunterMapOutput)
+}
+
 type SourceWhiskyHunterOutput struct{ *pulumi.OutputState }
 
 func (SourceWhiskyHunterOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceWhiskyHunterOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceWhiskyHunter) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceWhiskyHunterArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceWhiskyHunterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceWhiskyHunter)(nil)).Elem()
+}
+
+func (o SourceWhiskyHunterArrayOutput) ToSourceWhiskyHunterArrayOutput() SourceWhiskyHunterArrayOutput {
+	return o
+}
+
+func (o SourceWhiskyHunterArrayOutput) ToSourceWhiskyHunterArrayOutputWithContext(ctx context.Context) SourceWhiskyHunterArrayOutput {
+	return o
+}
+
+func (o SourceWhiskyHunterArrayOutput) Index(i pulumi.IntInput) SourceWhiskyHunterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceWhiskyHunter {
+		return vs[0].([]*SourceWhiskyHunter)[vs[1].(int)]
+	}).(SourceWhiskyHunterOutput)
+}
+
+type SourceWhiskyHunterMapOutput struct{ *pulumi.OutputState }
+
+func (SourceWhiskyHunterMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceWhiskyHunter)(nil)).Elem()
+}
+
+func (o SourceWhiskyHunterMapOutput) ToSourceWhiskyHunterMapOutput() SourceWhiskyHunterMapOutput {
+	return o
+}
+
+func (o SourceWhiskyHunterMapOutput) ToSourceWhiskyHunterMapOutputWithContext(ctx context.Context) SourceWhiskyHunterMapOutput {
+	return o
+}
+
+func (o SourceWhiskyHunterMapOutput) MapIndex(k pulumi.StringInput) SourceWhiskyHunterOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceWhiskyHunter {
+		return vs[0].(map[string]*SourceWhiskyHunter)[vs[1].(string)]
+	}).(SourceWhiskyHunterOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceWhiskyHunterInput)(nil)).Elem(), &SourceWhiskyHunter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWhiskyHunterArrayInput)(nil)).Elem(), SourceWhiskyHunterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceWhiskyHunterMapInput)(nil)).Elem(), SourceWhiskyHunterMap{})
 	pulumi.RegisterOutputType(SourceWhiskyHunterOutput{})
+	pulumi.RegisterOutputType(SourceWhiskyHunterArrayOutput{})
+	pulumi.RegisterOutputType(SourceWhiskyHunterMapOutput{})
 }

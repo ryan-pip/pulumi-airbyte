@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationOracle Resource
@@ -117,6 +117,56 @@ func (i *DestinationOracle) ToDestinationOracleOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationOracleOutput)
 }
 
+// DestinationOracleArrayInput is an input type that accepts DestinationOracleArray and DestinationOracleArrayOutput values.
+// You can construct a concrete instance of `DestinationOracleArrayInput` via:
+//
+//	DestinationOracleArray{ DestinationOracleArgs{...} }
+type DestinationOracleArrayInput interface {
+	pulumi.Input
+
+	ToDestinationOracleArrayOutput() DestinationOracleArrayOutput
+	ToDestinationOracleArrayOutputWithContext(context.Context) DestinationOracleArrayOutput
+}
+
+type DestinationOracleArray []DestinationOracleInput
+
+func (DestinationOracleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationOracle)(nil)).Elem()
+}
+
+func (i DestinationOracleArray) ToDestinationOracleArrayOutput() DestinationOracleArrayOutput {
+	return i.ToDestinationOracleArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationOracleArray) ToDestinationOracleArrayOutputWithContext(ctx context.Context) DestinationOracleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationOracleArrayOutput)
+}
+
+// DestinationOracleMapInput is an input type that accepts DestinationOracleMap and DestinationOracleMapOutput values.
+// You can construct a concrete instance of `DestinationOracleMapInput` via:
+//
+//	DestinationOracleMap{ "key": DestinationOracleArgs{...} }
+type DestinationOracleMapInput interface {
+	pulumi.Input
+
+	ToDestinationOracleMapOutput() DestinationOracleMapOutput
+	ToDestinationOracleMapOutputWithContext(context.Context) DestinationOracleMapOutput
+}
+
+type DestinationOracleMap map[string]DestinationOracleInput
+
+func (DestinationOracleMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationOracle)(nil)).Elem()
+}
+
+func (i DestinationOracleMap) ToDestinationOracleMapOutput() DestinationOracleMapOutput {
+	return i.ToDestinationOracleMapOutputWithContext(context.Background())
+}
+
+func (i DestinationOracleMap) ToDestinationOracleMapOutputWithContext(ctx context.Context) DestinationOracleMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationOracleMapOutput)
+}
+
 type DestinationOracleOutput struct{ *pulumi.OutputState }
 
 func (DestinationOracleOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationOracleOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationOracle) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationOracleArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationOracleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationOracle)(nil)).Elem()
+}
+
+func (o DestinationOracleArrayOutput) ToDestinationOracleArrayOutput() DestinationOracleArrayOutput {
+	return o
+}
+
+func (o DestinationOracleArrayOutput) ToDestinationOracleArrayOutputWithContext(ctx context.Context) DestinationOracleArrayOutput {
+	return o
+}
+
+func (o DestinationOracleArrayOutput) Index(i pulumi.IntInput) DestinationOracleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationOracle {
+		return vs[0].([]*DestinationOracle)[vs[1].(int)]
+	}).(DestinationOracleOutput)
+}
+
+type DestinationOracleMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationOracleMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationOracle)(nil)).Elem()
+}
+
+func (o DestinationOracleMapOutput) ToDestinationOracleMapOutput() DestinationOracleMapOutput {
+	return o
+}
+
+func (o DestinationOracleMapOutput) ToDestinationOracleMapOutputWithContext(ctx context.Context) DestinationOracleMapOutput {
+	return o
+}
+
+func (o DestinationOracleMapOutput) MapIndex(k pulumi.StringInput) DestinationOracleOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationOracle {
+		return vs[0].(map[string]*DestinationOracle)[vs[1].(string)]
+	}).(DestinationOracleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationOracleInput)(nil)).Elem(), &DestinationOracle{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationOracleArrayInput)(nil)).Elem(), DestinationOracleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationOracleMapInput)(nil)).Elem(), DestinationOracleMap{})
 	pulumi.RegisterOutputType(DestinationOracleOutput{})
+	pulumi.RegisterOutputType(DestinationOracleArrayOutput{})
+	pulumi.RegisterOutputType(DestinationOracleMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGainsightPx Resource
@@ -127,6 +127,56 @@ func (i *SourceGainsightPx) ToSourceGainsightPxOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGainsightPxOutput)
 }
 
+// SourceGainsightPxArrayInput is an input type that accepts SourceGainsightPxArray and SourceGainsightPxArrayOutput values.
+// You can construct a concrete instance of `SourceGainsightPxArrayInput` via:
+//
+//	SourceGainsightPxArray{ SourceGainsightPxArgs{...} }
+type SourceGainsightPxArrayInput interface {
+	pulumi.Input
+
+	ToSourceGainsightPxArrayOutput() SourceGainsightPxArrayOutput
+	ToSourceGainsightPxArrayOutputWithContext(context.Context) SourceGainsightPxArrayOutput
+}
+
+type SourceGainsightPxArray []SourceGainsightPxInput
+
+func (SourceGainsightPxArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGainsightPx)(nil)).Elem()
+}
+
+func (i SourceGainsightPxArray) ToSourceGainsightPxArrayOutput() SourceGainsightPxArrayOutput {
+	return i.ToSourceGainsightPxArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGainsightPxArray) ToSourceGainsightPxArrayOutputWithContext(ctx context.Context) SourceGainsightPxArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGainsightPxArrayOutput)
+}
+
+// SourceGainsightPxMapInput is an input type that accepts SourceGainsightPxMap and SourceGainsightPxMapOutput values.
+// You can construct a concrete instance of `SourceGainsightPxMapInput` via:
+//
+//	SourceGainsightPxMap{ "key": SourceGainsightPxArgs{...} }
+type SourceGainsightPxMapInput interface {
+	pulumi.Input
+
+	ToSourceGainsightPxMapOutput() SourceGainsightPxMapOutput
+	ToSourceGainsightPxMapOutputWithContext(context.Context) SourceGainsightPxMapOutput
+}
+
+type SourceGainsightPxMap map[string]SourceGainsightPxInput
+
+func (SourceGainsightPxMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGainsightPx)(nil)).Elem()
+}
+
+func (i SourceGainsightPxMap) ToSourceGainsightPxMapOutput() SourceGainsightPxMapOutput {
+	return i.ToSourceGainsightPxMapOutputWithContext(context.Background())
+}
+
+func (i SourceGainsightPxMap) ToSourceGainsightPxMapOutputWithContext(ctx context.Context) SourceGainsightPxMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGainsightPxMapOutput)
+}
+
 type SourceGainsightPxOutput struct{ *pulumi.OutputState }
 
 func (SourceGainsightPxOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGainsightPxOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGainsightPx) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGainsightPxArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGainsightPxArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGainsightPx)(nil)).Elem()
+}
+
+func (o SourceGainsightPxArrayOutput) ToSourceGainsightPxArrayOutput() SourceGainsightPxArrayOutput {
+	return o
+}
+
+func (o SourceGainsightPxArrayOutput) ToSourceGainsightPxArrayOutputWithContext(ctx context.Context) SourceGainsightPxArrayOutput {
+	return o
+}
+
+func (o SourceGainsightPxArrayOutput) Index(i pulumi.IntInput) SourceGainsightPxOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGainsightPx {
+		return vs[0].([]*SourceGainsightPx)[vs[1].(int)]
+	}).(SourceGainsightPxOutput)
+}
+
+type SourceGainsightPxMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGainsightPxMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGainsightPx)(nil)).Elem()
+}
+
+func (o SourceGainsightPxMapOutput) ToSourceGainsightPxMapOutput() SourceGainsightPxMapOutput {
+	return o
+}
+
+func (o SourceGainsightPxMapOutput) ToSourceGainsightPxMapOutputWithContext(ctx context.Context) SourceGainsightPxMapOutput {
+	return o
+}
+
+func (o SourceGainsightPxMapOutput) MapIndex(k pulumi.StringInput) SourceGainsightPxOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGainsightPx {
+		return vs[0].(map[string]*SourceGainsightPx)[vs[1].(string)]
+	}).(SourceGainsightPxOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGainsightPxInput)(nil)).Elem(), &SourceGainsightPx{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGainsightPxArrayInput)(nil)).Elem(), SourceGainsightPxArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGainsightPxMapInput)(nil)).Elem(), SourceGainsightPxMap{})
 	pulumi.RegisterOutputType(SourceGainsightPxOutput{})
+	pulumi.RegisterOutputType(SourceGainsightPxArrayOutput{})
+	pulumi.RegisterOutputType(SourceGainsightPxMapOutput{})
 }

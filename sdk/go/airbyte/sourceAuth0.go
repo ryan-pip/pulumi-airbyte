@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAuth0 Resource
@@ -127,6 +127,56 @@ func (i *SourceAuth0) ToSourceAuth0OutputWithContext(ctx context.Context) Source
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAuth0Output)
 }
 
+// SourceAuth0ArrayInput is an input type that accepts SourceAuth0Array and SourceAuth0ArrayOutput values.
+// You can construct a concrete instance of `SourceAuth0ArrayInput` via:
+//
+//	SourceAuth0Array{ SourceAuth0Args{...} }
+type SourceAuth0ArrayInput interface {
+	pulumi.Input
+
+	ToSourceAuth0ArrayOutput() SourceAuth0ArrayOutput
+	ToSourceAuth0ArrayOutputWithContext(context.Context) SourceAuth0ArrayOutput
+}
+
+type SourceAuth0Array []SourceAuth0Input
+
+func (SourceAuth0Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAuth0)(nil)).Elem()
+}
+
+func (i SourceAuth0Array) ToSourceAuth0ArrayOutput() SourceAuth0ArrayOutput {
+	return i.ToSourceAuth0ArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAuth0Array) ToSourceAuth0ArrayOutputWithContext(ctx context.Context) SourceAuth0ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAuth0ArrayOutput)
+}
+
+// SourceAuth0MapInput is an input type that accepts SourceAuth0Map and SourceAuth0MapOutput values.
+// You can construct a concrete instance of `SourceAuth0MapInput` via:
+//
+//	SourceAuth0Map{ "key": SourceAuth0Args{...} }
+type SourceAuth0MapInput interface {
+	pulumi.Input
+
+	ToSourceAuth0MapOutput() SourceAuth0MapOutput
+	ToSourceAuth0MapOutputWithContext(context.Context) SourceAuth0MapOutput
+}
+
+type SourceAuth0Map map[string]SourceAuth0Input
+
+func (SourceAuth0Map) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAuth0)(nil)).Elem()
+}
+
+func (i SourceAuth0Map) ToSourceAuth0MapOutput() SourceAuth0MapOutput {
+	return i.ToSourceAuth0MapOutputWithContext(context.Background())
+}
+
+func (i SourceAuth0Map) ToSourceAuth0MapOutputWithContext(ctx context.Context) SourceAuth0MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAuth0MapOutput)
+}
+
 type SourceAuth0Output struct{ *pulumi.OutputState }
 
 func (SourceAuth0Output) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAuth0Output) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAuth0) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAuth0ArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAuth0ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAuth0)(nil)).Elem()
+}
+
+func (o SourceAuth0ArrayOutput) ToSourceAuth0ArrayOutput() SourceAuth0ArrayOutput {
+	return o
+}
+
+func (o SourceAuth0ArrayOutput) ToSourceAuth0ArrayOutputWithContext(ctx context.Context) SourceAuth0ArrayOutput {
+	return o
+}
+
+func (o SourceAuth0ArrayOutput) Index(i pulumi.IntInput) SourceAuth0Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAuth0 {
+		return vs[0].([]*SourceAuth0)[vs[1].(int)]
+	}).(SourceAuth0Output)
+}
+
+type SourceAuth0MapOutput struct{ *pulumi.OutputState }
+
+func (SourceAuth0MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAuth0)(nil)).Elem()
+}
+
+func (o SourceAuth0MapOutput) ToSourceAuth0MapOutput() SourceAuth0MapOutput {
+	return o
+}
+
+func (o SourceAuth0MapOutput) ToSourceAuth0MapOutputWithContext(ctx context.Context) SourceAuth0MapOutput {
+	return o
+}
+
+func (o SourceAuth0MapOutput) MapIndex(k pulumi.StringInput) SourceAuth0Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAuth0 {
+		return vs[0].(map[string]*SourceAuth0)[vs[1].(string)]
+	}).(SourceAuth0Output)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAuth0Input)(nil)).Elem(), &SourceAuth0{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAuth0ArrayInput)(nil)).Elem(), SourceAuth0Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAuth0MapInput)(nil)).Elem(), SourceAuth0Map{})
 	pulumi.RegisterOutputType(SourceAuth0Output{})
+	pulumi.RegisterOutputType(SourceAuth0ArrayOutput{})
+	pulumi.RegisterOutputType(SourceAuth0MapOutput{})
 }

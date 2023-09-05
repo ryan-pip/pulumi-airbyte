@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAmplitude Resource
@@ -127,6 +127,56 @@ func (i *SourceAmplitude) ToSourceAmplitudeOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAmplitudeOutput)
 }
 
+// SourceAmplitudeArrayInput is an input type that accepts SourceAmplitudeArray and SourceAmplitudeArrayOutput values.
+// You can construct a concrete instance of `SourceAmplitudeArrayInput` via:
+//
+//	SourceAmplitudeArray{ SourceAmplitudeArgs{...} }
+type SourceAmplitudeArrayInput interface {
+	pulumi.Input
+
+	ToSourceAmplitudeArrayOutput() SourceAmplitudeArrayOutput
+	ToSourceAmplitudeArrayOutputWithContext(context.Context) SourceAmplitudeArrayOutput
+}
+
+type SourceAmplitudeArray []SourceAmplitudeInput
+
+func (SourceAmplitudeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmplitude)(nil)).Elem()
+}
+
+func (i SourceAmplitudeArray) ToSourceAmplitudeArrayOutput() SourceAmplitudeArrayOutput {
+	return i.ToSourceAmplitudeArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAmplitudeArray) ToSourceAmplitudeArrayOutputWithContext(ctx context.Context) SourceAmplitudeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmplitudeArrayOutput)
+}
+
+// SourceAmplitudeMapInput is an input type that accepts SourceAmplitudeMap and SourceAmplitudeMapOutput values.
+// You can construct a concrete instance of `SourceAmplitudeMapInput` via:
+//
+//	SourceAmplitudeMap{ "key": SourceAmplitudeArgs{...} }
+type SourceAmplitudeMapInput interface {
+	pulumi.Input
+
+	ToSourceAmplitudeMapOutput() SourceAmplitudeMapOutput
+	ToSourceAmplitudeMapOutputWithContext(context.Context) SourceAmplitudeMapOutput
+}
+
+type SourceAmplitudeMap map[string]SourceAmplitudeInput
+
+func (SourceAmplitudeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmplitude)(nil)).Elem()
+}
+
+func (i SourceAmplitudeMap) ToSourceAmplitudeMapOutput() SourceAmplitudeMapOutput {
+	return i.ToSourceAmplitudeMapOutputWithContext(context.Background())
+}
+
+func (i SourceAmplitudeMap) ToSourceAmplitudeMapOutputWithContext(ctx context.Context) SourceAmplitudeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAmplitudeMapOutput)
+}
+
 type SourceAmplitudeOutput struct{ *pulumi.OutputState }
 
 func (SourceAmplitudeOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAmplitudeOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAmplitude) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAmplitudeArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAmplitudeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAmplitude)(nil)).Elem()
+}
+
+func (o SourceAmplitudeArrayOutput) ToSourceAmplitudeArrayOutput() SourceAmplitudeArrayOutput {
+	return o
+}
+
+func (o SourceAmplitudeArrayOutput) ToSourceAmplitudeArrayOutputWithContext(ctx context.Context) SourceAmplitudeArrayOutput {
+	return o
+}
+
+func (o SourceAmplitudeArrayOutput) Index(i pulumi.IntInput) SourceAmplitudeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAmplitude {
+		return vs[0].([]*SourceAmplitude)[vs[1].(int)]
+	}).(SourceAmplitudeOutput)
+}
+
+type SourceAmplitudeMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAmplitudeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAmplitude)(nil)).Elem()
+}
+
+func (o SourceAmplitudeMapOutput) ToSourceAmplitudeMapOutput() SourceAmplitudeMapOutput {
+	return o
+}
+
+func (o SourceAmplitudeMapOutput) ToSourceAmplitudeMapOutputWithContext(ctx context.Context) SourceAmplitudeMapOutput {
+	return o
+}
+
+func (o SourceAmplitudeMapOutput) MapIndex(k pulumi.StringInput) SourceAmplitudeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAmplitude {
+		return vs[0].(map[string]*SourceAmplitude)[vs[1].(string)]
+	}).(SourceAmplitudeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmplitudeInput)(nil)).Elem(), &SourceAmplitude{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmplitudeArrayInput)(nil)).Elem(), SourceAmplitudeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAmplitudeMapInput)(nil)).Elem(), SourceAmplitudeMap{})
 	pulumi.RegisterOutputType(SourceAmplitudeOutput{})
+	pulumi.RegisterOutputType(SourceAmplitudeArrayOutput{})
+	pulumi.RegisterOutputType(SourceAmplitudeMapOutput{})
 }

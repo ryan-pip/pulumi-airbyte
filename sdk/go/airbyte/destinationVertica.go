@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationVertica Resource
@@ -117,6 +117,56 @@ func (i *DestinationVertica) ToDestinationVerticaOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationVerticaOutput)
 }
 
+// DestinationVerticaArrayInput is an input type that accepts DestinationVerticaArray and DestinationVerticaArrayOutput values.
+// You can construct a concrete instance of `DestinationVerticaArrayInput` via:
+//
+//	DestinationVerticaArray{ DestinationVerticaArgs{...} }
+type DestinationVerticaArrayInput interface {
+	pulumi.Input
+
+	ToDestinationVerticaArrayOutput() DestinationVerticaArrayOutput
+	ToDestinationVerticaArrayOutputWithContext(context.Context) DestinationVerticaArrayOutput
+}
+
+type DestinationVerticaArray []DestinationVerticaInput
+
+func (DestinationVerticaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationVertica)(nil)).Elem()
+}
+
+func (i DestinationVerticaArray) ToDestinationVerticaArrayOutput() DestinationVerticaArrayOutput {
+	return i.ToDestinationVerticaArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationVerticaArray) ToDestinationVerticaArrayOutputWithContext(ctx context.Context) DestinationVerticaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationVerticaArrayOutput)
+}
+
+// DestinationVerticaMapInput is an input type that accepts DestinationVerticaMap and DestinationVerticaMapOutput values.
+// You can construct a concrete instance of `DestinationVerticaMapInput` via:
+//
+//	DestinationVerticaMap{ "key": DestinationVerticaArgs{...} }
+type DestinationVerticaMapInput interface {
+	pulumi.Input
+
+	ToDestinationVerticaMapOutput() DestinationVerticaMapOutput
+	ToDestinationVerticaMapOutputWithContext(context.Context) DestinationVerticaMapOutput
+}
+
+type DestinationVerticaMap map[string]DestinationVerticaInput
+
+func (DestinationVerticaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationVertica)(nil)).Elem()
+}
+
+func (i DestinationVerticaMap) ToDestinationVerticaMapOutput() DestinationVerticaMapOutput {
+	return i.ToDestinationVerticaMapOutputWithContext(context.Background())
+}
+
+func (i DestinationVerticaMap) ToDestinationVerticaMapOutputWithContext(ctx context.Context) DestinationVerticaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationVerticaMapOutput)
+}
+
 type DestinationVerticaOutput struct{ *pulumi.OutputState }
 
 func (DestinationVerticaOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationVerticaOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationVertica) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationVerticaArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationVerticaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationVertica)(nil)).Elem()
+}
+
+func (o DestinationVerticaArrayOutput) ToDestinationVerticaArrayOutput() DestinationVerticaArrayOutput {
+	return o
+}
+
+func (o DestinationVerticaArrayOutput) ToDestinationVerticaArrayOutputWithContext(ctx context.Context) DestinationVerticaArrayOutput {
+	return o
+}
+
+func (o DestinationVerticaArrayOutput) Index(i pulumi.IntInput) DestinationVerticaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationVertica {
+		return vs[0].([]*DestinationVertica)[vs[1].(int)]
+	}).(DestinationVerticaOutput)
+}
+
+type DestinationVerticaMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationVerticaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationVertica)(nil)).Elem()
+}
+
+func (o DestinationVerticaMapOutput) ToDestinationVerticaMapOutput() DestinationVerticaMapOutput {
+	return o
+}
+
+func (o DestinationVerticaMapOutput) ToDestinationVerticaMapOutputWithContext(ctx context.Context) DestinationVerticaMapOutput {
+	return o
+}
+
+func (o DestinationVerticaMapOutput) MapIndex(k pulumi.StringInput) DestinationVerticaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationVertica {
+		return vs[0].(map[string]*DestinationVertica)[vs[1].(string)]
+	}).(DestinationVerticaOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationVerticaInput)(nil)).Elem(), &DestinationVertica{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationVerticaArrayInput)(nil)).Elem(), DestinationVerticaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationVerticaMapInput)(nil)).Elem(), DestinationVerticaMap{})
 	pulumi.RegisterOutputType(DestinationVerticaOutput{})
+	pulumi.RegisterOutputType(DestinationVerticaArrayOutput{})
+	pulumi.RegisterOutputType(DestinationVerticaMapOutput{})
 }

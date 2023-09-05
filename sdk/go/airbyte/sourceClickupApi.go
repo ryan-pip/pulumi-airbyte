@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceClickupAPI Resource
@@ -127,6 +127,56 @@ func (i *SourceClickupApi) ToSourceClickupApiOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceClickupApiOutput)
 }
 
+// SourceClickupApiArrayInput is an input type that accepts SourceClickupApiArray and SourceClickupApiArrayOutput values.
+// You can construct a concrete instance of `SourceClickupApiArrayInput` via:
+//
+//	SourceClickupApiArray{ SourceClickupApiArgs{...} }
+type SourceClickupApiArrayInput interface {
+	pulumi.Input
+
+	ToSourceClickupApiArrayOutput() SourceClickupApiArrayOutput
+	ToSourceClickupApiArrayOutputWithContext(context.Context) SourceClickupApiArrayOutput
+}
+
+type SourceClickupApiArray []SourceClickupApiInput
+
+func (SourceClickupApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClickupApi)(nil)).Elem()
+}
+
+func (i SourceClickupApiArray) ToSourceClickupApiArrayOutput() SourceClickupApiArrayOutput {
+	return i.ToSourceClickupApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourceClickupApiArray) ToSourceClickupApiArrayOutputWithContext(ctx context.Context) SourceClickupApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClickupApiArrayOutput)
+}
+
+// SourceClickupApiMapInput is an input type that accepts SourceClickupApiMap and SourceClickupApiMapOutput values.
+// You can construct a concrete instance of `SourceClickupApiMapInput` via:
+//
+//	SourceClickupApiMap{ "key": SourceClickupApiArgs{...} }
+type SourceClickupApiMapInput interface {
+	pulumi.Input
+
+	ToSourceClickupApiMapOutput() SourceClickupApiMapOutput
+	ToSourceClickupApiMapOutputWithContext(context.Context) SourceClickupApiMapOutput
+}
+
+type SourceClickupApiMap map[string]SourceClickupApiInput
+
+func (SourceClickupApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClickupApi)(nil)).Elem()
+}
+
+func (i SourceClickupApiMap) ToSourceClickupApiMapOutput() SourceClickupApiMapOutput {
+	return i.ToSourceClickupApiMapOutputWithContext(context.Background())
+}
+
+func (i SourceClickupApiMap) ToSourceClickupApiMapOutputWithContext(ctx context.Context) SourceClickupApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClickupApiMapOutput)
+}
+
 type SourceClickupApiOutput struct{ *pulumi.OutputState }
 
 func (SourceClickupApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceClickupApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceClickupApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceClickupApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceClickupApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClickupApi)(nil)).Elem()
+}
+
+func (o SourceClickupApiArrayOutput) ToSourceClickupApiArrayOutput() SourceClickupApiArrayOutput {
+	return o
+}
+
+func (o SourceClickupApiArrayOutput) ToSourceClickupApiArrayOutputWithContext(ctx context.Context) SourceClickupApiArrayOutput {
+	return o
+}
+
+func (o SourceClickupApiArrayOutput) Index(i pulumi.IntInput) SourceClickupApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceClickupApi {
+		return vs[0].([]*SourceClickupApi)[vs[1].(int)]
+	}).(SourceClickupApiOutput)
+}
+
+type SourceClickupApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourceClickupApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClickupApi)(nil)).Elem()
+}
+
+func (o SourceClickupApiMapOutput) ToSourceClickupApiMapOutput() SourceClickupApiMapOutput {
+	return o
+}
+
+func (o SourceClickupApiMapOutput) ToSourceClickupApiMapOutputWithContext(ctx context.Context) SourceClickupApiMapOutput {
+	return o
+}
+
+func (o SourceClickupApiMapOutput) MapIndex(k pulumi.StringInput) SourceClickupApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceClickupApi {
+		return vs[0].(map[string]*SourceClickupApi)[vs[1].(string)]
+	}).(SourceClickupApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickupApiInput)(nil)).Elem(), &SourceClickupApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickupApiArrayInput)(nil)).Elem(), SourceClickupApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClickupApiMapInput)(nil)).Elem(), SourceClickupApiMap{})
 	pulumi.RegisterOutputType(SourceClickupApiOutput{})
+	pulumi.RegisterOutputType(SourceClickupApiArrayOutput{})
+	pulumi.RegisterOutputType(SourceClickupApiMapOutput{})
 }

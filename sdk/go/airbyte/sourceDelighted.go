@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceDelighted Resource
@@ -127,6 +127,56 @@ func (i *SourceDelighted) ToSourceDelightedOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceDelightedOutput)
 }
 
+// SourceDelightedArrayInput is an input type that accepts SourceDelightedArray and SourceDelightedArrayOutput values.
+// You can construct a concrete instance of `SourceDelightedArrayInput` via:
+//
+//	SourceDelightedArray{ SourceDelightedArgs{...} }
+type SourceDelightedArrayInput interface {
+	pulumi.Input
+
+	ToSourceDelightedArrayOutput() SourceDelightedArrayOutput
+	ToSourceDelightedArrayOutputWithContext(context.Context) SourceDelightedArrayOutput
+}
+
+type SourceDelightedArray []SourceDelightedInput
+
+func (SourceDelightedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDelighted)(nil)).Elem()
+}
+
+func (i SourceDelightedArray) ToSourceDelightedArrayOutput() SourceDelightedArrayOutput {
+	return i.ToSourceDelightedArrayOutputWithContext(context.Background())
+}
+
+func (i SourceDelightedArray) ToSourceDelightedArrayOutputWithContext(ctx context.Context) SourceDelightedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDelightedArrayOutput)
+}
+
+// SourceDelightedMapInput is an input type that accepts SourceDelightedMap and SourceDelightedMapOutput values.
+// You can construct a concrete instance of `SourceDelightedMapInput` via:
+//
+//	SourceDelightedMap{ "key": SourceDelightedArgs{...} }
+type SourceDelightedMapInput interface {
+	pulumi.Input
+
+	ToSourceDelightedMapOutput() SourceDelightedMapOutput
+	ToSourceDelightedMapOutputWithContext(context.Context) SourceDelightedMapOutput
+}
+
+type SourceDelightedMap map[string]SourceDelightedInput
+
+func (SourceDelightedMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDelighted)(nil)).Elem()
+}
+
+func (i SourceDelightedMap) ToSourceDelightedMapOutput() SourceDelightedMapOutput {
+	return i.ToSourceDelightedMapOutputWithContext(context.Background())
+}
+
+func (i SourceDelightedMap) ToSourceDelightedMapOutputWithContext(ctx context.Context) SourceDelightedMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceDelightedMapOutput)
+}
+
 type SourceDelightedOutput struct{ *pulumi.OutputState }
 
 func (SourceDelightedOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceDelightedOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceDelighted) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceDelightedArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceDelightedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceDelighted)(nil)).Elem()
+}
+
+func (o SourceDelightedArrayOutput) ToSourceDelightedArrayOutput() SourceDelightedArrayOutput {
+	return o
+}
+
+func (o SourceDelightedArrayOutput) ToSourceDelightedArrayOutputWithContext(ctx context.Context) SourceDelightedArrayOutput {
+	return o
+}
+
+func (o SourceDelightedArrayOutput) Index(i pulumi.IntInput) SourceDelightedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceDelighted {
+		return vs[0].([]*SourceDelighted)[vs[1].(int)]
+	}).(SourceDelightedOutput)
+}
+
+type SourceDelightedMapOutput struct{ *pulumi.OutputState }
+
+func (SourceDelightedMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceDelighted)(nil)).Elem()
+}
+
+func (o SourceDelightedMapOutput) ToSourceDelightedMapOutput() SourceDelightedMapOutput {
+	return o
+}
+
+func (o SourceDelightedMapOutput) ToSourceDelightedMapOutputWithContext(ctx context.Context) SourceDelightedMapOutput {
+	return o
+}
+
+func (o SourceDelightedMapOutput) MapIndex(k pulumi.StringInput) SourceDelightedOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceDelighted {
+		return vs[0].(map[string]*SourceDelighted)[vs[1].(string)]
+	}).(SourceDelightedOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceDelightedInput)(nil)).Elem(), &SourceDelighted{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDelightedArrayInput)(nil)).Elem(), SourceDelightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceDelightedMapInput)(nil)).Elem(), SourceDelightedMap{})
 	pulumi.RegisterOutputType(SourceDelightedOutput{})
+	pulumi.RegisterOutputType(SourceDelightedArrayOutput{})
+	pulumi.RegisterOutputType(SourceDelightedMapOutput{})
 }

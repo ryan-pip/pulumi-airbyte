@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceS3 Resource
@@ -127,6 +127,56 @@ func (i *SourceS3) ToSourceS3OutputWithContext(ctx context.Context) SourceS3Outp
 	return pulumi.ToOutputWithContext(ctx, i).(SourceS3Output)
 }
 
+// SourceS3ArrayInput is an input type that accepts SourceS3Array and SourceS3ArrayOutput values.
+// You can construct a concrete instance of `SourceS3ArrayInput` via:
+//
+//	SourceS3Array{ SourceS3Args{...} }
+type SourceS3ArrayInput interface {
+	pulumi.Input
+
+	ToSourceS3ArrayOutput() SourceS3ArrayOutput
+	ToSourceS3ArrayOutputWithContext(context.Context) SourceS3ArrayOutput
+}
+
+type SourceS3Array []SourceS3Input
+
+func (SourceS3Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceS3)(nil)).Elem()
+}
+
+func (i SourceS3Array) ToSourceS3ArrayOutput() SourceS3ArrayOutput {
+	return i.ToSourceS3ArrayOutputWithContext(context.Background())
+}
+
+func (i SourceS3Array) ToSourceS3ArrayOutputWithContext(ctx context.Context) SourceS3ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceS3ArrayOutput)
+}
+
+// SourceS3MapInput is an input type that accepts SourceS3Map and SourceS3MapOutput values.
+// You can construct a concrete instance of `SourceS3MapInput` via:
+//
+//	SourceS3Map{ "key": SourceS3Args{...} }
+type SourceS3MapInput interface {
+	pulumi.Input
+
+	ToSourceS3MapOutput() SourceS3MapOutput
+	ToSourceS3MapOutputWithContext(context.Context) SourceS3MapOutput
+}
+
+type SourceS3Map map[string]SourceS3Input
+
+func (SourceS3Map) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceS3)(nil)).Elem()
+}
+
+func (i SourceS3Map) ToSourceS3MapOutput() SourceS3MapOutput {
+	return i.ToSourceS3MapOutputWithContext(context.Background())
+}
+
+func (i SourceS3Map) ToSourceS3MapOutputWithContext(ctx context.Context) SourceS3MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceS3MapOutput)
+}
+
 type SourceS3Output struct{ *pulumi.OutputState }
 
 func (SourceS3Output) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceS3Output) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceS3) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceS3ArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceS3ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceS3)(nil)).Elem()
+}
+
+func (o SourceS3ArrayOutput) ToSourceS3ArrayOutput() SourceS3ArrayOutput {
+	return o
+}
+
+func (o SourceS3ArrayOutput) ToSourceS3ArrayOutputWithContext(ctx context.Context) SourceS3ArrayOutput {
+	return o
+}
+
+func (o SourceS3ArrayOutput) Index(i pulumi.IntInput) SourceS3Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceS3 {
+		return vs[0].([]*SourceS3)[vs[1].(int)]
+	}).(SourceS3Output)
+}
+
+type SourceS3MapOutput struct{ *pulumi.OutputState }
+
+func (SourceS3MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceS3)(nil)).Elem()
+}
+
+func (o SourceS3MapOutput) ToSourceS3MapOutput() SourceS3MapOutput {
+	return o
+}
+
+func (o SourceS3MapOutput) ToSourceS3MapOutputWithContext(ctx context.Context) SourceS3MapOutput {
+	return o
+}
+
+func (o SourceS3MapOutput) MapIndex(k pulumi.StringInput) SourceS3Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceS3 {
+		return vs[0].(map[string]*SourceS3)[vs[1].(string)]
+	}).(SourceS3Output)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceS3Input)(nil)).Elem(), &SourceS3{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceS3ArrayInput)(nil)).Elem(), SourceS3Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceS3MapInput)(nil)).Elem(), SourceS3Map{})
 	pulumi.RegisterOutputType(SourceS3Output{})
+	pulumi.RegisterOutputType(SourceS3ArrayOutput{})
+	pulumi.RegisterOutputType(SourceS3MapOutput{})
 }

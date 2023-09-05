@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePersistiq Resource
@@ -127,6 +127,56 @@ func (i *SourcePersistiq) ToSourcePersistiqOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePersistiqOutput)
 }
 
+// SourcePersistiqArrayInput is an input type that accepts SourcePersistiqArray and SourcePersistiqArrayOutput values.
+// You can construct a concrete instance of `SourcePersistiqArrayInput` via:
+//
+//	SourcePersistiqArray{ SourcePersistiqArgs{...} }
+type SourcePersistiqArrayInput interface {
+	pulumi.Input
+
+	ToSourcePersistiqArrayOutput() SourcePersistiqArrayOutput
+	ToSourcePersistiqArrayOutputWithContext(context.Context) SourcePersistiqArrayOutput
+}
+
+type SourcePersistiqArray []SourcePersistiqInput
+
+func (SourcePersistiqArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePersistiq)(nil)).Elem()
+}
+
+func (i SourcePersistiqArray) ToSourcePersistiqArrayOutput() SourcePersistiqArrayOutput {
+	return i.ToSourcePersistiqArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePersistiqArray) ToSourcePersistiqArrayOutputWithContext(ctx context.Context) SourcePersistiqArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePersistiqArrayOutput)
+}
+
+// SourcePersistiqMapInput is an input type that accepts SourcePersistiqMap and SourcePersistiqMapOutput values.
+// You can construct a concrete instance of `SourcePersistiqMapInput` via:
+//
+//	SourcePersistiqMap{ "key": SourcePersistiqArgs{...} }
+type SourcePersistiqMapInput interface {
+	pulumi.Input
+
+	ToSourcePersistiqMapOutput() SourcePersistiqMapOutput
+	ToSourcePersistiqMapOutputWithContext(context.Context) SourcePersistiqMapOutput
+}
+
+type SourcePersistiqMap map[string]SourcePersistiqInput
+
+func (SourcePersistiqMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePersistiq)(nil)).Elem()
+}
+
+func (i SourcePersistiqMap) ToSourcePersistiqMapOutput() SourcePersistiqMapOutput {
+	return i.ToSourcePersistiqMapOutputWithContext(context.Background())
+}
+
+func (i SourcePersistiqMap) ToSourcePersistiqMapOutputWithContext(ctx context.Context) SourcePersistiqMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePersistiqMapOutput)
+}
+
 type SourcePersistiqOutput struct{ *pulumi.OutputState }
 
 func (SourcePersistiqOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePersistiqOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePersistiq) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePersistiqArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePersistiqArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePersistiq)(nil)).Elem()
+}
+
+func (o SourcePersistiqArrayOutput) ToSourcePersistiqArrayOutput() SourcePersistiqArrayOutput {
+	return o
+}
+
+func (o SourcePersistiqArrayOutput) ToSourcePersistiqArrayOutputWithContext(ctx context.Context) SourcePersistiqArrayOutput {
+	return o
+}
+
+func (o SourcePersistiqArrayOutput) Index(i pulumi.IntInput) SourcePersistiqOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePersistiq {
+		return vs[0].([]*SourcePersistiq)[vs[1].(int)]
+	}).(SourcePersistiqOutput)
+}
+
+type SourcePersistiqMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePersistiqMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePersistiq)(nil)).Elem()
+}
+
+func (o SourcePersistiqMapOutput) ToSourcePersistiqMapOutput() SourcePersistiqMapOutput {
+	return o
+}
+
+func (o SourcePersistiqMapOutput) ToSourcePersistiqMapOutputWithContext(ctx context.Context) SourcePersistiqMapOutput {
+	return o
+}
+
+func (o SourcePersistiqMapOutput) MapIndex(k pulumi.StringInput) SourcePersistiqOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePersistiq {
+		return vs[0].(map[string]*SourcePersistiq)[vs[1].(string)]
+	}).(SourcePersistiqOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePersistiqInput)(nil)).Elem(), &SourcePersistiq{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePersistiqArrayInput)(nil)).Elem(), SourcePersistiqArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePersistiqMapInput)(nil)).Elem(), SourcePersistiqMap{})
 	pulumi.RegisterOutputType(SourcePersistiqOutput{})
+	pulumi.RegisterOutputType(SourcePersistiqArrayOutput{})
+	pulumi.RegisterOutputType(SourcePersistiqMapOutput{})
 }

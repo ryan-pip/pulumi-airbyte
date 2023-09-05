@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationDatabricks Resource
@@ -117,6 +117,56 @@ func (i *DestinationDatabricks) ToDestinationDatabricksOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationDatabricksOutput)
 }
 
+// DestinationDatabricksArrayInput is an input type that accepts DestinationDatabricksArray and DestinationDatabricksArrayOutput values.
+// You can construct a concrete instance of `DestinationDatabricksArrayInput` via:
+//
+//	DestinationDatabricksArray{ DestinationDatabricksArgs{...} }
+type DestinationDatabricksArrayInput interface {
+	pulumi.Input
+
+	ToDestinationDatabricksArrayOutput() DestinationDatabricksArrayOutput
+	ToDestinationDatabricksArrayOutputWithContext(context.Context) DestinationDatabricksArrayOutput
+}
+
+type DestinationDatabricksArray []DestinationDatabricksInput
+
+func (DestinationDatabricksArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDatabricks)(nil)).Elem()
+}
+
+func (i DestinationDatabricksArray) ToDestinationDatabricksArrayOutput() DestinationDatabricksArrayOutput {
+	return i.ToDestinationDatabricksArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationDatabricksArray) ToDestinationDatabricksArrayOutputWithContext(ctx context.Context) DestinationDatabricksArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDatabricksArrayOutput)
+}
+
+// DestinationDatabricksMapInput is an input type that accepts DestinationDatabricksMap and DestinationDatabricksMapOutput values.
+// You can construct a concrete instance of `DestinationDatabricksMapInput` via:
+//
+//	DestinationDatabricksMap{ "key": DestinationDatabricksArgs{...} }
+type DestinationDatabricksMapInput interface {
+	pulumi.Input
+
+	ToDestinationDatabricksMapOutput() DestinationDatabricksMapOutput
+	ToDestinationDatabricksMapOutputWithContext(context.Context) DestinationDatabricksMapOutput
+}
+
+type DestinationDatabricksMap map[string]DestinationDatabricksInput
+
+func (DestinationDatabricksMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDatabricks)(nil)).Elem()
+}
+
+func (i DestinationDatabricksMap) ToDestinationDatabricksMapOutput() DestinationDatabricksMapOutput {
+	return i.ToDestinationDatabricksMapOutputWithContext(context.Background())
+}
+
+func (i DestinationDatabricksMap) ToDestinationDatabricksMapOutputWithContext(ctx context.Context) DestinationDatabricksMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationDatabricksMapOutput)
+}
+
 type DestinationDatabricksOutput struct{ *pulumi.OutputState }
 
 func (DestinationDatabricksOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationDatabricksOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationDatabricks) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationDatabricksArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationDatabricksArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationDatabricks)(nil)).Elem()
+}
+
+func (o DestinationDatabricksArrayOutput) ToDestinationDatabricksArrayOutput() DestinationDatabricksArrayOutput {
+	return o
+}
+
+func (o DestinationDatabricksArrayOutput) ToDestinationDatabricksArrayOutputWithContext(ctx context.Context) DestinationDatabricksArrayOutput {
+	return o
+}
+
+func (o DestinationDatabricksArrayOutput) Index(i pulumi.IntInput) DestinationDatabricksOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationDatabricks {
+		return vs[0].([]*DestinationDatabricks)[vs[1].(int)]
+	}).(DestinationDatabricksOutput)
+}
+
+type DestinationDatabricksMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationDatabricksMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationDatabricks)(nil)).Elem()
+}
+
+func (o DestinationDatabricksMapOutput) ToDestinationDatabricksMapOutput() DestinationDatabricksMapOutput {
+	return o
+}
+
+func (o DestinationDatabricksMapOutput) ToDestinationDatabricksMapOutputWithContext(ctx context.Context) DestinationDatabricksMapOutput {
+	return o
+}
+
+func (o DestinationDatabricksMapOutput) MapIndex(k pulumi.StringInput) DestinationDatabricksOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationDatabricks {
+		return vs[0].(map[string]*DestinationDatabricks)[vs[1].(string)]
+	}).(DestinationDatabricksOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDatabricksInput)(nil)).Elem(), &DestinationDatabricks{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDatabricksArrayInput)(nil)).Elem(), DestinationDatabricksArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationDatabricksMapInput)(nil)).Elem(), DestinationDatabricksMap{})
 	pulumi.RegisterOutputType(DestinationDatabricksOutput{})
+	pulumi.RegisterOutputType(DestinationDatabricksArrayOutput{})
+	pulumi.RegisterOutputType(DestinationDatabricksMapOutput{})
 }

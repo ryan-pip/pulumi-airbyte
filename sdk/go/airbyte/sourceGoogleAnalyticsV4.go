@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGoogleAnalyticsV4 Resource
@@ -127,6 +127,56 @@ func (i *SourceGoogleAnalyticsV4) ToSourceGoogleAnalyticsV4OutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAnalyticsV4Output)
 }
 
+// SourceGoogleAnalyticsV4ArrayInput is an input type that accepts SourceGoogleAnalyticsV4Array and SourceGoogleAnalyticsV4ArrayOutput values.
+// You can construct a concrete instance of `SourceGoogleAnalyticsV4ArrayInput` via:
+//
+//	SourceGoogleAnalyticsV4Array{ SourceGoogleAnalyticsV4Args{...} }
+type SourceGoogleAnalyticsV4ArrayInput interface {
+	pulumi.Input
+
+	ToSourceGoogleAnalyticsV4ArrayOutput() SourceGoogleAnalyticsV4ArrayOutput
+	ToSourceGoogleAnalyticsV4ArrayOutputWithContext(context.Context) SourceGoogleAnalyticsV4ArrayOutput
+}
+
+type SourceGoogleAnalyticsV4Array []SourceGoogleAnalyticsV4Input
+
+func (SourceGoogleAnalyticsV4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleAnalyticsV4)(nil)).Elem()
+}
+
+func (i SourceGoogleAnalyticsV4Array) ToSourceGoogleAnalyticsV4ArrayOutput() SourceGoogleAnalyticsV4ArrayOutput {
+	return i.ToSourceGoogleAnalyticsV4ArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleAnalyticsV4Array) ToSourceGoogleAnalyticsV4ArrayOutputWithContext(ctx context.Context) SourceGoogleAnalyticsV4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAnalyticsV4ArrayOutput)
+}
+
+// SourceGoogleAnalyticsV4MapInput is an input type that accepts SourceGoogleAnalyticsV4Map and SourceGoogleAnalyticsV4MapOutput values.
+// You can construct a concrete instance of `SourceGoogleAnalyticsV4MapInput` via:
+//
+//	SourceGoogleAnalyticsV4Map{ "key": SourceGoogleAnalyticsV4Args{...} }
+type SourceGoogleAnalyticsV4MapInput interface {
+	pulumi.Input
+
+	ToSourceGoogleAnalyticsV4MapOutput() SourceGoogleAnalyticsV4MapOutput
+	ToSourceGoogleAnalyticsV4MapOutputWithContext(context.Context) SourceGoogleAnalyticsV4MapOutput
+}
+
+type SourceGoogleAnalyticsV4Map map[string]SourceGoogleAnalyticsV4Input
+
+func (SourceGoogleAnalyticsV4Map) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleAnalyticsV4)(nil)).Elem()
+}
+
+func (i SourceGoogleAnalyticsV4Map) ToSourceGoogleAnalyticsV4MapOutput() SourceGoogleAnalyticsV4MapOutput {
+	return i.ToSourceGoogleAnalyticsV4MapOutputWithContext(context.Background())
+}
+
+func (i SourceGoogleAnalyticsV4Map) ToSourceGoogleAnalyticsV4MapOutputWithContext(ctx context.Context) SourceGoogleAnalyticsV4MapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGoogleAnalyticsV4MapOutput)
+}
+
 type SourceGoogleAnalyticsV4Output struct{ *pulumi.OutputState }
 
 func (SourceGoogleAnalyticsV4Output) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGoogleAnalyticsV4Output) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGoogleAnalyticsV4) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGoogleAnalyticsV4ArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleAnalyticsV4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGoogleAnalyticsV4)(nil)).Elem()
+}
+
+func (o SourceGoogleAnalyticsV4ArrayOutput) ToSourceGoogleAnalyticsV4ArrayOutput() SourceGoogleAnalyticsV4ArrayOutput {
+	return o
+}
+
+func (o SourceGoogleAnalyticsV4ArrayOutput) ToSourceGoogleAnalyticsV4ArrayOutputWithContext(ctx context.Context) SourceGoogleAnalyticsV4ArrayOutput {
+	return o
+}
+
+func (o SourceGoogleAnalyticsV4ArrayOutput) Index(i pulumi.IntInput) SourceGoogleAnalyticsV4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGoogleAnalyticsV4 {
+		return vs[0].([]*SourceGoogleAnalyticsV4)[vs[1].(int)]
+	}).(SourceGoogleAnalyticsV4Output)
+}
+
+type SourceGoogleAnalyticsV4MapOutput struct{ *pulumi.OutputState }
+
+func (SourceGoogleAnalyticsV4MapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGoogleAnalyticsV4)(nil)).Elem()
+}
+
+func (o SourceGoogleAnalyticsV4MapOutput) ToSourceGoogleAnalyticsV4MapOutput() SourceGoogleAnalyticsV4MapOutput {
+	return o
+}
+
+func (o SourceGoogleAnalyticsV4MapOutput) ToSourceGoogleAnalyticsV4MapOutputWithContext(ctx context.Context) SourceGoogleAnalyticsV4MapOutput {
+	return o
+}
+
+func (o SourceGoogleAnalyticsV4MapOutput) MapIndex(k pulumi.StringInput) SourceGoogleAnalyticsV4Output {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGoogleAnalyticsV4 {
+		return vs[0].(map[string]*SourceGoogleAnalyticsV4)[vs[1].(string)]
+	}).(SourceGoogleAnalyticsV4Output)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAnalyticsV4Input)(nil)).Elem(), &SourceGoogleAnalyticsV4{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAnalyticsV4ArrayInput)(nil)).Elem(), SourceGoogleAnalyticsV4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGoogleAnalyticsV4MapInput)(nil)).Elem(), SourceGoogleAnalyticsV4Map{})
 	pulumi.RegisterOutputType(SourceGoogleAnalyticsV4Output{})
+	pulumi.RegisterOutputType(SourceGoogleAnalyticsV4ArrayOutput{})
+	pulumi.RegisterOutputType(SourceGoogleAnalyticsV4MapOutput{})
 }

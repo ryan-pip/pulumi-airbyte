@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBigcommerce Resource
@@ -127,6 +127,56 @@ func (i *SourceBigcommerce) ToSourceBigcommerceOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBigcommerceOutput)
 }
 
+// SourceBigcommerceArrayInput is an input type that accepts SourceBigcommerceArray and SourceBigcommerceArrayOutput values.
+// You can construct a concrete instance of `SourceBigcommerceArrayInput` via:
+//
+//	SourceBigcommerceArray{ SourceBigcommerceArgs{...} }
+type SourceBigcommerceArrayInput interface {
+	pulumi.Input
+
+	ToSourceBigcommerceArrayOutput() SourceBigcommerceArrayOutput
+	ToSourceBigcommerceArrayOutputWithContext(context.Context) SourceBigcommerceArrayOutput
+}
+
+type SourceBigcommerceArray []SourceBigcommerceInput
+
+func (SourceBigcommerceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBigcommerce)(nil)).Elem()
+}
+
+func (i SourceBigcommerceArray) ToSourceBigcommerceArrayOutput() SourceBigcommerceArrayOutput {
+	return i.ToSourceBigcommerceArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBigcommerceArray) ToSourceBigcommerceArrayOutputWithContext(ctx context.Context) SourceBigcommerceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBigcommerceArrayOutput)
+}
+
+// SourceBigcommerceMapInput is an input type that accepts SourceBigcommerceMap and SourceBigcommerceMapOutput values.
+// You can construct a concrete instance of `SourceBigcommerceMapInput` via:
+//
+//	SourceBigcommerceMap{ "key": SourceBigcommerceArgs{...} }
+type SourceBigcommerceMapInput interface {
+	pulumi.Input
+
+	ToSourceBigcommerceMapOutput() SourceBigcommerceMapOutput
+	ToSourceBigcommerceMapOutputWithContext(context.Context) SourceBigcommerceMapOutput
+}
+
+type SourceBigcommerceMap map[string]SourceBigcommerceInput
+
+func (SourceBigcommerceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBigcommerce)(nil)).Elem()
+}
+
+func (i SourceBigcommerceMap) ToSourceBigcommerceMapOutput() SourceBigcommerceMapOutput {
+	return i.ToSourceBigcommerceMapOutputWithContext(context.Background())
+}
+
+func (i SourceBigcommerceMap) ToSourceBigcommerceMapOutputWithContext(ctx context.Context) SourceBigcommerceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBigcommerceMapOutput)
+}
+
 type SourceBigcommerceOutput struct{ *pulumi.OutputState }
 
 func (SourceBigcommerceOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBigcommerceOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBigcommerce) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBigcommerceArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBigcommerceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBigcommerce)(nil)).Elem()
+}
+
+func (o SourceBigcommerceArrayOutput) ToSourceBigcommerceArrayOutput() SourceBigcommerceArrayOutput {
+	return o
+}
+
+func (o SourceBigcommerceArrayOutput) ToSourceBigcommerceArrayOutputWithContext(ctx context.Context) SourceBigcommerceArrayOutput {
+	return o
+}
+
+func (o SourceBigcommerceArrayOutput) Index(i pulumi.IntInput) SourceBigcommerceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBigcommerce {
+		return vs[0].([]*SourceBigcommerce)[vs[1].(int)]
+	}).(SourceBigcommerceOutput)
+}
+
+type SourceBigcommerceMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBigcommerceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBigcommerce)(nil)).Elem()
+}
+
+func (o SourceBigcommerceMapOutput) ToSourceBigcommerceMapOutput() SourceBigcommerceMapOutput {
+	return o
+}
+
+func (o SourceBigcommerceMapOutput) ToSourceBigcommerceMapOutputWithContext(ctx context.Context) SourceBigcommerceMapOutput {
+	return o
+}
+
+func (o SourceBigcommerceMapOutput) MapIndex(k pulumi.StringInput) SourceBigcommerceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBigcommerce {
+		return vs[0].(map[string]*SourceBigcommerce)[vs[1].(string)]
+	}).(SourceBigcommerceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigcommerceInput)(nil)).Elem(), &SourceBigcommerce{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigcommerceArrayInput)(nil)).Elem(), SourceBigcommerceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigcommerceMapInput)(nil)).Elem(), SourceBigcommerceMap{})
 	pulumi.RegisterOutputType(SourceBigcommerceOutput{})
+	pulumi.RegisterOutputType(SourceBigcommerceArrayOutput{})
+	pulumi.RegisterOutputType(SourceBigcommerceMapOutput{})
 }

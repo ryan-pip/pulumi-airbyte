@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePexelsAPI Resource
@@ -127,6 +127,56 @@ func (i *SourcePexelsApi) ToSourcePexelsApiOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePexelsApiOutput)
 }
 
+// SourcePexelsApiArrayInput is an input type that accepts SourcePexelsApiArray and SourcePexelsApiArrayOutput values.
+// You can construct a concrete instance of `SourcePexelsApiArrayInput` via:
+//
+//	SourcePexelsApiArray{ SourcePexelsApiArgs{...} }
+type SourcePexelsApiArrayInput interface {
+	pulumi.Input
+
+	ToSourcePexelsApiArrayOutput() SourcePexelsApiArrayOutput
+	ToSourcePexelsApiArrayOutputWithContext(context.Context) SourcePexelsApiArrayOutput
+}
+
+type SourcePexelsApiArray []SourcePexelsApiInput
+
+func (SourcePexelsApiArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePexelsApi)(nil)).Elem()
+}
+
+func (i SourcePexelsApiArray) ToSourcePexelsApiArrayOutput() SourcePexelsApiArrayOutput {
+	return i.ToSourcePexelsApiArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePexelsApiArray) ToSourcePexelsApiArrayOutputWithContext(ctx context.Context) SourcePexelsApiArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePexelsApiArrayOutput)
+}
+
+// SourcePexelsApiMapInput is an input type that accepts SourcePexelsApiMap and SourcePexelsApiMapOutput values.
+// You can construct a concrete instance of `SourcePexelsApiMapInput` via:
+//
+//	SourcePexelsApiMap{ "key": SourcePexelsApiArgs{...} }
+type SourcePexelsApiMapInput interface {
+	pulumi.Input
+
+	ToSourcePexelsApiMapOutput() SourcePexelsApiMapOutput
+	ToSourcePexelsApiMapOutputWithContext(context.Context) SourcePexelsApiMapOutput
+}
+
+type SourcePexelsApiMap map[string]SourcePexelsApiInput
+
+func (SourcePexelsApiMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePexelsApi)(nil)).Elem()
+}
+
+func (i SourcePexelsApiMap) ToSourcePexelsApiMapOutput() SourcePexelsApiMapOutput {
+	return i.ToSourcePexelsApiMapOutputWithContext(context.Background())
+}
+
+func (i SourcePexelsApiMap) ToSourcePexelsApiMapOutputWithContext(ctx context.Context) SourcePexelsApiMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePexelsApiMapOutput)
+}
+
 type SourcePexelsApiOutput struct{ *pulumi.OutputState }
 
 func (SourcePexelsApiOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePexelsApiOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePexelsApi) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePexelsApiArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePexelsApiArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePexelsApi)(nil)).Elem()
+}
+
+func (o SourcePexelsApiArrayOutput) ToSourcePexelsApiArrayOutput() SourcePexelsApiArrayOutput {
+	return o
+}
+
+func (o SourcePexelsApiArrayOutput) ToSourcePexelsApiArrayOutputWithContext(ctx context.Context) SourcePexelsApiArrayOutput {
+	return o
+}
+
+func (o SourcePexelsApiArrayOutput) Index(i pulumi.IntInput) SourcePexelsApiOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePexelsApi {
+		return vs[0].([]*SourcePexelsApi)[vs[1].(int)]
+	}).(SourcePexelsApiOutput)
+}
+
+type SourcePexelsApiMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePexelsApiMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePexelsApi)(nil)).Elem()
+}
+
+func (o SourcePexelsApiMapOutput) ToSourcePexelsApiMapOutput() SourcePexelsApiMapOutput {
+	return o
+}
+
+func (o SourcePexelsApiMapOutput) ToSourcePexelsApiMapOutputWithContext(ctx context.Context) SourcePexelsApiMapOutput {
+	return o
+}
+
+func (o SourcePexelsApiMapOutput) MapIndex(k pulumi.StringInput) SourcePexelsApiOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePexelsApi {
+		return vs[0].(map[string]*SourcePexelsApi)[vs[1].(string)]
+	}).(SourcePexelsApiOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePexelsApiInput)(nil)).Elem(), &SourcePexelsApi{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePexelsApiArrayInput)(nil)).Elem(), SourcePexelsApiArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePexelsApiMapInput)(nil)).Elem(), SourcePexelsApiMap{})
 	pulumi.RegisterOutputType(SourcePexelsApiOutput{})
+	pulumi.RegisterOutputType(SourcePexelsApiArrayOutput{})
+	pulumi.RegisterOutputType(SourcePexelsApiMapOutput{})
 }

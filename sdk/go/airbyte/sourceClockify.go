@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceClockify Resource
@@ -127,6 +127,56 @@ func (i *SourceClockify) ToSourceClockifyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceClockifyOutput)
 }
 
+// SourceClockifyArrayInput is an input type that accepts SourceClockifyArray and SourceClockifyArrayOutput values.
+// You can construct a concrete instance of `SourceClockifyArrayInput` via:
+//
+//	SourceClockifyArray{ SourceClockifyArgs{...} }
+type SourceClockifyArrayInput interface {
+	pulumi.Input
+
+	ToSourceClockifyArrayOutput() SourceClockifyArrayOutput
+	ToSourceClockifyArrayOutputWithContext(context.Context) SourceClockifyArrayOutput
+}
+
+type SourceClockifyArray []SourceClockifyInput
+
+func (SourceClockifyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClockify)(nil)).Elem()
+}
+
+func (i SourceClockifyArray) ToSourceClockifyArrayOutput() SourceClockifyArrayOutput {
+	return i.ToSourceClockifyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceClockifyArray) ToSourceClockifyArrayOutputWithContext(ctx context.Context) SourceClockifyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClockifyArrayOutput)
+}
+
+// SourceClockifyMapInput is an input type that accepts SourceClockifyMap and SourceClockifyMapOutput values.
+// You can construct a concrete instance of `SourceClockifyMapInput` via:
+//
+//	SourceClockifyMap{ "key": SourceClockifyArgs{...} }
+type SourceClockifyMapInput interface {
+	pulumi.Input
+
+	ToSourceClockifyMapOutput() SourceClockifyMapOutput
+	ToSourceClockifyMapOutputWithContext(context.Context) SourceClockifyMapOutput
+}
+
+type SourceClockifyMap map[string]SourceClockifyInput
+
+func (SourceClockifyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClockify)(nil)).Elem()
+}
+
+func (i SourceClockifyMap) ToSourceClockifyMapOutput() SourceClockifyMapOutput {
+	return i.ToSourceClockifyMapOutputWithContext(context.Background())
+}
+
+func (i SourceClockifyMap) ToSourceClockifyMapOutputWithContext(ctx context.Context) SourceClockifyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceClockifyMapOutput)
+}
+
 type SourceClockifyOutput struct{ *pulumi.OutputState }
 
 func (SourceClockifyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceClockifyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceClockify) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceClockifyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceClockifyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceClockify)(nil)).Elem()
+}
+
+func (o SourceClockifyArrayOutput) ToSourceClockifyArrayOutput() SourceClockifyArrayOutput {
+	return o
+}
+
+func (o SourceClockifyArrayOutput) ToSourceClockifyArrayOutputWithContext(ctx context.Context) SourceClockifyArrayOutput {
+	return o
+}
+
+func (o SourceClockifyArrayOutput) Index(i pulumi.IntInput) SourceClockifyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceClockify {
+		return vs[0].([]*SourceClockify)[vs[1].(int)]
+	}).(SourceClockifyOutput)
+}
+
+type SourceClockifyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceClockifyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceClockify)(nil)).Elem()
+}
+
+func (o SourceClockifyMapOutput) ToSourceClockifyMapOutput() SourceClockifyMapOutput {
+	return o
+}
+
+func (o SourceClockifyMapOutput) ToSourceClockifyMapOutputWithContext(ctx context.Context) SourceClockifyMapOutput {
+	return o
+}
+
+func (o SourceClockifyMapOutput) MapIndex(k pulumi.StringInput) SourceClockifyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceClockify {
+		return vs[0].(map[string]*SourceClockify)[vs[1].(string)]
+	}).(SourceClockifyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceClockifyInput)(nil)).Elem(), &SourceClockify{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClockifyArrayInput)(nil)).Elem(), SourceClockifyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceClockifyMapInput)(nil)).Elem(), SourceClockifyMap{})
 	pulumi.RegisterOutputType(SourceClockifyOutput{})
+	pulumi.RegisterOutputType(SourceClockifyArrayOutput{})
+	pulumi.RegisterOutputType(SourceClockifyMapOutput{})
 }

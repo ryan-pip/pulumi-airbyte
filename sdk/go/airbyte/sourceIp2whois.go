@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceIp2whois Resource
@@ -127,6 +127,56 @@ func (i *SourceIp2whois) ToSourceIp2whoisOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceIp2whoisOutput)
 }
 
+// SourceIp2whoisArrayInput is an input type that accepts SourceIp2whoisArray and SourceIp2whoisArrayOutput values.
+// You can construct a concrete instance of `SourceIp2whoisArrayInput` via:
+//
+//	SourceIp2whoisArray{ SourceIp2whoisArgs{...} }
+type SourceIp2whoisArrayInput interface {
+	pulumi.Input
+
+	ToSourceIp2whoisArrayOutput() SourceIp2whoisArrayOutput
+	ToSourceIp2whoisArrayOutputWithContext(context.Context) SourceIp2whoisArrayOutput
+}
+
+type SourceIp2whoisArray []SourceIp2whoisInput
+
+func (SourceIp2whoisArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceIp2whois)(nil)).Elem()
+}
+
+func (i SourceIp2whoisArray) ToSourceIp2whoisArrayOutput() SourceIp2whoisArrayOutput {
+	return i.ToSourceIp2whoisArrayOutputWithContext(context.Background())
+}
+
+func (i SourceIp2whoisArray) ToSourceIp2whoisArrayOutputWithContext(ctx context.Context) SourceIp2whoisArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceIp2whoisArrayOutput)
+}
+
+// SourceIp2whoisMapInput is an input type that accepts SourceIp2whoisMap and SourceIp2whoisMapOutput values.
+// You can construct a concrete instance of `SourceIp2whoisMapInput` via:
+//
+//	SourceIp2whoisMap{ "key": SourceIp2whoisArgs{...} }
+type SourceIp2whoisMapInput interface {
+	pulumi.Input
+
+	ToSourceIp2whoisMapOutput() SourceIp2whoisMapOutput
+	ToSourceIp2whoisMapOutputWithContext(context.Context) SourceIp2whoisMapOutput
+}
+
+type SourceIp2whoisMap map[string]SourceIp2whoisInput
+
+func (SourceIp2whoisMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceIp2whois)(nil)).Elem()
+}
+
+func (i SourceIp2whoisMap) ToSourceIp2whoisMapOutput() SourceIp2whoisMapOutput {
+	return i.ToSourceIp2whoisMapOutputWithContext(context.Background())
+}
+
+func (i SourceIp2whoisMap) ToSourceIp2whoisMapOutputWithContext(ctx context.Context) SourceIp2whoisMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceIp2whoisMapOutput)
+}
+
 type SourceIp2whoisOutput struct{ *pulumi.OutputState }
 
 func (SourceIp2whoisOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceIp2whoisOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceIp2whois) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceIp2whoisArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceIp2whoisArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceIp2whois)(nil)).Elem()
+}
+
+func (o SourceIp2whoisArrayOutput) ToSourceIp2whoisArrayOutput() SourceIp2whoisArrayOutput {
+	return o
+}
+
+func (o SourceIp2whoisArrayOutput) ToSourceIp2whoisArrayOutputWithContext(ctx context.Context) SourceIp2whoisArrayOutput {
+	return o
+}
+
+func (o SourceIp2whoisArrayOutput) Index(i pulumi.IntInput) SourceIp2whoisOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceIp2whois {
+		return vs[0].([]*SourceIp2whois)[vs[1].(int)]
+	}).(SourceIp2whoisOutput)
+}
+
+type SourceIp2whoisMapOutput struct{ *pulumi.OutputState }
+
+func (SourceIp2whoisMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceIp2whois)(nil)).Elem()
+}
+
+func (o SourceIp2whoisMapOutput) ToSourceIp2whoisMapOutput() SourceIp2whoisMapOutput {
+	return o
+}
+
+func (o SourceIp2whoisMapOutput) ToSourceIp2whoisMapOutputWithContext(ctx context.Context) SourceIp2whoisMapOutput {
+	return o
+}
+
+func (o SourceIp2whoisMapOutput) MapIndex(k pulumi.StringInput) SourceIp2whoisOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceIp2whois {
+		return vs[0].(map[string]*SourceIp2whois)[vs[1].(string)]
+	}).(SourceIp2whoisOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceIp2whoisInput)(nil)).Elem(), &SourceIp2whois{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceIp2whoisArrayInput)(nil)).Elem(), SourceIp2whoisArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceIp2whoisMapInput)(nil)).Elem(), SourceIp2whoisMap{})
 	pulumi.RegisterOutputType(SourceIp2whoisOutput{})
+	pulumi.RegisterOutputType(SourceIp2whoisArrayOutput{})
+	pulumi.RegisterOutputType(SourceIp2whoisMapOutput{})
 }

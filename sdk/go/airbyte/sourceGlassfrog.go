@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGlassfrog Resource
@@ -127,6 +127,56 @@ func (i *SourceGlassfrog) ToSourceGlassfrogOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGlassfrogOutput)
 }
 
+// SourceGlassfrogArrayInput is an input type that accepts SourceGlassfrogArray and SourceGlassfrogArrayOutput values.
+// You can construct a concrete instance of `SourceGlassfrogArrayInput` via:
+//
+//	SourceGlassfrogArray{ SourceGlassfrogArgs{...} }
+type SourceGlassfrogArrayInput interface {
+	pulumi.Input
+
+	ToSourceGlassfrogArrayOutput() SourceGlassfrogArrayOutput
+	ToSourceGlassfrogArrayOutputWithContext(context.Context) SourceGlassfrogArrayOutput
+}
+
+type SourceGlassfrogArray []SourceGlassfrogInput
+
+func (SourceGlassfrogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGlassfrog)(nil)).Elem()
+}
+
+func (i SourceGlassfrogArray) ToSourceGlassfrogArrayOutput() SourceGlassfrogArrayOutput {
+	return i.ToSourceGlassfrogArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGlassfrogArray) ToSourceGlassfrogArrayOutputWithContext(ctx context.Context) SourceGlassfrogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGlassfrogArrayOutput)
+}
+
+// SourceGlassfrogMapInput is an input type that accepts SourceGlassfrogMap and SourceGlassfrogMapOutput values.
+// You can construct a concrete instance of `SourceGlassfrogMapInput` via:
+//
+//	SourceGlassfrogMap{ "key": SourceGlassfrogArgs{...} }
+type SourceGlassfrogMapInput interface {
+	pulumi.Input
+
+	ToSourceGlassfrogMapOutput() SourceGlassfrogMapOutput
+	ToSourceGlassfrogMapOutputWithContext(context.Context) SourceGlassfrogMapOutput
+}
+
+type SourceGlassfrogMap map[string]SourceGlassfrogInput
+
+func (SourceGlassfrogMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGlassfrog)(nil)).Elem()
+}
+
+func (i SourceGlassfrogMap) ToSourceGlassfrogMapOutput() SourceGlassfrogMapOutput {
+	return i.ToSourceGlassfrogMapOutputWithContext(context.Background())
+}
+
+func (i SourceGlassfrogMap) ToSourceGlassfrogMapOutputWithContext(ctx context.Context) SourceGlassfrogMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGlassfrogMapOutput)
+}
+
 type SourceGlassfrogOutput struct{ *pulumi.OutputState }
 
 func (SourceGlassfrogOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGlassfrogOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGlassfrog) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGlassfrogArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGlassfrogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGlassfrog)(nil)).Elem()
+}
+
+func (o SourceGlassfrogArrayOutput) ToSourceGlassfrogArrayOutput() SourceGlassfrogArrayOutput {
+	return o
+}
+
+func (o SourceGlassfrogArrayOutput) ToSourceGlassfrogArrayOutputWithContext(ctx context.Context) SourceGlassfrogArrayOutput {
+	return o
+}
+
+func (o SourceGlassfrogArrayOutput) Index(i pulumi.IntInput) SourceGlassfrogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGlassfrog {
+		return vs[0].([]*SourceGlassfrog)[vs[1].(int)]
+	}).(SourceGlassfrogOutput)
+}
+
+type SourceGlassfrogMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGlassfrogMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGlassfrog)(nil)).Elem()
+}
+
+func (o SourceGlassfrogMapOutput) ToSourceGlassfrogMapOutput() SourceGlassfrogMapOutput {
+	return o
+}
+
+func (o SourceGlassfrogMapOutput) ToSourceGlassfrogMapOutputWithContext(ctx context.Context) SourceGlassfrogMapOutput {
+	return o
+}
+
+func (o SourceGlassfrogMapOutput) MapIndex(k pulumi.StringInput) SourceGlassfrogOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGlassfrog {
+		return vs[0].(map[string]*SourceGlassfrog)[vs[1].(string)]
+	}).(SourceGlassfrogOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGlassfrogInput)(nil)).Elem(), &SourceGlassfrog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGlassfrogArrayInput)(nil)).Elem(), SourceGlassfrogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGlassfrogMapInput)(nil)).Elem(), SourceGlassfrogMap{})
 	pulumi.RegisterOutputType(SourceGlassfrogOutput{})
+	pulumi.RegisterOutputType(SourceGlassfrogArrayOutput{})
+	pulumi.RegisterOutputType(SourceGlassfrogMapOutput{})
 }

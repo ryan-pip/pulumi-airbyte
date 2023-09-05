@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceBigquery Resource
@@ -127,6 +127,56 @@ func (i *SourceBigquery) ToSourceBigqueryOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceBigqueryOutput)
 }
 
+// SourceBigqueryArrayInput is an input type that accepts SourceBigqueryArray and SourceBigqueryArrayOutput values.
+// You can construct a concrete instance of `SourceBigqueryArrayInput` via:
+//
+//	SourceBigqueryArray{ SourceBigqueryArgs{...} }
+type SourceBigqueryArrayInput interface {
+	pulumi.Input
+
+	ToSourceBigqueryArrayOutput() SourceBigqueryArrayOutput
+	ToSourceBigqueryArrayOutputWithContext(context.Context) SourceBigqueryArrayOutput
+}
+
+type SourceBigqueryArray []SourceBigqueryInput
+
+func (SourceBigqueryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBigquery)(nil)).Elem()
+}
+
+func (i SourceBigqueryArray) ToSourceBigqueryArrayOutput() SourceBigqueryArrayOutput {
+	return i.ToSourceBigqueryArrayOutputWithContext(context.Background())
+}
+
+func (i SourceBigqueryArray) ToSourceBigqueryArrayOutputWithContext(ctx context.Context) SourceBigqueryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBigqueryArrayOutput)
+}
+
+// SourceBigqueryMapInput is an input type that accepts SourceBigqueryMap and SourceBigqueryMapOutput values.
+// You can construct a concrete instance of `SourceBigqueryMapInput` via:
+//
+//	SourceBigqueryMap{ "key": SourceBigqueryArgs{...} }
+type SourceBigqueryMapInput interface {
+	pulumi.Input
+
+	ToSourceBigqueryMapOutput() SourceBigqueryMapOutput
+	ToSourceBigqueryMapOutputWithContext(context.Context) SourceBigqueryMapOutput
+}
+
+type SourceBigqueryMap map[string]SourceBigqueryInput
+
+func (SourceBigqueryMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBigquery)(nil)).Elem()
+}
+
+func (i SourceBigqueryMap) ToSourceBigqueryMapOutput() SourceBigqueryMapOutput {
+	return i.ToSourceBigqueryMapOutputWithContext(context.Background())
+}
+
+func (i SourceBigqueryMap) ToSourceBigqueryMapOutputWithContext(ctx context.Context) SourceBigqueryMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceBigqueryMapOutput)
+}
+
 type SourceBigqueryOutput struct{ *pulumi.OutputState }
 
 func (SourceBigqueryOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceBigqueryOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceBigquery) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceBigqueryArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceBigqueryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceBigquery)(nil)).Elem()
+}
+
+func (o SourceBigqueryArrayOutput) ToSourceBigqueryArrayOutput() SourceBigqueryArrayOutput {
+	return o
+}
+
+func (o SourceBigqueryArrayOutput) ToSourceBigqueryArrayOutputWithContext(ctx context.Context) SourceBigqueryArrayOutput {
+	return o
+}
+
+func (o SourceBigqueryArrayOutput) Index(i pulumi.IntInput) SourceBigqueryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceBigquery {
+		return vs[0].([]*SourceBigquery)[vs[1].(int)]
+	}).(SourceBigqueryOutput)
+}
+
+type SourceBigqueryMapOutput struct{ *pulumi.OutputState }
+
+func (SourceBigqueryMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceBigquery)(nil)).Elem()
+}
+
+func (o SourceBigqueryMapOutput) ToSourceBigqueryMapOutput() SourceBigqueryMapOutput {
+	return o
+}
+
+func (o SourceBigqueryMapOutput) ToSourceBigqueryMapOutputWithContext(ctx context.Context) SourceBigqueryMapOutput {
+	return o
+}
+
+func (o SourceBigqueryMapOutput) MapIndex(k pulumi.StringInput) SourceBigqueryOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceBigquery {
+		return vs[0].(map[string]*SourceBigquery)[vs[1].(string)]
+	}).(SourceBigqueryOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigqueryInput)(nil)).Elem(), &SourceBigquery{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigqueryArrayInput)(nil)).Elem(), SourceBigqueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceBigqueryMapInput)(nil)).Elem(), SourceBigqueryMap{})
 	pulumi.RegisterOutputType(SourceBigqueryOutput{})
+	pulumi.RegisterOutputType(SourceBigqueryArrayOutput{})
+	pulumi.RegisterOutputType(SourceBigqueryMapOutput{})
 }

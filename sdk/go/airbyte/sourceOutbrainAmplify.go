@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceOutbrainAmplify Resource
@@ -127,6 +127,56 @@ func (i *SourceOutbrainAmplify) ToSourceOutbrainAmplifyOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceOutbrainAmplifyOutput)
 }
 
+// SourceOutbrainAmplifyArrayInput is an input type that accepts SourceOutbrainAmplifyArray and SourceOutbrainAmplifyArrayOutput values.
+// You can construct a concrete instance of `SourceOutbrainAmplifyArrayInput` via:
+//
+//	SourceOutbrainAmplifyArray{ SourceOutbrainAmplifyArgs{...} }
+type SourceOutbrainAmplifyArrayInput interface {
+	pulumi.Input
+
+	ToSourceOutbrainAmplifyArrayOutput() SourceOutbrainAmplifyArrayOutput
+	ToSourceOutbrainAmplifyArrayOutputWithContext(context.Context) SourceOutbrainAmplifyArrayOutput
+}
+
+type SourceOutbrainAmplifyArray []SourceOutbrainAmplifyInput
+
+func (SourceOutbrainAmplifyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOutbrainAmplify)(nil)).Elem()
+}
+
+func (i SourceOutbrainAmplifyArray) ToSourceOutbrainAmplifyArrayOutput() SourceOutbrainAmplifyArrayOutput {
+	return i.ToSourceOutbrainAmplifyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceOutbrainAmplifyArray) ToSourceOutbrainAmplifyArrayOutputWithContext(ctx context.Context) SourceOutbrainAmplifyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutbrainAmplifyArrayOutput)
+}
+
+// SourceOutbrainAmplifyMapInput is an input type that accepts SourceOutbrainAmplifyMap and SourceOutbrainAmplifyMapOutput values.
+// You can construct a concrete instance of `SourceOutbrainAmplifyMapInput` via:
+//
+//	SourceOutbrainAmplifyMap{ "key": SourceOutbrainAmplifyArgs{...} }
+type SourceOutbrainAmplifyMapInput interface {
+	pulumi.Input
+
+	ToSourceOutbrainAmplifyMapOutput() SourceOutbrainAmplifyMapOutput
+	ToSourceOutbrainAmplifyMapOutputWithContext(context.Context) SourceOutbrainAmplifyMapOutput
+}
+
+type SourceOutbrainAmplifyMap map[string]SourceOutbrainAmplifyInput
+
+func (SourceOutbrainAmplifyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOutbrainAmplify)(nil)).Elem()
+}
+
+func (i SourceOutbrainAmplifyMap) ToSourceOutbrainAmplifyMapOutput() SourceOutbrainAmplifyMapOutput {
+	return i.ToSourceOutbrainAmplifyMapOutputWithContext(context.Background())
+}
+
+func (i SourceOutbrainAmplifyMap) ToSourceOutbrainAmplifyMapOutputWithContext(ctx context.Context) SourceOutbrainAmplifyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceOutbrainAmplifyMapOutput)
+}
+
 type SourceOutbrainAmplifyOutput struct{ *pulumi.OutputState }
 
 func (SourceOutbrainAmplifyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceOutbrainAmplifyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceOutbrainAmplify) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceOutbrainAmplifyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceOutbrainAmplifyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceOutbrainAmplify)(nil)).Elem()
+}
+
+func (o SourceOutbrainAmplifyArrayOutput) ToSourceOutbrainAmplifyArrayOutput() SourceOutbrainAmplifyArrayOutput {
+	return o
+}
+
+func (o SourceOutbrainAmplifyArrayOutput) ToSourceOutbrainAmplifyArrayOutputWithContext(ctx context.Context) SourceOutbrainAmplifyArrayOutput {
+	return o
+}
+
+func (o SourceOutbrainAmplifyArrayOutput) Index(i pulumi.IntInput) SourceOutbrainAmplifyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceOutbrainAmplify {
+		return vs[0].([]*SourceOutbrainAmplify)[vs[1].(int)]
+	}).(SourceOutbrainAmplifyOutput)
+}
+
+type SourceOutbrainAmplifyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceOutbrainAmplifyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceOutbrainAmplify)(nil)).Elem()
+}
+
+func (o SourceOutbrainAmplifyMapOutput) ToSourceOutbrainAmplifyMapOutput() SourceOutbrainAmplifyMapOutput {
+	return o
+}
+
+func (o SourceOutbrainAmplifyMapOutput) ToSourceOutbrainAmplifyMapOutputWithContext(ctx context.Context) SourceOutbrainAmplifyMapOutput {
+	return o
+}
+
+func (o SourceOutbrainAmplifyMapOutput) MapIndex(k pulumi.StringInput) SourceOutbrainAmplifyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceOutbrainAmplify {
+		return vs[0].(map[string]*SourceOutbrainAmplify)[vs[1].(string)]
+	}).(SourceOutbrainAmplifyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutbrainAmplifyInput)(nil)).Elem(), &SourceOutbrainAmplify{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutbrainAmplifyArrayInput)(nil)).Elem(), SourceOutbrainAmplifyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceOutbrainAmplifyMapInput)(nil)).Elem(), SourceOutbrainAmplifyMap{})
 	pulumi.RegisterOutputType(SourceOutbrainAmplifyOutput{})
+	pulumi.RegisterOutputType(SourceOutbrainAmplifyArrayOutput{})
+	pulumi.RegisterOutputType(SourceOutbrainAmplifyMapOutput{})
 }

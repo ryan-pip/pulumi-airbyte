@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceApifyDataset Resource
@@ -127,6 +127,56 @@ func (i *SourceApifyDataset) ToSourceApifyDatasetOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SourceApifyDatasetOutput)
 }
 
+// SourceApifyDatasetArrayInput is an input type that accepts SourceApifyDatasetArray and SourceApifyDatasetArrayOutput values.
+// You can construct a concrete instance of `SourceApifyDatasetArrayInput` via:
+//
+//	SourceApifyDatasetArray{ SourceApifyDatasetArgs{...} }
+type SourceApifyDatasetArrayInput interface {
+	pulumi.Input
+
+	ToSourceApifyDatasetArrayOutput() SourceApifyDatasetArrayOutput
+	ToSourceApifyDatasetArrayOutputWithContext(context.Context) SourceApifyDatasetArrayOutput
+}
+
+type SourceApifyDatasetArray []SourceApifyDatasetInput
+
+func (SourceApifyDatasetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceApifyDataset)(nil)).Elem()
+}
+
+func (i SourceApifyDatasetArray) ToSourceApifyDatasetArrayOutput() SourceApifyDatasetArrayOutput {
+	return i.ToSourceApifyDatasetArrayOutputWithContext(context.Background())
+}
+
+func (i SourceApifyDatasetArray) ToSourceApifyDatasetArrayOutputWithContext(ctx context.Context) SourceApifyDatasetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceApifyDatasetArrayOutput)
+}
+
+// SourceApifyDatasetMapInput is an input type that accepts SourceApifyDatasetMap and SourceApifyDatasetMapOutput values.
+// You can construct a concrete instance of `SourceApifyDatasetMapInput` via:
+//
+//	SourceApifyDatasetMap{ "key": SourceApifyDatasetArgs{...} }
+type SourceApifyDatasetMapInput interface {
+	pulumi.Input
+
+	ToSourceApifyDatasetMapOutput() SourceApifyDatasetMapOutput
+	ToSourceApifyDatasetMapOutputWithContext(context.Context) SourceApifyDatasetMapOutput
+}
+
+type SourceApifyDatasetMap map[string]SourceApifyDatasetInput
+
+func (SourceApifyDatasetMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceApifyDataset)(nil)).Elem()
+}
+
+func (i SourceApifyDatasetMap) ToSourceApifyDatasetMapOutput() SourceApifyDatasetMapOutput {
+	return i.ToSourceApifyDatasetMapOutputWithContext(context.Background())
+}
+
+func (i SourceApifyDatasetMap) ToSourceApifyDatasetMapOutputWithContext(ctx context.Context) SourceApifyDatasetMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceApifyDatasetMapOutput)
+}
+
 type SourceApifyDatasetOutput struct{ *pulumi.OutputState }
 
 func (SourceApifyDatasetOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceApifyDatasetOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceApifyDataset) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceApifyDatasetArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceApifyDatasetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceApifyDataset)(nil)).Elem()
+}
+
+func (o SourceApifyDatasetArrayOutput) ToSourceApifyDatasetArrayOutput() SourceApifyDatasetArrayOutput {
+	return o
+}
+
+func (o SourceApifyDatasetArrayOutput) ToSourceApifyDatasetArrayOutputWithContext(ctx context.Context) SourceApifyDatasetArrayOutput {
+	return o
+}
+
+func (o SourceApifyDatasetArrayOutput) Index(i pulumi.IntInput) SourceApifyDatasetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceApifyDataset {
+		return vs[0].([]*SourceApifyDataset)[vs[1].(int)]
+	}).(SourceApifyDatasetOutput)
+}
+
+type SourceApifyDatasetMapOutput struct{ *pulumi.OutputState }
+
+func (SourceApifyDatasetMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceApifyDataset)(nil)).Elem()
+}
+
+func (o SourceApifyDatasetMapOutput) ToSourceApifyDatasetMapOutput() SourceApifyDatasetMapOutput {
+	return o
+}
+
+func (o SourceApifyDatasetMapOutput) ToSourceApifyDatasetMapOutputWithContext(ctx context.Context) SourceApifyDatasetMapOutput {
+	return o
+}
+
+func (o SourceApifyDatasetMapOutput) MapIndex(k pulumi.StringInput) SourceApifyDatasetOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceApifyDataset {
+		return vs[0].(map[string]*SourceApifyDataset)[vs[1].(string)]
+	}).(SourceApifyDatasetOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceApifyDatasetInput)(nil)).Elem(), &SourceApifyDataset{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceApifyDatasetArrayInput)(nil)).Elem(), SourceApifyDatasetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceApifyDatasetMapInput)(nil)).Elem(), SourceApifyDatasetMap{})
 	pulumi.RegisterOutputType(SourceApifyDatasetOutput{})
+	pulumi.RegisterOutputType(SourceApifyDatasetArrayOutput{})
+	pulumi.RegisterOutputType(SourceApifyDatasetMapOutput{})
 }

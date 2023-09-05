@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceGridly Resource
@@ -127,6 +127,56 @@ func (i *SourceGridly) ToSourceGridlyOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceGridlyOutput)
 }
 
+// SourceGridlyArrayInput is an input type that accepts SourceGridlyArray and SourceGridlyArrayOutput values.
+// You can construct a concrete instance of `SourceGridlyArrayInput` via:
+//
+//	SourceGridlyArray{ SourceGridlyArgs{...} }
+type SourceGridlyArrayInput interface {
+	pulumi.Input
+
+	ToSourceGridlyArrayOutput() SourceGridlyArrayOutput
+	ToSourceGridlyArrayOutputWithContext(context.Context) SourceGridlyArrayOutput
+}
+
+type SourceGridlyArray []SourceGridlyInput
+
+func (SourceGridlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGridly)(nil)).Elem()
+}
+
+func (i SourceGridlyArray) ToSourceGridlyArrayOutput() SourceGridlyArrayOutput {
+	return i.ToSourceGridlyArrayOutputWithContext(context.Background())
+}
+
+func (i SourceGridlyArray) ToSourceGridlyArrayOutputWithContext(ctx context.Context) SourceGridlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGridlyArrayOutput)
+}
+
+// SourceGridlyMapInput is an input type that accepts SourceGridlyMap and SourceGridlyMapOutput values.
+// You can construct a concrete instance of `SourceGridlyMapInput` via:
+//
+//	SourceGridlyMap{ "key": SourceGridlyArgs{...} }
+type SourceGridlyMapInput interface {
+	pulumi.Input
+
+	ToSourceGridlyMapOutput() SourceGridlyMapOutput
+	ToSourceGridlyMapOutputWithContext(context.Context) SourceGridlyMapOutput
+}
+
+type SourceGridlyMap map[string]SourceGridlyInput
+
+func (SourceGridlyMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGridly)(nil)).Elem()
+}
+
+func (i SourceGridlyMap) ToSourceGridlyMapOutput() SourceGridlyMapOutput {
+	return i.ToSourceGridlyMapOutputWithContext(context.Background())
+}
+
+func (i SourceGridlyMap) ToSourceGridlyMapOutputWithContext(ctx context.Context) SourceGridlyMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceGridlyMapOutput)
+}
+
 type SourceGridlyOutput struct{ *pulumi.OutputState }
 
 func (SourceGridlyOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceGridlyOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceGridly) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceGridlyArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceGridlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceGridly)(nil)).Elem()
+}
+
+func (o SourceGridlyArrayOutput) ToSourceGridlyArrayOutput() SourceGridlyArrayOutput {
+	return o
+}
+
+func (o SourceGridlyArrayOutput) ToSourceGridlyArrayOutputWithContext(ctx context.Context) SourceGridlyArrayOutput {
+	return o
+}
+
+func (o SourceGridlyArrayOutput) Index(i pulumi.IntInput) SourceGridlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceGridly {
+		return vs[0].([]*SourceGridly)[vs[1].(int)]
+	}).(SourceGridlyOutput)
+}
+
+type SourceGridlyMapOutput struct{ *pulumi.OutputState }
+
+func (SourceGridlyMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceGridly)(nil)).Elem()
+}
+
+func (o SourceGridlyMapOutput) ToSourceGridlyMapOutput() SourceGridlyMapOutput {
+	return o
+}
+
+func (o SourceGridlyMapOutput) ToSourceGridlyMapOutputWithContext(ctx context.Context) SourceGridlyMapOutput {
+	return o
+}
+
+func (o SourceGridlyMapOutput) MapIndex(k pulumi.StringInput) SourceGridlyOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceGridly {
+		return vs[0].(map[string]*SourceGridly)[vs[1].(string)]
+	}).(SourceGridlyOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceGridlyInput)(nil)).Elem(), &SourceGridly{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGridlyArrayInput)(nil)).Elem(), SourceGridlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceGridlyMapInput)(nil)).Elem(), SourceGridlyMap{})
 	pulumi.RegisterOutputType(SourceGridlyOutput{})
+	pulumi.RegisterOutputType(SourceGridlyArrayOutput{})
+	pulumi.RegisterOutputType(SourceGridlyMapOutput{})
 }

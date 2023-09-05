@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // Connection Resource
@@ -209,6 +209,56 @@ func (i *Connection) ToConnectionOutputWithContext(ctx context.Context) Connecti
 	return pulumi.ToOutputWithContext(ctx, i).(ConnectionOutput)
 }
 
+// ConnectionArrayInput is an input type that accepts ConnectionArray and ConnectionArrayOutput values.
+// You can construct a concrete instance of `ConnectionArrayInput` via:
+//
+//	ConnectionArray{ ConnectionArgs{...} }
+type ConnectionArrayInput interface {
+	pulumi.Input
+
+	ToConnectionArrayOutput() ConnectionArrayOutput
+	ToConnectionArrayOutputWithContext(context.Context) ConnectionArrayOutput
+}
+
+type ConnectionArray []ConnectionInput
+
+func (ConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Connection)(nil)).Elem()
+}
+
+func (i ConnectionArray) ToConnectionArrayOutput() ConnectionArrayOutput {
+	return i.ToConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i ConnectionArray) ToConnectionArrayOutputWithContext(ctx context.Context) ConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionArrayOutput)
+}
+
+// ConnectionMapInput is an input type that accepts ConnectionMap and ConnectionMapOutput values.
+// You can construct a concrete instance of `ConnectionMapInput` via:
+//
+//	ConnectionMap{ "key": ConnectionArgs{...} }
+type ConnectionMapInput interface {
+	pulumi.Input
+
+	ToConnectionMapOutput() ConnectionMapOutput
+	ToConnectionMapOutputWithContext(context.Context) ConnectionMapOutput
+}
+
+type ConnectionMap map[string]ConnectionInput
+
+func (ConnectionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Connection)(nil)).Elem()
+}
+
+func (i ConnectionMap) ToConnectionMapOutput() ConnectionMapOutput {
+	return i.ToConnectionMapOutputWithContext(context.Background())
+}
+
+func (i ConnectionMap) ToConnectionMapOutputWithContext(ctx context.Context) ConnectionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ConnectionMapOutput)
+}
+
 type ConnectionOutput struct{ *pulumi.OutputState }
 
 func (ConnectionOutput) ElementType() reflect.Type {
@@ -286,7 +336,51 @@ func (o ConnectionOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type ConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (ConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Connection)(nil)).Elem()
+}
+
+func (o ConnectionArrayOutput) ToConnectionArrayOutput() ConnectionArrayOutput {
+	return o
+}
+
+func (o ConnectionArrayOutput) ToConnectionArrayOutputWithContext(ctx context.Context) ConnectionArrayOutput {
+	return o
+}
+
+func (o ConnectionArrayOutput) Index(i pulumi.IntInput) ConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Connection {
+		return vs[0].([]*Connection)[vs[1].(int)]
+	}).(ConnectionOutput)
+}
+
+type ConnectionMapOutput struct{ *pulumi.OutputState }
+
+func (ConnectionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Connection)(nil)).Elem()
+}
+
+func (o ConnectionMapOutput) ToConnectionMapOutput() ConnectionMapOutput {
+	return o
+}
+
+func (o ConnectionMapOutput) ToConnectionMapOutputWithContext(ctx context.Context) ConnectionMapOutput {
+	return o
+}
+
+func (o ConnectionMapOutput) MapIndex(k pulumi.StringInput) ConnectionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Connection {
+		return vs[0].(map[string]*Connection)[vs[1].(string)]
+	}).(ConnectionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionInput)(nil)).Elem(), &Connection{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionArrayInput)(nil)).Elem(), ConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionMapInput)(nil)).Elem(), ConnectionMap{})
 	pulumi.RegisterOutputType(ConnectionOutput{})
+	pulumi.RegisterOutputType(ConnectionArrayOutput{})
+	pulumi.RegisterOutputType(ConnectionMapOutput{})
 }

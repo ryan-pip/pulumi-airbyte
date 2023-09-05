@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceAzureTable Resource
@@ -127,6 +127,56 @@ func (i *SourceAzureTable) ToSourceAzureTableOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureTableOutput)
 }
 
+// SourceAzureTableArrayInput is an input type that accepts SourceAzureTableArray and SourceAzureTableArrayOutput values.
+// You can construct a concrete instance of `SourceAzureTableArrayInput` via:
+//
+//	SourceAzureTableArray{ SourceAzureTableArgs{...} }
+type SourceAzureTableArrayInput interface {
+	pulumi.Input
+
+	ToSourceAzureTableArrayOutput() SourceAzureTableArrayOutput
+	ToSourceAzureTableArrayOutputWithContext(context.Context) SourceAzureTableArrayOutput
+}
+
+type SourceAzureTableArray []SourceAzureTableInput
+
+func (SourceAzureTableArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAzureTable)(nil)).Elem()
+}
+
+func (i SourceAzureTableArray) ToSourceAzureTableArrayOutput() SourceAzureTableArrayOutput {
+	return i.ToSourceAzureTableArrayOutputWithContext(context.Background())
+}
+
+func (i SourceAzureTableArray) ToSourceAzureTableArrayOutputWithContext(ctx context.Context) SourceAzureTableArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureTableArrayOutput)
+}
+
+// SourceAzureTableMapInput is an input type that accepts SourceAzureTableMap and SourceAzureTableMapOutput values.
+// You can construct a concrete instance of `SourceAzureTableMapInput` via:
+//
+//	SourceAzureTableMap{ "key": SourceAzureTableArgs{...} }
+type SourceAzureTableMapInput interface {
+	pulumi.Input
+
+	ToSourceAzureTableMapOutput() SourceAzureTableMapOutput
+	ToSourceAzureTableMapOutputWithContext(context.Context) SourceAzureTableMapOutput
+}
+
+type SourceAzureTableMap map[string]SourceAzureTableInput
+
+func (SourceAzureTableMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAzureTable)(nil)).Elem()
+}
+
+func (i SourceAzureTableMap) ToSourceAzureTableMapOutput() SourceAzureTableMapOutput {
+	return i.ToSourceAzureTableMapOutputWithContext(context.Background())
+}
+
+func (i SourceAzureTableMap) ToSourceAzureTableMapOutputWithContext(ctx context.Context) SourceAzureTableMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceAzureTableMapOutput)
+}
+
 type SourceAzureTableOutput struct{ *pulumi.OutputState }
 
 func (SourceAzureTableOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceAzureTableOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceAzureTable) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceAzureTableArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceAzureTableArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceAzureTable)(nil)).Elem()
+}
+
+func (o SourceAzureTableArrayOutput) ToSourceAzureTableArrayOutput() SourceAzureTableArrayOutput {
+	return o
+}
+
+func (o SourceAzureTableArrayOutput) ToSourceAzureTableArrayOutputWithContext(ctx context.Context) SourceAzureTableArrayOutput {
+	return o
+}
+
+func (o SourceAzureTableArrayOutput) Index(i pulumi.IntInput) SourceAzureTableOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceAzureTable {
+		return vs[0].([]*SourceAzureTable)[vs[1].(int)]
+	}).(SourceAzureTableOutput)
+}
+
+type SourceAzureTableMapOutput struct{ *pulumi.OutputState }
+
+func (SourceAzureTableMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceAzureTable)(nil)).Elem()
+}
+
+func (o SourceAzureTableMapOutput) ToSourceAzureTableMapOutput() SourceAzureTableMapOutput {
+	return o
+}
+
+func (o SourceAzureTableMapOutput) ToSourceAzureTableMapOutputWithContext(ctx context.Context) SourceAzureTableMapOutput {
+	return o
+}
+
+func (o SourceAzureTableMapOutput) MapIndex(k pulumi.StringInput) SourceAzureTableOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceAzureTable {
+		return vs[0].(map[string]*SourceAzureTable)[vs[1].(string)]
+	}).(SourceAzureTableOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureTableInput)(nil)).Elem(), &SourceAzureTable{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureTableArrayInput)(nil)).Elem(), SourceAzureTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceAzureTableMapInput)(nil)).Elem(), SourceAzureTableMap{})
 	pulumi.RegisterOutputType(SourceAzureTableOutput{})
+	pulumi.RegisterOutputType(SourceAzureTableArrayOutput{})
+	pulumi.RegisterOutputType(SourceAzureTableMapOutput{})
 }

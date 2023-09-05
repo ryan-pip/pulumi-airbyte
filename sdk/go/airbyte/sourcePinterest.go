@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourcePinterest Resource
@@ -127,6 +127,56 @@ func (i *SourcePinterest) ToSourcePinterestOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SourcePinterestOutput)
 }
 
+// SourcePinterestArrayInput is an input type that accepts SourcePinterestArray and SourcePinterestArrayOutput values.
+// You can construct a concrete instance of `SourcePinterestArrayInput` via:
+//
+//	SourcePinterestArray{ SourcePinterestArgs{...} }
+type SourcePinterestArrayInput interface {
+	pulumi.Input
+
+	ToSourcePinterestArrayOutput() SourcePinterestArrayOutput
+	ToSourcePinterestArrayOutputWithContext(context.Context) SourcePinterestArrayOutput
+}
+
+type SourcePinterestArray []SourcePinterestInput
+
+func (SourcePinterestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePinterest)(nil)).Elem()
+}
+
+func (i SourcePinterestArray) ToSourcePinterestArrayOutput() SourcePinterestArrayOutput {
+	return i.ToSourcePinterestArrayOutputWithContext(context.Background())
+}
+
+func (i SourcePinterestArray) ToSourcePinterestArrayOutputWithContext(ctx context.Context) SourcePinterestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePinterestArrayOutput)
+}
+
+// SourcePinterestMapInput is an input type that accepts SourcePinterestMap and SourcePinterestMapOutput values.
+// You can construct a concrete instance of `SourcePinterestMapInput` via:
+//
+//	SourcePinterestMap{ "key": SourcePinterestArgs{...} }
+type SourcePinterestMapInput interface {
+	pulumi.Input
+
+	ToSourcePinterestMapOutput() SourcePinterestMapOutput
+	ToSourcePinterestMapOutputWithContext(context.Context) SourcePinterestMapOutput
+}
+
+type SourcePinterestMap map[string]SourcePinterestInput
+
+func (SourcePinterestMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePinterest)(nil)).Elem()
+}
+
+func (i SourcePinterestMap) ToSourcePinterestMapOutput() SourcePinterestMapOutput {
+	return i.ToSourcePinterestMapOutputWithContext(context.Background())
+}
+
+func (i SourcePinterestMap) ToSourcePinterestMapOutputWithContext(ctx context.Context) SourcePinterestMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourcePinterestMapOutput)
+}
+
 type SourcePinterestOutput struct{ *pulumi.OutputState }
 
 func (SourcePinterestOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourcePinterestOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourcePinterest) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourcePinterestArrayOutput struct{ *pulumi.OutputState }
+
+func (SourcePinterestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourcePinterest)(nil)).Elem()
+}
+
+func (o SourcePinterestArrayOutput) ToSourcePinterestArrayOutput() SourcePinterestArrayOutput {
+	return o
+}
+
+func (o SourcePinterestArrayOutput) ToSourcePinterestArrayOutputWithContext(ctx context.Context) SourcePinterestArrayOutput {
+	return o
+}
+
+func (o SourcePinterestArrayOutput) Index(i pulumi.IntInput) SourcePinterestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourcePinterest {
+		return vs[0].([]*SourcePinterest)[vs[1].(int)]
+	}).(SourcePinterestOutput)
+}
+
+type SourcePinterestMapOutput struct{ *pulumi.OutputState }
+
+func (SourcePinterestMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourcePinterest)(nil)).Elem()
+}
+
+func (o SourcePinterestMapOutput) ToSourcePinterestMapOutput() SourcePinterestMapOutput {
+	return o
+}
+
+func (o SourcePinterestMapOutput) ToSourcePinterestMapOutputWithContext(ctx context.Context) SourcePinterestMapOutput {
+	return o
+}
+
+func (o SourcePinterestMapOutput) MapIndex(k pulumi.StringInput) SourcePinterestOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourcePinterest {
+		return vs[0].(map[string]*SourcePinterest)[vs[1].(string)]
+	}).(SourcePinterestOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourcePinterestInput)(nil)).Elem(), &SourcePinterest{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePinterestArrayInput)(nil)).Elem(), SourcePinterestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourcePinterestMapInput)(nil)).Elem(), SourcePinterestMap{})
 	pulumi.RegisterOutputType(SourcePinterestOutput{})
+	pulumi.RegisterOutputType(SourcePinterestArrayOutput{})
+	pulumi.RegisterOutputType(SourcePinterestMapOutput{})
 }

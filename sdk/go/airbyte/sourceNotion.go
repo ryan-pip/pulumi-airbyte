@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceNotion Resource
@@ -127,6 +127,56 @@ func (i *SourceNotion) ToSourceNotionOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceNotionOutput)
 }
 
+// SourceNotionArrayInput is an input type that accepts SourceNotionArray and SourceNotionArrayOutput values.
+// You can construct a concrete instance of `SourceNotionArrayInput` via:
+//
+//	SourceNotionArray{ SourceNotionArgs{...} }
+type SourceNotionArrayInput interface {
+	pulumi.Input
+
+	ToSourceNotionArrayOutput() SourceNotionArrayOutput
+	ToSourceNotionArrayOutputWithContext(context.Context) SourceNotionArrayOutput
+}
+
+type SourceNotionArray []SourceNotionInput
+
+func (SourceNotionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNotion)(nil)).Elem()
+}
+
+func (i SourceNotionArray) ToSourceNotionArrayOutput() SourceNotionArrayOutput {
+	return i.ToSourceNotionArrayOutputWithContext(context.Background())
+}
+
+func (i SourceNotionArray) ToSourceNotionArrayOutputWithContext(ctx context.Context) SourceNotionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNotionArrayOutput)
+}
+
+// SourceNotionMapInput is an input type that accepts SourceNotionMap and SourceNotionMapOutput values.
+// You can construct a concrete instance of `SourceNotionMapInput` via:
+//
+//	SourceNotionMap{ "key": SourceNotionArgs{...} }
+type SourceNotionMapInput interface {
+	pulumi.Input
+
+	ToSourceNotionMapOutput() SourceNotionMapOutput
+	ToSourceNotionMapOutputWithContext(context.Context) SourceNotionMapOutput
+}
+
+type SourceNotionMap map[string]SourceNotionInput
+
+func (SourceNotionMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNotion)(nil)).Elem()
+}
+
+func (i SourceNotionMap) ToSourceNotionMapOutput() SourceNotionMapOutput {
+	return i.ToSourceNotionMapOutputWithContext(context.Background())
+}
+
+func (i SourceNotionMap) ToSourceNotionMapOutputWithContext(ctx context.Context) SourceNotionMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceNotionMapOutput)
+}
+
 type SourceNotionOutput struct{ *pulumi.OutputState }
 
 func (SourceNotionOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceNotionOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceNotion) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceNotionArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceNotionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceNotion)(nil)).Elem()
+}
+
+func (o SourceNotionArrayOutput) ToSourceNotionArrayOutput() SourceNotionArrayOutput {
+	return o
+}
+
+func (o SourceNotionArrayOutput) ToSourceNotionArrayOutputWithContext(ctx context.Context) SourceNotionArrayOutput {
+	return o
+}
+
+func (o SourceNotionArrayOutput) Index(i pulumi.IntInput) SourceNotionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceNotion {
+		return vs[0].([]*SourceNotion)[vs[1].(int)]
+	}).(SourceNotionOutput)
+}
+
+type SourceNotionMapOutput struct{ *pulumi.OutputState }
+
+func (SourceNotionMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceNotion)(nil)).Elem()
+}
+
+func (o SourceNotionMapOutput) ToSourceNotionMapOutput() SourceNotionMapOutput {
+	return o
+}
+
+func (o SourceNotionMapOutput) ToSourceNotionMapOutputWithContext(ctx context.Context) SourceNotionMapOutput {
+	return o
+}
+
+func (o SourceNotionMapOutput) MapIndex(k pulumi.StringInput) SourceNotionOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceNotion {
+		return vs[0].(map[string]*SourceNotion)[vs[1].(string)]
+	}).(SourceNotionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceNotionInput)(nil)).Elem(), &SourceNotion{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNotionArrayInput)(nil)).Elem(), SourceNotionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceNotionMapInput)(nil)).Elem(), SourceNotionMap{})
 	pulumi.RegisterOutputType(SourceNotionOutput{})
+	pulumi.RegisterOutputType(SourceNotionArrayOutput{})
+	pulumi.RegisterOutputType(SourceNotionMapOutput{})
 }

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSendgrid Resource
@@ -127,6 +127,56 @@ func (i *SourceSendgrid) ToSourceSendgridOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSendgridOutput)
 }
 
+// SourceSendgridArrayInput is an input type that accepts SourceSendgridArray and SourceSendgridArrayOutput values.
+// You can construct a concrete instance of `SourceSendgridArrayInput` via:
+//
+//	SourceSendgridArray{ SourceSendgridArgs{...} }
+type SourceSendgridArrayInput interface {
+	pulumi.Input
+
+	ToSourceSendgridArrayOutput() SourceSendgridArrayOutput
+	ToSourceSendgridArrayOutputWithContext(context.Context) SourceSendgridArrayOutput
+}
+
+type SourceSendgridArray []SourceSendgridInput
+
+func (SourceSendgridArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSendgrid)(nil)).Elem()
+}
+
+func (i SourceSendgridArray) ToSourceSendgridArrayOutput() SourceSendgridArrayOutput {
+	return i.ToSourceSendgridArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSendgridArray) ToSourceSendgridArrayOutputWithContext(ctx context.Context) SourceSendgridArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSendgridArrayOutput)
+}
+
+// SourceSendgridMapInput is an input type that accepts SourceSendgridMap and SourceSendgridMapOutput values.
+// You can construct a concrete instance of `SourceSendgridMapInput` via:
+//
+//	SourceSendgridMap{ "key": SourceSendgridArgs{...} }
+type SourceSendgridMapInput interface {
+	pulumi.Input
+
+	ToSourceSendgridMapOutput() SourceSendgridMapOutput
+	ToSourceSendgridMapOutputWithContext(context.Context) SourceSendgridMapOutput
+}
+
+type SourceSendgridMap map[string]SourceSendgridInput
+
+func (SourceSendgridMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSendgrid)(nil)).Elem()
+}
+
+func (i SourceSendgridMap) ToSourceSendgridMapOutput() SourceSendgridMapOutput {
+	return i.ToSourceSendgridMapOutputWithContext(context.Background())
+}
+
+func (i SourceSendgridMap) ToSourceSendgridMapOutputWithContext(ctx context.Context) SourceSendgridMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSendgridMapOutput)
+}
+
 type SourceSendgridOutput struct{ *pulumi.OutputState }
 
 func (SourceSendgridOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSendgridOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSendgrid) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSendgridArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSendgridArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSendgrid)(nil)).Elem()
+}
+
+func (o SourceSendgridArrayOutput) ToSourceSendgridArrayOutput() SourceSendgridArrayOutput {
+	return o
+}
+
+func (o SourceSendgridArrayOutput) ToSourceSendgridArrayOutputWithContext(ctx context.Context) SourceSendgridArrayOutput {
+	return o
+}
+
+func (o SourceSendgridArrayOutput) Index(i pulumi.IntInput) SourceSendgridOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSendgrid {
+		return vs[0].([]*SourceSendgrid)[vs[1].(int)]
+	}).(SourceSendgridOutput)
+}
+
+type SourceSendgridMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSendgridMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSendgrid)(nil)).Elem()
+}
+
+func (o SourceSendgridMapOutput) ToSourceSendgridMapOutput() SourceSendgridMapOutput {
+	return o
+}
+
+func (o SourceSendgridMapOutput) ToSourceSendgridMapOutputWithContext(ctx context.Context) SourceSendgridMapOutput {
+	return o
+}
+
+func (o SourceSendgridMapOutput) MapIndex(k pulumi.StringInput) SourceSendgridOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSendgrid {
+		return vs[0].(map[string]*SourceSendgrid)[vs[1].(string)]
+	}).(SourceSendgridOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendgridInput)(nil)).Elem(), &SourceSendgrid{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendgridArrayInput)(nil)).Elem(), SourceSendgridArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSendgridMapInput)(nil)).Elem(), SourceSendgridMap{})
 	pulumi.RegisterOutputType(SourceSendgridOutput{})
+	pulumi.RegisterOutputType(SourceSendgridArrayOutput{})
+	pulumi.RegisterOutputType(SourceSendgridMapOutput{})
 }

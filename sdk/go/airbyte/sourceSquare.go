@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceSquare Resource
@@ -127,6 +127,56 @@ func (i *SourceSquare) ToSourceSquareOutputWithContext(ctx context.Context) Sour
 	return pulumi.ToOutputWithContext(ctx, i).(SourceSquareOutput)
 }
 
+// SourceSquareArrayInput is an input type that accepts SourceSquareArray and SourceSquareArrayOutput values.
+// You can construct a concrete instance of `SourceSquareArrayInput` via:
+//
+//	SourceSquareArray{ SourceSquareArgs{...} }
+type SourceSquareArrayInput interface {
+	pulumi.Input
+
+	ToSourceSquareArrayOutput() SourceSquareArrayOutput
+	ToSourceSquareArrayOutputWithContext(context.Context) SourceSquareArrayOutput
+}
+
+type SourceSquareArray []SourceSquareInput
+
+func (SourceSquareArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSquare)(nil)).Elem()
+}
+
+func (i SourceSquareArray) ToSourceSquareArrayOutput() SourceSquareArrayOutput {
+	return i.ToSourceSquareArrayOutputWithContext(context.Background())
+}
+
+func (i SourceSquareArray) ToSourceSquareArrayOutputWithContext(ctx context.Context) SourceSquareArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSquareArrayOutput)
+}
+
+// SourceSquareMapInput is an input type that accepts SourceSquareMap and SourceSquareMapOutput values.
+// You can construct a concrete instance of `SourceSquareMapInput` via:
+//
+//	SourceSquareMap{ "key": SourceSquareArgs{...} }
+type SourceSquareMapInput interface {
+	pulumi.Input
+
+	ToSourceSquareMapOutput() SourceSquareMapOutput
+	ToSourceSquareMapOutputWithContext(context.Context) SourceSquareMapOutput
+}
+
+type SourceSquareMap map[string]SourceSquareInput
+
+func (SourceSquareMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSquare)(nil)).Elem()
+}
+
+func (i SourceSquareMap) ToSourceSquareMapOutput() SourceSquareMapOutput {
+	return i.ToSourceSquareMapOutputWithContext(context.Background())
+}
+
+func (i SourceSquareMap) ToSourceSquareMapOutputWithContext(ctx context.Context) SourceSquareMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceSquareMapOutput)
+}
+
 type SourceSquareOutput struct{ *pulumi.OutputState }
 
 func (SourceSquareOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceSquareOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceSquare) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceSquareArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceSquareArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceSquare)(nil)).Elem()
+}
+
+func (o SourceSquareArrayOutput) ToSourceSquareArrayOutput() SourceSquareArrayOutput {
+	return o
+}
+
+func (o SourceSquareArrayOutput) ToSourceSquareArrayOutputWithContext(ctx context.Context) SourceSquareArrayOutput {
+	return o
+}
+
+func (o SourceSquareArrayOutput) Index(i pulumi.IntInput) SourceSquareOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceSquare {
+		return vs[0].([]*SourceSquare)[vs[1].(int)]
+	}).(SourceSquareOutput)
+}
+
+type SourceSquareMapOutput struct{ *pulumi.OutputState }
+
+func (SourceSquareMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceSquare)(nil)).Elem()
+}
+
+func (o SourceSquareMapOutput) ToSourceSquareMapOutput() SourceSquareMapOutput {
+	return o
+}
+
+func (o SourceSquareMapOutput) ToSourceSquareMapOutputWithContext(ctx context.Context) SourceSquareMapOutput {
+	return o
+}
+
+func (o SourceSquareMapOutput) MapIndex(k pulumi.StringInput) SourceSquareOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceSquare {
+		return vs[0].(map[string]*SourceSquare)[vs[1].(string)]
+	}).(SourceSquareOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceSquareInput)(nil)).Elem(), &SourceSquare{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSquareArrayInput)(nil)).Elem(), SourceSquareArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceSquareMapInput)(nil)).Elem(), SourceSquareMap{})
 	pulumi.RegisterOutputType(SourceSquareOutput{})
+	pulumi.RegisterOutputType(SourceSquareArrayOutput{})
+	pulumi.RegisterOutputType(SourceSquareMapOutput{})
 }

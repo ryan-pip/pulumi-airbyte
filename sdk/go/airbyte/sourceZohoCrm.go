@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZohoCrm Resource
@@ -127,6 +127,56 @@ func (i *SourceZohoCrm) ToSourceZohoCrmOutputWithContext(ctx context.Context) So
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZohoCrmOutput)
 }
 
+// SourceZohoCrmArrayInput is an input type that accepts SourceZohoCrmArray and SourceZohoCrmArrayOutput values.
+// You can construct a concrete instance of `SourceZohoCrmArrayInput` via:
+//
+//	SourceZohoCrmArray{ SourceZohoCrmArgs{...} }
+type SourceZohoCrmArrayInput interface {
+	pulumi.Input
+
+	ToSourceZohoCrmArrayOutput() SourceZohoCrmArrayOutput
+	ToSourceZohoCrmArrayOutputWithContext(context.Context) SourceZohoCrmArrayOutput
+}
+
+type SourceZohoCrmArray []SourceZohoCrmInput
+
+func (SourceZohoCrmArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZohoCrm)(nil)).Elem()
+}
+
+func (i SourceZohoCrmArray) ToSourceZohoCrmArrayOutput() SourceZohoCrmArrayOutput {
+	return i.ToSourceZohoCrmArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZohoCrmArray) ToSourceZohoCrmArrayOutputWithContext(ctx context.Context) SourceZohoCrmArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZohoCrmArrayOutput)
+}
+
+// SourceZohoCrmMapInput is an input type that accepts SourceZohoCrmMap and SourceZohoCrmMapOutput values.
+// You can construct a concrete instance of `SourceZohoCrmMapInput` via:
+//
+//	SourceZohoCrmMap{ "key": SourceZohoCrmArgs{...} }
+type SourceZohoCrmMapInput interface {
+	pulumi.Input
+
+	ToSourceZohoCrmMapOutput() SourceZohoCrmMapOutput
+	ToSourceZohoCrmMapOutputWithContext(context.Context) SourceZohoCrmMapOutput
+}
+
+type SourceZohoCrmMap map[string]SourceZohoCrmInput
+
+func (SourceZohoCrmMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZohoCrm)(nil)).Elem()
+}
+
+func (i SourceZohoCrmMap) ToSourceZohoCrmMapOutput() SourceZohoCrmMapOutput {
+	return i.ToSourceZohoCrmMapOutputWithContext(context.Background())
+}
+
+func (i SourceZohoCrmMap) ToSourceZohoCrmMapOutputWithContext(ctx context.Context) SourceZohoCrmMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZohoCrmMapOutput)
+}
+
 type SourceZohoCrmOutput struct{ *pulumi.OutputState }
 
 func (SourceZohoCrmOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZohoCrmOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZohoCrm) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZohoCrmArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZohoCrmArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZohoCrm)(nil)).Elem()
+}
+
+func (o SourceZohoCrmArrayOutput) ToSourceZohoCrmArrayOutput() SourceZohoCrmArrayOutput {
+	return o
+}
+
+func (o SourceZohoCrmArrayOutput) ToSourceZohoCrmArrayOutputWithContext(ctx context.Context) SourceZohoCrmArrayOutput {
+	return o
+}
+
+func (o SourceZohoCrmArrayOutput) Index(i pulumi.IntInput) SourceZohoCrmOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZohoCrm {
+		return vs[0].([]*SourceZohoCrm)[vs[1].(int)]
+	}).(SourceZohoCrmOutput)
+}
+
+type SourceZohoCrmMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZohoCrmMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZohoCrm)(nil)).Elem()
+}
+
+func (o SourceZohoCrmMapOutput) ToSourceZohoCrmMapOutput() SourceZohoCrmMapOutput {
+	return o
+}
+
+func (o SourceZohoCrmMapOutput) ToSourceZohoCrmMapOutputWithContext(ctx context.Context) SourceZohoCrmMapOutput {
+	return o
+}
+
+func (o SourceZohoCrmMapOutput) MapIndex(k pulumi.StringInput) SourceZohoCrmOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZohoCrm {
+		return vs[0].(map[string]*SourceZohoCrm)[vs[1].(string)]
+	}).(SourceZohoCrmOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZohoCrmInput)(nil)).Elem(), &SourceZohoCrm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZohoCrmArrayInput)(nil)).Elem(), SourceZohoCrmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZohoCrmMapInput)(nil)).Elem(), SourceZohoCrmMap{})
 	pulumi.RegisterOutputType(SourceZohoCrmOutput{})
+	pulumi.RegisterOutputType(SourceZohoCrmArrayOutput{})
+	pulumi.RegisterOutputType(SourceZohoCrmMapOutput{})
 }

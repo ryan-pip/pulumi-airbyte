@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceTrustpilot Resource
@@ -127,6 +127,56 @@ func (i *SourceTrustpilot) ToSourceTrustpilotOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceTrustpilotOutput)
 }
 
+// SourceTrustpilotArrayInput is an input type that accepts SourceTrustpilotArray and SourceTrustpilotArrayOutput values.
+// You can construct a concrete instance of `SourceTrustpilotArrayInput` via:
+//
+//	SourceTrustpilotArray{ SourceTrustpilotArgs{...} }
+type SourceTrustpilotArrayInput interface {
+	pulumi.Input
+
+	ToSourceTrustpilotArrayOutput() SourceTrustpilotArrayOutput
+	ToSourceTrustpilotArrayOutputWithContext(context.Context) SourceTrustpilotArrayOutput
+}
+
+type SourceTrustpilotArray []SourceTrustpilotInput
+
+func (SourceTrustpilotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTrustpilot)(nil)).Elem()
+}
+
+func (i SourceTrustpilotArray) ToSourceTrustpilotArrayOutput() SourceTrustpilotArrayOutput {
+	return i.ToSourceTrustpilotArrayOutputWithContext(context.Background())
+}
+
+func (i SourceTrustpilotArray) ToSourceTrustpilotArrayOutputWithContext(ctx context.Context) SourceTrustpilotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTrustpilotArrayOutput)
+}
+
+// SourceTrustpilotMapInput is an input type that accepts SourceTrustpilotMap and SourceTrustpilotMapOutput values.
+// You can construct a concrete instance of `SourceTrustpilotMapInput` via:
+//
+//	SourceTrustpilotMap{ "key": SourceTrustpilotArgs{...} }
+type SourceTrustpilotMapInput interface {
+	pulumi.Input
+
+	ToSourceTrustpilotMapOutput() SourceTrustpilotMapOutput
+	ToSourceTrustpilotMapOutputWithContext(context.Context) SourceTrustpilotMapOutput
+}
+
+type SourceTrustpilotMap map[string]SourceTrustpilotInput
+
+func (SourceTrustpilotMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTrustpilot)(nil)).Elem()
+}
+
+func (i SourceTrustpilotMap) ToSourceTrustpilotMapOutput() SourceTrustpilotMapOutput {
+	return i.ToSourceTrustpilotMapOutputWithContext(context.Background())
+}
+
+func (i SourceTrustpilotMap) ToSourceTrustpilotMapOutputWithContext(ctx context.Context) SourceTrustpilotMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceTrustpilotMapOutput)
+}
+
 type SourceTrustpilotOutput struct{ *pulumi.OutputState }
 
 func (SourceTrustpilotOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceTrustpilotOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceTrustpilot) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceTrustpilotArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceTrustpilotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceTrustpilot)(nil)).Elem()
+}
+
+func (o SourceTrustpilotArrayOutput) ToSourceTrustpilotArrayOutput() SourceTrustpilotArrayOutput {
+	return o
+}
+
+func (o SourceTrustpilotArrayOutput) ToSourceTrustpilotArrayOutputWithContext(ctx context.Context) SourceTrustpilotArrayOutput {
+	return o
+}
+
+func (o SourceTrustpilotArrayOutput) Index(i pulumi.IntInput) SourceTrustpilotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceTrustpilot {
+		return vs[0].([]*SourceTrustpilot)[vs[1].(int)]
+	}).(SourceTrustpilotOutput)
+}
+
+type SourceTrustpilotMapOutput struct{ *pulumi.OutputState }
+
+func (SourceTrustpilotMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceTrustpilot)(nil)).Elem()
+}
+
+func (o SourceTrustpilotMapOutput) ToSourceTrustpilotMapOutput() SourceTrustpilotMapOutput {
+	return o
+}
+
+func (o SourceTrustpilotMapOutput) ToSourceTrustpilotMapOutputWithContext(ctx context.Context) SourceTrustpilotMapOutput {
+	return o
+}
+
+func (o SourceTrustpilotMapOutput) MapIndex(k pulumi.StringInput) SourceTrustpilotOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceTrustpilot {
+		return vs[0].(map[string]*SourceTrustpilot)[vs[1].(string)]
+	}).(SourceTrustpilotOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrustpilotInput)(nil)).Elem(), &SourceTrustpilot{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrustpilotArrayInput)(nil)).Elem(), SourceTrustpilotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceTrustpilotMapInput)(nil)).Elem(), SourceTrustpilotMap{})
 	pulumi.RegisterOutputType(SourceTrustpilotOutput{})
+	pulumi.RegisterOutputType(SourceTrustpilotArrayOutput{})
+	pulumi.RegisterOutputType(SourceTrustpilotMapOutput{})
 }

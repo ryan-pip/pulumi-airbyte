@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceFileSecure Resource
@@ -127,6 +127,56 @@ func (i *SourceFileSecure) ToSourceFileSecureOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SourceFileSecureOutput)
 }
 
+// SourceFileSecureArrayInput is an input type that accepts SourceFileSecureArray and SourceFileSecureArrayOutput values.
+// You can construct a concrete instance of `SourceFileSecureArrayInput` via:
+//
+//	SourceFileSecureArray{ SourceFileSecureArgs{...} }
+type SourceFileSecureArrayInput interface {
+	pulumi.Input
+
+	ToSourceFileSecureArrayOutput() SourceFileSecureArrayOutput
+	ToSourceFileSecureArrayOutputWithContext(context.Context) SourceFileSecureArrayOutput
+}
+
+type SourceFileSecureArray []SourceFileSecureInput
+
+func (SourceFileSecureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFileSecure)(nil)).Elem()
+}
+
+func (i SourceFileSecureArray) ToSourceFileSecureArrayOutput() SourceFileSecureArrayOutput {
+	return i.ToSourceFileSecureArrayOutputWithContext(context.Background())
+}
+
+func (i SourceFileSecureArray) ToSourceFileSecureArrayOutputWithContext(ctx context.Context) SourceFileSecureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFileSecureArrayOutput)
+}
+
+// SourceFileSecureMapInput is an input type that accepts SourceFileSecureMap and SourceFileSecureMapOutput values.
+// You can construct a concrete instance of `SourceFileSecureMapInput` via:
+//
+//	SourceFileSecureMap{ "key": SourceFileSecureArgs{...} }
+type SourceFileSecureMapInput interface {
+	pulumi.Input
+
+	ToSourceFileSecureMapOutput() SourceFileSecureMapOutput
+	ToSourceFileSecureMapOutputWithContext(context.Context) SourceFileSecureMapOutput
+}
+
+type SourceFileSecureMap map[string]SourceFileSecureInput
+
+func (SourceFileSecureMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFileSecure)(nil)).Elem()
+}
+
+func (i SourceFileSecureMap) ToSourceFileSecureMapOutput() SourceFileSecureMapOutput {
+	return i.ToSourceFileSecureMapOutputWithContext(context.Background())
+}
+
+func (i SourceFileSecureMap) ToSourceFileSecureMapOutputWithContext(ctx context.Context) SourceFileSecureMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceFileSecureMapOutput)
+}
+
 type SourceFileSecureOutput struct{ *pulumi.OutputState }
 
 func (SourceFileSecureOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceFileSecureOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceFileSecure) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceFileSecureArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceFileSecureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceFileSecure)(nil)).Elem()
+}
+
+func (o SourceFileSecureArrayOutput) ToSourceFileSecureArrayOutput() SourceFileSecureArrayOutput {
+	return o
+}
+
+func (o SourceFileSecureArrayOutput) ToSourceFileSecureArrayOutputWithContext(ctx context.Context) SourceFileSecureArrayOutput {
+	return o
+}
+
+func (o SourceFileSecureArrayOutput) Index(i pulumi.IntInput) SourceFileSecureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceFileSecure {
+		return vs[0].([]*SourceFileSecure)[vs[1].(int)]
+	}).(SourceFileSecureOutput)
+}
+
+type SourceFileSecureMapOutput struct{ *pulumi.OutputState }
+
+func (SourceFileSecureMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceFileSecure)(nil)).Elem()
+}
+
+func (o SourceFileSecureMapOutput) ToSourceFileSecureMapOutput() SourceFileSecureMapOutput {
+	return o
+}
+
+func (o SourceFileSecureMapOutput) ToSourceFileSecureMapOutputWithContext(ctx context.Context) SourceFileSecureMapOutput {
+	return o
+}
+
+func (o SourceFileSecureMapOutput) MapIndex(k pulumi.StringInput) SourceFileSecureOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceFileSecure {
+		return vs[0].(map[string]*SourceFileSecure)[vs[1].(string)]
+	}).(SourceFileSecureOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceFileSecureInput)(nil)).Elem(), &SourceFileSecure{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFileSecureArrayInput)(nil)).Elem(), SourceFileSecureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceFileSecureMapInput)(nil)).Elem(), SourceFileSecureMap{})
 	pulumi.RegisterOutputType(SourceFileSecureOutput{})
+	pulumi.RegisterOutputType(SourceFileSecureArrayOutput{})
+	pulumi.RegisterOutputType(SourceFileSecureMapOutput{})
 }

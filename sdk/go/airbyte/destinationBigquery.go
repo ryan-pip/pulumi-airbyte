@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // DestinationBigquery Resource
@@ -117,6 +117,56 @@ func (i *DestinationBigquery) ToDestinationBigqueryOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryOutput)
 }
 
+// DestinationBigqueryArrayInput is an input type that accepts DestinationBigqueryArray and DestinationBigqueryArrayOutput values.
+// You can construct a concrete instance of `DestinationBigqueryArrayInput` via:
+//
+//	DestinationBigqueryArray{ DestinationBigqueryArgs{...} }
+type DestinationBigqueryArrayInput interface {
+	pulumi.Input
+
+	ToDestinationBigqueryArrayOutput() DestinationBigqueryArrayOutput
+	ToDestinationBigqueryArrayOutputWithContext(context.Context) DestinationBigqueryArrayOutput
+}
+
+type DestinationBigqueryArray []DestinationBigqueryInput
+
+func (DestinationBigqueryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationBigquery)(nil)).Elem()
+}
+
+func (i DestinationBigqueryArray) ToDestinationBigqueryArrayOutput() DestinationBigqueryArrayOutput {
+	return i.ToDestinationBigqueryArrayOutputWithContext(context.Background())
+}
+
+func (i DestinationBigqueryArray) ToDestinationBigqueryArrayOutputWithContext(ctx context.Context) DestinationBigqueryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryArrayOutput)
+}
+
+// DestinationBigqueryMapInput is an input type that accepts DestinationBigqueryMap and DestinationBigqueryMapOutput values.
+// You can construct a concrete instance of `DestinationBigqueryMapInput` via:
+//
+//	DestinationBigqueryMap{ "key": DestinationBigqueryArgs{...} }
+type DestinationBigqueryMapInput interface {
+	pulumi.Input
+
+	ToDestinationBigqueryMapOutput() DestinationBigqueryMapOutput
+	ToDestinationBigqueryMapOutputWithContext(context.Context) DestinationBigqueryMapOutput
+}
+
+type DestinationBigqueryMap map[string]DestinationBigqueryInput
+
+func (DestinationBigqueryMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationBigquery)(nil)).Elem()
+}
+
+func (i DestinationBigqueryMap) ToDestinationBigqueryMapOutput() DestinationBigqueryMapOutput {
+	return i.ToDestinationBigqueryMapOutputWithContext(context.Background())
+}
+
+func (i DestinationBigqueryMap) ToDestinationBigqueryMapOutputWithContext(ctx context.Context) DestinationBigqueryMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DestinationBigqueryMapOutput)
+}
+
 type DestinationBigqueryOutput struct{ *pulumi.OutputState }
 
 func (DestinationBigqueryOutput) ElementType() reflect.Type {
@@ -151,7 +201,51 @@ func (o DestinationBigqueryOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DestinationBigquery) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type DestinationBigqueryArrayOutput struct{ *pulumi.OutputState }
+
+func (DestinationBigqueryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DestinationBigquery)(nil)).Elem()
+}
+
+func (o DestinationBigqueryArrayOutput) ToDestinationBigqueryArrayOutput() DestinationBigqueryArrayOutput {
+	return o
+}
+
+func (o DestinationBigqueryArrayOutput) ToDestinationBigqueryArrayOutputWithContext(ctx context.Context) DestinationBigqueryArrayOutput {
+	return o
+}
+
+func (o DestinationBigqueryArrayOutput) Index(i pulumi.IntInput) DestinationBigqueryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DestinationBigquery {
+		return vs[0].([]*DestinationBigquery)[vs[1].(int)]
+	}).(DestinationBigqueryOutput)
+}
+
+type DestinationBigqueryMapOutput struct{ *pulumi.OutputState }
+
+func (DestinationBigqueryMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DestinationBigquery)(nil)).Elem()
+}
+
+func (o DestinationBigqueryMapOutput) ToDestinationBigqueryMapOutput() DestinationBigqueryMapOutput {
+	return o
+}
+
+func (o DestinationBigqueryMapOutput) ToDestinationBigqueryMapOutputWithContext(ctx context.Context) DestinationBigqueryMapOutput {
+	return o
+}
+
+func (o DestinationBigqueryMapOutput) MapIndex(k pulumi.StringInput) DestinationBigqueryOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DestinationBigquery {
+		return vs[0].(map[string]*DestinationBigquery)[vs[1].(string)]
+	}).(DestinationBigqueryOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryInput)(nil)).Elem(), &DestinationBigquery{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryArrayInput)(nil)).Elem(), DestinationBigqueryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DestinationBigqueryMapInput)(nil)).Elem(), DestinationBigqueryMap{})
 	pulumi.RegisterOutputType(DestinationBigqueryOutput{})
+	pulumi.RegisterOutputType(DestinationBigqueryArrayOutput{})
+	pulumi.RegisterOutputType(DestinationBigqueryMapOutput{})
 }

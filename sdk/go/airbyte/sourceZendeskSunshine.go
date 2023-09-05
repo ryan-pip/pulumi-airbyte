@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"internal"
 )
 
 // SourceZendeskSunshine Resource
@@ -127,6 +127,56 @@ func (i *SourceZendeskSunshine) ToSourceZendeskSunshineOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskSunshineOutput)
 }
 
+// SourceZendeskSunshineArrayInput is an input type that accepts SourceZendeskSunshineArray and SourceZendeskSunshineArrayOutput values.
+// You can construct a concrete instance of `SourceZendeskSunshineArrayInput` via:
+//
+//	SourceZendeskSunshineArray{ SourceZendeskSunshineArgs{...} }
+type SourceZendeskSunshineArrayInput interface {
+	pulumi.Input
+
+	ToSourceZendeskSunshineArrayOutput() SourceZendeskSunshineArrayOutput
+	ToSourceZendeskSunshineArrayOutputWithContext(context.Context) SourceZendeskSunshineArrayOutput
+}
+
+type SourceZendeskSunshineArray []SourceZendeskSunshineInput
+
+func (SourceZendeskSunshineArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZendeskSunshine)(nil)).Elem()
+}
+
+func (i SourceZendeskSunshineArray) ToSourceZendeskSunshineArrayOutput() SourceZendeskSunshineArrayOutput {
+	return i.ToSourceZendeskSunshineArrayOutputWithContext(context.Background())
+}
+
+func (i SourceZendeskSunshineArray) ToSourceZendeskSunshineArrayOutputWithContext(ctx context.Context) SourceZendeskSunshineArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskSunshineArrayOutput)
+}
+
+// SourceZendeskSunshineMapInput is an input type that accepts SourceZendeskSunshineMap and SourceZendeskSunshineMapOutput values.
+// You can construct a concrete instance of `SourceZendeskSunshineMapInput` via:
+//
+//	SourceZendeskSunshineMap{ "key": SourceZendeskSunshineArgs{...} }
+type SourceZendeskSunshineMapInput interface {
+	pulumi.Input
+
+	ToSourceZendeskSunshineMapOutput() SourceZendeskSunshineMapOutput
+	ToSourceZendeskSunshineMapOutputWithContext(context.Context) SourceZendeskSunshineMapOutput
+}
+
+type SourceZendeskSunshineMap map[string]SourceZendeskSunshineInput
+
+func (SourceZendeskSunshineMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZendeskSunshine)(nil)).Elem()
+}
+
+func (i SourceZendeskSunshineMap) ToSourceZendeskSunshineMapOutput() SourceZendeskSunshineMapOutput {
+	return i.ToSourceZendeskSunshineMapOutputWithContext(context.Background())
+}
+
+func (i SourceZendeskSunshineMap) ToSourceZendeskSunshineMapOutputWithContext(ctx context.Context) SourceZendeskSunshineMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SourceZendeskSunshineMapOutput)
+}
+
 type SourceZendeskSunshineOutput struct{ *pulumi.OutputState }
 
 func (SourceZendeskSunshineOutput) ElementType() reflect.Type {
@@ -166,7 +216,51 @@ func (o SourceZendeskSunshineOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SourceZendeskSunshine) pulumi.StringOutput { return v.WorkspaceId }).(pulumi.StringOutput)
 }
 
+type SourceZendeskSunshineArrayOutput struct{ *pulumi.OutputState }
+
+func (SourceZendeskSunshineArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*SourceZendeskSunshine)(nil)).Elem()
+}
+
+func (o SourceZendeskSunshineArrayOutput) ToSourceZendeskSunshineArrayOutput() SourceZendeskSunshineArrayOutput {
+	return o
+}
+
+func (o SourceZendeskSunshineArrayOutput) ToSourceZendeskSunshineArrayOutputWithContext(ctx context.Context) SourceZendeskSunshineArrayOutput {
+	return o
+}
+
+func (o SourceZendeskSunshineArrayOutput) Index(i pulumi.IntInput) SourceZendeskSunshineOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SourceZendeskSunshine {
+		return vs[0].([]*SourceZendeskSunshine)[vs[1].(int)]
+	}).(SourceZendeskSunshineOutput)
+}
+
+type SourceZendeskSunshineMapOutput struct{ *pulumi.OutputState }
+
+func (SourceZendeskSunshineMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*SourceZendeskSunshine)(nil)).Elem()
+}
+
+func (o SourceZendeskSunshineMapOutput) ToSourceZendeskSunshineMapOutput() SourceZendeskSunshineMapOutput {
+	return o
+}
+
+func (o SourceZendeskSunshineMapOutput) ToSourceZendeskSunshineMapOutputWithContext(ctx context.Context) SourceZendeskSunshineMapOutput {
+	return o
+}
+
+func (o SourceZendeskSunshineMapOutput) MapIndex(k pulumi.StringInput) SourceZendeskSunshineOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SourceZendeskSunshine {
+		return vs[0].(map[string]*SourceZendeskSunshine)[vs[1].(string)]
+	}).(SourceZendeskSunshineOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskSunshineInput)(nil)).Elem(), &SourceZendeskSunshine{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskSunshineArrayInput)(nil)).Elem(), SourceZendeskSunshineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SourceZendeskSunshineMapInput)(nil)).Elem(), SourceZendeskSunshineMap{})
 	pulumi.RegisterOutputType(SourceZendeskSunshineOutput{})
+	pulumi.RegisterOutputType(SourceZendeskSunshineArrayOutput{})
+	pulumi.RegisterOutputType(SourceZendeskSunshineMapOutput{})
 }
