@@ -11,5 +11,5 @@ const (
 )
 
 func NewProvider() tfpf.Provider {
-	return provider.New(VersionDev)
+	return provider.New(VersionDev)()
 }

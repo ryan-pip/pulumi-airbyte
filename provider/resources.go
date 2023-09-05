@@ -24,7 +24,6 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
-	"github.com/ryan-pip/pulumi-airbyte/provider/pkg/version"
 	"github.com/ryan-pip/terraform-provider-airbyte/shim"
 )
 
@@ -61,6 +60,7 @@ var bridgeMetadata []byte
 
 func Provider() tfbridge.ProviderInfo {
 	info := tfbridge.ProviderInfo{
+		P:           pf.ShimProvider(shim.NewProvider()),
 		Name:        "airbyte",
 		DisplayName: "Airbyte",
 		Publisher:   "Pulumi",
@@ -84,36 +84,35 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/ryan-pip/pulumi-airbyte",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
+		GitHubOrg:    "ryan-pip",
 		MetadataInfo: tfbridge.NewProviderMetadata(bridgeMetadata),
 		Config: map[string]*tfbridge.SchemaInfo{
 			"server_url": {
 				Default: &tfbridge.DefaultInfo{
 					Value:   "https://api.airbyte.com/v1",
 					EnvVars: []string{"AIRBYTE_SERVER_URL"},
-					MarkAsOptional: tfbridge.True(),
 				},
+				MarkAsOptional: tfbridge.True(),
 			},
 			"password": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"AIRBYTE_PASSWORD"},
-					Secret:         tfbridge.True(),
-					MarkAsOptional: tfbridge.True(),
 				},
+				Secret:         tfbridge.True(),
+				MarkAsOptional: tfbridge.True(),
 			},
 			"username": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"AIRBYTE_USERNAME"},
-					MarkAsOptional: tfbridge.True(),
 				},
+				MarkAsOptional: tfbridge.True(),
 			},
 			"bearer_auth": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"AIRBYTE_BEARER_AUTH"},
-					Secret:         tfbridge.True(),
-					MarkAsOptional: tfbridge.True(),
 				},
-			},
+				Secret:         tfbridge.True(),
+				MarkAsOptional: tfbridge.True(),
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
@@ -598,10 +597,6 @@ func Provider() tfbridge.ProviderInfo {
 			"airbyte_source_zoom":                           {Tok: airbyteDataSource(airbyteMod, "getSourceZoom")},
 			"airbyte_source_zuora":                          {Tok: airbyteDataSource(airbyteMod, "getSourceZuora")},
 		},
-		
 	}
-	return pf.ProviderInfo{
-		ProviderInfo: info,
-		NewProvider:  shimp.NewProvider(),
-	}
+	return info
 }
