@@ -24,10 +24,16 @@ import (
 	airbyte "github.com/ryan-pip/pulumi-airbyte/provider"
 )
 
-//go:embed schema.json
-var schema []byte
+//go:embed schema-embed.json
+var pulumiSchema []byte
+
+//go:embed bridge-metadata.json
+var bridgeMetadata []byte
 
 func main() {
-	meta := tfbridge.ProviderMetadata{PackageSchema: schema}
+	meta := tfbridge.ProviderMetadata{
+		PackageSchema:  pulumiSchema,
+		BridgeMetadata: bridgeMetadata,
+	}
 	tfbridge.Main(context.Background(), "airbyte", airbyte.Provider(), meta)
 }
