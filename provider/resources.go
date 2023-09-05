@@ -85,6 +85,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:    "Apache-2.0",
 		Homepage:   "https://www.airbyte.com",
 		Repository: "https://github.com/ryan-pip/pulumi-airbyte",
+		Version:    "0.0.8",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ryan-pip",

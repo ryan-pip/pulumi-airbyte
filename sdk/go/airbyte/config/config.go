@@ -4,9 +4,9 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi-airbyte/sdk/go/airbyte/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/ryan-pip/pulumi-airbyte/sdk/go/airbyte/internal"
 )
 
 var _ = internal.GetEnvOrDefault
