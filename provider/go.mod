@@ -3,7 +3,6 @@ module github.com/ryan-pip/pulumi-airbyte/provider
 go 1.21
 
 require (
-	github.com/hashicorp/terraform-plugin-framework v1.3.5
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.13.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.50.1
 	github.com/pulumi/pulumi/sdk/v3 v3.73.1-0.20230623071431-db579129f4c9
@@ -126,6 +125,7 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.16.2 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
+	github.com/hashicorp/terraform-plugin-framework v1.3.5 // indirect
 	github.com/hashicorp/terraform-plugin-framework-validators v0.10.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.18.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
